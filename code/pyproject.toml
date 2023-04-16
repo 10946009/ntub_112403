@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "code"
+version = "0.1.0"
+description = ""
+authors = ["ZiYun <10946010@ntub.edu.tw>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+django = "^4.2"
+googlemaps = "^4.10.0"
+populartimes = {git = "https://github.com/m-wrzr/populartimes"}
+python-dotenv = "^1.0.0"
+
+
+[tool.poetry.group.dev.dependencies]
+djlint = "^1.23.0"
+black = "^23.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
