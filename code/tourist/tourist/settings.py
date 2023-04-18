@@ -37,7 +37,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'myapp', #新增的app
+
+    "bootstrap5",
+    
+
+    "myapp", #新增的app
 ]
 
 MIDDLEWARE = [
