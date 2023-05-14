@@ -10,9 +10,6 @@ from django.contrib.postgres.fields import ArrayField
 #     # models.SET_DEFAULT：刪除 Post 時，將 Comment 中的 post 欄位設定成預設值
 #     # models.SET_NULL：刪除 Post 時，將 Comment 中的 post 欄位設定成 null    
 #     post = models.ForeignKey(to=Post, on_delete=models.CASCADE)
-class MyModel(models.Model):
-    my_field = ArrayField(models.CharField(max_length=50), blank=True)
-
 
 class User(models.Model):
     name = models.TextField(max_length=500,null=False, blank=False)
@@ -21,7 +18,7 @@ class User(models.Model):
     birthday = models.TextField(max_length=10,null=False, blank=False)
 
 class User_account(models.Model):
-    u_id = models.ForeignKey(to=User, on_delete=models.CASCADE)#user沒了建立行程也會被刪除
+    u = models.ForeignKey(to=User, on_delete=models.CASCADE)#user沒了建立行程也會被刪除
 
     account = models.TextField(max_length=500,null=False, blank=False)
     passwd = models.TextField(max_length=500,null=False, blank=False)
@@ -31,7 +28,7 @@ class User_account(models.Model):
 
 
 class Attractions(models.Model):
-    place_id= models.TextField(max_length=500,null=False, blank=False)
+    place= models.TextField(max_length=500,null=False, blank=False)
     photo = models.TextField(max_length=500,null=False, blank=False)
     a_name = models.TextField(max_length=500,null=False, blank=False)
     address = models.TextField(max_length=500,null=False, blank=False)
@@ -47,7 +44,7 @@ class Attractions(models.Model):
     stay_time = models.IntegerField(null=True, blank=False)
 
 class Create_Travel(models.Model):
-    u_id = models.ForeignKey(to=User, on_delete=models.CASCADE)#user沒了建立行程也會被刪除
+    u = models.ForeignKey(to=User, on_delete=models.CASCADE)#user沒了建立行程也會被刪除
 
     ct_name = models.IntegerField(null=False, blank=False)
     distance = ArrayField(models.FloatField())
@@ -58,18 +55,18 @@ class Create_Travel(models.Model):
     attractions_list = ArrayField(models.IntegerField())
 
 class History(models.Model):
-    ct_id = models.ForeignKey(to=Create_Travel, on_delete=models.CASCADE)#行程沒了歷史也會被刪除
+    ct = models.ForeignKey(to=Create_Travel, on_delete=models.CASCADE)#行程沒了歷史也會被刪除
     status = models.BooleanField()
 
 
 class Share(models.Model):
-    h_id = models.ForeignKey(to=History, on_delete=models.CASCADE)#歷史沒了分享也會被刪除
-
+    h = models.ForeignKey(to=History, on_delete=models.CASCADE)#歷史沒了分享也會被刪除
+    like = models.IntegerField(null=False, blank=False)
 class Comment(models.Model):
-    u_id = models.ForeignKey(to=User, on_delete=models.CASCADE)#user沒了留言也會被刪除
-    a_id = models.ForeignKey(to=Attractions, on_delete=models.CASCADE)#景點沒了留言也會被刪除
-    ct_id = models.ForeignKey(to=Create_Travel, on_delete=models.CASCADE)#行程沒了留言也會被刪除
-    share_id = models.ForeignKey(to=Share, on_delete=models.CASCADE)#分享沒了留言也會被刪除
+    u = models.ForeignKey(to=User, on_delete=models.CASCADE)#user沒了留言也會被刪除
+    a = models.ForeignKey(to=Attractions, on_delete=models.CASCADE)#景點沒了留言也會被刪除
+    ct = models.ForeignKey(to=Create_Travel, on_delete=models.CASCADE)#行程沒了留言也會被刪除
+    share = models.ForeignKey(to=Share, on_delete=models.CASCADE)#分享沒了留言也會被刪除
 
 
     name = models.TextField(max_length=500)
@@ -78,11 +75,11 @@ class Comment(models.Model):
     time = models.TimeField(auto_now_add=True)
 
 class Favorite(models.Model):
-    u_id = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    a_id = models.ForeignKey(to=Attractions, on_delete=models.CASCADE)
+    u = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    a = models.ForeignKey(to=Attractions, on_delete=models.CASCADE)
 
 
 
 class Search(models.Model):
-    u_id = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    u = models.ForeignKey(to=User, on_delete=models.CASCADE)
     keyword = ArrayField(models.TextField())
