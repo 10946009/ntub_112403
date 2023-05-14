@@ -10,6 +10,9 @@ from django.contrib.postgres.fields import ArrayField
 #     # models.SET_DEFAULT：刪除 Post 時，將 Comment 中的 post 欄位設定成預設值
 #     # models.SET_NULL：刪除 Post 時，將 Comment 中的 post 欄位設定成 null    
 #     post = models.ForeignKey(to=Post, on_delete=models.CASCADE)
+class MyModel(models.Model):
+    my_field = ArrayField(models.CharField(max_length=50), blank=True)
+
 
 class User(models.Model):
     name = models.TextField(max_length=500,null=False, blank=False)
@@ -35,24 +38,24 @@ class Attractions(models.Model):
     location_x = models.FloatField()
     location_y = models.FloatField()
     phone = models.TextField(max_length=500,null=False, blank=True)
-    opening = ArrayField()
-    tags = ArrayField()
-    crowd = ArrayField()
+    opening = ArrayField(models.TextField(), blank=True)
+    tags = ArrayField(models.TextField(), blank=True)
+    crowd = ArrayField(models.FloatField(), blank=True)
     rating = models.FloatField(null=False, blank=False)
     score = models.FloatField(null=False, blank=False)
-    Comment = ArrayField()
+    Comment = ArrayField(models.IntegerField(), blank=True)
     stay_time = models.IntegerField(null=True, blank=False)
 
 class Create_Travel(models.Model):
     u_id = models.ForeignKey(to=User, on_delete=models.CASCADE)#user沒了建立行程也會被刪除
 
     ct_name = models.IntegerField(null=False, blank=False)
-    distance = ArrayField()
-    distance_time = ArrayField()
+    distance = ArrayField(models.FloatField())
+    distance_time = ArrayField(models.IntegerField())
     start_time = models.TimeField()
     end_time = models.TimeField()
     days = models.IntegerField(null=False, blank=False)
-    attractions_list = ArrayField()
+    attractions_list = ArrayField(models.IntegerField())
 
 class History(models.Model):
     ct_id = models.ForeignKey(to=Create_Travel, on_delete=models.CASCADE)#行程沒了歷史也會被刪除
@@ -82,4 +85,4 @@ class Favorite(models.Model):
 
 class Search(models.Model):
     u_id = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    keyword = ArrayField()
+    keyword = ArrayField(models.TextField())
