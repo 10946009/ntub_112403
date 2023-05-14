@@ -16,13 +16,27 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import myapp.views as views
-from myapp.views import sayhello,get_all_taiwan,opentime #新增
+# from myapp.views import sayhello,get_all_taiwan,opentime #新增
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('',views.sayhello),
-    path('test/',views.get_all_taiwan),
-    path('opentime/',views.opentime),
+    # path('',views.sayhello),#測試
+    # path('test/',views.get_all_taiwan),#測試
+    # path('opentime/',views.opentime), #測試
+    path('admin_index/',views.admin_index),
+    path('admin_login/',views.admin_login),
+    path('admin_manageuser/',views.admin_manageuser),
+    path('admin_comment/',views.admin_comment),
+    path('',views.index),
     path('login/',views.login),
+    path('forget_passwd/',views.forget_passwd),
+    path('register/',views.register),
+    path('search/',views.search),
+    path('create/',views.create),
+    path('history/',views.history),
+    path('favorite/',views.favorite),
+    path('share/',views.share),
+    path('attraction_details/<int:a_id>',views.attraction_details),
+
     # path('sayhello/<str:username>',sayhello), #新增
 ]
