@@ -1,0 +1,934 @@
+{
+   "html_attributions" : [],
+   "next_page_token" : "AZose0nh1HoEvGIeylYux9ex8FzlwFJMggnodMe9BE0D21_-63q-uqTtasxtUexTANnXqActvpMIQWA6QnL7C5zp5cASjoL-JAX6qG6wnNhNGjks5tCdoL_79bJAOKx021ZS6OMPhHWbqo3Ub-vkKVWWTefLDYbi2ZjVIC9d0RW6DvE1EaP2RjP2A_XmPLdp0cxu5lWkTdek187sD2zO498KmV73wYLdk6KzklF3-bVy5kcoIPVb4THgzH0jkRamUGz94bJK7-iFsKIWz3ME2Dfo7msGHXhj8mlEUI1RXa7whgjKR-YdkqSIjwCwt1aQA5KUlA194-barN90-Rm4XaGrR0I1JcxQB5ndAKW9ADD_8MriT37OFUEy8ZI99wTs7yulMjZbrzkzNvEbJfVT6zWvYUHlHE0bM-YHCtHKyvIjNQ",
+   "results" : [
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "235台灣新北市中和區",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.986075,
+               "lng" : 121.5037277
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.98754772989272,
+                  "lng" : 121.5050117298927
+               },
+               "southwest" : {
+                  "lat" : 24.98484807010728,
+                  "lng" : 121.5023120701072
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#13B5C7",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "國強嶺",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 1632,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/115422682039760465813">Yu-Jie Lin"
+               ],
+               "photo_reference" : "AZose0ll0Ps_xo3GgayUrg4ObVAyYzpF9sfXXpUsNErJsg58vfLD0nWrir15M-B_sRacYWt7NzLjbthLn37tGTuy3hYXNfsg_FwaZQdRiXAAisEJzkdUJ2fU8zq0SPJ-eQd2qNyLXIoGEmaR9k2vKwG0xZjOwu5c88L1VY5qwuWUAL6UN_MJ",
+               "width" : 3264
+            }
+         ],
+         "place_id" : "ChIJA2B1k28CaDQRp7A0tgykz3A",
+         "plus_code" : {
+            "compound_code" : "XGP3+CF 中和區 新北市",
+            "global_code" : "7QP3XGP3+CF"
+         },
+         "rating" : 4,
+         "reference" : "ChIJA2B1k28CaDQRp7A0tgykz3A",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 74
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "235台灣新北市中和區",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9883719,
+               "lng" : 121.5156764
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.98980317989272,
+                  "lng" : 121.5170612298927
+               },
+               "southwest" : {
+                  "lat" : 24.98710352010728,
+                  "lng" : 121.5143615701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "景新公園",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/115487373594274059281">孫秉成"
+               ],
+               "photo_reference" : "AZose0m3GAifysqmXmmOJBLCI_f9nDvrix5rtGMlfn_J_FQyV9QrW5sZ-2OLA2c5NnPFqHcvVJuSlpZxxqw6DuFXt1SH72BcUIjcSOI-3PeXz3-O787agltImN717k8eoUFNk6ADf4ugxPKt-eJjQverR20K4yg5F36wMnJMnykluEKtacDZ",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJr0yN6QwCaDQRwNPWnNAC3S4",
+         "plus_code" : {
+            "compound_code" : "XGQ8+87 中和區 新北市",
+            "global_code" : "7QP3XGQ8+87"
+         },
+         "rating" : 3.9,
+         "reference" : "ChIJr0yN6QwCaDQRwNPWnNAC3S4",
+         "types" : [ "park", "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 235
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "235台灣新北市中和區圓通路",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.983439,
+               "lng" : 121.4960644
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.98478882989273,
+                  "lng" : 121.4974142298927
+               },
+               "southwest" : {
+                  "lat" : 24.98208917010728,
+                  "lng" : 121.4947145701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#7B9EB0",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "長壽山",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3096,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/115957300303228490045">田明府"
+               ],
+               "photo_reference" : "AZose0neoA-Ay3EsMaruQkGWoAr2hUWbJJrQCLKfiA8_WrgUkyEV4KH-nnJhoFRZBGPRFa_3QOGl3WyxQQ3kPnXa1WBk5kispPP9pmUCh92151Zqdxf0mZMXEiqTJJqvpy6EXVaWBGAGfPqdteOX3trmuVms0aCVkN_0ZQeFx2bVRCrQhuwh",
+               "width" : 5504
+            }
+         ],
+         "place_id" : "ChIJC7gdW2ECaDQRCN6R7kDNjzY",
+         "plus_code" : {
+            "compound_code" : "XFMW+9C 中和區 新北市",
+            "global_code" : "7QP3XFMW+9C"
+         },
+         "rating" : 4.2,
+         "reference" : "ChIJC7gdW2ECaDQRCN6R7kDNjzY",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 38
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "235台灣新北市中和區民利街9巷2號",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9981703,
+               "lng" : 121.4801725
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.99978247989272,
+                  "lng" : 121.4817849798928
+               },
+               "southwest" : {
+                  "lat" : 24.99708282010728,
+                  "lng" : 121.4790853201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "嘉穗公園",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 1200,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/110530727748365340745">A Google User"
+               ],
+               "photo_reference" : "AZose0lLO0dTUW-9_YTXnJ2cHt8T0FJpyturms2C3IayzBnuaGcjkLiUgvqTnkJuSBcE8XufQjWlIP0GT2vn5e1-9vajzvmdz_0pjBK6CkOFx4u22Pv4mt41nKWf8HS3evNUqFN2P2UtbCWiWou-Oi_tJSMnPJkwTQL0R0kCvfbAeFeIiDuB",
+               "width" : 683
+            }
+         ],
+         "place_id" : "ChIJbwUyZpsCaDQRVvdlaMvKViY",
+         "plus_code" : {
+            "compound_code" : "XFXJ+73 中和區 新北市",
+            "global_code" : "7QP3XFXJ+73"
+         },
+         "rating" : 4.3,
+         "reference" : "ChIJbwUyZpsCaDQRVvdlaMvKViY",
+         "types" : [ "park", "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 474
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "235台灣新北市中和區",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0033477,
+               "lng" : 121.4784094
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.00469752989272,
+                  "lng" : 121.4797592298927
+               },
+               "southwest" : {
+                  "lat" : 25.00199787010728,
+                  "lng" : 121.4770595701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#7B9EB0",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "員山公園 遊逸之丘",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 2268,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/115249032117991756799">kevin liou"
+               ],
+               "photo_reference" : "AZose0m7np2j3oGfsV9mbTRtyIH5IsleV27hav0JZbZ-phxayXvFHBHkLmC1XdR8p20BZCMz6FfmIfAy5ldnf0uRXQLcOuuZIQtysa-LZBBLkXM-ykE_5VK3edKyR2WNdGXrO5BvR6Inx25plgNVCAlfBuhQBCUe1ORUdumpYUw3qaAK-Gzs",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJ_36N-mADaDQRTKrRGhuCtVw",
+         "plus_code" : {
+            "compound_code" : "2F3H+89 中和區 新北市",
+            "global_code" : "7QQ32F3H+89"
+         },
+         "rating" : 4.5,
+         "reference" : "ChIJ_36N-mADaDQRTKrRGhuCtVw",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 370
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "235台灣新北市中和區",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.969195,
+               "lng" : 121.495829
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.97054482989272,
+                  "lng" : 121.4971788298927
+               },
+               "southwest" : {
+                  "lat" : 24.96784517010728,
+                  "lng" : 121.4944791701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#7B9EB0",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "烘爐地-南勢角山",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 1108,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/117117431398120207468">黃柏儒"
+               ],
+               "photo_reference" : "AZose0kYz2tkZlCfhQrJwFRwxM2KGwDzzB2hysmjLogUGsei7qKV9DuOsXfiTVl354lAcOCVMDy1atKG0e41v_dYfj1s_3IEvh0g_sUeruTs-gRag_Gn4jDph_Ono-U9dl8g9tIvQQyCeV4KMhaw90CJz9K59WkvPqSXB3oO4Uc2pIp0CFyd",
+               "width" : 1478
+            }
+         ],
+         "place_id" : "ChIJhznY61kCaDQRkueGP5sq11g",
+         "plus_code" : {
+            "compound_code" : "XF9W+M8 中和區 新北市",
+            "global_code" : "7QP3XF9W+M8"
+         },
+         "rating" : 4.4,
+         "reference" : "ChIJhznY61kCaDQRkueGP5sq11g",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 607
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "235台灣新北市中和區復興路301巷內",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.986908,
+               "lng" : 121.5031902
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.98825202989272,
+                  "lng" : 121.5045054298928
+               },
+               "southwest" : {
+                  "lat" : 24.98555237010728,
+                  "lng" : 121.5018057701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#7B9EB0",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "國勝嶺",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/116181528627686267981">洛克巴"
+               ],
+               "photo_reference" : "AZose0k6kDNXgNtGzok-hnMoITFmenmaWcqBxl4W0qCCpV2KKff7sYdvOUml62lhnfjZI_P-KrZ8xBphAWMKy9lg3T3SLYZi5f2v4rmi_8QGScSQ_BzWlOKyM6-lzl9t3n7j2Nomn-_3c-vg3o7XQpsWsiAFja8TM9EfkbGH4h_hgPMujznI",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJ1efG8G8CaDQRRc5zF9TLVB8",
+         "plus_code" : {
+            "compound_code" : "XGP3+Q7 中和區 新北市",
+            "global_code" : "7QP3XGP3+Q7"
+         },
+         "rating" : 4.1,
+         "reference" : "ChIJ1efG8G8CaDQRRc5zF9TLVB8",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 60
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "235台灣新北市中和區錦和路350-1號",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9929001,
+               "lng" : 121.4886939
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.99456617989272,
+                  "lng" : 121.4900492298927
+               },
+               "southwest" : {
+                  "lat" : 24.99186652010728,
+                  "lng" : 121.4873495701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#7B9EB0",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "錦和運動公園(防災公園)",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3000,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/112410208795842020298">ShouDer"
+               ],
+               "photo_reference" : "AZose0lZ8rCC4ypP3DHWPLSQbNV2Phg2M17vojbUCdiRG8GThd3BvcmE7Zc-jBH1VM2v7Ic6JqqyYJZ5yIee42VzLnJ6KW54AN1AgmP2WyDkWqsHYFX9A7OHfaLTEEl75rpNoF77cUwAwiUdaSrz-x56yJ0pNXDZodo2w_H3CJg61w_QxS-x",
+               "width" : 4000
+            }
+         ],
+         "place_id" : "ChIJiQbAMYYCaDQRJKYf9nsP8ws",
+         "plus_code" : {
+            "compound_code" : "XFVQ+5F 中和區 新北市",
+            "global_code" : "7QP3XFVQ+5F"
+         },
+         "rating" : 4.4,
+         "reference" : "ChIJiQbAMYYCaDQRJKYf9nsP8ws",
+         "types" : [ "tourist_attraction", "park", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 6516
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "No. 131, No. 235圓通路367巷33弄中和區新北市台灣",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9842164,
+               "lng" : 121.497561
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.98586477989272,
+                  "lng" : 121.4985673298927
+               },
+               "southwest" : {
+                  "lat" : 24.98316512010728,
+                  "lng" : 121.4958676701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#13B5C7",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "350-Year-Old Banyan",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3000,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/105195572425031700474">張達銘"
+               ],
+               "photo_reference" : "AZose0kByZOps7Plr1eN7uji-TIPdkPA7GN1jp-QCYi1Ps3dsFmK-HqYUyTlKk943UCzLnrBhhlVCeNZxs2s1G08jwS7xzow4qw3i6pTxNJi9P6eQ8tsMp0422wuuVMaTPg6CR064Vl_wge-uzmdIdXgoMUpIq_qlkPYN0kNAjo1GsUzXoWo",
+               "width" : 4000
+            }
+         ],
+         "place_id" : "ChIJwWOqBWQCaDQRFr2fXwASgdA",
+         "plus_code" : {
+            "compound_code" : "XFMX+M2 中和區 新北市",
+            "global_code" : "7QP3XFMX+M2"
+         },
+         "rating" : 4.3,
+         "reference" : "ChIJwWOqBWQCaDQRFr2fXwASgdA",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 20
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "235台灣新北市中和區福祥路90巷",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0061787,
+               "lng" : 121.4997125
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.00752712989273,
+                  "lng" : 121.5010576298927
+               },
+               "southwest" : {
+                  "lat" : 25.00482747010728,
+                  "lng" : 121.4983579701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#13B5C7",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "廟仔尾溝台灣魚木",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 5184,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/111368011042333416043">A Google User"
+               ],
+               "photo_reference" : "AZose0nQ1Y6l4UeWNuZI4i8IJLX0US6pueoPdWRL7kAWQyDVE4eIlHhY34VcmGvFGOMtzMWMTlf0dTazhr4BKbygC_RVwQN0B-UeCfrbkSq_aOOFW0rbxCHioGAlhRRJ7LgHqtF8Ust06ko0iLkPnWc0OEKUviy-siONVrk1Vdx5m3JAQOwp",
+               "width" : 3888
+            }
+         ],
+         "place_id" : "ChIJnz1voiGpQjQRkqklBdBqf8o",
+         "plus_code" : {
+            "compound_code" : "2F4X+FV 中和區 新北市",
+            "global_code" : "7QQ32F4X+FV"
+         },
+         "rating" : 0,
+         "reference" : "ChIJnz1voiGpQjQRkqklBdBqf8o",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 0
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "235台灣新北市中和區",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.991091,
+               "lng" : 121.485507
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.99244082989272,
+                  "lng" : 121.4868568298927
+               },
+               "southwest" : {
+                  "lat" : 24.98974117010728,
+                  "lng" : 121.4841571701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#7B9EB0",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "漳和溼地",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 2368,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/109926480676261605445">jane chang"
+               ],
+               "photo_reference" : "AZose0njjhz--MnkBc8PGleDYTDsuVRW17m5ltiyx1BagV9carlLlWvd_BzuyN2IEh00C2cJ0NWQGBWk_y6H_COIwJTtjK1W-7RHkLUQp2YrroknpzW8iTPT657iXwGryETXf8R0eE87DYVL9b-1QVrq4DKdqki8xlKJscqpqoAoIR9nuREV",
+               "width" : 4160
+            }
+         ],
+         "place_id" : "ChIJqyEVTY8CaDQRhejNmA_pq5U",
+         "plus_code" : {
+            "compound_code" : "XFRP+C6 中和區 新北市",
+            "global_code" : "7QP3XFRP+C6"
+         },
+         "rating" : 3.4,
+         "reference" : "ChIJqyEVTY8CaDQRhejNmA_pq5U",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 71
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "231台灣新北市新店區華城路",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9601743,
+               "lng" : 121.5296516
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.96152667989272,
+                  "lng" : 121.5309853798927
+               },
+               "southwest" : {
+                  "lat" : 24.95882702010728,
+                  "lng" : 121.5282857201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#13B5C7",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "新店山區",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 1536,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/100059199783102261565">A Google User"
+               ],
+               "photo_reference" : "AZose0kwjl2fshpgSn5qes9eDXJHavAPCsbFQJ03AMI3ynAVAvcAzJo7Su1vjidMQLlOMC83oFh1TzUu5OOj2u8XgufMDfOIidRjp6FZYiHh7MlTFtUgaCpTaxaHoSWBB8LOzVv6ABleMruULBIqCRlEGSUA9Z0f4M7DRlFjreJmUGXhFYIm",
+               "width" : 2048
+            }
+         ],
+         "place_id" : "ChIJu9S3YS8CaDQREOP8hwE992I",
+         "plus_code" : {
+            "compound_code" : "XG6H+3V 新店區 新北市",
+            "global_code" : "7QP3XG6H+3V"
+         },
+         "rating" : 4.2,
+         "reference" : "ChIJu9S3YS8CaDQREOP8hwE992I",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 60
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "235台灣新北市中和區國光街37-59號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0001328,
+               "lng" : 121.4714649
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.00153862989272,
+                  "lng" : 121.4728137798927
+               },
+               "southwest" : {
+                  "lat" : 24.99883897010728,
+                  "lng" : 121.4701141201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "自強公園",
+         "photos" : [
+            {
+               "height" : 3000,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/101628835739012757889">joyce liu"
+               ],
+               "photo_reference" : "AZose0l8e9u0HQFAqRr3czeR3rJyCS-4VtyU-zDWptCXDl1eBTx9OqrLS7JQQVdc254z2WjsIbxI37X0N-yfBV8iFbw33U4Kn5GDMdg98i5CS6Hst6sE4mbXDlvtzIpW4XoUz4nGSgrIbeuZ0w9oCwlhHBAIC63eG8iNuTQqNIGo8A0j3BwT",
+               "width" : 4000
+            }
+         ],
+         "place_id" : "ChIJQUkvKpkCaDQRUaKv0tF8BOY",
+         "plus_code" : {
+            "compound_code" : "2F2C+3H 中和區 新北市",
+            "global_code" : "7QQ32F2C+3H"
+         },
+         "rating" : 4.1,
+         "reference" : "ChIJQUkvKpkCaDQRUaKv0tF8BOY",
+         "types" : [ "park", "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 220
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "116台灣台北市文山區景華街",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9925635,
+               "lng" : 121.5480591
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.99391332989272,
+                  "lng" : 121.5494089298927
+               },
+               "southwest" : {
+                  "lat" : 24.99121367010728,
+                  "lng" : 121.5467092701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#13B5C7",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "仙跡岩",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3136,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/109316419462430927822">徐欣蕙"
+               ],
+               "photo_reference" : "AZose0nNS3lpJTAI8_a9Tr4AHbEGJOy-K2J0PqPffRuld7yT-xbBEHbHm8XjqkPbQxgKZmo136P-amxtAqyBNKc2s5moUNFromUZjFcnhJ42eijTiom9NzC2UKgLQHVbVFW5P6WD68sin3LfxhgCUQlYmzlIYv8vt59PygpiZB6cw967GN7I",
+               "width" : 4224
+            }
+         ],
+         "place_id" : "ChIJtcqEgg-qQjQR1G3ExAwW5Rk",
+         "plus_code" : {
+            "compound_code" : "XGVX+26 文山區 台北市",
+            "global_code" : "7QP3XGVX+26"
+         },
+         "rating" : 4.5,
+         "reference" : "ChIJtcqEgg-qQjQR1G3ExAwW5Rk",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 1832
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "235台灣新北市中和區自立路15巷12號",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.995824,
+               "lng" : 121.523515
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.99699067989272,
+                  "lng" : 121.5245496798927
+               },
+               "southwest" : {
+                  "lat" : 24.99429102010728,
+                  "lng" : 121.5218500201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "秀山公園",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3004,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/103798134847024216526">Lin Kevin"
+               ],
+               "photo_reference" : "AZose0mlOXbivFBPpV0ISQybHbgKbw9UWkrnLVh0WFFgNdJBGdj6gCcY_2Z-VQdKOBom11tnnva57iT-Aehehl-rcaJ9USZTrjd2B2WvrOkdRt6Pwz6C94QlbQNgZSxBTVJArzl5shb6EnXdrzvxq9D4oMskEhiTHMASueGcfN3F9xNtBQ79",
+               "width" : 5325
+            }
+         ],
+         "place_id" : "ChIJTwij5OKpQjQRFWARYtpmtkU",
+         "plus_code" : {
+            "compound_code" : "XGWF+8C 中和區 新北市",
+            "global_code" : "7QP3XGWF+8C"
+         },
+         "rating" : 4,
+         "reference" : "ChIJTwij5OKpQjQRFWARYtpmtkU",
+         "types" : [ "park", "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 1231
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "235台灣新北市中和區華中橋",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0081822,
+               "lng" : 121.4950964
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.00934422989272,
+                  "lng" : 121.4969074
+               },
+               "southwest" : {
+                  "lat" : 25.00664457010728,
+                  "lng" : 121.4914378
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "恐龍園區公園",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/104758515146655479176">劉柏宗"
+               ],
+               "photo_reference" : "AZose0l6WBIN_cTTEPlDhn4KvYEuGlbeQYjZlAI3F3VMSpiTkwtZP3C_GXZeMS4kXp9Jt8zfZIQuL_sx8_HAzmzuhWN4HN1nbmr_sBIF_ss2lHv6Yo7VuETn4mZvR5SQywGkAccDP-rHB7xxX-P_wtF-_B8_NxkfQ_xwxLBoVEq66aAvqGm7",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJYY9rStKpQjQRhgsBLavYtTs",
+         "plus_code" : {
+            "compound_code" : "2F5W+72 中和區 新北市",
+            "global_code" : "7QQ32F5W+72"
+         },
+         "rating" : 3.8,
+         "reference" : "ChIJYY9rStKpQjQRhgsBLavYtTs",
+         "types" : [ "park", "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 1380
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "號, No. 1-1華新街中和區新北市台灣 235",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9855569,
+               "lng" : 121.5073389
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.98689632989272,
+                  "lng" : 121.5086563798927
+               },
+               "southwest" : {
+                  "lat" : 24.98419667010728,
+                  "lng" : 121.5059567201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#13B5C7",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "南洋觀光美食街",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 2268,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/109726169373926990598">Jerry"
+               ],
+               "photo_reference" : "AZose0kJS4PaPV1R98kbsVq9Z7GkV0WWuapxMXQYR2r_oT0qBThAdDLLrAcI6WqvNgx3Cb77kwvWkA5HyVqZraGaLY-Ig4A9Uj6P1hQxfLdFTfAnTGS2eVk7rwnHRxSzNZYNb1lxZX0JvPZvfQY9hNBWygLHs-7xI4dGwap8-kun8JOmEQ8X",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJ-xORFG4CaDQRjzsDocxBK3o",
+         "plus_code" : {
+            "compound_code" : "XGP4+6W 中和區 新北市",
+            "global_code" : "7QP3XGP4+6W"
+         },
+         "rating" : 4.1,
+         "reference" : "ChIJ-xORFG4CaDQRjzsDocxBK3o",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 461
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "235台灣新北市中和區",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.98195,
+               "lng" : 121.4923132
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.98295847989272,
+                  "lng" : 121.4938714798927
+               },
+               "southwest" : {
+                  "lat" : 24.98025882010727,
+                  "lng" : 121.4911718201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "圓通寺步道",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 4032,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/118143850474895822841">姜誠咨"
+               ],
+               "photo_reference" : "AZose0llIWOuA9m-dHcq39PPaL6ua6uCewJK0kw9dKO964Kg124dSqp5hh35Qjzqu6R2ihSY_aGdofMvlOKvlZDfZy_hmhRsJgyKux3G-pGNt0QA8Q4gUgbjzkdZxpwJpmF9S46ZoQ6LlT_Q5efblF5pU8ZQKcEkXTBWc0t1LAf9qw3hgO4p",
+               "width" : 3024
+            }
+         ],
+         "place_id" : "ChIJAXFfMWACaDQRB7q0FTsITpo",
+         "plus_code" : {
+            "compound_code" : "XFJR+QW 中和區 新北市",
+            "global_code" : "7QP3XFJR+QW"
+         },
+         "rating" : 4.3,
+         "reference" : "ChIJAXFfMWACaDQRB7q0FTsITpo",
+         "types" : [ "tourist_attraction", "park", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 312
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "235台灣新北市中和區景新街467巷50弄18號",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9885439,
+               "lng" : 121.5161344
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.98997862989272,
+                  "lng" : 121.5171726798927
+               },
+               "southwest" : {
+                  "lat" : 24.98727897010728,
+                  "lng" : 121.5144730201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/worship_dharma-71.png",
+         "icon_background_color" : "#7B9EB0",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "金山禪寺",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 3000,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/110567182999878956484">楊瑞武"
+               ],
+               "photo_reference" : "AZose0njR1DXFrQDglAvq7WJeoaNiMNFmgfIR2zUClRm4cCquPvoZTufSNCzF4H4tID2aMluLvEYfRFf2l7TTK_YQADGB5xgEzWlMpLs-TJq-9CPlsDMRw336b19B4QVvjVkTy6XMbOGae72MwGt0LJ0GQmNkjaTgQQ-4Ldtcn3Hahr_mkJo",
+               "width" : 4000
+            }
+         ],
+         "place_id" : "ChIJd4PRkgwCaDQRVlNvXH5Qfow",
+         "plus_code" : {
+            "compound_code" : "XGQ8+FF 中和區 新北市",
+            "global_code" : "7QP3XGQ8+FF"
+         },
+         "rating" : 4.6,
+         "reference" : "ChIJd4PRkgwCaDQRVlNvXH5Qfow",
+         "types" : [
+            "tourist_attraction",
+            "place_of_worship",
+            "point_of_interest",
+            "establishment"
+         ],
+         "user_ratings_total" : 138
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "235台灣新北市中和區興南路二段399巷160-1號",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9717934,
+               "lng" : 121.4977669
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.97367912989272,
+                  "lng" : 121.4994730798927
+               },
+               "southwest" : {
+                  "lat" : 24.97097947010727,
+                  "lng" : 121.4967734201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#7B9EB0",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "烘爐地南山福德宮",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3825,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/107504134103416783471">豪鄭"
+               ],
+               "photo_reference" : "AZose0mt5FKhS57SWQL04AcRBqrm-lCdag2pGTd1bDAnclaEFYSyDD9pR3NqKv2YvXd0BJOmoSbSmos79qWhU-736KkJjYVeTMVlPMrGhpjoLmgwEre6BBNFhRrPy7fGe4EJTNom1xOTv1NJtWugER2QRhaQ4DKiVbENKspoI0w5YiBa45mG",
+               "width" : 5263
+            }
+         ],
+         "place_id" : "ChIJGwKL-VsCaDQRdL-5PNoFWhw",
+         "plus_code" : {
+            "compound_code" : "XFCX+P3 中和區 新北市",
+            "global_code" : "7QP3XFCX+P3"
+         },
+         "rating" : 4.7,
+         "reference" : "ChIJGwKL-VsCaDQRdL-5PNoFWhw",
+         "types" : [
+            "place_of_worship",
+            "tourist_attraction",
+            "point_of_interest",
+            "establishment"
+         ],
+         "user_ratings_total" : 14229
+      }
+   ],
+   "status" : "OK"
+}
