@@ -1,0 +1,33 @@
+
+body{
+    width: 100%;
+    overflow-x: hidden;
+}
+.name_ul{
+    list-style-type: none;
+    display: block;
+    margin: 0;
+    padding: 8px;
+}
+.name_li{
+    font-size: 16px;
+}
+.dropdown-item{
+    width: 10px;
+}
+main{
+    width: 80%;
+}
+.nav{
+    display: flex;
+    justify-content: center;
+}
+footer{
+    margin-top: 50px;
+    text-align: center;
+    height: 40px;
+    font-size: 20px;
+    line-height: 40px;
+    background-color: grey;
+    color: white;
+}
