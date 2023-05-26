@@ -1,4 +1,86 @@
-登入頁
-<p></p>
-<p><a href="/forget_passwd">忘記密碼</a></p>
-<p><a href="/register">註冊</a></p>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>登入</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 50px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .container input[type="text"],
+        .container input[type="password"] {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .container input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #f3930b;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .container input[type="submit"]:hover {
+            background-color: #f4a040;
+        }
+
+        .container .message {
+            text-align: center;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        .container .message a {
+            color: #266fec;
+            text-decoration: none;
+        }
+
+        .logo {
+            display: block;
+            margin: auto;
+            margin-bottom: 30px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Trip Fun Chill 趣放假！</h1>
+        <img class="logo" src="images/Logo.png" alt="Trip" style="width:200px;height:200px;">
+        <form>
+            <input type="text" placeholder="帳號/e-mail" required>
+            <input type="password" placeholder="密碼" required>
+            <input type="submit" value="登入">
+        </form>
+        <div class="message">
+            <a href="/register">還沒有帳號？</a> <a href="/forget_passwd">忘記密碼</a>
+        </div>
+    </div>
+</body>
+
+</html>
