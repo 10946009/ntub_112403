@@ -1,0 +1,60 @@
+.login {
+    max-width: 500px;
+    margin: 40px auto;
+    margin-bottom: 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.login input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #f3930b;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login input[type="submit"]:hover {
+    background-color: #f4a040;
+}
+
+.login .message {
+    text-align: center;
+    color: #666;
+    margin-top: 20px;
+}
+
+.login .message a {
+    color: #266fec;
+    text-decoration: none;
+}
+
+.logo {
+    display: block;
+    margin: auto;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.message a:hover {
+    color: #5726ec
+}
