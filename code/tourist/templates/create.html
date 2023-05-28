@@ -6,37 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>建立行程</title>
     
-    <link rel="stylesheet" href="/static/css/bootstrap2023.css">
-    <link rel="stylesheet" href="/static/css/all.css">
-    <link rel="stylesheet" href="/static/css/createT.css">
-    <link rel="stylesheet" href="/static/js/createT.js">
+    <link rel="stylesheet" href="../static/css/bootstrap2023.css">
+    <link rel="stylesheet" href="../static/css/all.css">
+    <link rel="stylesheet" href="../static/css/create.css">
     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/static/js/jquery-3.7.0.min.js"></script>
-    <script src="/static/js/bootstrap.js"></script>
 
-    <style>
-    </style>
-
-    <script>
-      
-      var dialog,x;
-      window.onload=function(){
-        dialog=document.getElementById("dialog");
-        x=document.getElementById("x");
-      }
-      function showDialog(){
-        dialog.style.display="block";
-      }
-      function hideDialog(){
-        dialog.style.display="none";
-      }
-    </script>
-  
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary "  style="height: 80px;">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">趣放假</a>
+      <button class="navbar-toggler me-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="index.html">首頁</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="create.html">建立行程</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="history.html">我的行程</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="_get_all_taiwan.html">景點資訊</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="favorite.html">我的收藏</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <ul class="name_ul">
+          <li class="nav-item dropdown name_li" style="list-style-type: none;">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              UserName
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Setting</a></li>
+              <li><a class="dropdown-item" href="#">Log out</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary "  style="height: 80px;">
         <div class="container-fluid">
           <a class="navbar-brand" href="index.html">趣放假</a>
           <button class="navbar-toggler me-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,190 +91,181 @@
             </li>
           </ul>
         </div>
-    </nav>
+    </nav> -->
     
 
     <div class="create_div" style="display: flex;justify-content: center;">
       <main>
-        <div >
-
-          <ul class="nav ">
-            <li class="nav-item tab_li">
-              <a class="nav-link active link-secondary current" aria-current="page" href="#tab_c">建立行程</a>
-            </li>
-            <li class="nav-item tab_li">
-              <a class="nav-link link-secondary" href="#tab_f">我的收藏</a>
-            </li>
-            <li class="nav-item tab_li">
-              <a class="nav-link link-secondary" href="#tab_r">推薦景點</a>
-            </li>
-          </ul>
+        <div class="container">
+          <div class="row justify-content-md-center" style="text-align: center;">
+            <div class="col col-lg-2"><a href="#tab_c" class="tab_a">建立行程</a></div>
+            <div class="col col-lg-2"><a href="#tab_f" class="tab_a">我的收藏</a></div>
+            <div class="col col-lg-2"><a href="#tab_r" class="tab_a">推薦景點</a></div>
+          </div>
         </div>
         
         <div id="contents">
-          <div id="tab_c">
+          <section id="tab_c">
             <form action="" style="display: flex;justify-content: center;">
-              <span class="tabc_txt">使用者位置：</span><input type="text" placeholder="請輸入位置" class="input_txt" value="台北商業大學">
-              <span class="tabc_txt">出發日期：</span><input type="date" class="input_txt">
-              <span class="tabc_txt">結束日期：</span><input type="date" class="input_txt">
-              <input type="submit" value="確定" class="input_txt">
+              <div class="row" style="width: 80%;">
+                <div class="col-md-4 tabc_txt">出發日期：<input type="date" class="input_txt" value="2023-05-25"></div>
+                <div class="col-md-4 tabc_txt">結束日期：<input type="date" class="input_txt" value="2023-05-26"></div>
+                <div class="col-md-4 tabc_txt"><input type="submit" value="確定" class="input_txt"></div>
+              </div>
             </form>
-            <form action="" class="form_create" style="margin-top: 20px;">
-
-                <div style="width: 20%;float: left;">
-                  <span>請輸入出發時間：</span><input type="time" value="09:00">
+            <div class="row">
+              <div class="col-md-4 div_day" style="background-color: #888888;">
+                <div class="row">
+                  <div class="div_day " style="text-align: center;">
+                    <div class="tabD"><a href="#tab_c" class="tab_day">第一天</a></div>
+                    <div class="tabD"><a href="#tab_c" class="tab_day">第二天</a></div>
+                  </div>
                 </div>
-                <div id="main" style="width: 20%;float: left;">
-                  <span class="create_txt" >第一天</span>
-                  <button style="border: none;">+</button>
+              </div>
+              <div class="col-md-8" style="background-color: #eee;">
+                <form action="#tab_c">
+                  <div>
+                    <div class="tabD">
+                      <span id="tabDT">請輸入出發時間：</span><input type="time" value="09:00">
+                    </div>
+                    <div class="tabD">
+                      <span id="tabDL">使用者位置：</span><input type="text" placeholder="請輸入位置" class="input_txt" value="台北商業大學">
+                      <input type="submit">
+                    </div>
+                  </div>
+                </form>
+                <div>
+                  <!-- <span class="create_txt" >第一天</span>
+                  <button style="border: none;">+</button> -->
                   <div class="spot" id="spot1">
-                    華山文創園區
+                    國父紀念館
                     <p>位在台北市XX區</p>
                     <p>目前人潮流量：適中<br>
+                      營業時間：09:00-18:00 <br>
                       建議停留時間：1小時
                     </p>
                   </div>
                   <div class="spot" id="spot2">
-                    台北地下街
+                    松山文創園區
                     <p>位在台北市XX區</p>
                     <p>目前人潮流量：適中<br>
-                      建議停留時間：1小時
-                    </p>
-                  </div>
-                  <div class="spot" id="spot3">
-                    西門町
-                    <p>位在台北市XX區</p>
-                    <p>目前人潮流量：適中<br>
-                      建議停留時間：1小時
-                    </p>
-                  </div>
-                  <div class="spot" id="spot4">
-                    中正紀念堂
-                    <p>位在台北市XX區</p>
-                    <p>目前人潮流量：適中<br>
-                      建議停留時間：1小時
+                      營業時間：10:00-18:00 <br>
+                      建議停留時間：2小時
                     </p>
                   </div>
                 </div>
-                <div style="width: 20%;float: left;">
-                  <span>請輸入出發時間：</span><input type="time" value="09:00">
-                </div>
-                <div id="main" style="width: 40%;float: left;">
-                  <span class="create_txt" >第二天</span>
-                  <button style="border: none;">+</button>
-                  <div class="spot" id="spot1">
-                    動物園
-                    <p>位在台北市XX區</p>
-                    <p>目前人潮流量：少<br>
-                      建議停留時間：3-4小時
-                    </p>
-                  </div>
-                  <div class="spot" id="spot2">
-                    公館商圈
-                    <p>位在台北市XX區</p>
-                    <p>目前人潮流量：多<br>
-                      建議停留時間：1小時
-                    </p>
-                  </div>
-                  <div class="spot" id="spot3">
-                    永康街
-                    <p>位在台北市XX區</p>
-                    <p>目前人潮流量：適中<br>
-                      建議停留時間：1小時
-                    </p>
-                  </div>
-                </div>
+              </div>
+            </div>
 
 
             </form>
-          </div>
+          </section>
           
-          <div id="tab_f" style="clear: both;margin-top: 10px;">
+          <section id="tab_f" style="clear: both;margin-top: 10px;">
             <span>我的收藏</span>
             <table>
               <tr>
                 <td>
-                  <img src="/static/images/101.jpg" style="height: 200px;margin: 0;padding: 0;">
+                  <img src="../static/images/101.jpg" style="height: 200px;margin: 0;padding: 0;">
                 </td>
                 <td style="padding-top: 5px;padding-left: 10px;">
                   <h3>台北101</h3>
                   <p>位在台北市XX區<br>建議停留時間：1小時</p>
                   <p>
-                    <a class="tabf_a" id="tabf_love" href="#">取消收藏</a>
-                    <a class="tabf_a" id="tabf_add" href="#">加入行程</a>
+                    <a class="tabf_a" id="tabf_love" href="#tab_f">取消收藏</a>
+                    <a class="tabf_a" id="tabf_add" href="#tab_f">加入行程</a>
                   </p>
                 </td>
                 <td>
-                  <img src="/static/images/street.jpg" style="height: 200px;margin-left: 50px;padding: 0;">
+                  <img src="../static/images/street.jpg" style="height: 200px;margin-left: 50px;padding: 0;">
                 </td>
                 <td style="padding-top: 5px;padding-left: 10px;">
                   <h3>九份老街</h3>
                   <p>位在新北市XX區<br>建議停留時間：1小時</p>
                   <p>
-                    <a class="tabf_a" id="tabf_love" href="#">取消收藏</a>
-                    <a class="tabf_a" id="tabf_add" href="#">加入行程</a>
+                    <a class="tabf_a" id="tabf_love" href="#tab_f">取消收藏</a>
+                    <a class="tabf_a" id="tabf_add" href="#tab_f">加入行程</a>
                   </p>
                 </td>
               </tr><tr>
                 <td>
-                  <img src="/static/images/pingxi.jpg" style="height: 200px;margin: 0;padding: 0;">
+                  <img src="../static/images/pingxi.jpg" style="height: 200px;margin: 0;padding: 0;">
                 </td>
                 <td style="padding-top: 5px;padding-left: 10px;">
                   <h3>平溪老街</h3>
                   <p>位在台北市XX區<br>建議停留時間：1小時</p>
                   <p>
-                    <a class="tabf_a" id="tabf_love" href="#">取消收藏</a>
-                    <a class="tabf_a" id="tabf_add" href="#">加入行程</a>
+                    <a class="tabf_a" id="tabf_love" href="#tab_f">取消收藏</a>
+                    <a class="tabf_a" id="tabf_add" href="#tab_f">加入行程</a>
                   </p>
                 </td>
                 <td>
-                  <img src="/static/images/street.jpg" style="height: 200px;margin-left: 50px;padding: 0;">
+                  <img src="../static/images/street.jpg" style="height: 200px;margin-left: 50px;padding: 0;">
                 </td>
                 <td style="padding-top: 5px;padding-left: 10px;">
                   <h3>九份老街</h3>
                   <p>位在新北市XX區<br>建議停留時間：1小時</p>
                   <p>
-                    <a class="tabf_a" id="tabf_love" href="#">取消收藏</a>
-                    <a class="tabf_a" id="tabf_add" href="#">加入行程</a>
+                    <a class="tabf_a" id="tabf_love" href="#tab_f">取消收藏</a>
+                    <a class="tabf_a" id="tabf_add" href="#tab_f">加入行程</a>
                   </p>
                 </td>
               </tr><tr>
                 <td>
-                  <img src="/static/images/101.jpg" style="height: 200px;margin: 0;padding: 0;">
+                  <img src="../static/images/101.jpg" style="height: 200px;margin: 0;padding: 0;">
                 </td>
                 <td style="padding-top: 5px;padding-left: 10px;">
                   <h3>台北101</h3>
                   <p>位在台北市XX區<br>建議停留時間：1小時</p>
                   <p>
-                    <a class="tabf_a" id="tabf_love" href="#">取消收藏</a>
-                    <a class="tabf_a" id="tabf_add" href="#">加入行程</a>
+                    <a class="tabf_a" id="tabf_love" href="#tab_f">取消收藏</a>
+                    <a class="tabf_a" id="tabf_add" href="#tab_f">加入行程</a>
                   </p>
                 </td>
                 <td>
-                  <img src="/static/images/pingxi.jpg" style="height: 200px;margin-left: 50px;padding: 0;">
+                  <img src="../static/images/pingxi.jpg" style="height: 200px;margin-left: 50px;padding: 0;">
                 </td>
                 <td style="padding-top: 5px;padding-left: 10px;">
                   <h3>平溪老街</h3>
                   <p>位在新北市XX區<br>建議停留時間：1小時</p>
                   <p>
-                    <a class="tabf_a" id="tabf_love" href="#">取消收藏</a>
-                    <a class="tabf_a" id="tabf_add" href="#">加入行程</a>
+                    <a class="tabf_a" id="tabf_love" href="#tab_f">取消收藏</a>
+                    <a class="tabf_a" id="tabf_add" href="#tab_f">加入行程</a>
                   </p>
                 </td>
               </tr>
             </table>
-          </div>
+          </section>
 
-          <div id="tab_r"  style="margin-top: 10px;">
-            <span>景點推薦</span>
+          <section id="tab_r"  style="margin-top: 10px;">
+            <!-- <span>景點推薦</span> -->
             <div style="display: flex; justify-content: center; margin-top: 5px;">
                 <form class="d-flex" role="search" style="width:80%">
-                  <input class="form-control me-2" type="search" placeholder="輸入縣市或縣市地區" aria-label="Search">
+                  <input class="form-control me-2" type="search" placeholder="查詢景點" aria-label="Search">
                   <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
-            <form action="">
-              <table>
+            <form action="" style="margin: 20px;" class="form_rec">
+              <select name="s_day" id="s_day" style="font-size: 18px;">
+                <option value="1" >第一天</option>
+                <option value="2">第二天</option>
+              </select>
+              <select name="s_local" id="s_local" style="font-size: 18px;">
+                <option value="tai" >台北市</option>
+              </select>
+              <select name="s_local_sec" id="s_local_sec" style="font-size: 18px;">
+                <option value="sec1" >XX區</option>
+                <option value="sec2" >XX區</option>
+                <option value="sec3" >XX區</option>
+                <option value="sec4" >XX區</option>
+                <option value="sec5" >XX區</option>
+                <option value="sec6" >XX區</option>
+                <option value="sec7" >XX區</option>
+                <option value="sec8" >XX區</option>
+                <option value="sec9" >XX區</option>
+                <option value="sec10" >XX區</option>
+              </select>
+              <table style="margin-top: 10px;">
                 <tr>
                   <td><input for="s1" type="checkbox" id=""><span class="spot_r"> 台北101</span></input></td>
                   <td><input for="s2" type="checkbox" id=""><span class="spot_r"> 中正紀念堂</span></input></td>
@@ -281,7 +290,7 @@
                 
                 <div class="dialog" id="dialog">
                   <div class="close" onclick="hideDialog();" id="x">x</div>
-                  <form action="">
+                  <form action="#">
                     <span>是否需要推薦相似景點</span> <br>
                     <label class="yn" for="yes">是</label><input type="radio" id="yes" value="是" name="yn">
                     <label class="yn" for="no">否</label><input type="radio" id="no" value="否" name="yn"><br>
@@ -298,6 +307,13 @@
 
       </main>
     </div>
+    <!-- <footer>copyright</footer> -->
 </body>
-<footer>copyright</footer>
+    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../static/js/jquery-3.7.0.min.js"></script>
+<script src="../static/js/bootstrap.js"></script>
+<script src="../static/js/create.js"></script>
+
+
 </html>
