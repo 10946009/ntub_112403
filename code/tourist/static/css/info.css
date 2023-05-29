@@ -1,7 +1,7 @@
 .image-container {
     float: right;
     margin-right: 60px;
-    margin-top: 40px;
+    margin-top: 130px;
     /* 調整圖片和內容之間的距離 */
 }
 
@@ -48,4 +48,128 @@
 .sec ul li a:hover {
     text-decoration: none;
     color: black;
+}
+
+.att {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 10vh;
+    /* 調整容器的高度 */
+}
+
+.aa {
+    border: 1px solid black;
+    display: inline-block;
+    position: absolute;
+    top: 380px;
+    left: 980px;
+    margin: 20px;
+    background-color: white;
+    padding: 5px;
+    text-decoration: none;
+    color: gray;
+
+}
+
+.aa:hover {
+    color: rgb(202, 15, 15);
+    transform: scale(1.2, 1.2);
+}
+
+.bb {
+    border: 1px solid black;
+    display: inline-block;
+    position: absolute;
+    top: 500px;
+    right: 100px;
+    margin: 20px;
+    background-color: white;
+    padding: 5px;
+    text-decoration: none;
+    color: gray;
+
+}
+
+.bb:hover {
+    color: rgb(202, 15, 15);
+    transform: scale(1.2, 1.2);
+}
+
+.cc {
+    border: 1px solid black;
+    display: inline-block;
+    position: absolute;
+    top: 600px;
+    right: 60px;
+    margin: 20px;
+    background-color: white;
+    padding: 5px;
+    text-decoration: none;
+    color: gray;
+
+}
+
+.cc:hover {
+    color: rgb(202, 15, 15);
+    transform: scale(1.2, 1.2);
+}
+
+.dd {
+    border: 1px solid black;
+    display: inline-block;
+    position: absolute;
+    bottom: 12px;
+    right: 60px;
+    margin: 20px;
+    background-color: white;
+    padding: 5px;
+    text-decoration: none;
+    color: gray;
+
+}
+
+.dd:hover {
+    color: rgb(202, 15, 15);
+    transform: scale(1.2, 1.2);
+}
+
+.ee {
+    border: 1px solid black;
+    display: inline-block;
+    position: absolute;
+    bottom: -150px;
+    right: 80px;
+    margin: 20px;
+    background-color: white;
+    padding: 5px;
+    text-decoration: none;
+    color: gray;
+
+}
+
+.ee:hover {
+    color: rgb(202, 15, 15);
+    transform: scale(1.2, 1.2);
+}
+
+.ff {
+    border: 1px solid black;
+    display: inline-block;
+    position: absolute;
+    bottom: -90px;
+    right: 100px;
+    margin: 20px;
+    background-color: white;
+    padding: 5px;
+    text-decoration: none;
+    color: gray;
+
+}
+
+.ff:hover {
+    color: rgb(202, 15, 15);
+    transform: scale(1.2, 1.2);
 }
