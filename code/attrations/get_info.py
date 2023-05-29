@@ -87,3 +87,11 @@ Comment = []
 #     file.write(response.content)
 ## --------------------------------------------------------------------------
 
+
+# 寫成整理後資料
+# with open('臺北市松山區三民路.json', 'r',encoding='utf-8') as file:
+#     content = file.read()
+    
+
+# with open('臺北市松山區三民路_整理後2.json', 'w',encoding='utf-8') as f:
+#     f.write(content)
