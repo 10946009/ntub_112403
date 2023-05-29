@@ -1,0 +1,49 @@
+.register {
+    max-width: 500px;
+    margin: 30px auto;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.register h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.register input[type="text"],
+.register input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.register input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #f3930b;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register input[type="submit"]:hover {
+    background-color: #f4a040;
+}
+
+.register .message {
+    text-align: center;
+    color: #666;
+    margin-top: 20px;
+}
+
+.register .message a {
+    color: #266fec;
+    text-decoration: none;
+    margin-right: 10px;
+}
