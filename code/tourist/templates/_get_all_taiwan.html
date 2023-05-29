@@ -2,9 +2,14 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首頁</title>
+    
+    <link rel="stylesheet" href="../static/css/bootstrap2023.css">
+    <link rel="stylesheet" href="../static/css/all.css">
 
   <link rel="stylesheet" href="/static/css/info.css">
   <link rel="stylesheet" href="/static/css/bootstrap2023.css">
@@ -30,21 +35,38 @@
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
           <li class="nav-item">
             <a class="nav-link active " aria-current="page" href="index.html">首頁</a>
+
           </li>
           <li class="nav-item">
             <a class="nav-link" href="create.html">建立行程</a>
           </li>
           <li class="nav-item">
+
             <a class="nav-link" href="history.html">我的行程</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="_get_all_taiwan.html">景點資訊</a>
+
+            <a class="nav-link" aria-current="page" href="history.html">我的行程</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="favorite.html">我的收藏</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="login.html">登入</a>
+        </ul>
+      </div>
+      <div>
+        <ul class="name_ul">
+          <li class="nav-item dropdown name_li" style="list-style-type: none;">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              UserName
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Setting</a></li>
+              <li><a class="dropdown-item" href="#">Log out</a></li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -70,5 +92,12 @@
 
 
 </body>
+
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/static/js/jquery-3.7.0.min.js"></script>
+<script src="/static/js/bootstrap.js"></script>
 
 </html>
