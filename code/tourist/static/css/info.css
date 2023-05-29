@@ -1,0 +1,51 @@
+.image-container {
+    float: right;
+    margin-right: 60px;
+    margin-top: 40px;
+    /* 調整圖片和內容之間的距離 */
+}
+
+.image-container img {
+    width: 480px;
+    /* 調整圖片的寬度 */
+    height: auto;
+    /* 根據比例自動調整圖片的高度 */
+}
+
+.sec li::before {
+    content: ">";
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.sec ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.sec li {
+    margin-right: 10px;
+    margin-top: 8px;
+}
+
+.sec ul li:first-child::before {
+    display: none;
+}
+
+.home {
+    margin-top: -5px;
+    margin-left: 15px;
+    height: 20px;
+    width: auto;
+}
+
+.sec ul li a {
+    text-decoration: none;
+    color: gray;
+}
+
+.sec ul li a:hover {
+    text-decoration: none;
+    color: black;
+}
