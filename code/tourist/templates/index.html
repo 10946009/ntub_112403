@@ -18,6 +18,7 @@
     
     <link rel="stylesheet" href="../static/css/bootstrap2023.css">
     <link rel="stylesheet" href="../static/css/all.css">
+    <link rel="stylesheet" href="../static/css/index.css">
     
 
 
@@ -25,9 +26,9 @@
 
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">趣放假</a>
+      <a class="navbar-brand" href="#">趣放假<img src="../static/images/logo_icon.png" width="20px" style="margin-left: 5px;"></a>
       <button class="navbar-toggler me-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -54,7 +55,7 @@
         <ul class="name_ul">
           <li class="nav-item dropdown name_li" style="list-style-type: none;">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              UserName
+              Username
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Setting</a></li>
@@ -65,6 +66,63 @@
       </div>
     </div>
   </nav>
+
+  <div>
+    <img src="../static/images/IMG20220125115200.jpg" class="img-responsive banner" width="100%">
+  </div>
+  <div style="display: flex; justify-content: center;width: 100vw; margin-top: 5px;">
+      <form class="d-flex" role="search" style="width:80%">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+  </div>
+  <div class="container">
+    <div class="row col-md-12">
+      <h3 class="hot_txt" ><img src="../static/images/hot_icon.png" width="28px"> 熱門景點</h3>
+      <div class="hot_spot_block col-md-4" style="text-align: center;">
+        <img src="../static/images/street.jpg" class="img-responsive" width="100%">
+        <h4>九份老街</h4>
+        <h5>aldfhlajkdhsfl</h5>
+        <a href="#" class="btn btn-warning spot_data_btn">詳細資料</a>
+        <a href="#" class="btn btn-danger spot_data_btn">加入收藏</a>
+        <!-- <a href="#" class="btn btn-primary spot_data_btn">加入行程</a> -->
+      </div>
+      <div class="hot_spot_block col-md-4" style="text-align: center;">
+        <img src="../static/images/street.jpg" class="img-responsive" width="100%">
+        <h4>九份老街</h4>
+        <h5>aldfhlajkdhsfl</h5>
+        <a href="#" class="btn btn-warning spot_data_btn">詳細資料</a>
+        <a href="#" class="btn btn-danger spot_data_btn">加入收藏</a>
+        <!-- <a href="#" class="btn btn-primary spot_data_btn">加入行程</a> -->
+      </div>
+      <div class="hot_spot_block col-md-4" style="text-align: center;">
+        <img src="../static/images/street.jpg" class="img-responsive" width="100%">
+        <h4>九份老街</h4>
+        <h5>aldfhlajkdhsfl</h5>
+        <a href="#" class="btn btn-warning spot_data_btn">詳細資料</a>
+        <a href="#" class="btn btn-danger spot_data_btn">加入收藏</a>
+        <!-- <a href="#" class="btn btn-primary spot_data_btn">加入行程</a> -->
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row col-md-12">
+      <h3 class="hot_txt" >熱門行程</h3>
+      <div class="col-md-6">
+        <img src="../static/images/101.jpg" class="img-responsive" width="100%">
+      </div>
+      <div class="col-md-6">
+        <h4>台北101</h4>
+        <p>地址：</p>
+        <p>人潮：</p>
+        <p>
+          <button><a href="#">加入收藏</a></button>
+          <button><a href="#">加入行程</a></button>
+          <button><a href="#">詳細資料</a></button>
+        </p>
+      </div>
+    </div>
+  </div>
     
 </body>
 
