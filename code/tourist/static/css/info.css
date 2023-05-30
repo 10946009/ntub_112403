@@ -74,6 +74,20 @@
 
 }
 
+.aa {
+    border: 1px solid black;
+    display: inline-block;
+    position: absolute;
+    top: 380px;
+    left: 980px;
+    margin: 20px;
+    padding: 5px;
+    text-decoration: none;
+    color: rgb(96, 93, 93);
+    background-color: rgb(247, 152, 104);
+
+}
+
 .aa:hover {
     color: rgb(202, 15, 15);
     transform: scale(1.2, 1.2);
