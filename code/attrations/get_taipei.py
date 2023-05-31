@@ -56,7 +56,7 @@ def get_details(datafile,GOOGLE_PLACES_API_KEY,a_type):
         data = json.load(file)
         for num in range(len(data['results'])):
             placeid = data['results'][num]['place_id']
-            url = f"https://maps.googleapis.com/maps/api/place/details/json?place_id={placeid}&fields=name,formatted_address,opening_hours&key={GOOGLE_PLACES_API_KEY}"
+            url = f"https://maps.googleapis.com/maps/api/place/details/json?place_id={placeid}&key={GOOGLE_PLACES_API_KEY}"
             response = requests.get(url)
             opendata = response.json()
             result.append(opendata)

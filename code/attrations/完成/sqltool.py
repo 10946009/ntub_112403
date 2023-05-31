@@ -29,3 +29,13 @@ class Postgres:
             return cur.rowcount
         except (Exception, psycopg2.DatabaseError) as error:
             print('有錯誤',error)
+
+    def read(self, query) -> list:
+        try:
+            cur = self.conn.cursor()
+            cur.execute(query)
+            rows = cur.fetchall()
+            cur.close()
+            return rows
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)

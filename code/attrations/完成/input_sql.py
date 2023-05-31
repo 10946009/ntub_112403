@@ -10,6 +10,10 @@ def input_address(data,data_crowd,data_opening_phone,num):
     place = data['results'][num]['place_id']
     photo = data['results'][num]['photos'][0]['photo_reference']  #改變第一個num
     a_name = data['results'][num]['name']
+    check_unique = tool.read(f"SELECT * FROM myapp_attractions WHERE place ILIKE '{place}';")
+    if len(check_unique) != 0 :
+        print(a_name,'重複')
+        return
     address = data['results'][num]['formatted_address']
     location_x = data['results'][num]['geometry']['location']['lat']
     location_y = data['results'][num]['geometry']['location']['lng']
@@ -28,12 +32,12 @@ def input_address(data,data_crowd,data_opening_phone,num):
     try:
         stay_time = sum(data_crowd[num]['time_spent']) // len(data_crowd[num]['time_spent'])
     except:
-        stay_time = ''
+        stay_time = 0
     hot_month = [1,2,3,4,5,6,7,8,9,10,11,12]
     input_column = ["place",  "photo",  "a_name",  "address",  "location_x",  "location_y",  "phone",  "opening",  "rating",  "score",  "stay_time",  "hot_month"]
     s_len = ('%s,'* len(input_column))[:-1]
     sql = f"INSERT INTO myapp_attractions ({','.join(input_column)}) VALUES ({s_len})"
-    print(a_name)
+    print(a_name,'放入資料庫')
     tool.create_multi(sql,[(place,  photo,  a_name,  address,  location_x,  location_y,  phone,  opening,  rating,  score,  stay_time,  hot_month)])
     
 with open('臺北市區路段資料.csv',newline='',encoding='utf-8')as csvfile:
@@ -49,9 +53,22 @@ with open('臺北市區路段資料.csv',newline='',encoding='utf-8')as csvfile:
 
         with open(f'{address[0]}{address[1]}景點營業時間.json', encoding='utf-8') as file:
             data_opening_phone = json.load(file)
-            print(len(data['results']))
+
+
+            # print(len(data['results']))
             for num in range(len(data['results'])):
-                input_address(data,data_crowd,data_opening_phone,num)
+                openjson = data_opening_phone[num]
+                opening = openjson['result']['opening_hours']['weekday_text']  # 欄位
+                # # 解析API響應獲取電話號碼
+                if openjson["status"] == "OK":
+                    result = openjson["result"]
+                    phone_number = result.get("formatted_phone_number")
+                    if phone_number:
+                        phone = phone_number  #欄位
+                    else:
+                        phone = "未找到電話號碼"  #欄位
+                print(phone)
+            #     input_address(data,data_crowd,data_opening_phone,num)
 
         # except:
         #     print(f'{address[0]}{address[1]} error')
