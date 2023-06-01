@@ -1,0 +1,27 @@
+.comment {
+    display: flex;
+    align-items: flex-start;
+}
+
+.avatar {
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.avatar img {
+    width: 40px;
+    height: 40px;
+}
+
+.comment-content {
+    flex: 1;
+}
+
+.username {
+    margin-top: 7px;
+}
+
+.comment-text {
+    margin-right: 30px;
+}
