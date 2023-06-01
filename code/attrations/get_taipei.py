@@ -79,7 +79,7 @@ with open('臺北市區路段資料.csv',newline='',encoding='utf-8')as csvfile:
             if f'{address[0]}{address[1]}{a_type}.json' in os.listdir():
                 print(f'{address[0]}{address[1]}{a_type}.json','已存在')
             else:
-                # get_textsearch(GOOGLE_PLACES_API_KEY,address,a_type)
+                get_textsearch(GOOGLE_PLACES_API_KEY,address,a_type)
                 print('產生',f'{address[0]}{address[1]}{a_type}.json')
 
             filename = f'{os.getcwd()}/{address[0]}{address[1]}{a_type}.json'
@@ -87,11 +87,11 @@ with open('臺北市區路段資料.csv',newline='',encoding='utf-8')as csvfile:
             if f'{address[0]}{address[1]}{a_type}擁擠資訊.json' in os.listdir():
                 print(f'{address[0]}{address[1]}{a_type}擁擠資訊.json','已存在')
             else: 
-                # get_populartimes(filename,GOOGLE_PLACES_API_KEY,a_type)
+                get_populartimes(filename,GOOGLE_PLACES_API_KEY,a_type)
                 print('產生',f'{address[0]}{address[1]}{a_type}擁擠資訊.json')
 
             if f'{address[0]}{address[1]}{a_type}營業時間.json' in os.listdir():
                 print(f'{address[0]}{address[1]}{a_type}營業時間.json','已存在')
             else: 
-                # get_details(filename,GOOGLE_PLACES_API_KEY,a_type) 
+                get_details(filename,GOOGLE_PLACES_API_KEY,a_type) 
                 print('產生',f'{address[0]}{address[1]}{a_type}營業時間.json')
