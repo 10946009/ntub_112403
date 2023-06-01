@@ -12,25 +12,52 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>首頁</title>
-    
-    <link rel="stylesheet" href="../static/css/bootstrap2023.css">
-    <link rel="stylesheet" href="../static/css/all.css">
-    
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>首頁</title>
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  <style>
+    .location-wrap img {
+      width: 100%;
+    }
 
+    .location-wrap {
+      position: relative;
+    }
 
-  
-
+    .location-heart {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: #fff;
+      border-radius: 50%;
+      padding: 10px;
+      color: red;
+      margin: 10px;
+      font-size: large;
+      cursor: pointer;
+    }
+  </style>
 </head>
+
 <body>
   <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">趣放假<img src="../static/images/logo_icon.png" width="20px" style="margin-left: 5px;"></a>
-      <button class="navbar-toggler me-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="#">趣放假<img src="../static/images/logo_icon.png" width="20px"
+          style="margin-left: 5px;"></a>
+      <button class="navbar-toggler me-auto" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -67,11 +94,122 @@
       </div>
     </div>
   </nav>
-    
+  <!-- Tabs navs -->
+  <ul class="nav nav-tabs flex justify-content-center" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="home-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#home"
+        type="button"
+        role="tab"
+        aria-controls="home"
+        aria-selected="true"
+      >
+        最愛景點
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="contact-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#contact"
+        type="button"
+        role="tab"
+        aria-controls="contact"
+        aria-selected="false"
+      >
+        最愛行程
+      </button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div
+      class="tab-pane fade show active"
+      id="home"
+      role="tabpanel"
+      aria-labelledby="home-tab"
+    >
+    <div class="tab-content" id="myTabContent">
+      <div
+        class="tab-pane fade show active"
+        id="home"
+        role="tabpanel"
+        aria-labelledby="home-tab"
+      >
+        <div class="container py-5">
+          <div class="row">
+            <div class="col-3">
+              <div class="card">
+                <div class="location-wrap">
+                  <img
+                    src="https://i.pinimg.com/736x/5c/7f/d8/5c7fd8779352461a4ce134ed7f3e9850.jpg"
+                    alt=""
+                  />
+                  <i class="fa-solid fa-heart location-heart"></i>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card">
+                <div class="location-wrap">
+                  <img
+                    src="https://i.pinimg.com/736x/5c/7f/d8/5c7fd8779352461a4ce134ed7f3e9850.jpg"
+                    alt=""
+                  />
+                  <i class="fa-solid fa-heart location-heart"></i>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card">
+                <div class="location-wrap">
+                  <img
+                    src="https://i.pinimg.com/736x/5c/7f/d8/5c7fd8779352461a4ce134ed7f3e9850.jpg"
+                    alt=""
+                  />
+                  <i class="fa-solid fa-heart location-heart"></i>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card">
+                <div class="location-wrap">
+                  <img
+                    src="https://i.pinimg.com/736x/5c/7f/d8/5c7fd8779352461a4ce134ed7f3e9850.jpg"
+                    alt=""
+                  />
+                  <i class="fa-solid fa-heart location-heart"></i>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div
+      class="tab-pane fade"
+      id="contact"
+      role="tabpanel"
+      aria-labelledby="contact-tab"
+    >
+      <div>123132132</div>
+    </div>
+  </div>
+  <!-- Tabs content -->
+  <script src="./js/bootstrap.min.js"></script>
 </body>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/static/js/jquery-3.7.0.min.js"></script>
-<script src="/static/js/bootstrap.js"></script>
-
 </html>
