@@ -71,10 +71,22 @@ with open('臺北市區路段資料.csv',newline='',encoding='utf-8')as csvfile:
     list(address_list)
     # address= ['市區','路']
     #4-10
-    address_list = address_list[4:10]
+    address_list = address_list[:10]
     for address in address_list:
         for a_type in a_type_list:
-            get_textsearch(GOOGLE_PLACES_API_KEY,address,a_type)
+            if f'{address[0]}{address[1]}{a_type}.json' in os.listdir():
+                print(f'{address[0]}{address[1]}{a_type}.json','已存在')
+            else:
+                get_textsearch(GOOGLE_PLACES_API_KEY,address,a_type)
+
             filename = f'{os.getcwd()}/{address[0]}{address[1]}{a_type}.json'
-            get_populartimes(filename,GOOGLE_PLACES_API_KEY,a_type)
-            get_details(filename,GOOGLE_PLACES_API_KEY,a_type) 
+
+            if f'{address[0]}{address[1]}{a_type}擁擠資訊.json' in os.listdir():
+                print(f'{address[0]}{address[1]}{a_type}擁擠資訊.json','已存在')
+            else: 
+                get_populartimes(filename,GOOGLE_PLACES_API_KEY,a_type)
+
+            if f'{address[0]}{address[1]}{a_type}營業時間.json' in os.listdir():
+                print(f'{address[0]}{address[1]}{a_type}營業時間.json','已存在')
+            else: 
+                get_details(filename,GOOGLE_PLACES_API_KEY,a_type) 
