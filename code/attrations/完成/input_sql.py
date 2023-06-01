@@ -8,7 +8,12 @@ from sqltool import Postgres
 def input_address(data,data_crowd,data_opening_phone,num):
     tool = Postgres()
     place = data['results'][num]['place_id']
-    photo = data['results'][num]['photos'][0]['photo_reference']  #改變第一個num
+    try:
+        photo_check = data['results'][num]['photos'][0]['photo_reference']  #改變第一個num
+        photo = photo_check if photo_check is not None else ""
+    except:
+        photo = ""
+    # print(photo)
     a_name = data['results'][num]['name']
     check_unique = tool.read(f"SELECT * FROM myapp_attractions WHERE place ILIKE '{place}';")
     if len(check_unique) != 0 :
@@ -26,7 +31,7 @@ def input_address(data,data_crowd,data_opening_phone,num):
     try:
         opening = data_opening_phone[num]['result']["opening_hours"]["weekday_text"]
     except:
-        opening = ''
+        opening = '{}'
     rating = data['results'][num]['rating']
     score = 0
     try:
@@ -39,36 +44,25 @@ def input_address(data,data_crowd,data_opening_phone,num):
     sql = f"INSERT INTO myapp_attractions ({','.join(input_column)}) VALUES ({s_len})"
     print(a_name,'放入資料庫')
     tool.create_multi(sql,[(place,  photo,  a_name,  address,  location_x,  location_y,  phone,  opening,  rating,  score,  stay_time,  hot_month)])
-    
+
+# def get_type(data):
+
 with open('臺北市區路段資料.csv',newline='',encoding='utf-8')as csvfile:
-    address_list = list(csv.reader(csvfile))[2:3]
+    address_list = list(csv.reader(csvfile))
     list(address_list)
+    print(address_list)
     for address in address_list:
-        # try:
-        with open(f'{address[0]}{address[1]}景點.json', encoding='utf-8') as file:
-            data = json.load(file)
+        try:
+            with open(f'{address[0]}{address[1]}景點.json', encoding='utf-8') as file:
+                data = json.load(file)
 
-        with open(f'{address[0]}{address[1]}景點擁擠資訊.json', encoding='utf-8') as file:
-            data_crowd = json.load(file)
+            with open(f'{address[0]}{address[1]}景點擁擠資訊.json', encoding='utf-8') as file:
+                data_crowd = json.load(file)
 
-        with open(f'{address[0]}{address[1]}景點營業時間.json', encoding='utf-8') as file:
-            data_opening_phone = json.load(file)
-
-
-            # print(len(data['results']))
-            for num in range(len(data['results'])):
-                openjson = data_opening_phone[num]
-                opening = openjson['result']['opening_hours']['weekday_text']  # 欄位
-                # # 解析API響應獲取電話號碼
-                if openjson["status"] == "OK":
-                    result = openjson["result"]
-                    phone_number = result.get("formatted_phone_number")
-                    if phone_number:
-                        phone = phone_number  #欄位
-                    else:
-                        phone = "未找到電話號碼"  #欄位
-                print(phone)
-            #     input_address(data,data_crowd,data_opening_phone,num)
-
-        # except:
-        #     print(f'{address[0]}{address[1]} error')
+            with open(f'{address[0]}{address[1]}景點營業時間.json', encoding='utf-8') as file:
+                data_opening_phone = json.load(file)
+                for num in range(len(data['results'])):
+                    input_address(data,data_crowd,data_opening_phone,num)
+        except:
+            print(f'{address[0]}{address[1]} error')
+            continue
