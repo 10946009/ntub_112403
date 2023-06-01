@@ -21,8 +21,13 @@ class User(models.Model):
     mail = models.TextField(max_length=500,null=False, blank=False)
     gender = models.TextField(max_length=3,null=False, blank=False)
     birthday = models.TextField(max_length=10,null=False, blank=False)
-    user_photo = models.TextField(max_length=10,null=False, blank=False,default="")
-    
+    user_photo = models.TextField(max_length=10,blank=True,default="")
+
+    list_display=('id','name','mail')
+    list_filter=('name','gender')
+    search_fields=('name',)
+    ordering=('id',)
+
 class Attractions(models.Model):
     place_id= models.TextField(max_length=500, blank=False)
     photo = models.TextField(max_length=500,null=False, blank=False,default="")
@@ -36,7 +41,8 @@ class Attractions(models.Model):
     stay_time = models.IntegerField(null=True, blank=False)
     hot_month = ArrayField(models.IntegerField())
     att_type = models.IntegerField(null=False, blank=False)
-
+    def __str__(self):
+        return f'{self.id} {self.a_name}'
 
 class Crowd_Opening(models.Model):
     a = models.ForeignKey(to=Attractions, on_delete=models.SET_DEFAULT,default=-1)#景點沒了留言a_id會被設為null
