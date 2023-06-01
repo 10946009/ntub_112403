@@ -136,5 +136,8 @@ def share(request):
     return render(request, "share.html")
 
 #景點資訊
-def attraction_details(request,a_id):
+# def attraction_details(request,a_id):
+#     return render(request, "attraction_details.html")
+
+def attraction_details(request):
     return render(request, "attraction_details.html")
