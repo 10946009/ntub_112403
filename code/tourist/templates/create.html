@@ -9,7 +9,34 @@
     <link rel="stylesheet" href="../static/css/bootstrap2023.css">
     <link rel="stylesheet" href="../static/css/all.css">
     <link rel="stylesheet" href="../static/css/create.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
     
+  <style>
+    .heart_icon_box{
+        position: relative;
+        border: 1px solid #000;
+    }
+    .heart_icon{
+        position: absolute;
+        top:0;
+        right: 0;
+        background-color: #ccc;
+        color: red;
+        padding: 10px;
+        border-radius: 50%;
+        margin: 10px;
+        cursor: pointer;
+    }
+    .spot_like_txt{
+        border: 1px solid #ccc;
+    }
+    </style>
 
 
 </head>
@@ -162,79 +189,45 @@
           </section>
           
           <section id="tab_f" style="clear: both;margin-top: 10px;">
-            <span>我的收藏</span>
-            <table>
-              <tr>
-                <td>
-                  <img src="../static/images/101.jpg" style="height: 200px;margin: 0;padding: 0;">
-                </td>
-                <td style="padding-top: 5px;padding-left: 10px;">
-                  <h3>台北101</h3>
-                  <p>位在台北市XX區<br>建議停留時間：1小時</p>
-                  <p>
-                    <a class="tabf_a" id="tabf_love" href="#tab_f">取消收藏</a>
-                    <a class="tabf_a" id="tabf_add" href="#tab_f">加入行程</a>
-                  </p>
-                </td>
-                <td>
-                  <img src="../static/images/street.jpg" style="height: 200px;margin-left: 50px;padding: 0;">
-                </td>
-                <td style="padding-top: 5px;padding-left: 10px;">
-                  <h3>九份老街</h3>
-                  <p>位在新北市XX區<br>建議停留時間：1小時</p>
-                  <p>
-                    <a class="tabf_a" id="tabf_love" href="#tab_f">取消收藏</a>
-                    <a class="tabf_a" id="tabf_add" href="#tab_f">加入行程</a>
-                  </p>
-                </td>
-              </tr><tr>
-                <td>
-                  <img src="../static/images/pingxi.jpg" style="height: 200px;margin: 0;padding: 0;">
-                </td>
-                <td style="padding-top: 5px;padding-left: 10px;">
-                  <h3>平溪老街</h3>
-                  <p>位在台北市XX區<br>建議停留時間：1小時</p>
-                  <p>
-                    <a class="tabf_a" id="tabf_love" href="#tab_f">取消收藏</a>
-                    <a class="tabf_a" id="tabf_add" href="#tab_f">加入行程</a>
-                  </p>
-                </td>
-                <td>
-                  <img src="../static/images/street.jpg" style="height: 200px;margin-left: 50px;padding: 0;">
-                </td>
-                <td style="padding-top: 5px;padding-left: 10px;">
-                  <h3>九份老街</h3>
-                  <p>位在新北市XX區<br>建議停留時間：1小時</p>
-                  <p>
-                    <a class="tabf_a" id="tabf_love" href="#tab_f">取消收藏</a>
-                    <a class="tabf_a" id="tabf_add" href="#tab_f">加入行程</a>
-                  </p>
-                </td>
-              </tr><tr>
-                <td>
-                  <img src="../static/images/101.jpg" style="height: 200px;margin: 0;padding: 0;">
-                </td>
-                <td style="padding-top: 5px;padding-left: 10px;">
-                  <h3>台北101</h3>
-                  <p>位在台北市XX區<br>建議停留時間：1小時</p>
-                  <p>
-                    <a class="tabf_a" id="tabf_love" href="#tab_f">取消收藏</a>
-                    <a class="tabf_a" id="tabf_add" href="#tab_f">加入行程</a>
-                  </p>
-                </td>
-                <td>
-                  <img src="../static/images/pingxi.jpg" style="height: 200px;margin-left: 50px;padding: 0;">
-                </td>
-                <td style="padding-top: 5px;padding-left: 10px;">
-                  <h3>平溪老街</h3>
-                  <p>位在新北市XX區<br>建議停留時間：1小時</p>
-                  <p>
-                    <a class="tabf_a" id="tabf_love" href="#tab_f">取消收藏</a>
-                    <a class="tabf_a" id="tabf_add" href="#tab_f">加入行程</a>
-                  </p>
-                </td>
-              </tr>
-            </table>
+            <!-- <span>我的收藏</span> -->
+            <div class="row">
+              <div class="col-4">
+                <div style="text-align: center;">
+                  <div class="heart_icon_box">
+                    <img src="../static/images/pingxi.jpg" class="img-responsive" width="100%">
+                    <i class="fa-sharp fa-solid fa-heart heart_icon"></i>
+                  </div>
+                  <div class="spot_like_txt">
+                    <h3>平溪老街</h3>
+                    <p>123456</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div style="text-align: center;">
+                  <div class="heart_icon_box">
+                    <img src="../static/images/pingxi.jpg" class="img-responsive" width="100%">
+                    <i class="fa-sharp fa-solid fa-heart heart_icon"></i>
+                  </div>
+                  <div class="spot_like_txt">
+                    <h3>平溪老街</h3>
+                    <p>123456</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div style="text-align: center;">
+                  <div class="heart_icon_box">
+                    <img src="../static/images/pingxi.jpg" class="img-responsive" width="100%">
+                    <i class="fa-sharp fa-solid fa-heart heart_icon"></i>
+                  </div>
+                  <div class="spot_like_txt">
+                    <h3>平溪老街</h3>
+                    <p>123456</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
 
           <section id="tab_r"  style="margin-top: 10px;">

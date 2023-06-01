@@ -7,16 +7,73 @@ html{
 	height: 100%;
 }
 .banner{
+	background: url(../images/IMG20220125115200.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	height: 400px;
+	width: 100%;
 	opacity: 0.7;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
 }
 .hot_txt{
 	text-align: center;
 }
 .hot_spot_block{
 	margin-bottom: 10px;
+	text-align: center;
+}
+.heart_icon_img{
+	position: relative;
+}
+.heart_icon{
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 10px;
+	background-color: rgba(255, 255, 255);
+	border-radius: 50%;
+	margin: 10px;
+	cursor: pointer;
+}
+.spot_img{
+	padding: 0;
+}
+.spot_txt{
+	border: 1px solid #ccc;
+	padding: 10px 0px;
 }
 .container{
 	width: 80%;
 	justify-content: center;
 	margin: 10px auto;
 }
+.hot_share{
+	position: relative;
+	padding: 0;
+}
+.c_txt{
+	margin-top: 5px;
+	margin-left: 5px;
+}
+.hot_spotC{
+	text-align: left;
+	position: relative;
+	border: 1px solid #ccc;
+}
+.add_icon{
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 50%;
+	color: white;
+	background-color: #ccc;
+	cursor: pointer;
+}
+
+
