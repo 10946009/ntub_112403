@@ -1,0 +1,908 @@
+{
+   "html_attributions" : [],
+   "next_page_token" : "AZose0kr9Cpz7yk5Dq33OEhZxXgjdEqiqxd6082R_vBB9n332FZ5E4UdcLSg9KCM20m7CRR1ohqU9Gw4Jh08Rvh3i2m4zfRQxpoNG7TaSutMeHKEprQg3FHU93UW5iO_nAYUmWEL0DKf7kL94iBTji1Eb_5OxHbTs_PAzPOG9ksPNDEEahCEphbfUa6Ry1vY7yHKgxsU0GacydiJS1udK2CC0UFnfP3e8K5qMB0Sm6UTswqV0KsV6qe7HdfBSNnLnjjGk3cU1Spt-1MBPyu4Mhzemtk1bkKinpP7P1IHJ_uiX1gm4sfWbvzUVPra0a0hEQhyRORNBzEBH9q4imMWUbKjU7BbSun5L0OE8hq9lCIqNDZx4Md8ZlycXh4Rivb5HK0KCmuAw78qmRpRxYNcVorxXMeAsnWD2cEjBOVNrv2pjA",
+   "results" : [
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "110台灣台北市信義區光復南路133號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0437042,
+               "lng" : 121.5595526
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.04507727989273,
+                  "lng" : 121.5604212
+               },
+               "southwest" : {
+                  "lat" : 25.04237762010728,
+                  "lng" : 121.5569468
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#13B5C7",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "松菸口",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/118074297982630641898"
+               ],
+               "photo_reference" : "AZose0mzFR65wevf8TJ7LvOCrahSCPVU13c3R7d54dxS2ESBKBaHQ0MpmMDtIHWAiUA6K8rsdffqiVw5YWMb9MzEbtLiRfXaG0Lc5qIUq-M5wmvN3A6Tgukuv-TuQAuw8A3EmX4olcG04o1KE3o87zFDEfsXdNZmRgyM6Coe0AcA5zo6UcJi",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJZwaIZuirQjQRwAEYcvIaD5c",
+         "plus_code" : {
+            "compound_code" : "2HV5+FR 信義區 台北市",
+            "global_code" : "7QQ32HV5+FR"
+         },
+         "rating" : 4.6,
+         "reference" : "ChIJZwaIZuirQjQRwAEYcvIaD5c",
+         "types" : [
+            "tourist_attraction",
+            "library",
+            "museum",
+            "point_of_interest",
+            "store",
+            "establishment"
+         ],
+         "user_ratings_total" : 23
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "110台灣台北市信義區菸廠路88號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0436505,
+               "lng" : 121.5605456
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.04571345,
+                  "lng" : 121.5618931298927
+               },
+               "southwest" : {
+                  "lat" : 25.04296285,
+                  "lng" : 121.5591934701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "巴洛克花園",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 3000,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/108348596953736172373"
+               ],
+               "photo_reference" : "AZose0k5eimqOwiapuQYDMbGkQE3XGAxiOnu9T02Xpk7OGaJIlDUhe8l500PcttVirYQQNXJAlUvcv9xKq6oUU47Dx3cbl8kL8lbogSUhfNGq8kbyDX906OmJECId_IUp37D9asfe6QMfRDfgWwDwtHmqREzFY7vuPGuKuCH6btjLWbBVyWe",
+               "width" : 4000
+            }
+         ],
+         "place_id" : "ChIJL9QqTr-rQjQRJnFBOlIs4ao",
+         "plus_code" : {
+            "compound_code" : "2HV6+F6 信義區 台北市",
+            "global_code" : "7QQ32HV6+F6"
+         },
+         "rating" : 4.4,
+         "reference" : "ChIJL9QqTr-rQjQRJnFBOlIs4ao",
+         "types" : [ "tourist_attraction", "park", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 129
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "105台灣台北市松山區松河街180號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0521487,
+               "lng" : 121.5766513
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.05389069999999,
+                  "lng" : 121.5780245798927
+               },
+               "southwest" : {
+                  "lat" : 25.0505351,
+                  "lng" : 121.5753249201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#7B9EB0",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "彩虹橋",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/111353464848690350530"
+               ],
+               "photo_reference" : "AZose0nJOKyhSSTHkeQCPTD9oMnVFrzYLzlc89lKeDy8RdLHCYXuAt2kRj8pqLle9lMlvLQxskJS6c-o5anEHXsFLEEq28Ece0P2Bkl8yqUDbnqGdRqifMZRv5IEnXCxdxIIcXvnGz24D9ZUg8ikeMC05OVA31ix7Ofy2aB4xhR6QoO55vF-",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJIa-yEpyrQjQRyKkO7C2tuWo",
+         "plus_code" : {
+            "compound_code" : "3H2G+VM 松山區 台北市",
+            "global_code" : "7QQ33H2G+VM"
+         },
+         "rating" : 4.3,
+         "reference" : "ChIJIa-yEpyrQjQRyKkO7C2tuWo",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 3891
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "105台灣台北市松山區饒河街221巷5號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0514224,
+               "lng" : 121.5765095
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.05275437989272,
+                  "lng" : 121.5779126298927
+               },
+               "southwest" : {
+                  "lat" : 25.05005472010728,
+                  "lng" : 121.5752129701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#7B9EB0",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "饒河疏散門",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3520,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/115379758262350833842"
+               ],
+               "photo_reference" : "AZose0msmfJIvBtmbQDmbJi-QOR2wpCWf0eVKjJCkFn702CsIfMm6dMYBS2CTwCx7DP_T5cqbTLKX4Cr4gl0X9Uz75P0lzRGHswIwAOty9wrOo_Znt4vQ-lYrnu-R1ft3pFOHWoJ5IujG4VYd2pk_DuYU7izme0S1-2ledRs3KekNcLl2OM",
+               "width" : 2834
+            }
+         ],
+         "place_id" : "ChIJE3HAjJurQjQRuIsFiJj4ywA",
+         "plus_code" : {
+            "compound_code" : "3H2G+HJ 松山區 台北市",
+            "global_code" : "7QQ33H2G+HJ"
+         },
+         "rating" : 4.1,
+         "reference" : "ChIJE3HAjJurQjQRuIsFiJj4ywA",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 344
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "10491台灣台北市中山區濱江街180巷",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0700739,
+               "lng" : 121.5384224
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.07142357989272,
+                  "lng" : 121.5397934798928
+               },
+               "southwest" : {
+                  "lat" : 25.06872392010728,
+                  "lng" : 121.5370938201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#7B9EB0",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "飛機巷",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/117416902533110050886"
+               ],
+               "photo_reference" : "AZose0k_tSToxAJg83OJm1JJ3_2Cp7LbN7GQAr71DO7_aVOk-cjG8jn-1aR6TzWBzdI2RWO7faV4_QkqP000Kjp43noHYBxx72WzvApJhQxF_Eq_seTf7MOhpl9xvHrFzQGVDyP09e120OWOOeoVwgWU8kUnFFyE7X4vcXk68sksfYMSU9Y",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJt6gyDf6rQjQRC3nrFOObK_8",
+         "plus_code" : {
+            "compound_code" : "3GCQ+29 中山區 台北市",
+            "global_code" : "7QQ33GCQ+29"
+         },
+         "rating" : 4.6,
+         "reference" : "ChIJt6gyDf6rQjQRC3nrFOObK_8",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 3879
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "105台灣台北市松山區撫遠街",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.061969,
+               "lng" : 121.567903
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.06300267989273,
+                  "lng" : 121.5686134298927
+               },
+               "southwest" : {
+                  "lat" : 25.06030302010728,
+                  "lng" : 121.5659137701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "三民公園",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/116953757592715270447"
+               ],
+               "photo_reference" : "AZose0nuc3q2JGfOwrfVkTeRMfQHf8fJECJjPCLHtkPwEq2npFCG5O2jvirEZoICHJEKa1knfK23APCqk0amq6COsr4Kjg7qD31CUaLfiCJW5osmyt8eGqmTd5zpTIWkIkXzQ91OPTilgjDDvnxX58vyobgtgXRCdD-kWyKZrYus1kW5YBtC",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJyxB62o6rQjQRALYVoqd8iUY",
+         "plus_code" : {
+            "compound_code" : "3H69+Q5 松山區 台北市",
+            "global_code" : "7QQ33H69+Q5"
+         },
+         "rating" : 4.3,
+         "reference" : "ChIJyxB62o6rQjQRALYVoqd8iUY",
+         "types" : [ "tourist_attraction", "park", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 674
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "105台灣台北市松山區",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.053877,
+               "lng" : 121.564027
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.05522722989272,
+                  "lng" : 121.5652965298927
+               },
+               "southwest" : {
+                  "lat" : 25.05252757010728,
+                  "lng" : 121.5625968701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "西松公園",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3000,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/110522381690465064153"
+               ],
+               "photo_reference" : "AZose0lwVcgCFDueDkP0zpVwo8Urfd-UgR0EjbvzL_Aqjhh6TLiAYK7yBRDQgiCVV9fvbfT4OdsGABBAfL1f0SAliojyWi_y_3aNuXAR43uRDd_iV3p_hz6CX5TDsGAvspqAPUfA2rfsVtF1ztIzUtluzy1OyZHgyjAGwIvfNlomOCkYTK2T",
+               "width" : 4000
+            }
+         ],
+         "place_id" : "ChIJR-FF7ZOrQjQRi1AiO4lQL5g",
+         "plus_code" : {
+            "compound_code" : "3H37+HJ 松山區 台北市",
+            "global_code" : "7QQ33H37+HJ"
+         },
+         "rating" : 4,
+         "reference" : "ChIJR-FF7ZOrQjQRi1AiO4lQL5g",
+         "types" : [ "park", "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 651
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "100台灣台北市中正區八德路一段1號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0451249,
+               "lng" : 121.5278274
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.04660817989272,
+                  "lng" : 121.5292108798927
+               },
+               "southwest" : {
+                  "lat" : 25.04390852010728,
+                  "lng" : 121.5265112201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#13B5C7",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "華山紅館",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 2304,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/101617112959755866292"
+               ],
+               "photo_reference" : "AZose0kc9QpRj29r8X-69LWsjAJ0xn2ahkvfayX5Liig9wWFtjNPag17labuWd5ULxIIvOLT112JeHrSG5helIe0xnVuMTBdQy54R6pWgb3Idm4BOxR7UjaaPk_UxOCN1vjUrrK4uvj9guNOliqUScWoz_YxIdeA3PR3E-CyWs-Q5GL-kztl",
+               "width" : 4096
+            }
+         ],
+         "place_id" : "ChIJ3TdF0HqpQjQRQ1-mq-KkhZI",
+         "plus_code" : {
+            "compound_code" : "2GWH+24 中正區 台北市",
+            "global_code" : "7QQ32GWH+24"
+         },
+         "rating" : 4.2,
+         "reference" : "ChIJ3TdF0HqpQjQRQ1-mq-KkhZI",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 420
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "110台灣台北市信義區信義路五段100號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0327587,
+               "lng" : 121.5657351
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.03413237989272,
+                  "lng" : 121.5670996798927
+               },
+               "southwest" : {
+                  "lat" : 25.03143272010728,
+                  "lng" : 121.5644000201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#13B5C7",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "幾米月亮公車",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 3096,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/112286376567372405062"
+               ],
+               "photo_reference" : "AZose0n4z_IPBjnPjwaaQvn8sEvleV0xR5JRvgQ0qGq6nXVaaKaZy8wnq4oIgMW8-gPRwzxDJchAH3gMM5VVTGEm2-SJFCCfiypvOM1SqBIM_bxNONk2TCEi2lJTBO2HcqWcs-MxakIBH7LHamTdrs-TvOCB_I-679pfalbWAXONylo53OMa",
+               "width" : 4128
+            }
+         ],
+         "place_id" : "ChIJ18zXSrGrQjQR3k7dwGFeoX4",
+         "plus_code" : {
+            "compound_code" : "2HM8+47 信義區 台北市",
+            "global_code" : "7QQ32HM8+47"
+         },
+         "rating" : 4.3,
+         "reference" : "ChIJ18zXSrGrQjQR3k7dwGFeoX4",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 3235
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "105台灣台北市松山區敦化南路1段77號敦南樞苑大廈",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.045022,
+               "lng" : 121.549234
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.04637172989272,
+                  "lng" : 121.5505422798927
+               },
+               "southwest" : {
+                  "lat" : 25.04367207010728,
+                  "lng" : 121.5478426201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#13B5C7",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "シマウマ信号機",
+         "place_id" : "ChIJR0U-JxerQjQRAoCFNAMTv7I",
+         "plus_code" : {
+            "compound_code" : "2GWX+2M 松山區 台北市",
+            "global_code" : "7QQ32GWX+2M"
+         },
+         "rating" : 0,
+         "reference" : "ChIJR0U-JxerQjQRAoCFNAMTv7I",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 0
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "105台灣台北市松山區饒河街227號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0509385,
+               "lng" : 121.5775422
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.05232232989272,
+                  "lng" : 121.5788848298927
+               },
+               "southwest" : {
+                  "lat" : 25.04962267010728,
+                  "lng" : 121.5761851701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#7B9EB0",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "饒河夜市牌樓",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3432,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/112769933908767169250"
+               ],
+               "photo_reference" : "AZose0lQ5PxqwTmQp5L14YEAAOOl00zATRr-_CWKu67cALL_AUIsgytA9XTqfNPwbTzoCHUxnrdjrY9UBMIRxiVfk5JFD46VpryrOK1VonkRq4YBY-oP7aQVwTCvcvloreJapCeVQxVW8KoIjzK6WE9hBKl06GhK7xOOIsZJCWafnR7OfkC0",
+               "width" : 4576
+            }
+         ],
+         "place_id" : "ChIJLw2-DZyrQjQRGSQtls2bjZs",
+         "plus_code" : {
+            "compound_code" : "3H2H+92 松山區 台北市",
+            "global_code" : "7QQ33H2H+92"
+         },
+         "rating" : 4.2,
+         "reference" : "ChIJLw2-DZyrQjQRGSQtls2bjZs",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 319
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "106台灣台北市大安區信義路四段265巷12弄",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0345417,
+               "lng" : 121.5538857
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.03591692989272,
+                  "lng" : 121.5552671298927
+               },
+               "southwest" : {
+                  "lat" : 25.03321727010728,
+                  "lng" : 121.5525674701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "敦安公園",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3456,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/114271448691739793636"
+               ],
+               "photo_reference" : "AZose0ltTLwuYjBQPKDtNAj-cEcyT0fANwL5nzJ1zrI1RzF5CpNgIRcI6-k31anP0AFWeSruSWDggaC3N-H976twiSnamn6ivMH2aa4JCtfPVY7pDLWQXZHqhBi4JYOMMpLCjt6LicGBuqOUfPdLm3M0D-UP9oPieugOjnJmvv12Vl5BD0Ra",
+               "width" : 4608
+            }
+         ],
+         "place_id" : "ChIJL4twrM6rQjQRaZ2ynqdsNjE",
+         "plus_code" : {
+            "compound_code" : "2HM3+RH 大安區 台北市",
+            "global_code" : "7QQ32HM3+RH"
+         },
+         "rating" : 4.2,
+         "reference" : "ChIJL4twrM6rQjQRaZ2ynqdsNjE",
+         "types" : [ "park", "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 588
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "105台灣台北市松山區105號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0612259,
+               "lng" : 121.5511551
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.06257572989272,
+                  "lng" : 121.5525049298927
+               },
+               "southwest" : {
+                  "lat" : 25.05987607010728,
+                  "lng" : 121.5498052701072
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "敦北公園",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/103714456755345789855"
+               ],
+               "photo_reference" : "AZose0nzh-DEyGnV53GePuY8TB-w9DGG5p1gY1soPbnDFwMG5Qb-93vm1hRslVlguLJ1j5LA1eMdyFkUN1k1pgWjj8yzo0DXyT3MlBtUHn1jC2hhFslDz7TnNRX-kvXeaetR09cTJGwuqK1U-2PAu0QHqakpAYzmtNybuwCudU63p6usTW2N",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJ2SAzKe6rQjQRkr4U1qgd0I0",
+         "plus_code" : {
+            "compound_code" : "3H62+FF 松山區 台北市",
+            "global_code" : "7QQ33H62+FF"
+         },
+         "rating" : 3.9,
+         "reference" : "ChIJ2SAzKe6rQjQRkr4U1qgd0I0",
+         "types" : [ "park", "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 551
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "105台灣台北市松山區富錦街& 新中街",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0605983,
+               "lng" : 121.5606983
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.06201922989272,
+                  "lng" : 121.5620415298927
+               },
+               "southwest" : {
+                  "lat" : 25.05931957010727,
+                  "lng" : 121.5593418701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "新中公園",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 4032,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/108779974143596779784"
+               ],
+               "photo_reference" : "AZose0nONs7xqVoDKSv-M17t_dMRhWfNUPeNjF-dCuNxFpH1Ms2SOh3q3XncTYIUQ_iGEu0WIk4o9ANR2Xwsn4VfTeOoKWW8fPPPX6029BtcLqSBKBgEoctt6JnF8KyKMfKpMCmwFw4k6FPMvaFvez18cS83BwQPvxHtsgI9zqDuvBQj85s",
+               "width" : 3024
+            }
+         ],
+         "place_id" : "ChIJ7z6kOY2rQjQRVxjjg6dBOIk",
+         "plus_code" : {
+            "compound_code" : "3H66+67 松山區 台北市",
+            "global_code" : "7QQ33H66+67"
+         },
+         "rating" : 4.1,
+         "reference" : "ChIJ7z6kOY2rQjQRVxjjg6dBOIk",
+         "types" : [ "tourist_attraction", "park", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 530
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "105台灣台北市松山區饒河街107號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0504695,
+               "lng" : 121.5740301
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.05181382989272,
+                  "lng" : 121.5753766798927
+               },
+               "southwest" : {
+                  "lat" : 25.04911417010728,
+                  "lng" : 121.5726770201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#13B5C7",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "松山教會旁邊",
+         "place_id" : "ChIJO69q_marQjQRGctnXQTIPYA",
+         "plus_code" : {
+            "compound_code" : "3H2F+5J 松山區 台北市",
+            "global_code" : "7QQ33H2F+5J"
+         },
+         "rating" : 0,
+         "reference" : "ChIJO69q_marQjQRGctnXQTIPYA",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 0
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "105台灣台北市松山區饒河街",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0508835,
+               "lng" : 121.5774993
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.05230862989272,
+                  "lng" : 121.5789807798927
+               },
+               "southwest" : {
+                  "lat" : 25.04960897010728,
+                  "lng" : 121.5762811201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/shopping-71.png",
+         "icon_background_color" : "#4B96F3",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/shopping_pinlet",
+         "name" : "饒河街觀光夜市",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/100268464557089280588"
+               ],
+               "photo_reference" : "AZose0mMFygxkedjDhNquKiG4XXY2vuO2T7_3ITuYWhaOMeHE4u57l_u_JBgVzK6GfNZFBkSwGwxfiGeVfpBR_gMjLIC4p_p41dpSYoTrzYMpSwCvPDx0q3ruCuLJC7pq_RJq8ODixb_NfWTPp96AJHOpMgmqw98Y5T3Tc_leJmKHyAHktL8",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJg6W0DZyrQjQR9vZdgYMRoj0",
+         "plus_code" : {
+            "compound_code" : "3H2G+9X 松山區 台北市",
+            "global_code" : "7QQ33H2G+9X"
+         },
+         "rating" : 4.2,
+         "reference" : "ChIJg6W0DZyrQjQR9vZdgYMRoj0",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 60557
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "110台灣台北市信義區信義路五段150巷",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0303924,
+               "lng" : 121.5701294
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.0332815,
+                  "lng" : 121.5712580298927
+               },
+               "southwest" : {
+                  "lat" : 25.02707670000001,
+                  "lng" : 121.5685583701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "象山公園",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 2268,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/115973380955006276319"
+               ],
+               "photo_reference" : "AZose0kB-76lT9Oxx_qHKgAnFOgy1owSvYfWdrYY6vBX3Q8Y9vKUEPOzu5H-sA7HP05NA4btp1fd07grEthsLRJuZdrWUMzGRI-Lzt6hU8NFHkH8GAo250_qSp-xAFJPbn3IZsgJRgu4gLH8OKEiMnZvVSTpWC9fBkMMlioc7ciB1X-5792H",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJuwDE9bGrQjQRY7eR6Ve0Kik",
+         "plus_code" : {
+            "compound_code" : "2HJC+53 信義區 台北市",
+            "global_code" : "7QQ32HJC+53"
+         },
+         "rating" : 4.4,
+         "reference" : "ChIJuwDE9bGrQjQRY7eR6Ve0Kik",
+         "types" : [ "park", "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 6585
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "110台灣台北市信義區仁愛路四段505號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0386114,
+               "lng" : 121.5597529
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.04034182989272,
+                  "lng" : 121.56061155
+               },
+               "southwest" : {
+                  "lat" : 25.03764217010728,
+                  "lng" : 121.55717695
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "中山公園",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 4032,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/109493766349613495091"
+               ],
+               "photo_reference" : "AZose0kOpHHvRiZFttftqHJ4MmJLA1O5T9lFD4IbmJiIDiX8FOPbsNgiG6AmdICOBB7doO5GYskuRw7wxXJtf1822NuHEOYwPX86yNmMik2FW7r4cd8Jj515PUT2hlsQ8wkn6Fs22Y_quXlNfZf5I0cJ5QUpvGX-SPn8t_WPE-WBkkm8_lWD",
+               "width" : 3024
+            }
+         ],
+         "place_id" : "ChIJ0YPICcirQjQRZ2w-r0xptyw",
+         "plus_code" : {
+            "compound_code" : "2HQ5+CW 信義區 台北市",
+            "global_code" : "7QQ32HQ5+CW"
+         },
+         "rating" : 4.3,
+         "reference" : "ChIJ0YPICcirQjQRZ2w-r0xptyw",
+         "types" : [ "tourist_attraction", "park", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 8266
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "110台灣台北市信義區松仁路3號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.039485,
+               "lng" : 121.569184
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.04117857989272,
+                  "lng" : 121.5708687298927
+               },
+               "southwest" : {
+                  "lat" : 25.03847892010728,
+                  "lng" : 121.5681690701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/museum-71.png",
+         "icon_background_color" : "#13B5C7",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/museum_pinlet",
+         "name" : "石油探索館",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 5120,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/114613694217473088958"
+               ],
+               "photo_reference" : "AZose0mSgW2HiKxV0F7lX8pCkvlvk_ZD5Eb6GzXnnzOxmkZ-exkg-oX8g7ZOEQAoa3PdRn3-7hduW85rCxekmNAnb26W9H2EAl2Bqbc1HAUQXSTmLEwfVV5cTr0SOHw-m8XgLYE5oXccXWab5oDdF03n-GrgY-A90wb2IgQ3HUaRm-8hGBo2",
+               "width" : 3840
+            }
+         ],
+         "place_id" : "ChIJOSQeErurQjQRsM5uQHOu_y8",
+         "plus_code" : {
+            "compound_code" : "2HQ9+QM 信義區 台北市",
+            "global_code" : "7QQ32HQ9+QM"
+         },
+         "rating" : 4.6,
+         "reference" : "ChIJOSQeErurQjQRsM5uQHOu_y8",
+         "types" : [ "museum", "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 367
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "114台灣台北市內湖區114",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0528477,
+               "lng" : 121.5764094
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.05419752989272,
+                  "lng" : 121.5777592298927
+               },
+               "southwest" : {
+                  "lat" : 25.05149787010728,
+                  "lng" : 121.5750595701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#13B5C7",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "彩虹橋基隆河右岸解說牌",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 1728,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/105913266178467058751"
+               ],
+               "photo_reference" : "AZose0kowx3FpXbUNRarJcmuyX5AcjsCuWAB0ZFRtmjp756N5GnGdhlc6tGQT_UuyBPZTD0Bseu1ZDzeLsQMrkekUAAoKJCzc5KTLLNqJwM5wjKdP4cK8SC4Ezj9fXUftTUcPAGoiLxh_GxrvfE8JcQuyMmiRZOjgnr8ZVcE5KP_ZqF7o2nY",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJn0JpuPyrQjQRrNa__7l_Ncg",
+         "plus_code" : {
+            "compound_code" : "3H3G+4H 內湖區 台北市",
+            "global_code" : "7QQ33H3G+4H"
+         },
+         "rating" : 0,
+         "reference" : "ChIJn0JpuPyrQjQRrNa__7l_Ncg",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 0
+      }
+   ],
+   "status" : "OK"
+}

@@ -36,7 +36,8 @@ urlpatterns = [
     path('history/',views.history),
     path('favorite/',views.favorite),
     path('share/',views.share),
-    path('attraction_details/<int:a_id>',views.attraction_details),
+    path('attraction_details/',views.attraction_details),
+    # path('attraction_details/<int:a_id>',views.attraction_details),
 
     # path('sayhello/<str:username>',sayhello), #新增
 ]
