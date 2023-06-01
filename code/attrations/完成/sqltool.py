@@ -10,7 +10,7 @@ class Postgres:
                 host="localhost",
                 dbname="trip",
                 user="postgres",
-                password="10946009"
+                password="10946010"
             )
         except (Exception, psycopg2.DatabaseError) as error:
             print('有錯誤',error)
