@@ -1,17 +1,22 @@
 .box {
+    float: left;
     border: 1px solid black;
     padding: 10px;
     height: 140px;
     width: 650px;
     margin-bottom: 10px;
     margin-top: 20px;
-    margin-left: 30px;
+    margin-left: 40px;
     margin-right: 630px;
     border-radius: 10px;
     /* display: flex; */
 }
 
-.direct .dd {
+.direct_left {
+    float: left;
+}
+
+.direct_left .dd {
     text-decoration: none;
 }
 
@@ -77,7 +82,7 @@
 }
 
 .att {
-    margin-left: 20px;
+    margin-left: 30px;
     margin-top: 30px;
     display: flex;
     align-items: center;
@@ -105,4 +110,71 @@
 
 .box a:hover {
     color: rgb(172, 78, 1);
+}
+
+.detail_box {
+    float: right;
+    float: top;
+    border: 1px solid black;
+    padding: 10px;
+    height: 1520px;
+    width: 650px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-right: 40px;
+    border-radius: 10px;
+}
+
+.inner_1 {
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+#rightbox {
+    display: none;
+}
+
+.box {
+    cursor: pointer;
+}
+
+/* #closeBtn {
+    text-align: right;
+    padding: 5px;
+    cursor: pointer;
+} */
+
+/* .close {
+    overflow: hidden;
+}
+
+.close img {
+    float: right;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+} */
+.close {
+    display: flex;
+    align-items: center;
+}
+
+.img_x {
+    margin-left: 480px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.img_x img {
+    margin-top: -15px;
+    margin-right: 5px;
+    align-self: flex-start;
+    width: 30px;
+    height: 30px;
+    float: right;
+    cursor: pointer;
+}
+
+.img_x img:hover {
+    transform: scale(1.2, 1.2);
 }
