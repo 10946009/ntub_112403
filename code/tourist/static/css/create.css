@@ -69,7 +69,8 @@
     color: black;
 }
 .tab_day:hover{
-    color: #ccc;
+    color: #525252;
+    font-weight: bolder;
     font-size: larger;
 }
 .div_day{
@@ -79,6 +80,55 @@
     font-size: 20px;
     text-align: center;
     padding: 5px;
+}
+.heart_icon_box{
+    position: relative;
+    border: 1px solid #000;
+}
+.heart_icon{
+    position: absolute;
+    top:0;
+    right: 0;
+    background-color: #ccc;
+    color: red;
+    padding: 10px;
+    border-radius: 50%;
+    margin: 10px;
+    cursor: pointer;
+}
+.spot_like_txt{
+	position: relative;
+    border: 1px solid #ccc;
+}
+.add_icon{
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 50%;
+	color: white;
+	background-color: #ccc;
+	cursor: pointer;
+}
+.chebox_item{
+    margin-top: 5px;
+    border: 1px solid #ccc;
+}
+.chebox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.rec_spot{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.chebox_info{
+    padding: 10px;
+    font-size: 18px;
+    text-align: left;
 }
 
 
