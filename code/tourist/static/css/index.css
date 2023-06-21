@@ -19,6 +19,11 @@ html{
 	align-items: center;
 	color: white;
 }
+.sysname{
+	font-size: 50px;
+	font-family: Comic Sans MS;
+	text-shadow: 0.1em 0.1em rgba(0,0,0, 0.5);
+}
 .hot_txt{
 	text-align: center;
 }
