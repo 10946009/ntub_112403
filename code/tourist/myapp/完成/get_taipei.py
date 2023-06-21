@@ -8,7 +8,7 @@ import populartimes
 import json
 
 dotenv_path = join(dirname(__file__), ".env")
-load_dotenv(dotenv_path, override=True)  # 設定 override 才會更新變數哦！
+load_dotenv(dotenv_path, override=True)  # 設定 override 才會更新變數
 GOOGLE_PLACES_API_KEY = os.environ.get("GOOGLE_PLACES_API_KEY")
 
 a_type_list = ['景點']
@@ -31,6 +31,7 @@ def get_populartimes(datafile,GOOGLE_PLACES_API_KEY,a_type):
     
     with open(datafile, encoding='utf-8') as file:
         data = json.load(file)
+        print(data)
         for num in range(len(data['results'])):
             times = 0
             placeid = data['results'][num]['place_id'] 
@@ -50,7 +51,7 @@ def get_populartimes(datafile,GOOGLE_PLACES_API_KEY,a_type):
     f = open(os.getcwd()+f'/{address[0]}{address[1]}{a_type}擁擠資訊.json', 'w',encoding='utf-8')
     f.write(json.dumps(result))
     f.close()
-    
+
 def get_details(datafile,GOOGLE_PLACES_API_KEY,a_type):
     result = []
     with open(datafile, encoding='utf-8') as file:
@@ -72,26 +73,26 @@ with open('臺北市區路段資料.csv',newline='',encoding='utf-8')as csvfile:
     list(address_list)
     # address= ['市區','路']
     #1-10
-    address_list = address_list[0:10]
+    address_list
     print(address_list)
     for address in address_list:
         for a_type in a_type_list:
             if f'{address[0]}{address[1]}{a_type}.json' in os.listdir():
                 print(f'{address[0]}{address[1]}{a_type}.json','已存在')
             else:
-                get_textsearch(GOOGLE_PLACES_API_KEY,address,a_type)
                 print('產生',f'{address[0]}{address[1]}{a_type}.json')
+                get_textsearch(GOOGLE_PLACES_API_KEY,address,a_type)
 
             filename = f'{os.getcwd()}/{address[0]}{address[1]}{a_type}.json'
 
             if f'{address[0]}{address[1]}{a_type}擁擠資訊.json' in os.listdir():
                 print(f'{address[0]}{address[1]}{a_type}擁擠資訊.json','已存在')
             else: 
-                get_populartimes(filename,GOOGLE_PLACES_API_KEY,a_type)
                 print('產生',f'{address[0]}{address[1]}{a_type}擁擠資訊.json')
+                get_populartimes(filename,GOOGLE_PLACES_API_KEY,a_type)
 
             if f'{address[0]}{address[1]}{a_type}營業時間.json' in os.listdir():
                 print(f'{address[0]}{address[1]}{a_type}營業時間.json','已存在')
             else: 
-                get_details(filename,GOOGLE_PLACES_API_KEY,a_type) 
                 print('產生',f'{address[0]}{address[1]}{a_type}營業時間.json')
+                get_details(filename,GOOGLE_PLACES_API_KEY,a_type) 

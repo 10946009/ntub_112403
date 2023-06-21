@@ -3,8 +3,11 @@ import os
 import csv
 import json
 from sqltool import Postgres
+types_list = []
 
+# data=
 
+# 景點資料庫
 def input_address(data, data_crowd, data_opening_phone, num):
     tool = Postgres()
     place_id = data["results"][num]["place_id"]
@@ -83,25 +86,57 @@ def input_address(data, data_crowd, data_opening_phone, num):
         ],
     )
 
+# 確認有甚麼標籤
+def check_new_att_type(data,num,types_list):
+    types = data["results"][num]["types"]
+    
+    for t in types:
+        if t not in types_list:
+            types_list.append(t)
+            print(types_list)
+    return types_list
 
-# def get_type(data):
+# DATA可以抓placeid
+def input_crowd_opening(data, data_crowd, data_opening_phone, num):
+    tool = Postgres()
+    place_id = data["results"][num]["place_id"]
+    # # 擁擠populartimes
+    # # 營業時間 weekday_text
+    sql = f"SELECT * FROM myapp_attractions WHERE place_id = '{place_id}';"
+    print(tool.read(sql)[0][0])
 
-with open("臺北市區路段資料.csv", newline="", encoding="utf-8") as csvfile:
-    address_list = list(csv.reader(csvfile))
-    list(address_list)
-    print(address_list)
-    for address in address_list[1:]:
-        try:
-            with open(f"{address[0]}{address[1]}景點.json", encoding="utf-8") as file:
-                data = json.load(file)
+    # try:
+    #     photo_check = data["results"][num]["photos"][0]["photo_reference"]  # 改變第一個num
+    #     photo = photo_check if photo_check is not None else ""
+    # except:
+    #     photo = ""
 
-            with open(f"{address[0]}{address[1]}景點擁擠資訊.json", encoding="utf-8") as file:
-                data_crowd = json.load(file)
 
-            with open(f"{address[0]}{address[1]}景點營業時間.json", encoding="utf-8") as file:
-                data_opening_phone = json.load(file)
-                for num in range(len(data["results"])):
-                    input_address(data, data_crowd, data_opening_phone, num)
-        except:
-            print(f"{address[0]}{address[1]} error")
-            continue
+    # pass
+
+
+
+# 把json資料都抓出來 然後使用函數
+# with open("臺北市區路段資料.csv", newline="", encoding="utf-8") as csvfile:
+#     address_list = list(csv.reader(csvfile))
+#     list(address_list)
+#     for address in address_list[1:]:
+#         try:
+#             with open(f"{address[0]}{address[1]}景點.json", encoding="utf-8") as file:
+#                 data = json.load(file)
+
+#             with open(f"{address[0]}{address[1]}景點擁擠資訊.json", encoding="utf-8") as file:
+#                 data_crowd = json.load(file)
+
+#             with open(f"{address[0]}{address[1]}景點營業時間.json", encoding="utf-8") as file:
+#                 data_opening_phone = json.load(file)
+#                 for num in range(len(data["results"])):
+#                     # input_address(data, data_crowd, data_opening_phone, num)
+#                     types_list = check_new_att_type(data,num,types_list)
+#         except :
+#                 print(f"{address[0]}{address[1]} error")
+#                 continue
+
+
+# print(types_list)
+input_crowd_opening(1,1,1,1)
