@@ -31,7 +31,6 @@ def get_populartimes(datafile,GOOGLE_PLACES_API_KEY,a_type):
     
     with open(datafile, encoding='utf-8') as file:
         data = json.load(file)
-        print(data)
         for num in range(len(data['results'])):
             times = 0
             placeid = data['results'][num]['place_id'] 
