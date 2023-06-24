@@ -7,7 +7,7 @@ import populartimes
 from os.path import join, dirname
 from dotenv import load_dotenv, find_dotenv
 import requests
-
+from .models import *
 
 
 # def sayhello(request):
@@ -128,8 +128,16 @@ def history(request):
 
 #我的最愛
 def favorite(request):
-    a_id = 1
-    return render(request, "favorite.html",{'a_id':a_id})
+    favorite_list = []
+    user_id = request.user.id
+    # project = Project.objects.get(id=project_id)
+    #找出user的最愛清單的a.id
+    favorite_attrations_list= Favorite.objects.filter(u_id=user_id)
+    # a.id取出
+    for a_id in favorite_attrations_list:
+        favorite_list.append(Attractions.objects.filter(id=a_id.a_id).values())
+    # favorite_list =
+    return render(request, "favorite.html",locals())
 
 #分享行程
 def share(request):
