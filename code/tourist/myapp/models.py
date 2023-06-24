@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 # # Create your models here.
 # class Comment(models.Model):
-#     content = models.TextField(max_length=500)
+#     content = models.TextField(max_length=255)
 
 #     # FK 刪除的策略
 #     # models.CASCADE：連帶刪除 -> 刪除 Post 時一併刪除 Comment
@@ -12,13 +12,25 @@ from django.contrib.postgres.fields import ArrayField
 #     post = models.ForeignKey(to=Post, on_delete=models.CASCADE)
 
 
+# djano內建方法
+# class User(AbstractUser):
+#     first_name = None
+#     last_name = None
+#     email = models.EmailField(unique=True, max_length=255, blank=False, null=False)
+#     username = models.CharField(verbose_name="姓名",max_length=255,blank=False,null=False)
+#     birthday = models.TextField(max_length=10,null=False, blank=False)
+#     unit = models.CharField(verbose_name="單位",max_length=255,blank=True,null=True)
+#     contact = models.CharField(verbose_name="聯絡方式",blank=True,null=True)
+#     USERNAME_FIELD = 'email'
+#     REQUIRED_FIELDS = ['username']
+
 class User(models.Model):
-    account = models.TextField(max_length=500,null=False, blank=False)
-    passwd = models.TextField(max_length=500,null=False, blank=False)
+    account = models.TextField(max_length=255,null=False, blank=False)
+    passwd = models.TextField(max_length=255,null=False, blank=False)
     datetime = models.TimeField(auto_now_add=True)
     is_superuser = models.BooleanField(default=0,null=False)
-    name = models.TextField(max_length=500,null=False, blank=False)
-    mail = models.TextField(max_length=500,null=False, blank=False)
+    name = models.TextField(max_length=255,null=False, blank=False)
+    mail = models.TextField(max_length=255,null=False, blank=False)
     gender = models.TextField(max_length=3,null=False, blank=False)
     birthday = models.TextField(max_length=10,null=False, blank=False)
     user_photo = models.TextField(max_length=10,blank=True,default="")
@@ -29,26 +41,26 @@ class User(models.Model):
     ordering=('id',)
 
 class Attractions(models.Model):
-    place_id= models.TextField(max_length=500, blank=False)
-    photo = models.TextField(max_length=500,null=False, blank=False,default="")
-    a_name = models.TextField(max_length=500,null=False, blank=False)
-    address = models.TextField(max_length=500,null=False, blank=False)
+    place_id= models.TextField(max_length=255, blank=False)
+    photo = models.TextField(max_length=255,null=False, blank=False,default="")
+    a_name = models.TextField(max_length=255,null=False, blank=False)
+    address = models.TextField(max_length=255,null=False, blank=False)
     location_x = models.FloatField()
     location_y = models.FloatField()
-    phone = models.TextField(max_length=500,null=False, blank=True)
+    phone = models.TextField(max_length=255,null=False, blank=True)
     rating = models.FloatField(null=False, blank=False)
     score = models.FloatField(default=0,null=False, blank=False)
     stay_time = models.IntegerField(null=True, blank=False)
     hot_month = ArrayField(models.IntegerField())
-    att_type = models.IntegerField(null=False, blank=False)
+    att_type = ArrayField(models.IntegerField())
     def __str__(self):
         return f'{self.id} {self.a_name}'
 
 class Crowd_Opening(models.Model):
     a = models.ForeignKey(to=Attractions, on_delete=models.SET_DEFAULT,default=-1)#景點沒了留言a_id會被設為null
-    weak =  models.IntegerField(null=False, blank=False)
+    week =  models.IntegerField(null=False, blank=False)
     crowd = ArrayField(models.IntegerField())
-    opening = models.TextField(max_length=500,default="")
+    opening = ArrayField(models.TextField(max_length=255))
 
     
 class Create_Travel(models.Model):
@@ -56,8 +68,8 @@ class Create_Travel(models.Model):
     ct_name = models.IntegerField(null=False, blank=False)
     start_location_x = models.FloatField(null=False, blank=False)
     start_location_y = models.FloatField(null=False, blank=False)
-    start_day = models.TextField(max_length=500,null=False, blank=False)
-    end_day = models.TextField(max_length=500,null=False, blank=False)
+    start_day = models.TextField(max_length=255,null=False, blank=False)
+    end_day = models.TextField(max_length=255,null=False, blank=False)
     days = models.IntegerField(null=False, blank=False)
     start_time = models.IntegerField(null=False, blank=False)
 
@@ -82,7 +94,7 @@ class Comment(models.Model):
     u = models.ForeignKey(to=User, on_delete=models.SET_DEFAULT,default=-1)#user沒了留言u_id會被設為null
     a = models.ForeignKey(to=Attractions, on_delete=models.SET_DEFAULT,default=-1)#景點沒了留言a_id會被設為null
     h = models.ForeignKey(to=History, on_delete=models.SET_DEFAULT,default=-1)#分享沒了留言會被設為null
-    content = models.TextField(max_length=500)
+    content = models.TextField(max_length=255)
     score = models.FloatField(null=False, blank=False)
     time = models.TimeField(auto_now_add=True)
     comment_type = models.BooleanField(default=False) #0為行程留言，1為景點留言
@@ -94,6 +106,6 @@ class Favorite(models.Model):
 
 class Search(models.Model):
     attractions =  models.ManyToManyField(Attractions)
-    IP_address = models.TextField(max_length=500,null=False, blank=False)
+    IP_address = models.TextField(max_length=255,null=False, blank=False)
     keyword = ArrayField(models.TextField())
     identify = models.BooleanField(default=False) #0為訪客，1為會員
