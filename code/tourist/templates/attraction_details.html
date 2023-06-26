@@ -79,18 +79,20 @@
                     style="width:50px; height:50px;">
                 <h2 style="margin-top:5px; font-size:32px;display: flex; color: rgb(10, 80, 150);"> 搜尋景點</h2><br>
             </div>
+
             <div style="display: flex; width: 100vw; margin-top: 5px; margin-left: 40px;">
-                <form class="d-flex" role="search" style="width:45%">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" method="post" role="search" style="width:45%" action = "{% url 'search_results' %}">
+                    {% csrf_token %}
+                    <input class="form-control me-2" name="search-query" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
 
             {% for item in search_list %}
-            <div class="box" onclick="showRightBox(this)" data-a-Id="{{item.0.id}}">
+            <div class="box" onclick="showRightBox(this)" data-a-Id="{{item.id}}">
                 <div class=" inner" style="position:relative;">
 
-                    <h5>{{item.0.a_name}}</h5>
+                    <h5>{{item.a_name}}</h5>
 
                     <div class="rating">
                         <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
@@ -106,7 +108,9 @@
                             <span class="rating-star" onclick="setRating(4)">&#9733;</span>
                             <span class="rating-star" onclick="setRating(5)">&#9733;</span>
                                </div> -->
-                    <h6 style="margin-top:5px;">綜合評分： <span id="selectedRating">{{item.0.rating}}</span> / 5 (2.1萬)</h6>
+                    
+                    <h6 style="margin-top:5px;">地址：<span id="list-address">{{item.address}}</span></h6>
+                    <h6 style="margin-top:5px;">綜合評分： <span id="list-selectedRating">{{item.rating}}</span> / 5 (2.1萬)</h6>
                     <h6 style="color:rgb(21, 81, 140);">*營業時間：<span style="color: green;">24小時營業</span></h6>
                     <div class="img_detail">
                         <img src="/static/images/twotwoeight.jpeg" class="img-responsive" alt="two">
@@ -138,7 +142,7 @@
                         <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
                         <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
                         <span class="rating-star">&#9733;</span>
-                        <span id="selectedRating">4.0</span> / 5 (6.3萬)
+                        <span id="selectedRating"></span> / 5 (6.3萬)
                     </div>
                     <div style="display: flex;justify-content: center;align-items: center;height: auto;">
                         <img src="/static/images/zoo.jpeg" alt="photo" style="width: 600px; ">
