@@ -12,7 +12,7 @@ from django.contrib.postgres.fields import ArrayField
 #     post = models.ForeignKey(to=Post, on_delete=models.CASCADE)
 
 
-# djano內建方法
+# django內建方法
 # class User(AbstractUser):
 #     first_name = None
 #     last_name = None
@@ -49,12 +49,13 @@ class Attractions(models.Model):
     location_y = models.FloatField()
     phone = models.TextField(max_length=255,null=False, blank=True)
     rating = models.FloatField(null=False, blank=False)
+    rating_total = models.IntegerField(null=False, blank=False,default=-1)
     score = models.FloatField(default=0,null=False, blank=False)
     stay_time = models.IntegerField(null=True, blank=False)
     hot_month = ArrayField(models.IntegerField())
     att_type = ArrayField(models.IntegerField())
-    def __str__(self):
-        return f'{self.id} {self.a_name}'
+    # def __str__(self):
+    #     return f'{self.id} {self.a_name}'
 
 class Crowd_Opening(models.Model):
     a = models.ForeignKey(to=Attractions, on_delete=models.SET_DEFAULT,default=-1)#景點沒了留言a_id會被設為null
