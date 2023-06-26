@@ -72,6 +72,10 @@ def input_address(tool,data, data_crowd, data_opening_phone, num,att_types):
         rating = data["results"][num]["rating"]
     except:
         rating = 0
+    try:
+        rating_total = data["results"][num]["user_ratings_total"]
+    except:
+        rating_total = 0
     
     score = 0
     try:
@@ -95,6 +99,7 @@ def input_address(tool,data, data_crowd, data_opening_phone, num,att_types):
         "location_y",
         "phone",
         "rating",
+        "rating_total",
         "score",
         "stay_time",
         "hot_month",
@@ -115,6 +120,7 @@ def input_address(tool,data, data_crowd, data_opening_phone, num,att_types):
                 location_y,
                 phone,
                 rating,
+                rating_total,
                 score,
                 stay_time,
                 hot_month,
