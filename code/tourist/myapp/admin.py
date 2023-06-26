@@ -7,7 +7,6 @@ from django.contrib.auth.admin import UserAdmin as _UserAdmin
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import forms
 
-from myapp.models import User
 
 class UserAdmin(_UserAdmin):
     list_display = ['username', 'email', 'date_joined', 'is_superuser', 'is_staff',
@@ -15,19 +14,19 @@ class UserAdmin(_UserAdmin):
     search_fields = ['email', 'username', 'date_joined']
 
     fieldsets = (
-        ('基本資料', {'fields': ('email', 'username', 'unit', 'contact', 'password')}),
+        ('基本資料', {'fields': ('email', 'username', 'password')}),
         ('權限管理', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups')}),
         ('登入狀態', {'fields': ('date_joined', 'last_login')}),
     )
-    add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('email', 'username', 'unit', 'contact', 'password1', 'password2'),
-        }),
-    )
+    # add_fieldsets = (
+    #     (None, {
+    #         'classes': ('wide',),
+    #         'fields': ('email', 'username', 'unit', 'contact', 'password1', 'password2'),
+    #     }),
+    # )
 
 
-admin.site.register(User, UserAdmin)
+admin.site.register(User,UserAdmin)
 admin.site.site_header = '趣放假管理後台'
 admin.site.index_title = '管理後台'
 
