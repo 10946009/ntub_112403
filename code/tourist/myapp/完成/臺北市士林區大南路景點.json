@@ -1,0 +1,914 @@
+{
+   "html_attributions" : [],
+   "next_page_token" : "AZose0naUy67QrbMoGjYczuc5holri9N79I8g3X6FHFN98kA7FHgf2V45KvvLyNImhwSWjMRslv7WikBNa4RgxL_KTFp0mfUc6F10vLCwKaaw6rKVBkmwb_NcBevHBZC0H7tozAobQs1JTwYVnqLaSXbWpa2_R7UiGwCA7Na3dswPG8NkyA_cQsS56GnXkQefAQCfHPKsSJ1lNf1FgqGvzoQ08iLvZ1MugD7Bk4CmDeioOah3fjDcMt9nk1Rv9qqBdLgVognsn-ITSoPMB533qCDcx34OrTrKlba_rDYR_FF4I6dzfOPO0ACmtqQzpyM8pE6Z0v9WFf66WFcLOu_Q8YYFCsaoh4cC9C54opm9ZdFVRD2DFCL5MimgLVIKOSILxTORpD-A8eTrfoYKLkXbQ6r3CYi4DNCFyfCTGCxCZHYiw",
+   "results" : [
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "111台灣台北市士林區大東路34號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0892469,
+               "lng" : 121.5252729
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.09059452989272,
+                  "lng" : 121.5266306298927
+               },
+               "southwest" : {
+                  "lat" : 25.08789487010728,
+                  "lng" : 121.5239309701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#13B5C7",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "士林萌虎",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/114759622427512210915"
+               ],
+               "photo_reference" : "AZose0nsiRLTMO4svUiBi58h1SwRGvvknNSkRMYeilBV6JSF1CAYpJ6UWPThhQQNh3ZkR4ZRfjsTwa78iUziol02dyZdK0aAya9JSM24dZsBQOpGaCis2MaaMYpeESxauPOjDlbwEMyzQ39f5JMuP-GufZ4fez0or9keMH7oARnwOvnRSeqj",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJXwmUvPKvQjQRIcw6du-JbaY",
+         "plus_code" : {
+            "compound_code" : "3GQG+M4 士林區 台北市",
+            "global_code" : "7QQ33GQG+M4"
+         },
+         "rating" : 4.5,
+         "reference" : "ChIJXwmUvPKvQjQRIcw6du-JbaY",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 79
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "111台灣台北市士林區福林路60號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.093071,
+               "lng" : 121.5323991
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.0962666,
+                  "lng" : 121.53346785
+               },
+               "southwest" : {
+                  "lat" : 25.09200580000001,
+                  "lng" : 121.52919285
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#7B9EB0",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "士林官邸",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 4032,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/104802615073251585080"
+               ],
+               "photo_reference" : "AZose0mtenO7WL0eKkQWveI8o1WmzGHKU4wrgYFN6LGdcxnEPrALPj1zrepnBmpWojWMZPS2tLQ9N_ICSFYT75T4zztmsIuLivb9DssKRY3qdFh-vz4XN7WX-tI0JEngYRJoA5J1wB5sAxXkFmxR6ZR1OR7zTxbGr8ICPtmDYggzSekzAaxk",
+               "width" : 3024
+            }
+         ],
+         "place_id" : "ChIJm5fgyKOuQjQR3vKgJWoDVPk",
+         "plus_code" : {
+            "compound_code" : "3GVJ+6X 士林區 台北市",
+            "global_code" : "7QQ33GVJ+6X"
+         },
+         "rating" : 4.3,
+         "reference" : "ChIJm5fgyKOuQjQR3vKgJWoDVPk",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 20817
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "111台灣台北市士林區環河北路三段",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0834801,
+               "lng" : 121.5069337
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.0864441,
+                  "lng" : 121.5076636798927
+               },
+               "southwest" : {
+                  "lat" : 25.0824921,
+                  "lng" : 121.5049640201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#7B9EB0",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "葫蘆國小跨堤人行陸橋",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 1315,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/105047240855868603177"
+               ],
+               "photo_reference" : "AZose0mMmu-5Ewbpwa4JZ0aAk86j5xSFxdcspUMppegFbgQJlOo26MqXNBor_0b2H9xK7vXTGIkEJMTehPLHtEPwK1_EghuLE08MESUMQXXHTisXE3mQTBfNqIn3O7f0pWBYhXPzCe0G1urYrqphT0srzPmDfZ488N3QXzC5pC6e3apKhk24",
+               "width" : 1980
+            }
+         ],
+         "place_id" : "ChIJ4zFfxMyuQjQR_VowsUStIHs",
+         "plus_code" : {
+            "compound_code" : "3GM4+9Q 士林區 台北市",
+            "global_code" : "7QQ33GM4+9Q"
+         },
+         "rating" : 4.2,
+         "reference" : "ChIJ4zFfxMyuQjQR_VowsUStIHs",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 357
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "111台灣台北市士林區中山北路四段",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0799836,
+               "lng" : 121.5248317
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.08128702989272,
+                  "lng" : 121.5259860298927
+               },
+               "southwest" : {
+                  "lat" : 25.07858737010728,
+                  "lng" : 121.5232863701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "劍潭公園",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/118129497263439232161"
+               ],
+               "photo_reference" : "AZose0kTc3M3PrHQAIlN4ypGnx2T8sajnKJsJ4awA029hLrXnvwm_1GIwXaAtRqpCf4_A_zHJNNNxSt2ZmzgKv8hbmglN7PibPe7-RlJCv76FLPwGuqGuZGouA-SWVCvnIDXp--l7OWVisaieSnORiLA72LdyF_pZOjzn03CSimkLosbDqBq",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJq6qqqgasQjQRJBvn1_-rrCc",
+         "plus_code" : {
+            "compound_code" : "3GHF+XW 士林區 台北市",
+            "global_code" : "7QQ33GHF+XW"
+         },
+         "rating" : 4.2,
+         "reference" : "ChIJq6qqqgasQjQRJBvn1_-rrCc",
+         "types" : [ "park", "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 629
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "103台灣台北市大同區迪化街一段156號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.057799,
+               "lng" : 121.5096774
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.05914952989272,
+                  "lng" : 121.5110435298927
+               },
+               "southwest" : {
+                  "lat" : 25.05644987010728,
+                  "lng" : 121.5083438701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#13B5C7",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "林五湖故居",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 4080,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/111118374893043565648"
+               ],
+               "photo_reference" : "AZose0lmkYzNKxVfAUA3IxYEmFNe8lmBoMg-BLJXXgV4rVwuPplQ85zLKpRFkHQfAiqKSS1fcxPY-fTpmGolMQTZY3gOdNK5E1GYncS88dziBK61VqRoFI-TdY8pXIRtome6FcMG5vZfFIL9TxYDunhqdvydFvGKmx-nqZkGEQLZShC4h5Et",
+               "width" : 3072
+            }
+         ],
+         "place_id" : "ChIJX0vMNBSpQjQR7ufnOGeksxk",
+         "plus_code" : {
+            "compound_code" : "3G55+4V 大同區 台北市",
+            "global_code" : "7QQ33G55+4V"
+         },
+         "rating" : 4.4,
+         "reference" : "ChIJX0vMNBSpQjQR7ufnOGeksxk",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 42
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "10491台灣台北市中山區通北街165巷劍潭山步道",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0904311,
+               "lng" : 121.5367826
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.09161875,
+                  "lng" : 121.5384293298928
+               },
+               "southwest" : {
+                  "lat" : 25.08686815,
+                  "lng" : 121.5357296701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#7B9EB0",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "老地方觀機平台",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 2206,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/113133783840576866587"
+               ],
+               "photo_reference" : "AZose0kZIzn_vf3p1WUFumNTbl7rnE_4WjrkZsqtDqM9rzE4Pmiorbffjj3E0j4kVN_lgtVe3vytvTmJDj0xohEePymCHoKzyNDhalgeF-Wkk6DRjwav-UQseAdIcbnBEmKxr8F_nkVMA66OxbK_Xhx12ohJMbb7-aY1Ij2WUgvyG6WJOsRO",
+               "width" : 3924
+            }
+         ],
+         "place_id" : "ChIJO05yWKeuQjQRGfKv-zhmYG8",
+         "plus_code" : {
+            "compound_code" : "3GRP+5P 中山區 台北市",
+            "global_code" : "7QQ33GRP+5P"
+         },
+         "rating" : 4.5,
+         "reference" : "ChIJO05yWKeuQjQRGfKv-zhmYG8",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 3890
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "111台灣台北市士林區劍南路210號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0989299,
+               "lng" : 121.5543407
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.10033387989272,
+                  "lng" : 121.5555560298927
+               },
+               "southwest" : {
+                  "lat" : 25.09763422010727,
+                  "lng" : 121.5528563701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "劍南山",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3468,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/110033422521343614586"
+               ],
+               "photo_reference" : "AZose0kjQyRoEBQZHNbr8k_Yj7JeioWnS7aMg3zkbFStnBCVOuiRH3YK0hNtV5cEcQRYukeFXraGaOdTAUIpUDaz3wAYwVDDF4ZoOAWeWaDaCYcQHKjazzuxdjP7DDRWsnBF4eU1KYsjIpomzkGtP65evQ8rXvblOAo9yH9ph3Xk8rRFeGc",
+               "width" : 4624
+            }
+         ],
+         "place_id" : "ChIJpV4MXzmsQjQR-12uFf2EC2U",
+         "plus_code" : {
+            "compound_code" : "3HX3+HP 士林區 台北市",
+            "global_code" : "7QQ33HX3+HP"
+         },
+         "rating" : 3.9,
+         "reference" : "ChIJpV4MXzmsQjQR-12uFf2EC2U",
+         "types" : [ "tourist_attraction", "park", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 177
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "111台灣台北市士林區福林路",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.099919,
+               "lng" : 121.528024
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.10126882989273,
+                  "lng" : 121.5293738298927
+               },
+               "southwest" : {
+                  "lat" : 25.09856917010728,
+                  "lng" : 121.5266741701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "雙溪河濱公園",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3000,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/106744701098891362887"
+               ],
+               "photo_reference" : "AZose0kxh3QjL6H9QXc6_k5LTD6gb-fheE4lWoh-88A67pNcPoWBELhG0lF6ivAuhK5TJ0eMUXId5kI71vvuzhfoI8_swfQPoCyRis-JeMsiY0P7q8aKKsyqnSsOMaGYEsOvbeqqDwI6sDxIdS7Jpfs4itVhdPss9FWEWiCnAL04UtYDx1zV",
+               "width" : 4000
+            }
+         ],
+         "place_id" : "ChIJu_KT_ZeuQjQRkN-j-rM5etM",
+         "plus_code" : {
+            "compound_code" : "3GXH+X6 士林區 台北市",
+            "global_code" : "7QQ33GXH+X6"
+         },
+         "rating" : 4.2,
+         "reference" : "ChIJu_KT_ZeuQjQRkN-j-rM5etM",
+         "types" : [ "park", "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 4981
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "111台灣台北市士林區中山北路五段460巷4號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0913793,
+               "lng" : 121.5291642
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.09272912989272,
+                  "lng" : 121.5305140298928
+               },
+               "southwest" : {
+                  "lat" : 25.09002947010728,
+                  "lng" : 121.5278143701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "士林官邸公園",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 2052,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/103024104937370814648"
+               ],
+               "photo_reference" : "AZose0myxxqyu1NwJrwUBaMKdF0GanqTObKLlC5o0hEKCM4oWpwRoMsJo7yG3UIWztAsUM6hfjO_lwG5HRG_OixEG-A7ke9iPf9dW3zYvvO4GQx5JKktzW4ksuPUmihultfuJPvxO_D6AAfLq0AMFYE2NqMfuq5ZgzwFHjFPiO_HqGbHsyTq",
+               "width" : 4560
+            }
+         ],
+         "place_id" : "ChIJGbWNq1OvQjQR1HoXIbC0hF4",
+         "plus_code" : {
+            "compound_code" : "3GRH+HM 士林區 台北市",
+            "global_code" : "7QQ33GRH+HM"
+         },
+         "rating" : 4.6,
+         "reference" : "ChIJGbWNq1OvQjQR1HoXIbC0hF4",
+         "types" : [ "park", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 239
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "111台灣台北市士林區至善路一段",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.098593,
+               "lng" : 121.537564
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.09989292989272,
+                  "lng" : 121.5388552798928
+               },
+               "southwest" : {
+                  "lat" : 25.09719327010728,
+                  "lng" : 121.5361556201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "至善公園",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3000,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/107844792697014724019"
+               ],
+               "photo_reference" : "AZose0mdG5atmkhTGAe-yoez2kzVMfg7memasdD7J6_nKHee08DimqIxbSNe8KhSaRVtG6HyyOVP42Q9DxF7cN46E4A4w9aRVbQxu3CIe1QRI5J3CXnXtoIo03MJ92sJyWRNMxfENg0KZI7QQKWnPY8uD0LzMFNtiS0cc5tDJInNJqPXGfKh",
+               "width" : 4000
+            }
+         ],
+         "place_id" : "ChIJ0-ko_yCsQjQR0jcV3l4ac9U",
+         "plus_code" : {
+            "compound_code" : "3GXQ+C2 士林區 台北市",
+            "global_code" : "7QQ33GXQ+C2"
+         },
+         "rating" : 4.2,
+         "reference" : "ChIJ0-ko_yCsQjQR0jcV3l4ac9U",
+         "types" : [ "park", "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 1798
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "103台灣台北市大同區",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0561339,
+               "lng" : 121.5074245
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.05745197989272,
+                  "lng" : 121.5089157298927
+               },
+               "southwest" : {
+                  "lat" : 25.05475232010728,
+                  "lng" : 121.5062160701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#13B5C7",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "大稻埕碼頭貨櫃市集",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 3000,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/109874916488000062833"
+               ],
+               "photo_reference" : "AZose0mAc_sYpnt1eoiYLieRaMszTd14iITUbn1TZ3HTxozsy7NQml0KmFCNqettJPm4jcsR5tUBXNVY066wHrNfBizytIqI9DdNRVzA3KIWCfsaxtDNOnzDkArlOvTKkUfMRgVR3KZM3cT7px3Drpy_0aSuts5Lc209m86l6EdI9x45-4E6",
+               "width" : 4000
+            }
+         ],
+         "place_id" : "ChIJIWBDRhGpQjQRvziv5q6gr20",
+         "plus_code" : {
+            "compound_code" : "3G44+FX 大同區 台北市",
+            "global_code" : "7QQ33G44+FX"
+         },
+         "rating" : 4.5,
+         "reference" : "ChIJIWBDRhGpQjQRvziv5q6gr20",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 2443
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "111台灣台北市士林區至善路二段221號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.1013067,
+               "lng" : 121.5498448
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.10274682989272,
+                  "lng" : 121.5514244298927
+               },
+               "southwest" : {
+                  "lat" : 25.10004717010727,
+                  "lng" : 121.5487247701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "至善園",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 9000,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/107516618940586102870"
+               ],
+               "photo_reference" : "AZose0nOON_33-oPN0WW3vyDVUv86aDe5rHWlnAdqHgEmsWemxmGDrMapUJnN1kkNqF2jaOC9QR4DiErQ9OHr7LvYxjKAmgGIpT5lJYSGSDlVoQDqJqQ-EJWF1qVMH1owiElPm-AZvcEtOmJlX7oX305NJLP_kpEpYRXLcrlfIufaJseQXCq",
+               "width" : 12000
+            }
+         ],
+         "place_id" : "ChIJuZ69VDesQjQRQF_Q_4c_ayk",
+         "plus_code" : {
+            "compound_code" : "4G2X+GW 士林區 台北市",
+            "global_code" : "7QQ34G2X+GW"
+         },
+         "rating" : 4.5,
+         "reference" : "ChIJuZ69VDesQjQRQF_Q_4c_ayk",
+         "types" : [ "tourist_attraction", "park", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 3261
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "103台灣台北市大同區民生西路",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0568857,
+               "lng" : 121.5081382
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.05820837989272,
+                  "lng" : 121.5095137298927
+               },
+               "southwest" : {
+                  "lat" : 25.05550872010728,
+                  "lng" : 121.5068140701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#7B9EB0",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "大稻埕碼頭 淡五號水門",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3096,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/100921160978271133096"
+               ],
+               "photo_reference" : "AZose0mNL-OShuVrZwbGz7-xiNrGAM850-s4CnX4V0GWitlfgWiR6LZRxcX7KoypUSW8m_pkZdshSrupRFF4U6yjWv1zYBzhLNusGI0Hk3_4Jy-FyvjIRKOdgyKe0M39lKE0LKgaevdhLcZQAkIlJGa8idbayR_uf_9XEbHDwRQewKT_xszB",
+               "width" : 5504
+            }
+         ],
+         "place_id" : "ChIJX4p1nxapQjQRcBQC1AyHNS4",
+         "plus_code" : {
+            "compound_code" : "3G45+Q7 大同區 台北市",
+            "global_code" : "7QQ33G45+Q7"
+         },
+         "rating" : 4.4,
+         "reference" : "ChIJX4p1nxapQjQRcBQC1AyHNS4",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 2703
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "111台灣台北市士林區福林路60號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0929458,
+               "lng" : 121.530459
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.09429562989272,
+                  "lng" : 121.5318088298928
+               },
+               "southwest" : {
+                  "lat" : 25.09159597010728,
+                  "lng" : 121.5291091701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "玫瑰園 - 士林官邸",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/101643929991214574270"
+               ],
+               "photo_reference" : "AZose0nWvqTHW2kQfmomg_YFz18HdBuooKOawvaOZ4MhuWT3TCf1GdJFm_BYKJxKPWJ0b89k5ohxHKYhqsf4_be3nEus4Cc8rnJwK5fAGqCRN95arVrBepserz-JvbRLoCcpjokBJ38_gSSm6ViMt0Bza1WRjQxKg0aHRsU1w0hRsvoY_4gS",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJlT1_96OuQjQRprDCnnAMObs",
+         "plus_code" : {
+            "compound_code" : "3GVJ+55 士林區 台北市",
+            "global_code" : "7QQ33GVJ+55"
+         },
+         "rating" : 4.5,
+         "reference" : "ChIJlT1_96OuQjQRprDCnnAMObs",
+         "types" : [ "tourist_attraction", "park", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 3913
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "10491台灣台北市中山區北安路139號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0794115,
+               "lng" : 121.5329556
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.08015137989272,
+                  "lng" : 121.5343952798927
+               },
+               "southwest" : {
+                  "lat" : 25.07745172010728,
+                  "lng" : 121.5316956201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#13B5C7",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "國民革命忠烈祠",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 9000,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/117672276629258771204"
+               ],
+               "photo_reference" : "AZose0miGAxHF_mi6fSE9XpKJaU3iz3B8hzVGP8OYimdkkT546EgGTC6rnaFbGf8uWp2KhPa47qiB3fvVD4ppMpcKS3NukJ7mE7ZoZ8oWL5dDyAJDiRrHNlbJoj8_A33_QBchgM_tdKObRfmPFgDkDr7Tsoul4vHhzZjzSCDiSuQ72jutDUy",
+               "width" : 12000
+            }
+         ],
+         "place_id" : "ChIJb5w3o6uuQjQRlsXYoJ97zS4",
+         "plus_code" : {
+            "compound_code" : "3GHM+Q5 中山區 台北市",
+            "global_code" : "7QQ33GHM+Q5"
+         },
+         "rating" : 4.3,
+         "reference" : "ChIJb5w3o6uuQjQRlsXYoJ97zS4",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 4262
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "111台灣台北市士林區至誠路一段",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.1039041,
+               "lng" : 121.5302756
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.10525392989272,
+                  "lng" : 121.5316254298927
+               },
+               "southwest" : {
+                  "lat" : 25.10255427010728,
+                  "lng" : 121.5289257701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#7B9EB0",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "芝山岩",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 1152,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/118082728871052609410"
+               ],
+               "photo_reference" : "AZose0kAGIRpGKzWLQfPu26AGjtLv_b3RQvcpbon33tnM4r1eg7OuvoQhBVARvjV_fBZToAX81Yj4sG9NtLHDnTOrg2utPBnJofPT3R5-Dn-SlQAetCMW3OZlvho_NAPqV-o9Faa1BP56XisIGPW9icw9WiUq1peF_cAqiyOg5P2YgsBeKH_",
+               "width" : 2048
+            }
+         ],
+         "place_id" : "ChIJ6U7F5ZuuQjQReGXwroQCEf4",
+         "plus_code" : {
+            "compound_code" : "4G3J+H4 士林區 台北市",
+            "global_code" : "7QQ34G3J+H4"
+         },
+         "rating" : 4.4,
+         "reference" : "ChIJ6U7F5ZuuQjQReGXwroQCEf4",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 962
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "111台灣台北市士林區信輝路1號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0923959,
+               "lng" : 121.552251
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.09374572989272,
+                  "lng" : 121.5536008298927
+               },
+               "southwest" : {
+                  "lat" : 25.09104607010728,
+                  "lng" : 121.5509011701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#7B9EB0",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "文間山",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/108924685437406362388"
+               ],
+               "photo_reference" : "AZose0kztO3RWAwN_EkT4NJD_wm04KIf61xdicQPEN5OJ4Wzw0D8eYlyfeLGRa8h6rgIPwjeYVP5t0gN8_Bq93MYcPlhIld7AxBu6aas77ORZfV5rkpOFPBkj1RgzMF-hoUnkJtyvmsrpIYFYNS_Bz_w9FIzo3aaZZTDCjcYo4t-_g-mya7t",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJ5_62JRasQjQRMelJSO5v7hw",
+         "plus_code" : {
+            "compound_code" : "3HR2+XW 士林區 台北市",
+            "global_code" : "7QQ33HR2+XW"
+         },
+         "rating" : 4,
+         "reference" : "ChIJ5_62JRasQjQRMelJSO5v7hw",
+         "types" : [ "tourist_attraction", "park", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 224
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "111台灣台北市士林區中山北路五段282巷",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0877008,
+               "lng" : 121.5274231
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.08902267989272,
+                  "lng" : 121.5287884798927
+               },
+               "southwest" : {
+                  "lat" : 25.08632302010728,
+                  "lng" : 121.5260888201072
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+         "icon_background_color" : "#13B5C7",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+         "name" : "六美-繁榮台北",
+         "place_id" : "ChIJPzkDPa2vQjQRGWMgWk-5LQo",
+         "plus_code" : {
+            "compound_code" : "3GQG+3X 士林區 台北市",
+            "global_code" : "7QQ33GQG+3X"
+         },
+         "rating" : 0,
+         "reference" : "ChIJPzkDPa2vQjQRGWMgWk-5LQo",
+         "types" : [ "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 0
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "111台灣台北市士林區美崙街152巷16號",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0972582,
+               "lng" : 121.5173836
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.10047765000001,
+                  "lng" : 121.5211627
+               },
+               "southwest" : {
+                  "lat" : 25.09394545,
+                  "lng" : 121.5137271
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "美崙公園",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 4000,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/107235142225710892411"
+               ],
+               "photo_reference" : "AZose0loyYWCbxOccRnbE0fCHnz-uHPohCJ_e34Nuw6Qs2XI1VfiCTotmPpGdIRC0KGa-BmUV6sCrGfB9bhiJEjSaPnG2hpvG6-QZOArUmN5nGVQilpWQhGDVkud4hxKeB3U9twD8lWceXl86xIhzH3bIsfhHDqOlkqAf6jcSJ9VIivZHFrr",
+               "width" : 2250
+            }
+         ],
+         "place_id" : "ChIJBxmb476uQjQRc3csS849OEU",
+         "plus_code" : {
+            "compound_code" : "3GW8+WX 士林區 台北市",
+            "global_code" : "7QQ33GW8+WX"
+         },
+         "rating" : 4.3,
+         "reference" : "ChIJBxmb476uQjQRc3csS849OEU",
+         "types" : [ "park", "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 3193
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "formatted_address" : "111台灣台北市士林區",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.096607,
+               "lng" : 121.5308677
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.09795682989272,
+                  "lng" : 121.5322175298927
+               },
+               "southwest" : {
+                  "lat" : 25.09525717010728,
+                  "lng" : 121.5295178701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+         "icon_background_color" : "#4DB546",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+         "name" : "志成公園",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 2358,
+               "html_attributions" : [
+                  "https://maps.google.com/maps/contrib/106923885106924407071"
+               ],
+               "photo_reference" : "AZose0ltMvev-IiczZI4XERLkqis86phNiRg-_jDCFCyOhZdnWW9MBCNhjwYx486nTRoF3gSK981JJ1JHstpA9FvGzJGmkxVP0qI7taeJVyessat-7mShYUml1EOwIxoUDUQJg1Y9BbTVBadrTEpSxmXeopEwEsc9PLM3PAkjHC2exRNgZRm",
+               "width" : 3145
+            }
+         ],
+         "place_id" : "ChIJ45YiuLmuQjQRgmBcRZ0ludA",
+         "plus_code" : {
+            "compound_code" : "3GWJ+J8 士林區 台北市",
+            "global_code" : "7QQ33GWJ+J8"
+         },
+         "rating" : 4.2,
+         "reference" : "ChIJ45YiuLmuQjQRgmBcRZ0ludA",
+         "types" : [ "park", "tourist_attraction", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 1080
+      }
+   ],
+   "status" : "OK"
+}

@@ -7,7 +7,8 @@ import populartimes
 from os.path import join, dirname
 from dotenv import load_dotenv, find_dotenv
 import requests
-
+from .models import *
+from django.http import JsonResponse
 
 
 # def sayhello(request):
@@ -115,8 +116,8 @@ def register(request):
 
 #搜尋景點
 def search(request):
-    a_id = 1
-    return render(request, "search.html",{'a_id':a_id})
+
+    return render(request, "search.html",locals())
 
 #建立行程
 def create(request):
@@ -128,8 +129,16 @@ def history(request):
 
 #我的最愛
 def favorite(request):
-    a_id = 1
-    return render(request, "favorite.html",{'a_id':a_id})
+    favorite_list = []
+    user_id = request.user.id
+    # project = Project.objects.get(id=project_id)
+    #找出user的最愛清單的a.id
+    favorite_attrations_list= Favorite.objects.filter(u_id=user_id)
+    # a.id取出
+    for a_id in favorite_attrations_list:
+        favorite_list.append(Attractions.objects.filter(id=a_id.a_id).values())
+    # favorite_list =
+    return render(request, "favorite.html",locals())
 
 #分享行程
 def share(request):
@@ -140,4 +149,13 @@ def share(request):
 #     return render(request, "attraction_details.html")
 
 def attraction_details(request):
-    return render(request, "attraction_details.html")
+    if request.GET.get('a_id') != None:
+        choose_a_id = request.GET.get('a_id')  # 提取传递的值
+        choose_attractions = Attractions.objects.filter(id=choose_a_id).values().first()
+        return JsonResponse(choose_attractions)
+
+    keyword_attrations_id = [1,2,3]
+    search_list = []
+    for a_id in keyword_attrations_id:
+        search_list.append(Attractions.objects.filter(id=a_id).values())    
+    return render(request, "attraction_details.html",locals())

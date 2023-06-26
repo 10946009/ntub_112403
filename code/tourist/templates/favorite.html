@@ -141,8 +141,11 @@
         role="tabpanel"
         aria-labelledby="home-tab"
       >
+
+
         <div class="container py-5">
           <div class="row">
+            {% for item in favorite_list %}
             <div class="col-4">
               <div class="card">
                 <div class="location-wrap">
@@ -150,21 +153,12 @@
                   <i class="fa-solid fa-heart location-heart"></i>
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">九份老街</h5>
+                  <h5 class="card-title">{{item.0.a_name}}</h5>
                 </div>
               </div>
             </div>
-            <div class="col-4">
-              <div class="card">
-                <div class="location-wrap">
-                  <img src="../static/images/street.jpg" class="img-responsive" width="100%">
-                  <i class="fa-solid fa-heart location-heart"></i>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">九份老街</h5>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
+            
             <div class="col-4">
               <div class="card">
                 <div class="location-wrap">
