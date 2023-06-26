@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
+from django.contrib.auth.models import AbstractUser
 # # Create your models here.
 # class Comment(models.Model):
 #     content = models.TextField(max_length=255)
@@ -13,32 +14,37 @@ from django.contrib.postgres.fields import ArrayField
 
 
 # django內建方法
-# class User(AbstractUser):
-#     first_name = None
-#     last_name = None
-#     email = models.EmailField(unique=True, max_length=255, blank=False, null=False)
-#     username = models.CharField(verbose_name="姓名",max_length=255,blank=False,null=False)
-#     birthday = models.TextField(max_length=10,null=False, blank=False)
-#     unit = models.CharField(verbose_name="單位",max_length=255,blank=True,null=True)
-#     contact = models.CharField(verbose_name="聯絡方式",blank=True,null=True)
-#     USERNAME_FIELD = 'email'
-#     REQUIRED_FIELDS = ['username']
-
-class User(models.Model):
-    account = models.TextField(max_length=255,null=False, blank=False)
-    passwd = models.TextField(max_length=255,null=False, blank=False)
-    datetime = models.TimeField(auto_now_add=True)
-    is_superuser = models.BooleanField(default=0,null=False)
-    name = models.TextField(max_length=255,null=False, blank=False)
-    mail = models.TextField(max_length=255,null=False, blank=False)
+class User(AbstractUser):
+    first_name = None
+    last_name = None
+    email = models.EmailField(unique=True, max_length=255, blank=False, null=False)
+    username = models.CharField(unique=True,verbose_name="姓名",max_length=255,blank=False,null=False)
     gender = models.TextField(max_length=3,null=False, blank=False)
     birthday = models.TextField(max_length=10,null=False, blank=False)
     user_photo = models.TextField(max_length=10,blank=True,default="")
+    # unit = models.CharField(verbose_name="單位",max_length=255,blank=True,null=True)
+    # contact = models.CharField(verbose_name="聯絡方式",blank=True,null=True)
+    USERNAME_FIELD = 'email'  # 使用信箱當登入帳號
+    REQUIRED_FIELDS = ['username '] # username 是預設的必填欄位
 
-    list_display=('id','name','mail')
-    list_filter=('name','gender')
-    search_fields=('name',)
-    ordering=('id',)
+    class Meta:
+        verbose_name = "使用者"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.email
+
+# class User(models.Model):
+#     account = models.TextField(max_length=255,null=False, blank=False)
+#     passwd = models.TextField(max_length=255,null=False, blank=False)
+#     datetime = models.TimeField(auto_now_add=True)
+#     is_superuser = models.BooleanField(default=0,null=False)
+#     name = models.TextField(max_length=255,null=False, blank=False)
+#     mail = models.TextField(max_length=255,null=False, blank=False)
+#     gender = models.TextField(max_length=3,null=False, blank=False)
+#     birthday = models.TextField(max_length=10,null=False, blank=False)
+#     user_photo = models.TextField(max_length=10,blank=True,default="")
+
 
 class Attractions(models.Model):
     place_id= models.TextField(max_length=255, blank=False)
