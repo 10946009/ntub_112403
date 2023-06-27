@@ -1,6 +1,6 @@
 .login {
     max-width: 500px;
-    margin: 40px auto;
+    margin: 30px auto;
     margin-bottom: 30px;
     background-color: #fff;
     border-radius: 5px;
@@ -14,7 +14,7 @@
     margin-bottom: 30px;
 }
 
-.login input[type="text"],
+.login input[type="email"],
 .login input[type="password"] {
     width: 100%;
     padding: 12px;
@@ -57,4 +57,10 @@
 
 .message a:hover {
     color: #5726ec
+}
+
+@media screen and (max-width: 480px) {
+    .login {
+        padding: 20px;
+    }
 }
