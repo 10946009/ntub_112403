@@ -18,21 +18,17 @@ class User(AbstractUser):
     first_name = None
     last_name = None
     email = models.EmailField(unique=True, max_length=255, blank=False, null=False)
-    username= models.CharField(verbose_name="姓名",max_length=255,blank=False,null=False)
+    username= models.CharField(verbose_name="username",max_length=255,blank=False,null=False)
     gender = models.TextField(max_length=3,null=False, blank=False)
     birthday = models.TextField(max_length=10,null=False, blank=False)
     user_photo = models.TextField(max_length=10,blank=True,default="")
-    # unit = models.CharField(verbose_name="單位",max_length=255,blank=True,null=True)
-    # contact = models.CharField(verbose_name="聯絡方式",blank=True,null=True)
     USERNAME_FIELD = 'email'  # 使用信箱當登入帳號
     REQUIRED_FIELDS = ['username'] # username 是預設的必填欄位
 
-    # class Meta:
-    #     verbose_name = "使用者"
-    #     verbose_name_plural = verbose_name
+    class Meta:
+        verbose_name = "user"
+        verbose_name_plural = verbose_name
 
-    def __str__(self):
-        return self.email
 
 # class User(models.Model):
 #     account = models.TextField(max_length=255,null=False, blank=False)
