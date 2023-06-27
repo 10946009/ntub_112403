@@ -1,4 +1,6 @@
+
 from django.shortcuts import render, redirect
+
 from datetime import datetime
 
 import googlemaps
@@ -119,19 +121,22 @@ def share(request):
 def attraction_details(request):
     search_list = []
     print(request.method)
-    if request.method == "POST":
-        query = request.POST.get("search-query")
-        search_url = "/attraction_details/?query=" + query
-        search_list = list(Attractions.objects.filter(a_name__contains=query).values())
+
+    if request.method == 'POST':
+        query = request.POST.get('search-query')
+        search_url = '/attraction_details/?query=' + query
+        search_list= list(Attractions.objects.filter(a_name__contains = query).values())
     else:
-        keyword_attrations_id = [1, 2, 3]
+        keyword_attrations_id = [1,2,3]
         for a_id in keyword_attrations_id:
             search_list.append(Attractions.objects.filter(id=a_id).values().first())
 
-    if request.GET.get("a_id") != None:
-        choose_a_id = request.GET.get("a_id")  # 提取传递的值
+    if request.GET.get('a_id') != None:
+        choose_a_id = request.GET.get('a_id')  # 提取传递的值
         choose_attractions = Attractions.objects.filter(id=choose_a_id).values().first()
         return JsonResponse(choose_attractions)
-
+  
+        
     print(search_list)
-    return render(request, "attraction_details.html", locals())
+    return render(request, "attraction_details.html",locals())
+
