@@ -11,7 +11,9 @@ from dotenv import load_dotenv, find_dotenv
 import requests
 from .models import *
 from django.http import JsonResponse
-
+from django.contrib import auth
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.hashers import make_password
 
 # 管理者首頁
 def admin_index(request):
@@ -37,11 +39,25 @@ def admin_comment(request):
 def index(request):
     return render(request, "index.html")
 
-
 # 登入頁
 def login(request):
-    return render(request, "login.html")
-
+    message=""
+    if request.method == 'POST':
+        print(request.POST)
+        email = request.POST['email']
+        password = request.POST['passwd']
+        user = authenticate(request, email=email, password=password)
+        print(user)
+        if user is not None:
+            if user.is_active:
+                # 驗證成功，登錄用戶
+                auth.login(request, user)
+                # 重定向到其他頁面或執行其他操作
+                return redirect('/')
+        else:
+            # 驗證失敗，顯示錯誤信息
+            message = '帳號或密碼錯誤'
+    return render(request, 'login.html',locals())
 
 # 忘記密碼
 def forget_passwd(request):
@@ -54,27 +70,28 @@ def register(request):
     now = str(datetime.now())
     nowday = now[:10]
     message=""
-    try:
-        u = request.POST or None
-        print(u)
-        if u:
-            if u["passwd"] == u["passwd1"]:
-                email = u["e-mail"]
-                passwd = u["passwd"]
-                username = u["username"]
-                gender = gneder_list[u["gender"]]
-                birthday = u["birthday"]
-                unit = User.objects.create(
-                    email=email,
-                    password=passwd,
-                    username=username,
-                    gender=gender,
-                    birthday=birthday
-                )
-                unit.save()
-                return redirect("/login")
-    except:
-        message="e-mail已被使用過"
+    if request.method == 'POST':
+        try:
+            u = request.POST or None
+            print(u)
+            if u:
+                if u["passwd"] == u["passwd1"]:
+                    email = u["email"]
+                    passwd = make_password(u["passwd"])
+                    username = u["username"]
+                    gender = gneder_list[u["gender"]]
+                    birthday = u["birthday"]
+                    unit = User.objects.create(
+                        email=email,
+                        password=passwd,
+                        username=username,
+                        gender=gender,
+                        birthday=birthday
+                    )
+                    unit.save()
+                    return redirect("/login")
+        except:
+            message="e-mail已被使用過"
 
     return render(request, "register.html", locals())
 
