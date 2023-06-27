@@ -9,12 +9,18 @@ from django.forms import forms
 
 
 class UserAdmin(_UserAdmin):
-    list_display = ['username', 'email', 'date_joined', 'is_superuser', 'is_staff',
+    #顯示哪些欄位
+    list_display = ['email', 'password','username','gender','birthday', 'date_joined', 'is_superuser', 'is_staff',
                     'is_active']
-    search_fields = ['email', 'username', 'date_joined']
+    #可篩選的欄位
+    list_filter= ('gender','birthday','date_joined')
 
+    #可搜尋的欄位
+    search_fields = ['email', 'username', 'date_joined','gender']
+
+    # 新增、詳細畫面
     fieldsets = (
-        ('基本資料', {'fields': ('email', 'username', 'password')}),
+        ('基本資料', {'fields': ('email', 'username', 'password','gender','birthday')}),
         ('權限管理', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups')}),
         ('登入狀態', {'fields': ('date_joined', 'last_login')}),
     )
@@ -25,10 +31,9 @@ class UserAdmin(_UserAdmin):
     #     }),
     # )
 
-
 admin.site.register(User,UserAdmin)
-admin.site.site_header = '趣放假管理後台'
-admin.site.index_title = '管理後台'
+admin.site.site_header = 'TripFunChill_Manage'
+admin.site.index_title = 'manage'
 
 # @admin.register(User)
 # class PostAdmin(admin.ModelAdmin):
