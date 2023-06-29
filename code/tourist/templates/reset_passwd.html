@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/forget.css">
+    <link rel="stylesheet" href="/static/css/reset_pw.css">
     <link rel="stylesheet" href="/static/css/bootstrap2023.css">
     <link rel="stylesheet" href="/static/css/all.css">
     <link rel="stylesheet" href="/static/js/createT.js">
@@ -61,13 +61,23 @@
             <p></p>
             <input type="password" placeholder="確認密碼" name="passwd1" required>
             <p></p>
-            <input type="submit" value="重設">
+            <input type="submit" onclick="openPopup()" value="重設">
         </form>
-        {{msg}}
+
         <div class="message">
             <a href="/login">返回登入頁面</a>
         </div>
     </div>
+    <script>
+        function openPopup() {
+            // 彈出視窗的內容
+            var popupContent = `${{ msg }}`;
+
+            // 使用 JavaScript 的 `alert()` 函式來彈出視窗
+            alert(popupContent);
+        }
+    </script>
+
 </body>
 
 </html>
