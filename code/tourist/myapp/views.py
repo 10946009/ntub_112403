@@ -77,14 +77,15 @@ def forget_passwd(request):
                 request.session["code"] = code  # 将驗證碼保存到session
                 request.session["email"] = email
                 print(request.session["code"])
-                email_body = "您的TripFunChill網站驗證碼為{0}，請將驗證碼輸入於畫面欄位。\n請勿將這組驗證碼轉寄或提供給任何人。若您沒提出此要求，請立刻更改密碼以防帳號被進一步盜用。\n\nTripFunChill團隊敬上".format(code)
+                email_body = f"<p>您的TripFunChill網站驗證碼為</p><h2><b>{code}</b></h2>請勿將這組驗證碼轉寄或提供給任何人。<br>若您沒提出此要求，請立刻更改密碼以防帳號被進一步盜用。<br>TripFunChill團隊敬上</p>"
                 send_status = send_mail(
                     email_title,
-                    email_body,
+                    None,
                     "tripfunchill@gmail.com",
                     [
                         data["email"],
                     ],
+                    html_message= email_body,
                 )
                 msg = "验证码已发送，请查收邮件"
                 return render(request, "reset_passwd.html", locals())
