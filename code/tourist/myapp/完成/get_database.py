@@ -36,20 +36,20 @@ def get_new_crowd(place_id):
 
 
 def get_picture():
-    photo_reference = "AZose0nm7h3gvIqxcMBBL8Zn1mtE4DTjU7mqpEihey4wGUiutGxNINhXGu1s-y8vijgaB-3-ztCf_qjHV1KXSf-G9mRzKMEaGDbdpyvRNd55qKDpP3ho71yZpKwEiZ0fRRJ_B_BJju215Q5-slCSLWjPqjChe6wZUjDAZ5VvLfdDw0szcRaQ"
-    max_width = 1024  # 设置所需的最大宽度
-    max_height = 480  # 设置所需的最大高度
+    all_photo_list = tool.read("SELECT place_id,photo FROM myapp_attractions")
+    for photo in all_photo_list:
+        max_width = 1024  # 设置所需的最大宽度
+        max_height = 480  # 设置所需的最大高度
+        # 构建请求URL，包括maxwidth和maxheight参数
+        url = f"https://maps.googleapis.com/maps/api/place/photo?photoreference={photo[1]}&maxwidth={max_width}&maxheight={max_height}&key={GOOGLE_PLACES_API_KEY}"
+        # 将your_api_key替换为您的实际API密钥
 
-    # 构建请求URL，包括maxwidth和maxheight参数
-    url = f"https://maps.googleapis.com/maps/api/place/photo?photoreference={photo_reference}&maxwidth={max_width}&maxheight={max_height}&key={GOOGLE_PLACES_API_KEY}"
-    # 将your_api_key替换为您的实际API密钥
+        # # 发送HTTP请求获取照片
+        response = requests.get(url)
 
-    # 发送HTTP请求获取照片
-    response = requests.get(url)
-
-    # 将照片保存到文件
-    with open("士林夜市.jpg", "wb") as file:
-        file.write(response.content)
+        # # 将照片保存到文件
+        with open(f"{os.getcwd()}\\照片\\{photo[0]}.jpg", "wb") as file:
+            file.write(response.content)
 
 get_picture()
 # get_all_place_id(tool)
