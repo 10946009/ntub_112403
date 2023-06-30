@@ -22,6 +22,19 @@
     border: 1px solid #ccc;
 }
 
+.register input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    /* margin: 0px 0px 20px;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit" */
+
+}
+
 .register input[type="submit"] {
     width: 100%;
     padding: 10px;
@@ -46,6 +59,10 @@
     color: #266fec;
     text-decoration: none;
     margin-right: 10px;
+}
+
+.register .message a:hover {
+    color: #5726ec;
 }
 
 .check {
