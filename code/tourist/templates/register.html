@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../static/css/register.css">
+    <link rel="stylesheet" href="../static/css/reset_pw.css">
     <link rel="stylesheet" href="../static/css/bootstrap2023.css">
     <link rel="stylesheet" href="../static/css/all.css">
     <link rel="stylesheet" href="../static/js/createT.js">
@@ -84,15 +85,20 @@
             <input type="password" id="passwordInput1" oninput="password_validation1()" placeholder="確認密碼"
                 name="passwd1" required>
             <div id="validationIcons">
-                <img src="../static/images/check.png" alt="Image 1" class="check" id="lowercaseIcon">
+                <img src="../static/images/check.png" alt="Image 1" class="check" style="width:20px ; height:auto "
+                    id="lowercaseIcon">
                 <span style="color:rgb(207, 49, 49);">至少包含一個大寫子母</span><br>
-                <img src="../static/images/check.png" alt="Image 2" class="check" id="uppercaseIcon">
+                <img src="../static/images/check.png" alt="Image 2" class="check" style="width:20px ; height:auto"
+                    id="uppercaseIcon">
                 <span style="color:rgb(207, 49, 49);">至少包含一個小寫字母</span><br>
-                <img src="../static/images/check.png" alt="Image 3" class="check" id="numberIcon">
+                <img src="../static/images/check.png" alt="Image 3" class="check" style="width:20px ; height:auto"
+                    id="numberIcon">
                 <span style="color:rgb(207, 49, 49);">至少包含一個數字符號</span><br>
-                <img src="../static/images/check.png" alt="Image 4" class="check" id="specialCharIcon">
+                <img src="../static/images/check.png" alt="Image 4" class="check" style="width:20px ; height:auto"
+                    id="specialCharIcon">
                 <span style="color:rgb(207, 49, 49);">至少包含一個非字母和數字的特殊字符</span><br>
-                <img src="../static/images/check.png" alt="Image 5" class="check" id="lengthIcon">
+                <img src="../static/images/check.png" alt="Image 5" class="check" style="width:20px ; height:auto"
+                    id="lengthIcon">
                 <span style="color:rgb(207, 49, 49);">至少包含8個字元符號</span><br>
                 <p></p>
                 <input type="submit" value="註冊">
