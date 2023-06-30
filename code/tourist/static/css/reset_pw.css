@@ -1,4 +1,4 @@
-.register {
+.forget {
     max-width: 500px;
     margin: 30px auto;
     background-color: #fff;
@@ -7,22 +7,22 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.register h1 {
+.forget h1 {
     text-align: center;
     color: #333;
     margin-bottom: 30px;
 }
 
-.register input[type="text"],
-.register input[type="password"] {
+.forget input[type="text"],
+input[type="password"] {
     width: 100%;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 4px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
 
-.register input[type="submit"] {
+.forget input[type="submit"] {
     width: 100%;
     padding: 10px;
     background-color: #f3930b;
@@ -30,22 +30,29 @@
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
+    margin-bottom: 18px;
 }
 
-.register input[type="submit"]:hover {
+.forget input[type="submit"]:hover {
     background-color: #f4a040;
 }
 
-.register .message {
+.rforget .message {
     text-align: center;
     color: #666;
     margin-top: 20px;
 }
 
-.register .message a {
+.forget .message a {
     color: #266fec;
     text-decoration: none;
     margin-right: 10px;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .check {
