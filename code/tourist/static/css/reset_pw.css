@@ -37,7 +37,7 @@ input[type="password"] {
     background-color: #f4a040;
 }
 
-.rforget .message {
+.forget .message {
     text-align: center;
     color: #666;
     margin-top: 20px;
@@ -47,6 +47,10 @@ input[type="password"] {
     color: #266fec;
     text-decoration: none;
     margin-right: 10px;
+}
+
+.forget .message a:hover {
+    color: #5726ec;
 }
 
 .image-container {

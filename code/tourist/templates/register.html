@@ -59,15 +59,7 @@
         <div style="text-align:center;color:red">{{message}}</div>
         <form action="" method="post">
             {% csrf_token %}
-            <input type="email" placeholder="e-mail" name="email" required style="width: 100%;
-                              padding: 10px;
-                              margin-bottom: 20px;
-                              border-radius: 5px;
-                              border: 1px solid #ccc;
-                              margin: 0px 0px 20px;
-                              font-family: inherit;
-                              font-size: inherit;
-                              line-height: inherit">
+            <input type="email" placeholder="e-mail" name="email" required>
             <input type="text" placeholder="使用者名稱" name="username" required>
             性別：
             <select name="gender">
@@ -87,10 +79,10 @@
             <div id="validationIcons">
                 <img src="../static/images/check.png" alt="Image 1" class="check" style="width:20px ; height:auto "
                     id="lowercaseIcon">
-                <span style="color:rgb(207, 49, 49);">至少包含一個大寫子母</span><br>
+                <span style="color:rgb(207, 49, 49);">至少包含一個小寫子母</span><br>
                 <img src="../static/images/check.png" alt="Image 2" class="check" style="width:20px ; height:auto"
                     id="uppercaseIcon">
-                <span style="color:rgb(207, 49, 49);">至少包含一個小寫字母</span><br>
+                <span style="color:rgb(207, 49, 49);">至少包含一個大寫字母</span><br>
                 <img src="../static/images/check.png" alt="Image 3" class="check" style="width:20px ; height:auto"
                     id="numberIcon">
                 <span style="color:rgb(207, 49, 49);">至少包含一個數字符號</span><br>
@@ -103,9 +95,9 @@
                 <p></p>
                 <input type="submit" value="註冊">
         </form>
-        <div class="message">
-            <a href="/login">已有帳號？</a>
-        </div>
+    </div>
+    <div class="message">
+        <a href="/login">已有帳號？</a>
     </div>
     <script>
         function password_validation() {
