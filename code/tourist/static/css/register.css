@@ -47,3 +47,32 @@
     text-decoration: none;
     margin-right: 10px;
 }
+
+.check {
+    width: 20px;
+    height: auto;
+    margin-bottom: 10px;
+    animation: 1s infinite;
+    opacity: 0.5;
+}
+
+.image-container .image-caption {
+    margin-left: 10px;
+}
+
+#validationIcons div {
+    margin-right: 10px;
+    font-size: 16px;
+    opacity: 0.5;
+}
+
+#validationIcons .check.valid {
+    animation: validAnimation 1s infinite;
+    opacity: 2;
+}
+
+@keyframes validAnimation {
+    50% {
+        transform: scale(1.2);
+    }
+}
