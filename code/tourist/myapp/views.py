@@ -265,16 +265,43 @@ def test_input(request):
 
     print(response)
     # ---------------------------------------------------已經抓到時間與距離(上方)
-    # # 2.選擇一些景點做為O（使用者選擇的景點）
+    o_attractions_list = [
+            "ChIJm5fgyKOuQjQR3vKgJWoDVPk",
+            "ChIJNehVjGSyQjQRiHAgVTN2Gdk",
+            "ChIJnVC4uISuQjQRUf8Npxc8ezM",
+            "ChIJ3d0-q3-uQjQR3ywoxROtSPA",
+            "ChIJGbWNq1OvQjQR1HoXIbC0hF4",
+        ]
+    tags_same_score = []
+    tags_same_score_total = []
+    p_attractions_list=[]
     
+    # 抓o周遭的景點
+    near_o = ["ChIJwSbjBn-uQjQR_sfLRBosWGA","ChIJ45YiuLmuQjQRgmBcRZ0ludA","ChIJ_T8x36OuQjQRFrhmtfK0kZA","ChIJ3V-FBKOvQjQR3Fcd0_4_Pu8","ChIJh3JR3LGuQjQRkt167cxfWSE","ChIJIcip9zqsQjQRfMdMBF6n2-k"]
 
-
-
-    # for m in m_attractions_list:
-    #     for attractions in get_all_attractions:
-    #         times = ""  # 透過API看距離時間
-    #         if "有營業" and times <= 30:
-    #             o_attractions_list.append(attractions)
+    for n in near_o:
+        
+        n_db = Attractions.objects.get(place_id=n)
+        for o in o_attractions_list:
+            score=0  
+            o_db = Attractions.objects.get(place_id=o)
+            for tag in n_db.att_type:  #抓出周遭n的tag(需要修改景點標籤)
+                if tag in o_db.att_type: #
+                    score+=1
+            tags_same_score.append(score)
+        tags_same_score_total.append(tags_same_score)
+        tags_same_score=[]
+    print("tags_same_score_total:",tags_same_score_total)
+    max_i_list=[]
+    f_max_i_list=[]
+    for index, i in enumerate(tags_same_score_total):
+        max_i_list.append([index,max(i)])
+    print("max_i_list:",max_i_list)
+    f_max_i_list=sorted(max_i_list,key=lambda x: x[1],reverse=True)[0:10]
+    print("f_max_i_list:",f_max_i_list)
+    for i in range(3):
+        p_attractions_list.append(near_o[f_max_i_list[i][0]])
+    print(p_attractions_list)
 
 
     # 3.根據O裡面的景點，利用tag找出相似景點並推薦（組成新的O)
