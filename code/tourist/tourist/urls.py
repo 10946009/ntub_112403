@@ -38,6 +38,7 @@ urlpatterns = [
     path('favorite/',views.favorite),
     path('share/',views.share),
     path('attraction_details/',views.attraction_details,name='search_results'),
+    path('test/',views.test_input),
     # path('attraction_details/<int:a_id>',views.attraction_details),
 
     # path('sayhello/<str:username>',sayhello), #新增
