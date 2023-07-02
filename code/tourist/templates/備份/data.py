@@ -68,3 +68,18 @@
 #     for hour in hours:
 #         print(hour)
 #     return render(request, "sayhello.html")
+
+
+# def get_at_name_id(request):
+#     a_list =[]
+#     temp =""
+#     all_at = Attractions.objects.all().values()
+#     for i in all_at:
+#         a_list.append([i["a_name"],i["place_id"],i["photo"]])
+#     print(a_list)
+#     f = open(os.getcwd,f'/attrations_list_info.json', 'w',encoding='utf-8')
+#     for i in a_list:
+#         temp += ''.join(i)
+#     f.write(''.join(temp))
+#     f.close()
+#     return render(request, "get_at_name_id.html",locals())
