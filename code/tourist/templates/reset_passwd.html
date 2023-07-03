@@ -16,6 +16,7 @@
     <script src="/static/js/jquery-3.7.0.min.js"></script>
     <script src="/static/js/bootstrap.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
@@ -56,11 +57,15 @@
         <form action="{% url 'reset_passwd' %}" method="post">
             {% csrf_token %}
 
-            <input type="password" id="passwordInput" oninput="password_validation()" placeholder="新的密碼" name="passwd"
-                required>
+            <div class="password-container">
+                <input type="password" id="passwordInput" oninput="password_validation()" placeholder="新密碼"
+                    name="passwd" required><i id="checkEye" class="toggle-password fas fa-eye"></i>
+            </div>
             <p></p>
-            <input type="password" id="passwordInput" oninput="password_validation()" placeholder="確認密碼" name="passwd1"
-                required>
+            <div class="password-container">
+                <input type="password" id="passwordInput1" oninput="password_validation1()" placeholder="確認新密碼"
+                    name="passwd1" required><i id="checkEye1" class="toggle-password fas fa-eye"></i>
+            </div>
             <p></p>
             <div id="validationIcons">
                 <img src="../static/images/check.png" alt="Image 1" class="check" id="lowercaseIcon">
@@ -100,6 +105,36 @@
             specialCharIcon.classList.toggle("valid", password.match(/[^a-zA-Z\d]/g));
             lengthIcon.classList.toggle("valid", password.length >= 8);
         }
+
+        const togglePassword = document.getElementById('checkEye');
+        const passwordField = document.getElementById('passwordInput');
+
+        togglePassword.addEventListener('click', function () {
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                togglePassword.classList.remove('fa-eye');
+                togglePassword.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                togglePassword.classList.remove('fa-eye-slash');
+                togglePassword.classList.add('fa-eye');
+            }
+        });
+
+        const togglePassword1 = document.getElementById('checkEye1');
+        const passwordField1 = document.getElementById('passwordInput1');
+
+        togglePassword1.addEventListener('click', function () {
+            if (passwordField1.type === 'password') {
+                passwordField1.type = 'text';
+                togglePassword1.classList.remove('fa-eye');
+                togglePassword1.classList.add('fa-eye-slash');
+            } else {
+                passwordField1.type = 'password';
+                togglePassword1.classList.remove('fa-eye-slash');
+                togglePassword1.classList.add('fa-eye');
+            }
+        });
 
     </script>
 </body>
