@@ -326,7 +326,7 @@ def test_input(request):
         opening = o_crowd_opening[0]["opening"]
         try:
             crowd = o_crowd_opening[0]["crowd"][time-1]
-            # crowd = crowd_judge(crowd)
+            crowd = crowd_judge(crowd)
         except:
             print(crowd)
             
@@ -339,7 +339,19 @@ def test_input(request):
     return render(request, "_test.html")
 
 # 判斷人潮程度
-
+def crowd_judge(crowd):
+    if crowd>=80:
+        return 5
+    elif crowd>=60:
+        return 4
+    elif crowd>=40:
+        return 3
+    elif crowd>=20:
+        return 2
+    elif crowd>0:
+        return 1
+    else:
+        return 0
     
 
     
