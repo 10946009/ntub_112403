@@ -16,6 +16,9 @@
     <script src="/static/js/jquery-3.7.0.min.js"></script>
     <script src="/static/js/bootstrap.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
 </head>
 
 <body>
@@ -111,7 +114,7 @@
                                 <option value="8" name="gender">彰化</option>
                                 <option value="9" name="gender">雲林</option>
                                 <option value="10" name="gender">嘉義</option>
-                                <option value="11" name=" gender">臺南</option>
+                                <option value="11" name="gender">臺南</option>
                                 <option value="12" name="gender">高雄</option>
                                 <option value="13" name="gender">屏東</option>
                                 <option value="14" name="gender">臺東</option>
@@ -150,11 +153,20 @@
                     <div class="col-7 aside">
                         <div class="inner">
                             <input type="text" placeholder="使用者名稱" name="username" required>
-                            <input type="password" id="passwordInput2" placeholder="目前密碼" name="passwd" required>
-                            <input type="password" id="passwordInput" oninput="password_validation()" placeholder="密碼"
-                                name="passwd" required>
-                            <input type="password" id="passwordInput1" oninput="password_validation1()"
-                                placeholder="確認密碼" name="passwd1" required>
+                            <div class="password-container">
+                                <input type="password" id="passwordInput2" placeholder="目前密碼" name="passwd" required><i
+                                    id="checkEye2" class="toggle-password fas fa-eye"></i>
+                            </div>
+                            <div class="password-container">
+                                <input type="password" id="passwordInput" oninput="password_validation()"
+                                    placeholder="新密碼" name="passwd" required><i id="checkEye"
+                                    class="toggle-password fas fa-eye"></i>
+                            </div>
+                            <div class="password-container">
+                                <input type="password" id="passwordInput1" oninput="password_validation1()"
+                                    placeholder="確認新密碼" name="passwd1" required><i id="checkEye1"
+                                    class="toggle-password fas fa-eye"></i>
+                            </div>
                             <div id="validationIcons">
                                 <img src="../static/images/check.png" alt="Image 1" class="check"
                                     style="width:20px ; height:auto " id="lowercaseIcon">
@@ -250,6 +262,51 @@
                 specialCharIcon.classList.toggle("valid", password.match(/[^a-zA-Z\d]/g));
                 lengthIcon.classList.toggle("valid", password.length >= 8);
             }
+            const togglePassword = document.getElementById('checkEye');
+            const passwordField = document.getElementById('passwordInput');
+
+            togglePassword.addEventListener('click', function () {
+                if (passwordField.type === 'password') {
+                    passwordField.type = 'text';
+                    togglePassword.classList.remove('fa-eye');
+                    togglePassword.classList.add('fa-eye-slash');
+                } else {
+                    passwordField.type = 'password';
+                    togglePassword.classList.remove('fa-eye-slash');
+                    togglePassword.classList.add('fa-eye');
+                }
+            });
+
+            const togglePassword1 = document.getElementById('checkEye1');
+            const passwordField1 = document.getElementById('passwordInput1');
+
+            togglePassword1.addEventListener('click', function () {
+                if (passwordField1.type === 'password') {
+                    passwordField1.type = 'text';
+                    togglePassword1.classList.remove('fa-eye');
+                    togglePassword1.classList.add('fa-eye-slash');
+                } else {
+                    passwordField1.type = 'password';
+                    togglePassword1.classList.remove('fa-eye-slash');
+                    togglePassword1.classList.add('fa-eye');
+                }
+            });
+
+            const togglePassword2 = document.getElementById('checkEye2');
+            const passwordField2 = document.getElementById('passwordInput2');
+
+            togglePassword2.addEventListener('click', function () {
+                if (passwordField2.type === 'password') {
+                    passwordField2.type = 'text';
+                    togglePassword2.classList.remove('fa-eye');
+                    togglePassword2.classList.add('fa-eye-slash');
+                } else {
+                    passwordField2.type = 'password';
+                    togglePassword2.classList.remove('fa-eye-slash');
+                    togglePassword2.classList.add('fa-eye');
+                }
+            });
+
         </script>
 </body>
 
