@@ -232,6 +232,7 @@ def attraction_details(request):
     print(search_list)
     return render(request, "attraction_details.html", locals())
 
+
 # 確定營業時間
 def check_opening(now_time, week):
     ok_a_list = []
@@ -251,7 +252,7 @@ def check_opening(now_time, week):
     return ok_a_list
 
 
-#確定距離
+# 確定距離
 def check_distance(get_uset_address, a_id_list):
     ok_a_list = []
     for a in Attractions.objects.filter(id__in=a_id_list):
@@ -263,6 +264,19 @@ def check_distance(get_uset_address, a_id_list):
             ok_a_list.append([a.place_id, a.location_x, a.location_y])
     print(ok_a_list)
     return ok_a_list
+
+
+def check_distance_placeid(get_uset_address, a_id_list):
+    ok_a_list = []
+    for a in Attractions.objects.filter(id__in=a_id_list):
+        distance = geodesic(
+            (get_uset_address[0], get_uset_address[1]), (a.location_x, a.location_y)
+        ).kilometers
+        # print(a.a_name,distance)
+        if distance <= 0.8:
+            ok_a_list.append(a.place_id)
+    return ok_a_list
+
 
 def test_input(request):
     client = googlemaps.Client(key=GOOGLE_PLACES_API_KEY)
@@ -380,25 +394,24 @@ def test_input(request):
     #     * 最後使用normalization將兩者的區間變成[0,1]，再賦予他們權重（如0.5、0.5），最後根據分數去排序景點。
     return render(request, "_test.html")
 
+
 # 判斷人潮程度
 def crowd_judge(crowd):
-    if crowd>=80:
+    if crowd >= 80:
         return 5
-    elif crowd>=60:
+    elif crowd >= 60:
         return 4
-    elif crowd>=40:
+    elif crowd >= 40:
         return 3
-    elif crowd>=20:
+    elif crowd >= 20:
         return 2
-    elif crowd>0:
+    elif crowd > 0:
         return 1
     else:
         return 0
-    
 
-    
 
-#抓到的時間距離資料(參考用)
+# 抓到的時間距離資料(參考用)
 # {
 #     "destination_addresses": [
 #         "111台灣台北市士林區福林路60號",
