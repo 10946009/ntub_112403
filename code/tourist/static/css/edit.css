@@ -30,7 +30,7 @@
 }
 
 .aside {
-    background-color: rgb(162, 161, 161);
+    background-color: rgb(152, 181, 199);
     padding: 15px;
     color: #ffffff;
     font-size: 14px;
@@ -107,11 +107,13 @@
 }
 
 .aside1 {
-    background-color: rgb(96, 96, 96);
+    background-color: rgb(2, 118, 153);
     padding: 15px;
     color: #ffffff;
     font-size: 14px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    border-top-left-radius: 3%;
+    border-bottom-left-radius: 3%;
 
 }
 
@@ -138,7 +140,7 @@
     width: 100%;
 }
 
-@media only screen and (min-width: 600px) {
+/* @media only screen and (min-width: 600px) {
 
     .col-s-1 {
         width: 8.33%;
@@ -187,7 +189,7 @@
     .col-s-12 {
         width: 100%;
     }
-}
+} */
 
 @media only screen and (min-width: 768px) {
 
@@ -255,6 +257,7 @@
 
 .aside input[type="text"],
 .aside input[type="password"] {
+    display: block;
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -309,4 +312,34 @@
 
 .con {
     padding: 20px;
+}
+
+#checkEye {
+    cursor: pointer;
+    font-size: 18px;
+    color: #000;
+}
+
+#checkEye1 {
+    cursor: pointer;
+    font-size: 18px;
+    color: #000;
+}
+
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+#checkEye2 {
+    cursor: pointer;
+    font-size: 18px;
+    color: #000;
 }
