@@ -42,7 +42,12 @@ html{
 	background-color: rgba(255, 255, 255);
 	border-radius: 50%;
 	margin: 10px;
+	color: rgba(0, 0, 0, 0.3);
 	cursor: pointer;
+}
+.active{
+	color: #E1251B;
+	animation: heart 0.5s linear;
 }
 .spot_img{
 	padding: 0;
@@ -65,6 +70,7 @@ html{
 	margin-left: 5px;
 }
 .hot_spotC{
+	color: black;
 	text-align: left;
 	position: relative;
 	border: 1px solid #ccc;
