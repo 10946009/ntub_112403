@@ -76,11 +76,11 @@ def forget_passwd(request):
             email = data["email"]
 
             if User.objects.filter(email=email).exists():
-                email_title = "重設密码"
                 code = random_str()  # 隨機生成驗證碼
-                request.session["code"] = code  # 将驗證碼保存到session
+                request.session["code"] = code  # 將驗證碼保存到session
                 request.session["email"] = email
                 print(request.session["code"])
+                email_title = f"重設密码，您的驗證碼：【{code}】"
                 email_body = f"<p>您的TripFunChill網站驗證碼為</p><h2><b>{code}</b></h2>請勿將這組驗證碼轉寄或提供給任何人。<br>若您沒提出此要求，請立刻更改密碼以防帳號被進一步盜用。<br>TripFunChill團隊敬上</p>"
                 send_status = send_mail(
                     email_title,
@@ -91,7 +91,7 @@ def forget_passwd(request):
                     ],
                     html_message=email_body,
                 )
-                msg = "验证码已发送，请查收邮件"
+                msg = "驗證碼已發送，請查收郵件"
                 return render(request, "reset_passwd.html", locals())
 
             else:
@@ -104,7 +104,7 @@ def reset_passwd(request):
     if request.method == "POST":
         data = request.POST
         if data["code"]:
-            code = data["code"]  # 获取传递过来的验证码
+            code = data["code"]  # 獲取傳遞過來的驗證碼
             password = data["passwd"]
             password1 = data["passwd1"]
             if code == request.session["code"]:
@@ -223,7 +223,7 @@ def attraction_details(request):
             search_list.append(Attractions.objects.filter(id=a_id).values().first())
 
     if request.GET.get("a_id") != None:
-        choose_a_id = request.GET.get("a_id")  # 提取传递的值
+        choose_a_id = request.GET.get("a_id")  # 提取傳遞的值
         choose_attractions = Attractions.objects.filter(id=choose_a_id).values().first()
         return JsonResponse(choose_attractions)
 
@@ -232,39 +232,41 @@ def attraction_details(request):
 
 
 def test_input(request):
-    client = googlemaps.Client(key=GOOGLE_PLACES_API_KEY)
+    # client = googlemaps.Client(key=GOOGLE_PLACES_API_KEY)
 
-    # 1.先選擇固定的5個景點作為M集合（正常為我們根據使用者輸入的位置去進行推薦。大約為開車30分鐘內會到且有營業的地點）
-    get_uset_address = (25.094398577974548, 121.53720478741518) #抓使用者位置
-    get_all_attractions = [
-        "ChIJm5fgyKOuQjQR3vKgJWoDVPk",
-        "ChIJNehVjGSyQjQRiHAgVTN2Gdk",
-        "ChIJnVC4uISuQjQRUf8Npxc8ezM",
-        "ChIJ3d0-q3-uQjQR3ywoxROtSPA",
-        "ChIJGbWNq1OvQjQR1HoXIbC0hF4",
-    ]
-    m_attractions_list = []
+    # # 1.先選擇固定的5個景點作為M集合（正常為我們根據使用者輸入的位置去進行推薦。大約為開車30分鐘內會到且有營業的地點）
+    # get_uset_address = (25.094398577974548, 121.53720478741518) #抓使用者位置
+    # get_all_attractions = [
+    #     "ChIJm5fgyKOuQjQR3vKgJWoDVPk",
+    #     "ChIJNehVjGSyQjQRiHAgVTN2Gdk",
+    #     "ChIJnVC4uISuQjQRUf8Npxc8ezM",
+    #     "ChIJ3d0-q3-uQjQR3ywoxROtSPA",
+    #     "ChIJGbWNq1OvQjQR1HoXIbC0hF4",
+    # ]
+    # m_attractions_list = [] 
 
-    # 抓取要推薦的景點
-    for attractions in get_all_attractions:
-        a = Attractions.objects.get(place_id=attractions)
-        m_attractions_list.append([a.location_x, a.location_y])
-        # times = '' #透過API看距離時間
-        # if "有營業" and times <= 30:
-        #     m_attractions_list.append(attractions)
+    # # 抓取要推薦的景點(使用者附近的景點)
+    # for attractions in get_all_attractions:
+    #     a = Attractions.objects.get(place_id=attractions)
+    #     m_attractions_list.append([a.location_x, a.location_y])
+    #     # times = '' #透過API看距離時間
+    #     # if "有營業" and times <= 30:
+    #     #     m_attractions_list.append(attractions)
 
-    # 發送距離矩陣請求
-    response = client.distance_matrix(
-        origins=get_uset_address, #使用者位置
-        destinations=m_attractions_list, #目的地
-        mode="driving", #開車
-        units="metric", #公里
-        avoid="highways", #限制沒有高速公路
-        language="zh-TW",
-    )
+    # # 發送距離矩陣請求
+    # response = client.distance_matrix(
+    #     origins=get_uset_address, #使用者位置
+    #     destinations=m_attractions_list, #目的地
+    #     mode="driving", #開車
+    #     units="metric", #公里
+    #     avoid="highways", #限制沒有高速公路
+    #     language="zh-TW",
+    # )
 
-    print(response)
+    # print(response)
     # ---------------------------------------------------已經抓到時間與距離(上方)
+    #2.選擇一些景點做為O（使用者選擇的景點）
+    #抓取使用者所選的景點ID
     o_attractions_list = [
             "ChIJm5fgyKOuQjQR3vKgJWoDVPk",
             "ChIJNehVjGSyQjQRiHAgVTN2Gdk",
@@ -272,13 +274,15 @@ def test_input(request):
             "ChIJ3d0-q3-uQjQR3ywoxROtSPA",
             "ChIJGbWNq1OvQjQR1HoXIbC0hF4",
         ]
+
+    # 3.根據O裡面的景點，利用tag找出相似景點並推薦（組成新的O)
     tags_same_score = []
     tags_same_score_total = []
     p_attractions_list=[]
-    
-    # 抓o周遭的景點
-    near_o = ["ChIJwSbjBn-uQjQR_sfLRBosWGA","ChIJ45YiuLmuQjQRgmBcRZ0ludA","ChIJ_T8x36OuQjQRFrhmtfK0kZA","ChIJ3V-FBKOvQjQR3Fcd0_4_Pu8","ChIJh3JR3LGuQjQRkt167cxfWSE","ChIJIcip9zqsQjQRfMdMBF6n2-k"]
 
+    # 抓o周遭的景點(需新增程式碼)
+    near_o = ["ChIJwSbjBn-uQjQR_sfLRBosWGA","ChIJ45YiuLmuQjQRgmBcRZ0ludA","ChIJ_T8x36OuQjQRFrhmtfK0kZA","ChIJ3V-FBKOvQjQR3Fcd0_4_Pu8","ChIJh3JR3LGuQjQRkt167cxfWSE","ChIJIcip9zqsQjQRfMdMBF6n2-k"]
+    
     for n in near_o:
         
         n_db = Attractions.objects.get(place_id=n)
@@ -303,14 +307,41 @@ def test_input(request):
         p_attractions_list.append(near_o[f_max_i_list[i][0]])
     print(p_attractions_list)
 
-
-    # 3.根據O裡面的景點，利用tag找出相似景點並推薦（組成新的O)
-
+    #將使用者在p_attractions_list所選的景點加入O
+    user_select_p = [] 
+    user_select_p = p_attractions_list #抓使用者所選擇的
+    o_attractions_list += user_select_p
+    print(o_attractions_list)
     # 4.將使用者所選擇的所有景點
     #     * 根據使用者提供的資料（喜好）去判斷重複程度（如5個相似，1個相似之類的），沒有的話變成手動給(暫定)，
+    
     #     * 再判斷景點的人潮流量（1-5，5為最高），
+    now_time = 780
+    time = now_time//60
+    week = 2
+    for o in o_attractions_list:
+        o_db = Attractions.objects.get(place_id=o)
+        o_crowd_opening = o_db.crowd_opening_set.filter(week=week).values()
+        crowd = o_crowd_opening[0]["crowd"]
+        opening = o_crowd_opening[0]["opening"]
+        try:
+            crowd = o_crowd_opening[0]["crowd"][time-1]
+            # crowd = crowd_judge(crowd)
+        except:
+            print(crowd)
+            
+        print("時間:",opening,",擁擠:",crowd)
+        print("這裡",o_crowd_opening)
+    
+    
+
     #     * 最後使用normalization將兩者的區間變成[0,1]，再賦予他們權重（如0.5、0.5），最後根據分數去排序景點。
     return render(request, "_test.html")
+
+# 判斷人潮程度
+
+    
+
     
 
 #抓到的時間距離資料(參考用)
