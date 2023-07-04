@@ -251,6 +251,18 @@ def check_opening(now_time, week):
     return ok_a_list
 
 
+#確定距離
+def check_distance(get_uset_address, a_id_list):
+    ok_a_list = []
+    for a in Attractions.objects.filter(id__in=a_id_list):
+        distance = geodesic(
+            (get_uset_address[0], get_uset_address[1]), (a.location_x, a.location_y)
+        ).kilometers
+        # print(a.a_name,distance)
+        if distance <= 0.8:
+            ok_a_list.append([a.place_id, a.location_x, a.location_y])
+    print(ok_a_list)
+    return ok_a_list
 
 def test_input(request):
     # client = googlemaps.Client(key=GOOGLE_PLACES_API_KEY)
