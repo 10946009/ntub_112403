@@ -16,6 +16,8 @@ from django.contrib.auth.hashers import make_password
 
 from django.core.mail import send_mail
 
+from geopy.distance import geodesic
+
 dotenv_path = join(dirname(__file__), ".env")
 load_dotenv(dotenv_path, override=True)  # 設定 override 才會更新變數哦！
 GOOGLE_PLACES_API_KEY = os.environ.get("GOOGLE_PLACES_API_KEY")
@@ -230,6 +232,37 @@ def attraction_details(request):
     print(search_list)
     return render(request, "attraction_details.html", locals())
 
+# 確定營業時間
+def check_opening(now_time, week):
+    ok_a_list = []
+    stay_time = 30
+    for a in Crowd_Opening.objects.filter(week=week):
+        if "休息" not in a.opening:
+            if "24 小時營業" in a.opening:
+                ok_a_list.append(a.a_id)
+            else:
+                for opening in a.opening:
+                    opening = opening.replace(" ", "")
+                    if now_time >= int(opening[0:2]) * 60 + int(
+                        opening[3:5]
+                    ) and now_time < int(opening[6:8]) + int(opening[9:]):
+                        ok_a_list.append(a.a_id)
+                        break
+    return ok_a_list
+
+
+#確定距離
+def check_distance(get_uset_address, a_id_list):
+    ok_a_list = []
+    for a in Attractions.objects.filter(id__in=a_id_list):
+        distance = geodesic(
+            (get_uset_address[0], get_uset_address[1]), (a.location_x, a.location_y)
+        ).kilometers
+        # print(a.a_name,distance)
+        if distance <= 0.8:
+            ok_a_list.append([a.place_id, a.location_x, a.location_y])
+    print(ok_a_list)
+    return ok_a_list
 
 def test_input(request):
     # client = googlemaps.Client(key=GOOGLE_PLACES_API_KEY)
