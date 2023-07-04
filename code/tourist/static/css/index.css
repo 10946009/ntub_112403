@@ -42,8 +42,90 @@ html{
 	background-color: rgba(255, 255, 255);
 	border-radius: 50%;
 	margin: 10px;
+	color: rgba(0, 0, 0, 0.3);
 	cursor: pointer;
 }
+.active{/*收藏動畫*/
+	color: #E1251B;
+	animation: heart 0.5s linear;
+}
+.c_txt{
+	margin-top: 5px;
+	margin-left: 5px;
+}
+.hot_spotC{
+	color: black;
+	text-align: left;
+	position: relative;
+	border: 1px solid #ccc;
+}
+.add_icon{
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 10px;
+	margin: 5px;
+	border-radius: 30%;
+	color: white;
+	background-color: #ccc;
+	cursor: pointer;
+}
+
+.dropdown{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.dropbtn {
+	background-color: #ccc;
+	color: white;
+	margin: 5px;
+	padding: 5px 10px;
+	font-size: 20px;
+	border: none;
+	border-radius: 30%;
+	cursor: pointer;
+}  
+  /* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+	background-color: #ffcc02;
+}  
+  /* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+	border-radius: 20%;
+	display: none;
+	position: absolute;
+	background-color: beige;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 999;
+	overflow-y: auto;
+}
+  
+  /* Links inside the dropdown */
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+  
+  /* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+	display: block;
+	border-top-left-radius: 20%;
+	border-top-right-radius: 20%;
+	background-color: rgb(253, 247, 86);
+}
+  
+  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+	display:block;
+}
+
+
+
+
 .spot_img{
 	padding: 0;
 }
@@ -55,30 +137,6 @@ html{
 	width: 80%;
 	justify-content: center;
 	margin: 10px auto;
-}
-.hot_share{
-	position: relative;
-	padding: 0;
-}
-.c_txt{
-	margin-top: 5px;
-	margin-left: 5px;
-}
-.hot_spotC{
-	text-align: left;
-	position: relative;
-	border: 1px solid #ccc;
-}
-.add_icon{
-	position: absolute;
-	top: 0;
-	right: 0;
-	padding: 10px;
-	margin: 10px;
-	border-radius: 50%;
-	color: white;
-	background-color: #ccc;
-	cursor: pointer;
 }
 
 
