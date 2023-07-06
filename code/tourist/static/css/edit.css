@@ -26,7 +26,8 @@
 }
 
 .topic {
-    margin-top: 50px;
+    margin-top: -20px;
+    margin-bottom: 40px;
 }
 
 .aside {
@@ -39,7 +40,7 @@
 }
 
 .head_change {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     /* float: right; */
     text-align: center;
 }
@@ -53,7 +54,7 @@
 }
 
 .head_change textarea {
-    height: 100px;
+    height: 120px;
 }
 
 .head_change .avatar {
@@ -133,14 +134,15 @@
 
 [class*="col-"] {
     float: left;
-    padding: 15px;
+    /* padding: 15px; */
 }
+
 
 [class*="col-"] {
     width: 100%;
 }
 
-/* @media only screen and (min-width: 600px) {
+@media only screen and (min-width: 600px) {
 
     .col-s-1 {
         width: 8.33%;
@@ -189,7 +191,7 @@
     .col-s-12 {
         width: 100%;
     }
-} */
+}
 
 @media only screen and (min-width: 768px) {
 
@@ -318,12 +320,14 @@
     cursor: pointer;
     font-size: 18px;
     color: #000;
+    display: none;
 }
 
 #checkEye1 {
     cursor: pointer;
     font-size: 18px;
     color: #000;
+    display: none;
 }
 
 .password-container {
@@ -334,12 +338,30 @@
     position: absolute;
     top: 50%;
     right: 10px;
+    bottom: 5px;
     transform: translateY(-50%);
     cursor: pointer;
+    display: none;
 }
+
+
 
 #checkEye2 {
     cursor: pointer;
     font-size: 18px;
     color: #000;
+    display: none;
+}
+
+#validationIcons {
+    display: none;
+}
+
+.form-group {
+    margin-top: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
 }
