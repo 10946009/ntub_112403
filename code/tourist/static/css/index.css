@@ -6,6 +6,22 @@ body{
 html{
 	height: 100%;
 }
+.toolbar{
+  background-color: rgba(212, 212, 212, 0.2);
+}
+.toolbar_div{
+  padding: 0;
+  text-align: center;
+}
+.toolbar_a{
+  line-height: 80px;
+  text-decoration: none;
+  color: #000;
+  display: block;
+  /* background-color: #ccc; */
+  /* border: 1px solid; */
+  font-size: 20px;
+}
 .banner{
 	background: url(../images/IMG20220125115200.jpg);
 	background-repeat: no-repeat;
