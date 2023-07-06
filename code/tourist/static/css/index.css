@@ -7,7 +7,7 @@ html{
 	height: 100%;
 }
 .toolbar{
-  background-color: rgba(212, 212, 212, 0.2);
+	/* background-color: rgba(255, 255, 176, 0.164); */
 }
 .toolbar_div{
   padding: 0;
@@ -27,7 +27,7 @@ html{
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
-	height: 400px;
+	height: 500px;
 	width: 100%;
 	opacity: 0.7;
 	display: flex;
