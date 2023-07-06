@@ -53,7 +53,13 @@ admin.site.index_title = 'manage'
 #     list_display = ("post", "content")
 
 # admin.site.register(User)
-admin.site.register(Attractions)
+
+class AttractionsAdmin(admin.ModelAdmin):
+    list_display=('id','a_name','address','phone','rating')
+    ordering=('id',)
+admin.site.register(Attractions,AttractionsAdmin)
+
+
 admin.site.register(Crowd_Opening)
 admin.site.register(Create_Travel)
 admin.site.register(Attractions_Ct)
