@@ -93,3 +93,28 @@
         transform: scale(1.2);
     }
 }
+
+#checkEye {
+    cursor: pointer;
+    font-size: 18px;
+    color: #000;
+}
+
+#checkEye1 {
+    cursor: pointer;
+    font-size: 18px;
+    color: #000;
+}
+
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    bottom: -5px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
