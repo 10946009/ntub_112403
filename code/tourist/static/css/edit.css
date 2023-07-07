@@ -320,14 +320,14 @@
     cursor: pointer;
     font-size: 18px;
     color: #000;
-    display: none;
+    /* display: none; */
 }
 
 #checkEye1 {
     cursor: pointer;
     font-size: 18px;
     color: #000;
-    display: none;
+    /* display: none; */
 }
 
 .password-container {
@@ -341,7 +341,7 @@
     bottom: 5px;
     transform: translateY(-50%);
     cursor: pointer;
-    display: none;
+    /* display: none; */
 }
 
 
@@ -350,7 +350,7 @@
     cursor: pointer;
     font-size: 18px;
     color: #000;
-    display: none;
+    /* display: none; */
 }
 
 #validationIcons {

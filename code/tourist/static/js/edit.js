@@ -82,36 +82,37 @@ togglePassword2.addEventListener('click', function () {
     }
 });
 
+
 function showPasswordToggle() {
-    var eyeIcon = document.getElementById("checkEye");
-    eyeIcon.style.display = "inline";
+    // var eyeIcon = document.getElementById("checkEye");
+    // eyeIcon.style.display = "inline";
     var showval = document.getElementById("validationIcons");
     showval.style.display = "block";
 }
 
 function hidePasswordToggle() {
-    var eyeIcon = document.getElementById("checkEye");
-    eyeIcon.style.display = "none";
+    // var eyeIcon = document.getElementById("checkEye");
+    // eyeIcon.style.display = "none";
     var showval = document.getElementById("validationIcons");
     showval.style.display = "none";
 }
 
-function showPasswordToggle1() {
-    var eyeIcon1 = document.getElementById("checkEye1");
-    eyeIcon1.style.display = "inline";
-}
+// function showPasswordToggle1() {
+//     var eyeIcon1 = document.getElementById("checkEye1");
+//     eyeIcon1.style.display = "inline";
+// }
 
-function hidePasswordToggle1() {
-    var eyeIcon1 = document.getElementById("checkEye1");
-    eyeIcon1.style.display = "none";
-}
+// function hidePasswordToggle1() {
+//     var eyeIcon1 = document.getElementById("checkEye1");
+//     eyeIcon1.style.display = "none";
+// }
 
-function showPasswordToggle2() {
-    var eyeIcon2 = document.getElementById("checkEye2");
-    eyeIcon2.style.display = "inline";
-}
+// function showPasswordToggle2() {
+//     var eyeIcon2 = document.getElementById("checkEye2");
+//     eyeIcon2.style.display = "inline";
+// }
 
-function hidePasswordToggle2() {
-    var eyeIcon2 = document.getElementById("checkEye2");
-    eyeIcon2.style.display = "none";
-}
+// function hidePasswordToggle2() {
+//     var eyeIcon2 = document.getElementById("checkEye2");
+//     eyeIcon2.style.display = "none";
+// }
