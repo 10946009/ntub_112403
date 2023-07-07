@@ -262,6 +262,8 @@
     display: block;
     width: 100%;
     padding: 10px;
+    padding-left: 35px;
+    padding-right: 35px;
     margin-bottom: 20px;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -274,6 +276,7 @@
 .aside input[type="email"] {
     width: 100%;
     padding: 10px;
+    padding-left: 35px;
     margin-bottom: 20px;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -364,4 +367,52 @@
 .form-group label {
     display: block;
     font-weight: bold;
+}
+
+.input-icon {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #000;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.icon_email {
+    position: absolute;
+    top: 25%;
+    left: 15px;
+    color: black;
+}
+
+.aside_in {
+    background-color: rgb(129, 155, 172);
+    padding: 15px;
+    color: #ffffff;
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    margin: 10px 20px 15px 20px;
+}
+
+.check_ch {
+    width: 100%;
+    margin: 5px 0px 0px 0px;
+}
+
+.a {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+.mail {
+    position: absolute;
+    color: #000;
+    top: 10px;
+    left: 10px;
 }
