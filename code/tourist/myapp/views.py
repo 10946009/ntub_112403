@@ -232,6 +232,10 @@ def attraction_details(request):
     print(search_list)
     return render(request, "attraction_details.html", locals())
 
+def user_edit(request):
+
+    return render(request, "edit.html")
+
 
 # 確定營業時間
 def check_opening(now_time, week):
