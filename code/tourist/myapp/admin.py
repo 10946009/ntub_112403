@@ -59,8 +59,11 @@ class AttractionsAdmin(admin.ModelAdmin):
     ordering=('id',)
 admin.site.register(Attractions,AttractionsAdmin)
 
+class Crowd_OpeningAdmin(admin.ModelAdmin):
+    list_display=('id','week','crowd','opening','a_id')
+    ordering=('id',)
+admin.site.register(Crowd_Opening,Crowd_OpeningAdmin)
 
-admin.site.register(Crowd_Opening)
 admin.site.register(Create_Travel)
 admin.site.register(Attractions_Ct)
 admin.site.register(History)
