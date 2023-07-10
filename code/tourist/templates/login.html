@@ -54,12 +54,11 @@
             </div>
         </div>
     </nav>
-
     <div class="login">
         <h1>Trip Fun Chill 趣放假！</h1>
         <img class="logo" src="../static/images/logo1.png" alt="Trip" style="width:200px;height:200px;">
         <div style="text-align:center;color:red">{{message}}</div>
-        <form action="" method="post">
+        <form class="pure-form pure-form-stacked" action="" method="post">
             {% csrf_token %}
             <input type="email" placeholder="e-mail" name="email" required style="width: 100%;
                               padding: 10px;
@@ -71,7 +70,7 @@
                               font-size: inherit;
                               line-height: inherit">
             <input type="password" placeholder="密碼" name="passwd" required>
-            <input type="submit" onclick="openPopup()" value="登入">
+            <input class="pure-button-login" type="submit" onclick="openPopup()" value="登入">
         </form>
         <div class="message">
             <a href="/register">還沒有帳號？</a> <a href="/forget_passwd">忘記密碼</a>
