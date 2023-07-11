@@ -15,6 +15,7 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
 
 </head>
@@ -83,7 +84,7 @@
               <div class="col-md-4 div_day" style="background-color: #fffdc8;">
                 <div class="row">
                   <div class="div_day " style="text-align: center;">
-                    <div class="tabD">{{name}}{{travName}}</div>
+                    <div class="tabD"><span ng-bind="travName"></span></div>
                     <div class="tabD"><a href="#tab_c" class="tab_day">第一天</a></div>
                     <div class="tabD"><a href="#tab_c" class="tab_day">第二天</a></div>
                     <div class=" tabc_txt"><input type="submit" class="input_txt" value="儲存"></div>
@@ -459,7 +460,6 @@
 <script src="../static/js/bootstrap.min.js"></script>
 <script src="../static/js/jquery-3.7.0.min.js"></script>
 <script src="../static/js/create.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
 
 
