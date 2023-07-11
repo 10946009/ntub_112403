@@ -28,19 +28,19 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page"href="/">首頁</a>
+            <a class="nav-link" href="/">首頁</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active"href="../create">建立行程</a>
+            <a class="nav-link" href="/create">建立行程</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="../history">我的行程</a>
+            <a class="nav-link active" aria-current="page" href="/history">我的行程</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"href="../attraction_details">景點資訊</a>
+            <a class="nav-link" href="/attraction_details">景點資訊</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"href="../favorite">我的收藏</a>
+            <a class="nav-link" href="/favorite">我的收藏</a>
           </li>
         </ul>
       </div>
@@ -48,7 +48,7 @@
         <ul class="name_ul">
           <li class="nav-item dropdown name_li" style="list-style-type: none;">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Username
+              UserName
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Setting</a></li>
@@ -71,10 +71,10 @@
         </div>
         
         <div id="contents">
-          <section id="tab_c">
+          <section id="tab_c" ng-app="" ng-init="name='行程名稱'">
             <form action="" style="display: flex;justify-content: center;">
               <div class="row" style="width: 80%;">
-                <div class="col-md-4 tabc_txt">行程名稱：<input type="text" class="input_txt" placeholder="請輸入行程名稱" style="width: 180px;"></div>
+                <div class="col-md-4 tabc_txt">行程名稱：<input type="text" class="input_txt" ng-model="travName" placeholder="請輸入行程名稱" style="width: 180px;"></div>
                 <div class="col-md-4 tabc_txt">出發日期：<input type="date" class="input_txt" value="2023-05-25"></div>
                 <div class="col-md-4 tabc_txt">結束日期：<input type="date" class="input_txt" value="2023-05-26"></div>
               </div>
@@ -83,6 +83,7 @@
               <div class="col-md-4 div_day" style="background-color: #fffdc8;">
                 <div class="row">
                   <div class="div_day " style="text-align: center;">
+                    <div class="tabD">{{name}}{{travName}}</div>
                     <div class="tabD"><a href="#tab_c" class="tab_day">第一天</a></div>
                     <div class="tabD"><a href="#tab_c" class="tab_day">第二天</a></div>
                     <div class=" tabc_txt"><input type="submit" class="input_txt" value="儲存"></div>
@@ -134,10 +135,18 @@
                 <div style="text-align: center;">
                   <div class="heart_icon_box">
                     <img src="../static/images/pingxi.jpg" class="img-responsive" width="100%">
-                    <i class="fa-sharp fa-solid fa-heart heart_icon"></i>
+                    <i class="fa-solid fa-heart heart_icon"></i>
                   </div>
                   <div class="spot_like_txt">
-                    <i class="fa-sharp fa-solid fa-plus add_icon"></i>
+                    <!-- <i class="fa-solid fa-plus add_icon"></i> -->
+                    <div class="dropdown">
+                      <button onclick="add()" class="dropbtn">+</button>
+                      <div id="myDropdown" class="dropdown-content">
+                        <a href="#">新增行程</a>
+                        <a href="#">一日遊</a>
+                        <a href="#">逛街</a>
+                      </div>
+                    </div>
                     <h3>平溪老街</h3>
                     <p>123456</p>
                   </div>
@@ -147,10 +156,18 @@
                 <div style="text-align: center;">
                   <div class="heart_icon_box">
                     <img src="../static/images/pingxi.jpg" class="img-responsive" width="100%">
-                    <i class="fa-sharp fa-solid fa-heart heart_icon"></i>
+                    <i class="fa-solid fa-heart heart_icon"></i>
                   </div>
                   <div class="spot_like_txt">
-                    <i class="fa-sharp fa-solid fa-plus add_icon"></i>
+                    <!-- <i class="fa-solid fa-plus add_icon"></i> -->
+                    <div class="dropdown">
+                      <button onclick="add1()" class="dropbtn">+</button>
+                      <div id="myDropdown1" class="dropdown-content">
+                        <a href="#">新增行程</a>
+                        <a href="#">一日遊1</a>
+                        <a href="#">逛街</a>
+                      </div>
+                    </div>
                     <h3>平溪老街</h3>
                     <p>123456</p>
                   </div>
@@ -160,10 +177,18 @@
                 <div style="text-align: center;">
                   <div class="heart_icon_box">
                     <img src="../static/images/pingxi.jpg" class="img-responsive" width="100%">
-                    <i class="fa-sharp fa-solid fa-heart heart_icon"></i>
+                    <i class="fa-solid fa-heart heart_icon"></i>
                   </div>
                   <div class="spot_like_txt">
-                    <i class="fa-sharp fa-solid fa-plus add_icon"></i>
+                    <!-- <i class="fa-solid fa-plus add_icon"></i> -->
+                    <div class="dropdown">
+                      <button onclick="add2()" class="dropbtn">+</button>
+                      <div id="myDropdown2" class="dropdown-content">
+                        <a href="#">新增行程</a>
+                        <a href="#">一日遊1</a>
+                        <a href="#">逛街2</a>
+                      </div>
+                    </div>
                     <h3>平溪老街</h3>
                     <p>123456</p>
                   </div>
@@ -434,6 +459,8 @@
 <script src="../static/js/bootstrap.min.js"></script>
 <script src="../static/js/jquery-3.7.0.min.js"></script>
 <script src="../static/js/create.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
 
 
 </html>
