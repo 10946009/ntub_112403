@@ -9,6 +9,8 @@ import json
 
 from sqltool import Postgres
 tool = Postgres()
+
+# 抓opendata的資料
 # response = requests.get("https://media.taiwan.net.tw/XMLReleaseALL_public/scenic_spot_C_f.json")
 # data = response.content.decode("utf-8-sig")  # 使用 utf-8-sig 編碼解碼資料
 
@@ -53,10 +55,48 @@ tool = Postgres()
 #     f = open(os.getcwd()+f'/opendata.json', 'w',encoding='utf-8')
 #     f.write(json.dumps(result))
 #     f.close()
-# 還沒寫好
-        # filename = f'{os.getcwd()}/{address[0]}{address[1]}{a_type}.json'
-        # get_populartimes(filename,GOOGLE_PLACES_API_KEY,a_type)
-        # get_details(filename,GOOGLE_PLACES_API_KEY,a_type) 
+
+
+# 抓擁擠資訊
+# def get_populartimes(datas,GOOGLE_PLACES_API_KEY,check_list):
+#     result = []
+    
+#     for data in datas:
+#         times = 0
+#         place_id = data["candidates"][0]["place_id"]
+#         if place_id not in check_list:
+#             continue
+#         try:
+#             p = populartimes.get_id(GOOGLE_PLACES_API_KEY,place_id)
+#             times+=1
+#             print(place_id,times)
+#         except:
+#             while 1:
+#                 p = populartimes.get_id(GOOGLE_PLACES_API_KEY,place_id)
+#                 times+=1
+#                 print(place_id,'生成失敗...',times)
+#                 break
+#         result.append(p)
+    
+#     f = open(os.getcwd()+f'/opendata擁擠資訊.json', 'w',encoding='utf-8')
+#     f.write(json.dumps(result))
+#     f.close()
+
+# 抓營業時間
+# def get_details(datas,GOOGLE_PLACES_API_KEY,check_list):
+#     result = []
+#     for data in datas:
+#         place_id = data["candidates"][0]["place_id"]
+#         if place_id not in check_list:
+#             continue
+#         url = f"https://maps.googleapis.com/maps/api/place/details/json?place_id={place_id}&language=zh-TW&key={GOOGLE_PLACES_API_KEY}"
+#         response = requests.get(url)
+#         opendata = response.json()
+#         result.append(opendata)
+ 
+#     f = open(os.getcwd()+f'/opendata營業時間.json', 'w',encoding='utf-8')
+#     f.write(json.dumps(result))
+#     f.close()
 
 
 types_list = []
@@ -100,8 +140,11 @@ att_types = {
 
 }
 # 景點資料庫
-def input_address(tool,data,att_types):
+def input_address(tool,data, data_crowd, data_opening_phone,att_types,check_id_list):
     place_id = data["candidates"][0]["place_id"]
+    if place_id not in check_id_list:
+        return
+    num = check_id_list.index(place_id)
     try:
         photo_check = data["candidates"][0]["photos"][0]["photo_reference"]  # 改變第一個num
         photo = photo_check if photo_check is not None else ""
@@ -193,6 +236,53 @@ def input_address(tool,data,att_types):
             )
         ],
     )
+    input_crowd_opening(tool,place_id,data, data_crowd, data_opening_phone, num)
+
+# DATA可以抓placeid
+def input_crowd_opening(tool,place_id,data, data_crowd, data_opening_phone, num):
+    print(num)
+    tool = Postgres()
+    # 擁擠populartimes
+    # 營業時間 weekday_text
+    sql1 = f"SELECT * FROM myapp_attractions WHERE place_id = '{place_id}';"
+    a_id = tool.read(sql1)[0][0]
+    print(data_crowd[num]["name"])
+    for week in range(7):
+        try:
+            crowd = data_crowd[num]['populartimes'][week]['data']
+        except:
+            crowd = []
+        try:
+            opening = list(data_opening_phone[num]['result']['current_opening_hours']['weekday_text'][week][5:].split(','))
+            if len(data_opening_phone[num]['result']['current_opening_hours']['weekday_text']) != 7:
+                print('有人沒七筆!')
+        except:
+            opening = []
+        
+
+ 
+        #放入資料庫
+        input_column = [
+            "week",
+            "crowd",
+            "opening",
+            "a_id",
+        ]
+        week+=1
+        s_len = ("%s," * len(input_column))[:-1]
+        sql = f"INSERT INTO myapp_crowd_opening ({','.join(input_column)}) VALUES ({s_len})"
+        tool.create_multi(
+            sql,
+            [
+                (
+                    week,
+                    crowd,
+                    opening,
+                    a_id,
+                )
+            ],
+        )
+        print("a_id",a_id, "新增擁擠資訊")
 
 # 確認有甚麼標籤
 def check_new_att_type(data,num,types_list):
@@ -203,15 +293,26 @@ def check_new_att_type(data,num,types_list):
             types_list.append(t)
     return types_list
 
+# 已整理的ID
+with open("opendata對照表.csv", newline="", encoding="utf-8") as csvfile_check_id:
+    check_id_list = list(csv.reader(csvfile_check_id))
+    check_id_list = [x[0] for x in check_id_list]
+
+# 未整理
+with open("需刪除的景點id.csv", newline="", encoding="utf-8") as csvfile_check:
+    check_list = list(csv.reader(csvfile_check))
+    check_list = [x[0] for x in check_list]
+
 with open("opendata.json", encoding="utf-8") as file:
         datas = json.load(file)
+
+        # get_details(datas,GOOGLE_PLACES_API_KEY,check_list) #抓營業時間
+        # get_populartimes(datas,GOOGLE_PLACES_API_KEY,check_list) #抓取擁擠資訊
+
+with open(f"opendata擁擠資訊.json", encoding="utf-8") as file:
+        data_crowd = json.load(file)
+with open(f"opendata營業時間.json", encoding="utf-8") as file:
+        data_opening_phone = json.load(file)
+        # 放入資料庫
         for data in datas:
-            input_address(tool,data,att_types)
-
-    # with open(f"{address[0]}{address[1]}景點擁擠資訊.json", encoding="utf-8") as file:
-    #     data_crowd = json.load(file)
-
-    # with open(f"{address[0]}{address[1]}景點營業時間.json", encoding="utf-8") as file:
-    #     data_opening_phone = json.load(file)
-    #     for num in range(len(data["results"])):
-    #         input_address(tool,data, data_crowd, data_opening_phone, num,att_types)
+            input_address(tool,data, data_crowd, data_opening_phone,att_types,check_id_list)

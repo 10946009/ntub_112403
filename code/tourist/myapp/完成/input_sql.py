@@ -39,8 +39,10 @@ att_types = {
 # data=
 
 # 景點資料庫
-def input_address(tool,data, data_crowd, data_opening_phone, num,att_types):
+def input_address(tool,data, data_crowd, data_opening_phone, num,att_types,check_list):
     place_id = data["results"][num]["place_id"]
+    if place_id not in check_list:
+        return
     try:
         photo_check = data["results"][num]["photos"][0]["photo_reference"]  # 改變第一個num
         photo = photo_check if photo_check is not None else ""
@@ -187,7 +189,10 @@ def input_crowd_opening(tool,data, data_crowd, data_opening_phone, num):
         print("a_id",a_id, "新增擁擠資訊")
 
 
-
+check_list=[]
+with open("需刪除的景點id.csv", newline="", encoding="utf-8") as csvfile_check:
+    check_list = list(csv.reader(csvfile_check))
+    check_list = [x[0] for x in check_list]
 # 把json資料都抓出來 然後使用函數
 with open("臺北市區路段資料.csv", newline="", encoding="utf-8") as csvfile:
     address_list = list(csv.reader(csvfile))
@@ -203,8 +208,8 @@ with open("臺北市區路段資料.csv", newline="", encoding="utf-8") as csvfi
         with open(f"{address[0]}{address[1]}景點營業時間.json", encoding="utf-8") as file:
             data_opening_phone = json.load(file)
             for num in range(len(data["results"])):
-                input_address(tool,data, data_crowd, data_opening_phone, num,att_types)
-                # types_list = check_new_att_type(data,num,types_list)
+                input_address(tool,data, data_crowd, data_opening_phone, num,att_types,check_list)
+                types_list = check_new_att_type(data,num,types_list)
                     
 
 

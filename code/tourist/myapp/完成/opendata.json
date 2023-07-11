@@ -7873,5 +7873,89 @@
             }
         ],
         "status": "OK"
-    }
+    },
+    {
+        "candidates" : [
+           {
+              "formatted_address" : "110台灣台北市信義區市府路45 號",
+              "geometry" : {
+                 "location" : {
+                    "lat" : 25.0341222,
+                    "lng" : 121.5640212
+                 },
+                 "viewport" : {
+                    "northeast" : {
+                       "lat" : 25.0357032,
+                       "lng" : 121.56637015
+                    },
+                    "southwest" : {
+                       "lat" : 25.03206359999999,
+                       "lng" : 121.5626339499999
+                    }
+                 }
+              },
+              "name" : "台北101購物中心",
+              "opening_hours" : {
+                 "open_now" : true
+              },
+              "photos" : [
+                 {
+                    "height" : 3456,
+                    "html_attributions" : [
+                       "https://maps.google.com/maps/contrib/107345122456042600865"
+                    ],
+                    "photo_reference" : "Aaw_FcL2s9u9s9PKUKeQ1wpQ9FtV19XynAYYAnxlhnLpqfwAdIzOOPDITdYUKDvzt2BDcolkSo6E8PdlFgyHra6WMjvxC8rft7_qASPhPka15Rek6iUsr95US3YTyxKdvGD-jlFkk789ENAKz6pTxX1ACRLEsxvABvRLBihHslnn1VlFwr9e",
+                    "width" : 4608
+                 }
+              ],
+              "place_id" : "ChIJraeA2rarQjQRPBBjyR3RxKw",
+              "rating" : 4.4,
+              "types" : [ "shopping_mall", "point_of_interest", "establishment" ],
+              "user_ratings_total" : 58497
+           }
+        ],
+        "status" : "OK"
+     },
+     {
+        "candidates" : [
+           {
+              "formatted_address" : "100台灣台北市大安區羅斯福路四段90巷",
+              "geometry" : {
+                 "location" : {
+                    "lat" : 25.0137873,
+                    "lng" : 121.5347865
+                 },
+                 "viewport" : {
+                    "northeast" : {
+                       "lat" : 25.01511507989272,
+                       "lng" : 121.5361608298928
+                    },
+                    "southwest" : {
+                       "lat" : 25.01241542010728,
+                       "lng" : 121.5334611701073
+                    }
+                 }
+              },
+              "name" : "台北公館夜市",
+              "opening_hours" : {
+                 "open_now" : true
+              },
+              "photos" : [
+                 {
+                    "height" : 2160,
+                    "html_attributions" : [
+                       "https://maps.google.com/maps/contrib/102739269316418731684"
+                    ],
+                    "photo_reference" : "Aaw_FcIo4rV-tBUaNPAaFdlhhmD_bKLjt87R5LLYHb6cAo14FmOgYbyhmKCu2UCkpZs65cjz5hC19DlKGEpOsr-fYZlwTPiPnz13Sm_JiyGt5xdysjopnxpX0DxxVUfwwfGZ_t2rdF3tYKPOqKRx5ciZQhPSRTM0MWYiGHzGuZkgzuS0Qb56",
+                    "width" : 3840
+                 }
+              ],
+              "place_id" : "ChIJVVVVVRWsQjQRwQH6WTfTfPA",
+              "rating" : 4.1,
+              "types" : [ "point_of_interest", "establishment" ],
+              "user_ratings_total" : 15370
+           }
+        ],
+        "status" : "OK"
+     }
 ]
