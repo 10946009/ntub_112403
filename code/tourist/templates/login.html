@@ -60,15 +60,7 @@
         <div style="text-align:center;color:red">{{message}}</div>
         <form class="pure-form pure-form-stacked" action="" method="post">
             {% csrf_token %}
-            <input type="email" placeholder="e-mail" name="email" required style="width: 100%;
-                              padding: 10px;
-                              margin-bottom: 20px;
-                              border-radius: 5px;
-                              border: 1px solid #ccc;
-                              margin: 0px 0px 20px;
-                              font-family: inherit;
-                              font-size: inherit;
-                              line-height: inherit">
+            <input type="email" placeholder="e-mail" name="email" required>
             <input type="password" placeholder="密碼" name="passwd" required>
             <input class="pure-button-login" type="submit" onclick="openPopup()" value="登入">
         </form>
