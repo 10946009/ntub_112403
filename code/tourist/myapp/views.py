@@ -414,7 +414,16 @@ def test_input(request):
     df['total']=0
     print(df)
     # 標準化 使值在[0,1]之間
-    
+    scaler = MinMaxScaler(feature_range=(0, 1)).fit(df)
+    X_scaled = scaler.transform(df)
+    df_x=pd.DataFrame(X_scaled)
+
+    df_x[2]=df_x[0].mul(0.5).add(df_x[1].mul(0.5)) # 將值皆乘0.5相加後放入total欄位
+    print(df_x)
+    total_list = df_x[2].values.tolist() # 將df_x[2]的值轉成list
+    final = [[o_attractions_list[x],total_list[x]] for x in range(len(total_list))] #將place_id和分數合併
+    f_final_list = sorted(final, key=lambda x: x[1], reverse=True) #排序
+    print(f_final_list)
     # print("時間:",opening,",擁擠:",crowd)
     # print("這裡",o_crowd_opening)
 
