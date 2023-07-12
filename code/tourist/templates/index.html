@@ -29,25 +29,28 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     
-
 </head>
 
 <body>
-  <nav class="navbar-nav ">
-    <div class="container-fluid toolbar">
-      <div class="row " style="position: relative;">
-        <div class="col-md toolbar_div"><a href="/" class="toolbar_a">首頁</a></div>
-        <div class="col-md toolbar_div"><a href="/create" class="toolbar_a">建立行程</a></div>
-        <div class="col-md toolbar_div"><a href="/history" class="toolbar_a">我的行程</a></div>
-        <div class="col-md toolbar_div"><a href="/" class="toolbar_a"><img hidden src="images/Logo.png" alt="" style="height: 150px;" ></a></div>
-        <div class="col-md toolbar_div"><a href="/attraction_details" class="toolbar_a">搜尋景點</a></div>
-        <div class="col-md toolbar_div"><a href="/favorite" class="toolbar_a">我的收藏</a></div>
-        <div class="col-md toolbar_div"><a href="/login" class="toolbar_a">登入</a></div>
+  <div class="navbar-nav">
+    <div class="container-fluid toolbar clearfix">
+      <div class="menu clearfix" style="position: relative;">
+        <span class="showmenu">≡</span>
+        <div class="row menu-list clearfix">
+          <div class="col-md toolbar_div"><a href="/" class="toolbar_a">首頁</a></div>
+          <div class="col-md toolbar_div"><a href="/create" class="toolbar_a">建立行程</a></div>
+          <div class="col-md toolbar_div"><a href="/history" class="toolbar_a">我的行程</a></div>
+          <div class="col-md toolbar_div"><a href="/" class="toolbar_a"><img hidden src="images/Logo.png" alt="" style="height: 150px;" ></a></div>
+          <div class="col-md toolbar_div"><a href="/attraction_details" class="toolbar_a">搜尋景點</a></div>
+          <div class="col-md toolbar_div"><a href="/favorite" class="toolbar_a">我的收藏</a></div>
+          <div class="col-md toolbar_div"><a href="/login" class="toolbar_a">登入</a></div>
+        </div>
       </div>
     </div>
-    <div style="display: flex;justify-content: center;align-items: center;"><a href="#" style="display: block;position: absolute;z-index: 999;"><img src="../static/images/logo1.png" height="120px"></a></div>
-  </nav>
+    <div style="display: flex;justify-content: center;align-items: center;"><a href="#" style="display: block;position: absolute;z-index: 999;"><img src="../static/images/logo1.png" height="120px" class="logo"></a></div>
+  </div>
   
   <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
     <div class="container-fluid">
@@ -96,7 +99,7 @@
   </nav> -->
 
   <div class="banner">
-    <span><strong class="sysname">趣放假 | Trip Fun Chill</strong></span>
+    <span ng-app="" ng-init="title = '趣放假 | Trip Fun Chill'"><strong class="sysname" ng-bind="title"></strong></span>
   </div>
   <div style="display: flex; justify-content: center;width: 100vw; margin-top: 5px;">
       <form action="./attraction_details" class="d-flex" role="search" style="width:80%">

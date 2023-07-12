@@ -71,6 +71,15 @@ function add2() {
         }
       }   
 
+//漢堡選單
+$(document).ready(function() {
+   $('.showmenu').on('click',  function(e) {
+      e.preventDefault();
+      $('body').toggleClass('menu-show');
+  });
+});
+
+
 $('.owl-carousel').owlCarousel({
     loop:true,
     margin:10,
