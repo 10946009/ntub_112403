@@ -19,8 +19,6 @@
     <script src="/static/js/jquery-3.7.0.min.js"></script>
     <script src="/static/js/bootstrap.js"></script>
 
-</head>
-
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary " style="height: 80px;">
         <div class="container-fluid">
@@ -62,13 +60,92 @@
             {% csrf_token %}
             <input type="email" placeholder="e-mail" name="email" required>
             <input type="password" placeholder="密碼" name="passwd" required>
-            <input class="pure-button-login" type="submit" onclick="openPopup()" value="登入">
+            <div class="ch">
+                <input type="text" id="input" placeholder="請輸入驗證碼">
+                <p id="code"></p>
+                <p></p>
+                <a href="#" id="recode">更新</a>
+                <p></p>
+            </div>
+
+            <input id="validate" class="pure-button-login" type="submit" onclick="openPopup()" value="登入">
         </form>
         <div class="message">
             <a href="/register">還沒有帳號？</a> <a href="/forget_passwd">忘記密碼</a>
         </div>
     </div>
     <script>
+        //判斷是否為機器人-驗證
+
+        var code = "";//全域變數 紀錄驗證碼
+
+        var checkCode = document.getElementById("code");
+
+        //顏色組
+        var fontColor = ["blue", "yellow", "red", "green", "purple"];
+        var bgColor = ["green", "red", "yellow", "purple", "blue",];
+        var ls = ["2px", "8px", "-2px",];
+        var iColor;
+        //alert(iColor);
+
+        //隨機設定顏色組合
+        function randColor() {
+            iColor = Math.floor(Math.random() * (fontColor.length));
+            return iColor;
+        }
+        function createCode() {
+            var ci = randColor()
+            checkCode.style['color'] = fontColor[ci];
+            checkCode.style['background-color'] = bgColor[ci];
+            checkCode.style['letter-spacing'] = ls[ci];
+            //alert (ci);
+            code = "";
+            var codeLength = 6;//驗證碼的長度	
+            var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');//隨機數 
+            for (var i = 0; i < codeLength; i++) {//迴圈操作 
+                var index = Math.floor(Math.random() * 62);//取得隨機數的索引（0~61） 
+                code += random[index];//根據索引取得隨機數加到code上 
+            }
+            checkCode.innerHTML = code;//把code值賦給驗證碼
+            console.log(code);
+        }
+
+        //更新驗證碼
+        var recode = document.getElementById('recode');
+        recode.addEventListener("click", function (e) {
+            createCode();
+            document.getElementById("input").value = "";//清空文字框
+            e.preventDefault();
+        });
+
+        //點擊更新驗證碼
+        checkCode.addEventListener("click", function (e) {
+            createCode();
+            document.getElementById("input").value = "";//清空文字框
+            e.preventDefault();
+        });
+
+        //驗證
+        var validate = document.getElementById('validate');
+        validate.addEventListener("click", function (e) {
+            var inputCode = document.getElementById("input").value;
+            // var inputCode = document.getElementById("input").value.toUpperCase(); //取得輸入的驗證碼並轉化為大寫 
+            if (inputCode.length <= 0) { //若輸入的驗證碼長度為0 
+                alert("請輸入驗證碼！"); //則彈出請輸入驗證碼 
+            }
+            else if (inputCode !== code) { //若輸入的驗證碼與產生的驗證碼不一致時 
+                alert("驗證碼輸入錯誤！@_@"); //則彈出驗證碼輸入錯誤 
+                createCode();//重新整理驗證碼 
+                document.getElementById("input").value = "";//清空文字框 
+            }
+            else { //輸入正確時 
+                alert("驗證碼正確^-^"); //彈出^-^ 
+                createCode();//重新整理驗證碼 
+                document.getElementById("input").value = "";//清空文字框 
+            }
+        });
+        createCode();
+
         function openPopup() {
             var msg = "{{message}}";
             // 在JavaScript中使用Jinja2模板引擎將Python變數插入到JavaScript中
@@ -76,6 +153,7 @@
             // 使用 JavaScript 的 `alert()` 函式來彈出視窗
             alert(msg);
         }
+
     </script>
 </body>
 
