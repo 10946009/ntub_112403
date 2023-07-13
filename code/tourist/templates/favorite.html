@@ -1,33 +1,16 @@
-<!-- 我的最愛
-<p></p>
-<a href="/attraction_details/{{a_id}}">景點1</a> -->
-<!-- 我是首頁~
-<p></p>
-<p><a href="/login">登入</a></p>
-<p><a href="/search">搜尋景點</a></p>
-<p><a href="/create">建立行程</a></p>
-<p><a href="/history">我的行程</a></p>
-<p><a href="/favorite">我的最愛</a></p>
-<p><a href="/share">分享行程</a></p> -->
 
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block title %}我的收藏{% endblock %}
+{% block content %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>首頁</title>
   <link rel="stylesheet" href="../static/css/all.css">
   <link rel="stylesheet" href="../static/css/bootstrap2023.css">
   <link rel="stylesheet" href="../static/css/index.css">
-  <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
   <style>
     .location-wrap img {
       width: 100%;
@@ -50,9 +33,9 @@
       cursor: pointer;
     }
   </style>
-</head>
+{% endblock %}
 
-<body>
+{% comment %} <body>
   <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">趣放假<img src="../static/images/logo_icon.png" width="20px"
@@ -84,9 +67,7 @@
       <div>
         <ul class="name_ul">
           <li class="nav-item dropdown name_li" style="list-style-type: none;">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              UserName
-            </a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">UserName</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Setting</a></li>
               <li><a class="dropdown-item" href="#">Log out</a></li>
@@ -95,135 +76,126 @@
         </ul>
       </div>
     </div>
-  </nav>
+</nav> {% endcomment %}
+{% block body %}
+ 
   <!-- Tabs navs -->
-  <ul class="nav nav-tabs flex justify-content-center" id="myTab" role="tablist">
+  <ul class="nav nav-tabs flex justify-content-center"
+      id="myTab"
+      role="tablist">
     <li class="nav-item" role="presentation">
-      <button
-        class="nav-link active"
-        id="home-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#home"
-        type="button"
-        role="tab"
-        aria-controls="home"
-        aria-selected="true"
-      >
-        最愛景點
-      </button>
+      <button class="nav-link active"
+              id="home-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#home"
+              type="button"
+              role="tab"
+              aria-controls="home"
+              aria-selected="true">最愛景點</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button
-        class="nav-link"
-        id="contact-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#contact"
-        type="button"
-        role="tab"
-        aria-controls="contact"
-        aria-selected="false"
-      >
-        最愛行程
-      </button>
+      <button class="nav-link"
+              id="contact-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#contact"
+              type="button"
+              role="tab"
+              aria-controls="contact"
+              aria-selected="false">最愛行程</button>
     </li>
   </ul>
   <div class="tab-content" id="myTabContent">
-    <div
-      class="tab-pane fade show active"
-      id="home"
-      role="tabpanel"
-      aria-labelledby="home-tab"
-    >
-    <div class="tab-content" id="myTabContent">
-      <div
-        class="tab-pane fade show active"
-        id="home"
-        role="tabpanel"
-        aria-labelledby="home-tab"
-      >
+    <div class="tab-pane fade show active"
+         id="home"
+         role="tabpanel"
+         aria-labelledby="home-tab">
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active"
+             id="home"
+             role="tabpanel"
+             aria-labelledby="home-tab">
 
 
-        <div class="container py-5">
-          <div class="row">
-            {% for item in favorite_list %}
-            <div class="col-4">
-              <div class="card">
-                <div class="location-wrap">
-                  <img src="../static/images/street.jpg" class="img-responsive" width="100%">
-                  <i class="fa-solid fa-heart location-heart"></i>
+          <div class="container py-5">
+            <div class="row">
+              {% for item in favorite_list %}
+                <div class="col-4">
+                  <div class="card">
+                    <div class="location-wrap">
+                      <img src="../static/images/street.jpg" class="img-responsive" width="100%">
+                      <i class="fa-solid fa-heart location-heart"></i>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">{{ item.0.a_name }}</h5>
+                    </div>
+                  </div>
                 </div>
-                <div class="card-body">
-                  <h5 class="card-title">{{item.0.a_name}}</h5>
+              {% endfor %}
+ 
+              <div class="col-4">
+                <div class="card">
+                  <div class="location-wrap">
+                    <img src="../static/images/street.jpg" class="img-responsive" width="100%">
+                    <i class="fa-solid fa-heart location-heart"></i>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">九份老街</h5>
+                  </div>
                 </div>
               </div>
             </div>
-            {% endfor %}
-            
-            <div class="col-4">
-              <div class="card">
-                <div class="location-wrap">
-                  <img src="../static/images/street.jpg" class="img-responsive" width="100%">
-                  <i class="fa-solid fa-heart location-heart"></i>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">九份老街</h5>
-                </div>
-              </div>
-            </div>
-              </div>
-            </div>
           </div>
-        </div>
-      </div>
-    <div
-      class="tab-pane fade"
-      id="contact"
-      role="tabpanel"
-      aria-labelledby="contact-tab"
-    >
-    <div class="container">
-      <div class="row col-md-12">
-        <div class="hot_spot_block col-md-4 ">
-          <div class="heart_icon_img">
-          <img src="../static/images/street.jpg" class="spot_img img-responsive" width="100%">
-          <i class="fa-solid fa-heart location-heart"></i>
-          </div>
-          <div class="spot_txt">
-            <h4>九份老街</h4>
-            <h5>aldfhlajkdhsfl</h5>
-            <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
-          </div>
-          <!-- <a href="#" class="btn btn-primary spot_data_btn">加入行程</a> -->
-        </div>
-        <div class="hot_spot_block col-md-4 ">
-          <div class="heart_icon_img">
-          <img src="../static/images/street.jpg" class="img-responsive" width="100%">
-          <i class="fa-solid fa-heart location-heart"></i>
-          </div>
-          <div class="spot_txt">
-            <h4>九份老街</h4>
-            <h5>aldfhlajkdhsfl</h5>
-            <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
-          </div>
-          <!-- <a href="#" class="btn btn-primary spot_data_btn">加入行程</a> -->
-        </div>
-        <div class="hot_spot_block col-md-4 ">
-          <div class="heart_icon_img">
-          <img src="../static/images/street.jpg" class="img-responsive" width="100%">
-          <i class="fa-solid fa-heart location-heart"></i>
-          </div>
-          <div class="spot_txt">
-            <h4>九份老街</h4>
-            <h5>aldfhlajkdhsfl</h5>
-            <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
-          </div>
-          <!-- <a href="#" class="btn btn-primary spot_data_btn">加入行程</a> -->
         </div>
       </div>
     </div>
+    <div class="tab-pane fade"
+         id="contact"
+         role="tabpanel"
+         aria-labelledby="contact-tab">
+      <div class="container">
+        <div class="row col-md-12">
+          <div class="hot_spot_block col-md-4 ">
+            <div class="heart_icon_img">
+              <img src="../static/images/street.jpg"
+                   class="spot_img img-responsive"
+                   width="100%">
+              <i class="fa-solid fa-heart location-heart"></i>
+            </div>
+            <div class="spot_txt">
+              <h4>九份老街</h4>
+              <h5>aldfhlajkdhsfl</h5>
+              <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
+            </div>
+            <!-- <a href="#" class="btn btn-primary spot_data_btn">加入行程</a> -->
+          </div>
+          <div class="hot_spot_block col-md-4 ">
+            <div class="heart_icon_img">
+              <img src="../static/images/street.jpg" class="img-responsive" width="100%">
+              <i class="fa-solid fa-heart location-heart"></i>
+            </div>
+            <div class="spot_txt">
+              <h4>九份老街</h4>
+              <h5>aldfhlajkdhsfl</h5>
+              <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
+            </div>
+            <!-- <a href="#" class="btn btn-primary spot_data_btn">加入行程</a> -->
+          </div>
+          <div class="hot_spot_block col-md-4 ">
+            <div class="heart_icon_img">
+              <img src="../static/images/street.jpg" class="img-responsive" width="100%">
+              <i class="fa-solid fa-heart location-heart"></i>
+            </div>
+            <div class="spot_txt">
+              <h4>九份老街</h4>
+              <h5>aldfhlajkdhsfl</h5>
+              <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
+            </div>
+            <!-- <a href="#" class="btn btn-primary spot_data_btn">加入行程</a> -->
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- Tabs content -->
   <script src="/static/js/bootstrap.min.js"></script>
-</body>
-</html>
+{% endblock body %}

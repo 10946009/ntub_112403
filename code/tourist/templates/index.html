@@ -6,16 +6,30 @@
 <p><a href="/history">我的行程</a></p>
 <p><a href="/favorite">我的最愛</a></p>
 <p><a href="/share">分享行程</a></p> -->
+{% extends 'base.html' %}
+{% block title %}首頁{% endblock %}
+{% block content %}
+  <link rel="stylesheet" href="../static/css/bootstrap2023.css">
+  <link rel="stylesheet" href="../static/owl/owl.carousel.min.css">
+  <link rel="stylesheet" href="../static/owl/owl.theme.default.min.css">
+  <link rel="stylesheet" href="../static/css/all.css">
+  <link rel="stylesheet" href="../static/css/index.css">
 
-
-<!DOCTYPE html>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+{% endblock %}
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>首頁</title>
-    
+     
     <link rel="stylesheet" href="../static/css/bootstrap2023.css">
     <link rel="stylesheet" href="../static/owl/owl.carousel.min.css">
     <link rel="stylesheet" href="../static/owl/owl.theme.default.min.css">
@@ -50,9 +64,10 @@
       </div>
     </div>
     <div style="display: flex;justify-content: center;align-items: center;"><a href="#" style="display: block;position: absolute;z-index: 999;"><img src="../static/images/logo1.png" height="120px" class="logo"></a></div>
-  </div>
-  
-  <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+</div> {% endcomment %}
+ 
+
+<!-- <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">趣放假<img src="../static/images/logo_icon.png" width="20px" style="margin-left: 5px;"></a>
       <button class="navbar-toggler me-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,201 +98,281 @@
             <a href="/login" class="nav-link">登入</a>
           </li>
         </ul> -->
-        <!-- <ul class="name_ul">
+<!-- <ul class="name_ul">
           <li class="nav-item dropdown name_li" style="list-style-type: none;">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Username
-            </a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Username</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Setting</a></li>
               <li><a class="dropdown-item" href="#">Log out</a></li>
             </ul>
           </li>
         </ul> -->
-      <!-- </div>
+<!-- </div>
     </div>
   </nav> -->
 
+{% block body %}
   <div class="banner">
     <span ng-app="" ng-init="title = '趣放假 | Trip Fun Chill'"><strong class="sysname" ng-bind="title"></strong></span>
   </div>
-  <div style="display: flex; justify-content: center;width: 100vw; margin-top: 5px;">
-      <form action="./attraction_details" class="d-flex" role="search" style="width:80%">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit" >Search</button>
-      </form>
+  <div style="display: flex;
+              justify-content: center;
+              width: 100vw;
+              margin-top: 5px">
+    <form action="./attraction_details"
+          class="d-flex"
+          role="search"
+          style="width:80%">
+      <input class="form-control me-2"
+             type="search"
+             placeholder="Search"
+             aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">
+        Search
+      </button>
+    </form>
   </div>
-  
+ 
   <div>
-    <h3 class="hot_txt" ><img src="../static/images/hot_icon.png" width="28px"> 熱門景點</h3>
+    <h3 class="hot_txt">
+      <img src="../static/images/hot_icon.png" width="28px">
+      熱門景點
+    </h3>
   </div>
-  
-  
+ 
+ 
   <div class="owl-carousel owl-theme" style="text-align: center;">
     <div class="item" id="hotBlock">
       <i class="fa-solid fa-heart heart_icon"></i>
       <img src="../static/images/Zhongzheng.jpeg" alt="">
       <div class="hot_spotC">
-        <h4 class="c_txt">中正紀念堂</h4>
-        <p class="c_txt">位於台北市中正區位於台北市中正區....<br>
-        建議停留時間：大約1小時?
+        <h4 class="c_txt">
+          中正紀念堂
+        </h4>
+        <p class="c_txt">
+          位於台北市中正區位於台北市中正區....
+          <br>
+          建議停留時間：大約1小時?
         </p>
-        <!-- <i class="fa-solid fa-plus add_icon"></i> -->
-        <div class="dropdown">
-          <button onclick="add()" class="dropbtn">+</button>
-          <div id="myDropdown" class="dropdown-content">
-            <a href="#">新增行程</a>
-            <a href="#">一日遊</a>
-            <a href="#">逛街</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="item" >
-      <i class="fa-solid fa-heart heart_icon"></i>
-      <img src="../static/images/Daan.jpeg" alt="">
-      <div class="hot_spotC">
-        <h4 class="c_txt">大安森林公園</h4>
-        <p class="c_txt">位於台北市中正區位於台北市中正區....<br>
-        建議停留時間：大約1小時?</p>
-        <!-- <i class="fa-solid fa-plus add_icon"></i> -->
-        <div class="dropdown">
-          <button onclick="add1()" class="dropbtn">+</button>
-          <div id="myDropdown1" class="dropdown-content">
-            <a href="#">新增行程</a>
-            <a href="#">一日遊</a>
-            <a href="#">逛街</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="item" >
-      <i class="fa-solid fa-heart heart_icon"></i>
-      <img src="../static/images/101.jpg" alt="">
-      <div class="hot_spotC">
-        <h4 class="c_txt">台北101</h4>
-        <p class="c_txt">位於台北市中正區位於台北市中正區....<br>
-        建議停留時間：大約1小時?
-        <!-- <i class="fa-solid fa-plus add_icon"></i> -->
-        <div class="dropdown">
-          <button onclick="add2()" class="dropbtn">+</button>
-          <div id="myDropdown2" class="dropdown-content">
-            <a href="#">新增行程</a>
-            <a href="#">一日遊</a>
-            <a href="#">逛街</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="item" >
-      <i class="fa-solid fa-heart heart_icon"></i>
-      <img src="../static/images/Datong.jpeg" alt="">
-      <div class="hot_spotC">
-        <h4 class="c_txt">大同區</h4>
-        <p class="c_txt">位於台北市中正區位於台北市中正區....<br>
-        建議停留時間：大約1小時?
-        <i class="fa-solid fa-plus add_icon"></i>
-      </div>
-    </div>
-    <div class="item" >
-      <i class="fa-solid fa-heart heart_icon"></i>
-      <img src="../static/images/pingxi.jpg" alt="">
-      <div class="hot_spotC">
-        <h4 class="c_txt">平溪</h4>
-        <p class="c_txt">位於台北市中正區位於台北市中正區....<br>
-        建議停留時間：大約1小時?
-        <i class="fa-solid fa-plus add_icon"></i>
-      </div>
-    </div>
-    <div class="item" >
-      <i class="fa-solid fa-heart heart_icon"></i>
-      <img src="../static/images/street.jpg" alt="">
-      <div class="hot_spotC">
-        <h4 class="c_txt">九份老街</h4>
-        <p class="c_txt">位於台北市中正區位於台北市中正區....<br>
-        建議停留時間：大約1小時?
-        <i class="fa-solid fa-plus add_icon"></i>
-      </div>
-    </div>
-    <div class="item" >
-      <i class="fa-solid fa-heart heart_icon"></i>
-      <img src="../static/images/twotwoeight.jpeg" alt="">
-      <div class="hot_spotC">
-        <h4 class="c_txt">二二八公園</h4>
-        <p class="c_txt">位於台北市中正區位於台北市中正區....<br>
-        建議停留時間：大約1小時?
-        <i class="fa-solid fa-plus add_icon"></i>
-      </div>
-    </div>
-    <div class="item" >
-      <i class="fa-solid fa-heart heart_icon"></i>
-      <img src="../static/images/zoo.jpeg" alt="">
-      <div class="hot_spotC">
-        <h4 class="c_txt">動物園</h4>
-        <p class="c_txt">位於台北市中正區位於台北市中正區....<br>
-        建議停留時間：大約1小時?
-        <i class="fa-solid fa-plus add_icon"></i>
-      </div>
-    </div>
-    <div class="item" >
-      <i class="fa-solid fa-heart heart_icon"></i>
-      <img src="../static/images/chang.jpeg" alt="">
-      <div class="hot_spotC">
-        <h4 class="c_txt">國父紀念館</h4>
-        <p class="c_txt">位於台北市中正區....<br>
-        建議停留時間：大約1小時?
-        <i class="fa-solid fa-plus add_icon"></i>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row col-md-12">
-      <h3 class="hot_txt" ><img src="../static/images/hot_icon.png" width="28px"> 熱門行程</h3>
-      <div class="hot_spot_block col-md-4 ">
-        <div class="heart_icon_img">
-        <img src="../static/images/street.jpg" class="spot_img img-responsive" width="100%">
-        <i class="fa-solid fa-heart heart_icon"></i>
-        </div>
-        <div class="spot_txt">
-          <h4>九份老街</h4>
-          <h5>aldfhlajkdhsfl</h5>
-          <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
-        </div>
-      </div>
-      <div class="hot_spot_block col-md-4 ">
-        <div class="heart_icon_img">
-        <img src="../static/images/street.jpg" class="img-responsive" width="100%">
-        <i class="fa-solid fa-heart heart_icon"></i>
-        </div>
-        <div class="spot_txt">
-          <h4>九份老街</h4>
-          <h5>aldfhlajkdhsfl</h5>
-          <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
-        </div>
-      </div>
-      <div class="hot_spot_block col-md-4 ">
-        <div class="heart_icon_img">
-        <img src="../static/images/street.jpg" class="img-responsive" width="100%">
-        <i class="fa-solid fa-heart heart_icon"></i>
-        </div>
-        <div class="spot_txt">
-          <h4>九份老街</h4>
-          <h5>aldfhlajkdhsfl</h5>
-          <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
+      </p>
+      <!-- <i class="fa-solid fa-plus add_icon"></i> -->
+      <div class="dropdown">
+        <button onclick="add()" class="dropbtn">
+          +
+        </button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="#">新增行程</a>
+          <a href="#">一日遊</a>
+          <a href="#">逛街</a>
         </div>
       </div>
     </div>
   </div>
-    
-</body>
+  <div class="item">
+    <i class="fa-solid fa-heart heart_icon"></i>
+    <img src="../static/images/Daan.jpeg" alt="">
+    <div class="hot_spotC">
+      <h4 class="c_txt">
+        大安森林公園
+      </h4>
+      <p class="c_txt">
+        位於台北市中正區位於台北市中正區....
+        <br>
+        建議停留時間：大約1小時?
+      </p>
+    </p>
+    <!-- <i class="fa-solid fa-plus add_icon"></i> -->
+    <div class="dropdown">
+      <button onclick="add1()" class="dropbtn">
+        +
+      </button>
+      <div id="myDropdown1" class="dropdown-content">
+        <a href="#">新增行程</a>
+        <a href="#">一日遊</a>
+        <a href="#">逛街</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="item">
+  <i class="fa-solid fa-heart heart_icon"></i>
+  <img src="../static/images/101.jpg" alt="">
+  <div class="hot_spotC">
+    <h4 class="c_txt">
+      台北101
+    </h4>
+    <p class="c_txt">
+      位於台北市中正區位於台北市中正區....
+      <br>
+      建議停留時間：大約1小時?
+    </p>
+    <!-- <i class="fa-solid fa-plus add_icon"></i> -->
+    <div class="dropdown">
+      <button onclick="add2()" class="dropbtn">
+        +
+      </button>
+      <div id="myDropdown2" class="dropdown-content">
+        <a href="#">新增行程</a>
+        <a href="#">一日遊</a>
+        <a href="#">逛街</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="item">
+  <i class="fa-solid fa-heart heart_icon"></i>
+  <img src="../static/images/Datong.jpeg" alt="">
+  <div class="hot_spotC">
+    <h4 class="c_txt">
+      大同區
+    </h4>
+    <p class="c_txt">
+      位於台北市中正區位於台北市中正區....
+      <br>
+      建議停留時間：大約1小時?
+    </p>
+    <i class="fa-solid fa-plus add_icon"></i>
+  </div>
+</div>
+<div class="item">
+  <i class="fa-solid fa-heart heart_icon"></i>
+  <img src="../static/images/pingxi.jpg" alt="">
+  <div class="hot_spotC">
+    <h4 class="c_txt">
+      平溪
+    </h4>
+    <p class="c_txt">
+      位於台北市中正區位於台北市中正區....
+      <br>
+      建議停留時間：大約1小時?
+    </p>
+    <i class="fa-solid fa-plus add_icon"></i>
+  </div>
+</div>
+<div class="item">
+  <i class="fa-solid fa-heart heart_icon"></i>
+  <img src="../static/images/street.jpg" alt="">
+  <div class="hot_spotC">
+    <h4 class="c_txt">
+      九份老街
+    </h4>
+    <p class="c_txt">
+      位於台北市中正區位於台北市中正區....
+      <br>
+      建議停留時間：大約1小時?
+    </p>
+    <i class="fa-solid fa-plus add_icon"></i>
+  </div>
+</div>
+<div class="item">
+  <i class="fa-solid fa-heart heart_icon"></i>
+  <img src="../static/images/twotwoeight.jpeg" alt="">
+  <div class="hot_spotC">
+    <h4 class="c_txt">
+      二二八公園
+    </h4>
+    <p class="c_txt">
+      位於台北市中正區位於台北市中正區....
+      <br>
+      建議停留時間：大約1小時?
+    </p>
+    <i class="fa-solid fa-plus add_icon"></i>
+  </div>
+</div>
+<div class="item">
+  <i class="fa-solid fa-heart heart_icon"></i>
+  <img src="../static/images/zoo.jpeg" alt="">
+  <div class="hot_spotC">
+    <h4 class="c_txt">
+      動物園
+    </h4>
+    <p class="c_txt">
+      位於台北市中正區位於台北市中正區....
+      <br>
+      建議停留時間：大約1小時?
+    </p>
+    <i class="fa-solid fa-plus add_icon"></i>
+  </div>
+</div>
+<div class="item">
+  <i class="fa-solid fa-heart heart_icon"></i>
+  <img src="../static/images/chang.jpeg" alt="">
+  <div class="hot_spotC">
+    <h4 class="c_txt">
+      國父紀念館
+    </h4>
+    <p class="c_txt">
+      位於台北市中正區....
+      <br>
+      建議停留時間：大約1小時?
+    </p>
+    <i class="fa-solid fa-plus add_icon"></i>
+  </div>
+</div>
+</div>
 
-<script src="../static/js/bootstrap.min.js"></script>
-<script src="../static/js/jquery-3.7.0.min.js"></script>
-<script src="../static/js/owl.carousel.min.js"></script>
-<script src="../static/js/index.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<div class="container">
+  <div class="row col-md-12">
+    <h3 class="hot_txt">
+      <img src="../static/images/hot_icon.png" width="28px">
+      熱門行程
+    </h3>
+    <div class="hot_spot_block col-md-4 ">
+      <div class="heart_icon_img">
+        <img src="../static/images/street.jpg"
+             class="spot_img img-responsive"
+             width="100%">
+        <i class="fa-solid fa-heart heart_icon"></i>
+      </div>
+      <div class="spot_txt">
+        <h4>
+          九份老街
+        </h4>
+        <h5>
+          aldfhlajkdhsfl
+        </h5>
+        <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
+      </div>
+    </div>
+    <div class="hot_spot_block col-md-4 ">
+      <div class="heart_icon_img">
+        <img src="../static/images/street.jpg" class="img-responsive" width="100%">
+        <i class="fa-solid fa-heart heart_icon"></i>
+      </div>
+      <div class="spot_txt">
+        <h4>
+          九份老街
+        </h4>
+        <h5>
+          aldfhlajkdhsfl
+        </h5>
+        <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
+      </div>
+    </div>
+    <div class="hot_spot_block col-md-4 ">
+      <div class="heart_icon_img">
+        <img src="../static/images/street.jpg" class="img-responsive" width="100%">
+        <i class="fa-solid fa-heart heart_icon"></i>
+      </div>
+      <div class="spot_txt">
+        <h4>
+          九份老街
+        </h4>
+        <h5>
+          aldfhlajkdhsfl
+        </h5>
+        <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-
-</html>
-
+{% endblock body %}
+ 
+{% block content_script %}
+  <script src="../static/js/bootstrap.min.js"></script>
+  <script src="../static/js/jquery-3.7.0.min.js"></script>
+  <script src="../static/js/owl.carousel.min.js"></script>
+  <script src="../static/js/index.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+{% endblock %}

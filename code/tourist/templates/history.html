@@ -1,27 +1,29 @@
 <!-- 我的行程頁面(歷史紀錄) -->
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>首頁</title>
-    
-    <link rel="stylesheet" href="../static/css/bootstrap2023.css">
-    <link rel="stylesheet" href="../static/css/all.css">
-    
+{% extends 'base.html' %}
+{% block title %}我的行程{% endblock %}
+{% block content %}
+  <link rel="stylesheet" href="../static/css/bootstrap2023.css">
+  <link rel="stylesheet" href="../static/css/all.css">
+{% endblock %}
 
 
-  
-
-</head>
-<body>
+{% comment %} <body>
   <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">趣放假<img src="../static/images/logo_icon.png" width="20px" style="margin-left: 5px;"></a>
-      <button class="navbar-toggler me-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="/">趣放假
+        <img src="../static/images/logo_icon.png"
+             width="20px"
+             style="margin-left: 5px">
+      </a>
+      <button class="navbar-toggler me-auto"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -46,22 +48,34 @@
       <div>
         <ul class="name_ul">
           <li class="nav-item dropdown name_li" style="list-style-type: none;">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              UserName
-            </a>
+            <a class="nav-link dropdown-toggle"
+               href="#"
+               role="button"
+               data-bs-toggle="dropdown"
+               aria-expanded="false">UserName</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Setting</a></li>
-              <li><a class="dropdown-item" href="#">Log out</a></li>
+              <li>
+                <a class="dropdown-item" href="#">Setting</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Log out</a>
+              </li>
             </ul>
           </li>
         </ul>
       </div>
     </div>
-  </nav>
-    
-</body>
+</nav> {% endcomment %}
+ 
+{% block body %}
+  {% comment %} 內容放這~~~~~~~~~~~ {% endcomment %}
+{% endblock body %}
 
-<script src="../static/js/bootstrap.min.js"></script>
-<script src="../static/js/jquery-3.7.0.min.js"></script>
+
+{% block content_script %}
+  <script src="../static/js/bootstrap.min.js"></script>
+  <script src="../static/js/jquery-3.7.0.min.js"></script>
+{% endblock %}
+
 
 </html>

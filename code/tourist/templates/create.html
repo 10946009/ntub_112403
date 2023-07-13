@@ -1,29 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>建立行程</title>
-    <link rel="stylesheet" href="../static/css/bootstrap2023.css">
-    <link rel="stylesheet" href="../static/css/all.css">
-    <link rel="stylesheet" href="../static/css/create.css">
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
+{% extends 'base.html' %}
+{% block title %}建立行程{% endblock %}
+{% block content %}
+  <link rel="stylesheet" href="../static/css/bootstrap2023.css">
+  <link rel="stylesheet" href="../static/css/all.css">
+  <link rel="stylesheet" href="../static/css/create.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+{% endblock %}
+ 
 
-
-</head>
-<body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+ 
+{% comment %} <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">趣放假<img src="../static/images/logo_icon.png" width="20px" style="margin-left: 5px;"></a>
-      <button class="navbar-toggler me-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="/">趣放假
+        <img src="../static/images/logo_icon.png"
+             width="20px"
+             style="margin-left: 5px">
+      </a>
+      <button class="navbar-toggler me-auto"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -48,419 +52,605 @@
       <div>
         <ul class="name_ul">
           <li class="nav-item dropdown name_li" style="list-style-type: none;">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              UserName
-            </a>
+            <a class="nav-link dropdown-toggle"
+               href="#"
+               role="button"
+               data-bs-toggle="dropdown"
+               aria-expanded="false">UserName</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Setting</a></li>
-              <li><a class="dropdown-item" href="#">Log out</a></li>
+              <li>
+                <a class="dropdown-item" href="#">Setting</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Log out</a>
+              </li>
             </ul>
           </li>
         </ul>
       </div>
     </div>
-  </nav>
-
-    <div class="create_div" style="display: flex;justify-content: center;">
-      <main>
-        <div class="container">
-          <div class="row justify-content-md-center" style="text-align: center;">
-            <div class="col col-lg-2"><a href="#tab_c" class="tab_a">建立行程</a></div>
-            <div class="col col-lg-2"><a href="#tab_f" class="tab_a">我的收藏</a></div>
-            <div class="col col-lg-2"><a href="#tab_r" class="tab_a">推薦景點</a></div>
+</nav> {% endcomment %}
+{% block body %}
+  <div class="create_div" style="display: flex;justify-content: center;">
+    <main>
+      <div class="container">
+        <div class="row justify-content-md-center" style="text-align: center;">
+          <div class="col col-lg-2">
+            <a href="#tab_c" class="tab_a">建立行程</a>
+          </div>
+          <div class="col col-lg-2">
+            <a href="#tab_f" class="tab_a">我的收藏</a>
+          </div>
+          <div class="col col-lg-2">
+            <a href="#tab_r" class="tab_a">推薦景點</a>
           </div>
         </div>
-        
-        <div id="contents">
-          <section id="tab_c" ng-app="" ng-init="name='行程名稱'">
-            <form action="" style="display: flex;justify-content: center;">
-              <div class="row" style="width: 80%;">
-                <div class="col-md-4 tabc_txt">行程名稱：<input type="text" class="input_txt" ng-model="travName" placeholder="請輸入行程名稱" style="width: 180px;"></div>
-                <div class="col-md-4 tabc_txt">出發日期：<input type="date" class="input_txt" value="2023-05-25"></div>
-                <div class="col-md-4 tabc_txt">結束日期：<input type="date" class="input_txt" value="2023-05-26"></div>
+      </div>
+ 
+      <div id="contents">
+        <section id="tab_c" ng-app="" ng-init="name='行程名稱'">
+          <form action="" style="display: flex;justify-content: center;">
+            <div class="row" style="width: 80%;">
+              <div class="col-md-4 tabc_txt">
+                行程名稱：
+                <input type="text"
+                       class="input_txt"
+                       ng-model="travName"
+                       placeholder="請輸入行程名稱"
+                       style="width: 180px">
               </div>
-            </form>
-            <div class="row">
-              <div class="col-md-4 div_day" style="background-color: #fffdc8;">
-                <div class="row">
-                  <div class="div_day " style="text-align: center;">
-                    <div class="tabD"><span ng-bind="travName"></span></div>
-                    <div class="tabD"><a href="#tab_c" class="tab_day">第一天</a></div>
-                    <div class="tabD"><a href="#tab_c" class="tab_day">第二天</a></div>
-                    <div class=" tabc_txt"><input type="submit" class="input_txt" value="儲存"></div>
+              <div class="col-md-4 tabc_txt">
+                出發日期：
+                <input type="date" class="input_txt" value="2023-05-25">
+              </div>
+              <div class="col-md-4 tabc_txt">
+                結束日期：
+                <input type="date" class="input_txt" value="2023-05-26">
+              </div>
+            </div>
+          </form>
+          <div class="row">
+            <div class="col-md-4 div_day" style="background-color: #fffdc8;">
+              <div class="row">
+                <div class="div_day " style="text-align: center;">
+                  <div class="tabD">
+                    <span ng-bind="travName"></span>
+                  </div>
+                  <div class="tabD">
+                    <a href="#tab_c" class="tab_day">第一天</a>
+                  </div>
+                  <div class="tabD">
+                    <a href="#tab_c" class="tab_day">第二天</a>
+                  </div>
+                  <div class=" tabc_txt">
+                    <input type="submit" class="input_txt" value="儲存">
                   </div>
                 </div>
               </div>
-              <div class="col-md-8" style="background-color: #eee;">
-                <form action="#tab_c">
-                  <div>
-                    <div class="tabD">
-                      <span id="tabDT">請輸入出發時間：</span><input type="time" value="09:00">
-                    </div>
-                    <div class="tabD">
-                      <span id="tabDL">使用者位置：</span><input type="text" placeholder="請輸入位置" class="input_txt" value="台北商業大學">
-                    </div>
-                  </div>
-                </form>
+            </div>
+            <div class="col-md-8" style="background-color: #eee;">
+              <form action="#tab_c">
                 <div>
-                  <!-- <span class="create_txt" >第一天</span>
+                  <div class="tabD">
+                    <span id="tabDT">請輸入出發時間：</span>
+                    <input type="time" value="09:00">
+                  </div>
+                  <div class="tabD">
+                    <span id="tabDL">使用者位置：</span>
+                    <input type="text" placeholder="請輸入位置" class="input_txt" value="台北商業大學">
+                  </div>
+                </div>
+              </form>
+              <div>
+                <!-- <span class="create_txt" >第一天</span>
                   <button style="border: none;">+</button> -->
-                  <div class="spot" id="spot1">
-                    國父紀念館
-                    <p>位在台北市XX區</p>
-                    <p>目前人潮流量：適中<br>
-                      營業時間：09:00-18:00 <br>
-                      建議停留時間：1小時
-                    </p>
-                  </div>
-                  <div class="spot" id="spot2">
-                    松山文創園區
-                    <p>位在台北市XX區</p>
-                    <p>目前人潮流量：適中<br>
-                      營業時間：10:00-18:00 <br>
-                      建議停留時間：2小時
-                    </p>
-                  </div>
+                <div class="spot" id="spot1">
+                  國父紀念館
+                  <p>位在台北市XX區</p>
+                  <p>
+                    目前人潮流量：適中
+                    <br>
+                    營業時間：09:00-18:00
+                    <br>
+                    建議停留時間：1小時
+                  </p>
+                </div>
+                <div class="spot" id="spot2">
+                  松山文創園區
+                  <p>位在台北市XX區</p>
+                  <p>
+                    目前人潮流量：適中
+                    <br>
+                    營業時間：10:00-18:00
+                    <br>
+                    建議停留時間：2小時
+                  </p>
                 </div>
               </div>
             </div>
+          </div>
 
 
-            </form>
-          </section>
-          
-          <section id="tab_f" style="clear: both;margin-top: 10px;">
-            <!-- <span>我的收藏</span> -->
-            <div class="row">
-              <div class="col-4">
-                <div style="text-align: center;">
-                  <div class="heart_icon_box">
-                    <img src="../static/images/pingxi.jpg" class="img-responsive" width="100%">
-                    <i class="fa-solid fa-heart heart_icon"></i>
-                  </div>
-                  <div class="spot_like_txt">
-                    <!-- <i class="fa-solid fa-plus add_icon"></i> -->
-                    <div class="dropdown">
-                      <button onclick="add()" class="dropbtn">+</button>
-                      <div id="myDropdown" class="dropdown-content">
-                        <a href="#">新增行程</a>
-                        <a href="#">一日遊</a>
-                        <a href="#">逛街</a>
-                      </div>
-                    </div>
-                    <h3>平溪老街</h3>
-                    <p>123456</p>
-                  </div>
-                </div>
+        </form>
+      </section>
+ 
+      <section id="tab_f" style="clear: both;margin-top: 10px;">
+        <!-- <span>我的收藏</span> -->
+        <div class="row">
+          <div class="col-4">
+            <div style="text-align: center;">
+              <div class="heart_icon_box">
+                <img src="../static/images/pingxi.jpg" class="img-responsive" width="100%">
+                <i class="fa-solid fa-heart heart_icon"></i>
               </div>
-              <div class="col-4">
-                <div style="text-align: center;">
-                  <div class="heart_icon_box">
-                    <img src="../static/images/pingxi.jpg" class="img-responsive" width="100%">
-                    <i class="fa-solid fa-heart heart_icon"></i>
-                  </div>
-                  <div class="spot_like_txt">
-                    <!-- <i class="fa-solid fa-plus add_icon"></i> -->
-                    <div class="dropdown">
-                      <button onclick="add1()" class="dropbtn">+</button>
-                      <div id="myDropdown1" class="dropdown-content">
-                        <a href="#">新增行程</a>
-                        <a href="#">一日遊1</a>
-                        <a href="#">逛街</a>
-                      </div>
-                    </div>
-                    <h3>平溪老街</h3>
-                    <p>123456</p>
+              <div class="spot_like_txt">
+                <!-- <i class="fa-solid fa-plus add_icon"></i> -->
+                <div class="dropdown">
+                  <button onclick="add()" class="dropbtn">+</button>
+                  <div id="myDropdown" class="dropdown-content">
+                    <a href="#">新增行程</a>
+                    <a href="#">一日遊</a>
+                    <a href="#">逛街</a>
                   </div>
                 </div>
-              </div>
-              <div class="col-4">
-                <div style="text-align: center;">
-                  <div class="heart_icon_box">
-                    <img src="../static/images/pingxi.jpg" class="img-responsive" width="100%">
-                    <i class="fa-solid fa-heart heart_icon"></i>
-                  </div>
-                  <div class="spot_like_txt">
-                    <!-- <i class="fa-solid fa-plus add_icon"></i> -->
-                    <div class="dropdown">
-                      <button onclick="add2()" class="dropbtn">+</button>
-                      <div id="myDropdown2" class="dropdown-content">
-                        <a href="#">新增行程</a>
-                        <a href="#">一日遊1</a>
-                        <a href="#">逛街2</a>
-                      </div>
-                    </div>
-                    <h3>平溪老街</h3>
-                    <p>123456</p>
-                  </div>
-                </div>
+                <h3>
+                  平溪老街
+                </h3>
+                <p>
+                  123456
+                </p>
               </div>
             </div>
-          </section>
-
-          <section id="tab_r"  style="margin-top: 10px;">
-            <!-- <span>景點推薦</span> -->
-            <div style="display: flex; justify-content: center; margin-top: 5px;">
-                <form class="d-flex" role="search" style="width:80%">
-                  <input class="form-control me-2" type="search" placeholder="查詢景點" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-            <form action="" style="margin: 20px;" class="form_rec">
-              <select name="s_day" id="s_day" style="font-size: 18px;">
-                <option value="1" >第一天</option>
-                <option value="2">第二天</option>
-              </select>
-              <select name="s_local" id="s_local" style="font-size: 18px;">
-                <option value="tai" >台北市</option>
-              </select>
-              <select name="s_local_sec" id="s_local_sec" style="font-size: 18px;">
-                <option value="sec1" >中正區</option>
-                <option value="sec2" >士林區</option>
-                <option value="sec3" >內湖區</option>
-                <option value="sec4" >中山區</option>
-                <option value="sec5" >大同區</option>
-                <option value="sec6" >松山區</option>
-                <option value="sec7" >萬華區</option>
-                <option value="sec8" >北投區</option>
-                <option value="sec9" >大安區</option>
-                <option value="sec10">信義區</option>
-                <option value="sec11">南港區</option>
-                <option value="sec12">文山區</option>
-              </select>
-                <div style="font-size: 20px; margin: 5px auto;">
-                  <span><strong>是否推薦相似景點</strong></span>
-                  <input type="radio" id="yes" value="是" name="yn" style="margin-left: 5px;"><strong>是</strong>
-                  <input type="radio" id="no" value="否" name="yn" style="margin-left: 5px;"><strong>否</strong>
-                  <input type="submit" value="儲存" style="border-radius: 10px;margin-left: 5px;">
-                </div>
-
-              <div class="container">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="row chebox_item">
-                        <div class="col-md-8">
-                          <div class="row">
-                            <div class="col-md-2 chebox">
-                              <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
-                            </div>
-                            <div class="col-md-10 chebox_info">
-                              <span><strong>二二八公園</strong>
-                                <p>地址</p>
-                                <p>評分</p>
-                                <p>營業時間</p>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-4 rec_spot">
-                          <img src="../static/images/twotwoeight.jpeg" class="img-responsive" width="100%">
-                        </div>
-                      </div>
-                      <div class="row chebox_item">
-                        <div class="col-md-8">
-                          <div class="row">
-                            <div class="col-md-2 chebox">
-                              <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
-                            </div>
-                            <div class="col-md-10 chebox_info">
-                              <span><strong>二二八公園</strong>
-                                <p>地址</p>
-                                <p>評分</p>
-                                <p>營業時間</p>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-4 rec_spot">
-                          <img src="../static/images/twotwoeight.jpeg" class="img-responsive rec_spot" width="100%">
-                        </div>
-                      </div>
-                      <div class="row chebox_item">
-                        <div class="col-md-8">
-                          <div class="row">
-                            <div class="col-md-2 chebox">
-                              <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
-                            </div>
-                            <div class="col-md-10 chebox_info">
-                              <span><strong>二二八公園</strong>
-                                <p>地址</p>
-                                <p>評分</p>
-                                <p>營業時間</p>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-4 rec_spot">
-                          <img src="../static/images/twotwoeight.jpeg" class="img-responsive rec_spot" width="100%">
-                        </div>
-                      </div>
-                      <div class="row chebox_item">
-                        <div class="col-md-8">
-                          <div class="row">
-                            <div class="col-md-2 chebox">
-                              <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
-                            </div>
-                            <div class="col-md-10 chebox_info">
-                              <span><strong>二二八公園</strong>
-                                <p>地址</p>
-                                <p>評分</p>
-                                <p>營業時間</p>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-4 rec_spot">
-                          <img src="../static/images/twotwoeight.jpeg" class="img-responsive rec_spot" width="100%">
-                        </div>
-                      </div>
-                      <div class="row chebox_item">
-                        <div class="col-md-8">
-                          <div class="row">
-                            <div class="col-md-2 chebox">
-                              <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
-                            </div>
-                            <div class="col-md-10 chebox_info">
-                              <span><strong>二二八公園</strong>
-                                <p>地址</p>
-                                <p>評分</p>
-                                <p>營業時間</p>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-4 rec_spot">
-                          <img src="../static/images/twotwoeight.jpeg" class="img-responsive rec_spot" width="100%">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="row chebox_item">
-                        <div class="col-md-8">
-                          <div class="row">
-                            <div class="col-md-2 chebox">
-                              <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
-                            </div>
-                            <div class="col-md-10 chebox_info">
-                              <span><strong>二二八公園</strong>
-                                <p>地址</p>
-                                <p>評分</p>
-                                <p>營業時間</p>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-4 rec_spot">
-                          <img src="../static/images/twotwoeight.jpeg" class="img-responsive rec_spot" width="100%">
-                        </div>
-                      </div>
-                      <div class="row chebox_item">
-                        <div class="col-md-8">
-                          <div class="row">
-                            <div class="col-md-2 chebox">
-                              <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
-                            </div>
-                            <div class="col-md-10 chebox_info">
-                              <span><strong>二二八公園</strong>
-                                <p>地址</p>
-                                <p>評分</p>
-                                <p>營業時間</p>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-4 rec_spot">
-                          <img src="../static/images/twotwoeight.jpeg" class="img-responsive rec_spot" width="100%">
-                        </div>
-                      </div>
-                      <div class="row chebox_item">
-                        <div class="col-md-8">
-                          <div class="row">
-                            <div class="col-md-2 chebox">
-                              <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
-                            </div>
-                            <div class="col-md-10 chebox_info">
-                              <span><strong>二二八公園</strong>
-                                <p>地址</p>
-                                <p>評分</p>
-                                <p>營業時間</p>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-4 rec_spot">
-                          <img src="../static/images/twotwoeight.jpeg" class="img-responsive rec_spot" width="100%">
-                        </div>
-                      </div>
-                      <div class="row chebox_item">
-                        <div class="col-md-8">
-                          <div class="row">
-                            <div class="col-md-2 chebox">
-                              <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
-                            </div>
-                            <div class="col-md-10 chebox_info">
-                              <span><strong>二二八公園</strong>
-                                <p>地址</p>
-                                <p>評分</p>
-                                <p>營業時間</p>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-4 rec_spot">
-                          <img src="../static/images/twotwoeight.jpeg" class="img-responsive rec_spot" width="100%">
-                        </div>
-                      </div>
-                      <div class="row chebox_item">
-                        <div class="col-md-8">
-                          <div class="row">
-                            <div class="col-md-2 chebox">
-                              <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
-                            </div>
-                            <div class="col-md-10 chebox_info">
-                              <span><strong>二二八公園</strong>
-                                <p>地址</p>
-                                <p>評分</p>
-                                <p>營業時間</p>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-4 rec_spot">
-                          <img src="../static/images/twotwoeight.jpeg" class="img-responsive rec_spot" width="100%">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+          </div>
+          <div class="col-4">
+            <div style="text-align: center;">
+              <div class="heart_icon_box">
+                <img src="../static/images/pingxi.jpg" class="img-responsive" width="100%">
+                <i class="fa-solid fa-heart heart_icon"></i>
               </div>
-
-                
-                <div class="dialog" id="dialog">
-                  <div class="close" onclick="hideDialog();" id="x">x</div>
-                  <form action="#">
-                    <span>是否需要推薦相似景點</span> <br>
-                    <label class="yn" for="yes">是</label><input type="radio" id="yes" value="是" name="yn">
-                    <label class="yn" for="no">否</label><input type="radio" id="no" value="否" name="yn"><br>
-                    <input type="submit" value="確定">
-                  </form>
-                  
+              <div class="spot_like_txt">
+                <!-- <i class="fa-solid fa-plus add_icon"></i> -->
+                <div class="dropdown">
+                  <button onclick="add1()" class="dropbtn">
+                    +
+                  </button>
+                  <div id="myDropdown1" class="dropdown-content">
+                    <a href="#">新增行程</a>
+                    <a href="#">一日遊1</a>
+                    <a href="#">逛街</a>
+                  </div>
                 </div>
-
-              </table>
-            </form>
-
-          
+                <h3>
+                  平溪老街
+                </h3>
+                <p>
+                  123456
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div style="text-align: center;">
+              <div class="heart_icon_box">
+                <img src="../static/images/pingxi.jpg" class="img-responsive" width="100%">
+                <i class="fa-solid fa-heart heart_icon"></i>
+              </div>
+              <div class="spot_like_txt">
+                <!-- <i class="fa-solid fa-plus add_icon"></i> -->
+                <div class="dropdown">
+                  <button onclick="add2()" class="dropbtn">
+                    +
+                  </button>
+                  <div id="myDropdown2" class="dropdown-content">
+                    <a href="#">新增行程</a>
+                    <a href="#">一日遊1</a>
+                    <a href="#">逛街2</a>
+                  </div>
+                </div>
+                <h3>
+                  平溪老街
+                </h3>
+                <p>
+                  123456
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-      </main>
+      <section id="tab_r"  style="margin-top: 10px;">
+        <!-- <span>景點推薦</span> -->
+        <div style="display: flex; justify-content: center; margin-top: 5px;">
+          <form class="d-flex" role="search" style="width:80%">
+            <input class="form-control me-2"
+                   type="search"
+                   placeholder="查詢景點"
+                   aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+        <form action="" style="margin: 20px;" class="form_rec">
+          <select name="s_day" id="s_day" style="font-size: 18px;">
+            <option value="1">
+              第一天
+            </option>
+            <option value="2">
+              第二天
+            </option>
+          </select>
+          <select name="s_local" id="s_local" style="font-size: 18px;">
+            <option value="tai">
+              台北市
+            </option>
+          </select>
+          <select name="s_local_sec" id="s_local_sec" style="font-size: 18px;">
+            <option value="sec1">
+              中正區
+            </option>
+            <option value="sec2">
+              士林區
+            </option>
+            <option value="sec3">
+              內湖區
+            </option>
+            <option value="sec4">
+              中山區
+            </option>
+            <option value="sec5">
+              大同區
+            </option>
+            <option value="sec6">
+              松山區
+            </option>
+            <option value="sec7">
+              萬華區
+            </option>
+            <option value="sec8">
+              北投區
+            </option>
+            <option value="sec9">
+              大安區
+            </option>
+            <option value="sec10">
+              信義區
+            </option>
+            <option value="sec11">
+              南港區
+            </option>
+            <option value="sec12">
+              文山區
+            </option>
+          </select>
+          <div style="font-size: 20px; margin: 5px auto;">
+            <span><strong>是否推薦相似景點</strong></span>
+            <input type="radio" id="yes" value="是" name="yn" style="margin-left: 5px;">
+            <strong>是</strong>
+            <input type="radio" id="no" value="否" name="yn" style="margin-left: 5px;">
+            <strong>否</strong>
+            <input type="submit"
+                   value="儲存"
+                   style="border-radius: 10px;
+                          margin-left: 5px">
+          </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="row chebox_item">
+                  <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-2 chebox">
+                        <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
+                      </div>
+                      <div class="col-md-10 chebox_info">
+                        <span><strong>二二八公園</strong>
+                          <p>
+                            地址
+                          </p>
+                          <p>
+                            評分
+                          </p>
+                          <p>
+                            營業時間
+                          </p>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 rec_spot">
+                    <img src="../static/images/twotwoeight.jpeg"
+                         class="img-responsive"
+                         width="100%">
+                  </div>
+                </div>
+                <div class="row chebox_item">
+                  <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-2 chebox">
+                        <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
+                      </div>
+                      <div class="col-md-10 chebox_info">
+                        <span><strong>二二八公園</strong>
+                          <p>
+                            地址
+                          </p>
+                          <p>
+                            評分
+                          </p>
+                          <p>
+                            營業時間
+                          </p>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 rec_spot">
+                    <img src="../static/images/twotwoeight.jpeg"
+                         class="img-responsive rec_spot"
+                         width="100%">
+                  </div>
+                </div>
+                <div class="row chebox_item">
+                  <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-2 chebox">
+                        <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
+                      </div>
+                      <div class="col-md-10 chebox_info">
+                        <span><strong>二二八公園</strong>
+                          <p>
+                            地址
+                          </p>
+                          <p>
+                            評分
+                          </p>
+                          <p>
+                            營業時間
+                          </p>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 rec_spot">
+                    <img src="../static/images/twotwoeight.jpeg"
+                         class="img-responsive rec_spot"
+                         width="100%">
+                  </div>
+                </div>
+                <div class="row chebox_item">
+                  <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-2 chebox">
+                        <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
+                      </div>
+                      <div class="col-md-10 chebox_info">
+                        <span><strong>二二八公園</strong>
+                          <p>
+                            地址
+                          </p>
+                          <p>
+                            評分
+                          </p>
+                          <p>
+                            營業時間
+                          </p>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 rec_spot">
+                    <img src="../static/images/twotwoeight.jpeg"
+                         class="img-responsive rec_spot"
+                         width="100%">
+                  </div>
+                </div>
+                <div class="row chebox_item">
+                  <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-2 chebox">
+                        <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
+                      </div>
+                      <div class="col-md-10 chebox_info">
+                        <span><strong>二二八公園</strong>
+                          <p>
+                            地址
+                          </p>
+                          <p>
+                            評分
+                          </p>
+                          <p>
+                            營業時間
+                          </p>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 rec_spot">
+                    <img src="../static/images/twotwoeight.jpeg"
+                         class="img-responsive rec_spot"
+                         width="100%">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row chebox_item">
+                  <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-2 chebox">
+                        <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
+                      </div>
+                      <div class="col-md-10 chebox_info">
+                        <span><strong>二二八公園</strong>
+                          <p>
+                            地址
+                          </p>
+                          <p>
+                            評分
+                          </p>
+                          <p>
+                            營業時間
+                          </p>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 rec_spot">
+                    <img src="../static/images/twotwoeight.jpeg"
+                         class="img-responsive rec_spot"
+                         width="100%">
+                  </div>
+                </div>
+                <div class="row chebox_item">
+                  <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-2 chebox">
+                        <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
+                      </div>
+                      <div class="col-md-10 chebox_info">
+                        <span><strong>二二八公園</strong>
+                          <p>
+                            地址
+                          </p>
+                          <p>
+                            評分
+                          </p>
+                          <p>
+                            營業時間
+                          </p>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 rec_spot">
+                    <img src="../static/images/twotwoeight.jpeg"
+                         class="img-responsive rec_spot"
+                         width="100%">
+                  </div>
+                </div>
+                <div class="row chebox_item">
+                  <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-2 chebox">
+                        <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
+                      </div>
+                      <div class="col-md-10 chebox_info">
+                        <span><strong>二二八公園</strong>
+                          <p>
+                            地址
+                          </p>
+                          <p>
+                            評分
+                          </p>
+                          <p>
+                            營業時間
+                          </p>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 rec_spot">
+                    <img src="../static/images/twotwoeight.jpeg"
+                         class="img-responsive rec_spot"
+                         width="100%">
+                  </div>
+                </div>
+                <div class="row chebox_item">
+                  <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-2 chebox">
+                        <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
+                      </div>
+                      <div class="col-md-10 chebox_info">
+                        <span><strong>二二八公園</strong>
+                          <p>
+                            地址
+                          </p>
+                          <p>
+                            評分
+                          </p>
+                          <p>
+                            營業時間
+                          </p>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 rec_spot">
+                    <img src="../static/images/twotwoeight.jpeg"
+                         class="img-responsive rec_spot"
+                         width="100%">
+                  </div>
+                </div>
+                <div class="row chebox_item">
+                  <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-2 chebox">
+                        <input type="checkbox" style="width: 30px;height: 30px;margin: 10px;">
+                      </div>
+                      <div class="col-md-10 chebox_info">
+                        <span><strong>二二八公園</strong>
+                          <p>
+                            地址
+                          </p>
+                          <p>
+                            評分
+                          </p>
+                          <p>
+                            營業時間
+                          </p>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 rec_spot">
+                    <img src="../static/images/twotwoeight.jpeg"
+                         class="img-responsive rec_spot"
+                         width="100%">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+ 
+          <div class="dialog" id="dialog">
+            <div class="close" onclick="hideDialog();" id="x">
+              x
+            </div>
+            <form action="#">
+              <span>是否需要推薦相似景點</span>
+              <br>
+              <label class="yn" for="yes">
+                是
+              </label>
+              <input type="radio" id="yes" value="是" name="yn">
+              <label class="yn" for="no">
+                否
+              </label>
+              <input type="radio" id="no" value="否" name="yn">
+              <br>
+              <input type="submit" value="確定">
+            </form>
+ 
+          </div>
+
+        </table>
+      </form>
+
+ 
     </div>
-</body>
-    
 
-<script src="../static/js/bootstrap.min.js"></script>
-<script src="../static/js/jquery-3.7.0.min.js"></script>
-<script src="../static/js/create.js"></script>
-
-
+  </main>
+</div>
+{% endblock body %}
+ 
+{% block content_script %}
+  <script src="../static/js/bootstrap.min.js"></script>
+  <script src="../static/js/jquery-3.7.0.min.js"></script>
+  <script src="../static/js/create.js"></script>
+{% endblock %}
 
 </html>
