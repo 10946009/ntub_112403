@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>景點資訊</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% extends 'base.html' %}
+{% block title %}景點資訊{% endblock %}
+{% block content %}
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/static/css/bootstrap2023.css">
     <link rel="stylesheet" href="/static/css/att.css">
     <link rel="stylesheet" href="/static/css/comment.css">
@@ -19,120 +15,187 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/static/js/jquery-3.7.0.min.js"></script>
     <script src="/static/js/bootstrap.js"></script>
-</head>
+{% endblock %}
 
-<body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+{% block body %}
+    {% comment %} <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">趣放假<img src="../static/images/logo_icon.png" width="20px" style="margin-left: 5px;"></a>
-          <button class="navbar-toggler me-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">首頁</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/create">建立行程</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/history">我的行程</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/attraction_details">搜尋景點</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/favorite">我的收藏</a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <ul class="name_ul">
-              <li class="nav-item dropdown name_li" style="list-style-type: none;">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Username
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Setting</a></li>
-                  <li><a class="dropdown-item" href="#">Log out</a></li>
+            <a class="navbar-brand" href="/">趣放假
+                <img src="../static/images/logo_icon.png"
+                     width="20px"
+                     style="margin-left: 5px">
+            </a>
+            <button class="navbar-toggler me-auto"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/create">建立行程</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/history">我的行程</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/attraction_details">搜尋景點</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/favorite">我的收藏</a>
+                    </li>
                 </ul>
-              </li>
-            </ul>
-          </div>
+            </div>
+            <div>
+                <ul class="name_ul">
+                    <li class="nav-item dropdown name_li" style="list-style-type: none;">
+                        <a class="nav-link dropdown-toggle"
+                           href="#"
+                           role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">Username</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="#">Setting</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Log out</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </nav>
-    <div style="width: 100%; height: 40px; background-color: rgb(220, 220, 220);">
+    </nav> {% endcomment %}
+    <div style="width: 100%;
+                height: 40px;
+                background-color: rgb(220, 220, 220)">
         <nav class="sec">
             <ul class="sec-ul">
-                <li><a href="/"><img class="home" src="/static/images/home.png" alt="home"></a></li>
-                <li><a href="/attraction_details">景點資訊</a></li>
-                <li><a href="/services">服務</a></li>
-                <li><a href="/contact">聯繫我們</a></li>
+                <li>
+                    <a href="/">
+                        <img class="home" src="/static/images/home.png" alt="home">
+                    </a>
+                </li>
+                <li>
+                    <a href="/attraction_details">景點資訊</a>
+                </li>
+                <li>
+                    <a href="/services">服務</a>
+                </li>
+                <li>
+                    <a href="/contact">聯繫我們</a>
+                </li>
             </ul>
         </nav>
     </div>
     <div class="row">
         <div class="col-6 leftBox">
             <div class="att">
-                <img class="taipei-att" src="/static/images/search.png" alt="att"
-                    style="width:50px; height:50px;">
-                <h2 style="margin-top:5px; font-size:32px;display: flex; color: rgb(10, 80, 150);"> 搜尋景點</h2><br>
+                <img class="taipei-att"
+                     src="/static/images/search.png"
+                     alt="att"
+                     style="width:50px;
+                            height:50px">
+                <h2 style="margin-top:5px;
+                           font-size:32px;
+                           display: flex;
+                           color: rgb(10, 80, 150)">搜尋景點</h2>
+                <br>
             </div>
 
-            <div style="display: flex; width: 100vw; margin-top: 5px; margin-left: 40px;">
-                <form class="d-flex" method="post" role="search" style="width:45%" action = "{% url 'search_results' %}">
+            <div style="display: flex;
+                        width: 100vw;
+                        margin-top: 5px;
+                        margin-left: 40px">
+                <form class="d-flex"
+                      method="post"
+                      role="search"
+                      style="width:45%"
+                      action="{% url 'search_results' %}">
                     {% csrf_token %}
-                    <input class="form-control me-2" name="search-query" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control me-2"
+                           name="search-query"
+                           type="search"
+                           placeholder="Search"
+                           aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
 
             {% for item in search_list %}
-            <div class="box" onclick="showRightBox(this)" data-a-Id="{{item.id}}">
-                <div class=" inner" style="position:relative;">
+                <div class="box" onclick="showRightBox(this)" data-a-Id="{{ item.id }}">
+                    <div class=" inner" style="position:relative;">
 
-                    <h5>{{item.a_name}}</h5>
+                        <h5>{{ item.a_name }}</h5>
 
-                    <div class="rating">
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star">&#9733;</span>
-                    </div>
-                    <!-- <div class="rating" id="ratingStars"> 
+                        <div class="rating">
+                            <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                            <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
+                            <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                            <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                            <span class="rating-star">&#9733;</span>
+                        </div>
+                        <!-- <div class="rating" id="ratingStars">
                             <span class="rating-star" onclick="setRating(1)">&#9733;</span>
                             <span class="rating-star" onclick="setRating(2)">&#9733;</span>
                             <span class="rating-star" onclick="setRating(3)">&#9733;</span>
                             <span class="rating-star" onclick="setRating(4)">&#9733;</span>
                             <span class="rating-star" onclick="setRating(5)">&#9733;</span>
                                </div> -->
-                    
-                    <h6 style="margin-top:5px;">地址：<span id="list-address">{{item.address}}</span></h6>
-                    <h6 style="margin-top:5px;">綜合評分： <span id="list-selectedRating">{{item.rating}}</span> / 5 (2.1萬)</h6>
-                    <h6 style="color:rgb(21, 81, 140);">*營業時間：<span style="color: green;">24小時營業</span></h6>
-                    <div class="img_detail">
-                        <img src="/static/images/twotwoeight.jpeg" class="img-responsive" alt="two">
+ 
+                        <h6 style="margin-top:5px;">
+                            地址：<span id="list-address">{{ item.address }}</span>
+                        </h6>
+                        <h6 style="margin-top:5px;">
+                            綜合評分： <span id="list-selectedRating">{{ item.rating }}</span> / 5 (2.1萬)
+                        </h6>
+                        <h6 style="color:rgb(21, 81, 140);">
+                            *營業時間：<span style="color: green;">24小時營業</span>
+                        </h6>
+                        <div class="img_detail">
+                            <img src="/static/images/twotwoeight.jpeg"
+                                 class="img-responsive"
+                                 alt="two">
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
         </div>
 
 
         <div class="col-6">
             <div class="att">
-                <img class="taipei-att" src="/static/images/info.jpg" alt="att"
-                    style="width:50px; height:50px;">
-                <h2 style="margin-top:5px; font-size:32px;display: flex; color: rgb(10, 80, 150);">
-                    景點資訊<span style="color: red; font-size: 20px; margin-top: 5px;">(請點擊左方景點)</span></h2><br>
+                <img class="taipei-att"
+                     src="/static/images/info.jpg"
+                     alt="att"
+                     style="width:50px;
+                            height:50px">
+                <h2 style="margin-top:5px;
+                           font-size:32px;
+                           display: flex;
+                           color: rgb(10, 80, 150)">
+                    景點資訊<span style="color: red; font-size: 20px; margin-top: 5px;">(請點擊左方景點)</span>
+                </h2>
+                <br>
             </div>
 
             <div class=detail_box id="rightbox">
                 <div class="close">
-                    <h3 style="margin-left:20px; margin-top: 10px;color: rgb(172, 78, 1)" id="attractions-detail-name"></h3>
-                    <div class="img_x"><img src="/static/images/x.png" id="closeBtn" onclick="hideRightBox()">
+                    <h3 style="margin-left:20px;
+                               margin-top: 10px;
+                               color: rgb(172, 78, 1)"
+                        id="attractions-detail-name">
+                    </h3>
+                    <div class="img_x">
+                        <img src="/static/images/x.png" id="closeBtn" onclick="hideRightBox()">
                     </div>
                 </div>
                 <div class="inner" style="position:relative;">
@@ -144,88 +207,116 @@
                         <span class="rating-star">&#9733;</span>
                         <span id="selectedRating"></span> / 5 (6.3萬)
                     </div>
-                    <div style="display: flex;justify-content: center;align-items: center;height: auto;">
+                    <div style="display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                height: auto">
                         <img src="/static/images/zoo.jpeg" alt="photo" style="width: 600px; ">
                     </div>
                     <div class="inner_1">
-                        <h6 id="attractions-detail-address" >地址：116台北市文山區新光路二段30號</h6>
-                        <h6 id="attractions-detail-phone" >電話：02－2938－2300</h6>
-                        <h6>營業時間： <span style="color: red;">已打烊</span> <span style="color: rgb(21, 81, 140);">
-                                *開始營業時間：9:00</span></h6>
-                        <h6>建議停留時間：</h6>
-                        <!-- <h6>旺季月份：</h6> -->
-                        <hr>
-                        <h5>人潮資訊：</h5>
-                        <div style="display: flex;justify-content: center;align-items: center;height: auto;">
-                            <img src="/static/images/humum.jpg" alt="photo" style="width: 500px; ">
-                        </div>
-                        <hr>
-                        <h5>景點評論：</h5>
-                        <div class="comment">
-                            <div class="avatar">
-                                <img src="/static/images/head.png" alt="User Avatar">
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username">李</h6>
-                                <div class="rating">
-                                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                                    <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                                    <span class="rating-star">&#9733;</span>
-                                    <span class="rating-star">&#9733;</span>
-                                </div>
-                                <p class="comment-text">
-                                    天氣冷來到動物園，動物們顯得心情不好，跟人類一樣也會冷到不想到，看到最多的是背影跟屁股，也是一種難得的經驗。<br><span style="color:gray;font-size: 12px;
-                                    font-style: italic;">Posted on May 28, 2033</span></p>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <div class="avatar">
-                                <img src="/static/images/head.png" alt="User Avatar">
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username">sun</h6>
-                                <div class="rating">
-                                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                                    <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                                    <span class="rating-star">&#9733;</span>
-                                </div>
-                                <p class="comment-text">
-                                    帶小孩來看動物很棒！可以玩一整天！廁所很多很方便,用餐座位如果能再多一些就好了!麥當勞大排長龍實在太誇張！希望能增設其他餐廳或便利商店~<br><span style="color:gray;font-size: 12px;
-                                    font-style: italic;">Posted on May 28, 2023</span></p>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <div class="avatar">
-                                <img src="/static/images/head.png" alt="User Avatar">
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username">李+0</h6>
-                                <div class="rating">
-                                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                                    <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                                    <span class="rating-star">&#9733;</span>
-                                    <span class="rating-star">&#9733;</span>
-                                    <span class="rating-star">&#9733;</span>
-                                </div>
-                                <p class="comment-text">
-                                    我實在越來越覺得動物園越來越差，維修的東西擴建的項目越來越多，但都沒有東西完成！太誇張了
-                                    <br><span style="color:gray;font-size: 12px;
-                                    font-style: italic;">Posted on May 28, 2023</span>
-                                </p>
-                            </div>
-                        </div>
-
-
-
+                        <h6 id="attractions-detail-address">
+                            地址：116台北市文山區新光路二段30號
+                        </h6>
+                        <h6 id="attractions-detail-phone">
+                            電話：02－2938－2300
+                        </h6>
+                        <h6>
+                            營業時間： <span style="color: red;">已打烊</span> <span style="color: rgb(21, 81, 140);">
+                        *開始營業時間：9:00</span>
+                    </h6>
+                    <h6>
+                        建議停留時間：
+                    </h6>
+                    <!-- <h6>旺季月份：</h6> -->
+                    <hr>
+                    <h5>
+                        人潮資訊：
+                    </h5>
+                    <div style="display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                height: auto">
+                        <img src="/static/images/humum.jpg" alt="photo" style="width: 500px; ">
                     </div>
+                    <hr>
+                    <h5>
+                        景點評論：
+                    </h5>
+                    <div class="comment">
+                        <div class="avatar">
+                            <img src="/static/images/head.png" alt="User Avatar">
+                        </div>
+                        <div class="comment-content">
+                            <h6 class="username">
+                                李
+                            </h6>
+                            <div class="rating">
+                                <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                                <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
+                                <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                                <span class="rating-star">&#9733;</span>
+                                <span class="rating-star">&#9733;</span>
+                            </div>
+                            <p class="comment-text">
+                                天氣冷來到動物園，動物們顯得心情不好，跟人類一樣也會冷到不想到，看到最多的是背影跟屁股，也是一種難得的經驗。
+                                <br>
+                                <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28, 2033</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <div class="avatar">
+                            <img src="/static/images/head.png" alt="User Avatar">
+                        </div>
+                        <div class="comment-content">
+                            <h6 class="username">
+                                sun
+                            </h6>
+                            <div class="rating">
+                                <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                                <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
+                                <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                                <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                                <span class="rating-star">&#9733;</span>
+                            </div>
+                            <p class="comment-text">
+                                帶小孩來看動物很棒！可以玩一整天！廁所很多很方便,用餐座位如果能再多一些就好了!麥當勞大排長龍實在太誇張！希望能增設其他餐廳或便利商店~
+                                <br>
+                                <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28, 2023</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <div class="avatar">
+                            <img src="/static/images/head.png" alt="User Avatar">
+                        </div>
+                        <div class="comment-content">
+                            <h6 class="username">
+                                李+0
+                            </h6>
+                            <div class="rating">
+                                <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                                <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
+                                <span class="rating-star">&#9733;</span>
+                                <span class="rating-star">&#9733;</span>
+                                <span class="rating-star">&#9733;</span>
+                            </div>
+                            <p class="comment-text">
+                                我實在越來越覺得動物園越來越差，維修的東西擴建的項目越來越多，但都沒有東西完成！太誇張了
+                                <br>
+                                <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28, 2023</span>
+                            </p>
+                        </div>
+                    </div>
+
+
+
                 </div>
             </div>
         </div>
     </div>
-    <!-- <script>
+</div>
+<!-- <script>
         function setRating(rating) {
             document.getElementById("selectedRating").textContent = rating;
             var stars = document.getElementsByClassName("rating-star");
@@ -238,7 +329,7 @@
             }
         }
     </script> -->
-    <script>
+<script>
         function showRightBox(element) {
             var aId = $(element).data('aId');
             $.ajax({
@@ -295,8 +386,6 @@
                 console.log(attractionsDetailName);
         }
         }); {% endcomment %}
-    </script>
-</body>
+</script>
+{% endblock body %}
 
-
-</html>

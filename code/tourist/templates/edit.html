@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>個人資料編輯</title>
+{% block title %}個人資料編輯{% endblock %}
+{% block content %}
     <!-- RWD沒辦法詮釋，因為下面這串，會有padding:12px出現 -->
     <link rel="stylesheet" href="../static/css/bootstrap2023.css">
     <!-- <link rel="stylesheet" href="../static/css/reset_pw.css">
@@ -16,23 +12,28 @@
     <script src="/static/js/jquery-3.7.0.min.js"></script>
     <script src="/static/js/bootstrap.js"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+{% endblock %}
 
 
-
-
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary " style="height: 80px;">
+{% comment %} <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary "
+         style="height: 80px">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">趣放假</a>
-            <button class="navbar-toggler me-auto" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler me-auto"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -58,8 +59,8 @@
                 </ul>
             </div>
         </div>
-    </nav>
-
+</nav> {% endcomment %}
+{% block body %}
     <div class="row info">
         <div class="col-1"></div>
         <div class="col-3 col-s-12 menu">
@@ -71,8 +72,13 @@
                     <img id="avatar-preview" src="../static/images/dog.jpg" alt="頭貼預覽">
                 </div>
                 <div class="head_file">
-                    <input type="file" id="avatar" name="avatar" accept="image/*" class="file-upload-input"
-                        onchange="previewAvatar(event)"><br>
+                    <input type="file"
+                           id="avatar"
+                           name="avatar"
+                           accept="image/*"
+                           class="file-upload-input"
+                           onchange="previewAvatar(event)">
+                    <br>
                     <label for="avatar" class="file-upload-label">選擇檔案</label>
                 </div>
                 <div class="form-group">
@@ -84,14 +90,20 @@
                 <ul>
                     <a href="#person_info">
                         <span>
-                            <li><i class="fa-solid fa-user"></i> 個人資訊</li>
+                            <li>
+                                <i class="fa-solid fa-user"></i> 個人資訊
+                            </li>
                         </span>
                     </a>
                     <a href="#user_pwd">
-                        <li><i class="fa-solid fa-lock"></i> TripFunChill 帳號密碼</li>
+                        <li>
+                            <i class="fa-solid fa-lock"></i> TripFunChill 帳號密碼
+                        </li>
                     </a>
                     <a href="#user_check">
-                        <li><i class="fa-solid fa-shield-halved"></i> 雙重驗證</li>
+                        <li>
+                            <i class="fa-solid fa-shield-halved"></i> 雙重驗證
+                        </li>
                     </a>
                 </ul>
             </div>
@@ -101,7 +113,11 @@
                 <div class="col-5 col-s-5 aside1" id="person_info">
                     <div class="con">
                         <h3>個人資訊</h3>
-                        <p>此資料為保密資訊，其他用戶無法檢視。閱讀TripFunChill隱私權政策隨時都可以。<br>馬上更改個人資料～讓你的自介更加豐富！</p>
+                        <p>
+                            此資料為保密資訊，其他用戶無法檢視。閱讀TripFunChill隱私權政策隨時都可以。
+                            <br>
+                            馬上更改個人資料～讓你的自介更加豐富！
+                        </p>
                     </div>
                 </div>
                 <div class="col-7 col-s-7 aside">
@@ -127,23 +143,54 @@
                                 <option value="4" name="gender">桃園</option>
                                 <option value="5" name="gender">新竹</option>
                                 <option value="6" name="gender">苗栗</option>
-                                <option value="7" name="gender">臺中</option>
-                                <option value="8" name="gender">彰化</option>
-                                <option value="9" name="gender">雲林</option>
-                                <option value="10" name="gender">嘉義</option>
-                                <option value="11" name="gender">臺南</option>
-                                <option value="12" name="gender">高雄</option>
-                                <option value="13" name="gender">屏東</option>
-                                <option value="14" name="gender">臺東</option>
-                                <option value="15" name="gender">花蓮</option>
-                                <option value="16" name="gender">宜蘭</option>
-                                <option selected value="0" name="gender">不公開</option>
-                            </select></span>
-                        <p></p>
+                                <option value="7" name="gender">
+                                    臺中
+                                </option>
+                                <option value="8" name="gender">
+                                    彰化
+                                </option>
+                                <option value="9" name="gender">
+                                    雲林
+                                </option>
+                                <option value="10" name="gender">
+                                    嘉義
+                                </option>
+                                <option value="11" name="gender">
+                                    臺南
+                                </option>
+                                <option value="12" name="gender">
+                                    高雄
+                                </option>
+                                <option value="13" name="gender">
+                                    屏東
+                                </option>
+                                <option value="14" name="gender">
+                                    臺東
+                                </option>
+                                <option value="15" name="gender">
+                                    花蓮
+                                </option>
+                                <option value="16" name="gender">
+                                    宜蘭
+                                </option>
+                                <option selected value="0" name="gender">
+                                    不公開
+                                </option>
+                            </select>
+                        </span>
+                        <p>
+                        </p>
                         生日：
-                        <input type="date" placeholder="生日(範例:2000/01/01)" name="birthday" required value="{{nowday}}"
-                            min="1911-01-01" max="{{nowday}}" style="padding:4px ;">
-                        <p></p>
+                        <input type="date"
+                               placeholder="生日(範例:2000/01/01)"
+                               name="birthday"
+                               required
+                               value="{{ nowday }}"
+                               min="1911-01-01"
+                               max="{{ nowday }}"
+                               style="padding:4px">
+                        <p>
+                        </p>
                     </div>
 
                     <!-- <div class="head_change">
@@ -162,8 +209,12 @@
                 <div class="row">
                     <div class="col-5 col-s-5 aside1" id="user_pwd">
                         <div class="con">
-                            <h3>TripFunChill 帳號密碼</h3>
-                            <p>我們建議你定期更改密碼，以防有心人士駭入你的帳號。</p>
+                            <h3>
+                                TripFunChill 帳號密碼
+                            </h3>
+                            <p>
+                                我們建議你定期更改密碼，以防有心人士駭入你的帳號。
+                            </p>
                         </div>
                     </div>
                     <div class="col-7 col-s-7 aside">
@@ -174,38 +225,77 @@
                             </div>
                             <div class="password-container">
                                 <i class="fa-solid fa-key input-icon"></i>
-                                <input type="password" id="passwordInput2" placeholder="目前密碼" name="passwd" required><i
-                                    id="checkEye2" class="toggle-password fas fa-eye"></i>
+                                <input type="password"
+                                       id="passwordInput2"
+                                       placeholder="目前密碼"
+                                       name="passwd"
+                                       required>
+                                <i id="checkEye2" class="toggle-password fas fa-eye"></i>
                             </div>
                             <div class="password-container">
                                 <i class="fa-solid fa-key input-icon"></i>
-                                <input type="password" id="passwordInput" oninput="password_validation()"
-                                    onclick="showPasswordToggle()" onblur="hidePasswordToggle()" placeholder="新密碼"
-                                    name="passwd" required><i id="checkEye" class="toggle-password fas fa-eye"></i>
+                                <input type="password"
+                                       id="passwordInput"
+                                       oninput="password_validation()"
+                                       onclick="showPasswordToggle()"
+                                       onblur="hidePasswordToggle()"
+                                       placeholder="新密碼"
+                                       name="passwd"
+                                       required>
+                                <i id="checkEye" class="toggle-password fas fa-eye"></i>
                             </div>
                             <div class="password-container">
                                 <i class="fa-solid fa-key input-icon"></i>
-                                <input type="password" id="passwordInput1" placeholder="確認新密碼" name="passwd1"
-                                    required><i id="checkEye1" class="toggle-password fas fa-eye"></i>
+                                <input type="password"
+                                       id="passwordInput1"
+                                       placeholder="確認新密碼"
+                                       name="passwd1"
+                                       required>
+                                <i id="checkEye1" class="toggle-password fas fa-eye"></i>
                             </div>
 
 
                             <div id="validationIcons">
-                                <img src="../static/images/check.png" alt="Image 1" class="check"
-                                    style="width:20px ; height:auto " id="lowercaseIcon">
-                                <span style="color:rgb(207, 49, 49);">至少包含一個小寫子母</span><br>
-                                <img src="../static/images/check.png" alt="Image 2" class="check"
-                                    style="width:20px ; height:auto" id="uppercaseIcon">
-                                <span style="color:rgb(207, 49, 49);">至少包含一個大寫字母</span><br>
-                                <img src="../static/images/check.png" alt="Image 3" class="check"
-                                    style="width:20px ; height:auto" id="numberIcon">
-                                <span style="color:rgb(207, 49, 49);">至少包含一個數字符號</span><br>
-                                <img src="../static/images/check.png" alt="Image 4" class="check"
-                                    style="width:20px ; height:auto" id="specialCharIcon">
-                                <span style="color:rgb(207, 49, 49);">至少包含一個非字母和數字的特殊字符</span><br>
-                                <img src="../static/images/check.png" alt="Image 5" class="check"
-                                    style="width:20px ; height:auto" id="lengthIcon">
-                                <span style="color:rgb(207, 49, 49);">至少包含8個字元符號</span><br>
+                                <img src="../static/images/check.png"
+                                     alt="Image 1"
+                                     class="check"
+                                     style="width:20px;
+                                            height:auto"
+                                     id="lowercaseIcon">
+                                <span style="color:rgb(207, 49, 49);">至少包含一個小寫子母</span>
+                                <br>
+                                <img src="../static/images/check.png"
+                                     alt="Image 2"
+                                     class="check"
+                                     style="width:20px;
+                                            height:auto"
+                                     id="uppercaseIcon">
+                                <span style="color:rgb(207, 49, 49);">至少包含一個大寫字母</span>
+                                <br>
+                                <img src="../static/images/check.png"
+                                     alt="Image 3"
+                                     class="check"
+                                     style="width:20px;
+                                            height:auto"
+                                     id="numberIcon">
+                                <span style="color:rgb(207, 49, 49);">至少包含一個數字符號</span>
+                                <br>
+                                <img src="../static/images/check.png"
+                                     alt="Image 4"
+                                     class="check"
+                                     style="width:20px;
+                                            height:auto"
+                                     id="specialCharIcon">
+                                <span style="color:rgb(207, 49, 49);">至少包含一個非字母和數字的特殊字符</span>
+                                <br>
+                                <img src="../static/images/check.png"
+                                     alt="Image 5"
+                                     class="check"
+                                     style="width:20px;
+                                            height:auto"
+                                     id="lengthIcon">
+                                <span style="color:rgb(207, 49, 49);">至少包含8個字元符號</span>
+                                <br>
                             </div>
                             <!-- <div class="head_change">
                             <div class="avatar">
@@ -225,8 +315,11 @@
                 <div class="row">
                     <div class="col-5 col-s-5 aside1" id="user_check">
                         <div class="con">
-                            <h3>雙重驗證</h3>
-                            <p>登入時要求輸入安全碼可以保護你的帳號免受不明人士駭入。
+                            <h3>
+                                雙重驗證
+                            </h3>
+                            <p>
+                                登入時要求輸入安全碼可以保護你的帳號免受不明人士駭入。
                             </p>
                         </div>
                     </div>
@@ -239,7 +332,9 @@
                                             <li>
                                                 <i class="fa-sharp fa-solid fa-envelope mail"></i>
                                             </li>
-                                            <li>123</li>
+                                            <li>
+                                                123
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -262,7 +357,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-1"></div>
+            <div class="col-1">
+            </div>
         </div>
     </div>
 
@@ -396,6 +492,6 @@
             alert(msg);
         }
     </script>
-</body>
+{% endblock body %}
 
 </html>

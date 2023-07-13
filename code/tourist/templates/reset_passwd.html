@@ -1,12 +1,7 @@
-<!-- 忘記密碼頁面 -->
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>重設密碼頁面</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'base.html' %}
+{% block title %}重設密碼頁面{% endblock %}
+{% block content %}
+ 
     <link rel="stylesheet" href="../static/css/reset_pw.css">
     <link rel="stylesheet" href="../static/css/bootstrap2023.css">
     <link rel="stylesheet" href="../static/css/all.css">
@@ -16,10 +11,11 @@
     <script src="/static/js/jquery-3.7.0.min.js"></script>
     <script src="/static/js/bootstrap.js"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-</head>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+{% endblock %}
 
-<body>
+{% comment %} <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary " style="height: 80px;">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">趣放假</a>
@@ -51,32 +47,62 @@
                 </ul>
             </div>
         </div>
-    </nav>
+</nav> {% endcomment %}
+{% block body %}
     <div class="forget">
         <h1>Trip Fun Chill 趣放假！</h1>
         <form action="{% url 'reset_passwd' %}" method="post">
             {% csrf_token %}
 
             <div class="password-container">
-                <input type="password" id="passwordInput" oninput="password_validation()" placeholder="新密碼"
-                    name="passwd" required><i id="checkEye" class="toggle-password fas fa-eye"></i>
+                <input type="password"
+                       id="passwordInput"
+                       oninput="password_validation()"
+                       placeholder="新密碼"
+                       name="passwd"
+                       required>
+                <i id="checkEye" class="toggle-password fas fa-eye"></i>
             </div>
             <p></p>
             <div class="password-container">
-                <input type="password" id="passwordInput1" oninput="password_validation1()" placeholder="確認新密碼"
-                    name="passwd1" required><i id="checkEye1" class="toggle-password fas fa-eye"></i>
+                <input type="password"
+                       id="passwordInput1"
+                       oninput="password_validation1()"
+                       placeholder="確認新密碼"
+                       name="passwd1"
+                       required>
+                <i id="checkEye1" class="toggle-password fas fa-eye"></i>
             </div>
             <p></p>
             <div id="validationIcons">
-                <img src="../static/images/check.png" alt="Image 1" class="check" id="lowercaseIcon">
-                <span style="color:rgb(207, 49, 49);">至少包含一個大寫子母</span><br>
-                <img src="../static/images/check.png" alt="Image 2" class="check" id="uppercaseIcon">
-                <span style="color:rgb(207, 49, 49);">至少包含一個小寫字母</span><br>
-                <img src="../static/images/check.png" alt="Image 3" class="check" id="numberIcon">
-                <span style="color:rgb(207, 49, 49);">至少包含一個數字符號</span><br>
-                <img src="../static/images/check.png" alt="Image 4" class="check" id="specialCharIcon">
-                <span style="color:rgb(207, 49, 49);">至少包含一個非字母和數字的特殊字符</span><br>
-                <img src="../static/images/check.png" alt="Image 5" class="check" id="lengthIcon">
+                <img src="../static/images/check.png"
+                     alt="Image 1"
+                     class="check"
+                     id="lowercaseIcon">
+                <span style="color:rgb(207, 49, 49);">至少包含一個大寫子母</span>
+                <br>
+                <img src="../static/images/check.png"
+                     alt="Image 2"
+                     class="check"
+                     id="uppercaseIcon">
+                <span style="color:rgb(207, 49, 49);">至少包含一個小寫字母</span>
+                <br>
+                <img src="../static/images/check.png"
+                     alt="Image 3"
+                     class="check"
+                     id="numberIcon">
+                <span style="color:rgb(207, 49, 49);">至少包含一個數字符號</span>
+                <br>
+                <img src="../static/images/check.png"
+                     alt="Image 4"
+                     class="check"
+                     id="specialCharIcon">
+                <span style="color:rgb(207, 49, 49);">至少包含一個非字母和數字的特殊字符</span>
+                <br>
+                <img src="../static/images/check.png"
+                     alt="Image 5"
+                     class="check"
+                     id="lengthIcon">
                 <span style="color:rgb(207, 49, 49);">至少包含8個字元符號</span>
                 <p></p>
                 <input type="text" placeholder="驗證碼" name="code" required>
@@ -84,7 +110,7 @@
             </div>
             <input class="pure-button-forget" type="submit" value="重設">
         </form>
-        {{msg}}
+        {{ msg }}
         <div class="message">
             <a href="/login">返回登入頁面</a>
         </div>
@@ -137,6 +163,4 @@
         });
 
     </script>
-</body>
-
-</html>
+{% endblock body %}
