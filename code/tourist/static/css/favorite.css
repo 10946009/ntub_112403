@@ -1,0 +1,6 @@
+.custom-image {
+    width: 100%; /* 设置宽度为100% */
+    height: 200px; /* 设置高度为固定值，可以根据需要进行调整 */
+    object-fit: cover; /* 使用 cover 属性可以保持图像比例并填充容器 */
+  }
+  
