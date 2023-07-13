@@ -260,11 +260,11 @@ def check_opening(now_time, week):
 
 
 # 確定距離
-def check_distance(get_uset_address, a_id_list):
+def check_distance(get_user_address, a_id_list):
     ok_a_list = []
     for a in Attractions.objects.filter(id__in=a_id_list):
         distance = geodesic(
-            (get_uset_address[0], get_uset_address[1]), (a.location_x, a.location_y)
+            (get_user_address[0], get_user_address[1]), (a.location_x, a.location_y)
         ).kilometers
         # print(a.a_name,distance)
         if distance <= 0.8:
@@ -273,11 +273,11 @@ def check_distance(get_uset_address, a_id_list):
     return ok_a_list
 
 
-def check_distance_placeid(get_uset_address, a_id_list):
+def check_distance_placeid(get_user_address, a_id_list):
     ok_a_list = []
     for a in Attractions.objects.filter(id__in=a_id_list):
         distance = geodesic(
-            (get_uset_address[0], get_uset_address[1]), (a.location_x, a.location_y)
+            (get_user_address[0], get_user_address[1]), (a.location_x, a.location_y)
         ).kilometers
         # print(a.a_name,distance)
         if distance <= 0.8:
@@ -296,9 +296,9 @@ def test_input(request):
     # o_db = Attractions.objects.get(place_id=o)
     # o_crowd_opening = o_db.crowd_opening_set.filter(week=week).values()
 
-    get_uset_address = (25.093071, 121.5323991)  # 抓使用者位置
+    get_user_address = (25.042066346405175, 121.52560526199962)  # 抓使用者位置
     get_all_attractions = check_distance(
-        get_uset_address, check_opening(now_time, week)
+        get_user_address, check_opening(now_time, week)
     )
     print(len(get_all_attractions))
     m_attractions_list = []
@@ -306,7 +306,7 @@ def test_input(request):
     # # 發送距離矩陣請求
     # for a_id in get_all_attractions:
     #     response = client.distance_matrix(
-    #         origins=get_uset_address, #使用者位置
+    #         origins=get_user_address, #使用者位置
     #         destinations = (a_id[1],a_id[2]), #目的地
     #         mode="driving", #開車
     #         units="metric", #公里
@@ -316,17 +316,23 @@ def test_input(request):
     #     distance = response["rows"][0]["elements"][0]["distance"]["text"]
     #     duration = response["rows"][0]["elements"][0]["duration"]["text"]
     #     duration_value = response["rows"][0]["elements"][0]["duration"]["value"]
-    #     if duration_value <= 1800:
+    #     if duration_value <= 1800: # 30分鐘
     #         m_attractions_list.append([a_id[0],distance,duration])
     # print("推薦的景點為",m_attractions_list)
-
+    # m_attractions_list_name = [Attractions.objects.get(place_id=x[0]).a_name for x in m_attractions_list] # name的List
+    # print(m_attractions_list_name)
     # print(response)
+    m_attractions_list_name = ['中央藝文公園', 'URS27-華山大草原', '華山1914文化創意產業園區', '忠孝公園', '齊東公園', '齊東老街', '台灣公路原點']
     # ---------------------------------------------------已經抓到時間與距離(上方)
     # 2.選擇一些景點做為O（使用者選擇的景點）
     # 抓取使用者所選的景點ID
     o_attractions_list = [
-        "ChIJ45YiuLmuQjQRgmBcRZ0ludA",
-        "ChIJfUpAzTqsQjQRwQl6ORhwbV0",
+        "ChIJbSTgI2WpQjQRcVwWB2cnyfE",
+        "ChIJC91pQmWpQjQRFRN7jE01i1k",
+    ]
+    o_attractions_list_name = [
+        "華山1914文化創意產業園區",
+        "URS27-華山大草原",
     ]
     near_o = []
 
@@ -368,18 +374,20 @@ def test_input(request):
         for i in range(len(near_o)):
             p_attractions_list.append(near_o[f_max_i_list[i][0]])
     else:
-        for i in range(3):
+        for i in range(len(near_o)):
             p_attractions_list.append(near_o[f_max_i_list[i][0]])
-    print("推薦周遭景點的順序:", p_attractions_list)
+    print("推薦相似景點的順序:", p_attractions_list)
+    p_attractions_list_name = [Attractions.objects.get(place_id=x).a_name for x in p_attractions_list] # name的List
 
     # 將使用者在p_attractions_list所選的景點加入O
     user_select_p = []
-    user_select_p = p_attractions_list  # 抓使用者所選擇的
+    user_select_p = p_attractions_list[:4]  # 抓使用者所選擇的
     o_attractions_list += user_select_p
+    final_o_attractions_list_name = [Attractions.objects.get(place_id=x).a_name for x in o_attractions_list] # name的List
     # print(o_attractions_list)
     # 4.將使用者所選擇的所有景點
     #     * 根據使用者提供的資料（喜好）去判斷重複程度（如5個相似，1個相似之類的），沒有的話變成手動給(暫定)，
-    user_favorite=[1,2,3,7,9,]
+    user_favorite=[1,2,4,7,9,]
     o_crowd_list=[]
     o_favorite_list=[]
     for o in o_attractions_list:
@@ -412,23 +420,28 @@ def test_input(request):
     }
     df= pd.DataFrame(o_list)
     df['total']=0
-    print(df)
+    df.index=final_o_attractions_list_name
+    print('df',df)
+    df_html = df.to_html()
     # 標準化 使值在[0,1]之間
     scaler = MinMaxScaler(feature_range=(0, 1)).fit(df)
     X_scaled = scaler.transform(df)
     df_x=pd.DataFrame(X_scaled)
 
     df_x[2]=df_x[0].mul(0.5).add(df_x[1].mul(0.5)) # 將值皆乘0.5相加後放入total欄位
-    print(df_x)
+    df_x.index=final_o_attractions_list_name
+    print('df_x',df_x)
+    df_x_html = df_x.to_html()
     total_list = df_x[2].values.tolist() # 將df_x[2]的值轉成list
     final = [[o_attractions_list[x],total_list[x]] for x in range(len(total_list))] #將place_id和分數合併
     f_final_list = sorted(final, key=lambda x: x[1], reverse=True) #排序
-    print(f_final_list)
+    print('f_final_list',f_final_list)
+    f_final_list_name = [Attractions.objects.get(place_id=x[0]).a_name for x in f_final_list] # name的List
     # print("時間:",opening,",擁擠:",crowd)
     # print("這裡",o_crowd_opening)
 
     #     * 最後使用normalization將兩者的區間變成[0,1]，再賦予他們權重（如0.5、0.5），最後根據分數去排序景點。
-    return render(request, "_test.html")
+    return render(request, "_test.html",locals())
 
 def resort(nowtime,now_list,last_a_list):
     if len(last_a_list) == 0:
