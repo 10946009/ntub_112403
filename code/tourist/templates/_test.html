@@ -1,0 +1,60 @@
+<h2>推薦的景點為</h2>
+{% for item in m_attractions_list_name %}
+<div class="col-4">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{item}}</h5>
+    </div>
+  </div>
+</div>
+{% endfor %}
+<h2>假設使用者所選的景點為</h2>
+{% for item in o_attractions_list_name %}
+<div class="col-4">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{item}}</h5>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+<h2>推薦相似景點的順序(有排序)</h2>
+{% for item in p_attractions_list_name %}
+<div class="col-4">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{item}}</h5>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+
+<h2>最後選擇完的O(還沒排序)</h2>
+{% for item in final_o_attractions_list_name %}
+<div class="col-4">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{item}}</h5>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+<h2>原始分數</h2>
+{{ df_html | safe }}
+
+<h2>標準化後分數</h2>
+{{ df_x_html | safe }}
+
+<h2>最後選擇完的O(排序完的結果)</h2>
+{% for item in f_final_list_name %}
+<div class="col-4">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{item}}</h5>
+    </div>
+  </div>
+</div>
+{% endfor %}
