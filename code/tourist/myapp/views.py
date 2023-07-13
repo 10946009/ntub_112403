@@ -18,6 +18,9 @@ from django.core.mail import send_mail
 
 from geopy.distance import geodesic
 
+import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
+
 dotenv_path = join(dirname(__file__), ".env")
 load_dotenv(dotenv_path, override=True)  # 設定 override 才會更新變數哦！
 GOOGLE_PLACES_API_KEY = os.environ.get("GOOGLE_PLACES_API_KEY")
@@ -323,7 +326,7 @@ def test_input(request):
     # 抓取使用者所選的景點ID
     o_attractions_list = [
         "ChIJ45YiuLmuQjQRgmBcRZ0ludA",
-        "ChIJlT1_96OuQjQRprDCnnAMObs",
+        "ChIJfUpAzTqsQjQRwQl6ORhwbV0",
     ]
     near_o = []
 
@@ -376,8 +379,17 @@ def test_input(request):
     # print(o_attractions_list)
     # 4.將使用者所選擇的所有景點
     #     * 根據使用者提供的資料（喜好）去判斷重複程度（如5個相似，1個相似之類的），沒有的話變成手動給(暫定)，
-
-    #     * 再判斷景點的人潮流量（1-5，5為最高），
+    user_favorite=[1,2,3,7,9,]
+    o_crowd_list=[]
+    o_favorite_list=[]
+    for o in o_attractions_list:
+        score = 0
+        o_db = Attractions.objects.get(place_id=o)
+        for tag in o_db.att_type:  # 抓出周遭n的tag(需要修改景點標籤)
+            if tag in user_favorite:  #
+                score += 1
+        o_favorite_list.append(score)
+    #     * 再判斷景點的人潮流量（1-5，1為最高），
 
     time = now_time // 60
     for o in o_attractions_list:
@@ -388,29 +400,55 @@ def test_input(request):
         try:
             crowd = o_crowd_opening[0]["crowd"][time - 1]
             crowd = crowd_judge(crowd)
+            o_crowd_list.append(crowd)
         except:
-            pass
-        #     print(crowd)
+            o_crowd_list.append(0)
+    # print("o_crowd_list:",o_crowd_list)
+    # print("o_favorite_list:",o_favorite_list)
 
-        # print("時間:",opening,",擁擠:",crowd)
-        # print("這裡",o_crowd_opening)
+    o_list={
+        "o_favorite_list":o_favorite_list,
+        "o_crowd_list":o_crowd_list
+    }
+    df= pd.DataFrame(o_list)
+    df['total']=0
+    print(df)
+    # 標準化 使值在[0,1]之間
+    scaler = MinMaxScaler(feature_range=(0, 1)).fit(df)
+    X_scaled = scaler.transform(df)
+    df_x=pd.DataFrame(X_scaled)
+
+    df_x[2]=df_x[0].mul(0.5).add(df_x[1].mul(0.5)) # 將值皆乘0.5相加後放入total欄位
+    print(df_x)
+    total_list = df_x[2].values.tolist() # 將df_x[2]的值轉成list
+    final = [[o_attractions_list[x],total_list[x]] for x in range(len(total_list))] #將place_id和分數合併
+    f_final_list = sorted(final, key=lambda x: x[1], reverse=True) #排序
+    print(f_final_list)
+    # print("時間:",opening,",擁擠:",crowd)
+    # print("這裡",o_crowd_opening)
 
     #     * 最後使用normalization將兩者的區間變成[0,1]，再賦予他們權重（如0.5、0.5），最後根據分數去排序景點。
     return render(request, "_test.html")
 
+def resort(nowtime,now_list,last_a_list):
+    if len(last_a_list) == 0:
+         return now_list
+    #確認時間
+    #把當前時間ok的放進now_list
+    # 遞迴resort()
 
 # 判斷人潮程度
 def crowd_judge(crowd):
     if crowd >= 80:
-        return 5
+        return 1
     elif crowd >= 60:
-        return 4
+        return 2
     elif crowd >= 40:
         return 3
     elif crowd >= 20:
-        return 2
+        return 4
     elif crowd > 0:
-        return 1
+        return 5
     else:
         return 0
 

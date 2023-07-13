@@ -24,6 +24,27 @@
     border: 1px solid #ccc;
 }
 
+.login input[type="text"] {
+    width: 55%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 20px;
+}
+
+.login input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin: 0px 0px 20px;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit
+}
+
 .login input[type="submit"] {
     width: 100%;
     padding: 12px;
@@ -67,7 +88,7 @@
     }
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 500px) {
     .login {
         margin: 30px auto;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -114,6 +135,11 @@
         padding: 20px;
     }
 
+    .login input[type="text"] {
+        margin-right: 16px;
+        width: 55%;
+    }
+
     .login label,
     input {
         width: 100%;
@@ -150,6 +176,11 @@
         padding: 20px;
     }
 
+    .login input[type="text"] {
+        margin-right: 16px;
+        width: 50%;
+    }
+
     .login label,
     input {
         width: 100%;
@@ -175,4 +206,72 @@
     .submit {
         border-radius: 3px;
     }
+}
+
+@media(max-width: 375px) {
+    .login {
+        max-width: 100%;
+        max-height: 100%;
+        margin: 0px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    .login input[type="text"] {
+        margin-right: 6px;
+        width: 50%;
+    }
+
+    .login label,
+    input {
+        width: 100%;
+        display: block;
+        margin: 10px 0;
+    }
+
+    .login span {
+        margin: 10px 0;
+    }
+
+    .login button {
+        width: 46%;
+        margin: 0px 1%;
+    }
+
+    .pure-button-login {
+        border-radius: 3px;
+        width: 125px;
+        height: 45px;
+    }
+
+    .submit {
+        border-radius: 3px;
+    }
+}
+
+#code {
+    cursor: pointer;
+    font-family: Arial;
+    font-style: italic;
+    font-weight: bold;
+    border: 0;
+    letter-spacing: 2px;
+    color: blue;
+    background-color: red;
+    padding: 4px;
+    width: 120px;
+    height: 30px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+#recode {
+    cursor: pointer;
+    font-size: 12px;
+    color: crimson;
+}
+
+.ch {
+    display: flex;
+    align-items: center;
 }

@@ -71,9 +71,9 @@
             </select>
             <p></p>
             生日：
-            <input type="date" placeholder="生日(範例:2000/01/01)" name="birthday" required value="{{nowday}}"
-                min="1911-01-01" max="{{nowday}}" style="padding:4px;">
             <p></p>
+            <input type="date" placeholder="生日(範例:2000/01/01)" name="birthday" required value="{{nowday}}"
+                min="1911-01-01" max="{{nowday}}" style="padding:8px;">
             <div class="password-container">
                 <input type="password" id="passwordInput" oninput="password_validation()" placeholder="密碼" name="passwd"
                     required><i id="checkEye" class="toggle-password fas fa-eye"></i>
@@ -99,7 +99,7 @@
                     id="lengthIcon">
                 <span style="color:rgb(207, 49, 49);">至少包含8個字元符號</span><br>
                 <p></p>
-                <input type="submit" value="註冊">
+                <input class="pure-button-register" type="submit" value="註冊">
         </form>
     </div>
     <div class="message">
