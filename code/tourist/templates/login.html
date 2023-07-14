@@ -54,8 +54,8 @@
             <div style="text-align:center;color:red">{{ message }}</div>
             <form class="pure-form pure-form-stacked" action="" method="post">
                 {% csrf_token %}
-                <input type="email" placeholder="e-mail" name="email" required>
-                <input type="password" placeholder="密碼" name="passwd" required>
+                <input id="inputacc" type="email" placeholder="e-mail" name="email" required>
+                <input id="inputpwd" type="password" placeholder="密碼" name="passwd" required>
                 <div class="ch">
                     <input type="text" id="input" placeholder="請輸入驗證碼">
                     <p id="code"></p>
@@ -63,7 +63,6 @@
                     <a href="#" id="recode">更新</a>
                     <p></p>
                 </div>
-
                 <input id="validate" class="pure-button-login" type="submit" onclick="openPopup()" value="登入">
             </form>
             <div class="message">
@@ -127,8 +126,13 @@
         var validate = document.getElementById('validate');
         validate.addEventListener("click", function (e) {
             var inputCode = document.getElementById("input").value;
+            var inputAcc = document.getElementById("inputacc").value;
+            var inputPwd = document.getElementById("inputpwd").value;
             // var inputCode = document.getElementById("input").value.toUpperCase(); //取得輸入的驗證碼並轉化為大寫 
-            if (inputCode.length <= 0) { //若輸入的驗證碼長度為0 
+            if (inputAcc.length <= 0 || inputPwd.length <= 0) {
+                alert("請輸入帳號密碼!!");
+            }
+            else if (inputCode.length <= 0) { //若輸入的驗證碼長度為0 
                 alert("請輸入驗證碼！"); //則彈出請輸入驗證碼 
             }
             else if (inputCode !== code) { //若輸入的驗證碼與產生的驗證碼不一致時 
@@ -151,6 +155,8 @@
             // 使用 JavaScript 的 `alert()` 函式來彈出視窗
             alert(msg);
         }
+
+
 
     </script>
     {% endblock body %}
