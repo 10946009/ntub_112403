@@ -63,6 +63,9 @@ main{
 .tab_a:hover{
     font-weight: bolder;
 }
+.tab_a_active{
+    font-weight: bolder;
+}
 .tabD{
     padding: 5px;
 }
@@ -108,6 +111,9 @@ main{
 .spot_like_txt{
 	position: relative;
     border: 1px solid #ccc;
+}
+.spot_title{
+    font-size: 24px;
 }
 .add_icon{
 	position: absolute;
@@ -228,6 +234,7 @@ main{
     .tab_a{
         font-size: 20px;
     }
+         
 }
 @media(max-width: 576px){
     main{

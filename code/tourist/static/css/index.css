@@ -179,7 +179,31 @@ html{
 	margin: 10px auto;
 }
 
-
+.hot_spot_show{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.hot_spot_show_txt{
+	height: 600px;
+	width: 400px;
+	border: 1px solid black;
+}
+.hr_style{
+	margin: 5px 10px;
+}
+.hot_spot_show_title{
+	padding: 15px 0 0 15px;
+	text-align: left;
+	font-size: 24px;
+	font-weight: bold;
+}
+.hot_spot_show_author{
+	/* text-align: right; */
+	float: right;
+	padding: 0 15px 0 0;
+	font-size: 18px;
+}
 
 @media(max-width: 768px){
 	.logo{
