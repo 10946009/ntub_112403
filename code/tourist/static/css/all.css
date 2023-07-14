@@ -15,9 +15,44 @@ body{
 main{
     width: 80%;
 }
-.nav{
-    display: flex;
-    justify-content: center;
+
+.clearfix::after{
+	content: '';
+	display: table;
+	clear: both;
+}
+.header{
+	position: relative;
+}
+.toolbar{
+	background-color: rgba(255, 255, 176, 0.164);
+}
+.toolbar_div{
+  padding: 0;
+  text-align: center;
+  float: left;
+}
+.toolbar_a{
+  line-height: 80px;
+  text-decoration: none;
+  color: #000;
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+  text-shadow: 0.1em 0.1em 0.1em #ccc;
+}
+.toolbar_a:hover{
+	font-weight: 700;
+	color: #4bc2c5;
+}
+.showmenu{
+	display: none;
+	float: left;
+	text-decoration: none;
+	color: #ea7070;
+	font-weight: 600;
+	padding: 1em;
+	cursor: pointer;
 }
 footer{
     margin-top: 50px;
