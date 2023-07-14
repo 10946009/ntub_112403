@@ -6,7 +6,7 @@ body{
 html{
 	height: 100%;
 }
-
+/* 
 .clearfix::after{
 	content: '';
 	display: table;
@@ -37,7 +37,6 @@ html{
 	color: #4bc2c5;
 }
 .showmenu{
-	/* font-size: 25px; */
 	display: none;
 	float: left;
 	text-decoration: none;
@@ -45,7 +44,7 @@ html{
 	font-weight: 600;
 	padding: 1em;
 	cursor: pointer;
-}
+} */
 
 .banner{
 	background: url(../images/IMG20220125115200.jpg);

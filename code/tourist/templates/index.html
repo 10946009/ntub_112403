@@ -22,7 +22,8 @@
         referrerpolicy="no-referrer" />
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 {% endblock %}
-{% comment %} <!DOCTYPE html>
+{% comment %} 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -51,7 +52,7 @@
   <div class="navbar-nav">
     <div class="container-fluid toolbar clearfix">
       <div class="menu clearfix" style="position: relative;">
-        <span class="showmenu">≡</span>
+        <span class="showmenu"><i class="fa-solid fa-bars"></i></span>
         <div class="row menu-list clearfix">
           <div class="col-md toolbar_div"><a href="/" class="toolbar_a">首頁</a></div>
           <div class="col-md toolbar_div"><a href="/create" class="toolbar_a">建立行程</a></div>
@@ -63,53 +64,12 @@
         </div>
       </div>
     </div>
-    <div style="display: flex;justify-content: center;align-items: center;"><a href="#" style="display: block;position: absolute;z-index: 999;"><img src="../static/images/logo1.png" height="120px" class="logo"></a></div>
-</div> {% endcomment %}
- 
-
-<!-- <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">趣放假<img src="../static/images/logo_icon.png" width="20px" style="margin-left: 5px;"></a>
-      <button class="navbar-toggler me-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">首頁</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/create">建立行程</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/history">我的行程</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/attraction_details">搜尋景點</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/favorite">我的收藏</a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <ul class="name_ul">
-          <li class="nav-item">
-            <a href="/login" class="nav-link">登入</a>
-          </li>
-        </ul> -->
-<!-- <ul class="name_ul">
-          <li class="nav-item dropdown name_li" style="list-style-type: none;">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Username</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Setting</a></li>
-              <li><a class="dropdown-item" href="#">Log out</a></li>
-            </ul>
-          </li>
-        </ul> -->
-<!-- </div>
+    <div style="display: flex;justify-content: center;align-items: center;">
+      <a href="#" style="display: block;position: absolute;z-index: 999;"><img src="../static/images/logo1.png" height="120px" class="logo"></a>
     </div>
-  </nav> -->
+</div> 
+{% endcomment %}
+ 
 
 {% block body %}
   <div class="banner">
@@ -161,7 +121,7 @@
           +
         </button>
         <div id="myDropdown" class="dropdown-content">
-          <a href="#">新增行程</a>
+          <a href="/create">新增行程</a>
           <a href="#">一日遊</a>
           <a href="#">逛街</a>
         </div>
@@ -187,7 +147,7 @@
         +
       </button>
       <div id="myDropdown1" class="dropdown-content">
-        <a href="#">新增行程</a>
+        <a href="/create">新增行程</a>
         <a href="#">一日遊</a>
         <a href="#">逛街</a>
       </div>
@@ -212,7 +172,7 @@
         +
       </button>
       <div id="myDropdown2" class="dropdown-content">
-        <a href="#">新增行程</a>
+        <a href="/create">新增行程</a>
         <a href="#">一日遊</a>
         <a href="#">逛街</a>
       </div>
@@ -331,7 +291,7 @@
         <h5>
           aldfhlajkdhsfl
         </h5>
-        <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
+        <a href="#" class="btn btn-warning spot_data_btn">詳細資料</a>
       </div>
     </div>
     <div class="hot_spot_block col-md-4 ">
@@ -346,7 +306,7 @@
         <h5>
           aldfhlajkdhsfl
         </h5>
-        <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
+        <a href="#" class="btn btn-warning spot_data_btn">詳細資料</a>
       </div>
     </div>
     <div class="hot_spot_block col-md-4 ">
@@ -361,7 +321,7 @@
         <h5>
           aldfhlajkdhsfl
         </h5>
-        <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
+        <a href="#" class="btn btn-warning spot_data_btn">詳細資料</a>
       </div>
     </div>
   </div>
@@ -372,7 +332,5 @@
 {% block content_script %}
   <script src="../static/js/bootstrap.min.js"></script>
   <script src="../static/js/jquery-3.7.0.min.js"></script>
-  <script src="../static/js/owl.carousel.min.js"></script>
-  <script src="../static/js/index.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <!-- <script src="../static/js/index.js"></script> -->
 {% endblock %}
