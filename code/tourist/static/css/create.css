@@ -42,8 +42,12 @@
     /* display: flex; */
     justify-content: center;
 }
+main{
+    margin-top: 5%;
+}
 .col{
     margin: 5px 0;
+    padding: 0;
     font-size: 20px;
 }
 .col-md-4{
@@ -53,17 +57,21 @@
 .tab_a{
     text-decoration: none;
     color: black;
+    font-size: 24px;
+    padding: 0;
 }
 .tab_a:hover{
-    font-size: larger;
+    font-weight: bolder;
+}
+.tab_a_active{
     font-weight: bolder;
 }
 .tabD{
     padding: 5px;
 }
-.col{
+/* .col{
     padding: 5px;
-}
+} */
 .tab_day{
     text-decoration: none;
     color: black;
@@ -103,6 +111,9 @@
 .spot_like_txt{
 	position: relative;
     border: 1px solid #ccc;
+}
+.spot_title{
+    font-size: 24px;
 }
 .add_icon{
 	position: absolute;
@@ -170,9 +181,6 @@
 	display:block;
 }
 
-
-
-
 .chebox_item{
     margin-top: 5px;
     border: 1px solid #ccc;
@@ -192,9 +200,6 @@
     font-size: 18px;
     text-align: left;
 }
-
-
-
 
 .dialog{
     position:fixed;
@@ -220,3 +225,30 @@
     right: 5px;
     cursor:pointer;/*cursor游標pointer指針:改變鼠標*/
   }
+
+
+@media(max-width: 768px){
+    main{
+        margin-top: 10%;
+    }
+    .tab_a{
+        font-size: 20px;
+    }
+         
+}
+@media(max-width: 576px){
+    main{
+        margin-top: 15%;
+    }
+    .tab_a{
+        font-size: 18px;
+    }
+}
+@media(max-width: 376px){
+    main{
+        margin-top: 15%;
+    }
+    .tab_a{
+        font-size: 14px;
+    }
+}

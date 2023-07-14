@@ -20,13 +20,25 @@
           crossorigin="anonymous"
           referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <style>
+        @media(max-width: 576px){
+            .logo{
+                height: 110px;
+            }
+        }
+        @media(max-width: 413px){
+            .logo{
+                height: 100px;
+            }
+        }
+    </style>
   </head>
 
   <body>
     <div class="navbar-nav">
       <div class="container-fluid toolbar clearfix">
         <div class="menu clearfix" style="position: relative;">
-          <span class="showmenu">≡</span>
+          <span class="showmenu"><i class="fa-solid fa-bars"></i></span>
           <div class="row menu-list clearfix">
             <div class="col-md toolbar_div">
               <a href="/" class="toolbar_a">首頁</a>
@@ -55,7 +67,7 @@
         </div>
       </div>
       <div style="display: flex;justify-content: center;align-items: center;">
-        <a href="#" style="display: block;position: absolute;z-index: 999;">
+        <a href="/" style="display: block;position: absolute;z-index: 999;">
           <img src="../static/images/logo1.png" height="120px" class="logo">
         </a>
       </div>
