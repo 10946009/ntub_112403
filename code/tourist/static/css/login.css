@@ -121,10 +121,10 @@
         border-radius: 3px;
     }
 
-    .logo {
+    /* .logo {
         width: 100px;
         height: 100px;
-    }
+    } */
 }
 
 @media(max-width: 500px) {
