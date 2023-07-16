@@ -38,6 +38,7 @@ urlpatterns = [
     path('favorite/',views.favorite),
     path('share/',views.share),
     path('attraction_details/',views.attraction_details,name='search_results'),
+    path('attraction_details/<int:aid>',views.attraction_details),
     path('test/',views.test_input),
     
     path('useredit/',views.user_edit),
