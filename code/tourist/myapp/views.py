@@ -214,15 +214,25 @@ def share(request):
 #     return render(request, "attraction_details.html")
 
 
-def attraction_details(request):
+def attraction_details(request,aid=None):
+    if request.method == "POST":
+        if aid:
+            u_id = request.user.id
+            user_a = Favorite.objects.filter(u_id=u_id,a_id=aid)
+            if not user_a:
+                unit = Favorite.objects.create(u_id=u_id, a_id=aid)
+                unit.save()
+        return redirect("/attraction_details")
+
     search_list = []
     print(request.method)
+    user = request.user.id
 
     if request.method == "POST":
         query = request.POST.get("search-query")
         search_url = "/attraction_details/?query=" + query
         search_list = list(Attractions.objects.filter(a_name__contains=query).values())
-    else:
+    else: # 後續要改(目前為顯示前3筆
         keyword_attrations_id = [1, 2, 3]
         for a_id in keyword_attrations_id:
             search_list.append(Attractions.objects.filter(id=a_id).values().first())
@@ -235,8 +245,8 @@ def attraction_details(request):
     print(search_list)
     return render(request, "attraction_details.html", locals())
 
-def user_edit(request):
 
+def user_edit(request):
     return render(request, "edit.html")
 
 
@@ -322,7 +332,15 @@ def test_input(request):
     # m_attractions_list_name = [Attractions.objects.get(place_id=x[0]).a_name for x in m_attractions_list] # name的List
     # print(m_attractions_list_name)
     # print(response)
-    m_attractions_list_name = ['中央藝文公園', 'URS27-華山大草原', '華山1914文化創意產業園區', '忠孝公園', '齊東公園', '齊東老街', '台灣公路原點']
+    m_attractions_list_name = [
+        "中央藝文公園",
+        "URS27-華山大草原",
+        "華山1914文化創意產業園區",
+        "忠孝公園",
+        "齊東公園",
+        "齊東老街",
+        "台灣公路原點",
+    ]
     # ---------------------------------------------------已經抓到時間與距離(上方)
     # 2.選擇一些景點做為O（使用者選擇的景點）
     # 抓取使用者所選的景點ID
@@ -377,19 +395,29 @@ def test_input(request):
         for i in range(len(near_o)):
             p_attractions_list.append(near_o[f_max_i_list[i][0]])
     print("推薦相似景點的順序:", p_attractions_list)
-    p_attractions_list_name = [Attractions.objects.get(place_id=x).a_name for x in p_attractions_list] # name的List
+    p_attractions_list_name = [
+        Attractions.objects.get(place_id=x).a_name for x in p_attractions_list
+    ]  # name的List
 
     # 將使用者在p_attractions_list所選的景點加入O
     user_select_p = []
     user_select_p = p_attractions_list[:4]  # 抓使用者所選擇的
     o_attractions_list += user_select_p
-    final_o_attractions_list_name = [Attractions.objects.get(place_id=x).a_name for x in o_attractions_list] # name的List
+    final_o_attractions_list_name = [
+        Attractions.objects.get(place_id=x).a_name for x in o_attractions_list
+    ]  # name的List
     # print(o_attractions_list)
     # 4.將使用者所選擇的所有景點
     #     * 根據使用者提供的資料（喜好）去判斷重複程度（如5個相似，1個相似之類的），沒有的話變成手動給(暫定)，
-    user_favorite=[1,2,4,7,9,]
-    o_crowd_list=[]
-    o_favorite_list=[]
+    user_favorite = [
+        1,
+        2,
+        4,
+        7,
+        9,
+    ]
+    o_crowd_list = []
+    o_favorite_list = []
     for o in o_attractions_list:
         score = 0
         o_db = Attractions.objects.get(place_id=o)
@@ -414,41 +442,44 @@ def test_input(request):
     # print("o_crowd_list:",o_crowd_list)
     # print("o_favorite_list:",o_favorite_list)
 
-    o_list={
-        "o_favorite_list":o_favorite_list,
-        "o_crowd_list":o_crowd_list
-    }
-    df= pd.DataFrame(o_list)
-    df['total']=0
-    df.index=final_o_attractions_list_name
-    print('df',df)
+    o_list = {"o_favorite_list": o_favorite_list, "o_crowd_list": o_crowd_list}
+    df = pd.DataFrame(o_list)
+    df["total"] = 0
+    df.index = final_o_attractions_list_name
+    print("df", df)
     df_html = df.to_html()
     # 標準化 使值在[0,1]之間
     scaler = MinMaxScaler(feature_range=(0, 1)).fit(df)
     X_scaled = scaler.transform(df)
-    df_x=pd.DataFrame(X_scaled)
+    df_x = pd.DataFrame(X_scaled)
 
-    df_x[2]=df_x[0].mul(0.5).add(df_x[1].mul(0.5)) # 將值皆乘0.5相加後放入total欄位
-    df_x.index=final_o_attractions_list_name
-    print('df_x',df_x)
+    df_x[2] = df_x[0].mul(0.5).add(df_x[1].mul(0.5))  # 將值皆乘0.5相加後放入total欄位
+    df_x.index = final_o_attractions_list_name
+    print("df_x", df_x)
     df_x_html = df_x.to_html()
-    total_list = df_x[2].values.tolist() # 將df_x[2]的值轉成list
-    final = [[o_attractions_list[x],total_list[x]] for x in range(len(total_list))] #將place_id和分數合併
-    f_final_list = sorted(final, key=lambda x: x[1], reverse=True) #排序
-    print('f_final_list',f_final_list)
-    f_final_list_name = [Attractions.objects.get(place_id=x[0]).a_name for x in f_final_list] # name的List
+    total_list = df_x[2].values.tolist()  # 將df_x[2]的值轉成list
+    final = [
+        [o_attractions_list[x], total_list[x]] for x in range(len(total_list))
+    ]  # 將place_id和分數合併
+    f_final_list = sorted(final, key=lambda x: x[1], reverse=True)  # 排序
+    print("f_final_list", f_final_list)
+    f_final_list_name = [
+        Attractions.objects.get(place_id=x[0]).a_name for x in f_final_list
+    ]  # name的List
     # print("時間:",opening,",擁擠:",crowd)
     # print("這裡",o_crowd_opening)
 
     #     * 最後使用normalization將兩者的區間變成[0,1]，再賦予他們權重（如0.5、0.5），最後根據分數去排序景點。
-    return render(request, "_test.html",locals())
+    return render(request, "_test.html", locals())
 
-def resort(nowtime,now_list,last_a_list):
+
+def resort(nowtime, now_list, last_a_list):
     if len(last_a_list) == 0:
-         return now_list
-    #確認時間
-    #把當前時間ok的放進now_list
+        return now_list
+    # 確認時間
+    # 把當前時間ok的放進now_list
     # 遞迴resort()
+
 
 # 判斷人潮程度
 def crowd_judge(crowd):
