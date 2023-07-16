@@ -35,45 +35,47 @@
   </head>
 
   <body>
-    <div class="navbar-nav">
-      <div class="container-fluid toolbar clearfix">
-        <div class="menu clearfix" style="position: relative;">
-          <span class="showmenu"><i class="fa-solid fa-bars"></i></span>
-          <div class="row menu-list clearfix">
-            <div class="col-md toolbar_div">
-              <a href="/" class="toolbar_a">首頁</a>
-            </div>
-            <div class="col-md toolbar_div">
-              <a href="/create" class="toolbar_a">建立行程</a>
-            </div>
-            <div class="col-md toolbar_div">
-              <a href="/history" class="toolbar_a">我的行程</a>
-            </div>
-            <div class="col-md toolbar_div">
-              <a href="/" class="toolbar_a">
-                <img hidden src="/static/images/Logo.png" alt="" style="height: 150px;">
-              </a>
-            </div>
-            <div class="col-md toolbar_div">
-              <a href="/attraction_details" class="toolbar_a">搜尋景點</a>
-            </div>
-            <div class="col-md toolbar_div">
-              <a href="/favorite" class="toolbar_a">我的收藏</a>
-            </div>
-            <div class="col-md toolbar_div">
-              <a href="/login" class="toolbar_a">登入</a>
+    {% block toolbar %}
+      <div class="navbar-nav">
+        <div class="container-fluid toolbar clearfix">
+          <div class="menu clearfix" style="position: relative;">
+            <span class="showmenu"><i class="fa-solid fa-bars"></i></span>
+            <div class="row menu-list clearfix">
+              <div class="col-md toolbar_div">
+                <a href="/" class="toolbar_a">首頁</a>
+              </div>
+              <div class="col-md toolbar_div">
+                <a href="/create" class="toolbar_a">建立行程</a>
+              </div>
+              <div class="col-md toolbar_div">
+                <a href="/history" class="toolbar_a">我的行程</a>
+              </div>
+              <div class="col-md toolbar_div">
+                <a href="/" class="toolbar_a">
+                  <img hidden src="/static/images/Logo.png" alt="" style="height: 150px;">
+                </a>
+              </div>
+              <div class="col-md toolbar_div">
+                <a href="/attraction_details" class="toolbar_a">搜尋景點</a>
+              </div>
+              <div class="col-md toolbar_div">
+                <a href="/favorite" class="toolbar_a">我的收藏</a>
+              </div>
+              <div class="col-md toolbar_div">
+                <a href="/login" class="toolbar_a">登入</a>
+              </div>
             </div>
           </div>
         </div>
+        <div style="display: flex;justify-content: center;align-items: center;">
+          <a href="/" style="display: block;position: absolute;z-index: 999;">
+            <img src="../static/images/logo1.png" height="120px" class="logo">
+          </a>
+        </div>
       </div>
-      <div style="display: flex;justify-content: center;align-items: center;">
-        <a href="/" style="display: block;position: absolute;z-index: 999;">
-          <img src="../static/images/logo1.png" height="120px" class="logo">
-        </a>
-      </div>
-    </div>
-
-    {% block body %}{% endblock body %}
+    {% endblock %}
+    {% block body %}
+    {% endblock body %}
   </body>
   {% block content_script %}{% endblock %}
   <script src="../static/js/bootstrap.min.js"></script>
