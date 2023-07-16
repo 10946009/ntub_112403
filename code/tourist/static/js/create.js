@@ -1,17 +1,14 @@
 
 $(function(){
   $('#contents section[id != "tab_c"]').hide();
-
   $("a").click(function(){
       $('#contents section').hide();
 
       $($(this).attr("href")).show();
 
-
-      $(".current").removeClass("current");
-
-      $(this).addClass("current");
-
+      // $(this).addClass("current");
+      $(this).addClass("tab_a_active");
+      
       return false;
   });
 });

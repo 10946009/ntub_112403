@@ -6,7 +6,7 @@ body{
 html{
 	height: 100%;
 }
-
+/* 
 .clearfix::after{
 	content: '';
 	display: table;
@@ -37,7 +37,6 @@ html{
 	color: #4bc2c5;
 }
 .showmenu{
-	/* font-size: 25px; */
 	display: none;
 	float: left;
 	text-decoration: none;
@@ -45,7 +44,7 @@ html{
 	font-weight: 600;
 	padding: 1em;
 	cursor: pointer;
-}
+} */
 
 .banner{
 	background: url(../images/IMG20220125115200.jpg);
@@ -180,7 +179,31 @@ html{
 	margin: 10px auto;
 }
 
-
+.hot_spot_show{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.hot_spot_show_txt{
+	height: 600px;
+	width: 400px;
+	border: 1px solid black;
+}
+.hr_style{
+	margin: 5px 10px;
+}
+.hot_spot_show_title{
+	padding: 15px 0 0 15px;
+	text-align: left;
+	font-size: 24px;
+	font-weight: bold;
+}
+.hot_spot_show_author{
+	/* text-align: right; */
+	float: right;
+	padding: 0 15px 0 0;
+	font-size: 18px;
+}
 
 @media(max-width: 768px){
 	.logo{
