@@ -3,12 +3,51 @@
 {% block content %}
 <link rel="stylesheet" href="../static/css/login.css">
 <link rel="stylesheet" href="../static/css/bootstrap2023.css">
-<link rel="stylesheet" href="../static/css/all.css">
+<!-- <link rel="stylesheet" href="../static/css/all.css"> -->
 <link rel="stylesheet" href="../static/js/createT.js">
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/static/js/jquery-3.7.0.min.js"></script>
-<script src="/static/js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/jquery-3.7.0.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+{% endblock %}
+{% block toolbar %}
+    <div class="navbar-nav">
+        <div class="container-fluid toolbar clearfix">
+            <div class="menu clearfix" style="position: relative;">
+                <span class="showmenu"><i class="fa-solid fa-bars"></i></span>
+                <div class="row menu-list clearfix">
+                    <div class="col-md toolbar_div">
+                        <a href="/" class="toolbar_a">首頁</a>
+                    </div>
+                    <div class="col-md toolbar_div">
+                        <a href="/create" class="toolbar_a">建立行程</a>
+                    </div>
+                    <div class="col-md toolbar_div">
+                        <a href="/history" class="toolbar_a">我的行程</a>
+                    </div>
+                    <div class="col-md toolbar_div">
+                        <a href="/" class="toolbar_a">
+                            <img hidden src="/static/images/Logo.png" alt="" style="height: 150px;">
+                        </a>
+                    </div>
+                    <div class="col-md toolbar_div">
+                        <a href="/attraction_details" class="toolbar_a">搜尋景點</a>
+                    </div>
+                    <div class="col-md toolbar_div">
+                        <a href="/favorite" class="toolbar_a">我的收藏</a>
+                    </div>
+                    <div class="col-md toolbar_div">
+                        <a href="/login" class="toolbar_a">登入</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% comment %} <div style="display: flex;justify-content: center;align-items: center;">
+            <a href="/" style="display: block;position: absolute;z-index: 999;">
+                <img src="../static/images/logo1.png" height="120px" class="logo">
+            </a>
+        </div> {% endcomment %}
+    </div>
 {% endblock %}
 {% comment %}
 
@@ -44,13 +83,13 @@
                 </ul>
             </div>
         </div>
-    </nav> {% endcomment %}
-    {% block body %}
+</nav> {% endcomment %}
+{% block body %}
     <div>
         <div class="login">
             <h1>Trip Fun Chill 趣放假</h1>
-            <img class="logo" src="../static/images/logo1.png" alt="Trip" style="width:200px;
-                    height:200px">
+            <!-- <img class="logo" src="../static/images/logo1.png" alt="Trip" style="width:200px;
+                    height:200px"> -->
             <div style="text-align:center;color:red">{{ message }}</div>
             <form class="pure-form pure-form-stacked" action="" method="post">
                 {% csrf_token %}
@@ -63,7 +102,11 @@
                     <a href="#" id="recode">更新</a>
                     <p></p>
                 </div>
-                <input id="validate" class="pure-button-login" type="submit" onclick="openPopup()" value="登入">
+                <input id="validate"
+                       class="pure-button-login"
+                       type="submit"
+                       onclick="openPopup()"
+                       value="登入">
             </form>
             <div class="message">
                 <a href="/register">還沒有帳號？</a>&nbsp;&nbsp;<a href="/forget_passwd">忘記密碼</a>
@@ -159,6 +202,6 @@
 
 
     </script>
-    {% endblock body %}
+{% endblock body %}
 
-    </html>
+</html>

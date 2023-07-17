@@ -165,6 +165,13 @@
                                  class="img-responsive"
                                  alt="two">
                         </div>
+                        <form action="/attraction_details/{{item.id}}" method="POST" name="clickfavorite" id="clickfavorite">
+                            {% csrf_token %}
+                            <input type="submit" name="submitfavorite" id="submitfavorite" value="加入收藏" />
+                        </form>
+                        {% comment %} <div>
+                            <a href="/attraction_details/{{user}}/{{item.id}}">加入收藏</a>
+                        </div> {% endcomment %}
                     </div>
                 </div>
             {% endfor %}
