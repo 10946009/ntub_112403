@@ -11,3 +11,7 @@
   height: 300px;
   width: 350px;
 }
+.my-nav-tabs .nav-link {
+   margin-right: 100px;
+   margin-left: 100px;
+  }
