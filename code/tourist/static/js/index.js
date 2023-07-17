@@ -96,3 +96,16 @@ $('.owl-carousel').owlCarousel({
         }
     }
 })
+
+$(function(){
+  $("#hot_spot_show").hide();
+
+  $(".more_data").click(function(){
+
+    $("#hot_spot_show").fadeIn(200);
+  })
+
+  $(".close").click(function(){
+    $("#hot_spot_show").fadeOut(200);
+  })
+})
