@@ -1,6 +1,13 @@
-.custom-image {
-    width: 100%; /* 设置宽度为100% */
-    height: 200px; /* 设置高度为固定值，可以根据需要进行调整 */
-    object-fit: cover; /* 使用 cover 属性可以保持图像比例并填充容器 */
-  }
-  
+.cardContainer{
+  margin-top:50px;
+  display: flex;
+  justify-content: center;
+}
+.card {
+  display: flex;
+  align-items: center;
+  margin:1px 50px 50px 50px;
+  border: 2px solid;
+  height: 300px;
+  width: 350px;
+}
