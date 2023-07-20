@@ -53,8 +53,9 @@ def index(request):
 
 # 登入頁
 def login(request):
-    message = ""
+    result = 0
     if request.method == "POST":
+        result = 2
         print(request.POST)
         email = request.POST["email"]
         password = request.POST["passwd"]
@@ -66,9 +67,12 @@ def login(request):
                 auth.login(request, user)
                 # 重定向到其他頁面或執行其他操作
                 return redirect("/")
+            else:
+                # 驗證失敗，顯示錯誤信息
+                # message = "帳號或密碼錯誤"
+                result = 1
         else:
-            # 驗證失敗，顯示錯誤信息
-            message = "帳號或密碼錯誤"
+            result = 1
     return render(request, "login.html", locals())
 
 
