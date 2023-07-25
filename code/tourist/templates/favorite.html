@@ -2,10 +2,8 @@
 {% extends 'base.html' %}
 {% block title %}我的收藏{% endblock %}
 {% block content %}
-
   <link rel="stylesheet" href="../static/css/all.css">
   <link rel="stylesheet" href="../static/css/bootstrap2023.css">
-  <link rel="stylesheet" href="../static/css/index.css">
   <link rel="stylesheet" href="../static/css/favorite.css">
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -14,11 +12,13 @@
         referrerpolicy="no-referrer" />
   <style>
     .location-wrap img {
-      width: 100%;
+      object-fit: cover;
+      width: 350px;
+      height: 300px;
     }
 
     .location-wrap {
-      position: relative;
+      position: relative; 
     }
 
     .location-heart {
@@ -27,7 +27,7 @@
       right: 0;
       background-color: #fff;
       border-radius: 50%;
-      padding: 10px;
+      padding: 9px;
       color: red;
       margin: 10px;
       font-size: large;
@@ -80,127 +80,103 @@
 </nav> {% endcomment %}
 {% block body %}
  
-  <!-- Tabs navs -->
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <ul class="nav nav-tabs flex justify-content-center" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">最愛景點</button>
-        </li>
-      </ul>
-    </div>
-    <div class="col">
-      <ul class="nav nav-tabs flex justify-content-center" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">最愛行程</button>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active"
-         id="home"
-         role="tabpanel"
-         aria-labelledby="home-tab">
-      <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active"
-             id="home"
-             role="tabpanel"
-             aria-labelledby="home-tab">
-
-
-          <div class="container py-5">
-            <div class="row">
-                <div class="col-4">
-                  <div class="card">
-                    <div class="location-wrap">
-                      <img src="../static/images/101.jpg" class="img-responsive custom-image" width="100%">
-                      <i class="fa-solid fa-heart location-heart"></i>
-                      <i class="fa-solid fa-heart heart_icon"></i>
-                    </div>
-                    <div class="card-body">
-                      <h5 class="card-title">台北101</h5>
-                    </div>
-                  </div>
-                </div>
- 
-              <div class="col-4">
-                <div class="card">
-                  <div class="location-wrap">
-                    <img src="../static/images/street.jpg" class="img-responsive custom-image" width="100%">
-                    <i class="fa-solid fa-heart location-heart"></i>
-                    <i class="fa-solid fa-heart heart_icon"></i>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title">九份老街</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="card">
-                  <div class="location-wrap">
-                    <img src="../static/images/zoo.jpeg" class="img-responsive custom-image" width="100%">
-                    <i class="fa-solid fa-heart location-heart"></i>
-                    <i class="fa-solid fa-heart heart_icon"></i>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title">動物園</h5>
-                  </div>
-                </div>
-              </div>
+<!-- Tabs navs -->
+<ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+  role="tab" aria-controls="home" aria-selected="true" onclick="saveTabState('home')">最愛景點</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
+    role="tab" aria-controls="contact" aria-selected="false" onclick="saveTabState('contact')">最愛行程</button>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <div class="cardContainer">
+      <div class="row justify-content-center"> <!-- 使用 justify-content-center 类来使列居中对齐 -->
+        <div class="col-sm-6 col-md-4">
+          <div class="card">
+            <div class="location-wrap text-center"> <!-- 使用 text-center 类来使内容居中对齐 -->
+              <img src="../static/images/101.jpg" class="img-responsive custom-image" width="100%">
+              <i class="fa-solid fa-heart location-heart"></i>
+              <i class="fa-solid fa-heart heart_icon"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">台北101</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="card">
+            <div class="location-wrap text-center"> <!-- 使用 text-center 类来使内容居中对齐 -->
+              <img src="../static/images/street.jpg" class="img-responsive custom-image" width="100%">
+              <i class="fa-solid fa-heart location-heart"></i>
+              <i class="fa-solid fa-heart heart_icon"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">九份老街</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="card">
+            <div class="location-wrap text-center"> <!-- 使用 text-center 类来使内容居中对齐 -->
+              <img src="../static/images/zoo.jpeg" class="img-responsive custom-image" width="100%">
+              <i class="fa-solid fa-heart location-heart"></i>
+              <i class="fa-solid fa-heart heart_icon"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">動物園</h5>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="tab-pane fade"
-         id="contact"
-         role="tabpanel"
-         aria-labelledby="contact-tab">
-      <div class="container">
-        <div class="row col-md-12">
-          <div class="hot_spot_block col-md-4 ">
-            <div class="heart_icon_img">
-              <img src="../static/images/pingxi.jpg"
-                   class="spot_img img-responsive"
-                   width="100%">
+  </div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+    <div class="container">
+      <div class="row justify-content-center"> <!-- 使用 justify-content-center 类来使列居中对齐 -->
+        <div class="col-md-4">
+          <div class="card">
+            <div class="location-wrap text-center"> <!-- 使用 text-center 类来使内容居中对齐 -->
+              <img src="../static/images/pingxi.jpg" class="img-responsive custom-image">
               <i class="fa-solid fa-heart location-heart"></i>
               <i class="fa-solid fa-heart heart_icon"></i>
             </div>
-            <div class="spot_txt">
-              <h4> 阿亮</h4>
+            <div class="card-body text-center"> <!-- 使用 text-center 类来使文字居中对齐 -->
+              <h4 class="card-title">阿亮</h4>
               <h5>0318台北平溪</h5>
               <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
             </div>
-            <!-- <a href="#" class="btn btn-primary spot_data_btn">加入行程</a> -->
           </div>
-          <div class="hot_spot_block col-md-4 ">
-            <div class="heart_icon_img">
-              <img src="../static/images/Daan.jpeg" class="img-responsive" width="100%">
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="location-wrap text-center"> <!-- 使用 text-center 类来使内容居中对齐 -->
+              <img src="../static/images/Daan.jpeg" class="img-responsive custom-image">
               <i class="fa-solid fa-heart location-heart"></i>
               <i class="fa-solid fa-heart heart_icon"></i>
             </div>
-            <div class="spot_txt">
-              <h4>小灣</h4>
+            <div class="card-body text-center"> <!-- 使用 text-center 类来使文字居中对齐 -->
+              <h4 class="card-title">小灣</h4>
               <h5>0528台北大安</h5>
               <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
             </div>
-            <!-- <a href="#" class="btn btn-primary spot_data_btn">加入行程</a> -->
           </div>
-          <div class="hot_spot_block col-md-4 ">
-            <div class="heart_icon_img">
-              <img src="../static/images/Datong.jpeg" class="img-responsive" width="100%">
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="location-wrap text-center"> <!-- 使用 text-center 类来使内容居中对齐 -->
+              <img src="../static/images/Datong.jpeg" class="img-responsive custom-image">
               <i class="fa-solid fa-heart location-heart"></i>
               <i class="fa-solid fa-heart heart_icon"></i>
             </div>
-            <div class="spot_txt">
-              <h4>奇美</h4>
+            <div class="card-body text-center"> <!-- 使用 text-center 类来使文字居中对齐 -->
+              <h4 class="card-title">奇美</h4>
               <h5>0713大同區</h5>
               <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
             </div>
-            <!-- <a href="#" class="btn btn-primary spot_data_btn">加入行程</a> -->
           </div>
         </div>
       </div>
