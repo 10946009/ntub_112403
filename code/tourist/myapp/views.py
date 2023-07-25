@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-
+from django.contrib import messages
 from datetime import datetime
 import random
 import googlemaps
@@ -53,8 +53,10 @@ def index(request):
 
 # 登入頁
 def login(request):
-    message = ""
+    result = 0
+    message=""
     if request.method == "POST":
+        result = 2
         print(request.POST)
         email = request.POST["email"]
         password = request.POST["passwd"]
@@ -64,11 +66,17 @@ def login(request):
             if user.is_active:
                 # 驗證成功，登錄用戶
                 auth.login(request, user)
+                print(result)
                 # 重定向到其他頁面或執行其他操作
                 return redirect("/")
+            else:
+                # 驗證失敗，顯示錯誤信息
+                message = "帳號或密碼錯誤"
+                result = 1
         else:
-            # 驗證失敗，顯示錯誤信息
+            result = 1
             message = "帳號或密碼錯誤"
+    print(result)
     return render(request, "login.html", locals())
 
 

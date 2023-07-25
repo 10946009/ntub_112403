@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-<!-- <link rel="stylesheet" href="../static/css/bootstrap2023.css"> -->
+<link rel="stylesheet" href="../static/css/bootstrap2023.css">
 <link rel="stylesheet" href="../static/css/att.css">
 <link rel="stylesheet" href="../static/css/comment.css">
 <!-- <link rel="stylesheet" href="../static/css/all.css"> -->
@@ -85,7 +85,7 @@
         </ul>
     </nav>
 </div> -->
-<div class="row" style="padding:15px;">
+<!-- <div class="row" style="padding:15px;">
     <div class="col-6 col-s-12 Att_search">
         <div class="att">
             <img class="taipei-att" src="../static/images/search.png" alt="att" style="width:50px;height:50px">
@@ -112,13 +112,13 @@
                         <span class="rating-star">&#9733;</span>
                     </div>
 
-                    <!-- <div class="rating" id="ratingStars">
-                            <span class="rating-star" onclick="setRating(1)">&#9733;</span>
-                            <span class="rating-star" onclick="setRating(2)">&#9733;</span>
-                            <span class="rating-star" onclick="setRating(3)">&#9733;</span>
-                            <span class="rating-star" onclick="setRating(4)">&#9733;</span>
-                            <span class="rating-star" onclick="setRating(5)">&#9733;</span>
-                               </div> -->
+                    <div class="rating" id="ratingStars">
+                        <span class="rating-star" onclick="setRating(1)">&#9733;</span>
+                        <span class="rating-star" onclick="setRating(2)">&#9733;</span>
+                        <span class="rating-star" onclick="setRating(3)">&#9733;</span>
+                        <span class="rating-star" onclick="setRating(4)">&#9733;</span>
+                        <span class="rating-star" onclick="setRating(5)">&#9733;</span>
+                    </div>
 
                     <h6 style="margin-top:5px;">
                         地址：<span id="list-address">{{ item.address }}</span>
@@ -138,12 +138,12 @@
                     <div>
                         <a href="/attraction_details/{{user}}/{{item.id}}">加入收藏</a>
                     </div> {% endcomment %}
-                    <!-- <h2>What?</h2>
+                    <h2>What?</h2>
                     <p>Chania is a city on the island of Crete.</p>
                     <h2>Where?</h2>
                     <p>Crete is a Greek island in the Mediterranean Sea.</p>
                     <h2>How?</h2>
-                    <p>You can reach Chania airport from all over Europe.</p> -->
+                    <p>You can reach Chania airport from all over Europe.</p>
                 </div>
                 <div class="col-4 img_field">
                     <img src="../static/images/twotwoeight.jpeg" class="Att_img" alt="two">
@@ -267,7 +267,95 @@
         </div>
     </div>
 
+</div> -->
+
+
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8 ">
+        <div class="att">
+            <img class="taipei-att" src="../static/images/search.png" alt="att" style="width:50px;height:50px">
+            <h2 style="margin-top:5px;font-size:32px;display: flex;color: rgb(10, 80, 150)">搜尋景點</h2>
+        </div>
+        <div class="search_field">
+            <form class="d-flex" method="post" role="search" action="{% url 'search_results' %}">
+                {% csrf_token %}
+                <input class="search_tool" type="search" placeholder="請輸入要搜尋的景點" name="search_att">
+                <button class="search_btn" type="submit">搜尋</button>
+            </form>
+        </div>
+        {% for item in search_list %}
+        <div class="row All_Att" style="background-color: rgb(127, 174, 196); margin-top: 30px;">
+            <div class="col-4">
+                <div class="Att_photo">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src=" ../static/images/beitou.jpeg" class="d-block w-100" alt="..."
+                                    onmouseover="inner()" onmouseout="out()">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="../static/images/Datong.jpeg" class="d-block w-100" alt="..."
+                                    onmouseover="inner()" onmouseout="out()">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="../static/images/chang.jpeg" class="d-block w-100" alt="..."
+                                    onmouseover="inner()" onmouseout="out()">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" id="tips1" type="button"
+                            data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" id="tips" type="button"
+                            data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8" style="margin-top: 15px;">
+                <h5>{{ item.a_name }}</h5>
+                <div class="rating">
+                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                    <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
+                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                    <span class="rating-star">&#9733;</span>
+                </div>
+                <h6 style="margin-top:5px;">
+                    地址：<span id="list-address">{{ item.address }}</span>
+                </h6>
+                <h6 style="margin-top:5px;">
+                    綜合評分： <span id="list-selectedRating">{{ item.rating }}</span> / 5 (2.1萬)
+                </h6>
+                <h6>
+                    營業時間：<span>24小時營業</span>
+                </h6>
+                <form action="/attraction_details/{{item.id}}" method="POST" name="clickfavorite" id="clickfavorite">
+                    {% csrf_token %}
+                    <input type="submit" name="submitfavorite" id="submitfavorite" value="加入收藏" />
+                </form>
+                {% comment %}
+                <div>
+                    <a href="/attraction_details/{{user}}/{{item.id}}">加入收藏</a>
+                </div> {% endcomment %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
+
 
 <!-- <div class="col-6">
     <div class=detail_box id="rightbox">
@@ -292,6 +380,16 @@
         }
     </script> -->
 <script>
+    // function inner() {
+    //     document.getElementById("tips").style.display = "inline-block";
+    //     document.getElementById("tips1").style.display = "inline-block";
+    // }
+    // function out() {
+    //     document.getElementById("tips").style.display = "none";
+    //     document.getElementById("tips1").style.display = "none";
+    // }
+
+
     function showRightBox(element) {
         var aId = $(element).data('aId');
         $.ajax({
