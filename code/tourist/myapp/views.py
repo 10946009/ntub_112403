@@ -219,7 +219,9 @@ def attraction_details(request,aid=None):
         if aid:
             u_id = request.user.id
             user_a = Favorite.objects.filter(u_id=u_id,a_id=aid)
-            if not user_a:
+            if user_a:
+                user_a.delete()
+            else:
                 unit = Favorite.objects.create(u_id=u_id, a_id=aid)
                 unit.save()
         return redirect("/attraction_details")

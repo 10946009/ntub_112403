@@ -1,19 +1,11 @@
-<!-- 我是首頁~
-<p></p>
-<p><a href="/login">登入</a></p>
-<p><a href="/search">搜尋景點</a></p>
-<p><a href="/create">建立行程</a></p>
-<p><a href="/history">我的行程</a></p>
-<p><a href="/favorite">我的最愛</a></p>
-<p><a href="/share">分享行程</a></p> -->
 {% extends 'base.html' %}
 {% block title %}首頁{% endblock %}
 {% block content %}
   <link rel="stylesheet" href="../static/css/bootstrap2023.css">
   <link rel="stylesheet" href="../static/owl/owl.carousel.min.css">
   <link rel="stylesheet" href="../static/owl/owl.theme.default.min.css">
-  <link rel="stylesheet" href="../static/css/all.css">
-  <link rel="stylesheet" href="../static/css/index.css">
+  <!-- <link rel="stylesheet" href="../static/css/all.css"> -->
+  <!-- <link rel="stylesheet" href="../static/css/index.css"> -->
 
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -21,6 +13,7 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer" />
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
 {% endblock %}
 {% comment %} 
 <!DOCTYPE html>
@@ -34,8 +27,8 @@
     <link rel="stylesheet" href="../static/css/bootstrap2023.css">
     <link rel="stylesheet" href="../static/owl/owl.carousel.min.css">
     <link rel="stylesheet" href="../static/owl/owl.theme.default.min.css">
-    <link rel="stylesheet" href="../static/css/all.css">
-    <link rel="stylesheet" href="../static/css/index.css">
+    <!-- <link rel="stylesheet" href="../static/css/all.css"> -->
+    <!-- <link rel="stylesheet" href="../static/css/index.css"> -->
 
     <link
     rel="stylesheet"
@@ -286,12 +279,12 @@
       </div>
       <div class="spot_txt">
         <h4>
-          九份老街
+          捷運一日遊
         </h4>
         <h5>
           aldfhlajkdhsfl
         </h5>
-        <a href="#" class="btn btn-warning spot_data_btn">詳細資料</a>
+        <button class="btn btn-warning spot_data_btn more_data" id="more_data">詳細資料</button>
       </div>
     </div>
     <div class="hot_spot_block col-md-4 ">
@@ -306,7 +299,7 @@
         <h5>
           aldfhlajkdhsfl
         </h5>
-        <a href="#" class="btn btn-warning spot_data_btn">詳細資料</a>
+        <button class="btn btn-warning spot_data_btn more_data" id="more_data">詳細資料</button>
       </div>
     </div>
     <div class="hot_spot_block col-md-4 ">
@@ -321,17 +314,19 @@
         <h5>
           aldfhlajkdhsfl
         </h5>
-        <a href="#hot_spot_show" class="btn btn-warning spot_data_btn">詳細資料</a>
+        <button class="btn btn-warning spot_data_btn more_data" id="more_data">詳細資料</button>
       </div>
     </div>
   </div>
-  <div class="hot_spot_show" id="hot_spot_show">
-    <div class="hot_spot_show_txt">
-      <div class="hot_spot_show_title">捷運一日遊</div>
-      <hr class="hr_style">
-      <div class="hot_spot_show_author">使用者</div>
-      
+</div>
+<div class="hot_spot_show" id="hot_spot_show">
+  <div class="hot_spot_show_txt">
+    <div class="hot_spot_show_title">捷運一日遊
+      <div class="close">X</div>
     </div>
+    <hr class="hr_style">
+    <div class="hot_spot_show_author">使用者</div>
+    
   </div>
 </div>
 
@@ -340,5 +335,5 @@
 {% block content_script %}
   <script src="../static/js/bootstrap.min.js"></script>
   <script src="../static/js/jquery-3.7.0.min.js"></script>
-  <!-- <script src="../static/js/index.js"></script> -->
+  <script src="../static/js/index.js"></script>
 {% endblock %}
