@@ -23,7 +23,15 @@ def get_avg():
         total_avg.append(avg_list)
     return total_avg
 
-
+def input_avg(avg_list):
+    s = '{}'
+    print(s)
+    for index,week in enumerate(avg_list):
+        # et_avg = tool.read(f"UPDATE myapp_crowd_opening SET crowd = ? WHERE crowd = ? AND week = ?;")
+        # get_avg = 
+        sql =f"UPDATE myapp_crowd_opening SET crowd = %s WHERE crowd = %s AND week = %s;"
+        # print(','.join(week),s,index+1)
+        tool.update(sql,(week,s,index+1))
 
 avg_list = get_avg()
 for a in avg_list:

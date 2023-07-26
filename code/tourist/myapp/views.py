@@ -384,6 +384,7 @@ def test_input(request):
         for o in o_attractions_list:
             score = 0
             o_db = Attractions.objects.get(place_id=o)
+            # 新增相似標籤------------------!!!!!!
             for tag in n_db.att_type:  # 抓出周遭n的tag(需要修改景點標籤)
                 if tag in o_db.att_type:  #
                     score += 1
