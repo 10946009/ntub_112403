@@ -113,15 +113,15 @@ att_types = {
     'grocery_or_supermarket':9, #雜貨店或超市
     'store':10, #商店
     'restaurant':11, #餐廳
-    'library':12, #圖書館(X)
-    'school':13, #學校(X)
+    'library':12, #圖書館
+    'school':13, #學校
     'jewelry_store':14, #珠寶店
     'church':15, #教堂(X)
     'cafe':16, #咖啡廳
     'mosque':17, #清真寺(宗教類)
     'bakery':18, #麵包店
     'home_goods_store':19, #家居商品商店
-    'art_gallery':20, #藝術畫廊
+    'art_gallery':20, #藝術
     'night_view':21, #夜景
     'hindu_temple':22, #印度教寺廟
     'pet_store':23, #寵物店
@@ -133,10 +133,12 @@ att_types = {
     'flower':29, #花
     'natural_feature':30, #自然特徵
     'night_market':31, #夜市
-    'stadium':32,#體育場
+    'stadium':32,#體育
     'campground':33, #露營地
     'shopping_mall':34, #購物商場
     'electronics_store':35, #電子商店
+    'spa':36, #溫泉
+    'DIY':37, #DIY
 }
 # 景點資料庫
 def input_address(tool,data, data_crowd, data_opening_phone,att_types,check_id_list):
