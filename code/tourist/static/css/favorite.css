@@ -1,17 +1,26 @@
-.cardContainer{
-  margin-top:50px;
+.cardContainer {
+  margin-top: 10px;
   display: flex;
   justify-content: center;
-}
+  flex-wrap: wrap;
+  gap: 20px;
+  } 
+
 .card {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin:1px 50px 50px 50px;
+  margin: 0;
   border: 2px solid;
-  height: 300px;
   width: 350px;
 }
 .my-nav-tabs .nav-link {
    margin-right: 100px;
    margin-left: 100px;
   }
+  @media screen and (max-width: 768px) {
+    .card {
+      width: 100%;
+    }
+  }
+  
