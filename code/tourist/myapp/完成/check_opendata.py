@@ -102,42 +102,43 @@ tool = Postgres()
 types_list = []
 
 att_types = {
-    'tourist_attraction':1,
-    'point_of_interest':2,
-    'establishment':3,
-    'park':4,
-    'place_of_worship':5,
-    'food':6,
-    'museum':7,
-    'landmark':8,
-    'grocery_or_supermarket':9,
-    'store':10,
-    'restaurant':11,
-    'library':12,
-    'school':13,
-    'jewelry_store':14,
-    'church':15,
-    'cafe':16,
-    'mosque':17,
-    'bakery':18,
-    'home_goods_store':19,
-    'art_gallery':20,
-    'route':21,
-    'hindu_temple':22,
-    'pet_store':23,
-    'movie_theater':24,
-    'amusement_park':25,
-    'zoo':26,
-    'meal_delivery':27,
-    'aquarium':28,
-    'liquor_store':29, #臺灣菸酒公司 士林營業所
-    'natural_feature':30, #大崙頭山、彩虹碼頭、陽明山
-    'premise':31, #台北公會堂、臺北圓環、世貿公園
-    'stadium':32,#臺北小巨蛋
-    'campground':33, #碧山露營場
-    'shopping_mall':34, #三創生活園區
-    'electronics_store':35, #三創生活園區
-
+    'tourist_attraction':1, #旅遊景點
+    'point_of_interest':2, #興趣點
+    'establishment':3, #機構
+    'park':4, #公園
+    'place_of_worship':5, #宗教場所
+    'food':6, #食物
+    'museum':7, #博物館
+    'landmark':8, #地標;標誌性建築
+    'grocery_or_supermarket':9, #雜貨店或超市
+    'store':10, #商店
+    'restaurant':11, #餐廳
+    'library':12, #圖書館
+    'school':13, #學校
+    'jewelry_store':14, #珠寶店
+    'church':15, #教堂(X)
+    'cafe':16, #咖啡廳
+    'mosque':17, #清真寺(宗教類)
+    'bakery':18, #麵包店
+    'home_goods_store':19, #家居商品商店
+    'art_gallery':20, #藝術
+    'night_view':21, #夜景
+    'hindu_temple':22, #印度教寺廟
+    'pet_store':23, #寵物店
+    'movie_theater':24, #電影院
+    'amusement_park':25, #遊樂園
+    'zoo':26, #動物園
+    'meal_delivery':27, #外送
+    'aquarium':28, #水族館
+    'flower':29, #花
+    'natural_feature':30, #自然特徵
+    'night_market':31, #夜市
+    'stadium':32,#體育
+    'campground':33, #露營地
+    'shopping_mall':34, #購物商場
+    'electronics_store':35, #電子商店
+    'spa':36, #溫泉
+    'DIY':37, #DIY
 }
 # 景點資料庫
 def input_address(tool,data, data_crowd, data_opening_phone,att_types,check_id_list):
