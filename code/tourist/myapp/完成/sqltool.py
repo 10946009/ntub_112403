@@ -39,3 +39,15 @@ class Postgres:
             return rows
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
+
+    def update(self, query, values) -> int:
+        """Update records"""
+        try:
+            cur = self.conn.cursor()
+            cur.execute(query, values)
+            updated_record = cur.rowcount
+            self.conn.commit()
+            cur.close()
+            return updated_record
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)

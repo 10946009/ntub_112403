@@ -266,7 +266,7 @@ def check_opening(now_time, week):
     stay_time = 30
     for a in Crowd_Opening.objects.filter(week=week):
         if "休息" not in a.opening:
-            if "24 小時營業" in a.opening:
+            if "24小時營業" in a.opening.replace(" ", ""):
                 ok_a_list.append(a.a_id)
             else:
                 for opening in a.opening:
@@ -384,6 +384,7 @@ def test_input(request):
         for o in o_attractions_list:
             score = 0
             o_db = Attractions.objects.get(place_id=o)
+            # 新增相似標籤------------------!!!!!!
             for tag in n_db.att_type:  # 抓出周遭n的tag(需要修改景點標籤)
                 if tag in o_db.att_type:  #
                     score += 1
