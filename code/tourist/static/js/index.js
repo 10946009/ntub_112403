@@ -7,7 +7,7 @@ var heart = document.getElementsByClassName('heart_icon');
             heart[i].onclick = function(){
                 if(flag){
                     flag = false;//無收藏被點擊
-                    this.className = "fa-solid fa-heart heart_icon active";
+                    this.className = "fa-solid fa-heart heart_icon active_heart";
                     // ++span[i].innerHTML;
                 }else{
                     flag = true//點擊取消收藏
