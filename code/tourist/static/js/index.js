@@ -19,7 +19,7 @@ var heart = document.getElementsByClassName('heart_icon');
     } 
     
 function add() {
-    document.getElementsByClassName("myDropdown").classList.toggle("show");
+    document.getElementsById("myDropdown").classList.toggle("show");
     }
       
     // Close the dropdown menu if the user clicks outside of it
