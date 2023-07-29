@@ -25,7 +25,16 @@ dotenv_path = join(dirname(__file__), ".env")
 load_dotenv(dotenv_path, override=True)  # 設定 override 才會更新變數哦！
 GOOGLE_PLACES_API_KEY = os.environ.get("GOOGLE_PLACES_API_KEY")
 
-
+ATT_TYPE_LIST=[
+    [4,25,26,28,37],[5,8,15,17,22],[6,9,10,11,16,18,19,31],[7,8,13,20,24,28],
+    [8,7,13,20,24,28,30],[9,6,10,14,19,34,35],[10,6,9,14,19,31,34,35],
+    [11,6,9,10,16,18,19,31],[12,7,8,13,20],[13,7,8,12,20],[14,9,10,19,34,35],
+    [15,5,8,17,22],[16,6,11,18],[17,5,8,15,22],[18,6,11,16],[19,6,9,10,14,34,35],
+    [20,7,8,24,28,37],[21,8,29,30,33,36],[22,5,8,15,17],[23,9,10,19,26],
+    [24,7,8,20,28,37],[25,4,6,11,26,28],[26,4,7,23,28],[28,4,7,23,26],[29,8,30,33,36],
+    [30,8,29,33,36],[31,6,10,11,19,21],[32,4,13,30,33],[33,4,13,30,32],
+    [34,6,10,11,14,16,19,35],[35,6,9,10,11,19],[36,8,29,30,33],[37,4,7,20,24,25,26,28]
+]
 # 管理者首頁
 def admin_index(request):
     return render(request, "admin_index.html")
@@ -266,7 +275,7 @@ def check_opening(now_time, week):
     stay_time = 30
     for a in Crowd_Opening.objects.filter(week=week):
         if "休息" not in a.opening:
-            if "24小時營業" in a.opening.replace(" ", ""):
+            if "24小時營業" in a.opening:
                 ok_a_list.append(a.a_id)
             else:
                 for opening in a.opening:
@@ -323,7 +332,7 @@ def test_input(request):
     print(len(get_all_attractions))
     m_attractions_list = []
 
-    # # 發送距離矩陣請求
+    # # -------------------------------------發送距離矩陣請求
     # for a_id in get_all_attractions:
     #     response = client.distance_matrix(
     #         origins=get_user_address, #使用者位置
@@ -338,8 +347,12 @@ def test_input(request):
     #     duration_value = response["rows"][0]["elements"][0]["duration"]["value"]
     #     if duration_value <= 1800: # 30分鐘
     #         m_attractions_list.append([a_id[0],distance,duration])
-    # print("推薦的景點為",m_attractions_list)
-    # m_attractions_list_name = [Attractions.objects.get(place_id=x[0]).a_name for x in m_attractions_list] # name的List
+    # m_id = [Attractions.objects.get(place_id=x[0]).id for x in m_attractions_list] # name的List
+    # m_rating = [Attractions.objects.get(place_id=x[0]).rating for x in m_attractions_list] # name的List
+    # m_rating_total = [Attractions.objects.get(place_id=x[0]).rating_total for x in m_attractions_list] # name的List
+    # --------------------------------------------------標準化和排序
+    
+    #----------------------------------------------------------------------------------------------------------------
     # print(m_attractions_list_name)
     # print(response)
     m_attractions_list_name = [
@@ -363,6 +376,7 @@ def test_input(request):
         "URS27-華山大草原",
     ]
     near_o = []
+    # 相似標籤
 
     # 抓o周遭的景點
     for o in o_attractions_list:
@@ -378,7 +392,7 @@ def test_input(request):
     tags_same_score = []
     tags_same_score_total = []
     p_attractions_list = []
-
+    #-----------------根據type，推薦相似的景點
     for n in near_o:
         n_db = Attractions.objects.get(place_id=n)
         for o in o_attractions_list:
@@ -399,11 +413,44 @@ def test_input(request):
     # print("max_i_list:",max_i_list)
     f_max_i_list = sorted(max_i_list, key=lambda x: x[1], reverse=True)[0:10]
     # print("f_max_i_list:",f_max_i_list)
-    if len(near_o) < 3:
+    if len(near_o) < 5:
         for i in range(len(near_o)):
             p_attractions_list.append(near_o[f_max_i_list[i][0]])
     else:
+        for i in range(5):
+            p_attractions_list.append(near_o[f_max_i_list[i][0]])
+    near_o = list(set(near_o) - set(p_attractions_list))
+    #--------------根據組合，推薦類似type的景點
+    o_type=[] #宣告相似組合的陣列
+    tags_same_score_total=[]
+    for o in o_attractions_list:
+        o_db = Attractions.objects.get(place_id=o)
+        for a_tag in o_db.att_type:
+            for i in ATT_TYPE_LIST:
+                if a_tag==i[0]:
+                    for x in i:
+                        o_type.append(x)
+    o_type=list(set(o_type))
+    for n in near_o:
+        n_db = Attractions.objects.get(place_id=n)
+        score = 0
+        for tag in n_db.att_type:  # 抓出周遭n的tag(需要修改景點標籤)
+            if tag in o_type:  #
+                score += 1
+        tags_same_score_total.append(score)
+    print("tags_same_score_total:",tags_same_score_total)
+    max_i_list = []
+    f_max_i_list = []
+    for index, i in enumerate(tags_same_score_total):
+        max_i_list.append([index, i])
+    # print("max_i_list:",max_i_list)
+    f_max_i_list = sorted(max_i_list, key=lambda x: x[1], reverse=True)[0:10]
+    # print("f_max_i_list:",f_max_i_list)
+    if len(near_o) < 5:
         for i in range(len(near_o)):
+            p_attractions_list.append(near_o[f_max_i_list[i][0]])
+    else:
+        for i in range(5):
             p_attractions_list.append(near_o[f_max_i_list[i][0]])
     print("推薦相似景點的順序:", p_attractions_list)
     p_attractions_list_name = [
@@ -412,7 +459,7 @@ def test_input(request):
 
     # 將使用者在p_attractions_list所選的景點加入O
     user_select_p = []
-    user_select_p = p_attractions_list[:4]  # 抓使用者所選擇的
+    user_select_p = p_attractions_list[4:7]  # 抓使用者所選擇的
     o_attractions_list += user_select_p
     final_o_attractions_list_name = [
         Attractions.objects.get(place_id=x).a_name for x in o_attractions_list
