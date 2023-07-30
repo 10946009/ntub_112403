@@ -272,6 +272,7 @@ def user_edit(request):
 # 確定營業時間
 def check_opening(now_time, week):
     ok_a_list = []
+    now_time+=60
     stay_time = 30
     for a in Crowd_Opening.objects.filter(week=week):
         if "休息" not in a.opening:
@@ -313,7 +314,88 @@ def check_distance_placeid(get_user_address, a_id_list):
             ok_a_list.append(a.place_id)
     return ok_a_list
 
+def order_check_attrations(o_attractions_list,now_time,week):
+     # 4.將使用者所選擇的所有景點
+    #     * 根據使用者提供的資料（喜好）去判斷重複程度（如5個相似，1個相似之類的），沒有的話變成手動給(暫定)，
+    user_favorite = [
+        1,
+        2,
+        4,
+        7,
+        9,
+    ]
+    o_crowd_list = []
+    o_favorite_list = []
+    o_opening_list = []
+    temp_o_opening_list = []
+    for o in o_attractions_list:
+        score = 0
+        o_db = Attractions.objects.get(place_id=o)
+        for tag in o_db.att_type:  # 抓出周遭n的tag(需要修改景點標籤)
+            if tag in user_favorite:  #
+                score += 1
+        o_favorite_list.append(score)
 
+    # 再判斷景點的人潮流量（1-5，1為最高），判斷營業時間
+    time = now_time // 60
+    for o in o_attractions_list:
+        o_db = Attractions.objects.get(place_id=o)
+        o_crowd_opening = o_db.crowd_opening_set.filter(week=week).values()
+        crowd = o_crowd_opening[0]["crowd"]
+        opening = o_crowd_opening[0]["opening"]
+        try:
+            crowd = o_crowd_opening[0]["crowd"][time - 1]
+            crowd = crowd_judge(crowd)
+            o_crowd_list.append(crowd)
+        except:
+            o_crowd_list.append(0)
+        for op in opening:
+            print(op)
+            if op =="24小時營業":
+                o_opening_list.append(1440)
+            else:
+                op = op.replace(" ", "")
+                if o_db.stay_time<120:
+                    o_opening_list.append(int(op[6:8])*60 + int(op[9:])-120)
+                else:
+                    o_opening_list.append(int(op[6:8])*60 + int(op[9:])-o_db.stay_time)
+            break
+        # o_opening_list.append(temp_o_opening_list)
+        temp_o_opening_list=[]
+    print("o_attractions_list",o_attractions_list)
+    print("o_opening_list",o_opening_list)
+    
+
+    # print("o_crowd_list:",o_crowd_list)
+    # print("o_favorite_list:",o_favorite_list)
+
+    o_list = {"o_favorite_list": o_favorite_list, "o_crowd_list": o_crowd_list,"o_opening_list":o_opening_list}
+    df = pd.DataFrame(o_list)
+    df["total"] = 0
+    print("df", df)
+    df_html = df.to_html()
+    # 標準化 使值在[0,1]之間
+    scaler = MinMaxScaler(feature_range=(0, 1)).fit(df)
+    X_scaled = scaler.transform(df)
+    df_x = pd.DataFrame(X_scaled)
+
+    df_x[3] = df_x[0].mul(0.2)+ df_x[1].mul(0.4) +(1-df_x[2]).mul(0.4)  # 將值皆乘0.5相加後放入total欄位
+    print("df_x", df_x)
+    df_x_html = df_x.to_html()
+    total_list = df_x[3].values.tolist()  # 將df_x[3]的值轉成list
+    final = [
+        [o_attractions_list[x], total_list[x]] for x in range(len(total_list))
+    ]  # 將place_id和分數合併
+    f_final_list = sorted(final, key=lambda x: x[1], reverse=True)  # 排序
+    print("f_final_list", f_final_list)
+    f_final_list_name = [
+        [Attractions.objects.get(place_id=x[0]).a_name,Attractions.objects.get(place_id=x[0]).crowd_opening_set.filter(week=week).values()[0]["opening"]] for x in f_final_list
+    ]  # name的List
+    # print("時間:",opening,",擁擠:",crowd)
+    # print("這裡",o_crowd_opening)
+    #     * 最後使用normalization將兩者的區間變成[0,1]，再賦予他們權重（如0.5、0.5），最後根據分數去排序景點。
+
+    return f_final_list[0][0]
 def test_input(request):
     client = googlemaps.Client(key=GOOGLE_PLACES_API_KEY)
     now_time = 780
@@ -486,96 +568,21 @@ def test_input(request):
 
     # 將使用者在p_attractions_list所選的景點加入O
     user_select_p = []
-    user_select_p = p_attractions_list[:]  # 抓使用者所選擇的
+    user_select_p = p_attractions_list[5:]  # 抓使用者所選擇的
     o_attractions_list += user_select_p
     final_o_attractions_list_name = [
         Attractions.objects.get(place_id=x).a_name for x in o_attractions_list
     ]  # name的List
     # print(o_attractions_list)
-    # 4.將使用者所選擇的所有景點
-    #     * 根據使用者提供的資料（喜好）去判斷重複程度（如5個相似，1個相似之類的），沒有的話變成手動給(暫定)，
-    user_favorite = [
-        1,
-        2,
-        4,
-        7,
-        9,
-    ]
-    o_crowd_list = []
-    o_favorite_list = []
-    o_opening_list = []
-    temp_o_opening_list = []
-    for o in o_attractions_list:
-        score = 0
-        o_db = Attractions.objects.get(place_id=o)
-        for tag in o_db.att_type:  # 抓出周遭n的tag(需要修改景點標籤)
-            if tag in user_favorite:  #
-                score += 1
-        o_favorite_list.append(score)
+    final_list=[]
+    while len(o_attractions_list)>0:
+        final_list.append(order_check_attrations(o_attractions_list,now_time,week))
+        now_time+=120
+        o_attractions_list = list(set(o_attractions_list) - set(final_list))
 
-    # 再判斷景點的人潮流量（1-5，1為最高），判斷營業時間
-    time = now_time // 60
-    for o in o_attractions_list:
-        o_db = Attractions.objects.get(place_id=o)
-        o_crowd_opening = o_db.crowd_opening_set.filter(week=week).values()
-        crowd = o_crowd_opening[0]["crowd"]
-        opening = o_crowd_opening[0]["opening"]
-        try:
-            crowd = o_crowd_opening[0]["crowd"][time - 1]
-            crowd = crowd_judge(crowd)
-            o_crowd_list.append(crowd)
-        except:
-            o_crowd_list.append(0)
-        for op in opening:
-            print(op)
-            if op =="24小時營業":
-                o_opening_list.append(1440)
-            else:
-                op = op.replace(" ", "")
-                if o_db.stay_time<120:
-                    o_opening_list.append(int(op[6:8])*60 + int(op[9:])-120)
-                else:
-                    o_opening_list.append(int(op[6:8])*60 + int(op[9:])-o_db.stay_time)
-            break
-        # o_opening_list.append(temp_o_opening_list)
-        temp_o_opening_list=[]
-    print("o_attractions_list",o_attractions_list)
-    print("o_opening_list",o_opening_list)
-  
-
-    # print("o_crowd_list:",o_crowd_list)
-    # print("o_favorite_list:",o_favorite_list)
-
-    
-
-    o_list = {"o_favorite_list": o_favorite_list, "o_crowd_list": o_crowd_list,"o_opening_list":o_opening_list}
-    df = pd.DataFrame(o_list)
-    df["total"] = 0
-    df.index = final_o_attractions_list_name
-    print("df", df)
-    df_html = df.to_html()
-    # 標準化 使值在[0,1]之間
-    scaler = MinMaxScaler(feature_range=(0, 1)).fit(df)
-    X_scaled = scaler.transform(df)
-    df_x = pd.DataFrame(X_scaled)
-
-    df_x[3] = df_x[0].mul(0.2)+ df_x[1].mul(0.4) +(1-df_x[2]).mul(0.4)  # 將值皆乘0.5相加後放入total欄位
-    df_x.index = final_o_attractions_list_name
-    print("df_x", df_x)
-    df_x_html = df_x.to_html()
-    total_list = df_x[3].values.tolist()  # 將df_x[3]的值轉成list
-    final = [
-        [o_attractions_list[x], total_list[x]] for x in range(len(total_list))
-    ]  # 將place_id和分數合併
-    f_final_list = sorted(final, key=lambda x: x[1], reverse=True)  # 排序
-    print("f_final_list", f_final_list)
-    f_final_list_name = [
-        [Attractions.objects.get(place_id=x[0]).a_name,Attractions.objects.get(place_id=x[0]).crowd_opening_set.filter(week=week).values()[0]["opening"]] for x in f_final_list
-    ]  # name的List
-    # print("時間:",opening,",擁擠:",crowd)
-    # print("這裡",o_crowd_opening)
-
-    #     * 最後使用normalization將兩者的區間變成[0,1]，再賦予他們權重（如0.5、0.5），最後根據分數去排序景點。
+    f_final_list_name=  [
+        [Attractions.objects.get(place_id=x).a_name,Attractions.objects.get(place_id=x).crowd_opening_set.filter(week=week).values()[0]["opening"]] for x in final_list
+    ] 
     return render(request, "_test.html", locals())
 
 
