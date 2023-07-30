@@ -7,7 +7,7 @@ var heart = document.getElementsByClassName('heart_icon');
             heart[i].onclick = function(){
                 if(flag){
                     flag = false;//無收藏被點擊
-                    this.className = "fa-solid fa-heart heart_icon active";
+                    this.className = "fa-solid fa-heart heart_icon active_heart";
                     // ++span[i].innerHTML;
                 }else{
                     flag = true//點擊取消收藏
@@ -19,7 +19,7 @@ var heart = document.getElementsByClassName('heart_icon');
     } 
     
 function add() {
-    document.getElementsByClassName("myDropdown").classList.toggle("show");
+    document.getElementsById("myDropdown").classList.toggle("show");
     }
       
     // Close the dropdown menu if the user clicks outside of it
