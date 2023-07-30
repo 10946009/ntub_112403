@@ -282,7 +282,7 @@ def check_opening(now_time, week):
                     opening = opening.replace(" ", "")
                     if now_time >= int(opening[0:2]) * 60 + int(
                         opening[3:5]
-                    ) and now_time < int(opening[6:8]) + int(opening[9:]):
+                    ) and now_time < int(opening[6:8])*60 + int(opening[9:]):
                         ok_a_list.append(a.a_id)
                         break
     return ok_a_list
@@ -486,7 +486,7 @@ def test_input(request):
 
     # 將使用者在p_attractions_list所選的景點加入O
     user_select_p = []
-    user_select_p = p_attractions_list[4:7]  # 抓使用者所選擇的
+    user_select_p = p_attractions_list[:]  # 抓使用者所選擇的
     o_attractions_list += user_select_p
     final_o_attractions_list_name = [
         Attractions.objects.get(place_id=x).a_name for x in o_attractions_list
@@ -503,6 +503,8 @@ def test_input(request):
     ]
     o_crowd_list = []
     o_favorite_list = []
+    o_opening_list = []
+    temp_o_opening_list = []
     for o in o_attractions_list:
         score = 0
         o_db = Attractions.objects.get(place_id=o)
@@ -510,8 +512,8 @@ def test_input(request):
             if tag in user_favorite:  #
                 score += 1
         o_favorite_list.append(score)
-    #     * 再判斷景點的人潮流量（1-5，1為最高），
 
+    # 再判斷景點的人潮流量（1-5，1為最高），判斷營業時間
     time = now_time // 60
     for o in o_attractions_list:
         o_db = Attractions.objects.get(place_id=o)
@@ -524,10 +526,29 @@ def test_input(request):
             o_crowd_list.append(crowd)
         except:
             o_crowd_list.append(0)
+        for op in opening:
+            print(op)
+            if op =="24小時營業":
+                o_opening_list.append(1440)
+            else:
+                op = op.replace(" ", "")
+                if o_db.stay_time<120:
+                    o_opening_list.append(int(op[6:8])*60 + int(op[9:])-120)
+                else:
+                    o_opening_list.append(int(op[6:8])*60 + int(op[9:])-o_db.stay_time)
+            break
+        # o_opening_list.append(temp_o_opening_list)
+        temp_o_opening_list=[]
+    print("o_attractions_list",o_attractions_list)
+    print("o_opening_list",o_opening_list)
+  
+
     # print("o_crowd_list:",o_crowd_list)
     # print("o_favorite_list:",o_favorite_list)
 
-    o_list = {"o_favorite_list": o_favorite_list, "o_crowd_list": o_crowd_list}
+    
+
+    o_list = {"o_favorite_list": o_favorite_list, "o_crowd_list": o_crowd_list,"o_opening_list":o_opening_list}
     df = pd.DataFrame(o_list)
     df["total"] = 0
     df.index = final_o_attractions_list_name
@@ -538,18 +559,18 @@ def test_input(request):
     X_scaled = scaler.transform(df)
     df_x = pd.DataFrame(X_scaled)
 
-    df_x[2] = df_x[0].mul(0.5).add(df_x[1].mul(0.5))  # 將值皆乘0.5相加後放入total欄位
+    df_x[3] = df_x[0].mul(0.2)+ df_x[1].mul(0.4) +(1-df_x[2]).mul(0.4)  # 將值皆乘0.5相加後放入total欄位
     df_x.index = final_o_attractions_list_name
     print("df_x", df_x)
     df_x_html = df_x.to_html()
-    total_list = df_x[2].values.tolist()  # 將df_x[2]的值轉成list
+    total_list = df_x[3].values.tolist()  # 將df_x[3]的值轉成list
     final = [
         [o_attractions_list[x], total_list[x]] for x in range(len(total_list))
     ]  # 將place_id和分數合併
     f_final_list = sorted(final, key=lambda x: x[1], reverse=True)  # 排序
     print("f_final_list", f_final_list)
     f_final_list_name = [
-        Attractions.objects.get(place_id=x[0]).a_name for x in f_final_list
+        [Attractions.objects.get(place_id=x[0]).a_name,Attractions.objects.get(place_id=x[0]).crowd_opening_set.filter(week=week).values()[0]["opening"]] for x in f_final_list
     ]  # name的List
     # print("時間:",opening,",擁擠:",crowd)
     # print("這裡",o_crowd_opening)
