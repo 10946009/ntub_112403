@@ -85,9 +85,10 @@ html{
 	color: rgba(0, 0, 0, 0.3);
 	cursor: pointer;
 }
-.active{/*收藏動畫*/
+.active_heart{/*收藏動畫*/
 	color: #E1251B;
 	animation: heart 0.5s linear;
+	transform: scale(1.2);
 }
 .c_txt{
 	margin-top: 5px;
