@@ -93,3 +93,40 @@ $(function(){
     $("#hot_spot_show").fadeOut(200);
   })
 })
+
+var add_click = document.getElementsByClassName('add_icon');
+var count=1;
+$(function(){
+    $(".dropdown_menu").hide();
+})
+for(var i = 0 ; i < add_click.length ; i++){
+  (function(i){
+    var flag_add = true;
+    add_click[i].onclick = function(){
+      if(flag_add){
+        flag_add = false//點add
+        $(".dropdown_menu").fadeIn(200);
+      }else{
+        flag_add = true//點其他
+        $(".dropdown_menu").fadeOut(200);
+      }
+      count++
+    }
+  })(i);
+}
+
+// $(function(){
+//   $(".dropdown_menu").hide();
+//   $(".add_icon").click(function(){
+//     $(".dropdown_menu").fadeIn(200);
+//   })
+// })
+
+  // if( count % 2 == 0 ){
+  //   add_click[i].onclick = function(){
+  //     $(".dropdown_menu").fadeOut(200);
+  //   }
+  // }else{
+  //   $(".dropdown_menu").fadeIn(200);
+  // }
+  // count++;

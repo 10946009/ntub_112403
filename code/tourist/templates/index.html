@@ -36,8 +36,8 @@
         <br>
         建議停留時間：大約1小時?
       </p>
-      <!-- <i class="fa-solid fa-plus add_icon"></i> -->
-      <div class="dropdown">
+      <i class="fa-solid fa-plus add_icon"></i>
+      <!-- <div class="dropdown">
         <span id="click_add" class="dropbtn">
           +
         </span>
@@ -46,34 +46,9 @@
           <a href="#">一日遊</a>
           <a href="#">逛街</a>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
-  <!-- <div class="item" id="hotBlock">
-    <i class="fa-solid fa-heart heart_icon"></i>
-    <img src="../static/images/Zhongzheng.jpeg" alt="">
-    <p class="hot_spotC">
-      <h4 class="c_txt">
-        中正紀念堂
-      </h4>
-      <p class="c_txt">
-        位於台北市中正區位於台北市中正區....
-        <br>
-        建議停留時間：大約1小時?
-      </p>
-    </p>
-    <i class="fa-solid fa-plus add_icon"></i>
-    <div class="dropdown">
-      <button onclick="add()" class="dropbtn">
-        +
-      </button>
-      <div id="myDropdown" class="dropdown-content myDropdown">
-        <a href="/create">新增行程</a>
-        <a href="#">一日遊</a>
-        <a href="#">逛街</a>
-      </div>
-    </div>
-  </div> -->
   <div class="item">
     <div class="heart_icon_img">
       <i class="fa-solid fa-heart heart_icon"></i>
@@ -81,16 +56,27 @@
     </div>
     <div class="hot_spotC">
       <h4 class="c_txt">
-        國父紀念館
+        國父紀念館1
       </h4>
       <p class="c_txt">
         位於台北市中正區....
         <br>
         建議停留時間：大約1小時?
       </p>
-      <div class="dropdown">
-        <i class="fa-solid fa-plus  dropbtn" style="padding: 8px;"></i>
+      <i class="fa-solid fa-plus add_icon"></i>
+      <div class="dropdown_menu" >
+        <div><a class="dropdown_item" href="#">新增行程</a></div>
+        <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
+        <div><a class="dropdown_item" href="#">開車一日遊</a></div>
       </div>
+      <!-- <div class="dropdown">
+        <i class="fa-solid fa-plus dropbtn" style="padding: 8px;"></i>
+        <div id="myDropdown" class="dropdown-content myDropdown">
+          <a href="/create">新增行程</a>
+          <a href="#">一日遊</a>
+          <a href="#">逛街</a>
+        </div>
+      </div> -->
     </div>
   </div>
   <div class="item">
@@ -282,7 +268,7 @@
  
 {% block content_script %}
 <script src="../static/js/index.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 {% endblock %}
 
 </html>
