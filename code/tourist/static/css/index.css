@@ -111,21 +111,29 @@ html{
 	background-color: #ccc;
 	cursor: pointer;
 }
+.add_icon.active {
+  background-color: rgb(255, 236, 22);
+}
 .dropdown_menu{
 	position: absolute;
 	top: 0;
 	right: 0;
-	width: 100px;
-	border: solid 1px black;
+	width: 150px;
+	border-radius: 10%;
+	background-color: beige;
 	text-align: left;
+	margin-top: 40px;
 }
 .dropdown_item{
 	text-decoration-line: none;
 	color: black;
 	display: block;
-	padding: 5px 0;
+	border-radius: 10%;
+	padding: 5px;
 }
-
+.dropdown_item:hover{
+	background-color: bisque;
+}
 
 
 .spot_img{
