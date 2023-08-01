@@ -18,13 +18,13 @@ var heart = document.getElementsByClassName('heart_icon');
         })(i);
     } 
     
-//漢堡選單
-$(document).ready(function() {
-   $('.showmenu').on('click',  function(e) {
-      e.preventDefault();
-      $('body').toggleClass('menu-show');
-  });
-});
+// //漢堡選單
+// $(document).ready(function() {
+//    $('.showmenu').on('click',  function(e) {
+//       e.preventDefault();
+//       $('body').toggleClass('menu-show');
+//   });
+// });
 
 
 $('.owl-carousel').owlCarousel({
@@ -98,3 +98,4 @@ $(function() {
     
   });
 });
+
