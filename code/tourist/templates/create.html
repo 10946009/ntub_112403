@@ -1,77 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}建立行程{% endblock %}
 {% block content %}
-  <link rel="stylesheet" href="../static/css/bootstrap2023.css">
-  <link rel="stylesheet" href="../static/css/all.css">
-  <link rel="stylesheet" href="../static/css/create.css">
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer" />
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<link rel="stylesheet" href="../static/css/create.css">
 {% endblock %}
  
-
- 
-<!-- {% comment %} 
-<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">趣放假
-        <img src="../static/images/logo_icon.png"
-             width="20px"
-             style="margin-left: 5px">
-      </a>
-      <button class="navbar-toggler me-auto"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="/">首頁</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/create">建立行程</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/history">我的行程</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/attraction_details">景點資訊</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/favorite">我的收藏</a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <ul class="name_ul">
-          <li class="nav-item dropdown name_li" style="list-style-type: none;">
-            <a class="nav-link dropdown-toggle"
-               href="#"
-               role="button"
-               data-bs-toggle="dropdown"
-               aria-expanded="false">UserName</a>
-            <ul class="dropdown-menu">
-              <li>
-                <a class="dropdown-item" href="#">Setting</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">Log out</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-</nav>  -->
-{% endcomment %}
 {% block body %}
   <div class="create_div" style="display: flex;justify-content: center;">
     <main>
@@ -182,21 +114,20 @@
                 <i class="fa-solid fa-heart heart_icon"></i>
               </div>
               <div class="spot_like_txt">
-                <!-- <i class="fa-solid fa-plus add_icon"></i> -->
-                <div class="dropdown">
-                  <button onclick="add()" class="dropbtn">+</button>
-                  <div id="myDropdown" class="dropdown-content">
-                    <a href="#tab_#tab_c">新增行程</a>
-                    <a href="#">一日遊</a>
-                    <a href="#">逛街</a>
-                  </div>
-                </div>
                 <h3 class="spot_title">
                   平溪老街
                 </h3>
                 <p>
                   123456
                 </p>
+                <div class="group">
+                  <i class="fa-solid fa-plus add_icon"></i>
+                  <div class="dropdown_menu" >
+                    <div><a class="dropdown_item" href="#tab_c">新增行程</a></div>
+                    <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
+                    <div><a class="dropdown_item" href="#">開車一日遊</a></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -207,23 +138,20 @@
                 <i class="fa-solid fa-heart heart_icon"></i>
               </div>
               <div class="spot_like_txt">
-                <!-- <i class="fa-solid fa-plus add_icon"></i> -->
-                <div class="dropdown">
-                  <button onclick="add1()" class="dropbtn">
-                    +
-                  </button>
-                  <div id="myDropdown1" class="dropdown-content">
-                    <a href="#tab_c">新增行程</a>
-                    <a href="#">一日遊1</a>
-                    <a href="#">逛街</a>
-                  </div>
-                </div>
                 <h3 class="spot_title">
                   平溪老街
                 </h3>
                 <p>
                   123456
                 </p>
+                <div class="group">
+                  <i class="fa-solid fa-plus add_icon"></i>
+                  <div class="dropdown_menu" >
+                    <div><a class="dropdown_item" href="#tab_c">新增行程</a></div>
+                    <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
+                    <div><a class="dropdown_item" href="#">開車一日遊</a></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -234,23 +162,20 @@
                 <i class="fa-solid fa-heart heart_icon"></i>
               </div>
               <div class="spot_like_txt">
-                <!-- <i class="fa-solid fa-plus add_icon"></i> -->
-                <div class="dropdown">
-                  <button onclick="add2()" class="dropbtn">
-                    +
-                  </button>
-                  <div id="myDropdown2" class="dropdown-content">
-                    <a href="#tab_c">新增行程</a>
-                    <a href="#">一日遊1</a>
-                    <a href="#">逛街2</a>
-                  </div>
-                </div>
                 <h3 class="spot_title">
                   平溪老街
                 </h3>
                 <p>
                   123456
                 </p>
+                <div class="group">
+                  <i class="fa-solid fa-plus add_icon"></i>
+                  <div class="dropdown_menu" >
+                    <div><a class="dropdown_item" href="#tab_c">新增行程</a></div>
+                    <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
+                    <div><a class="dropdown_item" href="#">開車一日遊</a></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -334,7 +259,8 @@
                           margin-left: 5px">
           </div>
 
-          <div class="container">
+
+          <!-- <div class="container">
             <div class="row">
               <div class="col-md-6">
                 <div class="row chebox_item">
@@ -611,7 +537,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
  
           <div class="dialog" id="dialog">
@@ -635,6 +561,58 @@
         </table>
       </form>
 
+      <div id="button">
+        <button class="filter_btn" value="all">台北市</button>
+        <button class="filter_btn" value="zhongzheng">中正區</button>
+        <button class="filter_btn" value="shilin">士林區</button>
+        <button class="filter_btn" value="neihu">內湖區</button>
+        <button class="filter_btn" value="zhongshan">中山區</button>
+        <button class="filter_btn" value="datong">大同區</button>
+        <button class="filter_btn" value="songshan">松山區</button>
+        <button class="filter_btn" value="wanhua">萬華區</button>
+        <button class="filter_btn" value="beitou">北投區</button>
+        <button class="filter_btn" value="daan">大安區</button>
+        <button class="filter_btn" value="shingyi">信義區</button>
+        <button class="filter_btn" value="nangan">南港區</button>
+        <button class="filter_btn" value="wenshan">文山區</button>
+    </div>
+    <div class="filter row">
+        <div class="shingyi col-md-6">
+          <div class="col-5">
+            <img src="../static/images/101.jpg" alt=""  height="250">
+          </div>
+          <div class="col-7">
+            <div style="text-align: left;">
+              <p>景點名稱</p>
+              <p>地址</p>
+            </div>
+          </div>
+        </div>
+        <div class="beitou col-md-6">
+          <div class="col-5">
+            <img src="../static/images/beitou.jpeg" alt=""  height="250">
+          </div>
+          <div class="col-7">
+            <div style="text-align: left;">
+              <p>景點名稱</p>
+              <p>地址</p>
+            </div>
+          </div>
+        </div>
+        <div class="datong col-md-6">
+          <div class="col-5">
+            <img src="../static/images/Datong.jpeg" alt=""  height="250">
+          </div>
+          <div class="col-7">
+            <div style="text-align: left;">
+              <p>景點名稱</p>
+              <p>地址</p>
+            </div>
+          </div>
+        </div>
+        <div class="shilin"><img src="../static/images/Shilin.jpeg" alt=""  height="250"></div>
+        <div class="zhongshan"><img src="../static/images/Zhongshan.jpeg" alt=""  height="250"></div>
+    </div>
  
     </div>
 
@@ -643,9 +621,28 @@
 {% endblock body %}
  
 {% block content_script %}
-  <script src="../static/js/bootstrap.min.js"></script>
-  <script src="../static/js/jquery-3.7.0.min.js"></script>
   <script src="../static/js/create.js"></script>
+  <script>
+    $(function(){
+      $("button").click(function(){
+          var target = $(this).attr("value");
+    
+    
+          $(".filter div").each(function(){
+              $(this).animate({"opacity":0},100,function(){
+                  $(this).hide();
+    
+                  if($(this).hasClass(target) || target == "all"){
+                      $(this).show();
+                      $(this).animate({"opacity":1},100);
+                  }
+              });
+          });
+    
+      });
+    
+    })
+    </script>
 {% endblock %}
 
 </html>

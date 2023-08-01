@@ -126,55 +126,30 @@ main{
 	background-color: #ccc;
 	cursor: pointer;
 }
-
-
-.dropdown{
+.add_icon.active {
+  background-color: rgb(255, 236, 22);
+}
+.dropdown_menu{
 	position: absolute;
 	top: 0;
 	right: 0;
-}
-.dropbtn {
-	background-color: #ccc;
-	color: white;
-	margin: 5px;
-	padding: 5px 10px;
-	font-size: 20px;
-	border: none;
-	border-radius: 30%;
-	cursor: pointer;
-}  
-  /* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
-	background-color: #ffcc02;
-}  
-  /* Dropdown Content (Hidden by Default) */
-.dropdown-content {
+	width: 150px;
 	border-radius: 10%;
-	display: none;
-	position: absolute;
 	background-color: beige;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	z-index: 999;
-	overflow-y: auto;
-    text-align: left;
+	text-align: left;
+	margin-top: 40px;
 }
-  
-  /* Links inside the dropdown */
-.dropdown-content a {
+.dropdown_item{
+	text-decoration-line: none;
 	color: black;
-	padding: 12px 16px;
-	text-decoration: none;
 	display: block;
+	border-radius: 10%;
+	padding: 5px;
 }
-  
-  /* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-	display: block;
-	border-top-left-radius: 20%;
-	border-top-right-radius: 20%;
-	background-color: rgb(253, 247, 86);
+.dropdown_item:hover{
+	background-color: bisque;
 }
+
   
   /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {
@@ -199,6 +174,18 @@ main{
     padding: 10px;
     font-size: 18px;
     text-align: left;
+}
+
+.filter_btn{
+    padding: 5px 8px;
+    margin: 5px;
+    background-color: rgb(255, 255, 119);
+    border-radius: 15%;
+    border: 2px gray none;
+}
+.filter_btn:hover{
+    background-color: rgb(255, 118, 59);
+    font-weight: bold;
 }
 
 .dialog{
