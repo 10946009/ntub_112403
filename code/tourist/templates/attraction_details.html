@@ -71,7 +71,7 @@
             <div class="container">
                 <div class="searchInput">
                     {% csrf_token %}
-                    <input type="search" placeholder="想去哪玩.." id="myInput" style="font-size: 18px;">
+                    <input type="search" ng-model="name" placeholder="想去哪玩.." id="myInput" style="font-size: 18px;">
                     <button class="icon"><i class="fas fa-search"></i></button>
                 </div>
             </div>
@@ -79,7 +79,6 @@
         </form>
     </div>
 </div>
-<hr>
 <!-- 初版：點下去跳右邊資訊 -->
 <!-- <div class="row" style="padding:15px;">
     <div class="col-6 col-s-12 Att_search">
@@ -400,14 +399,13 @@
             for (i = 0; i < arr.length; i++) {
                 if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
                     b = document.createElement("DIV");
-                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                    // b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                    b.innerHTML = `<i class="fas fa-search"style="margin-right:10px;"></i><strong>${arr[i].substr(0, val.length)}</strong>`;
                     b.innerHTML += arr[i].substr(val.length);
                     b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                    b.innerHTML = `<i class="fas fa-search"style="margin-right:10px;"></i>${arr[i]}`;
                     b.addEventListener("click", function (e) {
                         inp.value = this.getElementsByTagName("input")[0].value;
                         closeAllLists();
-
                     });
                     a.appendChild(b);
                 }
@@ -453,7 +451,7 @@
             closeAllLists(e.target);
         });
     }
-    var countries = ["aa", "abc", "台北101", "士林官邸", "士林夜市", "北投溫泉", "淡水紅毛城", "淡水老街", "淡水漁人碼頭", "台北動物園", "台北兒童新樂園", "台北車站"];
-    autocomplete(document.getElementById("myInput"), countries);
+    var attractions = ["aa", "abc", "台北101", "士林官邸", "士林夜市", "北投溫泉", "淡水紅毛城", "淡水老街", "淡水漁人碼頭", "台北動物園", "台北兒童新樂園", "台北車站"];
+    autocomplete(document.getElementById("myInput"), attractions);
 </script>
 {% endblock body %}

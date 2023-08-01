@@ -331,6 +331,7 @@ input {
 }
 
 .autocomplete-items {
+    background-color: #fff;
     padding-bottom: 10px;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -345,11 +346,9 @@ input {
 }
 
 .autocomplete-items div {
-
     padding: 10px;
     cursor: pointer;
     background-color: #fff;
-
 }
 
 /*when hovering an item:*/
@@ -441,7 +440,6 @@ input {
     box-sizing: border-box
 }
 
-.mySlides1,
 .mySlides2 {
     display: none
 }
