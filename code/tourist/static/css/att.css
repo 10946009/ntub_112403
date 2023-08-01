@@ -317,109 +317,136 @@
 
 
 /*搜尋引擎*/
-/*the container must be positioned relative:*/
-.autocomplete {
-    position: relative;
-    display: inline-block;
-}
-
-input {
-    border: 1px solid transparent;
-    background-color: #f1f1f1;
-    padding: 10px;
-    font-size: 16px;
-}
-
-.autocomplete-items {
-    position: absolute;
-    border: 1px solid #d4d4d4;
-    border-bottom: none;
-    border-top: none;
-    z-index: 99;
-    /*position the autocomplete items to be the same width as the container:*/
-    top: 100%;
-    left: 0;
-    right: 0;
-}
-
-.autocomplete-items div {
-    padding: 10px;
-    cursor: pointer;
-    background-color: #fff;
-    border-bottom: 1px solid #d4d4d4;
-}
-
-/*when hovering an item:*/
-.autocomplete-items div:hover {
-    background-color: #e9e9e9;
-}
-
-/*when navigating through the items using the arrow keys:*/
-.autocomplete-active {
-    background-color: DodgerBlue !important;
-    color: #ffffff;
-}
-
-.search_body {
-    margin-top: 50px;
-    margin-bottom: 40px;
-}
-
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap'); */
-
-::selection {
-    color: #fff;
-    background: #4a8fff;
-}
-
-.container {
-    max-width: 90%;
-}
-
-.container .searchInput {
-    background: #fff;
+.search-form {
     width: 100%;
-    border-radius: 8px;
-    position: relative;
-    box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.searchInput input {
-    height: 55px;
+.input-group {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-group input {
+    flex-grow: 1;
+    height: 60px;
+    border: none;
     outline: none;
-    border: none;
-    border-radius: 8px;
-    padding: 0 60px 0 20px;
-    font-size: 18px;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+    transition: all 50ms ease-in-out;
+    font-size: 1.4rem;
+    color: rgb(0, 114, 236);
 }
 
-.searchInput.active input {
-    border-radius: 5px 5px 0 0;
+.input-group input::placeholder {
+    color: rgba(0, 47, 236, 0.5);
 }
 
-.searchInput .icon {
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    height: 55px;
-    width: 55px;
+.input-group button {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    font-size: 1.2rem;
     text-align: center;
-    line-height: 55px;
-    font-size: 20px;
-    color: #4b87ff;
+    line-height: 60px;
+    background-color: rgb(242, 239, 239);
+    border: none;
+    outline: none;
     cursor: pointer;
-    border: none;
-    background-color: #d7d8d8;
+    transition: all 50ms ease-in-out;
 }
 
-.filiter {
+.input-group .hihi {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 60px;
+    background-color: rgb(242, 239, 239);
     border: none;
+    outline: none;
+    transition: all 50ms ease-in-out;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
 }
 
-.filiter:hover {
-    color: rgb(122, 155, 233);
+.input-group button:nth-child(1) {
+    color: rgb(0, 114, 236);
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+}
+
+.input-group button:nth-last-child(1) {
+    color: rgba(252, 103, 103, 1);
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.input-group .hihi:nth-last-child(1) {
+    color: rgba(252, 103, 103, 1);
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.search-form.active .input-group button:nth-child(1) {
+    color: rgb(0, 114, 236);
+    border-bottom-left-radius: unset;
+    border-top-left-radius: 30px;
+}
+
+.search-form.active .input-group button:nth-last-child(1) {
+    color: rgba(252, 103, 103, 1);
+    border-bottom-right-radius: unset;
+    border-top-right-radius: 30px;
+}
+
+
+.search-form.active .input-group .hihi:nth-last-child(1) {
+    color: rgba(252, 103, 103, 1);
+    border-bottom-right-radius: unset;
+    border-top-right-radius: 30px;
+}
+
+.auto-complete {
+    display: none;
+    width: 100%;
+    list-style: none;
+    transition: all 50ms ease-in-out;
+}
+
+.search-form.active .auto-complete {
+    display: block;
+}
+
+.auto-complete .auto-complete-list {
+    width: 100%;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: rgb(0, 114, 236);
+    overflow: hidden;
+}
+
+.auto-complete .auto-complete-list span {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    font-size: 0.9rem;
+    text-align: center;
+    line-height: 60px;
+    background-color: #fff;
+    transition: all 255ms ease-in-out;
+    color: rgba(0, 47, 236, 0.5);
+}
+
+.auto-complete .auto-complete-list:nth-last-child(1) {
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 
 * {
