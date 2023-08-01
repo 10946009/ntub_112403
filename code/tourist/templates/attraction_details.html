@@ -13,6 +13,139 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../static/js/jquery-3.7.0.min.js"></script>
 <script src="../static/js/bootstrap.js"></script>
+<style>
+    .search-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input-group {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input-group input {
+        flex-grow: 1;
+        height: 60px;
+        border: none;
+        outline: none;
+        transition: all 50ms ease-in-out;
+        font-size: 1.4rem;
+        color: rgb(0, 114, 236);
+    }
+
+    .input-group input::placeholder {
+        color: rgba(0, 47, 236, 0.5);
+    }
+
+    .input-group button {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        font-size: 1.2rem;
+        text-align: center;
+        line-height: 60px;
+        background-color: rgb(242, 239, 239);
+        border: none;
+        outline: none;
+        cursor: pointer;
+        transition: all 50ms ease-in-out;
+    }
+
+    .input-group .hihi {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        font-size: 1.2rem;
+        text-align: center;
+        line-height: 60px;
+        background-color: rgb(242, 239, 239);
+        border: none;
+        outline: none;
+        transition: all 50ms ease-in-out;
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
+    }
+
+    .input-group button:nth-child(1) {
+        color: rgb(0, 114, 236);
+        border-bottom-left-radius: 30px;
+        border-top-left-radius: 30px;
+    }
+
+    .input-group button:nth-last-child(1) {
+        color: rgba(252, 103, 103, 1);
+        border-bottom-right-radius: 30px;
+        border-top-right-radius: 30px;
+    }
+
+    .input-group .hihi:nth-last-child(1) {
+        color: rgba(252, 103, 103, 1);
+        border-bottom-right-radius: 30px;
+        border-top-right-radius: 30px;
+    }
+
+    .search-form.active .input-group button:nth-child(1) {
+        color: rgb(0, 114, 236);
+        border-bottom-left-radius: unset;
+        border-top-left-radius: 30px;
+    }
+
+    .search-form.active .input-group button:nth-last-child(1) {
+        color: rgba(252, 103, 103, 1);
+        border-bottom-right-radius: unset;
+        border-top-right-radius: 30px;
+    }
+
+
+    .search-form.active .input-group .hihi:nth-last-child(1) {
+        color: rgba(252, 103, 103, 1);
+        border-bottom-right-radius: unset;
+        border-top-right-radius: 30px;
+    }
+
+    .auto-complete {
+        display: none;
+        width: 100%;
+        list-style: none;
+        transition: all 50ms ease-in-out;
+    }
+
+    .search-form.active .auto-complete {
+        display: block;
+    }
+
+    .auto-complete .auto-complete-list {
+        width: 100%;
+        background-color: #fff;
+        cursor: pointer;
+        font-size: 1.4rem;
+        color: rgb(0, 114, 236);
+        overflow: hidden;
+    }
+
+    .auto-complete .auto-complete-list span {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        font-size: 0.9rem;
+        text-align: center;
+        line-height: 60px;
+        background-color: #fff;
+        transition: all 255ms ease-in-out;
+        color: rgba(0, 47, 236, 0.5);
+    }
+
+    .auto-complete .auto-complete-list:nth-last-child(1) {
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+    }
+</style>
 {% endblock %}
 
 {% block body %}
@@ -65,42 +198,217 @@
 </nav> {% endcomment %}
 
 <div class="row search_body">
-    <div class="col-5">
-        <form autocomplete="off" class="d-flex" method="post" role="search" action="{% url 'search_results' %}">
-            <div class="container">
-                <div class="searchInput">
-                    {% csrf_token %}
-                    <input type="search" placeholder="想去哪玩.." id="myInput" style="font-size: 18px;">
-                    <button class="icon"><i class="fas fa-search"></i></button>
-                </div>
+    <div class="col-2"></div>
+    <div class="col-8" style="margin-top:20px ;">
+        <form autocomplete="off" class="d-flex" method="post" role="search" action="{% url 'search_results' %}"></form>
+        <div class="search-form">
+            <div class="input-group">
+                <button><i class="fas fa-search"></i></button>
+                {% csrf_token %}
+                <input type="search" placeholder="想去哪玩...">
+                <!-- <div class="hihi"></div> -->
+                <!-- <button><i class="fas fa-microphone"></i></button> -->
+                <button><i class="fa-solid fa-filter"></i></button>
             </div>
+            <ul class="auto-complete">
+            </ul>
+        </div>
         </form>
     </div>
 </div>
 <hr>
 
-<!-- <div style="width: 100%;
-                height: 40px;
-                background-color: rgb(220, 220, 220)">
-    <nav class="sec">
-        <ul class="sec-ul">
-            <li>
-                <a href="/">
-                    <img class="home" src="/static/images/home.png" alt="home">
-                </a>
-            </li>
-            <li>
-                <a href="/attraction_details">景點資訊</a>
-            </li>
-            <li>
-                <a href="/services">服務</a>
-            </li>
-            <li>
-                <a href="/contact">聯繫我們</a>
-            </li>
-        </ul>
-    </nav>
+
+<div class="row detail_info" style="margin-top: 40px; z-index:0;">
+    <!-- 左半邊個別景點的部分 -->
+    <div class="col-3"></div>
+    <div class="col-6" onclick="showRightBox(this)" data-a-Id="{{ item.id }}">
+        {% for item in search_list %}
+        <div class="row All_Att" style=" cursor: pointer;">
+            <div class="col-5">
+                <div class="Att_photo">
+                    <div class="slideshow-container">
+                        <div class="mySlides1">
+                            <img src="../static/images/beitou.jpeg" style="width:100%">
+                        </div>
+
+                        <div class="mySlides1">
+                            <img src="../static/images/Datong.jpeg" style="width:100%">
+                        </div>
+
+                        <div class="mySlides1">
+                            <img src="../static/images/Shilin.jpeg" style="width:100%">
+                        </div>
+
+                        <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-7" style="margin-top: 5px;">
+                <h5>{{ item.a_name }}</h5>
+                <div class="rating">
+                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                    <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
+                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                    <span class="rating-star">&#9733;</span>
+                </div>
+                <h6 style="margin-top:5px;">
+                    地址：<span id="list-address">{{ item.address }}</span>
+                </h6>
+                <h6 style="margin-top:5px;">
+                    綜合評分： <span id="list-selectedRating">{{ item.rating }}</span> / 5 (2.1萬)
+                </h6>
+                <h6>
+                    營業時間：<span>24小時營業</span>
+                </h6>
+                <form action="/attraction_details/{{item.id}}" method="POST" name="clickfavorite" id="clickfavorite">
+                    {% csrf_token %}
+                    <input type="submit" name="submitfavorite" id="submitfavorite" value="加入收藏" />
+                </form>
+                {% comment %}
+                <div>
+                    <a href="/attraction_details/{{user}}/{{item.id}}">加入收藏</a>
+                </div> {% endcomment %}
+            </div>
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8 Att_info" id="rightbox" style="margin-top:50px;z-index: 999;">
+        <div class="aside">
+            <img src="../static/images/x.png" class="img_x" id="closeBtn" onclick="hideRightBox()">
+            <h3 style="color: rgb(172, 78, 1)" id="attractions-detail-name"></h3>
+            <div class="rating" style="margin-bottom: 10px;">
+                <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
+                <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                <span class="rating-star">&#9733;</span>
+                <span id="selectedRating"></span> / 5 (6.3萬)
+            </div>
+            <div style="display: flex;justify-content: center;align-items: center;height: auto; height: 100%;">
+                <img src="/static/images/zoo.jpeg" alt="photo" class="Att_img">
+            </div>
+            <div class="Att_detail">
+                <h6 id="attractions-detail-address">
+                    地址：116台北市文山區新光路二段30號
+                </h6>
+                <h6 id="attractions-detail-phone">
+                    電話：02－2938－2300
+                </h6>
+                <h6>
+                    營業時間： <span style="color: red;">已打烊</span> <span style="color: rgb(21, 81, 140);">
+                        *開始營業時間：9:00</span>
+                </h6>
+                <h6>
+                    建議停留時間：
+                </h6>
+                <h6>旺季月份：</h6>
+            </div>
+            <hr>
+            <h5>
+                人潮資訊：
+            </h5>
+            <div style="display: flex;justify-content: center;align-items: center;height: auto">
+                <img src="/static/images/humum.jpg" alt="photo" class="Att_img">
+            </div>
+            <hr>
+            <h5>
+                景點評論：
+            </h5>
+            <div class="comment">
+                <div class="avatar">
+                    <img src="/static/images/head.png" alt="User Avatar">
+                </div>
+                <div class="comment-content">
+                    <h6 class="username">
+                        李
+                    </h6>
+                    <div class="rating">
+                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                        <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
+                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                        <span class="rating-star">&#9733;</span>
+                        <span class="rating-star">&#9733;</span>
+                    </div>
+                    <p class="comment-text">
+                        天氣冷來到動物園，動物們顯得心情不好，跟人類一樣也會冷到不想到，看到最多的是背影跟屁股，也是一種難得的經驗。
+                        <br>
+                        <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
+                            2033</span>
+                    </p>
+                </div>
+            </div>
+            <div class="comment">
+                <div class="avatar">
+                    <img src="/static/images/head.png" alt="User Avatar">
+                </div>
+                <div class="comment-content">
+                    <h6 class="username">
+                        sun
+                    </h6>
+                    <div class="rating">
+                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                        <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
+                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                        <span class="rating-star">&#9733;</span>
+                    </div>
+                    <p class="comment-text">
+                        帶小孩來看動物很棒！可以玩一整天！廁所很多很方便,用餐座位如果能再多一些就好了!麥當勞大排長龍實在太誇張！希望能增設其他餐廳或便利商店~
+                        <br>
+                        <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
+                            2023</span>
+                    </p>
+                </div>
+            </div>
+            <div class="comment">
+                <div class="avatar">
+                    <img src="/static/images/head.png" alt="User Avatar">
+                </div>
+                <div class="comment-content">
+                    <h6 class="username">
+                        李+0
+                    </h6>
+                    <div class="rating">
+                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                        <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
+                        <span class="rating-star">&#9733;</span>
+                        <span class="rating-star">&#9733;</span>
+                        <span class="rating-star">&#9733;</span>
+                    </div>
+                    <p class="comment-text">
+                        我實在越來越覺得動物園越來越差，維修的東西擴建的項目越來越多，但都沒有東西完成！太誇張了
+                        <br>
+                        <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
+                            2023</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- <div class="col-8" style="margin-top:30px ;">
+    <form autocomplete="off" class="d-flex" method="post" role="search" action="{% url 'search_results' %}">
+        <div class="container">
+            <div class="searchInput">
+                {% csrf_token %}
+                <input type="search" placeholder="想去哪玩.." id="myInput" style="font-size: 18px;">
+                <button class="icon"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+        <button class="filiter"><i class="fa-solid fa-filter"></i>進階</button>
+    </form>
 </div> -->
+
+<!-- 初版：點下去跳右邊資訊 -->
 <!-- <div class="row" style="padding:15px;">
     <div class="col-6 col-s-12 Att_search">
         <div class="att">
@@ -169,7 +477,7 @@
         {% endfor %}
     </div>
 
-    <div class="col-6 col-s-12 Att_info" id="rightbox" style="margin-top:50px;">
+    <div class="col-6 col-s-12 Att_info" id="rightbox" style="margin-top:50px;z-index: 999;">
         <div class="aside">
             <img src="../static/images/x.png" class="img_x" id="closeBtn" onclick="hideRightBox()">
             <h3 style="color: rgb(172, 78, 1)" id="attractions-detail-name"></h3>
@@ -283,205 +591,10 @@
         </div>
     </div>
 
-</div> -->
+</div>  -->
 
 
-<!-- <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8 ">
-        <div class="att">
-            <img class="taipei-att" src="../static/images/search.png" alt="att" style="width:50px;height:50px">
-            <h2 style="margin-top:5px;font-size:32px;display: flex;color: rgb(10, 80, 150)">搜尋景點</h2>
-        </div>
-        <div class="search_field">
-            <form class="d-flex" method="post" role="search" action="{% url 'search_results' %}">
-                {% csrf_token %}
-                <input class="search_tool" type="search" placeholder="請輸入要搜尋的景點" name="search_att">
-                <button class="search_btn" type="submit">搜尋</button>
-            </form>
-        </div>
-        {% for item in search_list %}
-        <div class="row All_Att" style="background-color: rgb(127, 174, 196); margin-top: 30px;">
-            <div class="col-4">
-                <div class="Att_photo">
-                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                                class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                                aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                                aria-label="Slide 3"></button>
-                        </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src=" ../static/images/beitou.jpeg" class="d-block w-100" alt="..."
-                                    onmouseover="inner()" onmouseout="out()">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="../static/images/Datong.jpeg" class="d-block w-100" alt="..."
-                                    onmouseover="inner()" onmouseout="out()">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="../static/images/chang.jpeg" class="d-block w-100" alt="..."
-                                    onmouseover="inner()" onmouseout="out()">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" id="tips1" type="button"
-                            data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" id="tips" type="button"
-                            data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-8" style="margin-top: 15px;">
-                <h5>{{ item.a_name }}</h5>
-                <div class="rating">
-                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                    <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                    <span class="rating-star">&#9733;</span>
-                </div>
-                <h6 style="margin-top:5px;">
-                    地址：<span id="list-address">{{ item.address }}</span>
-                </h6>
-                <h6 style="margin-top:5px;">
-                    綜合評分： <span id="list-selectedRating">{{ item.rating }}</span> / 5 (2.1萬)
-                </h6>
-                <h6>
-                    營業時間：<span>24小時營業</span>
-                </h6>
-                <form action="/attraction_details/{{item.id}}" method="POST" name="clickfavorite" id="clickfavorite">
-                    {% csrf_token %}
-                    <input type="submit" name="submitfavorite" id="submitfavorite" value="加入收藏" />
-                </form>
-                {% comment %}
-                <div>
-                    <a href="/attraction_details/{{user}}/{{item.id}}">加入收藏</a>
-                </div> {% endcomment %}
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-</div> -->
 
-
-<!-- <div class="row search_info" style="margin-top: 60px;">
-    <div class="col-8">
-        <div class="att">
-            <img class="taipei-att" src="../static/images/search.png" alt="att" style="width:50px;height:50px">
-            <h2 style="margin-top:5px;font-size:32px;display: flex;color: rgb(10, 80, 150)">搜尋景點</h2>
-        </div>
-        <div class="search_field" style=" position: relative; 
-        display: inline-block; width: 100%;">
-            <form class="d-flex" method="post" role="search" action="{% url 'search_results' %}">
-                {% csrf_token %}
-                <i class="fa-solid fa-magnifying-glass icon_search" style=" position: absolute; 			
-                    left: 12px;
-                    top: calc(50% - 0.5em);"></i>
-                <input class="search_tool" style="padding-left: 35px;" type="search" placeholder="請輸入要搜尋的景點"
-                    name="search_att">
-                <button class="search_btn" style="width:8% ; border-radius: 60px; margin-right: 10px;"
-                    type="submit">篩選條件</button>
-                <button class="search_btn" type="submit">搜尋</button>
-            </form>
-        </div>
-
-        搜尋引擎
-        <form autocomplete="off" action="/action_page.php">
-            <div class="autocomplete" style="width:80%; margin-bottom:20px;">
-                <input id="myInput" type="text" name="myCountry" placeholder="搜尋景點...">
-            </div>
-            <input class="search_btn" type="submit">
-        </form>
-    </div>
-</div>
-<hr> -->
-
-
-<div class="row detail_info" style="margin-top: 40px;">
-    <!-- 左半邊個別景點的部分 -->
-    <div class="col-3"></div>
-    <div class="col-6">
-        {% for item in search_list %}
-        <div class="row All_Att" style=" cursor: pointer;">
-            <div class="col-5">
-                <div class="Att_photo">
-                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                                class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                                aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                                aria-label="Slide 3"></button>
-                        </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src=" ../static/images/beitou.jpeg" class="d-block w-100" alt="..."
-                                    onmouseover="inner()" onmouseout="out()">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="../static/images/Datong.jpeg" class="d-block w-100" alt="..."
-                                    onmouseover="inner()" onmouseout="out()">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="../static/images/chang.jpeg" class="d-block w-100" alt="..."
-                                    onmouseover="inner()" onmouseout="out()">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" id="tips1" type="button"
-                            data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" id="tips" type="button"
-                            data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-7" style="margin-top: 5px;">
-                <h5>{{ item.a_name }}</h5>
-                <div class="rating">
-                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                    <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                    <span class="rating-star">&#9733;</span>
-                </div>
-                <h6 style="margin-top:5px;">
-                    地址：<span id="list-address">{{ item.address }}</span>
-                </h6>
-                <h6 style="margin-top:5px;">
-                    綜合評分： <span id="list-selectedRating">{{ item.rating }}</span> / 5 (2.1萬)
-                </h6>
-                <h6>
-                    營業時間：<span>24小時營業</span>
-                </h6>
-                <form action="/attraction_details/{{item.id}}" method="POST" name="clickfavorite" id="clickfavorite">
-                    {% csrf_token %}
-                    <input type="submit" name="submitfavorite" id="submitfavorite" value="加入收藏" />
-                </form>
-                {% comment %}
-                <div>
-                    <a href="/attraction_details/{{user}}/{{item.id}}">加入收藏</a>
-                </div> {% endcomment %}
-            </div>
-        </div>
-        <hr>
-        {% endfor %}
-    </div>
-</div>
 
 
 
@@ -508,6 +621,51 @@
         }
     </script> -->
 <script>
+
+    let slideIndex = [1, 1];
+    let slideId = ["mySlides1"]
+    showSlides(1, 0);
+    showSlides(1, 1);
+
+    function plusSlides(n, no) {
+        showSlides(slideIndex[no] += n, no);
+    }
+
+    function showSlides(n, no) {
+        let i;
+        let x = document.getElementsByClassName(slideId[no]);
+        if (n > x.length) { slideIndex[no] = 1 }
+        if (n < 1) { slideIndex[no] = x.length }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex[no] - 1].style.display = "block";
+    }
+
+    //搜尋引擎
+    const searchForm = document.querySelector(".search-form");
+    const input = document.querySelector("input");
+    let child = document.querySelector(".auto-complete");
+
+    input.addEventListener("focusin", () => {
+        if (input.value.length > 0) {
+            searchForm.classList.add("active");
+        }
+    });
+
+    input.addEventListener("keyup", () => {
+        searchForm.classList.add("active");
+        child.innerHTML = `<li class="auto-complete-list">
+      <span><i class="fas fa-search"></i></span>${input.value}
+    </li>`;
+    });
+
+    input.addEventListener("focusout", () => {
+        searchForm.classList.remove("active");
+    });
+
+
+
     // function inner() {
     //     document.getElementById("tips").style.display = "inline-block";
     //     document.getElementById("tips1").style.display = "inline-block";
@@ -574,114 +732,6 @@
             console.log(attractionsDetailName);
         }
     }); {% endcomment %}
-
-    //搜尋景點的部分
-    function autocomplete(inp, arr) {
-        /*the autocomplete function takes two arguments,
-        the text field element and an array of possible autocompleted values:*/
-        var currentFocus;
-        /*execute a function when someone writes in the text field:*/
-        inp.addEventListener("input", function (e) {
-            var a, b, i, val = this.value;
-            /*close any already open lists of autocompleted values*/
-            closeAllLists();
-            if (!val) { return false; }
-            currentFocus = -1;
-            /*create a DIV element that will contain the items (values):*/
-            a = document.createElement("DIV");
-            a.setAttribute("id", this.id + "autocomplete-list");
-            a.setAttribute("class", "autocomplete-items");
-            /*append the DIV element as a child of the autocomplete container:*/
-            this.parentNode.appendChild(a);
-            /*for each item in the array...*/
-            for (i = 0; i < arr.length; i++) {
-                /*check if the item starts with the same letters as the text field value:*/
-                if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                    /*create a DIV element for each matching element:*/
-                    b = document.createElement("DIV");
-                    /*make the matching letters bold:*/
-                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                    b.innerHTML += arr[i].substr(val.length);
-                    /*insert a input field that will hold the current array item's value:*/
-                    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                    // b.style.borderBottom = "none";
-                    b.style.height = "50px";
-                    b.style.padding = "12px";
-                    b.getElementsByTagName("strong")[0].style.fontSize = "16px";
-                    /*execute a function when someone clicks on the item value (DIV element):*/
-                    b.addEventListener("click", function (e) {
-                        /*insert the value for the autocomplete text field:*/
-                        inp.value = this.getElementsByTagName("input")[0].value;
-                        /*close the list of autocompleted values,
-                        (or any other open lists of autocompleted values:*/
-                        closeAllLists();
-                    });
-                    a.appendChild(b);
-                }
-            }
-        });
-        /*execute a function presses a key on the keyboard:*/
-        inp.addEventListener("keydown", function (e) {
-            var x = document.getElementById(this.id + "autocomplete-list");
-            if (x) x = x.getElementsByTagName("div");
-            if (e.keyCode == 40) {
-                /*If the arrow DOWN key is pressed,
-                increase the currentFocus variable:*/
-                currentFocus++;
-                /*and and make the current item more visible:*/
-                addActive(x);
-            } else if (e.keyCode == 38) { //up
-                /*If the arrow UP key is pressed,
-                decrease the currentFocus variable:*/
-                currentFocus--;
-                /*and and make the current item more visible:*/
-                addActive(x);
-            } else if (e.keyCode == 13) {
-                /*If the ENTER key is pressed, prevent the form from being submitted,*/
-                e.preventDefault();
-                if (currentFocus > -1) {
-                    /*and simulate a click on the "active" item:*/
-                    if (x) x[currentFocus].click();
-                }
-            }
-        });
-        function addActive(x) {
-            /*a function to classify an item as "active":*/
-            if (!x) return false;
-            /*start by removing the "active" class on all items:*/
-            removeActive(x);
-            if (currentFocus >= x.length) currentFocus = 0;
-            if (currentFocus < 0) currentFocus = (x.length - 1);
-            /*add class "autocomplete-active":*/
-            x[currentFocus].classList.add("autocomplete-active");
-        }
-        function removeActive(x) {
-            /*a function to remove the "active" class from all autocomplete items:*/
-            for (var i = 0; i < x.length; i++) {
-                x[i].classList.remove("autocomplete-active");
-            }
-        }
-        function closeAllLists(elmnt) {
-            /*close all autocomplete lists in the document,
-            except the one passed as an argument:*/
-            var x = document.getElementsByClassName("autocomplete-items");
-            for (var i = 0; i < x.length; i++) {
-                if (elmnt != x[i] && elmnt != inp) {
-                    x[i].parentNode.removeChild(x[i]);
-                }
-            }
-        }
-        /*execute a function when someone clicks in the document:*/
-        document.addEventListener("click", function (e) {
-            closeAllLists(e.target);
-        });
-    }
-
-    /*An array containing all the country names in the world:*/
-    var countries = ["台北101", "士林官邸", "士林夜市", "北投溫泉", "淡水紅毛城", "淡水老街", "淡水漁人碼頭", "台北動物園", "台北兒童新樂園", "台北車站"];
-
-    /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-    autocomplete(document.getElementById("myInput"), countries);
 
 </script>
 {% endblock body %}
