@@ -3,14 +3,53 @@
     flex-direction: column;
     align-items: center;
     margin: 0;
-    border: 2px solid;
+    border: none;
+    box-shadow: none;
+    outline: none;
     width: 350px;
   }
-  .my-nav-tabs .nav-link {
-     margin-right: 100px;
-     margin-left: 100px;
-    }
+  .card .toggle-switch {
+    z-index: 1;
+  }
+  /* 移除开关的默认样式 */
+  .toggle-heart-checkbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* 添加开关的滑块样式 */
+  .toggle-heart-checkbox::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+  
+.toggle-heart-checkbox:checked + .slider {
+    background-color: #0cf214;
+  }
+  
+  .toggle-heart-checkbox:checked + .slider::before {
+    transform: translateX(20px);
+  }
 
+  .slider.round:before {
+    border-radius: 50%;
+  }
 @media(max-width: 768px){
     main{
         margin-top: 10%;
