@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="../static/css/bootstrap2023.css">
 <link rel="stylesheet" href="../static/css/att.css">
 <link rel="stylesheet" href="../static/css/comment.css">
+<link rel="stylesheet" href="/lib/w3.css">
 <!-- <link rel="stylesheet" href="../static/css/all.css"> -->
 <link rel="stylesheet" href="../static/js/createT.js">
 <link rel="stylesheet" href="../static/js/attraction_details.js">
@@ -64,6 +65,7 @@
     </div>
 </nav> {% endcomment %}
 
+<!-- 搜尋引擎 -->
 <div class="row search_body">
     <div class="col-2"></div>
     <div class="col-8" style="margin-top:30px ;">
@@ -78,6 +80,65 @@
             <button class="filiter"><i class="fa-solid fa-filter"></i>進階</button>
         </form>
     </div>
+</div>
+
+
+<div class="row Att_Info">
+    <div class="col-3"></div>
+    <!-- 景點資訊主體 -->
+    <div class="col-6">
+        <!-- 景點資訊條列 -->
+        {% for item in search_list %}
+        <div class="row Info_item" style="margin-top: 20px; margin-bottom: 20px;cursor: pointer;">
+            <!-- 景點圖片 -->
+            <div class="col-4">
+                <div class="w3-content" style="max-width:800px;position:relative">
+                    <img data-name="{{ item.name }}" class="slide" src="../static/images/Datong.jpeg"
+                        style="width:100%">
+                    <img data-name="{{ item.name }}" class="slide" src="../static/images/Shilin.jpeg"
+                        style="width:100%">
+                    <img data-name="{{ item.name }}" class="slide" src="../static/images/Songshan.jpeg"
+                        style="width:100%">
+                    <a class="w3-btn-floating" style="position:absolute;top:45%;left:0"
+                        onclick="plusDivs(-1,'{{ item.name }}')">❮</a>
+                    <a class="w3-btn-floating" style="position:absolute;top:45%;right:0"
+                        onclick="plusDivs(1,'{{ item.name }}')">❯</a>
+                </div>
+            </div>
+            <!-- 景點相關簡短資訊 -->
+            <div class="col-8">
+                <h5>{{ item.a_name }}</h5>
+                <div class="rating">
+                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                    <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
+                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                    <span class="rating-star">&#9733;</span>
+                </div>
+                <h6 style="margin-top:5px;">
+                    地址：<span id="list-address">{{ item.address }}</span>
+                </h6>
+                <h6 style="margin-top:5px;">
+                    綜合評分： <span id="list-selectedRating">{{ item.rating }}</span> / 5 (2.1萬)
+                </h6>
+                <!-- <h6>
+                    營業時間：<span>24小時營業</span>
+                </h6> -->
+                <form action="/attraction_details/{{item.id}}" method="POST" name="clickfavorite" id="clickfavorite">
+                    {% csrf_token %}
+                    <input type="submit" name="submitfavorite" id="submitfavorite" value="加入收藏" />
+                </form>
+                {% comment %}
+                <div>
+                    <a href="/attraction_details/{{user}}/{{item.id}}">加入收藏</a>
+                </div> {% endcomment %}
+            </div>
+
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
+
 </div>
 <!-- 初版：點下去跳右邊資訊 -->
 <!-- <div class="row" style="padding:15px;">
@@ -325,6 +386,50 @@
 </div> -->
 
 <script>
+
+
+    var slideIndex = 1;
+    show_start(slideIndex);
+
+    function plusDivs(n, name) {
+        showDivs(slideIndex += n, name);
+    }
+
+    function showDivs(n, name) {
+        var i;
+        var selector = `[name="${name}"]`;
+        // 使用動態選擇器取得符合條件的元素
+        var x_imgs = document.getElementsByClassName("slide");
+        var x = [];
+        console.log(x_imgs)
+        for (i = 0; i < x_imgs.length; i++) {
+            var dataName = x_imgs[i].dataset.name;
+            if (dataName === name) {
+                x.push(x_imgs[i]); // 將符合條件的元素存入 x 陣列
+            }
+        }
+        // var x = document.getElementsByClassName("slide");
+        console.log(x)
+        console.log(n)
+        if (n > x.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = x.length };
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex - 1].style.display = "block";
+    }
+    function show_start(n) {
+        var i;
+        var x = document.getElementsByClassName("slide");
+        if (n > x.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = x.length };
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex - 1].style.display = "block";
+    }
+
+
 
     function showRightBox(element) {
         var aId = $(element).data('aId');
