@@ -34,13 +34,19 @@ def get_new_crowd(place_id):
 
     return populartimes.get_id(GOOGLE_PLACES_API_KEY,place_id)
 
+def check_file_in_folder(folder_path, file_name):
+    file_path = os.path.join(folder_path, file_name)
+    return os.path.exists(file_path)
+
 
 def get_picture():
     all_photo_list = tool.read("SELECT place_id,photo FROM myapp_attractions")
     for photo in all_photo_list:
+        if check_file_in_folder(f'{os.getcwd()}\\照片\\',f'{photo[0]}.jpg'): continue
         max_width = 1024  # 设置所需的最大宽度
-        max_height = 480  # 设置所需的最大高度
+        max_height = 1024  # 设置所需的最大高度
         # 构建请求URL，包括maxwidth和maxheight参数
+        print({photo[0]})
         url = f"https://maps.googleapis.com/maps/api/place/photo?photoreference={photo[1]}&maxwidth={max_width}&maxheight={max_height}&key={GOOGLE_PLACES_API_KEY}"
         # 将your_api_key替换为您的实际API密钥
 
