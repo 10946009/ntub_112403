@@ -6,7 +6,9 @@ body{
 html{
 	height: 100%;
 }
-
+.owl_main .item{
+	border:  1px solid #ccc;
+}
 .banner{
 	background: url(../images/IMG20220125115200.jpg);
 	background-repeat: no-repeat;
@@ -59,7 +61,7 @@ html{
 	color: black;
 	text-align: left;
 	position: relative;
-	border: 1px solid #ccc;
+	/* border: 1px solid #ccc; */
 }
 .add_icon{
 	position: absolute;
