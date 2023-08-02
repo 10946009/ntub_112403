@@ -64,4 +64,14 @@
   <script src="../static/js/jquery-3.7.0.min.js"></script>
   <script src="../static/js/owl.carousel.min.js"></script>
   {% block content_script %}{% endblock %}
+  <script>    
+    //漢堡選單
+    $(document).ready(function() {
+       $('.showmenu').on('click',  function(e) {
+          e.preventDefault();
+          $('body').toggleClass('menu-show');
+      });
+    });
+    
+    </script>
 </html>

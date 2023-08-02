@@ -63,3 +63,43 @@ footer{
     background-color: grey;
     color: white;
 }
+@media(max-width: 768px){
+	.logo{
+		margin-top: 15px;
+	}
+	.sysname{
+		font-size: 40px;
+	}
+	.menu-list{		
+		/*隱藏選單開始*/
+		max-height: 0;
+		overflow: hidden;
+		/*隱藏選單end*/
+		position: absolute;/*追隨.header*/
+		/*讓選單從左到右延伸start*/
+		right: 0;
+		left: 0;
+		/*讓選單從左到右延伸end*/
+		top: 50px;
+		/*把menu-list位置移到.header下方。點擊menu滑出/因沒設header高度，所以用開發者工具看高多少*/
+		z-index:100;
+    	transition: all 2.5s;
+	}
+	.toolbar_div{
+		float:none;
+		border-bottom:  1px solid #ea7070 ;
+		background:#f5f4e8;
+	}
+	.showmenu{
+		display: block;
+	}
+	/*jQ點擊後動態在 body 加上 class */ 
+	.menu-show .menu-list{
+		max-height: 500px; 
+	}
+}
+@media (max-width: 576px) {
+	.sysname{
+		font-size: 30px;
+	}
+}
