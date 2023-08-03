@@ -14,6 +14,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../static/js/jquery-3.7.0.min.js"></script>
 <script src="../static/js/bootstrap.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 {% endblock %}
 
 {% block body %}
@@ -106,7 +107,7 @@
                 </div>
             </div>
             <!-- 景點相關簡短資訊 -->
-            <div class="col-7" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
+            <div class="col-7" onclick="showInfo(this)" data-a-Id="{{ item.id }}" style="width:auto;">
                 <h5>{{ item.a_name }}</h5>
                 <div class="rating">
                     <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
@@ -154,7 +155,7 @@
 
             <div class="container">
                 <div>
-                    <h3 style="color: rgb(172, 78, 1)" id="attractions-detail-name">123</h3>
+                    <h3 style="color: rgb(172, 78, 1)" id="attractions-detail-name"></h3>
                     <div class="rating" style="margin-bottom: 10px;">
                         <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
                         <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
@@ -205,27 +206,27 @@
                     <div class="row">
                         <div class="column">
                             <img class="demo cursor" src="../static/images/beitou.jpeg" style="width:100%"
-                                onclick="currentSlide(1)" alt="The Woods">
+                                onclick="currentSlide(1)" alt="北投溫泉">
                         </div>
                         <div class="column">
                             <img class="demo cursor" src="../static/images/Datong.jpeg" style="width:100%"
-                                onclick="currentSlide(2)" alt="Cinque Terre">
+                                onclick="currentSlide(2)" alt="大稻埕">
                         </div>
                         <div class="column">
                             <img class="demo cursor" src="../static/images/Xinyi.jpeg" style=" width:100%"
-                                onclick="currentSlide(3)" alt="Mountains and fjords">
+                                onclick="currentSlide(3)" alt="台北101">
                         </div>
                         <div class="column">
                             <img class="demo cursor" src="../static/images/Shilin.jpeg" style="width:100%"
-                                onclick="currentSlide(4)" alt="Northern Lights">
+                                onclick="currentSlide(4)" alt="士林夜市">
                         </div>
                         <div class="column">
                             <img class="demo cursor" src="../static/images/Songshan.jpeg" style="width:100%"
-                                onclick="currentSlide(5)" alt="Nature and sunrise">
+                                onclick="currentSlide(5)" alt="松山">
                         </div>
                         <div class="column">
                             <img class="demo cursor" src="../static/images/twotwoeight.jpeg" style="width:100%"
-                                onclick="currentSlide(6)" alt="Snowy Mountains">
+                                onclick="currentSlide(6)" alt="二二八公園">
                         </div>
                     </div>
                 </div>
@@ -247,83 +248,82 @@
                         建議停留時間：
                     </h5>
                     <h5>旺季月份：</h5>
-                    <hr>
+                    <hr style="border:2px solid #b3b2b2">
                     <h5>
                         人潮資訊：
                     </h5>
+                    <div>
+                        <canvas id="chart" width="300" height="150"></canvas>
+                    </div>
                     <!-- <div style="display: flex;justify-content: center;align-items: center;height: auto">
                 <img src="/static/images/humum.jpg" alt="photo" class="Att_img"></div> -->
-                    <hr>
+                    <hr style="border:2px solid #b3b2b2">
                     <h5>
-                        景點評論：
+                        評論摘要：
                     </h5>
-                    <div style="margin-bottom: 20px;">
-                        <span class="heading">User Rating</span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <p>4.1 average based on 254 reviews.</p>
-                        <hr style="border:3px solid #f1f1f1">
+                    <div class="row" style="margin-bottom: 20px;">
 
-                        <div class="row">
-                            <div class="side">
-                                <div>5 star</div>
-                            </div>
-                            <div class="middle">
-                                <div class="bar-container">
-                                    <div class="bar-5"></div>
+                        <hr style="border:2px solid #f1f1f1">
+                        <div class="col-3">
+                            <div class=" row">
+                                <!-- <span class="heading">使用者總評論</span> -->
+                                <div class="total_score_star">
+                                    <p style="font-size:60px;margin-left: 30px;"><strong>4.0</strong></p>
                                 </div>
-                            </div>
-                            <div class="side right">
-                                <div>150</div>
-                            </div>
-                            <div class="side">
-                                <div>4 star</div>
-                            </div>
-                            <div class="middle">
-                                <div class="bar-container">
-                                    <div class="bar-4"></div>
+                                <div class="total_star">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
                                 </div>
-                            </div>
-                            <div class="side right">
-                                <div>63</div>
-                            </div>
-                            <div class="side">
-                                <div>3 star</div>
-                            </div>
-                            <div class="middle">
-                                <div class="bar-container">
-                                    <div class="bar-3"></div>
-                                </div>
-                            </div>
-                            <div class="side right">
-                                <div>15</div>
-                            </div>
-                            <div class="side">
-                                <div>2 star</div>
-                            </div>
-                            <div class="middle">
-                                <div class="bar-container">
-                                    <div class="bar-2"></div>
-                                </div>
-                            </div>
-                            <div class="side right">
-                                <div>6</div>
-                            </div>
-                            <div class="side">
-                                <div>1 star</div>
-                            </div>
-                            <div class="middle">
-                                <div class="bar-container">
-                                    <div class="bar-1"></div>
-                                </div>
-                            </div>
-                            <div class="side right">
-                                <div>20</div>
+                                <p style="margin-left: 30px;">63,261 則評論</p>
                             </div>
                         </div>
+                        <div class="col-9">
+                            <div class="row">
+                                <!-- <div class="col-1">
+                                    <div class="nu_star">5</div>
+                                    <div class="nu_star">4</div>
+                                    <div class="nu_star">3</div>
+                                    <div class="nu_star">2</div>
+                                    <div class="nu_star">1</div>
+                                </div> -->
+                                <div class="col-12">
+                                    <div class="star_container">
+                                        <div class="nu_star">5</div>
+                                        <div class="bar-container">
+                                            <div class="bar-5"></div>
+                                        </div>
+                                    </div>
+                                    <div class="star_container">
+                                        <div class="nu_star">4</div>
+                                        <div class="bar-container">
+                                            <div class="bar-4"></div>
+                                        </div>
+                                    </div>
+                                    <div class="star_container">
+                                        <div class="nu_star">3</div>
+                                        <div class="bar-container">
+                                            <div class="bar-3"></div>
+                                        </div>
+                                    </div>
+                                    <div class="star_container">
+                                        <div class="nu_star">2</div>
+                                        <div class="bar-container">
+                                            <div class="bar-2"></div>
+                                        </div>
+                                    </div>
+                                    <div class="star_container">
+                                        <div class="nu_star">1</div>
+                                        <div class="bar-container">
+                                            <div class="bar-1"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="comment">
                         <div class="avatar">
@@ -402,8 +402,7 @@
 
             <div class="container" style="background-color:#f1f1f1">
                 <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                    class="cancelbtn">Cancel</button>
-                <span class="psw">Forgot <a href="#">password?</a></span>
+                    class="cancelbtn">Close</button>
             </div>
         </form>
     </div>
@@ -655,78 +654,83 @@
 </div> -->
 
 <script>
-
     //詳細景點資訊幻燈片圖
     let slideIndex1 = 1;
     showSlides(slideIndex1);
-
     function plusSlides(n) {
         showSlides(slideIndex1 += n);
     }
-
     function currentSlide(n) {
         showSlides(slideIndex1 = n);
     }
-
     function showSlides(n) {
         let i;
-        let slides = document.getElementsByClassName("mySlides");
-        let dots = document.getElementsByClassName("demo");
-        let captionText = document.getElementById("caption");
-        if (n > slides.length) { slideIndex1 = 1 }
-        if (n < 1) { slideIndex1 = slides.length }
+        let slides = document.getElementsByClassName("mySlides"); // 取得所有幻燈片元素
+        let dots = document.getElementsByClassName("demo"); // 取得所有圓點元素
+        let captionText = document.getElementById("caption"); // 取得說明文字元素
+        if (n > slides.length) { slideIndex1 = 1 } // 當索引超出最大值時，將索引設為第一張幻燈片
+        if (n < 1) { slideIndex1 = slides.length } // 當索引小於1時，將索引設為最後一張幻燈片
         for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
+            slides[i].style.display = "none"; // 隱藏所有幻燈片
         }
         for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
+            dots[i].className = dots[i].className.replace(" active", ""); // 移除所有圓點的active樣式
         }
-        slides[slideIndex1 - 1].style.display = "block";
-        dots[slideIndex1 - 1].className += " active";
-        captionText.innerHTML = dots[slideIndex1 - 1].alt;
+        slides[slideIndex1 - 1].style.display = "block"; // 顯示目前索引對應的幻燈片
+        dots[slideIndex1 - 1].className += " active"; // 將目前索引對應的圓點加上active樣式
+        captionText.innerHTML = dots[slideIndex1 - 1].alt; // 更新說明文字為目前索引對應的圓點的alt屬性值
     }
 
     //簡單景點介紹js幻燈片
     var slideIndex = 1;
     show_start(slideIndex);
-
     function plusDivs(n, name) {
         showDivs(slideIndex += n, name);
     }
-
     function showDivs(n, name) {
         var i;
         var selector = `[name="${name}"]`;
         var x_imgs = document.getElementsByClassName("slide");
         var x = [];
-        console.log(x_imgs)
+        console.log(x_imgs);
         for (i = 0; i < x_imgs.length; i++) {
             var dataName = x_imgs[i].dataset.name;
             if (dataName === name) {
                 x.push(x_imgs[i]); // 將符合條件的元素存入 x 陣列
             }
         }
-        console.log(x)
-        console.log(n)
-        if (n > x.length) { slideIndex = 1 }
-        if (n < 1) { slideIndex = x.length };
+        console.log(x);
+        console.log(n);
+        if (n > x.length) { slideIndex = 1; }
+        if (n < 1) { slideIndex = x.length; }
         for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
+            x[i].style.display = "none"; // 隱藏所有元素
         }
-        x[slideIndex - 1].style.display = "block";
+        x[slideIndex - 1].style.display = "block"; // 顯示目前索引對應的元素
     }
     function show_start(n) {
         var i;
         var x = document.getElementsByClassName("slide");
-        if (n > x.length) { slideIndex = 1 }
-        if (n < 1) { slideIndex = x.length };
+        if (n > x.length) { slideIndex = 1; }
+        if (n < 1) { slideIndex = x.length; }
         for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
+            x[i].style.display = "none"; // 隱藏所有元素
         }
-        x[slideIndex - 1].style.display = "block";
+        x[slideIndex - 1].style.display = "block"; // 顯示起始索引對應的元素
     }
 
-    function showRightBox(element) {
+
+    var modal = document.getElementById('id01');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+
+    function showInfo(element) {
         var aId = $(element).data('aId');
         $.ajax({
             url: '',
@@ -735,8 +739,8 @@
                 a_id: aId
             },
             success: function (response) {
-                var rightBox = document.getElementById("rightbox");
-                rightBox.style.display = "block";
+                var showInfo = document.getElementById("id01");
+                showInfo.style.display = "block";
                 console.log(aId);
 
                 var attractions = response;
@@ -759,13 +763,83 @@
             }
         });
     }
-    {% comment %} var rightBox = document.getElementById("rightbox");
-    rightBox.style.display = "block"; {% endcomment %}
+    {% comment %} var showInfo = document.getElementById("id01");
+    showInfo.style.display = "block"; {% endcomment %}
 
-    function hideRightBox() {
-        var rightBox = document.getElementById("rightbox");
-        rightBox.style.display = "none";
-    }
+
+    //人潮分佈圖
+    var ctx = document.getElementById('chart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["週一", "週二", "週三", "週四", "週五", "週六", "週日"],
+            datasets: [{
+                label: '人潮分佈狀況',
+                data: [12, 19, 3, 5, 18, 3, 20],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.8)',
+                    'rgba(153, 102, 255, 0.8)',
+                    'rgba(255, 159, 64, 0.8)',
+                    'rgba(0, 0, 0, 0.8)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    ' rgba(0, 0, 0, 1)'
+                ],
+                borderWidth: 1
+            }]
+        }
+    });
+
+
+    // function showRightBox(element) {
+    //     var aId = $(element).data('aId');
+    //     $.ajax({
+    //         url: '',
+    //         type: 'GET',
+    //         data: {
+    //             a_id: aId
+    //         },
+    //         success: function (response) {
+    //             var rightBox = document.getElementById("rightbox");
+    //             rightBox.style.display = "block";
+    //             console.log(aId);
+
+    //             var attractions = response;
+
+    //             // 將資料放進網頁中
+
+    //             var attractionsDetailName = document.getElementById('attractions-detail-name');
+    //             var attractionsDetailAddress = document.getElementById('attractions-detail-address');
+    //             var attractionsDetailPhone = document.getElementById('attractions-detail-phone');
+    //             var attractionsDetailRating = document.getElementById('selectedRating');
+
+    //             attractionsDetailName.textContent = attractions.a_name;
+    //             attractionsDetailAddress.textContent = "地址：" + attractions.address;
+    //             attractionsDetailPhone.textContent = "電話：" + attractions.phone;
+    //             attractionsDetailRating.textContent = attractions.rating;
+    //         },
+    //         error: function (xhr, status, error) {
+    //             // 请求失败时的处理
+    //             console.log("AJAX请求失败: " + error);
+    //         }
+    //     });
+    // }
+    // {% comment %} var rightBox = document.getElementById("rightbox");
+    // rightBox.style.display = "block"; {% endcomment %}
+
+    // function hideRightBox() {
+    //     var rightBox = document.getElementById("rightbox");
+    //     rightBox.style.display = "none";
+    // }
 
     // 取得選擇後的景點回傳的值
     {% comment %}

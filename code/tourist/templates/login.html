@@ -137,9 +137,10 @@
             //alert (ci);
             code = "";
             var codeLength = 6;//驗證碼的長度	
-            var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');//隨機數 
+            var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');//隨機數 
+            // , 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
             for (var i = 0; i < codeLength; i++) {//迴圈操作 
-                var index = Math.floor(Math.random() * 62);//取得隨機數的索引（0~61） 
+                var index = Math.floor(Math.random() * 36);//取得隨機數的索引（0~35） 加小寫英文的是62(0-61)
                 code += random[index];//根據索引取得隨機數加到code上 
             }
             checkCode.innerHTML = code;//把code值賦給驗證碼
@@ -167,7 +168,7 @@
             var inputCode = document.getElementById("input").value;
             var inputAcc = document.getElementById("inputacc").value;
             var inputPwd = document.getElementById("inputpwd").value;
-            // var inputCode = document.getElementById("input").value.toUpperCase(); //取得輸入的驗證碼並轉化為大寫 
+            var inputCode = document.getElementById("input").value.toUpperCase(); //取得輸入的驗證碼並轉化為大寫 
             if (inputAcc.length <= 0 || inputPwd.length <= 0) {
                 alert("請輸入帳號密碼!!");
             }
@@ -187,13 +188,13 @@
         });
         createCode();
 
-        function openPopup() {
-            var msg = "{{message}}";
-            // 在JavaScript中使用Jinja2模板引擎將Python變數插入到JavaScript中
+        // function openPopup() {
+        //     var msg = "{{message}}";
+        //     // 在JavaScript中使用Jinja2模板引擎將Python變數插入到JavaScript中
 
-            // 使用 JavaScript 的 `alert()` 函式來彈出視窗
-            alert(msg);
-        }
+        //     // 使用 JavaScript 的 `alert()` 函式來彈出視窗
+        //     alert(msg);
+        // }
 
 
 
