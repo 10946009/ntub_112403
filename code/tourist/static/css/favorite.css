@@ -5,7 +5,6 @@
   flex-wrap: wrap;
   gap: 20px;
   } 
-
 .card {
   display: flex;
   flex-direction: column;
@@ -13,6 +12,9 @@
   margin: 0;
   border: 2px solid;
   width: 350px;
+}
+.location-heart.active {
+  color: red;
 }
 .my-nav-tabs .nav-link {
    margin-right: 100px;
@@ -23,4 +25,3 @@
       width: 100%;
     }
   }
-  
