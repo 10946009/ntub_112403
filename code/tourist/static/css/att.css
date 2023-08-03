@@ -499,7 +499,7 @@ span.psw {
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
     /* Black w/ opacity */
-    padding-top: 60px;
+    padding: 60px;
 }
 
 /* Modal Content/Box */
@@ -670,25 +670,6 @@ img {
 
 .checked {
     color: rgb(241, 226, 62);
-    ;
-}
-
-/* Three column layout */
-.side {
-    float: left;
-    width: 15%;
-    margin-top: 10px;
-}
-
-.middle {
-    margin-top: 10px;
-    float: left;
-    width: 70%;
-}
-
-/* Place text to the right */
-.right {
-    text-align: right;
 }
 
 /* Clear floats after the columns */
@@ -700,41 +681,65 @@ img {
 
 /* The bar container */
 .bar-container {
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
     width: 100%;
     background-color: #f1f1f1;
     text-align: center;
     color: white;
+    margin-bottom: 20px;
+}
+
+.nu_star {
+    margin-bottom: 18px;
+    margin-right: 10px;
 }
 
 /* Individual bars */
 .bar-5 {
+    border-radius: 50px;
     width: 60%;
     height: 18px;
     background-color: #04AA6D;
 }
 
 .bar-4 {
+    border-radius: 50px;
     width: 30%;
     height: 18px;
     background-color: #2196F3;
 }
 
 .bar-3 {
+    border-radius: 50px;
     width: 10%;
     height: 18px;
     background-color: #00bcd4;
 }
 
 .bar-2 {
+    border-radius: 50px;
     width: 4%;
     height: 18px;
     background-color: rgb(241, 226, 62);
 }
 
 .bar-1 {
-    width: 15%;
+    border-radius: 50px;
+    width: 20%;
     height: 18px;
     background-color: #f44336;
+}
+
+.star_container {
+    display: flex;
+    align-items: center;
+}
+
+.total_star {
+    margin-bottom: 18px;
 }
 
 /* Responsive layout - make the columns stack on top of each other instead of next to each other */
