@@ -269,11 +269,10 @@ def user_edit(request):
     return render(request, "edit.html")
 
 
-# 確定營業時間
-def check_opening(now_time, week):
+# ------------------------------------確定營業時間(推薦時)
+def check_opening(now_time, week,stay_time):
     ok_a_list = []
-    now_time+=60
-    stay_time = 30
+    now_time+=stay_time
     for a in Crowd_Opening.objects.filter(week=week):
         if "休息" not in a.opening:
             if "24小時營業" in a.opening:
@@ -289,7 +288,7 @@ def check_opening(now_time, week):
     return ok_a_list
 
 
-# 確定距離
+# ------------------------------------確定距離(傳place_id、座標)
 def check_distance(get_user_address, a_id_list):
     ok_a_list = []
     for a in Attractions.objects.filter(id__in=a_id_list):
@@ -301,8 +300,7 @@ def check_distance(get_user_address, a_id_list):
             ok_a_list.append([a.place_id, a.location_x, a.location_y])
     print(ok_a_list)
     return ok_a_list
-
-
+# ------------------------------------確定距離(傳place_id)
 def check_distance_placeid(get_user_address, a_id_list):
     ok_a_list = []
     for a in Attractions.objects.filter(id__in=a_id_list):
@@ -313,9 +311,29 @@ def check_distance_placeid(get_user_address, a_id_list):
         if distance <= 0.8:
             ok_a_list.append(a.place_id)
     return ok_a_list
-
-def order_check_attrations(o_attractions_list,now_time,week):
-     # 4.將使用者所選擇的所有景點
+# ------------------------------------確認營業時間(排序景點)
+def order_check_opening(o_attractions_list,now_time, week):
+    ok_a_list = []
+    now_time+=150
+    for a in Crowd_Opening.objects.filter(week=week):
+        if "休息" not in a.opening:
+            if "24小時營業" in a.opening:
+                ok_a_list.append(a.a_id)
+            else:
+                for opening in a.opening:
+                    opening = opening.replace(" ", "")
+                    if now_time >= int(opening[0:2]) * 60 + int(
+                        opening[3:5]
+                    ) and now_time < int(opening[6:8])*60 + int(opening[9:]):
+                        ok_a_list.append(a.a_id)
+                        break
+    return ok_a_list
+# ------------------------------------景點排序(根據使用者喜好、擁擠、營業時間)
+def order_check_attrations(o_attractions_list,now_time,week,stay_time):
+    #判斷當下有沒有營業，沒有就不放進陣列
+    ok_a_list = []
+    
+    # 4.將使用者所選擇的所有景點
     #     * 根據使用者提供的資料（喜好）去判斷重複程度（如5個相似，1個相似之類的），沒有的話變成手動給(暫定)，
     user_favorite = [
         1,
@@ -328,7 +346,7 @@ def order_check_attrations(o_attractions_list,now_time,week):
     o_favorite_list = []
     o_opening_list = []
     temp_o_opening_list = []
-    for o in o_attractions_list:
+    for o in ok_a_list:
         score = 0
         o_db = Attractions.objects.get(place_id=o)
         for tag in o_db.att_type:  # 抓出周遭n的tag(需要修改景點標籤)
@@ -338,7 +356,8 @@ def order_check_attrations(o_attractions_list,now_time,week):
 
     # 再判斷景點的人潮流量（1-5，1為最高），判斷營業時間
     time = now_time // 60
-    for o in o_attractions_list:
+    stay_time=150
+    for o in ok_a_list:
         o_db = Attractions.objects.get(place_id=o)
         o_crowd_opening = o_db.crowd_opening_set.filter(week=week).values()
         crowd = o_crowd_opening[0]["crowd"]
@@ -355,14 +374,15 @@ def order_check_attrations(o_attractions_list,now_time,week):
                 o_opening_list.append(1440)
             else:
                 op = op.replace(" ", "")
-                if o_db.stay_time<120:
-                    o_opening_list.append(int(op[6:8])*60 + int(op[9:])-120)
-                else:
+                # 超過150分鐘就減自己，沒有的話就減150
+                if o_db.stay_time>stay_time: 
                     o_opening_list.append(int(op[6:8])*60 + int(op[9:])-o_db.stay_time)
+                else:
+                    o_opening_list.append(int(op[6:8])*60 + int(op[9:])-stay_time)
             break
         # o_opening_list.append(temp_o_opening_list)
         temp_o_opening_list=[]
-    print("o_attractions_list",o_attractions_list)
+    print("ok_a_list",ok_a_list)
     print("o_opening_list",o_opening_list)
     
 
@@ -384,7 +404,7 @@ def order_check_attrations(o_attractions_list,now_time,week):
     df_x_html = df_x.to_html()
     total_list = df_x[3].values.tolist()  # 將df_x[3]的值轉成list
     final = [
-        [o_attractions_list[x], total_list[x]] for x in range(len(total_list))
+        [ok_a_list[x], total_list[x]] for x in range(len(total_list))
     ]  # 將place_id和分數合併
     f_final_list = sorted(final, key=lambda x: x[1], reverse=True)  # 排序
     print("f_final_list", f_final_list)
@@ -394,11 +414,11 @@ def order_check_attrations(o_attractions_list,now_time,week):
     # print("時間:",opening,",擁擠:",crowd)
     # print("這裡",o_crowd_opening)
     #     * 最後使用normalization將兩者的區間變成[0,1]，再賦予他們權重（如0.5、0.5），最後根據分數去排序景點。
-
     return f_final_list[0][0]
 def test_input(request):
     client = googlemaps.Client(key=GOOGLE_PLACES_API_KEY)
     now_time = 780
+    stay_time=150
     day = "2023-05-25"
     week = datetime(int(day[0:4]), int(day[5:7]), int(day[8:])).weekday() + 1
 
@@ -409,7 +429,7 @@ def test_input(request):
 
     get_user_address = (25.042066346405175, 121.52560526199962)  # 抓使用者位置
     get_all_attractions = check_distance(
-        get_user_address, check_opening(now_time, week)
+        get_user_address, check_opening(now_time, week,stay_time)
     )
     print(len(get_all_attractions))
     m_attractions_list = []
@@ -492,7 +512,7 @@ def test_input(request):
         o_db = Attractions.objects.get(place_id=o)
         o_x = o_db.location_x
         o_y = o_db.location_y
-        near_o += check_distance_placeid((o_x, o_y), check_opening(now_time, week))
+        near_o += check_distance_placeid((o_x, o_y), check_opening(now_time, week,stay_time))
 
     # 去掉o_attractions_list本身
     near_o = list(set(near_o) - set(o_attractions_list))
@@ -574,12 +594,19 @@ def test_input(request):
         Attractions.objects.get(place_id=x).a_name for x in o_attractions_list
     ]  # name的List
     # print(o_attractions_list)
+    # ---------------------排序
     final_list=[]
+    remainder_list=[]
     while len(o_attractions_list)>0:
-        final_list.append(order_check_attrations(o_attractions_list,now_time,week))
-        now_time+=120
+        temp = order_check_attrations(o_attractions_list,now_time,week,stay_time)
+        if temp=="":
+            break
+        final_list.append(temp)
+        now_time+=stay_time
         o_attractions_list = list(set(o_attractions_list) - set(final_list))
-
+    remainder_list =  [
+        [Attractions.objects.get(place_id=x).a_name,Attractions.objects.get(place_id=x).crowd_opening_set.filter(week=week).values()[0]["opening"]] for x in o_attractions_list
+    ]
     f_final_list_name=  [
         [Attractions.objects.get(place_id=x).a_name,Attractions.objects.get(place_id=x).crowd_opening_set.filter(week=week).values()[0]["opening"]] for x in final_list
     ] 
