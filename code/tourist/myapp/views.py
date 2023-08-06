@@ -332,7 +332,22 @@ def order_check_opening(o_attractions_list,now_time, week):
 def order_check_attrations(o_attractions_list,now_time,week,stay_time):
     #判斷當下有沒有營業，沒有就不放進陣列
     ok_a_list = []
-    
+    # now_time+=stay_time
+    for o in o_attractions_list:
+        o_db = Attractions.objects.get(place_id=o)
+        o_crowd_opening = o_db.crowd_opening_set.filter(week=week).values()
+        opening = o_crowd_opening[0]["opening"]
+        for op in opening:
+            if op =="24小時營業":
+                ok_a_list.append(o_db.place_id)
+            else:
+                print(o_db.a_name,now_time,op)
+                op = op.replace(" ", "")
+                if now_time >= int(op[0:2]) * 60 + int(op[3:5]) and now_time+stay_time <= int(op[6:8])*60 + int(op[9:]):
+                    ok_a_list.append(o_db.place_id)
+                    break
+    if ok_a_list ==[]:
+        return ""
     # 4.將使用者所選擇的所有景點
     #     * 根據使用者提供的資料（喜好）去判斷重複程度（如5個相似，1個相似之類的），沒有的話變成手動給(暫定)，
     user_favorite = [
