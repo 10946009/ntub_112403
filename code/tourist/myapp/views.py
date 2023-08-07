@@ -64,6 +64,7 @@ def index(request):
 def login(request):
     result = 0
     message = ""
+    request.session["code_result"]=""
     if request.method == 'GET' and request.headers.get('X-Requested-With'):
         print('hello')
         request.session["code_result"] = request.GET.get('code_result')
@@ -98,7 +99,7 @@ def login(request):
         else:
             result = 1
             request.session["message"] = "帳號或密碼錯誤"
-    message = request.session["message"]
+    # message = request.session["message"]
     print('result',result)
     print('message',message)
     print(request.session["code_result"])
