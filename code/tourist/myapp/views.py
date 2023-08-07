@@ -64,6 +64,8 @@ def index(request):
 def login(request):
     result = 0
     message = ""
+    request.session["message"] = ""
+    request.session["code_result"] = -1
     if request.method == 'GET' and request.headers.get('X-Requested-With'):
         print('hello')
         request.session["code_result"] = request.GET.get('code_result')
@@ -76,7 +78,9 @@ def login(request):
         elif request.session["code_result"] == "3":
             request.session["message"] = '正確'
     
-    if request.method == "POST" and request.session["code_result"] == "3":
+    if request.method == "POST" :
+        submitted_code = request.POST.get('viewsCode')
+        print(submitted_code)
         print(request.method,request.session["code_result"])
         result = 2
         print(request.POST)

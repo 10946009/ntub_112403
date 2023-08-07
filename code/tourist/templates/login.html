@@ -93,11 +93,13 @@
             <div style="text-align:center;color:red">{{ message }}</div>
             <form class="pure-form pure-form-stacked" action="" method="post">
                 {% csrf_token %}
+                
                 <input id="inputacc" type="email" placeholder="e-mail" name="email" required>
                 <input id="inputpwd" type="password" placeholder="密碼" name="passwd" required>
                 <div class="ch">
                     <input type="text" id="input" placeholder="請輸入驗證碼">
                     <p id="code"></p>
+                    <input type="hidden" id="viewsCode" name="viewsCode" value="">
                     <p></p>
                     <a href="#" id="recode">更新</a>
                     <p></p>
@@ -145,6 +147,7 @@
             }
             checkCode.innerHTML = code;//把code值賦給驗證碼
             console.log(code);
+            document.getElementById("viewsCode").value = code;
         }
 
         //更新驗證碼
