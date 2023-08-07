@@ -329,7 +329,7 @@ def order_check_opening(o_attractions_list,now_time, week):
                         break
     return ok_a_list
 # ------------------------------------景點排序(根據使用者喜好、擁擠、營業時間)
-def order_check_attrations(o_attractions_list,now_time,week,stay_time):
+def order_check_attrations(o_attractions_list,now_time,week,stay_time,user_favorite):
     #判斷當下有沒有營業，沒有就不放進陣列
     ok_a_list = []
     # now_time+=stay_time
@@ -350,13 +350,6 @@ def order_check_attrations(o_attractions_list,now_time,week,stay_time):
         return ""
     # 4.將使用者所選擇的所有景點
     #     * 根據使用者提供的資料（喜好）去判斷重複程度（如5個相似，1個相似之類的），沒有的話變成手動給(暫定)，
-    user_favorite = [
-        1,
-        2,
-        4,
-        7,
-        9,
-    ]
     o_crowd_list = []
     o_favorite_list = []
     o_opening_list = []
@@ -431,6 +424,13 @@ def order_check_attrations(o_attractions_list,now_time,week,stay_time):
     #     * 最後使用normalization將兩者的區間變成[0,1]，再賦予他們權重（如0.5、0.5），最後根據分數去排序景點。
     return f_final_list[0][0]
 def test_input(request):
+    user_favorite = [ # 使用者喜好
+        1,
+        2,
+        4,
+        7,
+        9,
+    ]
     client = googlemaps.Client(key=GOOGLE_PLACES_API_KEY)
     now_time = 780
     stay_time=150
@@ -464,11 +464,21 @@ def test_input(request):
     #     duration_value = response["rows"][0]["elements"][0]["duration"]["value"]
     #     if duration_value <= 1800: # 30分鐘
     #         m_attractions_list.append([a_id[0],distance,duration])
+
     # m_id = [Attractions.objects.get(place_id=x[0]).id for x in m_attractions_list] # name的List
     # m_rating = [Attractions.objects.get(place_id=x[0]).rating for x in m_attractions_list] # name的List
     # m_rating_total = [Attractions.objects.get(place_id=x[0]).rating_total for x in m_attractions_list] # name的List
-    # --------------------------------------------------標準化和排序
-    # m_list = {"m_rating": m_rating, "m_rating_total": m_rating_total}
+    # m_favorite_list = []
+    # for m in m_attractions_list:
+    #     score = 0
+    #     m_db = Attractions.objects.get(place_id=m[0])
+    #     for tag in m_db.att_type:  # 抓出周遭n的tag(需要修改景點標籤)
+    #         if tag in user_favorite:  #
+    #             score += 1
+    #     m_favorite_list.append(score)
+
+    # # --------------------------------------------------標準化和排序
+    # m_list = {"m_rating": m_rating, "m_rating_total": m_rating_total,'m_favorite_list':m_favorite_list}
     # df_m_list = pd.DataFrame(m_list)
     # df_m_list["total"] = 0
     # df_m_list.index = m_id
@@ -479,7 +489,7 @@ def test_input(request):
     # X_scaled_m = scaler_m.transform(df_m_list)
     # df_x_m_list = pd.DataFrame(X_scaled_m)
 
-    # df_x_m_list[2] = df_x_m_list[0].mul(0.4).add(df_x_m_list[1].mul(0.6))  # 將值皆乘0.5相加後放入total欄位
+    # df_x_m_list[3] = df_x_m_list[0].mul(0.35)+df_x_m_list[1].mul(0.35)+df_x_m_list[2].mul(0.3)  # 將值皆乘0.5相加後放入total欄位
     # df_x_m_list.index = m_id
     
     # print("df_x_m_list", df_x_m_list)
@@ -613,7 +623,7 @@ def test_input(request):
     final_list=[]
     remainder_list=[]
     while len(o_attractions_list)>0:
-        temp = order_check_attrations(o_attractions_list,now_time,week,stay_time)
+        temp = order_check_attrations(o_attractions_list,now_time,week,stay_time,user_favorite)
         if temp=="":
             break
         final_list.append(temp)
