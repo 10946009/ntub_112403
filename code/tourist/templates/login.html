@@ -91,15 +91,16 @@
             <img class="logo" src="../static/images/logo1.png" alt="Trip" style="width:200px;
                     height:200px">
             <div style="text-align:center;color:red">{{ message }}</div>
-            <form class="pure-form pure-form-stacked" action="" method="post">
+            <form class="pure-form pure-form-stacked" id="LoginForm" action="" method="post">
                 {% csrf_token %}
                 
-                <input id="inputacc" type="email" placeholder="e-mail" name="email" required>
+                <input id="inputacc" type="email" placeholder="e-mail" name="email" required value="{{email}}">
                 <input id="inputpwd" type="password" placeholder="密碼" name="passwd" required>
+                <input id="result" type="hidden" name="code_result" >
                 <div class="ch">
                     <input type="text" id="input" placeholder="請輸入驗證碼">
                     <p id="code"></p>
-                    <input type="hidden" id="viewsCode" name="viewsCode" value="">
+                    {% comment %} <input type="hidden" id="viewsCode" name="viewsCode" value=""> {% endcomment %}
                     <p></p>
                     <a href="#" id="recode">更新</a>
                     <p></p>
@@ -114,7 +115,7 @@
     <div>&nbsp;</div>
     <script>
         //判斷是否為機器人-驗證
-
+        var code_result=-1
         var code = "";//全域變數 紀錄驗證碼
 
         var checkCode = document.getElementById("code");
@@ -138,7 +139,7 @@
             checkCode.style['letter-spacing'] = ls[ci];
             //alert (ci);
             code = "";
-            var codeLength = 6;//驗證碼的長度	
+            var codeLength = 6;//驗證碼的長度 
             var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');//隨機數 
             // , 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
             for (var i = 0; i < codeLength; i++) {//迴圈操作 
@@ -147,7 +148,7 @@
             }
             checkCode.innerHTML = code;//把code值賦給驗證碼
             console.log(code);
-            document.getElementById("viewsCode").value = code;
+            //document.getElementById("viewsCode").value = code;
         }
 
         //更新驗證碼
@@ -194,8 +195,10 @@
                 createCode();//重新整理驗證碼 
                 document.getElementById("input").value = "";//清空文字框 
             }
+            var result = document.getElementById("result");
+            result.value=code_result
             console.log(code)
-            $.ajax({
+            /*$.ajax({
                 type: "GET",
                 url: '', // 替换为实际的 URL
                 headers: {
@@ -210,7 +213,7 @@
                 error: function(error) {
                     console.error("Request failed:", error);
                 }
-            });
+            });*/
         });
         createCode();
 
@@ -218,7 +221,7 @@
         //     var msg = "{{message}}";
         //     // 在JavaScript中使用Jinja2模板引擎將Python變數插入到JavaScript中
 
-        //     // 使用 JavaScript 的 `alert()` 函式來彈出視窗
+        //     // 使用 JavaScript 的 alert() 函式來彈出視窗
         //     alert(msg);
         // }
 
