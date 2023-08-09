@@ -17,10 +17,6 @@ var heart = document.getElementsByClassName('heart_icon');
             }  
         })(i);
     } 
-//送出表單(收藏
-function submitForm() {
-  document.getElementById("heartForm").submit();
-}
 //高度一樣
 $(function(){
   var h = 0;

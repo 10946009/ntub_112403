@@ -235,10 +235,12 @@
 </div> -->
 <div class="owl-carousel owl-theme owl_main" style="text-align: center;">
   <div class="item">
+    <form action="/login" method="post">
     <div class="heart_icon_img">
       <i class="fa-solid fa-heart heart_icon" onclick="submitForm()"></i>
       <img src="../static/images/Zhongzheng.jpeg" alt="" class="img-responsive" width="100%">
     </div>
+  </form>
     <div class="hot_spotC">
       <h4 class="c_txt">
         中正紀念堂
@@ -499,7 +501,13 @@
 {% block content_script %}
 <script src="../static/js/index.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-
+<script>
+  //送出表單(收藏
+  function submitForm() {
+    document.getElementById("heartForm").submit();
+      
+  }
+</script>
 {% endblock %}
 
 </html>
