@@ -9,6 +9,22 @@ html{
 .owl_main .item{
 	border:  1px solid #ccc;
 }
+.carousel_block{
+	padding: 0 5px;
+}
+.carousel_txt{
+	padding-left: 10px;
+	border:  1px solid #ccc;
+}
+.imgcontainer{
+	height: 300px;
+	overflow: hidden;
+}
+.imgcontainer img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
 .banner{
 	background: url(../images/IMG20220125115200.jpg);
 	background-repeat: no-repeat;
