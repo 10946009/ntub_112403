@@ -17,7 +17,7 @@ var heart = document.getElementsByClassName('heart_icon');
             }  
         })(i);
     } 
-
+//高度一樣
 $(function(){
   var h = 0;
 
@@ -32,6 +32,54 @@ $(function(){
   $(".owl_main .item").css("height",h + "px");
 });
 
+
+//
+
+$(document).ready(function() {
+  var carousel = $('#myCarousel .carousel-inner');
+  var items = carousel.find('.carousel-item');
+  var itemCount = items.length;
+  var currentPage = 0;
+
+  function showPage(page) {
+    carousel.find('.carousel-item').removeClass('active');
+    var numItemsToShow = getNumItemsToShow();
+    items.slice(page, page + numItemsToShow).addClass('active');
+  }
+
+  function getNumItemsToShow() {
+    var windowWidth = $(window).width();
+    if (windowWidth < 576) {
+      return 1;
+    } else if (windowWidth < 768) {
+      return 2;
+    } else {
+      return 4;
+    }
+  }
+
+  // Initial setup
+  showPage(currentPage);
+
+  $(".carousel-control-prev").click(function() {
+    currentPage = (currentPage - getNumItemsToShow() + itemCount) % itemCount;
+    showPage(currentPage);
+  });
+
+  $(".carousel-control-next").click(function() {
+    currentPage = (currentPage + getNumItemsToShow()) % itemCount;
+    showPage(currentPage);
+  });
+
+  // Update carousel items on window resize
+  $(window).resize(function() {
+    showPage(currentPage);
+  });
+});
+
+
+
+//輪播
 $('.owl-carousel').owlCarousel({
     loop:true,
     margin:10,
@@ -84,26 +132,22 @@ function toggleDropdownMenu(addIcon) {
 }
 
 $(function() {
-  var currentMenu = null; // 儲存當前打開的 .dropdown_menu
-  var currentIcon = null; // 儲存當前打開的 .add_icon
-
-  $(".dropdown_menu").hide(); 
+  $(".dropdown_menu").hide();
 
   $(".add_icon").click(function() {
     var addIcon = $(this);
-    var dropdownMenu = $(this).siblings(".dropdown_menu");
-    
-    // 如果當前打開的 .dropdown_menu 不是這個被點擊的 .dropdown_menu，就關閉它
-    if (currentMenu && currentMenu[0] !== dropdownMenu[0]) {
-      currentMenu.fadeOut(200);
-      currentIcon.removeClass("active");
+    var dropdownMenu = addIcon.siblings(".dropdown_menu");
+
+    // 如果 .dropdown_menu 是可見的，則點擊 .add_icon 會隱藏它，否則顯示它
+    dropdownMenu.fadeToggle(200);
+    addIcon.toggleClass("active");
+  });
+
+  // 點選任意地方時，檢查點擊的目標元素是否位於 .group 內部，若不是則隱藏 .dropdown_menu
+  $(document).click(function(event) {
+    if (!$(event.target).closest(".group").length) {
+      $(".dropdown_menu").fadeOut(200);
+      $(".add_icon").removeClass("active");
     }
-    dropdownMenu.fadeToggle(200); // 使用 fadeToggle() 方法切換顯示和隱藏 .dropdown_menu
-    currentMenu = dropdownMenu.is(":visible") ? dropdownMenu : null; // 更新當前打開的 .dropdown_menu
-    currentIcon = dropdownMenu.is(":visible") ? addIcon : null; // 更新當前打開的 .dropdown_menu
-  
-    addIcon.toggleClass("active"); // 切換當前 .add_icon 的 active 樣式，來改變顏色
-    
   });
 });
-
