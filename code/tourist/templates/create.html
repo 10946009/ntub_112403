@@ -67,7 +67,7 @@
                 <div>
                   <div class="tabD">
                     <span id="tabDT">請輸入出發時間：</span>
-                    <input type="time" value="09:00">
+                    <input type="time" name="nowtime" id="nowtime" value="09:00">
                   </div>
                   <div class="tabD">
                     <span id="tabDL">使用者位置：</span>
@@ -581,21 +581,12 @@
         <button class="filter_btn" value="wenshan">文山區</button>
     </div>
     
-    {% for  item in m_attractions_list_name %}
+    
     <div class="filter row">
-        <div class="shingyi col-md-6">
-          <div class="col-5">
-            <img src="../static/images/101.jpg" alt=""  height="250">
-          </div>
-          <div class="col-7">
-            <div style="text-align: left;">
-              <p>景點名稱</p>
-              <p>地址</p>
-            </div>
-          </div>
+        <div class="shingyi col-md-6" id= "AttractionsContainer">
+          <!--我在JS QQ-->
         </div>
-        {% endfor %}
-        <div class="beitou col-md-6">
+        {% comment %} <div class="beitou col-md-6">
           <div class="col-5">
             <img src="../static/images/beitou.jpeg" alt=""  height="250">
           </div>
@@ -618,8 +609,8 @@
           </div>
         </div>
         <div class="shilin"><img src="../static/images/Shilin.jpeg" alt=""  height="250"></div>
-        <div class="zhongshan"><img src="../static/images/Zhongshan.jpeg" alt=""  height="250"></div>
-    </div>
+        <div class="zhongshan"><img src="../static/images/Zhongshan.jpeg" alt=""  height="250"></div> {% endcomment %}
+    {% comment %} </div> {% endcomment %}
  
     </div>
 
@@ -633,7 +624,7 @@
     $(function(){
       $("button").click(function(){
           var target = $(this).attr("value");
-    
+
     
           $(".filter div").each(function(){
               $(this).animate({"opacity":0},100,function(){
@@ -660,7 +651,7 @@
           const latitude = position.coords.latitude;
           const longitude = position.coords.longitude;
           userLocation.value = latitude+','+longitude;
-          console.log(userLocationValue);
+          console.log(userLocation.value);
       }
   
       function error() {
@@ -677,16 +668,35 @@
     var clickRecommend = document.getElementById('clickRecommend');
       clickRecommend.addEventListener("click",function(e){
       alert('hello');
+        var nowtime=document.getElementById("nowtime");
         var ct_status = 0;
         const userLocation = document.getElementById("userLocation");
           $.ajax({
             type: "POST",
-            url: `create/${ct_id}`, // 替换为您的 views.py 文件的 URL
+            url: "/create/{{ct_id}}", // 替换为您的 views.py 文件的 URL
             data: {
                 location: userLocation.value,
-                ct_status : 0
+                nowtime: nowtime.value,
+                ct_status : 0,
+                csrfmiddlewaretoken: '{{ csrf_token }}',
             },
             success: function(response) {
+              // 在這裡處理伺服器回傳的 JSON 數據
+              console.log(response);  // 查看回傳的值
+
+              // 進一步處理回傳的值，例如顯示在頁面上
+              var m_list = response.m_list;  // 假設 m_list 是 JSON 中的一個鍵
+              var crow_opening_list = response.crow_opening_list;  // 假設 crow_opening_list 是 JSON 中的一個鍵
+              var mListContainer = document.getElementById("AttractionsContainer")
+              for (var item of m_list) {
+                mListContainer.innerHTML += '<div class="col-5"><img src="../static/images/101.jpg" alt=""  height="250"></div>'
+                mListContainer.innerHTML +='<div class="col-7"><div style="text-align: left;">'
+                mListContainer.innerHTML += "<p>" + item.place_id + "<p>";
+                mListContainer.innerHTML += "<p>" + item.a_name + "<p>";
+                mListContainer.innerHTML += "<p>" + item.address + "<p></div></div>";
+
+              }
+
             },
             error: function() {
             }

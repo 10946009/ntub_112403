@@ -933,7 +933,7 @@
         function addFavorite(aid){
             $.ajax({
                 type: "POST",
-                url: "/attraction_details/",
+                url: "/add_favorite/",
                 data: {
                     'aid': aid,
                     'csrfmiddlewaretoken': '{{ csrf_token }}',  // 請確保在模板中提供 CSRF token
