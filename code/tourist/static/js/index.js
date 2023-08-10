@@ -17,21 +17,26 @@ var heart = document.getElementsByClassName('heart_icon');
             }  
         })(i);
     } 
-    
-// //漢堡選單
-// $(document).ready(function() {
-//    $('.showmenu').on('click',  function(e) {
-//       e.preventDefault();
-//       $('body').toggleClass('menu-show');
-//   });
-// });
 
+$(function(){
+  var h = 0;
+
+  $(".owl_main .item").each(function(){
+
+    if($(this).height() > h){
+      h = $(this).height();
+    }
+    
+  });
+
+  $(".owl_main .item").css("height",h + "px");
+});
 
 $('.owl-carousel').owlCarousel({
     loop:true,
     margin:10,
     nav:true,
-    // dots:false,
+    dots:false,
     responsive:{
         0:{
             items:2
@@ -45,6 +50,9 @@ $('.owl-carousel').owlCarousel({
     }
 })
 
+
+
+//熱門行程詳細資訊
 $(function(){
   $("#hot_spot_show").hide();
 
@@ -58,6 +66,7 @@ $(function(){
   })
 })
 
+//add選單
 function toggleDropdownMenu(addIcon) {
   var group = addIcon.closest('.group'); // 找到包含 addIcon 的最近的 .group 容器
   var dropdownMenu = group.find('.dropdown_menu'); // 使用 jQuery 的 find() 方法尋找 .dropdown_menu 元素
@@ -66,12 +75,11 @@ function toggleDropdownMenu(addIcon) {
   addIcon.onclick = function() {
     if (flagAdd) {
       flagAdd = false;
-      dropdownMenu.fadeIn(200); // 使用 jQuery 的 fadeIn() 方法顯示 .dropdown_menu
+      dropdownMenu.fadeIn(200); 
       } else {
       flagAdd = true;
-      dropdownMenu.fadeOut(200); // 使用 jQuery 的 fadeOut() 方法隱藏 .dropdown_menu
+      dropdownMenu.fadeOut(200);
     }
-    // 可根據需求在這裡添加其他共用功能
   };
 }
 
@@ -79,7 +87,7 @@ $(function() {
   var currentMenu = null; // 儲存當前打開的 .dropdown_menu
   var currentIcon = null; // 儲存當前打開的 .add_icon
 
-  $(".dropdown_menu").hide(); // 隱藏所有 .dropdown_menu 元素
+  $(".dropdown_menu").hide(); 
 
   $(".add_icon").click(function() {
     var addIcon = $(this);
