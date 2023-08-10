@@ -68,8 +68,9 @@ class Crowd_Opening(models.Model):
     
 class Create_Travel(models.Model):
     u = models.ForeignKey(to=User, on_delete=models.CASCADE)#user沒了建立行程也會被刪除
-    ct_name = models.IntegerField(null=False, blank=False)
+    ct_name = models.TextField(null=False, blank=False)
     start_day = models.TextField(max_length=255,null=False, blank=False)
+    create_date = models.DateField(auto_now_add=True)
     
 
 class ChoiceDay_Ct(models.Model):
@@ -102,7 +103,7 @@ class Comment(models.Model):
     h = models.ForeignKey(to=History, on_delete=models.SET_DEFAULT,default=-1)#分享沒了留言會被設為null
     content = models.TextField(max_length=255)
     score = models.FloatField(null=False, blank=False)
-    time = models.TimeField(auto_now_add=True)
+    comment_date = models.DateField(auto_now_add=True)
     comment_type = models.BooleanField(default=False) #0為行程留言，1為景點留言
 
 class Favorite(models.Model):

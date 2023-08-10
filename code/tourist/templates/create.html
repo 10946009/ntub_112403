@@ -2,6 +2,10 @@
 {% block title %}建立行程{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="../static/css/create.css">
+<script>
+
+
+</script>
 {% endblock %}
  
 {% block body %}
@@ -15,8 +19,8 @@
           <div class="col col-lg-3" style="padding: 0;">
             <a href="#tab_f" class="tab_a">我的收藏</a>
           </div>
-          <div class="col col-lg-3" style="padding: 0;">
-            <a href="#tab_r" class="tab_a">推薦景點</a>
+          <div class="col col-lg-3" style="padding: 0;"  >
+            <a href="#tab_r" class="tab_a"  id="clickRecommend">推薦景點</a>
           </div>
         </div>
       </div>
@@ -26,17 +30,17 @@
           <form action="" style="display: flex;justify-content: center;">
             <div class="row" style="width: 80%;">
               <div class="col-md-4 tabc_txt">
-                行程名稱：
-                <input type="text" class="input_txt" ng-model="travName" placeholder="請輸入行程名稱" style="width: 180px">
+                行程名稱：{{ name }}
+                {% comment %} <input type="text" class="input_txt" ng-model="travName"  style="width: 180px" value="{{ name }}"> {% endcomment %}
               </div>
               <div class="col-md-4 tabc_txt">
-                出發日期：
-                <input type="date" class="input_txt" value="2023-05-25">
+                出發日期：{{ start_day }}
+                {% comment %} <input type="date" class="input_txt" value="{{ start_day }}"> {% endcomment %}
               </div>
-              <div class="col-md-4 tabc_txt">
+              {% comment %} <div class="col-md-4 tabc_txt">
                 結束日期：
                 <input type="date" class="input_txt" value="2023-05-26">
-              </div>
+              </div> {% endcomment %}
             </div>
           </form>
           <div class="row">
@@ -63,11 +67,11 @@
                 <div>
                   <div class="tabD">
                     <span id="tabDT">請輸入出發時間：</span>
-                    <input type="time" value="09:00">
+                    <input type="time" name="nowtime" id="nowtime" value="09:00">
                   </div>
                   <div class="tabD">
                     <span id="tabDL">使用者位置：</span>
-                    <input type="text" placeholder="請輸入位置" class="input_txt" value="台北商業大學">
+                    <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation" >
                   </div>
                 </div>
               </form>
@@ -576,19 +580,13 @@
         <button class="filter_btn" value="nangan">南港區</button>
         <button class="filter_btn" value="wenshan">文山區</button>
     </div>
+    
+    
     <div class="filter row">
-        <div class="shingyi col-md-6">
-          <div class="col-5">
-            <img src="../static/images/101.jpg" alt=""  height="250">
-          </div>
-          <div class="col-7">
-            <div style="text-align: left;">
-              <p>景點名稱</p>
-              <p>地址</p>
-            </div>
-          </div>
+        <div class="shingyi col-md-6" id= "AttractionsContainer">
+          <!--我在JS QQ-->
         </div>
-        <div class="beitou col-md-6">
+        {% comment %} <div class="beitou col-md-6">
           <div class="col-5">
             <img src="../static/images/beitou.jpeg" alt=""  height="250">
           </div>
@@ -611,8 +609,8 @@
           </div>
         </div>
         <div class="shilin"><img src="../static/images/Shilin.jpeg" alt=""  height="250"></div>
-        <div class="zhongshan"><img src="../static/images/Zhongshan.jpeg" alt=""  height="250"></div>
-    </div>
+        <div class="zhongshan"><img src="../static/images/Zhongshan.jpeg" alt=""  height="250"></div> {% endcomment %}
+    {% comment %} </div> {% endcomment %}
  
     </div>
 
@@ -626,7 +624,7 @@
     $(function(){
       $("button").click(function(){
           var target = $(this).attr("value");
-    
+
     
           $(".filter div").each(function(){
               $(this).animate({"opacity":0},100,function(){
@@ -642,7 +640,71 @@
       });
     
     })
-    </script>
+
+    window.onload = function() {
+      geoFindMe();
+  };
+
+    function geoFindMe() {
+      const userLocation = document.getElementById("userLocation");
+      function success(position) {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          userLocation.value = latitude+','+longitude;
+          console.log(userLocation.value);
+      }
+  
+      function error() {
+        userLocation.textContent = "Unable to retrieve your location";
+      }
+  
+      if (!navigator.geolocation) {
+        userLocation.textContent = "Geolocation is not supported by your browser";
+      } else {
+        userLocation.textContent = "Locating…";
+          navigator.geolocation.getCurrentPosition(success, error);
+      }
+    }
+    var clickRecommend = document.getElementById('clickRecommend');
+      clickRecommend.addEventListener("click",function(e){
+      alert('hello');
+        var nowtime=document.getElementById("nowtime");
+        var ct_status = 0;
+        const userLocation = document.getElementById("userLocation");
+          $.ajax({
+            type: "POST",
+            url: "/create/{{ct_id}}", // 替换为您的 views.py 文件的 URL
+            data: {
+                location: userLocation.value,
+                nowtime: nowtime.value,
+                ct_status : 0,
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+            },
+            success: function(response) {
+              // 在這裡處理伺服器回傳的 JSON 數據
+              console.log(response);  // 查看回傳的值
+
+              // 進一步處理回傳的值，例如顯示在頁面上
+              var m_list = response.m_list;  // 假設 m_list 是 JSON 中的一個鍵
+              var crow_opening_list = response.crow_opening_list;  // 假設 crow_opening_list 是 JSON 中的一個鍵
+              var mListContainer = document.getElementById("AttractionsContainer")
+              for (var item of m_list) {
+                mListContainer.innerHTML += '<div class="col-5"><img src="../static/images/101.jpg" alt=""  height="250"></div>'
+                mListContainer.innerHTML +='<div class="col-7"><div style="text-align: left;">'
+                mListContainer.innerHTML += "<p>" + item.place_id + "<p>";
+                mListContainer.innerHTML += "<p>" + item.a_name + "<p>";
+                mListContainer.innerHTML += "<p>" + item.address + "<p></div></div>";
+
+              }
+
+            },
+            error: function() {
+            }
+        });
+    });
+
+    
+</script>
 {% endblock %}
 
 </html>
