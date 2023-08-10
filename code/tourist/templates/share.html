@@ -3,130 +3,107 @@
 {% block title %}分享行程頁面{% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="../static/css/all.css">
-  <link rel="stylesheet" href="../static/css/bootstrap2023.css">
-  <link rel="stylesheet" href="../static/css/share.css">
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer" />
-  <style>
-    .location-wrap img {
-      object-fit: cover;
-      width: 350px;
-      height: 300px;
-    }
+<link rel="stylesheet" href="../static/css/share.css">
+<style>
+  .location-wrap img {
+    object-fit: cover;
+    width: 350px;
+    height: 300px;
+  }
 
-    .location-wrap {
-      position: relative; 
-    }
+  .location-wrap {
+    position: relative; 
+  }
 
-    .location-heart {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background-color: #fff;
-      border-radius: 50%;
-      padding: 9px;
-      color: red;
-      margin: 10px;
-      font-size: large;
-      cursor: pointer;
-    }
-  </style>
+  .toggle-switch {
+    position: absolute;
+    top: 10px;  
+    right: 10px;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  .slider {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    transition: 0.2s;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input[type="checkbox"]:checked + .slider {
+    transform: translateX(20px);
+  }
+
+
+</style>
 {% endblock %}
 
-{% comment %} <body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">趣放假<img src="../static/images/logo_icon.png" width="20px"
-          style="margin-left: 5px;"></a>
-      <button class="navbar-toggler me-auto" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/">首頁</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/create">建立行程</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/history">我的行程</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/attraction_details">景點資訊</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="/favorite">我的收藏</a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <ul class="name_ul">
-          <li class="nav-item dropdown name_li" style="list-style-type: none;">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">UserName</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Setting</a></li>
-              <li><a class="dropdown-item" href="#">Log out</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-</nav> {% endcomment %}
 {% block body %}
- 
+
 <!-- Tabs navs -->
 <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
-    role="tab" aria-controls="contact" aria-selected="false" onclick="saveTabState('contact')">已分享行程</button>
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+      role="tab" aria-controls="home" aria-selected="true" onclick="saveTabState('home')">已分享行程</button>
   </li>
 </ul>
-<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
   <div class="container">
-    <div class="row justify-content-center"> <!-- 使用 justify-content-center 类来使列居中对齐 -->
-      <div class="col-md-4">
+    <div class="row justify-content-center">
+      <div class="col-md-4 d-flex justify-content-center">
         <div class="card">
-          <div class="location-wrap text-center"> <!-- 使用 text-center 类来使内容居中对齐 -->
+          <div class="location-wrap" style="position: relative;">
+            <label class="toggle-switch">
+              <input type="checkbox" class="toggle-heart-checkbox" id="toggleHeart1">
+              <span class="slider"></span>
+            </label>
             <img src="../static/images/pingxi.jpg" class="img-responsive custom-image">
-            <i class="fa-solid fa-heart location-heart"></i>
-            <i class="fa-solid fa-heart heart_icon"></i>
           </div>
-          <div class="card-body text-center"> <!-- 使用 text-center 类来使文字居中对齐 -->
+          <div class="card-body text-center">
             <h4 class="card-title">阿亮</h4>
             <h5>0318台北平溪</h5>
             <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 d-flex justify-content-center">
         <div class="card">
-          <div class="location-wrap text-center"> <!-- 使用 text-center 类来使内容居中对齐 -->
+          <div class="location-wrap" style="position: relative;">
+            <label class="toggle-switch">
+              <input type="checkbox" class="toggle-heart-checkbox" id="toggleHeart2">
+              <span class="slider"></span>
+            </label>
             <img src="../static/images/Daan.jpeg" class="img-responsive custom-image">
-            <i class="fa-solid fa-heart location-heart"></i>
-            <i class="fa-solid fa-heart heart_icon"></i>
           </div>
-          <div class="card-body text-center"> <!-- 使用 text-center 类来使文字居中对齐 -->
+          <div class="card-body text-center">
             <h4 class="card-title">小灣</h4>
-            <h5>0528台北大安</h5>
+            <h5>0528台北大安</h5> 
             <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 d-flex justify-content-center">
         <div class="card">
-          <div class="location-wrap text-center"> <!-- 使用 text-center 类来使内容居中对齐 -->
+          <div class="location-wrap" style="position: relative;">
+            <label class="toggle-switch">
+              <input type="checkbox" class="toggle-heart-checkbox" id="toggleHeart3">
+              <span class="slider"></span>
+            </label>
             <img src="../static/images/Datong.jpeg" class="img-responsive custom-image">
-            <i class="fa-solid fa-heart location-heart"></i>
-            <i class="fa-solid fa-heart heart_icon"></i>
           </div>
-          <div class="card-body text-center"> <!-- 使用 text-center 类来使文字居中对齐 -->
+          <div class="card-body text-center">
             <h4 class="card-title">奇美</h4>
             <h5>0713大同區</h5>
             <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
@@ -136,7 +113,5 @@
     </div>
   </div>
 </div>
-
- 
-  <script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/share.js"></script>
 {% endblock body %}
