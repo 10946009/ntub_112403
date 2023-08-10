@@ -13,7 +13,7 @@ from django.http import JsonResponse
 from django.contrib import auth
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
-
+from django.db.models import Q
 from django.core.mail import send_mail
 
 from geopy.distance import geodesic
@@ -260,17 +260,35 @@ def create_index(request):
 
 # 建立行程
 def create(request,ct_id):
-    if request.method == 'POST':
-        print('postttttttttttt')
-        ct_status = request.POST.get['ct_status']
-        if ct_status == 0 :
-            location = list(request.POST.get['location'].split())
-            print(location)
-
+    user_favorite=[4,6,9,10,15,16,18]
     ct_data= Create_Travel.objects.get(id=ct_id)
     name = ct_data.ct_name
     start_day= ct_data.start_day
+    week = datetime(int(start_day[0:4]), int(start_day[5:7]), int(start_day[8:])).weekday() + 1
     ct_id = ct_data.id
+
+    if request.method == 'POST':
+        ct_status = request.POST['ct_status']
+        if ct_status == "0" :
+            get_user_address = list(map(float,request.POST['location'].split(',')))
+            nowtime = list(map(int,request.POST['nowtime'].split(':')))
+            new_nowtime = nowtime[0]*60 + nowtime[1]
+            # nowtime = int(nowtime[:1])*60 + int(nowtime[3:])
+            print(get_user_address)
+            print(new_nowtime)
+            
+            m=recommend(user_favorite,new_nowtime,get_user_address,start_day)
+            m_list = Attractions.objects.filter(place_id__in=m)
+            crow_opening_list=[]
+            for i in m_list:
+                o_db=Crowd_Opening.objects.filter(Q(week=week) & Q(a_id=i.id)).values().first()
+                crow_opening_list.append(o_db)
+            m_list = list(m_list.values())
+            print(m_list)
+            print(crow_opening_list[0])
+            return JsonResponse({'m_list': m_list, 'crow_opening_list': crow_opening_list})
+
+    
     return render(request, "create.html",locals())
 
 
@@ -302,8 +320,7 @@ def share(request):
 # def attraction_details(request,a_id):
 #     return render(request, "attraction_details.html")
 
-
-def attraction_details(request):
+def add_favorite(request):
     if request.method == "POST":
         aid = request.POST.get("aid")
         if aid:
@@ -317,6 +334,7 @@ def attraction_details(request):
             # 在這裡準備你想要回傳給前端的資料
             response_data = {'message': '操作成功'}
             return JsonResponse(response_data)
+def attraction_details(request):
 
     search_list = []
     # print(request.method)
@@ -523,11 +541,9 @@ def order_check_attrations(
     return f_final_list[0][0]
 
 
-def recommend(user_favorite,now_time,get_user_address):
+def recommend(user_favorite,now_time,get_user_address,day):
     client = googlemaps.Client(key=GOOGLE_PLACES_API_KEY)
-    now_time = 780
     stay_time = 150
-    day = "2023-05-25"
     week = datetime(int(day[0:4]), int(day[5:7]), int(day[8:])).weekday() + 1
 
     # # 1.先選擇固定的5個景點作為M集合（正常為我們根據使用者輸入的位置去進行推薦。大約為開車30分鐘內會到且有營業的地點）
@@ -535,7 +551,7 @@ def recommend(user_favorite,now_time,get_user_address):
     # o_db = Attractions.objects.get(place_id=o)
     # o_crowd_opening = o_db.crowd_opening_set.filter(week=week).values()
 
-    get_user_address = (25.042066346405175, 121.52560526199962)  # 抓使用者位置
+    get_user_address = get_user_address  # 抓使用者位置
     get_all_attractions = check_distance(
         get_user_address, check_opening(now_time, week, stay_time)
     )
