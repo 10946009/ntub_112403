@@ -11,44 +11,26 @@
   .card .toggle-switch {
     z-index: 1;
   }
-  /* 移除开关的默认样式 */
-  .toggle-heart-checkbox {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    outline: none;
-    width: 40px;
-    height: 20px;
-    background-color: #ccc;
-    border-radius: 10px;
-    position: relative;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  /* 添加开关的滑块样式 */
-  .toggle-heart-checkbox::after {
-    content: "";
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 16px;
-    height: 16px;
-    background-color: #fff;
-    border-radius: 50%;
+  .delete-icon {
     transition: transform 0.3s ease;
+    cursor: pointer;
   }
   
-.toggle-heart-checkbox:checked + .slider {
-    background-color: #0cf214;
+  .delete-icon.active {
+    animation: shake 0.5s; /* 增加抖動動畫 */
   }
   
-  .toggle-heart-checkbox:checked + .slider::before {
-    transform: translateX(20px);
-  }
-
-  .slider.round:before {
-    border-radius: 50%;
+  /* 定義抖動動畫 */
+  @keyframes shake {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+      transform: translateX(5px);
+    }
   }
 @media(max-width: 768px){
     main{

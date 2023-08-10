@@ -1,18 +1,15 @@
+document.addEventListener("DOMContentLoaded", function() {
+  const deleteIcons = document.querySelectorAll(".delete-icon");
 
-  const toggleHeartCheckboxes = document.querySelectorAll('.toggle-heart-checkbox');
+  deleteIcons.forEach(icon => {
+    icon.addEventListener("click", function() {
+      const card = this.closest(".card");
+      card.classList.add("shake");
 
-  toggleHeartCheckboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', () => {
-      const isChecked = checkbox.checked;
-      if (isChecked) {
-        checkbox.parentElement.classList.add('active');
-      } else {
-        checkbox.parentElement.classList.remove('active');
-      }
+      // 移除抖動效果以重置動畫
+      setTimeout(() => {
+        card.classList.remove("shake");
+      }, 500); // 等待抖動動畫完成
     });
   });
-
-
-
-
-
+});
