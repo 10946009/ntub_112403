@@ -40,7 +40,8 @@ urlpatterns = [
     path('attraction_details/',views.attraction_details,name='search_results'),
     path('attraction_details/<int:aid>',views.attraction_details),
     path('test/',views.test_input),
-    
+    path('add_favorite/',views.add_favorite),
+
     path('useredit/',views.user_edit),
     path('createindex/',views.create_index),
     # path('attraction_details/<int:a_id>',views.attraction_details),
