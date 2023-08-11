@@ -15,3 +15,7 @@ function toggleFavorite(heartIcon) {
     heartIcon.style.color = "red";
   }
 }
+function toggleFavorite(element) {
+
+  element.classList.toggle("zoomIn");
+}
