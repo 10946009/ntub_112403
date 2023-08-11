@@ -20,7 +20,7 @@ import myapp.views as views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    # path('',views.sayhello),#測試
+    path('sayhello/',views.sayhello),#測試
     # path('test/',views.get_all_taiwan),#測試
     # path('opentime/',views.opentime), #測試
     path('admin_index/',views.admin_index),
@@ -33,15 +33,17 @@ urlpatterns = [
     path('reset_passwd/',views.reset_passwd,name='reset_passwd'),
     path('register/',views.register),
     path('search/',views.search),
-    path('create/',views.create),
+    path('create/<int:ct_id>',views.create),
     path('history/',views.history),
     path('favorite/',views.favorite),
     path('share/',views.share),
     path('attraction_details/',views.attraction_details,name='search_results'),
     path('attraction_details/<int:aid>',views.attraction_details),
     path('test/',views.test_input),
-    
+    path('add_favorite/',views.add_favorite),
+
     path('useredit/',views.user_edit),
+    path('createindex/',views.create_index),
     # path('attraction_details/<int:a_id>',views.attraction_details),
 
     # path('sayhello/<str:username>',sayhello), #新增

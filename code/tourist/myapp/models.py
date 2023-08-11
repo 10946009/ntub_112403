@@ -68,20 +68,24 @@ class Crowd_Opening(models.Model):
     
 class Create_Travel(models.Model):
     u = models.ForeignKey(to=User, on_delete=models.CASCADE)#user沒了建立行程也會被刪除
-    ct_name = models.IntegerField(null=False, blank=False)
+    ct_name = models.TextField(null=False, blank=False)
+    start_day = models.TextField(max_length=255,null=False, blank=False)
+    create_date = models.DateField(auto_now_add=True)
+    
+
+class ChoiceDay_Ct(models.Model):
+    ct = models.ForeignKey(to=Create_Travel, on_delete=models.CASCADE)#行程沒了歷史也會被刪除
+    day = models.IntegerField(null=False, blank=False)
     start_location_x = models.FloatField(null=False, blank=False)
     start_location_y = models.FloatField(null=False, blank=False)
-    start_day = models.TextField(max_length=255,null=False, blank=False)
-    end_day = models.TextField(max_length=255,null=False, blank=False)
-    days = models.IntegerField(null=False, blank=False)
     start_time = models.IntegerField(null=False, blank=False)
 
-    
+
 class Attractions_Ct(models.Model):
-    ct = models.ForeignKey(to=Create_Travel, on_delete=models.SET_DEFAULT,default=-1)#行程沒了歷史也會被刪除
-    a = models.ForeignKey(to=Attractions, on_delete=models.SET_DEFAULT,default=-1)#景點沒了留言a_id會被設為null
+    ct = models.ForeignKey(to=Create_Travel, on_delete=models.CASCADE)#行程沒了也會被刪除
+    a = models.ForeignKey(to=Attractions, on_delete=models.SET_DEFAULT,default=-1)#景點沒了a_id會被設為-1
     choice_day = models.IntegerField(null=False,blank=False, default=1)
-    a_time = models.IntegerField(null=False,blank=False)
+    a_start_time = models.IntegerField(null=False,blank=False)
     stay_time = models.IntegerField(null=False,blank=False)
     distance = models.FloatField(null=False, blank=False)
     distance_time =models.IntegerField(null=False,blank=False)
@@ -99,7 +103,7 @@ class Comment(models.Model):
     h = models.ForeignKey(to=History, on_delete=models.SET_DEFAULT,default=-1)#分享沒了留言會被設為null
     content = models.TextField(max_length=255)
     score = models.FloatField(null=False, blank=False)
-    time = models.TimeField(auto_now_add=True)
+    comment_date = models.DateField(auto_now_add=True)
     comment_type = models.BooleanField(default=False) #0為行程留言，1為景點留言
 
 class Favorite(models.Model):
