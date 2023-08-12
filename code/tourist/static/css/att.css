@@ -439,7 +439,7 @@ input {
 .Info_item {
     margin-top: 20px;
     margin-bottom: 20px;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .w3-btn-floating:hover {
@@ -753,4 +753,9 @@ img {
     .right {
         display: none;
     }
+}
+
+.info_tit:hover {
+    text-decoration-style: solid;
+    color: rgb(0, 89, 255);
 }

@@ -107,8 +107,8 @@
                 </div>
             </div>
             <!-- 景點相關簡短資訊 -->
-            <div class="col-7" onclick="showInfo(this)" data-a-Id="{{ item.id }}" style="width:auto;">
-                <h5>{{ item.a_name }}</h5>
+            <div class="col-7" style="width:auto;">
+                <h5 class="info_tit" onclick="showInfo(this)" data-a-Id="{{ item.id }}">{{ item.a_name }}</h5>
                 <div class="rating">
                     <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
                     <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
@@ -126,8 +126,9 @@
                     營業時間：<span>24小時營業</span>
                 </h6>
                 <form>
-                {% csrf_token %}
-                <input type="button" name="submitfavorite" id="submitfavorite" value="加入收藏" onclick="addFavorite({{item.id}})" />
+                    {% csrf_token %}
+                    <input type="button" name="submitfavorite" id="submitfavorite" value="加入收藏"
+                        onclick="addFavorite({{item.id}})" />
                 </form>
                 {% comment %}
                 <div>
@@ -152,6 +153,7 @@
                     title="Close Modal">&times;</span>
                 <!-- <img src="img_avatar2.png" alt="Avatar" class="avatar"> -->
             </div>
+
 
             <div class="container">
                 <div>
@@ -233,6 +235,7 @@
                 <!-- <div style="display: flex;justify-content: center;align-items: center;height: auto; height: 100%;">
                     <img src="/static/images/zoo.jpeg" alt="photo" class="Att_img">
                 </div> -->
+
                 <div class="Att_detail">
                     <h5 id="attractions-detail-address">
                         地址：116台北市文山區新光路二段30號
@@ -248,6 +251,18 @@
                         建議停留時間：
                     </h5>
                     <h5>旺季月份：</h5>
+                    <hr style="border:2px solid #b3b2b2">
+                    <div class="question">
+                        <h5>
+                            問題與解答：
+                        </h5>
+                        <h6 style="margin-left: 20px; color: #707070;">問：春節有開嗎？</h6>
+                        <h6 style="margin-left: 20px; color: #707070;">答：有初一早上9點開，其他時間8點半。</h6>
+                        <h6 style="margin-left: 20px; color:#a8a8a8">更多...</h6>
+                        <button style="border-radius: 8px;"><i class="fa-solid fa-message"
+                                style="margin-right: 5px;"></i>我要發問</button>
+
+                    </div>
                     <hr style="border:2px solid #b3b2b2">
                     <h5>
                         人潮資訊：
@@ -930,23 +945,23 @@
             closeAllLists(e.target);
         });
     }
-        function addFavorite(aid){
-            $.ajax({
-                type: "POST",
-                url: "/add_favorite/",
-                data: {
-                    'aid': aid,
-                    'csrfmiddlewaretoken': '{{ csrf_token }}',  // 請確保在模板中提供 CSRF token
-                },
-                success: function(data) {
-                    // 在這裡處理後端回傳的資料
-                    console.log(data);
-                },
-                error: function(xhr, textStatus, errorThrown) {
-                    console.error("Error:", textStatus, errorThrown);
-                }
-            });
-        }
+    function addFavorite(aid) {
+        $.ajax({
+            type: "POST",
+            url: "/add_favorite/",
+            data: {
+                'aid': aid,
+                'csrfmiddlewaretoken': '{{ csrf_token }}',  // 請確保在模板中提供 CSRF token
+            },
+            success: function (data) {
+                // 在這裡處理後端回傳的資料
+                console.log(data);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.error("Error:", textStatus, errorThrown);
+            }
+        });
+    }
     var attractions = ["aa", "abc", "台北101", "士林官邸", "士林夜市", "北投溫泉", "淡水紅毛城", "淡水老街", "淡水漁人碼頭", "台北動物園", "台北兒童新樂園", "台北車站"];
     autocomplete(document.getElementById("myInput"), attractions);
 
