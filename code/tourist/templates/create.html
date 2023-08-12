@@ -1,13 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}建立行程{% endblock %}
 {% block content %}
-<link rel="stylesheet" href="../static/css/create.css">
-<script>
-
-
-</script>
+  <link rel="stylesheet" href="../static/css/create.css">
+  <script></script>
 {% endblock %}
- 
 {% block body %}
   <div class="create_div" style="display: flex;justify-content: center;">
     <main>
@@ -19,12 +15,11 @@
           <div class="col col-lg-3" style="padding: 0;">
             <a href="#tab_f" class="tab_a">我的收藏</a>
           </div>
-          <div class="col col-lg-3" style="padding: 0;"  >
+          <div class="col col-lg-3" style="padding: 0;">
             <a href="#tab_r" class="tab_a"  id="clickRecommend">推薦景點</a>
           </div>
         </div>
       </div>
- 
       <div id="contents">
         <section id="tab_c" ng-app="" ng-init="name='行程名稱'">
           <form action="" style="display: flex;justify-content: center;">
@@ -71,7 +66,7 @@
                   </div>
                   <div class="tabD">
                     <span id="tabDL">使用者位置：</span>
-                    <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation" >
+                    <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation">
                   </div>
                 </div>
               </form>
@@ -103,11 +98,8 @@
               </div>
             </div>
           </div>
-
-
         </form>
       </section>
- 
       <section id="tab_f" style="clear: both;margin-top: 10px;">
         <!-- <span>我的收藏</span> -->
         <div class="row">
@@ -118,18 +110,20 @@
                 <i class="fa-solid fa-heart heart_icon"></i>
               </div>
               <div class="spot_like_txt">
-                <h3 class="spot_title">
-                  平溪老街
-                </h3>
-                <p>
-                  123456
-                </p>
+                <h3 class="spot_title">平溪老街</h3>
+                <p>123456</p>
                 <div class="group">
                   <i class="fa-solid fa-plus add_icon"></i>
-                  <div class="dropdown_menu" >
-                    <div><a class="dropdown_item" href="#tab_c">新增行程</a></div>
-                    <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
-                    <div><a class="dropdown_item" href="#">開車一日遊</a></div>
+                  <div class="dropdown_menu">
+                    <div>
+                      <a class="dropdown_item" href="#tab_c">新增行程</a>
+                    </div>
+                    <div>
+                      <a class="dropdown_item" href="#">捷運一日遊</a>
+                    </div>
+                    <div>
+                      <a class="dropdown_item" href="#">開車一日遊</a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -142,18 +136,20 @@
                 <i class="fa-solid fa-heart heart_icon"></i>
               </div>
               <div class="spot_like_txt">
-                <h3 class="spot_title">
-                  平溪老街
-                </h3>
-                <p>
-                  123456
-                </p>
+                <h3 class="spot_title">平溪老街</h3>
+                <p>123456</p>
                 <div class="group">
                   <i class="fa-solid fa-plus add_icon"></i>
-                  <div class="dropdown_menu" >
-                    <div><a class="dropdown_item" href="#tab_c">新增行程</a></div>
-                    <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
-                    <div><a class="dropdown_item" href="#">開車一日遊</a></div>
+                  <div class="dropdown_menu">
+                    <div>
+                      <a class="dropdown_item" href="#tab_c">新增行程</a>
+                    </div>
+                    <div>
+                      <a class="dropdown_item" href="#">捷運一日遊</a>
+                    </div>
+                    <div>
+                      <a class="dropdown_item" href="#">開車一日遊</a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -166,18 +162,20 @@
                 <i class="fa-solid fa-heart heart_icon"></i>
               </div>
               <div class="spot_like_txt">
-                <h3 class="spot_title">
-                  平溪老街
-                </h3>
-                <p>
-                  123456
-                </p>
+                <h3 class="spot_title">平溪老街</h3>
+                <p>123456</p>
                 <div class="group">
                   <i class="fa-solid fa-plus add_icon"></i>
-                  <div class="dropdown_menu" >
-                    <div><a class="dropdown_item" href="#tab_c">新增行程</a></div>
-                    <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
-                    <div><a class="dropdown_item" href="#">開車一日遊</a></div>
+                  <div class="dropdown_menu">
+                    <div>
+                      <a class="dropdown_item" href="#tab_c">新增行程</a>
+                    </div>
+                    <div>
+                      <a class="dropdown_item" href="#">捷運一日遊</a>
+                    </div>
+                    <div>
+                      <a class="dropdown_item" href="#">開車一日遊</a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -185,7 +183,6 @@
           </div>
         </div>
       </section>
-
       <section id="tab_r"  style="margin-top: 10px;">
         <!-- <span>景點推薦</span> -->
         <div style="display: flex; justify-content: center; margin-top: 5px;">
@@ -262,8 +259,6 @@
                    style="border-radius: 10px;
                           margin-left: 5px">
           </div>
-
-
           <!-- <div class="container">
             <div class="row">
               <div class="col-md-6">
@@ -541,9 +536,7 @@
                 </div>
               </div>
             </div>
-          </div> -->
-
- 
+</div> -->
           <div class="dialog" id="dialog">
             <form action="#">
               <span>是否需要推薦相似景點</span>
@@ -559,33 +552,60 @@
               <br>
               <input type="submit" value="確定">
             </form>
- 
           </div>
-
         </table>
       </form>
-
       <div id="button">
-        <button class="filter_btn" value="all">台北市</button>
-        <button class="filter_btn" value="zhongzheng">中正區</button>
-        <button class="filter_btn" value="shilin">士林區</button>
-        <button class="filter_btn" value="neihu">內湖區</button>
-        <button class="filter_btn" value="zhongshan">中山區</button>
-        <button class="filter_btn" value="datong">大同區</button>
-        <button class="filter_btn" value="songshan">松山區</button>
-        <button class="filter_btn" value="wanhua">萬華區</button>
-        <button class="filter_btn" value="beitou">北投區</button>
-        <button class="filter_btn" value="daan">大安區</button>
-        <button class="filter_btn" value="shingyi">信義區</button>
-        <button class="filter_btn" value="nangan">南港區</button>
-        <button class="filter_btn" value="wenshan">文山區</button>
-    </div>
-    
-    
-    <div class="filter row">
-        <div class="shingyi col-md-6" id= "AttractionsContainer">
-          <!--我在JS QQ-->
-        </div>
+        <button class="filter_btn" value="all">
+          台北市
+        </button>
+        <button class="filter_btn" value="zhongzheng">
+          中正區
+        </button>
+        <button class="filter_btn" value="shilin">
+          士林區
+        </button>
+        <button class="filter_btn" value="neihu">
+          內湖區
+        </button>
+        <button class="filter_btn" value="zhongshan">
+          中山區
+        </button>
+        <button class="filter_btn" value="datong">
+          大同區
+        </button>
+        <button class="filter_btn" value="songshan">
+          松山區
+        </button>
+        <button class="filter_btn" value="wanhua">
+          萬華區
+        </button>
+        <button class="filter_btn" value="beitou">
+          北投區
+        </button>
+        <button class="filter_btn" value="daan">
+          大安區
+        </button>
+        <button class="filter_btn" value="shingyi">
+          信義區
+        </button>
+        <button class="filter_btn" value="nangan">
+          南港區
+        </button>
+        <button class="filter_btn" value="wenshan">
+          文山區
+        </button>
+      </div>
+      <div class="filter row">
+        <form action="" method="post">
+          {% csrf_token %}
+          <div class="shingyi col-md-6"
+               name="AttractionsContainer"
+               id="AttractionsContainer">
+            <!--我在JS QQ-->
+          </div>
+          <input type="submit" value="提交" onclick='clickLikeAttractions()'>
+        </form>
         {% comment %} <div class="beitou col-md-6">
           <div class="col-5">
             <img src="../static/images/beitou.jpeg" alt=""  height="250">
@@ -610,14 +630,11 @@
         </div>
         <div class="shilin"><img src="../static/images/Shilin.jpeg" alt=""  height="250"></div>
         <div class="zhongshan"><img src="../static/images/Zhongshan.jpeg" alt=""  height="250"></div> {% endcomment %}
-    {% comment %} </div> {% endcomment %}
- 
-    </div>
-
-  </main>
-</div>
+        {% comment %} </div> {% endcomment %}
+      </div>
+    </main>
+  </div>
 {% endblock body %}
- 
 {% block content_script %}
   <script src="../static/js/create.js"></script>
   <script>
@@ -665,9 +682,11 @@
           navigator.geolocation.getCurrentPosition(success, error);
       }
     }
+
+
     var clickRecommend = document.getElementById('clickRecommend');
       clickRecommend.addEventListener("click",function(e){
-      alert('hello');
+        alert('hello');
         var nowtime=document.getElementById("nowtime");
         var ct_status = 0;
         const userLocation = document.getElementById("userLocation");
@@ -689,7 +708,8 @@
               var crow_opening_list = response.crow_opening_list;  // 假設 crow_opening_list 是 JSON 中的一個鍵
               var mListContainer = document.getElementById("AttractionsContainer")
               for (var item of m_list) {
-                mListContainer.innerHTML += '<div class="col-5"><img src="../static/images/101.jpg" alt=""  height="250"></div>'
+                mListContainer.innerHTML += '<input type="checkbox" value="'+item.id+'">';
+                mListContainer.innerHTML +='<div class="col-5"><img src="../static/images/101.jpg" alt=""  height="250"></div>'
                 mListContainer.innerHTML +='<div class="col-7"><div style="text-align: left;">'
                 mListContainer.innerHTML += "<p>" + item.place_id + "<p>";
                 mListContainer.innerHTML += "<p>" + item.a_name + "<p>";
@@ -703,8 +723,35 @@
         });
     });
 
-    
-</script>
-{% endblock %}
 
+    function clickLikeAttractions(){
+      var select_aid = document.getElementById('AttractionsContainer');
+      var select_aid_list = [];
+      var ct_status = 1;
+      for (var i = 0; i < select_aid.options.length; i++) {
+        if (select_aid.options[i].selected) {
+          select_aid_list.push(select_aid.options[i].value);
+        }
+      }
+      console.log(select_aid_list)
+      
+      $.ajax({
+        type: "POST",
+        url: "/create/{{ct_id}}", // 替换为您的 views.py 文件的 URL
+        data: {
+            select_aid_list: select_aid_list,
+            ct_status : 1,
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+        },
+        success: function(response) {
+          // 在這裡處理伺服器回傳的 JSON 數據
+
+          },
+
+        error: function() {
+        },
+    });
+  };
+  </script>
+{% endblock %}
 </html>
