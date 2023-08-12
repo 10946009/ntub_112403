@@ -597,14 +597,14 @@
         </button>
       </div>
       <div class="filter row">
-        <form action="" method="post">
+        <form action="">
           {% csrf_token %}
           <div class="shingyi col-md-6"
                name="AttractionsContainer"
                id="AttractionsContainer">
             <!--我在JS QQ-->
           </div>
-          <input type="submit" value="提交" onclick='clickLikeAttractions()'>
+          <a href="#tab_r" class="tab_a"  id="clickLikeAttractions"><button value="提交" >提交</button></a>
         </form>
         {% comment %} <div class="beitou col-md-6">
           <div class="col-5">
@@ -631,6 +631,17 @@
         <div class="shilin"><img src="../static/images/Shilin.jpeg" alt=""  height="250"></div>
         <div class="zhongshan"><img src="../static/images/Zhongshan.jpeg" alt=""  height="250"></div> {% endcomment %}
         {% comment %} </div> {% endcomment %}
+      </div>
+      <div class="row">
+        <form action="">
+          {% csrf_token %}
+          <div class="shingyi col-md-6"
+               name="AttractionsContainer"
+               id="AttractionsContainer1">
+            <!--我在JS QQ-->
+          </div>
+          <a href="#tab_r" class="tab_a"  id="clickLikeAttractions1"><button value="提交" >提交1</button></a>
+        </form>
       </div>
     </main>
   </div>
@@ -688,7 +699,7 @@
       clickRecommend.addEventListener("click",function(e){
         alert('hello');
         var nowtime=document.getElementById("nowtime");
-        var ct_status = 0;
+        //var ct_status = 0;
         const userLocation = document.getElementById("userLocation");
           $.ajax({
             type: "POST",
@@ -708,7 +719,7 @@
               var crow_opening_list = response.crow_opening_list;  // 假設 crow_opening_list 是 JSON 中的一個鍵
               var mListContainer = document.getElementById("AttractionsContainer")
               for (var item of m_list) {
-                mListContainer.innerHTML += '<input type="checkbox" value="'+item.id+'">';
+                mListContainer.innerHTML += '<input type="checkbox" value="'+item.place_id+'">';
                 mListContainer.innerHTML +='<div class="col-5"><img src="../static/images/101.jpg" alt=""  height="250"></div>'
                 mListContainer.innerHTML +='<div class="col-7"><div style="text-align: left;">'
                 mListContainer.innerHTML += "<p>" + item.place_id + "<p>";
@@ -723,16 +734,16 @@
         });
     });
 
-
-    function clickLikeAttractions(){
+    var clickLikeAttractions = document.getElementById('clickLikeAttractions');
+    clickLikeAttractions.addEventListener("click",function(e){
       var select_aid = document.getElementById('AttractionsContainer');
+      var selectedCheckboxes = select_aid.querySelectorAll('input[type="checkbox"]:checked');
       var select_aid_list = [];
-      var ct_status = 1;
-      for (var i = 0; i < select_aid.options.length; i++) {
-        if (select_aid.options[i].selected) {
-          select_aid_list.push(select_aid.options[i].value);
-        }
-      }
+      var nowtime=document.getElementById("nowtime");
+      selectedCheckboxes.forEach(function(checkbox) {
+        select_aid_list.push(checkbox.value);
+      });
+      console.log('选中的复选框值:', select_aid_list);
       console.log(select_aid_list)
       
       $.ajax({
@@ -740,18 +751,36 @@
         url: "/create/{{ct_id}}", // 替换为您的 views.py 文件的 URL
         data: {
             select_aid_list: select_aid_list,
+            nowtime:nowtime.value,
             ct_status : 1,
             csrfmiddlewaretoken: '{{ csrf_token }}',
         },
         success: function(response) {
           // 在這裡處理伺服器回傳的 JSON 數據
+          console.log(response);  // 查看回傳的值
 
-          },
+          // 進一步處理回傳的值，例如顯示在頁面上
+          var o_list = response.o_list;  // 假設 m_list 是 JSON 中的一個鍵
+          var o_crow_opening_list = response.o_crow_opening_list;  // 假設 crow_opening_list 是 JSON 中的一個鍵
+          var mListContainer = document.getElementById("AttractionsContainer1")
+          for (var item of o_list) {
+            mListContainer.innerHTML += '<input type="checkbox" value="'+item.place_id+'">';
+            mListContainer.innerHTML +='<div class="col-5"><img src="../static/images/101.jpg" alt=""  height="250"></div>'
+            mListContainer.innerHTML +='<div class="col-7"><div style="text-align: left;">'
+            mListContainer.innerHTML += "<p>" + item.place_id + "<p>";
+            mListContainer.innerHTML += "<p>" + item.a_name + "<p>";
+            mListContainer.innerHTML += "<p>" + item.address + "<p></div></div>";
+
+          }
+
+        },
 
         error: function() {
+          alert('有錯誤!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
         },
     });
-  };
+  });
+
   </script>
 {% endblock %}
 </html>
