@@ -9,21 +9,36 @@
 
 {% block body %}
 
-  <div class="row">
-    <div class="">
-      <img src="../static/images/beitou.jpeg" class="img-responsive" width="100%" alt="...">
+<div class="main">
+  <div class="row mytravel">
+    <div class="col-4 mytravel_img">
+      <img src="../static/images/dog.jpg" class="img-responsive" width="100%" alt="">
     </div>
-    <div>
-      <p>123</p>
+    <div class="col-8 mytravel_txt">
+      <h4 class="mytravel_txt_title">行程名稱：</h4>
+      <p class="mytravel_txt_detail">天數：</p>
+      <p class="mytravel_txt_detail">地點：</p>
     </div>
+    <button class="more_btn">詳細資料</button>
   </div>
+  <div class="row mytravel">
+    <div class="col-4 mytravel_img">
+      <img src="../static/images/dog.jpg" class="img-responsive" width="100%" alt="">
+    </div>
+    <div class="col-8 mytravel_txt">
+      <h4 class="mytravel_txt_title">行程名稱：</h4>
+      <p class="mytravel_txt_detail">天數：</p>
+      <p class="mytravel_txt_detail">地點：</p>
+    </div>
+    <button class="more_btn">詳細資料</button>
+  </div>
+</div>
+
 
 {% endblock body %}
 
-
 {% block content_script %}
-  <script src="../static/js/bootstrap.min.js"></script>
-  <script src="../static/js/jquery-3.7.0.min.js"></script>
+<script src="../static/js/history.js"></script>
 {% endblock %}
 
 
