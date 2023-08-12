@@ -6,25 +6,9 @@ body{
 html{
 	height: 100%;
 }
-.owl_main .item{
+/* .owl_main .item{
 	border:  1px solid #ccc;
-}
-.carousel_block{
-	padding: 0 5px;
-}
-.carousel_txt{
-	padding-left: 10px;
-	border:  1px solid #ccc;
-}
-.imgcontainer{
-	height: 300px;
-	overflow: hidden;
-}
-.imgcontainer img{
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
+} */
 .banner{
 	background: url(../images/IMG20220125115200.jpg);
 	background-repeat: no-repeat;
@@ -43,24 +27,45 @@ html{
 	font-family: Comic Sans MS;
 	text-shadow: 0.1em 0.1em rgba(0,0,0, 0.5);
 }
-.hot_txt{
-	text-align: center;
-}
-.hot_spot_block{
-	margin-bottom: 10px;
-	text-align: center;
-}
 .heart_icon_img{
 	position: relative;
 }
+/*輪播區塊css*/
+.carousel_block{
+	position: relative;
+	padding: 0 5px;
+}
+/*輪播文字css*/
+.carousel_txt{
+	padding-left: 10px;
+	border:  1px solid #ccc;
+	color: black;
+	text-align: left;
+	position: relative;
+}
+.imgcontainer{
+	position: relative;
+	height: 300px;
+	overflow: hidden;
+}
+.imgcontainer img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.c_txt{
+	margin-top: 5px;
+	margin-left: 5px;
+}
+/*收藏*/
 .heart_icon{
 	position: absolute;
 	top: 0;
 	right: 0;
 	padding: 10px;
+	margin: 10px;
 	background-color: rgba(255, 255, 255);
 	border-radius: 50%;
-	margin: 10px;
 	color: rgba(0, 0, 0, 0.3);
 	cursor: pointer;
 }
@@ -69,52 +74,54 @@ html{
 	animation: heart 0.5s linear;
 	transform: scale(1.2);
 }
-.c_txt{
-	margin-top: 5px;
-	margin-left: 5px;
-}
-.hot_spotC{
-	color: black;
-	text-align: left;
-	position: relative;
-	/* border: 1px solid #ccc; */
-}
+/*+CSS*/
 .add_icon{
 	position: absolute;
-	top: 0;
-	right: 0;
+	top: 50px;
+	right: 16px;
 	padding: 10px;
-	margin: 5px;
 	border-radius: 30%;
-	color: white;
-	background-color: #ccc;
+	color: rgba(0, 0, 0, 0.3);
+	background-color: rgba(255, 255, 255,0.85);
 	cursor: pointer;
+}
+.add_icon:hover{
+	background-color: rgb(255, 236, 22);
 }
 .add_icon.active {
   background-color: rgb(255, 236, 22);
 }
 .dropdown_menu{
 	position: absolute;
-	top: 0;
-	right: 0;
-	width: 150px;
+	top: 90px;
+	right: 15px;
+	/* width: 150px; */
 	border-radius: 10%;
-	background-color: beige;
+	background-color: rgb(252, 252, 244);
 	text-align: left;
-	margin-top: 40px;
+	display: inline-block;
+	z-index: 999;
 }
 .dropdown_item{
 	text-decoration-line: none;
 	color: black;
 	display: block;
 	border-radius: 10%;
-	padding: 5px;
+	padding: 8px;
 }
 .dropdown_item:hover{
 	background-color: bisque;
 }
 
 
+/*熱門行程*/
+.hot_txt{
+	text-align: center;
+}
+.hot_spot_block{
+	margin-bottom: 10px;
+	text-align: center;
+}
 .spot_img{
 	padding: 0;
 }
@@ -127,7 +134,7 @@ html{
 	justify-content: center;
 	margin: 10px auto;
 }
-
+/*btn詳細資料*/
 .hot_spot_show{
 	display: flex;
 	justify-content: center;
@@ -170,4 +177,60 @@ html{
 	float: right;
 	padding: 0 15px 0 0;
 	font-size: 18px;
+}
+
+@media( max-width: 768px ) {
+	.carousel_block{
+		padding: 0 5px;
+	}
+	.carousel_txt{
+		padding-left: 10px;
+		border:  1px solid #ccc;
+	}
+	.imgcontainer{
+		height: 200px;
+		overflow: hidden;
+	}
+	.imgcontainer img{
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+@media(max-width: 576px){
+	.carousel_block{
+		padding: 0 2px;
+	}
+	.carousel_txt{
+		padding-left: 10px;
+		border:  1px solid #ccc;
+	}
+	.imgcontainer{
+		height: 150px;
+		overflow: hidden;
+	}
+	.imgcontainer img{
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+@media(max-width: 375px){
+	.carousel_block{
+		padding: 0 1px;
+	}
+	.carousel_txt{
+		padding-left: 10px;
+		font-size: 14px;
+		border:  1px solid #ccc;
+	}
+	.imgcontainer{
+		height: 100px;
+		overflow: hidden;
+	}
+	.imgcontainer img{
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
 }
