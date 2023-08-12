@@ -1,3 +1,4 @@
+//收藏
 var heart = document.getElementsByClassName('heart_icon');
     // var span = document.getElementsByClassName('count');
     for(var i = 0;i < heart.length; i++){
@@ -17,6 +18,7 @@ var heart = document.getElementsByClassName('heart_icon');
             }  
         })(i);
     } 
+
 //高度一樣
 $(function(){
   var h = 0;
@@ -31,52 +33,6 @@ $(function(){
 
   $(".owl_main .item").css("height",h + "px");
 });
-
-
-//
-
-$(document).ready(function() {
-  var carousel = $('#myCarousel .carousel-inner');
-  var items = carousel.find('.carousel-item');
-  var itemCount = items.length;
-  var currentPage = 0;
-
-  function showPage(page) {
-    carousel.find('.carousel-item').removeClass('active');
-    var numItemsToShow = getNumItemsToShow();
-    items.slice(page, page + numItemsToShow).addClass('active');
-  }
-
-  function getNumItemsToShow() {
-    var windowWidth = $(window).width();
-    if (windowWidth < 576) {
-      return 1;
-    } else if (windowWidth < 768) {
-      return 2;
-    } else {
-      return 4;
-    }
-  }
-
-  // Initial setup
-  showPage(currentPage);
-
-  $(".carousel-control-prev").click(function() {
-    currentPage = (currentPage - getNumItemsToShow() + itemCount) % itemCount;
-    showPage(currentPage);
-  });
-
-  $(".carousel-control-next").click(function() {
-    currentPage = (currentPage + getNumItemsToShow()) % itemCount;
-    showPage(currentPage);
-  });
-
-  // Update carousel items on window resize
-  $(window).resize(function() {
-    showPage(currentPage);
-  });
-});
-
 
 
 //輪播
