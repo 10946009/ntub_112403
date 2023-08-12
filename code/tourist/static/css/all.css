@@ -15,7 +15,6 @@ body{
 main{
     width: 80%;
 }
-
 .clearfix::after{
 	content: '';
 	display: table;
