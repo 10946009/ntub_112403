@@ -6,9 +6,7 @@ body{
 html{
 	height: 100%;
 }
-/* .owl_main .item{
-	border:  1px solid #ccc;
-} */
+
 .banner{
 	background: url(../images/IMG20220125115200.jpg);
 	background-repeat: no-repeat;
@@ -23,9 +21,31 @@ html{
 	color: white;
 }
 .sysname{
-	font-size: 56px;
+	font-size: 48px;
 	font-family: Comic Sans MS;
 	text-shadow: 0.1em 0.1em rgba(0,0,0, 0.5);
+}
+/* 自定义轮播控制按钮图标的大小 */
+/* .carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 30px; 
+  height: 80px; 
+} */
+
+/* 为按钮添加一些额外的样式，例如居中对齐 */
+/* .carousel-control-prev,
+.carousel-control-next {
+  align-items: center;
+  justify-content: center;
+} */
+
+/* 可以调整按钮整体的大小，以适应更大的图标 */
+.carousel-control-prev,
+.carousel-control-next {
+	position: absolute;
+	top: 100px;
+	width: 50px;
+	height: 200px; 
 }
 .heart_icon_img{
 	position: relative;
@@ -37,7 +57,7 @@ html{
 }
 /*輪播文字css*/
 .carousel_txt{
-	padding-left: 10px;
+	/* padding-left: 5px; */
 	border:  1px solid #ccc;
 	color: black;
 	text-align: left;
@@ -53,9 +73,16 @@ html{
 	height: 100%;
 	object-fit: cover;
 }
-.c_txt{
+.c_title{
+	font-weight: bold;
 	margin-top: 5px;
-	margin-left: 5px;
+	text-align: center;
+}
+.c_txt{
+	/* margin-top: 5px; */
+	margin:5px ;
+	padding: 5px;
+	text-align: justify;
 }
 /*收藏*/
 .heart_icon{
@@ -130,7 +157,7 @@ html{
 	padding: 10px 0px;
 }
 .container{
-	width: 80%;
+	width: 90%;
 	justify-content: center;
 	margin: 10px auto;
 }
@@ -180,11 +207,18 @@ html{
 }
 
 @media( max-width: 768px ) {
+	.carousel-control-prev,
+	.carousel-control-next {
+		position: absolute;
+		top: 90px;
+		width: 50px;
+		height: 110px; 
+	}
 	.carousel_block{
 		padding: 0 5px;
 	}
 	.carousel_txt{
-		padding-left: 10px;
+		/* padding-left: 10px; */
 		border:  1px solid #ccc;
 	}
 	.imgcontainer{
@@ -198,11 +232,29 @@ html{
 	}
 }
 @media(max-width: 576px){
+	.sysname{
+		font-size: 32px;
+	}
+	.carousel-control-prev,
+	.carousel-control-next {
+		position: absolute;
+		top: 90px;
+		width: 40px;
+		height: 70px; 
+	}
+	.c_title{
+		margin-bottom: 2px;
+		font-size: 18px;
+	}
+	.c_txt{
+		margin-top: 2px;
+		font-size: 16px;
+	}
 	.carousel_block{
 		padding: 0 2px;
 	}
 	.carousel_txt{
-		padding-left: 10px;
+		/* padding-left: 10px; */
 		border:  1px solid #ccc;
 	}
 	.imgcontainer{
@@ -214,15 +266,75 @@ html{
 		height: 100%;
 		object-fit: cover;
 	}
+	.heart_icon{
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 10px;
+		margin: 10px;
+		width: 35px;
+		height: 35px;
+	}
+	.active_heart{/*收藏動畫*/
+		color: #E1251B;
+		animation: heart 0.5s linear;
+		transform: scale(1.1);
+	}
+	.add_icon{
+		width: 30px;
+		height: 30px;
+		position: absolute;
+		top: 50px;
+		right: 13px;
+		padding: 8px;
+	}
+	.dropdown_menu{
+		position: absolute;
+		top: 85px;
+		right: 15px;
+		/* width: 150px; */
+		border-radius: 10%;
+	}
 }
 @media(max-width: 375px){
+	.sysname{
+		font-size: 28px;
+	}
 	.carousel_block{
 		padding: 0 1px;
 	}
 	.carousel_txt{
-		padding-left: 10px;
+		/* padding-left: 10px; */
 		font-size: 14px;
 		border:  1px solid #ccc;
+	}
+	.heart_icon{
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 7.5px;
+		margin: 8px;
+		width: 30px;
+		height: 30px;
+	}
+	.active_heart{/*收藏動畫*/
+		color: #E1251B;
+		animation: heart 0.5s linear;
+		transform: scale(1.1);
+	}
+	.add_icon{
+		width: 25px;
+		height: 25px;
+		position: absolute;
+		top: 45px;
+		right: 11px;
+		padding: 6px;
+	}
+	.dropdown_menu{
+		position: absolute;
+		top: 75px;
+		right: 10px;
+		border-radius: 10%;
 	}
 	.imgcontainer{
 		height: 100px;
@@ -232,5 +344,13 @@ html{
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+	}
+	.c_title{
+		font-size: 16px;
+	}
+	.c_txt{
+		margin: 1px 5px;
+		padding: 5px;
+		font-size: 14px;
 	}
 }
