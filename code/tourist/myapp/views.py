@@ -268,6 +268,7 @@ def create(request,ct_id):
     ct_id = ct_data.id
 
     if request.method == 'POST':
+        print(request.POST['ct_status'])
         ct_status = request.POST['ct_status']
         if ct_status == "0" :
             get_user_address = list(map(float,request.POST['location'].split(',')))
@@ -288,6 +289,8 @@ def create(request,ct_id):
             print(crow_opening_list[0])
             return JsonResponse({'m_list': m_list, 'crow_opening_list': crow_opening_list})
 
+        if ct_status == "1" :
+            print('helloooooooooooooooooooooooooooo')
     
     return render(request, "create.html",locals())
 
@@ -334,6 +337,7 @@ def add_favorite(request):
             # 在這裡準備你想要回傳給前端的資料
             response_data = {'message': '操作成功'}
             return JsonResponse(response_data)
+        
 def attraction_details(request):
 
     search_list = []
