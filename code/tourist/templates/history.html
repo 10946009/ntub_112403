@@ -10,17 +10,33 @@
 {% block body %}
 
 <div class="main">
+  <!--資料庫有東西就會顯示-->
+  {% for item in my_history %}
   <div class="row mytravel">
     <div class="col-4 mytravel_img">
       <img src="../static/images/dog.jpg" class="img-responsive" width="100%" alt="">
     </div>
     <div class="col-8 mytravel_txt">
-      <h4 class="mytravel_txt_title">行程名稱：</h4>
+      <h4 class="mytravel_txt_title">行程名稱：{{item.ct_name}}</h4>
       <p class="mytravel_txt_detail">天數：</p>
       <p class="mytravel_txt_detail">地點：</p>
     </div>
     <button class="more_btn">詳細資料</button>
   </div>
+    {% endfor %}
+
+    <div class="row mytravel">
+      <div class="col-4 mytravel_img">
+        <img src="../static/images/dog.jpg" class="img-responsive" width="100%" alt="">
+      </div>
+      <div class="col-8 mytravel_txt">
+        <h4 class="mytravel_txt_title">行程名稱：{{item.ct_name}}</h4>
+        <p class="mytravel_txt_detail">天數：</p>
+        <p class="mytravel_txt_detail">地點：</p>
+      </div>
+      <button class="more_btn">詳細資料</button>
+    </div>
+
   <div class="row mytravel">
     <div class="col-4 mytravel_img">
       <img src="../static/images/dog.jpg" class="img-responsive" width="100%" alt="">

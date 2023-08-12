@@ -310,7 +310,12 @@ def create(request,ct_id):
 
 # 我的行程(歷史紀錄)
 def history(request):
-    return render(request, "history.html")
+    my_history = []
+    user_id = request.user.id
+    print(user_id)
+    my_history = Create_Travel.objects.filter(u_id=user_id).values()
+    print(my_history)
+    return render(request, "history.html",locals())
 
 
 # 我的最愛
