@@ -342,10 +342,10 @@ def share(request):
 #     return render(request, "attraction_details.html")
 
 def add_favorite(request):
-    if request.method == "POST":
-        aid = request.POST.get("aid")
-        if aid:
-            u_id = request.user.id
+    u_id = request.user.id
+    aid = request.POST.get('aid')
+    if u_id != None:
+        if aid :
             user_a = Favorite.objects.filter(u_id=u_id, a_id=aid)
             if user_a:
                 user_a.delete()
@@ -354,8 +354,11 @@ def add_favorite(request):
                 unit.save()
             # 在這裡準備你想要回傳給前端的資料
             response_data = {'message': '操作成功'}
-            return JsonResponse(response_data)
-        
+            return JsonResponse(response_data)     
+    else:
+        response_data = {'message': '尚未登入'}
+        return JsonResponse(response_data)
+
 def attraction_details(request):
 
     search_list = []
