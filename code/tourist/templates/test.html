@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../網頁練習/css/bootstrap2023.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
   <title>Test base</title>
   <style>
     @font-face {
@@ -12,6 +17,7 @@
     }
     html{
       width: 100%;
+      overflow-x: hidden;
     }
     .banner{
       height: 600px;
@@ -24,7 +30,7 @@
       position: relative;
     }
     .logo_square1{
-      height: 60px;
+      width: 120px;
     }
     .toolbar{
       position: sticky;
@@ -47,19 +53,20 @@
     }
     @media (max-width:768px) {
       .logo_square1{
-        height: 50px;
+        width: 100px;
       }
     }
-    @media (max-width:576px) {
+    @media (max-width:488px) {
       .logo_square1{
-        height: 40px;
+        width: 30px;
+        height: auto;
       }
     }
-    @media (max-width:375px) {
+    /* @media (max-width:375px) {
       .logo_square1{
         height: 30px;
       }
-    }
+    } */
   </style>
 </head>
 <body>
@@ -67,15 +74,15 @@
     <nav class="navbar navbar-expand-lg toolbar">
       <div class="container-fluid">
         <a class="navbar-brand" href="#" style="padding: 0;">
-          <img src="../網頁練習/images/logo_square1.png" class="logo_square1"  alt="">
+          <img src="../網頁練習/images/logo_square1.png" class="logo_square1" id="logo_icon"  alt="">
         </a>
+        <form class="d-flex" role="search">
+          <input class="form-control me-auto" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
         <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <form class="d-flex" role="search">
-          <input class="form-control me-auto" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
@@ -92,6 +99,7 @@
                 <li><a class="dropdown-item" href="#">我的行程</a></li>
                 <li><a class="dropdown-item" href="#">我的收藏</a></li>
                 <li><a class="dropdown-item" href="#">我的分享</a></li>
+                <li><a class="dropdown-item" href="#">我的分享XXXXXX</a></li>
               </ul>
             </li>
             <!-- <li class="nav-item">
@@ -107,6 +115,22 @@
 <script src="../網頁練習/js/jquery-3.7.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
 <script src="../網頁練習/js/bootstrap.min.js"></script>
+<script>
+
+function changebgimg(){
+  const logo_icon = document.getElementById('logo_icon');
+
+  if (document.documentElement.clientWidth < 488) {//把scroll的寬度也算進去
+    logo_icon.src = "../網頁練習/images/logo_icon.png"; // 替换成你想要的小屏图片路径
+  } else {
+    logo_icon.src = "../網頁練習/images/logo_square1.png"; // 替换成默认图片路径
+  }
+}
+// 首次加载和窗口大小变化时调用更新函数
+window.addEventListener('load', changebgimg);
+window.addEventListener('resize', changebgimg);
+
+</script>
 
 </body>
 </html>
