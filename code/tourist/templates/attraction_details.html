@@ -123,8 +123,14 @@
                 <h6>
                     營業時間：<span>24小時營業</span>
                 </h6>
-                    <button  name="submitfavorite" id="submitfavorite" value="加入收藏"
-                        onclick="addFavorite({{item.id}})">ajax提交</button>
+                {% if item.is_favorite == "0" %}
+                <button  name="submitfavorite" id="submitfavorite{{item.id}}" data-isfavorite="{{item.is_favorite}}"
+                onclick="addFavorite({{item.id}})">加入收藏</button>
+                {% else %}
+                <button  name="submitfavorite" id="submitfavorite{{item.id}}" data-isfavorite="{{item.is_favorite}}"
+                onclick="addFavorite({{item.id}})">取消收藏</button>
+                {% endif %}
+
             </div>
         </div>
         <hr>
