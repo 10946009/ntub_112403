@@ -20,30 +20,29 @@ import myapp.views as views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('sayhello/',views.sayhello),#測試
+    # path('sayhello/',views.sayhello),#測試
     # path('test/',views.get_all_taiwan),#測試
     # path('opentime/',views.opentime), #測試
-    path('admin_index/',views.admin_index),
-    path('admin_login/',views.admin_login),
-    path('admin_manageuser/',views.admin_manageuser),
-    path('admin_comment/',views.admin_comment),
+    # path('admin_index/',views.admin_index),
+    # path('admin_login/',views.admin_login),
+    # path('admin_manageuser/',views.admin_manageuser),
+    # path('admin_comment/',views.admin_comment),
     path('',views.index),
     path('login/',views.login),
     path('forget_passwd/',views.forget_passwd,name='forget_passwd'),
     path('reset_passwd/',views.reset_passwd,name='reset_passwd'),
     path('register/',views.register),
     path('search/',views.search),
+    path('createindex/',views.create_index),
     path('create/<int:ct_id>/<int:choiceday>',views.create),
     path('history/',views.history),
     path('favorite/',views.favorite),
     path('share/',views.share),
     path('attraction_details/',views.attraction_details,name='search_results'),
     path('attraction_details/<int:aid>',views.attraction_details),
-    path('test/',views.test_input),
-    path('add_favorite/',views.add_favorite),
-
+    # path('test/',views.test_input),
     path('useredit/',views.user_edit),
-    path('createindex/',views.create_index),
+    path('add_favorite/',views.add_favorite),#沒有頁面
     # path('attraction_details/<int:a_id>',views.attraction_details),
 
     # path('sayhello/<str:username>',sayhello), #新增
