@@ -133,17 +133,17 @@
     transform: scale(1.2, 1.2);
 }
 
-.aside {
+/* .aside {
     background-color: #b2b5b7;
     padding: 15px;
     color: #000000;
-    /* text-align: center; */
+    text-align: center;
     font-size: 14px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     border-radius: 10px;
     margin-bottom: 20px;
     cursor: pointer;
-}
+} */
 
 .search_tool {
     padding: 8px;
