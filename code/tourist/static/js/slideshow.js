@@ -2,63 +2,82 @@
 let slideIndex1 = 1;
 showSlides(slideIndex1);
 function plusSlides(n) {
-    showSlides(slideIndex1 += n);
+  showSlides((slideIndex1 += n));
 }
 function currentSlide(n) {
-    showSlides(slideIndex1 = n);
+  showSlides((slideIndex1 = n));
 }
 function showSlides(n) {
-    let i;
-    let slides = document.getElementsByClassName("mySlides"); // 取得所有幻燈片元素
-    let dots = document.getElementsByClassName("demo"); // 取得所有圓點元素
-    let captionText = document.getElementById("caption"); // 取得說明文字元素
-    if (n > slides.length) { slideIndex1 = 1 } // 當索引超出最大值時，將索引設為第一張幻燈片
-    if (n < 1) { slideIndex1 = slides.length } // 當索引小於1時，將索引設為最後一張幻燈片
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none"; // 隱藏所有幻燈片
-    }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", ""); // 移除所有圓點的active樣式
-    }
-    slides[slideIndex1 - 1].style.display = "block"; // 顯示目前索引對應的幻燈片
-    dots[slideIndex1 - 1].className += " active"; // 將目前索引對應的圓點加上active樣式
-    captionText.innerHTML = dots[slideIndex1 - 1].alt; // 更新說明文字為目前索引對應的圓點的alt屬性值
+  let i;
+  let slides = document.getElementsByClassName("mySlides"); // 取得所有幻燈片元素
+  let dots = document.getElementsByClassName("demo"); // 取得所有圓點元素
+  let captionText = document.getElementById("caption"); // 取得說明文字元素
+  if (n > slides.length) {
+    slideIndex1 = 1;
+  } // 當索引超出最大值時，將索引設為第一張幻燈片
+  if (n < 1) {
+    slideIndex1 = slides.length;
+  } // 當索引小於1時，將索引設為最後一張幻燈片
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none"; // 隱藏所有幻燈片
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", ""); // 移除所有圓點的active樣式
+  }
+  slides[slideIndex1 - 1].style.display = "block"; // 顯示目前索引對應的幻燈片
+  dots[slideIndex1 - 1].className += " active"; // 將目前索引對應的圓點加上active樣式
+  captionText.innerHTML = dots[slideIndex1 - 1].alt; // 更新說明文字為目前索引對應的圓點的alt屬性值
 }
 
 //簡單景點介紹js幻燈片
 var slideIndex = 1;
 show_start(slideIndex);
 function plusDivs(n, name) {
-    showDivs(slideIndex += n, name);
+  showDivs((slideIndex += n), name);
 }
 function showDivs(n, name) {
-    var i;
-    var selector = `[name="${name}"]`;
-    var x_imgs = document.getElementsByClassName("slide");
-    var x = [];
-    console.log(x_imgs);
-    for (i = 0; i < x_imgs.length; i++) {
-        var dataName = x_imgs[i].dataset.name;
-        if (dataName === name) {
-            x.push(x_imgs[i]); // 將符合條件的元素存入 x 陣列
-        }
+  var i;
+  var selector = `[name="${name}"]`;
+  var x_imgs = document.getElementsByClassName("slide");
+  var x = [];
+  for (i = 0; i < x_imgs.length; i++) {
+    var dataName = x_imgs[i].dataset.name;
+    if (dataName === name) {
+      x.push(x_imgs[i]); // 將符合條件的元素存入 x 陣列
     }
-    console.log(x);
-    console.log(n);
-    if (n > x.length) { slideIndex = 1; }
-    if (n < 1) { slideIndex = x.length; }
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none"; // 隱藏所有元素
-    }
-    x[slideIndex - 1].style.display = "block"; // 顯示目前索引對應的元素
+  }
+  if (n > x.length) {
+    slideIndex = 1;
+  }
+  if (n < 1) {
+    slideIndex = x.length;
+  }
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none"; // 隱藏所有元素
+  }
+  x[slideIndex - 1].style.display = "block"; // 顯示目前索引對應的元素
 }
+
 function show_start(n) {
-    var i;
-    var x = document.getElementsByClassName("slide");
-    if (n > x.length) { slideIndex = 1; }
-    if (n < 1) { slideIndex = x.length; }
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none"; // 隱藏所有元素
+  var i;
+  var x = document.getElementsByClassName("slide");
+  if (n > x.length) {
+    slideIndex = 1;
+  }
+  if (n < 1) {
+    slideIndex = x.length;
+  }
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none"; // 隱藏所有元素
+  }
+  var xArray = Array.from(x);
+  var showList = [];
+  var checkList = [];
+  xArray.forEach((xslide) => {
+    const dataName = xslide.getAttribute("data-name");
+    if (!checkList.includes(dataName)) {
+      checkList.push(dataName);
+      xslide.style.display = "block"; // 顯示起始索引對應的元素
     }
-    x[slideIndex - 1].style.display = "block"; // 顯示起始索引對應的元素
+  });
 }

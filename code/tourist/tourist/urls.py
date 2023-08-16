@@ -33,7 +33,7 @@ urlpatterns = [
     path('reset_passwd/',views.reset_passwd,name='reset_passwd'),
     path('register/',views.register),
     path('search/',views.search),
-    path('create/<int:ct_id>',views.create),
+    path('create/<int:ct_id>/<int:choiceday>',views.create),
     path('history/',views.history),
     path('favorite/',views.favorite),
     path('share/',views.share),

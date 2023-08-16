@@ -75,8 +75,8 @@
                 <div class="searchInput">
                     {% csrf_token %}
                     <input type="search" ng-model="search_item" placeholder="想去哪玩.." id="myInput"
-                        style="font-size: 18px;">
-                    <button class="icon"><i class="fas fa-search"></i></button>
+                        style="font-size: 18px;" name="searchQuery">
+                    <button class="icon" type="submit"><i class="fas fa-search"></i></button>
                 </div>
             </div>
             <!-- 進階搜尋 -->
@@ -115,7 +115,7 @@
                     <button name="submitfavorite" id="submitfavorite{{item.id}}" data-isfavorite="{{item.is_favorite}}"
                         onclick="addFavorite({{ item.id }})"
                         style=" position: absolute;top: 24px;right:20px;transform: translate(50%, -50%);background-color: #fff;border-radius: 50%;padding:4px 10px 4px 10px;">
-                        <i class="fa-solid fa-bookmark" "></i></button>
+                        <i class="fa-solid fa-bookmark"></i></button>
                     {% endif %}
                     <!-- 圖片滑動按鈕箭頭 -->
                     <a class=" w3-btn-floating"

@@ -246,6 +246,7 @@ def search(request):
 
 # 建立行程首頁
 def create_index(request):
+    num = 1
     if request.method == "POST":
         u_id = request.user.id
         name = request.POST["createName"]
@@ -256,12 +257,12 @@ def create_index(request):
             u_id=u_id,
         )
         unit.save()
-        return redirect(f"/create/{unit.id}")
+        return redirect(f"/create/{unit.id}/{num}")
     return render(request, "create_index.html")
 
 
 # 建立行程
-def create(request, ct_id):
+def create(request, ct_id,choiceday):
     user_favorite = [4, 6, 9, 10, 15, 16, 18]
     ct_data = Create_Travel.objects.get(id=ct_id)
     name = ct_data.ct_name
@@ -271,6 +272,7 @@ def create(request, ct_id):
         + 1
     )
     ct_id = ct_data.id
+    
     stay_time = 150
     if request.method == "POST":
         ct_status = request.POST["ct_status"]
@@ -379,6 +381,13 @@ def create(request, ct_id):
                     "final_remainder_crow_opening_list": final_remainder_crow_opening_list,
                 }
             )
+        if ct_status == "3":
+            print('我進來了')
+            get_user_address = list(map(float, request.POST["location"].split(",")))
+            nowtime = list(map(int, request.POST["nowtime"].split(":")))
+            new_nowtime = nowtime[0] * 60 + nowtime[1]
+            unit = ChoiceDay_Ct.objects.create(day = choiceday,start_location_x=get_user_address[0],start_location_y=get_user_address[1],start_time=new_nowtime,ct_id=ct_id)
+            unit.save()
 
     return render(request, "create.html", locals())
 
@@ -442,7 +451,7 @@ def attraction_details(request):
     user = request.user.id
 
     if request.method == "POST":
-        query = request.POST.get("search-query")
+        query = request.POST.get("searchQuery")
         search_url = "/attraction_details/?query=" + query
         search_list = list(Attractions.objects.filter(a_name__contains=query).values())
     else:  # 後續要改(目前為顯示前3筆
