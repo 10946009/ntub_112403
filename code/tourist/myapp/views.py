@@ -442,7 +442,7 @@ def attraction_details(request):
     user = request.user.id
 
     if request.method == "POST":
-        query = request.POST.get("search-query")
+        query = request.POST.get("searchQuery")
         search_url = "/attraction_details/?query=" + query
         search_list = list(Attractions.objects.filter(a_name__contains=query).values())
     else:  # 後續要改(目前為顯示前3筆
