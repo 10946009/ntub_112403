@@ -13,6 +13,7 @@
 <script src="../static/js/jquery-3.7.0.min.js"></script>
 <script src="../static/js/bootstrap.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 {% endblock %}
 
 {% block body %}
@@ -67,13 +68,14 @@
 <!-- 搜尋引擎 -->
 <div class="row search_body">
     <div class="col-2"></div>
-    <div class="col-8" style="margin-top:30px ;">
+    <div class="col-8" style="margin-top:30px ;" ng-app="">
         <!-- 搜尋框 -->
         <form autocomplete="off" class="d-flex" method="post" role="search" action="{% url 'search_results' %}">
             <div class="container">
                 <div class="searchInput">
                     {% csrf_token %}
-                    <input type="search" ng-model="name" placeholder="想去哪玩.." id="myInput" style="font-size: 18px;">
+                    <input type="search" ng-model="search_item" placeholder="想去哪玩.." id="myInput"
+                        style="font-size: 18px;">
                     <button class="icon"><i class="fas fa-search"></i></button>
                 </div>
             </div>
@@ -113,15 +115,15 @@
                     <button name="submitfavorite" id="submitfavorite{{item.id}}" data-isfavorite="{{item.is_favorite}}"
                         onclick="addFavorite({{ item.id }})"
                         style=" position: absolute;top: 24px;right:20px;transform: translate(50%, -50%);background-color: #fff;border-radius: 50%;padding:4px 10px 4px 10px;">
-                        <i class="fa-solid fa-bookmark"></i></button>
+                        <i class="fa-solid fa-bookmark" "></i></button>
                     {% endif %}
                     <!-- 圖片滑動按鈕箭頭 -->
-                    <a class="w3-btn-floating"
-                        style="position:absolute;top:40%;left:0;text-decoration:none;font-size: 30px;"
-                        onclick="plusDivs(-1,'{{ item.id }}')">❮</a>
-                    <a class="w3-btn-floating"
-                        style="position:absolute;top:40%;right:0;text-decoration:none;font-size: 30px;"
-                        onclick="plusDivs(1,'{{ item.id }}')">❯</a>
+                    <a class=" w3-btn-floating"
+                            style="position:absolute;top:40%;left:0;text-decoration:none;font-size: 30px;"
+                            onclick="plusDivs(-1,'{{ item.id }}')">❮</a>
+                            <a class="w3-btn-floating"
+                                style="position:absolute;top:40%;right:0;text-decoration:none;font-size: 30px;"
+                                onclick="plusDivs(1,'{{ item.id }}')">❯</a>
                 </div>
             </div>
             <!-- 景點相關簡短資訊 -->
@@ -440,329 +442,22 @@
             </div>
 
 
-
-
             <div class="container" style="background-color:#f1f1f1">
                 <button type="button" onclick="document.getElementById('id01').style.display='none'"
                     class="cancelbtn">Close</button>
+                <!-- 總瀏覽人數 -->
+                <h6 style="color:#8b8a8a; float: right;">
+                    <i class="fa-regular fa-eye"></i>&thinsp;瀏覽人數：<span>１</span>人
+                </h6>
             </div>
         </form>
     </div>
 </div>
 
-<!-- 初版：點下去跳右邊資訊 -->
-<!-- <div class="row" style="padding:15px;">
-    <div class="col-6 col-s-12 Att_search">
-        <div class="att">
-            <img class="taipei-att" src="../static/images/search.png" alt="att" style="width:50px;height:50px">
-            <h2 style="margin-top:5px;font-size:32px;display: flex;color: rgb(10, 80, 150)">搜尋景點</h2>
-        </div>
-        <div class="search_field">
-            <form class="d-flex" method="post" role="search" action="{% url 'search_results' %}">
-                {% csrf_token %}
-                <input class="search_tool" type="search" placeholder="請輸入要搜尋的景點" name="search_att">
-                <button class="search_btn" type="submit">搜尋</button>
-            </form>
-        </div>
-
-        {% for item in search_list %}
-        <div class="aside" onclick="showRightBox(this)" data-a-Id="{{ item.id }}">
-            <div class="row">
-                <div class="col-8">
-                    <h5>{{ item.a_name }}</h5>
-                    <div class="rating">
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star">&#9733;</span>
-                    </div>
-
-                    <div class="rating" id="ratingStars">
-                        <span class="rating-star" onclick="setRating(1)">&#9733;</span>
-                        <span class="rating-star" onclick="setRating(2)">&#9733;</span>
-                        <span class="rating-star" onclick="setRating(3)">&#9733;</span>
-                        <span class="rating-star" onclick="setRating(4)">&#9733;</span>
-                        <span class="rating-star" onclick="setRating(5)">&#9733;</span>
-                    </div>
-
-                    <h6 style="margin-top:5px;">
-                        地址：<span id="list-address">{{ item.address }}</span>
-                    </h6>
-                    <h6 style="margin-top:5px;">
-                        綜合評分： <span id="list-selectedRating">{{ item.rating }}</span> / 5 (2.1萬)
-                    </h6>
-                    <h6>
-                        營業時間：<span>24小時營業</span>
-                    </h6>
-                    <form action="/attraction_details/{{item.id}}" method="POST" name="clickfavorite"
-                        id="clickfavorite">
-                        {% csrf_token %}
-                        <input type="submit" name="submitfavorite" id="submitfavorite" value="加入收藏" />
-                    </form>
-                    {% comment %}
-                    <div>
-                        <a href="/attraction_details/{{user}}/{{item.id}}">加入收藏</a>
-                    </div> {% endcomment %}
-                    <h2>What?</h2>
-                    <p>Chania is a city on the island of Crete.</p>
-                    <h2>Where?</h2>
-                    <p>Crete is a Greek island in the Mediterranean Sea.</p>
-                    <h2>How?</h2>
-                    <p>You can reach Chania airport from all over Europe.</p>
-                </div>
-                <div class="col-4 img_field">
-                    <img src="../static/images/twotwoeight.jpeg" class="Att_img" alt="two">
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-
-    <div class="col-6 col-s-12 Att_info" id="rightbox" style="margin-top:50px;">
-        <div class="aside">
-            <img src="../static/images/x.png" class="img_x" id="closeBtn" onclick="hideRightBox()">
-            <h3 style="color: rgb(172, 78, 1)" id="attractions-detail-name"></h3>
-            <div class="rating" style="margin-bottom: 10px;">
-                <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                <span class="rating-star">&#9733;</span>
-                <span id="selectedRating"></span> / 5 (6.3萬)
-            </div>
-            <div style="display: flex;justify-content: center;align-items: center;height: auto; height: 100%;">
-                <img src="/static/images/zoo.jpeg" alt="photo" class="Att_img">
-            </div>
-            <div class="Att_detail">
-                <h6 id="attractions-detail-address">
-                    地址：116台北市文山區新光路二段30號
-                </h6>
-                <h6 id="attractions-detail-phone">
-                    電話：02－2938－2300
-                </h6>
-                <h6>
-                    營業時間： <span style="color: red;">已打烊</span> <span style="color: rgb(21, 81, 140);">
-                        *開始營業時間：9:00</span>
-                </h6>
-                <h6>
-                    建議停留時間：
-                </h6>
-                <h6>旺季月份：</h6>
-            </div>
-            <hr>
-            <h5>
-                人潮資訊：
-            </h5>
-            <div style="display: flex;justify-content: center;align-items: center;height: auto">
-                <img src="/static/images/humum.jpg" alt="photo" class="Att_img">
-            </div>
-            <hr>
-            <h5>
-                景點評論：
-            </h5>
-            <div class="comment">
-                <div class="avatar">
-                    <img src="/static/images/head.png" alt="User Avatar">
-                </div>
-                <div class="comment-content">
-                    <h6 class="username">
-                        李
-                    </h6>
-                    <div class="rating">
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star">&#9733;</span>
-                        <span class="rating-star">&#9733;</span>
-                    </div>
-                    <p class="comment-text">
-                        天氣冷來到動物園，動物們顯得心情不好，跟人類一樣也會冷到不想到，看到最多的是背影跟屁股，也是一種難得的經驗。
-                        <br>
-                        <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
-                            2033</span>
-                    </p>
-                </div>
-            </div>
-            <div class="comment">
-                <div class="avatar">
-                    <img src="/static/images/head.png" alt="User Avatar">
-                </div>
-                <div class="comment-content">
-                    <h6 class="username">
-                        sun
-                    </h6>
-                    <div class="rating">
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star">&#9733;</span>
-                    </div>
-                    <p class="comment-text">
-                        帶小孩來看動物很棒！可以玩一整天！廁所很多很方便,用餐座位如果能再多一些就好了!麥當勞大排長龍實在太誇張！希望能增設其他餐廳或便利商店~
-                        <br>
-                        <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
-                            2023</span>
-                    </p>
-                </div>
-            </div>
-            <div class="comment">
-                <div class="avatar">
-                    <img src="/static/images/head.png" alt="User Avatar">
-                </div>
-                <div class="comment-content">
-                    <h6 class="username">
-                        李+0
-                    </h6>
-                    <div class="rating">
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                        <span class="rating-star">&#9733;</span>
-                        <span class="rating-star">&#9733;</span>
-                        <span class="rating-star">&#9733;</span>
-                    </div>
-                    <p class="comment-text">
-                        我實在越來越覺得動物園越來越差，維修的東西擴建的項目越來越多，但都沒有東西完成！太誇張了
-                        <br>
-                        <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
-                            2023</span>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div> -->
-
-
-<!-- <div class="row detail_info" style="margin-top: 40px;">
-    左半邊個別景點的部分
-    <div class="col-3"></div>
-    <div class="col-6">
-        {% for item in search_list %}
-        <div class="row All_Att" style=" cursor: pointer;">
-            <div class="col-5">
-                <div class="Att_photo">
-                    <div class="slideshow-container">
-                        <div class="mySlides1">
-                            <img src="../static/images/beitou.jpeg" style="width:100%">
-                        </div>
-
-                        <div class="mySlides1">
-                            <img src="../static/images/Datong.jpeg" style="width:100%">
-                        </div>
-
-                        <div class="mySlides1">
-                            <img src="../static/images/Shilin.jpeg" style="width:100%">
-                        </div>
-
-                        <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
-                        <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-7" style="margin-top: 5px;">
-                <h5>{{ item.a_name }}</h5>
-                <div class="rating">
-                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                    <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                    <span class="rating-star">&#9733;</span>
-                </div>
-                <h6 style="margin-top:5px;">
-                    地址：<span id="list-address">{{ item.address }}</span>
-                </h6>
-                <h6 style="margin-top:5px;">
-                    綜合評分： <span id="list-selectedRating">{{ item.rating }}</span> / 5 (2.1萬)
-                </h6>
-                <h6>
-                    營業時間：<span>24小時營業</span>
-                </h6>
-                <form action="/attraction_details/{{item.id}}" method="POST" name="clickfavorite" id="clickfavorite">
-                    {% csrf_token %}
-                    <input type="submit" name="submitfavorite" id="submitfavorite" value="加入收藏" />
-                </form>
-                {% comment %}
-                <div>
-                    <a href="/attraction_details/{{user}}/{{item.id}}">加入收藏</a>
-                </div> {% endcomment %}
-            </div>
-        </div>
-        <hr>
-        {% endfor %}
-    </div>
-</div> -->
 <script src="../static/js/addFavorite.js"></script>
+<script src="../static/js/slideshow.js"></script>
+<script src="../static/js/attractions.js"></script>
 <script>
-
-    //詳細景點資訊幻燈片圖
-    let slideIndex1 = 1;
-    showSlides(slideIndex1);
-    function plusSlides(n) {
-        showSlides(slideIndex1 += n);
-    }
-    function currentSlide(n) {
-        showSlides(slideIndex1 = n);
-    }
-    function showSlides(n) {
-        let i;
-        let slides = document.getElementsByClassName("mySlides"); // 取得所有幻燈片元素
-        let dots = document.getElementsByClassName("demo"); // 取得所有圓點元素
-        let captionText = document.getElementById("caption"); // 取得說明文字元素
-        if (n > slides.length) { slideIndex1 = 1 } // 當索引超出最大值時，將索引設為第一張幻燈片
-        if (n < 1) { slideIndex1 = slides.length } // 當索引小於1時，將索引設為最後一張幻燈片
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none"; // 隱藏所有幻燈片
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", ""); // 移除所有圓點的active樣式
-        }
-        slides[slideIndex1 - 1].style.display = "block"; // 顯示目前索引對應的幻燈片
-        dots[slideIndex1 - 1].className += " active"; // 將目前索引對應的圓點加上active樣式
-        captionText.innerHTML = dots[slideIndex1 - 1].alt; // 更新說明文字為目前索引對應的圓點的alt屬性值
-    }
-
-    //簡單景點介紹js幻燈片
-    var slideIndex = 1;
-    show_start(slideIndex);
-    function plusDivs(n, name) {
-        showDivs(slideIndex += n, name);
-    }
-    function showDivs(n, name) {
-        var i;
-        var selector = `[name="${name}"]`;
-        var x_imgs = document.getElementsByClassName("slide");
-        var x = [];
-        console.log(x_imgs);
-        for (i = 0; i < x_imgs.length; i++) {
-            var dataName = x_imgs[i].dataset.name;
-            if (dataName === name) {
-                x.push(x_imgs[i]); // 將符合條件的元素存入 x 陣列
-            }
-        }
-        console.log(x);
-        console.log(n);
-        if (n > x.length) { slideIndex = 1; }
-        if (n < 1) { slideIndex = x.length; }
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none"; // 隱藏所有元素
-        }
-        x[slideIndex - 1].style.display = "block"; // 顯示目前索引對應的元素
-    }
-    function show_start(n) {
-        var i;
-        var x = document.getElementsByClassName("slide");
-        if (n > x.length) { slideIndex = 1; }
-        if (n < 1) { slideIndex = x.length; }
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none"; // 隱藏所有元素
-        }
-        x[slideIndex - 1].style.display = "block"; // 顯示起始索引對應的元素
-    }
-
-
     var modal = document.getElementById('id01');
 
     // When the user clicks anywhere outside of the modal, close it
@@ -913,6 +608,16 @@
             a.setAttribute("class", "autocomplete-items"); // 設定DIV元素的class屬性
             this.parentNode.appendChild(a); // 將DIV元素加入輸入框的父元素中
 
+            // 將不在arr陣列中的值顯示在下拉清單
+            b = document.createElement("DIV");
+            b.textContent = val; // 以輸入的值開頭
+            b.innerHTML = `<i class="fas fa-search" style="margin-right:10px;"></i><strong>${val}</strong>`;
+            b.addEventListener("click", function (e) {
+                inp.value = this.textContent;
+                closeAllLists();
+            });
+            a.appendChild(b);
+
             for (i = 0; i < arr.length; i++) {
                 if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) { // 尋找符合輸入值的項目
                     b = document.createElement("DIV"); // 建立新的DIV元素來放置該項目
@@ -973,7 +678,7 @@
             closeAllLists(e.target);
         });
     }
-    var attractions = ["aa", "abc", "台北101", "士林官邸", "士林夜市", "北投溫泉", "淡水紅毛城", "淡水老街", "淡水漁人碼頭", "台北動物園", "台北兒童新樂園", "台北車站"];
+    var attractions = ["1", "aa", "abc", "台北101", "士林官邸", "士林夜市", "北投溫泉", "淡水紅毛城", "淡水老街", "淡水漁人碼頭", "台北動物園", "台北兒童新樂園", "台北車站"];
     autocomplete(document.getElementById("myInput"), attractions);
 
 </script>
