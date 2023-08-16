@@ -8,9 +8,7 @@
 <link rel="stylesheet" href="../static/css/att.css">
 <link rel="stylesheet" href="../static/css/comment.css">
 <link rel="stylesheet" href="/lib/w3.css">
-<!-- <link rel="stylesheet" href="../static/css/all.css"> -->
 <link rel="stylesheet" href="../static/js/createT.js">
-<link rel="stylesheet" href="../static/js/attraction_details.js">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../static/js/jquery-3.7.0.min.js"></script>
 <script src="../static/js/bootstrap.js"></script>
@@ -70,6 +68,7 @@
 <div class="row search_body">
     <div class="col-2"></div>
     <div class="col-8" style="margin-top:30px ;">
+        <!-- 搜尋框 -->
         <form autocomplete="off" class="d-flex" method="post" role="search" action="{% url 'search_results' %}">
             <div class="container">
                 <div class="searchInput">
@@ -78,6 +77,7 @@
                     <button class="icon"><i class="fas fa-search"></i></button>
                 </div>
             </div>
+            <!-- 進階搜尋 -->
             <button class="filiter"><i class="fa-solid fa-filter"></i>進階</button>
         </form>
     </div>
@@ -93,22 +93,43 @@
         <div class="row Info_item">
             <!-- 景點圖片 -->
             <div class="col-5">
-                <div class="w3-content" style="max-width:800px;position:relative">
-                    <img data-name="{{ item.id }}" class="slide" src="../static/images/Datong.jpeg" style="width:100%">
-                    <img data-name="{{ item.id }}" class="slide" src="../static/images/Shilin.jpeg" style="width:100%">
+                <div class="w3-content" style="max-width:800px;position:relative;">
+                    <img data-name="{{ item.id }}" class="slide" src="../static/images/Datong.jpeg"
+                        style="width:100%;max-width: 100%; cursor: pointer;" onclick="showInfo(this)"
+                        data-a-Id="{{ item.id }}">
+                    <img data-name="{{ item.id }}" class="slide" src="../static/images/Shilin.jpeg"
+                        style="width:100%;max-width: 100%; cursor: pointer;" onclick="showInfo(this)"
+                        data-a-Id="{{ item.id }}">
                     <img data-name="{{ item.id }}" class="slide" src="../static/images/Songshan.jpeg"
-                        style="width:100%">
+                        style="width:100%;max-width: 100%; cursor: pointer;" onclick="showInfo(this)"
+                        data-a-Id="{{ item.id }}">
+                    <!-- 收藏按鈕 -->
+                    {% if item.is_favorite == "0" %}
+                    <button name="submitfavorite" id="submitfavorite{{item.id}}" data-isfavorite="{{item.is_favorite}}"
+                        onclick="addFavorite({{item.id}})"
+                        style=" position: absolute;top: 24px;right:20px;transform: translate(50%, -50%);background-color: #fff;border-radius: 50%;padding:4px 10px 4px 10px;">
+                        <i class="fa-regular fa-bookmark"></i></button>
+                    {% else %}
+                    <button name="submitfavorite" id="submitfavorite{{item.id}}" data-isfavorite="{{item.is_favorite}}"
+                        onclick="addFavorite({{ item.id }})"
+                        style=" position: absolute;top: 24px;right:20px;transform: translate(50%, -50%);background-color: #fff;border-radius: 50%;padding:4px 10px 4px 10px;">
+                        <i class="fa-solid fa-bookmark"></i></button>
+                    {% endif %}
+                    <!-- 圖片滑動按鈕箭頭 -->
                     <a class="w3-btn-floating"
-                        style="position:absolute;top:45%;left:0;text-decoration:none;font-size: 20px;"
+                        style="position:absolute;top:40%;left:0;text-decoration:none;font-size: 30px;"
                         onclick="plusDivs(-1,'{{ item.id }}')">❮</a>
                     <a class="w3-btn-floating"
-                        style="position:absolute;top:45%;right:0;text-decoration:none;font-size: 20px;"
+                        style="position:absolute;top:40%;right:0;text-decoration:none;font-size: 30px;"
                         onclick="plusDivs(1,'{{ item.id }}')">❯</a>
                 </div>
             </div>
             <!-- 景點相關簡短資訊 -->
-            <div class="col-7" onclick="showInfo(this)" data-a-Id="{{ item.id }}" style="width:auto;">
-                <h5>{{ item.a_name }}</h5>
+            <div class="col-7" style="width:auto;">
+                <!-- 景點名稱 -->
+                <h5 style="cursor: pointer;" class="info_tit" onclick="showInfo(this)" data-a-Id="{{ item.id }}">
+                    {{item.a_name }}</h5>
+                <!-- 星星數 -->
                 <div class="rating">
                     <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
                     <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
@@ -116,23 +137,31 @@
                     <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
                     <span class="rating-star">&#9733;</span>
                 </div>
+                <!-- 地址 -->
                 <h6 style="margin-top:5px;">
                     地址：<span id="list-address">{{ item.address }}</span>
                 </h6>
+                <!-- 評分 -->
                 <h6 style="margin-top:5px;">
                     綜合評分： <span id="list-selectedRating">{{ item.rating }}</span> / 5 (2.1萬)
                 </h6>
+                <!-- 營業時間 -->
                 <h6>
                     營業時間：<span>24小時營業</span>
                 </h6>
-                <form>
-                {% csrf_token %}
-                <input type="button" name="submitfavorite" id="submitfavorite" value="加入收藏" onclick="addFavorite({{item.id}})" />
-                </form>
-                {% comment %}
-                <div>
-                    <a href="/attraction_details/{{user}}/{{item.id}}">加入收藏</a>
-                </div> {% endcomment %}
+                <!-- 總瀏覽人數 -->
+                <h6 style="color:#8b8a8a;">
+                    <i class="fa-regular fa-eye"></i>&thinsp;瀏覽人數：<span>１</span>人
+                </h6>
+                <!-- （原）加入取消收藏位子 -->
+                <!-- {% if item.is_favorite == "0" %}
+                <button style="color:rgb(195, 7, 7);" name="submitfavorite" id="submitfavorite{{item.id}}"
+                    data-isfavorite="{{item.is_favorite}}" onclick="addFavorite({{item.id}})"><i
+                        class="fa-regular fa-star"></i>加入收藏</button>
+                {% else %}
+                <button name="submitfavorite" id="submitfavorite{{item.id}}" data-isfavorite="{{item.is_favorite}}"
+                    onclick="addFavorite({{item.id}})">取消收藏</button>
+                {% endif %} -->
             </div>
         </div>
         <hr>
@@ -145,13 +174,13 @@
 <!-- 景點詳細資料隱藏點擊 -->
 <div id="id01" class="row modal">
     <div class="col-12">
-
         <form class="modal-content animate" action="/action_page.php" method="post">
             <div class="imgcontainer">
                 <span onclick="document.getElementById('id01').style.display='none'" class="close"
                     title="Close Modal">&times;</span>
                 <!-- <img src="img_avatar2.png" alt="Avatar" class="avatar"> -->
             </div>
+
 
             <div class="container">
                 <div>
@@ -233,6 +262,7 @@
                 <!-- <div style="display: flex;justify-content: center;align-items: center;height: auto; height: 100%;">
                     <img src="/static/images/zoo.jpeg" alt="photo" class="Att_img">
                 </div> -->
+
                 <div class="Att_detail">
                     <h5 id="attractions-detail-address">
                         地址：116台北市文山區新光路二段30號
@@ -248,6 +278,18 @@
                         建議停留時間：
                     </h5>
                     <h5>旺季月份：</h5>
+                    <hr style="border:2px solid #b3b2b2">
+                    <div class="question">
+                        <h5>
+                            問題與解答：
+                        </h5>
+                        <h6 style="margin-left: 20px; color: #707070;">問：春節有開嗎？</h6>
+                        <h6 style="margin-left: 20px; color: #707070;">答：有初一早上9點開，其他時間8點半。</h6>
+                        <h6 style="margin-left: 20px; color:#a8a8a8">更多...</h6>
+                        <button style="border-radius: 8px;"><i class="fa-solid fa-message"
+                                style="margin-right: 5px;"></i>我要發問</button>
+
+                    </div>
                     <hr style="border:2px solid #b3b2b2">
                     <h5>
                         人潮資訊：
@@ -652,8 +694,9 @@
         {% endfor %}
     </div>
 </div> -->
-
+<script src="../static/js/addFavorite.js"></script>
 <script>
+
     //詳細景點資訊幻燈片圖
     let slideIndex1 = 1;
     showSlides(slideIndex1);
@@ -930,23 +973,6 @@
             closeAllLists(e.target);
         });
     }
-        function addFavorite(aid){
-            $.ajax({
-                type: "POST",
-                url: "/add_favorite/",
-                data: {
-                    'aid': aid,
-                    'csrfmiddlewaretoken': '{{ csrf_token }}',  // 請確保在模板中提供 CSRF token
-                },
-                success: function(data) {
-                    // 在這裡處理後端回傳的資料
-                    console.log(data);
-                },
-                error: function(xhr, textStatus, errorThrown) {
-                    console.error("Error:", textStatus, errorThrown);
-                }
-            });
-        }
     var attractions = ["aa", "abc", "台北101", "士林官邸", "士林夜市", "北投溫泉", "淡水紅毛城", "淡水老街", "淡水漁人碼頭", "台北動物園", "台北兒童新樂園", "台北車站"];
     autocomplete(document.getElementById("myInput"), attractions);
 

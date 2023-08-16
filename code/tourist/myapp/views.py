@@ -243,58 +243,154 @@ def register(request):
 def search(request):
     return render(request, "search.html", locals())
 
+
 # 建立行程首頁
 def create_index(request):
-    if request.method == "POST" :
+    if request.method == "POST":
         u_id = request.user.id
         name = request.POST["createName"]
         start_day = request.POST["createDate"]
         unit = Create_Travel.objects.create(
-                                ct_name=name,
-                                start_day=start_day,
-                                u_id=u_id,
-                            )
+            ct_name=name,
+            start_day=start_day,
+            u_id=u_id,
+        )
         unit.save()
         return redirect(f"/create/{unit.id}")
     return render(request, "create_index.html")
 
-# 建立行程
-def create(request,ct_id):
-    user_favorite=[4,6,9,10,15,16,18]
-    ct_data= Create_Travel.objects.get(id=ct_id)
-    name = ct_data.ct_name
-    start_day= ct_data.start_day
-    week = datetime(int(start_day[0:4]), int(start_day[5:7]), int(start_day[8:])).weekday() + 1
-    ct_id = ct_data.id
 
-    if request.method == 'POST':
-        ct_status = request.POST['ct_status']
-        if ct_status == "0" :
-            get_user_address = list(map(float,request.POST['location'].split(',')))
-            nowtime = list(map(int,request.POST['nowtime'].split(':')))
-            new_nowtime = nowtime[0]*60 + nowtime[1]
+# 建立行程
+def create(request, ct_id):
+    user_favorite = [4, 6, 9, 10, 15, 16, 18]
+    ct_data = Create_Travel.objects.get(id=ct_id)
+    name = ct_data.ct_name
+    start_day = ct_data.start_day
+    week = (
+        datetime(int(start_day[0:4]), int(start_day[5:7]), int(start_day[8:])).weekday()
+        + 1
+    )
+    ct_id = ct_data.id
+    stay_time = 150
+    if request.method == "POST":
+        ct_status = request.POST["ct_status"]
+        print(ct_status)
+        if ct_status == "0":
+            get_user_address = list(map(float, request.POST["location"].split(",")))
+            nowtime = list(map(int, request.POST["nowtime"].split(":")))
+            new_nowtime = nowtime[0] * 60 + nowtime[1]
             # nowtime = int(nowtime[:1])*60 + int(nowtime[3:])
             print(get_user_address)
             print(new_nowtime)
-            
-            m=recommend(user_favorite,new_nowtime,get_user_address,start_day)
+
+            m = recommend(
+                user_favorite, new_nowtime, get_user_address, start_day, stay_time
+            )
             m_list = Attractions.objects.filter(place_id__in=m)
-            crow_opening_list=[]
+            crow_opening_list = []
             for i in m_list:
-                o_db=Crowd_Opening.objects.filter(Q(week=week) & Q(a_id=i.id)).values().first()
-                crow_opening_list.append(o_db)
+                m_db = (
+                    Crowd_Opening.objects.filter(Q(week=week) & Q(a_id=i.id))
+                    .values()
+                    .first()
+                )
+                crow_opening_list.append(m_db)
             m_list = list(m_list.values())
             print(m_list)
             print(crow_opening_list[0])
-            return JsonResponse({'m_list': m_list, 'crow_opening_list': crow_opening_list})
+            return JsonResponse(
+                {"m_list": m_list, "crow_opening_list": crow_opening_list}
+            )
 
-    
-    return render(request, "create.html",locals())
+        if ct_status == "1":
+            o_attractions_list = request.POST.getlist("select_aid_list[]")
+            print(o_attractions_list)
+            nowtime = list(map(int, request.POST["nowtime"].split(":")))
+            new_nowtime = nowtime[0] * 60 + nowtime[1]
+            o = recommend_near(o_attractions_list, new_nowtime, week, stay_time)
+            o_list = Attractions.objects.filter(place_id__in=o)
+            o_crow_opening_list = []
+            for i in o_list:
+                o_db = (
+                    Crowd_Opening.objects.filter(Q(week=week) & Q(a_id=i.id))
+                    .values()
+                    .first()
+                )
+                o_crow_opening_list.append(o_db)
+            o_list = list(o_list.values())
+            print(o_list)
+            print(o_crow_opening_list[0])
+            return JsonResponse(
+                {"o_list": o_list, "o_crow_opening_list": o_crow_opening_list}
+            )
+
+        if ct_status == "2":
+            o_attractions_list = request.POST.getlist("all_select[]")
+            print(o_attractions_list)
+            nowtime = list(map(int, request.POST["nowtime"].split(":")))
+            new_nowtime = nowtime[0] * 60 + nowtime[1]
+            final = final_order(
+                o_attractions_list, new_nowtime, week, stay_time, user_favorite
+            )
+            # print('final,我在這!!!!!!!!!!!!!!!!',final)
+            # ------主要的
+            final_result_list=[]
+            final_crow_opening_list = []
+            for f in final[0]:
+                temp = Attractions.objects.filter(place_id=f).values().first()
+                final_result_list.append(temp)
+            for i in final_result_list:
+                f_db = (
+                    Crowd_Opening.objects.filter(Q(week=week) & Q(a_id=i['id']))
+                    .values()
+                    .first()
+                )
+                final_crow_opening_list.append(f_db)
+            # final_result_list = list(final_result_list)
+            # ------剩餘的
+            final_remainder_result_list=[]
+            final_remainder_crow_opening_list = []
+            try:
+                for fr in final[1]:
+                    temp_r = Attractions.objects.filter(place_id=fr).values().first()
+                    final_remainder_result_list.append(temp_r)
+                
+                for i in final_remainder_result_list:
+                    fr_db = (
+                        Crowd_Opening.objects.filter(Q(week=week) & Q(a_id=i['id']))
+                        .values()
+                        .first()
+                    )
+                    final_remainder_crow_opening_list.append(fr_db)
+                # final_remainder_result_list = list(final_remainder_result_list)
+            except:
+                pass
+            # ------------
+            print('final_result_list',final_result_list)
+            print('final_crow_opening_list',final_crow_opening_list)
+            print('final_remainder_result_list',final_remainder_result_list)
+            print('final_remainder_crow_opening_list',final_remainder_crow_opening_list)
+
+            return JsonResponse(
+                {
+                    "final_result_list": final_result_list,
+                    "final_crow_opening_list": final_crow_opening_list,
+                    "final_remainder_result_list": final_remainder_result_list,
+                    "final_remainder_crow_opening_list": final_remainder_crow_opening_list,
+                }
+            )
+
+    return render(request, "create.html", locals())
 
 
 # 我的行程(歷史紀錄)
 def history(request):
-    return render(request, "history.html")
+    my_history = []
+    user_id = request.user.id
+    print(user_id)
+    my_history = Create_Travel.objects.filter(u_id=user_id).values()
+    print(my_history)
+    return render(request, "history.html", locals())
 
 
 # 我的最愛
@@ -320,11 +416,12 @@ def share(request):
 # def attraction_details(request,a_id):
 #     return render(request, "attraction_details.html")
 
+
 def add_favorite(request):
-    if request.method == "POST":
-        aid = request.POST.get("aid")
+    u_id = request.user.id
+    aid = request.POST.get("aid")
+    if u_id != None:
         if aid:
-            u_id = request.user.id
             user_a = Favorite.objects.filter(u_id=u_id, a_id=aid)
             if user_a:
                 user_a.delete()
@@ -332,10 +429,14 @@ def add_favorite(request):
                 unit = Favorite.objects.create(u_id=u_id, a_id=aid)
                 unit.save()
             # 在這裡準備你想要回傳給前端的資料
-            response_data = {'message': '操作成功'}
+            response_data = {"message": "操作成功"}
             return JsonResponse(response_data)
-def attraction_details(request):
+    else:
+        response_data = {"message": "尚未登入"}
+        return JsonResponse(response_data)
 
+
+def attraction_details(request):
     search_list = []
     # print(request.method)
     user = request.user.id
@@ -354,7 +455,13 @@ def attraction_details(request):
         choose_attractions = Attractions.objects.filter(id=choose_a_id).values().first()
         return JsonResponse(choose_attractions)
 
-    # print(search_list)
+    # 判斷是否已收藏
+    for index,search in enumerate(search_list):
+        if Favorite.objects.filter(u_id=user, a_id=search['id']).exists():
+            search_list[index].setdefault('is_favorite','1')
+        else:
+            search_list[index].setdefault('is_favorite','0')
+    print(search_list)
     return render(request, "attraction_details.html", locals())
 
 
@@ -375,7 +482,7 @@ def check_opening(now_time, week, stay_time):
                     opening = opening.replace(" ", "")
                     if now_time >= int(opening[0:2]) * 60 + int(
                         opening[3:5]
-                    ) and now_time < int(opening[6:8]) * 60 + int(opening[9:]):
+                    ) and now_time <= int(opening[6:8]) * 60 + int(opening[9:]):
                         ok_a_list.append(a.a_id)
                         break
     return ok_a_list
@@ -408,7 +515,7 @@ def check_distance_placeid(get_user_address, a_id_list):
     return ok_a_list
 
 
-# ------------------------------------確認營業時間(排序景點)
+# ------------------------------------確認營業時間(排序景點)沒有用到~~~~
 def order_check_opening(o_attractions_list, now_time, week):
     ok_a_list = []
     now_time += 150
@@ -430,7 +537,8 @@ def order_check_opening(o_attractions_list, now_time, week):
 # ------------------------------------景點排序(根據使用者喜好、擁擠、營業時間)
 def order_check_attrations(
     o_attractions_list, now_time, week, stay_time, user_favorite
-):
+):  
+    print('now_time',now_time)
     # 判斷當下有沒有營業，沒有就不放進陣列
     ok_a_list = []
     # now_time+=stay_time
@@ -457,6 +565,7 @@ def order_check_attrations(
     o_favorite_list = []
     o_opening_list = []
     temp_o_opening_list = []
+
     for o in ok_a_list:
         score = 0
         o_db = Attractions.objects.get(place_id=o)
@@ -467,7 +576,7 @@ def order_check_attrations(
 
     # 再判斷景點的人潮流量（1-5，1為最高），判斷營業時間
     time = now_time // 60
-    stay_time = 150
+    # stay_time = 150
     for o in ok_a_list:
         o_db = Attractions.objects.get(place_id=o)
         o_crowd_opening = o_db.crowd_opening_set.filter(week=week).values()
@@ -480,7 +589,7 @@ def order_check_attrations(
         except:
             o_crowd_list.append(0)
         for op in opening:
-            print(op)
+            # print(op)
             if op == "24小時營業":
                 o_opening_list.append(1440)
             else:
@@ -541,9 +650,9 @@ def order_check_attrations(
     return f_final_list[0][0]
 
 
-def recommend(user_favorite,now_time,get_user_address,day):
+# ------------------------------------第1步驟(推薦周遭景點)
+def recommend(user_favorite, now_time, get_user_address, day, stay_time):
     client = googlemaps.Client(key=GOOGLE_PLACES_API_KEY)
-    stay_time = 150
     week = datetime(int(day[0:4]), int(day[5:7]), int(day[8:])).weekday() + 1
 
     # # 1.先選擇固定的5個景點作為M集合（正常為我們根據使用者輸入的位置去進行推薦。大約為開車30分鐘內會到且有營業的地點）
@@ -615,34 +724,25 @@ def recommend(user_favorite,now_time,get_user_address,day):
     # m_attractions_list=f_final_m_list_place_id
     # print("推薦的景點為",m_attractions_list)
     # m_attractions_list_name = [Attractions.objects.get(place_id=x).a_name for x in m_attractions_list] # name的List
-    m_attractions_list = ['ChIJFZPS7xyrQjQRQuUZYgdk3SA','ChIJXcZNw26yQjQRk-ovoSxin1g','ChIJe7yJbYSpQjQRWKgqXWSDg7w','ChIJQev3766vQjQR_R7YpgCRhLk']
+    m_attractions_list = [
+        "ChIJFZPS7xyrQjQRQuUZYgdk3SA",
+        "ChIJXcZNw26yQjQRk-ovoSxin1g",
+        "ChIJe7yJbYSpQjQRWKgqXWSDg7w",
+        "ChIJQev3766vQjQR_R7YpgCRhLk",
+        "ChIJTeIZgaCvQjQRlMvYvVAE6WE",
+    ]
     return m_attractions_list
 
-def test_input(request):
-    
-    # ----------------------------------------------------------------------------------------------------------------
-    # print(m_attractions_list_name)
-    # print(response)
-    m_attractions_list_name = [
-        "中央藝文公園",
-        "URS27-華山大草原",
-        "華山1914文化創意產業園區",
-        "忠孝公園",
-        "齊東公園",
-        "齊東老街",
-        "台灣公路原點",
-    ]
-    # ---------------------------------------------------已經抓到時間與距離(上方)
+
+# ------------------------------------第2步驟(推薦相似景點)
+def recommend_near(o_attractions_list, now_time, week, stay_time):
     # 2.選擇一些景點做為O（使用者選擇的景點）
     # 抓取使用者所選的景點ID
-    o_attractions_list = [
-        "ChIJbSTgI2WpQjQRcVwWB2cnyfE",
-        "ChIJC91pQmWpQjQRFRN7jE01i1k",
-    ]
-    o_attractions_list_name = [
-        "華山1914文化創意產業園區",
-        "URS27-華山大草原",
-    ]
+    
+    # o_attractions_list_name = [
+    #     "華山1914文化創意產業園區",
+    #     "URS27-華山大草原",
+    # ]
     near_o = []
     # 相似標籤
 
@@ -657,6 +757,7 @@ def test_input(request):
 
     # 去掉o_attractions_list本身
     near_o = list(set(near_o) - set(o_attractions_list))
+    print("先前所選的景點為",o_attractions_list)
     print("周遭的景點為", near_o)
     # 3.根據O裡面的景點，利用tag找出相似景點並推薦（組成新的O)
     tags_same_score = []
@@ -723,21 +824,18 @@ def test_input(request):
         for i in range(5):
             p_attractions_list.append(near_o[f_max_i_list[i][0]])
     print("推薦相似景點的順序:", p_attractions_list)
-    p_attractions_list_name = [
-        Attractions.objects.get(place_id=x).a_name for x in p_attractions_list
+    p_attractions_list = [
+        Attractions.objects.get(place_id=x).place_id for x in p_attractions_list
     ]  # name的List
 
-    # 將使用者在p_attractions_list所選的景點加入O
-    user_select_p = []
-    user_select_p = p_attractions_list[5:]  # 抓使用者所選擇的
-    o_attractions_list += user_select_p
-    final_o_attractions_list_name = [
-        Attractions.objects.get(place_id=x).a_name for x in o_attractions_list
-    ]  # name的List
-    # print(o_attractions_list)
-    # ---------------------排序
+    return p_attractions_list
+
+
+# ------------------------------------第3步驟(最後的排序)
+def final_order(o_attractions_list, now_time, week, stay_time, user_favorite):
     final_list = []
     remainder_list = []
+    all_list = []
     while len(o_attractions_list) > 0:
         temp = order_check_attrations(
             o_attractions_list, now_time, week, stay_time, user_favorite
@@ -748,23 +846,46 @@ def test_input(request):
         now_time += stay_time
         o_attractions_list = list(set(o_attractions_list) - set(final_list))
     remainder_list = [
-        [
-            Attractions.objects.get(place_id=x).a_name,
-            Attractions.objects.get(place_id=x)
-            .crowd_opening_set.filter(week=week)
-            .values()[0]["opening"],
-        ]
+        Attractions.objects.get(place_id=x).place_id
+        # Attractions.objects.get(place_id=x).crowd_opening_set.filter(week=week).values()[0]["opening"],
         for x in o_attractions_list
     ]
-    f_final_list_name = [
-        [
-            Attractions.objects.get(place_id=x).a_name,
-            Attractions.objects.get(place_id=x)
-            .crowd_opening_set.filter(week=week)
-            .values()[0]["opening"],
-        ]
-        for x in final_list
+    # f_final_list_name = [
+    #     Attractions.objects.get(place_id=x).place_id
+    #     # Attractions.objects.get(place_id=x).crowd_opening_set.filter(week=week).values()[0]["opening"],
+    #     for x in final_list
+    # ]
+    print('final_list!!!!!!!!!!!!!',final_list)
+    all_list.append(final_list)
+    all_list.append(remainder_list)
+    return all_list
+
+
+def test_input(request):
+    # ----------------------------------------------------------------------------------------------------------------
+    # print(m_attractions_list_name)
+    # print(response)
+    m_attractions_list_name = [
+        "中央藝文公園",
+        "URS27-華山大草原",
+        "華山1914文化創意產業園區",
+        "忠孝公園",
+        "齊東公園",
+        "齊東老街",
+        "台灣公路原點",
     ]
+    # ---------------------------------------------------已經抓到時間與距離(上方)
+    # print(o_attractions_list)
+
+    
+    # 將使用者在p_attractions_list所選的景點加入O
+    # user_select_p = []
+    # user_select_p = p_attractions_list[5:]  # 抓使用者所選擇的
+    # o_attractions_list += user_select_p
+    # final_o_attractions_list_aid = [
+    #     Attractions.objects.get(place_id=x).place_id for x in o_attractions_list
+    # ]  # name的List
+    # ---------------------排序
     return render(request, "_test.html", locals())
 
 
@@ -840,4 +961,3 @@ def crowd_judge(crowd):
 # 我的行程(歷史紀錄)
 def sayhello(request):
     return render(request, "_sayhello.html")
-
