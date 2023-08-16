@@ -452,7 +452,13 @@ def attraction_details(request):
         choose_attractions = Attractions.objects.filter(id=choose_a_id).values().first()
         return JsonResponse(choose_attractions)
 
-    # print(search_list)
+    # 判斷是否已收藏
+    for index,search in enumerate(search_list):
+        if Favorite.objects.filter(u_id=user, a_id=search['id']).exists():
+            search_list[index].setdefault('is_favorite','1')
+        else:
+            search_list[index].setdefault('is_favorite','0')
+    print(search_list)
     return render(request, "attraction_details.html", locals())
 
 
