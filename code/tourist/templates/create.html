@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}建立行程{% endblock %}
 {% block content %}
-  <link rel="stylesheet" href="../static/css/create.css">
+  <link rel="stylesheet" href="/static/css/create.css">
   <script></script>
 {% endblock %}
 {% block body %}
@@ -45,14 +45,12 @@
                   <div class="tabD">
                     <span ng-bind="travName"></span>
                   </div>
-                  <div class="tabD">
-                    <a href="#tab_c" class="tab_day">第一天</a>
-                  </div>
-                  <div class="tabD">
-                    <a href="#tab_c" class="tab_day">第二天</a>
+                  <button id="addDay">+一天</button>
+                  <div class="tabD" id="addDaydiv">
+                    <!--我在js會被新增!-->
                   </div>
                   <div class=" tabc_txt">
-                    <input type="submit" class="input_txt" value="儲存">
+                    <button class="input_txt" id="saveDays">儲存</button>
                   </div>
                 </div>
               </div>
@@ -101,7 +99,7 @@
           <div class="col-lg-4 col-md-6">
             <div style="text-align: center;">
               <div class="heart_icon_box">
-                <img src="../static/images/pingxi.jpg" class="img-responsive" width="100%">
+                <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
                 <i class="fa-solid fa-heart heart_icon"></i>
               </div>
               <div class="spot_like_txt">
@@ -127,7 +125,7 @@
           <div class="col-lg-4 col-md-6">
             <div style="text-align: center;">
               <div class="heart_icon_box">
-                <img src="../static/images/pingxi.jpg" class="img-responsive" width="100%">
+                <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
                 <i class="fa-solid fa-heart heart_icon"></i>
               </div>
               <div class="spot_like_txt">
@@ -153,7 +151,7 @@
           <div class="col-lg-4 col-md-6">
             <div style="text-align: center;">
               <div class="heart_icon_box">
-                <img src="../static/images/pingxi.jpg" class="img-responsive" width="100%">
+                <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
                 <i class="fa-solid fa-heart heart_icon"></i>
               </div>
               <div class="spot_like_txt">
@@ -279,7 +277,7 @@
                     </div>
                   </div>
                   <div class="col-md-4 rec_spot">
-                    <img src="../static/images/twotwoeight.jpeg"
+                    <img src="/static/images/twotwoeight.jpeg"
                          class="img-responsive"
                          width="100%">
                   </div>
@@ -306,7 +304,7 @@
                     </div>
                   </div>
                   <div class="col-md-4 rec_spot">
-                    <img src="../static/images/twotwoeight.jpeg"
+                    <img src="/static/images/twotwoeight.jpeg"
                          class="img-responsive rec_spot"
                          width="100%">
                   </div>
@@ -333,7 +331,7 @@
                     </div>
                   </div>
                   <div class="col-md-4 rec_spot">
-                    <img src="../static/images/twotwoeight.jpeg"
+                    <img src="/static/images/twotwoeight.jpeg"
                          class="img-responsive rec_spot"
                          width="100%">
                   </div>
@@ -360,7 +358,7 @@
                     </div>
                   </div>
                   <div class="col-md-4 rec_spot">
-                    <img src="../static/images/twotwoeight.jpeg"
+                    <img src="/static/images/twotwoeight.jpeg"
                          class="img-responsive rec_spot"
                          width="100%">
                   </div>
@@ -387,7 +385,7 @@
                     </div>
                   </div>
                   <div class="col-md-4 rec_spot">
-                    <img src="../static/images/twotwoeight.jpeg"
+                    <img src="/static/images/twotwoeight.jpeg"
                          class="img-responsive rec_spot"
                          width="100%">
                   </div>
@@ -416,7 +414,7 @@
                     </div>
                   </div>
                   <div class="col-md-4 rec_spot">
-                    <img src="../static/images/twotwoeight.jpeg"
+                    <img src="/static/images/twotwoeight.jpeg"
                          class="img-responsive rec_spot"
                          width="100%">
                   </div>
@@ -443,7 +441,7 @@
                     </div>
                   </div>
                   <div class="col-md-4 rec_spot">
-                    <img src="../static/images/twotwoeight.jpeg"
+                    <img src="/static/images/twotwoeight.jpeg"
                          class="img-responsive rec_spot"
                          width="100%">
                   </div>
@@ -470,7 +468,7 @@
                     </div>
                   </div>
                   <div class="col-md-4 rec_spot">
-                    <img src="../static/images/twotwoeight.jpeg"
+                    <img src="/static/images/twotwoeight.jpeg"
                          class="img-responsive rec_spot"
                          width="100%">
                   </div>
@@ -497,7 +495,7 @@
                     </div>
                   </div>
                   <div class="col-md-4 rec_spot">
-                    <img src="../static/images/twotwoeight.jpeg"
+                    <img src="/static/images/twotwoeight.jpeg"
                          class="img-responsive rec_spot"
                          width="100%">
                   </div>
@@ -524,7 +522,7 @@
                     </div>
                   </div>
                   <div class="col-md-4 rec_spot">
-                    <img src="../static/images/twotwoeight.jpeg"
+                    <img src="/static/images/twotwoeight.jpeg"
                          class="img-responsive rec_spot"
                          width="100%">
                   </div>
@@ -607,7 +605,7 @@
         </form>
         {% comment %} <div class="beitou col-md-6">
           <div class="col-5">
-            <img src="../static/images/beitou.jpeg" alt=""  height="250">
+            <img src="/static/images/beitou.jpeg" alt=""  height="250">
           </div>
           <div class="col-7">
             <div style="text-align: left;">
@@ -618,7 +616,7 @@
         </div>
         <div class="datong col-md-6">
           <div class="col-5">
-            <img src="../static/images/Datong.jpeg" alt=""  height="250">
+            <img src="/static/images/Datong.jpeg" alt=""  height="250">
           </div>
           <div class="col-7">
             <div style="text-align: left;">
@@ -627,8 +625,8 @@
             </div>
           </div>
         </div>
-        <div class="shilin"><img src="../static/images/Shilin.jpeg" alt=""  height="250"></div>
-        <div class="zhongshan"><img src="../static/images/Zhongshan.jpeg" alt=""  height="250"></div> {% endcomment %}
+        <div class="shilin"><img src="/static/images/Shilin.jpeg" alt=""  height="250"></div>
+        <div class="zhongshan"><img src="/static/images/Zhongshan.jpeg" alt=""  height="250"></div> {% endcomment %}
         {% comment %} </div> {% endcomment %}
       </div>
       <div class="row">
@@ -650,7 +648,7 @@
   </div>
 {% endblock body %}
 {% block content_script %}
-  <script src="../static/js/create.js"></script>
+  <script src="/static/js/create.js"></script>
   <script>
     $(function(){
       $("button").click(function(){
@@ -706,7 +704,7 @@
       const userLocation = document.getElementById("userLocation");
         $.ajax({
           type: "POST",
-          url: "/create/{{ct_id}}", // 替换为您的 views.py 文件的 URL
+          url: "/create/{{ct_id}}/{{choiceday}}", // 替换为您的 views.py 文件的 URL
           data: {
               location: userLocation.value,
               nowtime: nowtime.value,
@@ -723,7 +721,7 @@
             var mListContainer = document.getElementById("AttractionsContainer")
             for (var item of m_list) {
               mListContainer.innerHTML += '<input type="checkbox" value="'+item.place_id+'">';
-              mListContainer.innerHTML +='<div class="col-5"><img src="../static/images/101.jpg" alt=""  height="250"></div>'
+              mListContainer.innerHTML +='<div class="col-5"><img src="/static/images/101.jpg" alt=""  height="250"></div>'
               mListContainer.innerHTML +='<div class="col-7"><div style="text-align: left;">'
               mListContainer.innerHTML += "<p>" + item.place_id + "<p>";
               mListContainer.innerHTML += "<p>" + item.a_name + "<p>";
@@ -754,7 +752,7 @@
       
       $.ajax({
         type: "POST",
-        url: "/create/{{ct_id}}", // 替换为您的 views.py 文件的 URL
+        url: "/create/{{ct_id}}/{{choiceday}}", // 替换为您的 views.py 文件的 URL
         data: {
             select_aid_list: select_aid_list,
             nowtime:nowtime.value,
@@ -771,7 +769,7 @@
           var mListContainer = document.getElementById("AttractionsContainer_o")
           for (var item of o_list) {
             mListContainer.innerHTML += '<input type="checkbox" value="'+item.place_id+'">';
-            mListContainer.innerHTML +='<div class="col-5"><img src="../static/images/101.jpg" alt=""  height="250"></div>'
+            mListContainer.innerHTML +='<div class="col-5"><img src="/static/images/101.jpg" alt=""  height="250"></div>'
             mListContainer.innerHTML +='<div class="col-7"><div style="text-align: left;">'
             mListContainer.innerHTML += "<p>" + item.place_id + "<p>";
             mListContainer.innerHTML += "<p>" + item.a_name + "<p>";
@@ -803,7 +801,7 @@
       
       $.ajax({
         type: "POST",
-        url: "/create/{{ct_id}}", // 替换为您的 views.py 文件的 URL
+        url: "/create/{{ct_id}}/{{choiceday}}", // 替换为您的 views.py 文件的 URL
         data: {
             all_select: all_select,
             nowtime:nowtime.value,
@@ -864,6 +862,45 @@
             }
           }
 
+        },
+
+        error: function() {
+          alert('有錯誤!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+        },
+      });
+    });
+
+
+    var addDay = document.getElementById('addDay');
+    var num = 1;
+    addDay.addEventListener("click",function(e){
+      var addDaydiv = document.getElementById("addDaydiv");
+      addDaydiv.innerHTML += '<a href="/create/{{ct_id}}/'+num+'" class="tab_day" >'+num+' Day<br></a>'
+      num ++;
+    });
+    
+    addDay.click() //初始加一天
+
+    var saveDays = document.getElementById('saveDays');
+    saveDays.addEventListener("click",function(e){
+      alert('儲存'+'{{choiceday}}');
+      var nowtime=document.getElementById("nowtime");
+      var userLocation = document.getElementById("userLocation");
+      console.log(nowtime,userLocation)
+      $.ajax({
+        type: "POST",
+        url: "/create/{{ct_id}}/{{choiceday}}", // 替换为您的 views.py 文件的 URL
+        data: {
+            days: '{{choiceday}}',
+            location:userLocation.value,
+            nowtime:nowtime.value,
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            ct_status:3,
+        },
+        success: function(response) {
+          // 在這裡處理伺服器回傳的 JSON 數據
+          console.log(response);  // 查看回傳的值  
+          alert('儲存成功');
         },
 
         error: function() {
