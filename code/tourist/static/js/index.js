@@ -19,42 +19,6 @@ var heart = document.getElementsByClassName('heart_icon');
         })(i);
     } 
 
-//高度一樣
-$(function(){
-  var h = 0;
-
-  $(".owl_main .item").each(function(){
-
-    if($(this).height() > h){
-      h = $(this).height();
-    }
-    
-  });
-
-  $(".owl_main .item").css("height",h + "px");
-});
-
-
-//輪播
-$('.owl-carousel').owlCarousel({
-    loop:true,
-    margin:10,
-    nav:true,
-    dots:false,
-    responsive:{
-        0:{
-            items:2
-        },
-        600:{
-            items:3
-        },
-        1000:{
-            items:4
-        }
-    }
-})
-
-
 
 //熱門行程詳細資訊
 $(function(){
