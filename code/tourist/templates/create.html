@@ -86,6 +86,10 @@
                     </p>
                   </div>
                   -->
+                  
+              </div>
+              <div id="RemainderAttractions">
+                
               </div>
             </div>
           </div>
@@ -814,7 +818,8 @@
           var final_crow_opening_list = response.final_crow_opening_list;  // 假設 crow_opening_list 是 JSON 中的一個鍵
           var final_remainder_result_list = response.final_remainder_result_list;  // 假設 m_list 是 JSON 中的一個鍵
           var final_remainder_crow_opening_list = response.final_remainder_crow_opening_list;  // 假設 crow_opening_list 是 JSON 中的一個鍵
-
+          
+          //安排完的景點
           var OrderAttractions = document.getElementById("OrderAttractions")
           var count=0
           var length_f=final_result_list.length;
@@ -833,6 +838,30 @@
             temp += '</div>';
 
             OrderAttractions.innerHTML += temp;
+          }
+          //剩餘的部分(註解掉的)
+          var RemainderAttractions = document.getElementById("RemainderAttractions")
+          var count_remainder=0
+          var length_fr=final_remainder_result_list.length;
+          
+          if(length_fr!=0){
+            RemainderAttractions.innerHTML +='<hr>剩餘的部分';
+            for (let r = 0; r < length_fr; r++) {
+              final_remainder_result = final_remainder_result_list[r];
+              final_remainder_crow_opening = final_remainder_crow_opening_list[r];
+              console.log('final_remainder_result',final_remainder_result);
+              console.log('final_remainder_crow_opening',final_remainder_crow_opening);
+              count++;
+              var temp_r='<div class="spot" id="spot' + count + '">';
+              temp_r += final_remainder_result.a_name;
+              temp_r += '<p>位在台北市XX區';
+              temp_r += '<p>目前人潮流量：<br>';
+              temp_r += '<p>營業時間：' + final_remainder_crow_opening.opening + '<br>';
+              temp_r += '<p>建議停留時間：' + final_remainder_result.stay_time + '<br>';
+              temp_r += '</div>';
+
+              RemainderAttractions.innerHTML += temp_r;
+            }
           }
 
         },

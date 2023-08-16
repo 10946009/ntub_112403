@@ -332,34 +332,37 @@ def create(request, ct_id):
             final = final_order(
                 o_attractions_list, new_nowtime, week, stay_time, user_favorite
             )
-            print('final,我在這!!!!!!!!!!!!!!!!',final)
+            # print('final,我在這!!!!!!!!!!!!!!!!',final)
             # ------主要的
-            final_result_list = Attractions.objects.filter(place_id__in=final[0])
+            final_result_list=[]
             final_crow_opening_list = []
+            for f in final[0]:
+                temp = Attractions.objects.filter(place_id=f).values().first()
+                final_result_list.append(temp)
             for i in final_result_list:
                 f_db = (
-                    Crowd_Opening.objects.filter(Q(week=week) & Q(a_id=i.id))
+                    Crowd_Opening.objects.filter(Q(week=week) & Q(a_id=i['id']))
                     .values()
                     .first()
                 )
                 final_crow_opening_list.append(f_db)
-            final_result_list = list(final_result_list.values())
+            # final_result_list = list(final_result_list)
             # ------剩餘的
             final_remainder_result_list=[]
             final_remainder_crow_opening_list = []
             try:
-                final_remainder_result_list = Attractions.objects.filter(
-                    place_id__in=final[1]
-                )
+                for fr in final[1]:
+                    temp_r = Attractions.objects.filter(place_id=fr).values().first()
+                    final_remainder_result_list.append(temp_r)
                 
                 for i in final_remainder_result_list:
                     fr_db = (
-                        Crowd_Opening.objects.filter(Q(week=week) & Q(a_id=i.id))
+                        Crowd_Opening.objects.filter(Q(week=week) & Q(a_id=i['id']))
                         .values()
                         .first()
                     )
                     final_remainder_crow_opening_list.append(fr_db)
-                final_remainder_result_list = list(final_remainder_result_list.values())
+                # final_remainder_result_list = list(final_remainder_result_list)
             except:
                 pass
             # ------------
@@ -479,7 +482,7 @@ def check_opening(now_time, week, stay_time):
                     opening = opening.replace(" ", "")
                     if now_time >= int(opening[0:2]) * 60 + int(
                         opening[3:5]
-                    ) and now_time < int(opening[6:8]) * 60 + int(opening[9:]):
+                    ) and now_time <= int(opening[6:8]) * 60 + int(opening[9:]):
                         ok_a_list.append(a.a_id)
                         break
     return ok_a_list
@@ -512,7 +515,7 @@ def check_distance_placeid(get_user_address, a_id_list):
     return ok_a_list
 
 
-# ------------------------------------確認營業時間(排序景點)
+# ------------------------------------確認營業時間(排序景點)沒有用到~~~~
 def order_check_opening(o_attractions_list, now_time, week):
     ok_a_list = []
     now_time += 150
@@ -534,7 +537,8 @@ def order_check_opening(o_attractions_list, now_time, week):
 # ------------------------------------景點排序(根據使用者喜好、擁擠、營業時間)
 def order_check_attrations(
     o_attractions_list, now_time, week, stay_time, user_favorite
-):
+):  
+    print('now_time',now_time)
     # 判斷當下有沒有營業，沒有就不放進陣列
     ok_a_list = []
     # now_time+=stay_time
@@ -561,6 +565,7 @@ def order_check_attrations(
     o_favorite_list = []
     o_opening_list = []
     temp_o_opening_list = []
+
     for o in ok_a_list:
         score = 0
         o_db = Attractions.objects.get(place_id=o)
@@ -571,7 +576,7 @@ def order_check_attrations(
 
     # 再判斷景點的人潮流量（1-5，1為最高），判斷營業時間
     time = now_time // 60
-    stay_time = 150
+    # stay_time = 150
     for o in ok_a_list:
         o_db = Attractions.objects.get(place_id=o)
         o_crowd_opening = o_db.crowd_opening_set.filter(week=week).values()
@@ -584,7 +589,7 @@ def order_check_attrations(
         except:
             o_crowd_list.append(0)
         for op in opening:
-            print(op)
+            # print(op)
             if op == "24小時營業":
                 o_opening_list.append(1440)
             else:
@@ -724,6 +729,7 @@ def recommend(user_favorite, now_time, get_user_address, day, stay_time):
         "ChIJXcZNw26yQjQRk-ovoSxin1g",
         "ChIJe7yJbYSpQjQRWKgqXWSDg7w",
         "ChIJQev3766vQjQR_R7YpgCRhLk",
+        "ChIJTeIZgaCvQjQRlMvYvVAE6WE",
     ]
     return m_attractions_list
 
@@ -844,12 +850,13 @@ def final_order(o_attractions_list, now_time, week, stay_time, user_favorite):
         # Attractions.objects.get(place_id=x).crowd_opening_set.filter(week=week).values()[0]["opening"],
         for x in o_attractions_list
     ]
-    f_final_list_name = [
-        Attractions.objects.get(place_id=x).place_id
-        # Attractions.objects.get(place_id=x).crowd_opening_set.filter(week=week).values()[0]["opening"],
-        for x in final_list
-    ]
-    all_list.append(f_final_list_name)
+    # f_final_list_name = [
+    #     Attractions.objects.get(place_id=x).place_id
+    #     # Attractions.objects.get(place_id=x).crowd_opening_set.filter(week=week).values()[0]["opening"],
+    #     for x in final_list
+    # ]
+    print('final_list!!!!!!!!!!!!!',final_list)
+    all_list.append(final_list)
     all_list.append(remainder_list)
     return all_list
 
