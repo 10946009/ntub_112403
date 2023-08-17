@@ -87,9 +87,9 @@
 
 
 <div class="row Att_Info">
-    <div class="col-3"></div>
+    <div class="col-3 "></div>
     <!-- 景點資訊主體 -->
-    <div class="col-6">
+    <div class="col-6 ">
         <!-- 景點資訊條列 -->
         {% for item in search_list %}
         <div class="row Info_item">
@@ -107,23 +107,21 @@
                         data-a-Id="{{ item.id }}">
                     <!-- 收藏按鈕 -->
                     {% if item.is_favorite == "0" %}
-                    <button name="submitfavorite" id="submitfavorite{{item.id}}" data-isfavorite="{{item.is_favorite}}"
-                        onclick="addFavorite({{item.id}})"
-                        style=" position: absolute;top: 24px;right:20px;transform: translate(50%, -50%);background-color: #fff;border-radius: 50%;padding:4px 10px 4px 10px;">
+                    <button class="col_btn" name="submitfavorite" id="submitfavorite{{item.id}}"
+                        data-isfavorite="{{item.is_favorite}}" onclick="addFavorite({{item.id}})">
                         <i class="fa-regular fa-bookmark"></i></button>
                     {% else %}
-                    <button name="submitfavorite" id="submitfavorite{{item.id}}" data-isfavorite="{{item.is_favorite}}"
-                        onclick="addFavorite({{ item.id }})"
-                        style=" position: absolute;top: 24px;right:20px;transform: translate(50%, -50%);background-color: #fff;border-radius: 50%;padding:4px 10px 4px 10px;">
+                    <button class="col_btn" name="submitfavorite" id="submitfavorite{{item.id}}"
+                        data-isfavorite="{{item.is_favorite}}" onclick="addFavorite({{ item.id }})">
                         <i class="fa-solid fa-bookmark"></i></button>
                     {% endif %}
                     <!-- 圖片滑動按鈕箭頭 -->
                     <a class=" w3-btn-floating"
-                            style="position:absolute;top:40%;left:0;text-decoration:none;font-size: 30px;"
-                            onclick="plusDivs(-1,'{{ item.id }}')">❮</a>
-                            <a class="w3-btn-floating"
-                                style="position:absolute;top:40%;right:0;text-decoration:none;font-size: 30px;"
-                                onclick="plusDivs(1,'{{ item.id }}')">❯</a>
+                        style="position:absolute;top:40%;left:0;text-decoration:none;font-size: 30px;"
+                        onclick="plusDivs(-1,'{{ item.id }}')">❮</a>
+                    <a class="w3-btn-floating"
+                        style="position:absolute;top:40%;right:0;text-decoration:none;font-size: 30px;"
+                        onclick="plusDivs(1,'{{ item.id }}')">❯</a>
                 </div>
             </div>
             <!-- 景點相關簡短資訊 -->
@@ -175,7 +173,7 @@
 
 <!-- 景點詳細資料隱藏點擊 -->
 <div id="id01" class="row modal">
-    <div class="col-12">
+    <div class="col-12 col-s-12">
         <form class="modal-content animate" action="/action_page.php" method="post">
             <div class="imgcontainer">
                 <span onclick="document.getElementById('id01').style.display='none'" class="close"
