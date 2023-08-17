@@ -51,6 +51,7 @@ function toggleDropdownMenu(addIcon) {
   };
 }
 
+//add dropdown
 $(function() {
   $(".dropdown_menu").hide();
 

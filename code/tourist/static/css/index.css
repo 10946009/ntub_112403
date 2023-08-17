@@ -196,8 +196,11 @@ html{
 }
 
 @media( max-width: 768px ) {
+	.banner{
+		height: 500px;
+	}
 	.systemname{
-	  font-size: 80px;
+	  font-size: 60px;
 	}
 	.carousel-control-prev,
 	.carousel-control-next {
@@ -224,8 +227,11 @@ html{
 	}
 }
 @media(max-width: 576px){
-	.sysname{
-		font-size: 32px;
+	.banner{
+		height: 350px;
+	}
+	.systemname{
+		font-size: 50px;
 	}
 	.carousel-control-prev,
 	.carousel-control-next {
@@ -289,14 +295,19 @@ html{
 	}
 }
 @media (max-width: 488px) {
+	.banner{
+		height: 300px;
+	}
 	.systemname{
-	  top: 92%;
-	  font-size: 60px;
-	}	
+		font-size: 40px;
+	}
 }
-@media(max-width: 375px){
-	.sysname{
-		font-size: 28px;
+@media(max-width: 376px){
+	.banner{
+		height: 300px;
+	}
+	.systemname{
+		font-size: 35px;
 	}
 	.carousel_block{
 		padding: 0 1px;
