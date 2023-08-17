@@ -122,7 +122,7 @@
     }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 800px) {
 
     /* For desktop: */
     .col-1 {
@@ -173,6 +173,8 @@
         width: 100%;
     }
 }
+
+
 
 * {
     box-sizing: border-box;
@@ -356,12 +358,6 @@ input[type=password] {
     position: relative;
 }
 
-
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
-
 /* The Modal (background) */
 .modal {
     display: none;
@@ -382,7 +378,7 @@ span.psw {
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
     /* Black w/ opacity */
-    padding: 60px;
+    padding: 80px;
 }
 
 /* Modal Content/Box */
@@ -437,19 +433,93 @@ span.psw {
     }
 }
 
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
-        display: block;
-        float: none;
+@media only screen and (max-width: 768px) {
+
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+    }
+
+    .imgcontainer {
+        text-align: center;
+        margin: 10px 0 10px 0;
+        position: relative;
+    }
+
+    /* The Modal (background) */
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+        padding: 0;
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 0 auto;
+        /* 5% from the top, 15% from the bottom and centered */
+        border: 1px solid #888;
+        width: 100%;
+        /* Could be more or less, depending on screen size */
     }
 
     .cancelbtn {
         width: 100%;
     }
+
 }
 
+@media only screen and (min-width: 768px) and (max-width: 1280px) {
+    .col-3 {
+        width: 16.66%;
+    }
 
+    .col-6 {
+        width: 66.66%;
+    }
+
+    .col-2 {
+        width: 8.33%;
+    }
+
+    .col-8 {
+        width: 83.33%;
+    }
+}
+
+@media only screen and (min-width: 1441px) and (max-width: 2560px) {
+    .col-3 {
+        width: 16.66%;
+    }
+
+    .col-6 {
+        width: 66.66%;
+    }
+
+    .col-2 {
+        width: 8.33%;
+    }
+
+    .col-8 {
+        width: 83.33%;
+    }
+}
 
 
 img {
@@ -636,9 +706,20 @@ img {
     .right {
         display: none;
     }
+
 }
 
 .info_tit:hover {
     text-decoration-style: solid;
-    color: rgb(0, 89, 255);
+    color: rgb(0, 85, 255);
+}
+
+.col_btn {
+    position: absolute;
+    top: 24px;
+    right: 20px;
+    transform: translate(50%, -50%);
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 4px 10px 4px 10px;
 }
