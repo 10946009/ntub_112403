@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from datetime import datetime
@@ -466,12 +467,6 @@ def favorite(request):
 def share(request):
     return render(request, "share.html")
 
-
-# 景點資訊
-# def attraction_details(request,a_id):
-#     return render(request, "attraction_details.html")
-
-
 def add_favorite(request):
     u_id = request.user.id
     aid = request.POST.get("aid")
@@ -495,7 +490,8 @@ def attraction_details(request):
     search_list = []
     # print(request.method)
     user = request.user.id
-
+    attractions_search = list(Attractions.objects.values_list('a_name', flat=True))
+    attractions_search_json = json.dumps(attractions_search)
     if request.method == "POST":
         query = request.POST.get("searchQuery")
         search_url = "/attraction_details/?query=" + query

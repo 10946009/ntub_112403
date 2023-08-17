@@ -74,9 +74,9 @@
             <div class="container">
                 <div class="searchInput">
                     {% csrf_token %}
-                    <button class="icon" type="submit"><i class="fas fa-search"></i></button>
+                    <button class="icon" type="submit" id="searchClick"><i class="fas fa-search"></i></button>
                     <input type="search" ng-model="search_item" placeholder="想去哪玩.." id="myInput" name="searchQuery">
-                    <button class="filiter"><i class="fa-solid fa-filter"></i></button>
+                    <button class="filiter" type="submit"><i class="fa-solid fa-filter"></i></button>
                 </div>
             </div>
             <!-- 進階搜尋 -->
@@ -607,12 +607,15 @@
             this.parentNode.appendChild(a); // 將DIV元素加入輸入框的父元素中
 
             // 將不在arr陣列中的值顯示在下拉清單
+            searchClick = document.getElementById("searchClick");
             b = document.createElement("DIV");
             b.textContent = val; // 以輸入的值開頭
             b.innerHTML = `<i class="fas fa-search" style="margin-right:12px;"></i><strong>${val}</strong>&emsp;<span style="color:#a1a1a1">--xx搜尋</span>`;
             b.addEventListener("click", function (e) {
-                inp.value = this.textContent;
+                
+                inp.value = val;
                 closeAllLists();
+                searchClick.click();
             });
             a.appendChild(b);
 
@@ -620,14 +623,15 @@
                 if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) { // 尋找符合輸入值的項目
                     b = document.createElement("DIV"); // 建立新的DIV元素來放置該項目
                     // 使用模板字串來設定該DIV元素的內容，包括符合的部分加上搜尋圖示和強調文字部分
-                    b.innerHTML = `<i class="fas fa-search" style="margin-right:12px;"></i><strong>${arr[i].substr(0, val.length)}</strong>`;
-                    b.innerHTML += arr[i].substr(val.length); // 加上剩餘的部分
+                    b.innerHTML = `<i class="fas fa-search" style="margin-right:12px;"></i><strong>${arr[i].substr(0, val.length)}${arr[i].substr(val.length)}</strong>`;
                     b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>"; // 加入一個隱藏的input元素，用來存放選擇的值
                     b.addEventListener("click", function (e) { // 點擊項目時的事件處理
                         inp.value = this.getElementsByTagName("input")[0].value; // 設定輸入框的值為選擇的值
                         closeAllLists(); // 關閉所有項目清單
+                        searchClick.click();
                     });
                     a.appendChild(b); // 將該項目加入清單中
+
                 }
             }
         });
@@ -676,7 +680,7 @@
             closeAllLists(e.target);
         });
     }
-    var attractions = ["1", "aa", "abc", "台北101", "士林官邸", "士林夜市", "北投溫泉", "淡水紅毛城", "淡水老街", "淡水漁人碼頭", "台北動物園", "台北兒童新樂園", "台北車站"];
+    var attractions = JSON.parse('{{ attractions_search_json|safe }}');
     autocomplete(document.getElementById("myInput"), attractions);
 
 </script>
