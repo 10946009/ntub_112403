@@ -217,10 +217,11 @@ input {
 }
 
 .autocomplete-items {
-    background-color: #fff;
-    padding-bottom: 10px;
-    border-bottom-right-radius: 8px;
-    border-bottom-left-radius: 8px;
+    padding-left: 12px;
+    background-color: #f1f1f1;
+    padding-bottom: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
     position: absolute;
     border: 1px solid #d4d4d4;
     border-top: none;
@@ -233,18 +234,18 @@ input {
 .autocomplete-items div {
     padding: 10px;
     cursor: pointer;
-    background-color: #fff;
+    background-color: #f1f1f1;
 }
 
 /*when hovering an item:*/
 .autocomplete-items div:hover {
-    background-color: #e9e9e9;
+    background-color: #d9d8d8;
 }
 
 /*when navigating through the items using the arrow keys:*/
 .autocomplete-active {
-    background-color: DodgerBlue !important;
-    color: #ffffff;
+    background-color: #d9d8d8 !important;
+    color: black;
 }
 
 .search_body {
@@ -260,10 +261,11 @@ input {
 }
 
 .container {
-    max-width: 90%;
+    max-width: 100%;
 }
 
 .container .searchInput {
+    display: inline-block;
     background: #fff;
     width: 100%;
     border-radius: 50px;
@@ -274,37 +276,52 @@ input {
 }
 
 .searchInput input {
+    border: 1px solid #d4d4d4;
     height: 55px;
     width: 100%;
     outline: none;
-    border: none;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    padding: 0 60px 0 20px;
+    /* border-top-left-radius: 25px;
+    border-top-right-radius: 25px; */
+    padding: 0 50px 0 50px;
     font-size: 18px;
     transition: all 50ms ease-in-out;
+    font-size: 18px;
+    border-radius: 30px;
+    outline: none;
+    transition: border-radius 0.3s;
+    cursor: pointer;
 }
 
-.searchInput.active input {
-    border-radius: 5px 5px 0 0;
+.searchInput input:focus {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom: none;
 }
 
 .searchInput .icon {
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    height: 55px;
-    width: 55px;
-    text-align: center;
-    line-height: 55px;
-    font-size: 20px;
-    color: #4b87ff;
-    cursor: pointer;
     border: none;
-    background-color: #d7d8d8;
-    transition: all 50ms ease-in-out;
-    border-top-right-radius: 25px;
-    /* border-bottom-right-radius: 50px; */
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    /* Adjust the distance from the right edge of the input */
+    transform: translateY(-50%);
+}
+
+.filiter {
+    border: none;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    /* Adjust the distance from the right edge of the input */
+    transform: translateY(-50%);
+}
+
+.filiter:hover {
+    color: rgb(122, 155, 233);
+}
+
+.info_tit {
+    cursor: pointer;
 }
 
 
@@ -313,13 +330,7 @@ input {
     border-top-right-radius: 25px;
 } */
 
-.filiter {
-    border: none;
-}
 
-.filiter:hover {
-    color: rgb(122, 155, 233);
-}
 
 .Info_item {
     margin-top: 20px;
@@ -503,7 +514,7 @@ input[type=password] {
     }
 }
 
-@media only screen and (min-width: 1441px) and (max-width: 2560px) {
+@media only screen and (min-width: 1560px) {
     .col-3 {
         width: 16.66%;
     }
@@ -518,6 +529,49 @@ input[type=password] {
 
     .col-8 {
         width: 83.33%;
+    }
+
+    #myInput {
+        height: 70px;
+        font-size: 22px;
+    }
+
+    .searchInput .icon {
+        position: absolute;
+        text-align: center;
+        font-size: 25px;
+        cursor: pointer;
+        border: none;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+    }
+
+    .info_tit {
+        cursor: pointer;
+        font-size: 32px;
+    }
+
+    .rating {
+        font-size: 26px;
+    }
+
+    .short_info h6 {
+        font-size: 26px;
+        margin-top: 8px;
+    }
+
+    .w3-content .col_btn {
+        width: 50px;
+        font-size: 24px;
+        position: absolute;
+        top: 28px;
+        right: 25px;
+        transform: translate(50%, -50%);
+        background-color: #fff;
+        border-radius: 50%;
+        padding: 4px 12px 4px 12px;
+        margin: 12px;
     }
 }
 
@@ -714,7 +768,7 @@ img {
     color: rgb(0, 85, 255);
 }
 
-.col_btn {
+.w3-content .col_btn {
     position: absolute;
     top: 24px;
     right: 20px;
