@@ -609,7 +609,7 @@
             // 將不在arr陣列中的值顯示在下拉清單
             b = document.createElement("DIV");
             b.textContent = val; // 以輸入的值開頭
-            b.innerHTML = `<i class="fas fa-search" style="margin-right:12px;"></i><strong>${val}</strong>`;
+            b.innerHTML = `<i class="fas fa-search" style="margin-right:12px;"></i><strong>${val}</strong>&emsp;<span style="color:#a1a1a1">--xx搜尋</span>`;
             b.addEventListener("click", function (e) {
                 inp.value = this.textContent;
                 closeAllLists();
