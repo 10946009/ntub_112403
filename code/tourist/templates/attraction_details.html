@@ -94,7 +94,7 @@
         {% for item in search_list %}
         <div class="row Info_item">
             <!-- 景點圖片 -->
-            <div class="col-5">
+            <div class="col-4">
                 <div class="w3-content" style="max-width:800px;position:relative;">
                     <img data-name="{{ item.id }}" class="slide" src="../static/images/Datong.jpeg"
                         style="width:100%;max-width: 100%; cursor: pointer;" onclick="showInfo(this)"
@@ -116,16 +116,12 @@
                         <i class="fa-solid fa-bookmark"></i></button>
                     {% endif %}
                     <!-- 圖片滑動按鈕箭頭 -->
-                    <a class=" w3-btn-floating"
-                        style="position:absolute;top:40%;left:0;text-decoration:none;font-size: 30px;"
-                        onclick="plusDivs(-1,'{{ item.id }}')">❮</a>
-                    <a class="w3-btn-floating"
-                        style="position:absolute;top:40%;right:0;text-decoration:none;font-size: 30px;"
-                        onclick="plusDivs(1,'{{ item.id }}')">❯</a>
+                    <a class=" w3-btn-floating_left" onclick="plusDivs(-1,'{{ item.id }}')">❮</a>
+                    <a class="w3-btn-floating_right" onclick="plusDivs(1,'{{ item.id }}')">❯</a>
                 </div>
             </div>
             <!-- 景點相關簡短資訊 -->
-            <div class="col-7 short_info" style="width:auto;">
+            <div class="col-8 short_info" style="width:auto;">
                 <!-- 景點名稱 -->
                 <h5 class="info_tit" onclick="showInfo(this)" data-a-Id="{{ item.id }}">
                     {{item.a_name }}</h5>
@@ -481,7 +477,7 @@
 
                 var attractions = response;
 
-                // 將資料放進網頁中
+                //將資料放進網頁中
 
                 var attractionsDetailName = document.getElementById('attractions-detail-name');
                 var attractionsDetailAddress = document.getElementById('attractions-detail-address');
@@ -612,7 +608,7 @@
             b.textContent = val; // 以輸入的值開頭
             b.innerHTML = `<i class="fas fa-search" style="margin-right:12px;"></i><strong>${val}</strong>&emsp;<span style="color:#a1a1a1">--xx搜尋</span>`;
             b.addEventListener("click", function (e) {
-                
+
                 inp.value = val;
                 closeAllLists();
                 searchClick.click();
