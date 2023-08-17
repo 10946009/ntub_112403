@@ -52,7 +52,7 @@ class Attractions(models.Model):
     phone = models.TextField(max_length=255,null=False, blank=True)
     rating = models.FloatField(null=False, blank=False)
     rating_total = models.IntegerField(null=False, blank=False,default=-1)
-    score = models.FloatField(default=0,null=False, blank=False)
+    hit = models.IntegerField(default=0,null=False, blank=False)
     stay_time = models.IntegerField(null=True, blank=False)
     hot_month = ArrayField(models.IntegerField())
     att_type = ArrayField(models.IntegerField())
@@ -82,9 +82,8 @@ class ChoiceDay_Ct(models.Model):
 
 
 class Attractions_Ct(models.Model):
-    ct = models.ForeignKey(to=Create_Travel, on_delete=models.CASCADE)#行程沒了也會被刪除
+    choice_ct = models.ForeignKey(to=ChoiceDay_Ct, on_delete=models.CASCADE,default=-1)#行程沒了也會被刪除
     a = models.ForeignKey(to=Attractions, on_delete=models.SET_DEFAULT,default=-1)#景點沒了a_id會被設為-1
-    choice_day = models.IntegerField(null=False,blank=False, default=1)
     a_start_time = models.IntegerField(null=False,blank=False)
     stay_time = models.IntegerField(null=False,blank=False)
     distance = models.FloatField(null=False, blank=False)
