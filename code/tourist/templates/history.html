@@ -34,7 +34,10 @@
         <p class="mytravel_txt_detail">天數：</p>
         <p class="mytravel_txt_detail">地點：</p>
       </div>
-      <button class="more_btn">詳細資料</button>
+      <button class="more_btn" data-target="more1">詳細資料</button>
+    </div>
+    <div id="more1" class="hidden-details" style="display: none;">
+      第一天<br>第二天<br>第三天
     </div>
 
   <div class="row mytravel">
@@ -46,7 +49,48 @@
       <p class="mytravel_txt_detail">天數：</p>
       <p class="mytravel_txt_detail">地點：</p>
     </div>
-    <button class="more_btn">詳細資料</button>
+    <button class="more_btn" data-target="more2">詳細資料</button>
+  </div>
+  <div id="more2" class="hidden-details">
+    <ul class="nav nav-underline">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">第一天</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">第二天</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">第三天</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="row mytravel">
+    <div class="col-4 mytravel_img">
+      <img src="../static/images/dog.jpg" class="img-responsive" width="100%" alt="">
+    </div>
+    <div class="col-8 mytravel_txt">
+      <h4 class="mytravel_txt_title">行程名稱：</h4>
+      <p class="mytravel_txt_detail">天數：</p>
+      <p class="mytravel_txt_detail">地點：</p>
+    </div>
+    <button class="more_btn" data-target="more3">詳細資料</button>
+  </div>
+  <div id="more3" class="hidden-details">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">第一天</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">第二天</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">第三天</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
   </div>
 </div>
 
