@@ -821,12 +821,14 @@
           var OrderAttractions = document.getElementById("OrderAttractions")
           var count=0
           var length_f=final_result_list.length;
+          var all_a=[]
           for (let i = 0; i < length_f; i++) {
             final_result = final_result_list[i];
             final_crow_opening = final_crow_opening_list[i];
             console.log('final_result',final_result);
             console.log('final_crow_opening',final_crow_opening);
             count++;
+            all_a.push(final_result.id)
             var temp='<div class="spot" id="spot' + count + '">';
             temp += final_result.a_name;
             temp += '<p>位在台北市XX區';
@@ -834,9 +836,10 @@
             temp += '<p>營業時間：' + final_crow_opening.opening + '<br>';
             temp += '<p>建議停留時間：' + final_result.stay_time + '<br>';
             temp += '</div>';
-
+        
             OrderAttractions.innerHTML += temp;
           }
+          OrderAttractions.innerHTML += '<div id="hiddenId" style="display: none;">'+ all_a +'</div>';
           //剩餘的部分(註解掉的)
           var RemainderAttractions = document.getElementById("RemainderAttractions")
           var count_remainder=0
@@ -852,6 +855,7 @@
               count++;
               var temp_r='<div class="spot" id="spot' + count + '">';
               temp_r += final_remainder_result.a_name;
+              temp_r += '<div id="hiddenId" style="display: none;">'+ final_remainder_result.id +'</div>';;
               temp_r += '<p>位在台北市XX區';
               temp_r += '<p>目前人潮流量：<br>';
               temp_r += '<p>營業時間：' + final_remainder_crow_opening.opening + '<br>';
@@ -886,7 +890,14 @@
       alert('儲存'+'{{choiceday}}');
       var nowtime=document.getElementById("nowtime");
       var userLocation = document.getElementById("userLocation");
-      console.log(nowtime,userLocation)
+      var all_id = document.getElementById("hiddenId");
+      if(all_id){
+        all_id=all_id.textContent;
+      }else{
+        all_id='';
+      }
+      alert(all_id)
+      console.log(nowtime,userLocation,all_id);
       $.ajax({
         type: "POST",
         url: "/create/{{ct_id}}/{{choiceday}}", // 替换为您的 views.py 文件的 URL
@@ -894,6 +905,7 @@
             days: '{{choiceday}}',
             location:userLocation.value,
             nowtime:nowtime.value,
+            all_id:all_id,
             csrfmiddlewaretoken: '{{ csrf_token }}',
             ct_status:3,
         },
