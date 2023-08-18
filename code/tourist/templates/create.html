@@ -670,7 +670,7 @@
     
     })
 
-    window.onload = function() {
+    window.addEventListener = function() {
       geoFindMe();
     };
 
@@ -721,9 +721,8 @@
             var mListContainer = document.getElementById("AttractionsContainer")
             for (var item of m_list) {
               mListContainer.innerHTML += '<input type="checkbox" value="'+item.place_id+'">';
-              mListContainer.innerHTML +='<div class="col-5"><img src="/static/images/101.jpg" alt=""  height="250"></div>'
-              mListContainer.innerHTML +='<div class="col-7"><div style="text-align: left;">'
-              mListContainer.innerHTML += "<p>" + item.place_id + "<p>";
+              mListContainer.innerHTML +='<div class="col-5"><img src="/static/images/attractions/'+ item.place_id +'_0.jpg" alt=""  height="250"></div>';
+              mListContainer.innerHTML +='<div class="col-7"><div style="text-align: left;">';
               mListContainer.innerHTML += "<p>" + item.a_name + "<p>";
               mListContainer.innerHTML += "<p>" + item.address + "<p></div></div>";
 
@@ -769,9 +768,9 @@
           var mListContainer = document.getElementById("AttractionsContainer_o")
           for (var item of o_list) {
             mListContainer.innerHTML += '<input type="checkbox" value="'+item.place_id+'">';
-            mListContainer.innerHTML +='<div class="col-5"><img src="/static/images/101.jpg" alt=""  height="250"></div>'
+            mListContainer.innerHTML +='<div class="col-5"><img src="/static/images/attractions/'+ item.place_id +'_0.jpg" alt=""  height="250"></div>'
             mListContainer.innerHTML +='<div class="col-7"><div style="text-align: left;">'
-            mListContainer.innerHTML += "<p>" + item.place_id + "<p>";
+            //mListContainer.innerHTML += "<p>" + item.place_id + "<p>";
             mListContainer.innerHTML += "<p>" + item.a_name + "<p>";
             mListContainer.innerHTML += "<p>" + item.address + "<p></div></div>";
 
