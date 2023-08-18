@@ -249,7 +249,7 @@ input {
 }
 
 .search_body {
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 40px;
 }
 
@@ -262,6 +262,7 @@ input {
 
 .container {
     max-width: 100%;
+    padding: 0 30px 0 30px;
 }
 
 .container .searchInput {
@@ -444,7 +445,7 @@ input[type=password] {
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 600px) {
 
     /* For mobile phones: */
     [class*="col-"] {
@@ -494,6 +495,14 @@ input[type=password] {
         width: 100%;
     }
 
+    .aa {
+        display: flex;
+        justify-content: center;
+        /* 在主軸上置中 */
+        align-items: center;
+        /* 在交叉軸上置中 */
+    }
+
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1280px) {
@@ -514,7 +523,7 @@ input[type=password] {
     }
 }
 
-@media only screen and (min-width: 1560px) {
+@media only screen and (min-width: 1800px) and (max-width: 2300px) {
     .col-3 {
         width: 16.66%;
     }
@@ -573,8 +582,159 @@ input[type=password] {
         padding: 4px 12px 4px 12px;
         margin: 12px;
     }
+
+    .container {
+        max-width: 100%;
+        padding: 0 50px 0 50px;
+    }
+
+    .container h3 {
+        font-size: 40px;
+    }
+
+    .container h5 {
+        font-size: 28px;
+    }
+
+    .container h6 {
+        font-size: 26px;
+    }
+
+    .container .question .btn_qa {
+        font-size: 26px;
+    }
+
+    .container p {
+        font-size: 22px;
+    }
+
+    .container .cancelbtn {
+        font-size: 26px;
+    }
+
+    .comment-text .span {
+        font-size: 20px;
+    }
+
 }
 
+@media only screen and (min-width: 2300px) {
+
+
+    #myInput {
+        height: 80px;
+        font-size: 26px;
+        padding-left: 60px;
+    }
+
+    .searchInput .icon {
+        position: absolute;
+        text-align: center;
+        font-size: 28px;
+        cursor: pointer;
+        border: none;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+    }
+
+    .filiter {
+        font-size: 28px;
+    }
+
+    .w3-btn-floating_right {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        text-decoration: none;
+        font-size: 60px;
+    }
+
+    .w3-btn-floating_left {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        text-decoration: none;
+        font-size: 60px;
+    }
+
+    .info_tit {
+        cursor: pointer;
+        font-size: 36px;
+    }
+
+    .rating {
+        font-size: 28px;
+    }
+
+    .short_info h6 {
+        margin-bottom: 15px;
+        font-size: 28px;
+        margin-top: 15px;
+    }
+
+    .w3-content .col_btn {
+        width: 60px;
+        font-size: 30px;
+        position: absolute;
+        top: 28px;
+        right: 30px;
+        transform: translate(50%, -50%);
+        background-color: #fff;
+        border-radius: 50%;
+        padding: 4px 12px 4px 12px;
+        margin: 12px;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 20px 70px 20px 70px;
+    }
+
+    .container h3 {
+        font-size: 44px;
+    }
+
+    .container h5 {
+        font-size: 32px;
+    }
+
+    .container h6 {
+        font-size: 30px;
+    }
+
+    .container .question .btn_qa {
+        font-size: 30px;
+    }
+
+    .container p {
+        font-size: 26px;
+    }
+
+    .container .cancelbtn {
+        font-size: 30px;
+    }
+
+    .comment-text .span {
+        font-size: 24px;
+    }
+}
+
+.w3-btn-floating_left {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    text-decoration: none;
+    font-size: 30px;
+}
+
+.w3-btn-floating_right {
+    position: absolute;
+    top: 40%;
+    right: 0;
+    text-decoration: none;
+    font-size: 30px;
+}
 
 img {
     vertical-align: middle;
