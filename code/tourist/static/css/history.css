@@ -35,3 +35,7 @@
     padding: 10px 15px;
     background-color: rgb(255, 243, 151);
 }
+/*展開詳細行程*/
+.hidden-details {
+    display: none;
+}

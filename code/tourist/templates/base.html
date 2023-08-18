@@ -28,7 +28,7 @@
             <img src="../static/images/logo_square1.png" class="logo_square1" id="logo_icon"  alt="">
           </a>
           <form class="d-flex" role="search">
-            <input class="form-control me-auto search" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control me-auto search" type="search" placeholder="想去哪玩.." aria-label="Search">
             <button class="btn btn-outline-success search_icon" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
           </form>
           <button class="navbar-toggler ms-auto rwd_icon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,6 +41,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/createindex">建立行程</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/attraction_details">詳細景點</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="/login" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -71,29 +74,29 @@
   <script src="../static/js/bootstrap.min.js"></script>
   {% block content_script %}{% endblock %}
   <script>
-  function changebgimg(){
-    const logo_icon = document.getElementById('logo_icon');
-  
-    if (document.documentElement.clientWidth < 488) {//把scroll的寬度也算進去
-      logo_icon.src = "../static/images/logo_icon.png"; // 替换成你想要的小屏图片路径
-    } else {
-      logo_icon.src = "../static/images/logo_square1.png"; // 替换成默认图片路径
+    function changebgimg(){
+      const logo_icon = document.getElementById('logo_icon');
+    
+      if (document.documentElement.clientWidth < 488) {//把scroll的寬度也算進去
+        logo_icon.src = "../static/images/logo_icon.png"; // 替换成你想要的小屏图片路径
+      } else {
+        logo_icon.src = "../static/images/logo_square1.png"; // 替换成默认图片路径
+      }
     }
-  }
-  // 首次加载和窗口大小变化时调用更新函数
-  window.addEventListener('load', changebgimg);
-  window.addEventListener('resize', changebgimg);
-  
-  // 確定是否在 index.html 文件中
-  var isIndexPage = window.location.pathname.includes("index.html");
+    // 首次加载和窗口大小变化时调用更新函数
+    window.addEventListener('load', changebgimg);
+    window.addEventListener('resize', changebgimg);
+    
 
-  // 根據檢查結果隱藏或顯示元素
-  if (!isIndexPage) {
-    var systemNameElement = document.getElementById("systemname");
-    if (systemNameElement) {
-      systemNameElement.style.display = "none"; // 隱藏元素
-    }
-  }
+    //不在index.html的時候隱藏systemname
+    window.onload = function() {
+      var isIndexPage = window.location.pathname === "/"; // 假设首页的路径是 "/"
+      var systemNameElement = document.getElementById("systemname");
+  
+      if (!isIndexPage && systemNameElement) {
+        systemNameElement.style.display = "none"; // 隐藏元素
+      }
+    };
   </script>
  
 </html>
