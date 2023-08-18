@@ -74,22 +74,22 @@
             <div class="container">
                 <div class="searchInput">
                     {% csrf_token %}
-                    <input type="search" ng-model="search_item" placeholder="想去哪玩.." id="myInput"
-                        style="font-size: 18px;" name="searchQuery">
                     <button class="icon" type="submit"><i class="fas fa-search"></i></button>
+                    <input type="search" ng-model="search_item" placeholder="想去哪玩.." id="myInput" name="searchQuery">
+                    <button class="filiter"><i class="fa-solid fa-filter"></i></button>
                 </div>
             </div>
             <!-- 進階搜尋 -->
-            <button class="filiter"><i class="fa-solid fa-filter"></i>進階</button>
+
         </form>
     </div>
 </div>
 
 
 <div class="row Att_Info">
-    <div class="col-3 "></div>
+    <div class="col-2 "></div>
     <!-- 景點資訊主體 -->
-    <div class="col-6 ">
+    <div class="col-8 ">
         <!-- 景點資訊條列 -->
         {% for item in search_list %}
         <div class="row Info_item">
@@ -125,9 +125,9 @@
                 </div>
             </div>
             <!-- 景點相關簡短資訊 -->
-            <div class="col-7" style="width:auto;">
+            <div class="col-7 short_info" style="width:auto;">
                 <!-- 景點名稱 -->
-                <h5 style="cursor: pointer;" class="info_tit" onclick="showInfo(this)" data-a-Id="{{ item.id }}">
+                <h5 class="info_tit" onclick="showInfo(this)" data-a-Id="{{ item.id }}">
                     {{item.a_name }}</h5>
                 <!-- 星星數 -->
                 <div class="rating">
@@ -609,7 +609,7 @@
             // 將不在arr陣列中的值顯示在下拉清單
             b = document.createElement("DIV");
             b.textContent = val; // 以輸入的值開頭
-            b.innerHTML = `<i class="fas fa-search" style="margin-right:10px;"></i><strong>${val}</strong>`;
+            b.innerHTML = `<i class="fas fa-search" style="margin-right:12px;"></i><strong>${val}</strong>&emsp;<span style="color:#a1a1a1">--xx搜尋</span>`;
             b.addEventListener("click", function (e) {
                 inp.value = this.textContent;
                 closeAllLists();
@@ -620,7 +620,7 @@
                 if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) { // 尋找符合輸入值的項目
                     b = document.createElement("DIV"); // 建立新的DIV元素來放置該項目
                     // 使用模板字串來設定該DIV元素的內容，包括符合的部分加上搜尋圖示和強調文字部分
-                    b.innerHTML = `<i class="fas fa-search" style="margin-right:10px;"></i><strong>${arr[i].substr(0, val.length)}</strong>`;
+                    b.innerHTML = `<i class="fas fa-search" style="margin-right:12px;"></i><strong>${arr[i].substr(0, val.length)}</strong>`;
                     b.innerHTML += arr[i].substr(val.length); // 加上剩餘的部分
                     b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>"; // 加入一個隱藏的input元素，用來存放選擇的值
                     b.addEventListener("click", function (e) { // 點擊項目時的事件處理
