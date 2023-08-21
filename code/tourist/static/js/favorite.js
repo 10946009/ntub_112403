@@ -19,3 +19,12 @@ function toggleFavorite(element) {
 
   element.classList.toggle("zoomIn");
 }
+function saveTabState(tabName) {
+  localStorage.setItem('selectedTab', tabName);
+}
+document.addEventListener('DOMContentLoaded', function() {
+  const selectedTab = localStorage.getItem('selectedTab');
+  if (selectedTab === 'contact') {
+    document.getElementById('contact-tab').click();
+  }
+});

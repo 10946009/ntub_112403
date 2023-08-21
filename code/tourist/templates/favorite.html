@@ -31,6 +31,16 @@
       font-size: large;
       cursor: pointer;
     }
+    .description {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin-bottom: 10px;
+    white-space: normal;
+  }
   </style>
 {% endblock %}
 
@@ -103,6 +113,7 @@
           <div class="card-body text-center"> 
             <h4 class="card-title">阿亮</h4>
             <h5>0318台北平溪</h5>
+            <p class="description">這是一個很長的描述，超過20個字以上，將會被截斷並顯示省略號。</p>
             <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
           </div>
         </div>
@@ -116,6 +127,7 @@
           <div class="card-body text-center"> 
             <h4 class="card-title">小灣</h4>
             <h5>0528台北大安</h5>
+            <p class="description">這是一個很長的描述，超過20個字以上，將會被截斷並顯示省略號。</p>
             <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
           </div>
         </div>
@@ -129,6 +141,7 @@
           <div class="card-body text-center"> 
             <h4 class="card-title">奇美</h4>
             <h5>0713大同區</h5>
+            <p class="description">這是一個很長的描述，超過20個字以上，將會被截斷並顯示省略號。</p>
             <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
           </div>
         </div>
