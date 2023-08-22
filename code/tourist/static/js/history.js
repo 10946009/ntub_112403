@@ -1,4 +1,4 @@
-/*展開詳細行程*/
+/*展開詳細行程more*/
 // 获取所有的 "詳細資料" 按钮
 const detailButtons = document.querySelectorAll(".more_btn");
 
@@ -14,3 +14,25 @@ detailButtons.forEach(button => {
     }
   });
 });
+
+// document.addEventListener("DOMContentLoaded", function() {
+//   var navLinks = document.querySelectorAll(".nav-link");
+//   var contents = document.querySelectorAll(".content");
+
+//   navLinks.forEach(function(navLink) {
+//     navLink.addEventListener("click", function(event) {
+//       event.preventDefault();
+
+//       var selectedTab = navLink.getAttribute("data-tab");
+
+//       contents.forEach(function(content) {
+//         content.style.display = "none";
+//       });
+
+//       var selectedContent = document.getElementById("content" + selectedTab);
+//       if (selectedContent) {
+//         selectedContent.style.display = "block";
+//       }
+//     });
+//   });
+// });
