@@ -13,31 +13,19 @@
   }
   
   #trash-icon.clicked {
-    transform: scale(1.5); /* 放大图标 */
-    background-color: rgb(251, 251, 251); /* 修改背景颜色 */
-    /* 可以根据需求添加其他样式 */
-  }.delete-icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    background-image: url('../static/images/trash-icon.png');
-    background-size: cover;
-    cursor: pointer;
-    transition: all 0.3s ease; /* 添加过渡以实现平滑效果 */
+    transform: scale(1.5); 
+    background-color: rgb(251, 251, 251); 
   }
   
   .delete-icon:hover {
-    transform: scale(1.2) rotate(20deg); /* 增大尺寸并应用旋转 */
+    transform: scale(1.2) rotate(20deg);
   }
   
   .delete-icon.active {
-    animation: shake 0.5s; /* 增加抖動動畫 */
+    animation: shake 0.5s;
   }
   
-  /* 定義抖動動畫 */
+
   @keyframes shake {
     0%, 100% {
       transform: translateX(0);

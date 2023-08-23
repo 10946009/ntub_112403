@@ -96,13 +96,16 @@
             <!-- 景點圖片 -->
             <div class="col-4">
                 <div class="w3-content" style="max-width:800px;position:relative;">
-                    <img data-name="{{ item.id }}" class="slide" src="/static/images/attractions/{{item.place_id}}_0.jpg"
+                    <img data-name="{{ item.id }}" class="slide"
+                        src="/static/images/attractions/{{item.place_id}}_0.jpg"
                         style="width:100%;max-width: 100%; cursor: pointer;" onclick="showInfo(this)"
                         data-a-Id="{{ item.id }}">
-                    <img data-name="{{ item.id }}" class="slide" src="/static/images/attractions/{{item.place_id}}_0.jpg"
+                    <img data-name="{{ item.id }}" class="slide"
+                        src="/static/images/attractions/{{item.place_id}}_0.jpg"
                         style="width:100%;max-width: 100%; cursor: pointer;" onclick="showInfo(this)"
                         data-a-Id="{{ item.id }}">
-                    <img data-name="{{ item.id }}" class="slide" src="../static/images/Songshan.jpeg"
+                    <img data-name="{{ item.id }}" class="slide"
+                        src="/static/images/attractions/{{item.place_id}}_0.jpg"
                         style="width:100%;max-width: 100%; cursor: pointer;" onclick="showInfo(this)"
                         data-a-Id="{{ item.id }}">
                     <!-- 收藏按鈕 -->
@@ -149,15 +152,6 @@
                 <h6 style="color:#8b8a8a;">
                     <i class="fa-regular fa-eye"></i>&thinsp;瀏覽人數：<span>１</span>人
                 </h6>
-                <!-- （原）加入取消收藏位子 -->
-                <!-- {% if item.is_favorite == "0" %}
-                <button style="color:rgb(195, 7, 7);" name="submitfavorite" id="submitfavorite{{item.id}}"
-                    data-isfavorite="{{item.is_favorite}}" onclick="addFavorite({{item.id}})"><i
-                        class="fa-regular fa-star"></i>加入收藏</button>
-                {% else %}
-                <button name="submitfavorite" id="submitfavorite{{item.id}}" data-isfavorite="{{item.is_favorite}}"
-                    onclick="addFavorite({{item.id}})">取消收藏</button>
-                {% endif %} -->
             </div>
         </div>
         <hr>
@@ -165,22 +159,21 @@
     </div>
 </div>
 
-<!-- <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button> -->
-
 <!-- 景點詳細資料隱藏點擊 -->
 <div id="id01" class="row modal">
     <div class="col-12 col-s-12">
         <form class="modal-content animate" action="/action_page.php" method="post">
+            <!-- 關閉詳細景點資料 -->
             <div class="imgcontainer">
                 <span onclick="document.getElementById('id01').style.display='none'" class="close"
                     title="Close Modal">&times;</span>
-                <!-- <img src="img_avatar2.png" alt="Avatar" class="avatar"> -->
             </div>
-
-
+            <!-- 詳細景點資訊顯示 -->
             <div class="container">
                 <div>
+                    <!-- 詳細景點名稱 -->
                     <h3 style="color: rgb(172, 78, 1)" id="attractions-detail-name"></h3>
+                    <!-- 詳細景點星星數 -->
                     <div class="rating" style="margin-bottom: 10px;">
                         <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
                         <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
@@ -190,6 +183,7 @@
                         <span id="selectedRating"></span> / 5 (6.3萬)
                     </div>
                 </div>
+                <!-- 詳細景點圖片 -->
                 <div class="container1">
                     <div class="mySlides">
                         <div class="numbertext">1 / 6</div>
@@ -255,26 +249,29 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div style="display: flex;justify-content: center;align-items: center;height: auto; height: 100%;">
-                    <img src="/static/images/zoo.jpeg" alt="photo" class="Att_img">
-                </div> -->
 
                 <div class="Att_detail">
+                    <!-- 詳細地址 -->
                     <h5 id="attractions-detail-address">
                         地址：116台北市文山區新光路二段30號
                     </h5>
+                    <!-- 詳細電話 -->
                     <h5 id="attractions-detail-phone">
                         電話：02－2938－2300
                     </h5>
+                    <!-- 詳細營業時間 -->
                     <h5>
                         營業時間： <span style="color: red;">已打烊</span> <span style="color: rgb(21, 81, 140);">
                             *開始營業時間：9:00</span>
                     </h5>
+                    <!-- 詳細建議停留時間 -->
                     <h5>
                         建議停留時間：
                     </h5>
+                    <!-- 詳細旺季月份 -->
                     <h5>旺季月份：</h5>
                     <hr style="border:2px solid #b3b2b2">
+                    <!-- 使用者提問及回答 -->
                     <div class="question">
                         <h5>
                             問題與解答：
@@ -287,15 +284,16 @@
 
                     </div>
                     <hr style="border:2px solid #b3b2b2">
+                    <!-- 人潮資訊 -->
                     <h5>
                         人潮資訊：
                     </h5>
+                    <!-- 人潮圖表 -->
                     <div>
                         <canvas id="chart" width="300" height="150"></canvas>
                     </div>
-                    <!-- <div style="display: flex;justify-content: center;align-items: center;height: auto">
-                <img src="/static/images/humum.jpg" alt="photo" class="Att_img"></div> -->
                     <hr style="border:2px solid #b3b2b2">
+                    <!-- 使用者總評論 -->
                     <h5>
                         評論摘要：
                     </h5>
@@ -304,7 +302,6 @@
                         <hr style="border:2px solid #f1f1f1">
                         <div class="col-3">
                             <div class=" row">
-                                <!-- <span class="heading">使用者總評論</span> -->
                                 <div class="total_score_star">
                                     <p style="font-size:60px;margin-left: 30px;"><strong>4.0</strong></p>
                                 </div>
@@ -320,13 +317,6 @@
                         </div>
                         <div class="col-9">
                             <div class="row">
-                                <!-- <div class="col-1">
-                                    <div class="nu_star">5</div>
-                                    <div class="nu_star">4</div>
-                                    <div class="nu_star">3</div>
-                                    <div class="nu_star">2</div>
-                                    <div class="nu_star">1</div>
-                                </div> -->
                                 <div class="col-12">
                                     <div class="star_container">
                                         <div class="nu_star">5</div>
@@ -363,6 +353,7 @@
                         </div>
 
                     </div>
+                    <!-- 使用者留言評論 -->
                     <div class="comment">
                         <div class="avatar">
                             <img src="/static/images/head.png" alt="User Avatar">
@@ -452,33 +443,45 @@
 <script src="../static/js/slideshow.js"></script>
 <script src="../static/js/attractions.js"></script>
 <script>
-    var modal = document.getElementById('id01');
 
-    // When the user clicks anywhere outside of the modal, close it
+
+    // 取得代表模態框的元素物件
+    var modal = document.getElementById('id01');
+    // 當使用者點擊視窗時執行的函式
     window.onclick = function (event) {
+        // 判斷點擊事件的目標是否是模態框元素本身
         if (event.target == modal) {
+            // 如果是，將模態框的顯示樣式設定為 "none"，即隱藏模態框
             modal.style.display = "none";
         }
     }
 
 
+
+    // 當點擊某個元素時觸發的函式，傳入的參數為觸發點擊事件的元素
     function showInfo(element) {
+        // 從被點擊的元素中取得自定義屬性 'aId' 的值
         var aId = $(element).data('aId');
+
+        // 發起 AJAX 請求
         $.ajax({
-            url: '',
-            type: 'GET',
+            url: '',  // 伺服器端的 URL
+            type: 'GET',  // 請求類型為 GET
             data: {
-                a_id: aId
+                a_id: aId  // 傳遞給伺服器的參數，以 a_id 為名
             },
             success: function (response) {
-                var showInfo = document.getElementById("id01");
-                showInfo.style.display = "block";
-                console.log(aId);
+                // 當請求成功時執行的處理程式
 
+                // 取得模態框元素
+                var showInfo = document.getElementById("id01");
+                // 將模態框的顯示樣式設定為 "block"，顯示模態框
+                showInfo.style.display = "block";
+
+                // 從回應中取得景點資料
                 var attractions = response;
 
-                //將資料放進網頁中
-
+                // 將景點資料顯示在網頁中的相應元素內
                 var attractionsDetailName = document.getElementById('attractions-detail-name');
                 var attractionsDetailAddress = document.getElementById('attractions-detail-address');
                 var attractionsDetailPhone = document.getElementById('attractions-detail-phone');
@@ -490,11 +493,12 @@
                 attractionsDetailRating.textContent = attractions.rating;
             },
             error: function (xhr, status, error) {
-                // 请求失败时的处理
-                console.log("AJAX请求失败: " + error);
+                // 請求失敗時的處理
+                console.log("AJAX請求失敗: " + error);
             }
         });
     }
+
     {% comment %} var showInfo = document.getElementById("id01");
     showInfo.style.display = "block"; {% endcomment %}
 
@@ -530,48 +534,6 @@
             }]
         }
     });
-
-
-    // function showRightBox(element) {
-    //     var aId = $(element).data('aId');
-    //     $.ajax({
-    //         url: '',
-    //         type: 'GET',
-    //         data: {
-    //             a_id: aId
-    //         },
-    //         success: function (response) {
-    //             var rightBox = document.getElementById("rightbox");
-    //             rightBox.style.display = "block";
-    //             console.log(aId);
-
-    //             var attractions = response;
-
-    //             // 將資料放進網頁中
-
-    //             var attractionsDetailName = document.getElementById('attractions-detail-name');
-    //             var attractionsDetailAddress = document.getElementById('attractions-detail-address');
-    //             var attractionsDetailPhone = document.getElementById('attractions-detail-phone');
-    //             var attractionsDetailRating = document.getElementById('selectedRating');
-
-    //             attractionsDetailName.textContent = attractions.a_name;
-    //             attractionsDetailAddress.textContent = "地址：" + attractions.address;
-    //             attractionsDetailPhone.textContent = "電話：" + attractions.phone;
-    //             attractionsDetailRating.textContent = attractions.rating;
-    //         },
-    //         error: function (xhr, status, error) {
-    //             // 请求失败时的处理
-    //             console.log("AJAX请求失败: " + error);
-    //         }
-    //     });
-    // }
-    // {% comment %} var rightBox = document.getElementById("rightbox");
-    // rightBox.style.display = "block"; {% endcomment %}
-
-    // function hideRightBox() {
-    //     var rightBox = document.getElementById("rightbox");
-    //     rightBox.style.display = "none";
-    // }
 
     // 取得選擇後的景點回傳的值
     {% comment %}
