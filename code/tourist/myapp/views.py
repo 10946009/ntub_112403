@@ -252,10 +252,12 @@ def create_index(request):
         u_id = request.user.id
         name = request.POST["createName"]
         start_day = request.POST["createDate"]
+        travel_day = request.POST["createDay"]
         unit = Create_Travel.objects.create(
             ct_name=name,
             start_day=start_day,
             u_id=u_id,
+            travel_day=travel_day,
         )
         unit.save()
         return redirect(f"/create/{unit.id}/{num}")
@@ -266,6 +268,15 @@ def create_index(request):
 def create(request, ct_id, choiceday):
     user_favorite = [4, 6, 9, 10, 15, 16, 18]
     ct_data = Create_Travel.objects.get(id=ct_id)
+    try:
+        ct_attractions_data = ChoiceDay_Ct.objects.get(ct_id=ct_id, day=choiceday)
+        ct_attractions_list = Attractions_Ct.objects.filter(
+            choice_ct_id=ct_attractions_data.id
+        ).values()
+    except:
+        ct_attractions_list = []
+    print(ct_attractions_list)
+    travelday = range(1, ct_data.travel_day + 1)
     name = ct_data.ct_name
     start_day = ct_data.start_day
     week = (
@@ -408,8 +419,8 @@ def create(request, ct_id, choiceday):
                     else:
                         id_db = Attractions.objects.get(id=id)
                         id2_db = Attractions.objects.get(id=all_id[index + 1])
-                        distance = 2200 #距離(公尺)
-                        duration = 10 #時間(分鐘)
+                        distance = 2200  # 距離(公尺)
+                        duration = 10  # 時間(分鐘)
                         # client = googlemaps.Client(key=GOOGLE_PLACES_API_KEY)
                         # response = client.distance_matrix(
                         #     origins=(id_db.location_x,id_db.location_y), #使用者位置
@@ -429,7 +440,7 @@ def create(request, ct_id, choiceday):
                         distance_time=duration,
                         order=index + 1,
                         a_id=id,
-                        choice_ct_id=choice_ct_id
+                        choice_ct_id=choice_ct_id,
                     )
                     ct.save()
                     new_nowtime += 150
@@ -467,6 +478,7 @@ def favorite(request):
 def share(request):
     return render(request, "share.html")
 
+
 def add_favorite(request):
     u_id = request.user.id
     aid = request.POST.get("aid")
@@ -490,7 +502,7 @@ def attraction_details(request):
     search_list = []
     # print(request.method)
     user = request.user.id
-    attractions_search = list(Attractions.objects.values_list('a_name', flat=True))
+    attractions_search = list(Attractions.objects.values_list("a_name", flat=True))
     attractions_search_json = json.dumps(attractions_search)
     if request.method == "POST":
         query = request.POST.get("searchQuery")
@@ -600,7 +612,7 @@ def order_check_attrations(
         for op in opening:
             if op == "24小時營業":
                 ok_a_list.append(o_db.place_id)
-            elif op=="休息":
+            elif op == "休息":
                 continue
             else:
                 print(o_db.a_name, now_time, op)

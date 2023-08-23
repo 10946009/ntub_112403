@@ -45,9 +45,13 @@
                   <div class="tabD">
                     <span ng-bind="travName"></span>
                   </div>
-                  <button id="addDay">+一天</button>
+                  {% comment %} <button id="addDay">+一天</button> {% endcomment %}
                   <div class="tabD" id="addDaydiv">
-                    <!--我在js會被新增!-->
+                    {% for day in travelday %}
+                      <a href="/create/{{ ct_id }}/{{ day }}" class="tab_day">{{ day }} Day
+                        <br>
+                      </a>
+                    {% endfor %}
                   </div>
                   <div class=" tabc_txt">
                     <button class="input_txt" id="saveDays">儲存</button>
@@ -69,9 +73,12 @@
                 </div>
               </form>
               <div id="OrderAttractions">
-                <!-- <span class="create_txt" >第一天</span>
+                {% for attractions in ct_attractions_list %}
+                
+                {% endfor %}
+                <!-- <span class="create_txt" >第</span>
                   <button style="border: none;">+</button> -->
-                  <!--我在JS~~~~~~~~~~~
+                <!--我在JS~~~~~~~~~~~
                   <div class="spot" id="spot1">
                     國父紀念館
                     <p>位在台北市XX區</p>
@@ -83,12 +90,9 @@
                       建議停留時間：1小時
                     </p>
                   </div>
-                  -->
-                  
+-->
               </div>
-              <div id="RemainderAttractions">
-                
-              </div>
+              <div id="RemainderAttractions"></div>
             </div>
           </div>
         </form>
@@ -192,7 +196,7 @@
         <form action="" style="margin: 20px;" class="form_rec">
           <select name="s_day" id="s_day" style="font-size: 18px;">
             <option value="1">
-              第一天
+              第
             </option>
             <option value="2">
               第二天
@@ -698,7 +702,6 @@
     //第1步驟 推薦附近景點~~~~
     var clickRecommend = document.getElementById('clickRecommend');
     clickRecommend.addEventListener("click",function(e){
-      alert('hello');
       var nowtime=document.getElementById("nowtime");
       //var ct_status = 0;
       const userLocation = document.getElementById("userLocation");
@@ -874,7 +877,7 @@
     });
 
 
-    var addDay = document.getElementById('addDay');
+    {% comment %} var addDay = document.getElementById('addDay');
     var num = 1;
     addDay.addEventListener("click",function(e){
       var addDaydiv = document.getElementById("addDaydiv");
@@ -882,7 +885,7 @@
       num ++;
     });
     
-    addDay.click() //初始加一天
+    addDay.click() //初始加 {% endcomment %}
 
     var saveDays = document.getElementById('saveDays');
     saveDays.addEventListener("click",function(e){
