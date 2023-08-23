@@ -79,18 +79,38 @@
   <div id="more3" class="hidden-details">
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">第一天</a>
+        <a class="nav-link active" aria-current="page" href="#" data-tab="1">第一天</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">第二天</a>
+        <a class="nav-link" href="#" data-tab="2">第二天</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">第三天</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        <a class="nav-link" href="#" data-tab="3">第三天</a>
       </li>
     </ul>
+  </div>
+  <div class="content hidden-details" id="content1" style="display: none;">
+    aaaaaaaaaaaaaaaaaaaaa<br>
+    aaaaaaaaaaaaaaaaaaaaa<br>
+    aaaaaaaaaaaaaaaaaaaaa<br>
+    aaaaaaaaaaaaaaaaaaaaa<br>
+    aaaaaaaaaaaaaaaaaaaaa<br>
+  </div>
+  
+  <div class="content hidden-details" id="content2" style="display: none;">
+    ssssssssssssssssssssssss><br>
+    aaaaaaaaaaaaaaaaaaaaa<br>
+    aaaaaaaaaaaaaaaaaaaaa<br>
+    aaaaaaaaaaaaaaaaaaaaa<br>
+    aaaaaaaaaaaaaaaaaaaaa<br>
+  </div>
+  
+  <div class="content hidden-details" id="content3" style="display: none;">
+    ssssssssssvdddddddddddddddd<br>
+    aaaaaaaaaaaaaaaaaaaaa<br>
+    aaaaaaaaaaaaaaaaaaaaa<br>
+    aaaaaaaaaaaaaaaaaaaaa<br>
+    aaaaaaaaaaaaaaaaaaaaa<br>
   </div>
 </div>
 
@@ -99,6 +119,29 @@
 
 {% block content_script %}
 <script src="../static/js/history.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var navLinks = document.querySelectorAll(".nav-link");
+    var contents = document.querySelectorAll(".content");
+
+    navLinks.forEach(function(navLink) {
+      navLink.addEventListener("click", function(event) {
+        event.preventDefault();
+
+        var selectedTab = navLink.getAttribute("data-tab");
+
+        contents.forEach(function(content) {
+          content.style.display = "none";
+        });
+
+        var selectedContent = document.getElementById("content" + selectedTab);
+        if (selectedContent) {
+          selectedContent.style.display = "block";
+        }
+      });
+    });
+  });
+</script>
 {% endblock %}
 
 

@@ -92,9 +92,15 @@
     window.onload = function() {
       var isIndexPage = window.location.pathname === "/"; // 假设首页的路径是 "/"
       var systemNameElement = document.getElementById("systemname");
+      var navbgcolor = document.querySelector(".toolbar");
   
-      if (!isIndexPage && systemNameElement) {
-        systemNameElement.style.display = "none"; // 隐藏元素
+      if(!isIndexPage){
+        if(systemNameElement){
+          systemNameElement.style.display = "none";
+        }  
+        if(navbgcolor){
+          navbgcolor.classList.add("navchange");
+        }
       }
     };
   </script>
