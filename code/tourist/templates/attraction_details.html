@@ -65,11 +65,44 @@
     </div>
 </nav> {% endcomment %}
 
-<!-- 搜尋引擎 -->
+<div class="row jumbotron">
+    <div class="container_info">
+        <div class="active_tit">
+            <div class="scroll-text">
+                <h1>景&ensp;點&ensp;資&ensp;訊</h1>
+            </div>
+            <div class="scroll-text1">
+                <hr class="tit_hr">
+                <h5>Trip&ensp;Fun&ensp;Chill&ensp;趣放假</h5>
+            </div>
+        </div>
+    </div>
+    <!-- 搜尋引擎 -->
+    <div class="row search_body">
+        <div class="col-2"></div>
+        <div class="col-8" style="margin-bottom:30px ;" ng-app="">
+            <!-- 搜尋框 -->
+            <form autocomplete="off" class="d-flex" method="post" role="search" action="{% url 'search_results' %}">
+                <div class="container">
+                    <div class="searchInput">
+                        {% csrf_token %}
+                        <button class="icon" type="submit" id="searchClick"><i class="fas fa-search"></i></button>
+                        <input type="search" ng-model="search_item" placeholder="想去哪玩.." id="myInput"
+                            name="searchQuery">
+                        <button class="filiter" type="submit"><i class="fa-solid fa-filter"></i></button>
+                    </div>
+                </div>
+                <!-- 進階搜尋 -->
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 搜尋引擎
 <div class="row search_body">
     <div class="col-2"></div>
     <div class="col-8" style="margin-top:30px ;" ng-app="">
-        <!-- 搜尋框 -->
+        搜尋框
         <form autocomplete="off" class="d-flex" method="post" role="search" action="{% url 'search_results' %}">
             <div class="container">
                 <div class="searchInput">
@@ -79,11 +112,11 @@
                     <button class="filiter" type="submit"><i class="fa-solid fa-filter"></i></button>
                 </div>
             </div>
-            <!-- 進階搜尋 -->
+            進階搜尋
 
         </form>
     </div>
-</div>
+</div> -->
 
 
 <div class="row Att_Info">
@@ -428,8 +461,6 @@
                             style="margin-right: 5px;"></i>我要評論</button>
                 </div>
             </div>
-
-
             <div class="container" style="background-color:#f1f1f1">
                 <button type="button" onclick="document.getElementById('id01').style.display='none'"
                     class="cancelbtn">Close</button>
@@ -445,6 +476,9 @@
 <script src="../static/js/addFavorite.js"></script>
 <script src="../static/js/slideshow.js"></script>
 <script src="../static/js/attractions.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
 <script>
 
 
@@ -644,5 +678,24 @@
     var attractions = JSON.parse('{{ attractions_search_json|safe }}');
     autocomplete(document.getElementById("myInput"), attractions);
 
+
+    // 获取文本元素
+    const scrollText = document.querySelector('.scroll-text');
+    const scrollTextH1 = scrollText.querySelector('h1');
+    // 定义停止滚动的位置
+    const stopScrollY = 120; // 在此位置停止滚动
+
+    // 监听滚动事件
+    window.addEventListener('scroll', function () {
+        // 获取当前滚动位置
+        const scrollY = window.scrollY;
+
+        // 仅当滚动位置小于等于停止位置时，应用移动效果
+        if (scrollY <= stopScrollY) {
+            // 根据滚动位置调整文本位置，控制移动效果
+            const translateY = Math.min(scrollY, stopScrollY);
+            scrollTextH1.style.transform = `translate(0%, ${translateY}%)`;
+        }
+    });
 </script>
 {% endblock body %}
