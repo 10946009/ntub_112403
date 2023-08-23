@@ -265,9 +265,10 @@ def create_index(request):
 
 
 # 建立行程
-def create(request, ct_id, choiceday):
+def create(request, ct_id):
     user_favorite = [4, 6, 9, 10, 15, 16, 18]
     ct_data = Create_Travel.objects.get(id=ct_id)
+    choiceday = 1
     try:
         ct_attractions_data = ChoiceDay_Ct.objects.get(ct_id=ct_id, day=choiceday)
         ct_attractions_list = Attractions_Ct.objects.filter(

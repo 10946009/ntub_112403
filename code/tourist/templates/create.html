@@ -46,11 +46,11 @@
                     <span ng-bind="travName"></span>
                   </div>
                   {% comment %} <button id="addDay">+一天</button> {% endcomment %}
+                  {% comment %} <button class="tab_day">{{ day }} Day</button> {% endcomment %}
                   <div class="tabD" id="addDaydiv">
                     {% for day in travelday %}
-                      <a href="/create/{{ ct_id }}/{{ day }}" class="tab_day">{{ day }} Day
-                        <br>
-                      </a>
+                      <button onclick="clickDay({{day}})">{{ day }} Day</button>
+                      <p></p>
                     {% endfor %}
                   </div>
                   <div class=" tabc_txt">
@@ -69,6 +69,7 @@
                   <div class="tabD">
                     <span id="tabDL">使用者位置：</span>
                     <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation">
+                    <input type="hidden" placeholder="day" class="nowday" id="nowday">
                   </div>
                 </div>
               </form>
@@ -698,7 +699,14 @@
           navigator.geolocation.getCurrentPosition(success, error);
       }
     }
-    
+    var nowday = 1
+    var nowDayValues = document.getElementById('nowday');
+    nowDayValues.value = nowday;
+    function clickDay(day){
+      nowday=day
+      nowDayValues.value = nowday;
+    }
+
     //第1步驟 推薦附近景點~~~~
     var clickRecommend = document.getElementById('clickRecommend');
     clickRecommend.addEventListener("click",function(e){
@@ -707,7 +715,7 @@
       const userLocation = document.getElementById("userLocation");
         $.ajax({
           type: "POST",
-          url: "/create/{{ct_id}}/{{choiceday}}", // 替换为您的 views.py 文件的 URL
+          url: "/create/{{ct_id}}", // 替换为您的 views.py 文件的 URL
           data: {
               location: userLocation.value,
               nowtime: nowtime.value,
@@ -754,7 +762,7 @@
       
       $.ajax({
         type: "POST",
-        url: "/create/{{ct_id}}/{{choiceday}}", // 替换为您的 views.py 文件的 URL
+        url: "/create/{{ct_id}}", // 替换为您的 views.py 文件的 URL
         data: {
             select_aid_list: select_aid_list,
             nowtime:nowtime.value,
@@ -803,7 +811,7 @@
       
       $.ajax({
         type: "POST",
-        url: "/create/{{ct_id}}/{{choiceday}}", // 替换为您的 views.py 文件的 URL
+        url: "/create/{{ct_id}}", // 替换为您的 views.py 文件的 URL
         data: {
             all_select: all_select,
             nowtime:nowtime.value,
@@ -902,7 +910,7 @@
       console.log(nowtime,userLocation,all_id);
       $.ajax({
         type: "POST",
-        url: "/create/{{ct_id}}/{{choiceday}}", // 替换为您的 views.py 文件的 URL
+        url: "/create/{{ct_id}}", // 替换为您的 views.py 文件的 URL
         data: {
             days: '{{choiceday}}',
             location:userLocation.value,
