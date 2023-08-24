@@ -66,6 +66,8 @@
     transform: translate(-50%, -50%);
 }
 
+/*  */
+
 /*搜尋引擎*/
 .autocomplete {
     position: relative;
@@ -178,72 +180,110 @@ input {
     color: rgb(122, 155, 233);
 }
 
-.detail_box {
-    float: right;
-    float: top;
-    border: 1px solid black;
-    padding: 10px;
-    height: 1520px;
-    width: 650px;
-    margin-bottom: 10px;
-    margin-top: 20px;
-    margin-right: 40px;
-    border-radius: 10px;
+/*  */
+
+/* 景點簡短資訊 */
+#section_culture {
+    margin: 30px 0 50px 0;
 }
 
-.inner_1 {
-    margin-top: 10px;
-    margin-left: 15px;
+.bottom {
+    text-align: center;
 }
 
-#rightbox {
-    display: none;
+.bottom h5 {
+    color: #333;
+    transition: 0.5s;
+    cursor: pointer;
 }
+
+.bottom h5:hover {
+    color: #B54434;
+    transform: scale(1.1);
+}
+
+#section_culture .img_wrap {
+    position: relative;
+    display: inline-block;
+    /* 讓容器只占用所需的寬度 */
+    height: 255px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.learn_more {
+    position: absolute;
+    top: 40%;
+    /* 調整位置到圖片上方 */
+    left: 40%;
+    /* 放置在圖片中央 */
+    transform: translate(-20%, -20%);
+    /* 水平置中 */
+    color: #fff;
+    padding: 20px;
+    font-size: 35px;
+    text-align: center;
+    opacity: 0;
+    border-radius: 3px;
+    transition: 0.5s;
+    border: 2px solid rgb(50, 50, 50);
+    line-height: 35px;
+}
+
+.img_wrap:hover .learn_more {
+    opacity: 1;
+    color: rgb(50, 50, 50);
+}
+
+
+.img_wrap .slide {
+    width: 100%;
+    transition: 0.5s;
+}
+
+.img_wrap:hover .slide {
+    opacity: 0.6;
+    transform: scale(1.2);
+}
+
+#section_culture h4 {
+    margin: 0 0 10px 0;
+    padding: 0 0 10px 0;
+    display: inline-block;
+    border-bottom: 5px solid #DCB879;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+body {
+    background-color: #f7ead37c;
+}
+
+#section_culture h4:hover {
+    color: #DCB879;
+    padding-right: 10px;
+}
+
+#section_culture .feature {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.feature.col_btn {
+    position: absolute;
+    top: 24px;
+    right: 20px;
+    transform: translate(50%, -50%);
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 4px 10px 4px 10px;
+}
+
+/*  */
 
 .close {
     display: flex;
     align-items: center;
-}
-
-.img_x {
-    width: 5%;
-    height: auto;
-    float: right;
-    display: inline;
-    cursor: pointer;
-}
-
-.img_x:hover {
-    transform: scale(1.2, 1.2);
-}
-
-.search_tool {
-    padding: 8px;
-    border-radius: 8px;
-    width: 50%;
-    margin-right: 12px;
-}
-
-.search_btn {
-    width: 6%;
-    border-radius: 8px;
-}
-
-.search_btn:hover {
-    background: rgb(204, 204, 204);
-}
-
-.search_field {
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-
-.Att_img {
-    width: 100%;
-    height: auto;
-    float: right;
-    display: block;
-    margin: auto;
 }
 
 [class*="col-"] {
@@ -354,8 +394,6 @@ input {
     }
 }
 
-
-
 * {
     box-sizing: border-box;
 }
@@ -366,36 +404,9 @@ input {
     display: table;
 }
 
-.Att_detail {
-    margin-top: 10px;
-}
-
-/*輸入框內的圖示屬性設定*/
-.inputWithin {
-    position: relative;
-    display: inline-block;
-}
-
-.inputWithin .icon {
-    position: absolute;
-    left: 3px;
-    top: calc(50% - 0.5em);
-}
-
-
-
-
-.info_tit {
+/* .info_tit {
     cursor: pointer;
-}
-
-
-/* .searchInput .icon:nth-last-child(1) {
-    border-bottom-right-radius: unset;
-    border-top-right-radius: 25px;
 } */
-
-
 
 .Info_item {
     margin-top: 20px;
@@ -613,7 +624,7 @@ input {
     }
 
     .rating {
-        font-size: 26px;
+        font-size: 30px;
     }
 
     .short_info h6 {
@@ -977,14 +988,4 @@ img {
 .info_tit:hover {
     text-decoration-style: solid;
     color: rgb(0, 85, 255);
-}
-
-.w3-content .col_btn {
-    position: absolute;
-    top: 24px;
-    right: 20px;
-    transform: translate(50%, -50%);
-    background-color: #fff;
-    border-radius: 50%;
-    padding: 4px 10px 4px 10px;
 }

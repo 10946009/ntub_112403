@@ -98,15 +98,85 @@
     </div>
 </div>
 
-
-<div class="row Att_Info">
-    <div class="col-2 "></div>
+<div class="row" id="section_culture">
+    <div class="col-2"></div>
     <!-- 景點資訊主體 -->
-    <div class="col-8 ">
+    <div class="col-8 contaioner_information">
         <!-- 景點資訊條列 -->
         {% for item in search_list %}
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-5">
+                <div class="img_wrap" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                    data-center="transform: translateY(0px);opacity: 1">
+                    <p class="learn_more">Learn<br>More</p>
+                    <img data-name="{{ item.id }}" class="slide"
+                        src="/static/images/attractions/{{item.place_id}}_0.jpg"
+                        style="width:100%;max-width: 100%; cursor: pointer;" onclick="showInfo(this)"
+                        data-a-Id="{{ item.id }}" alt="" />
+                </div>
+            </div>
+            <div class="col-7 feature">
+                <!-- 景點名稱 -->
+                <h4 data-bottom-top="transform: translateY(-20px);opacity: 0"
+                    data-center="transform: translateY(0px);opacity: 1" onclick="showInfo(this)"
+                    data-a-Id="{{ item.id }}">{{item.a_name }}</h3>
+                    <!-- 星星數 -->
+                    <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                        data-center="transform: translateY(0px);opacity: 1">
+                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                        <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
+                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                        <span class="rating-star">&#9733;</span>
+                    </div>
+                    <!-- 地址 -->
+                    <h6 style="margin-top:5px;" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                        data-center="transform: translateY(0px);opacity: 1">
+                        地址：<span id="list-address">{{ item.address }}</span>
+                    </h6>
+                    <!-- 評分 -->
+                    <h6 style="margin-top:5px;" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                        data-center="transform: translateY(0px);opacity: 1">
+                        綜合評分： <span id="list-selectedRating">{{ item.rating }}</span> / 5 (2.1萬)
+                    </h6>
+                    <!-- 營業時間 -->
+                    <h6 data-bottom-top="transform: translateY(-20px);opacity: 0"
+                        data-center="transform: translateY(0px);opacity: 1">
+                        營業時間：<span>24小時營業</span>
+                    </h6>
+                    <!-- 總瀏覽人數 -->
+                    <h6 style="color:#8b8a8a;" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                        data-center="transform: translateY(0px);opacity: 1">
+                        <i class="fa-regular fa-eye"></i>&thinsp;瀏覽人數：<span>１</span>人
+                    </h6>
+                    <!-- 收藏按鈕 -->
+                    {% if item.is_favorite == "0" %}
+                    <button class="col_btn" name="submitfavorite" id="submitfavorite{{item.id}}"
+                        data-isfavorite="{{item.is_favorite}}" onclick="addFavorite({{item.id}})">
+                        <i class="fa-regular fa-bookmark"></i>&ensp;收藏</button>
+                    {% else %}
+                    <button class="col_btn" name="submitfavorite" id="submitfavorite{{item.id}}"
+                        data-isfavorite="{{item.is_favorite}}" onclick="addFavorite({{ item.id }})">
+                        <i class="fa-solid fa-bookmark"></i>&ensp;已收藏</button>
+                    {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        <!-- 更多 -->
+        <div class="row bottom">
+            <h5>Learn More >></h5>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="row Att_Info">
+    <div class="col-2 "></div>
+    景點資訊主體
+    <div class="col-8 ">
+        景點資訊條列
+        {% for item in search_list %}
         <div class="row Info_item">
-            <!-- 景點圖片 -->
+            景點圖片
             <div class="col-4">
                 <div class="w3-content" style="max-width:800px;position:relative;">
                     <img data-name="{{ item.id }}" class="slide"
@@ -121,7 +191,7 @@
                         src="/static/images/attractions/{{item.place_id}}_0.jpg"
                         style="width:100%;max-width: 100%; cursor: pointer;" onclick="showInfo(this)"
                         data-a-Id="{{ item.id }}">
-                    <!-- 收藏按鈕 -->
+                    收藏按鈕
                     {% if item.is_favorite == "0" %}
                     <button class="col_btn" name="submitfavorite" id="submitfavorite{{item.id}}"
                         data-isfavorite="{{item.is_favorite}}" onclick="addFavorite({{item.id}})">
@@ -131,17 +201,17 @@
                         data-isfavorite="{{item.is_favorite}}" onclick="addFavorite({{ item.id }})">
                         <i class="fa-solid fa-bookmark"></i></button>
                     {% endif %}
-                    <!-- 圖片滑動按鈕箭頭 -->
+                    圖片滑動按鈕箭頭
                     <a class=" w3-btn-floating_left" onclick="plusDivs(-1,'{{ item.id }}')">❮</a>
                     <a class="w3-btn-floating_right" onclick="plusDivs(1,'{{ item.id }}')">❯</a>
                 </div>
             </div>
-            <!-- 景點相關簡短資訊 -->
+            景點相關簡短資訊
             <div class="col-8 short_info" style="width:auto;">
-                <!-- 景點名稱 -->
+                景點名稱
                 <h5 class="info_tit" onclick="showInfo(this)" data-a-Id="{{ item.id }}">
                     {{item.a_name }}</h5>
-                <!-- 星星數 -->
+                星星數
                 <div class="rating">
                     <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
                     <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
@@ -149,19 +219,19 @@
                     <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
                     <span class="rating-star">&#9733;</span>
                 </div>
-                <!-- 地址 -->
+                地址
                 <h6 style="margin-top:5px;">
                     地址：<span id="list-address">{{ item.address }}</span>
                 </h6>
-                <!-- 評分 -->
+                評分
                 <h6 style="margin-top:5px;">
                     綜合評分： <span id="list-selectedRating">{{ item.rating }}</span> / 5 (2.1萬)
                 </h6>
-                <!-- 營業時間 -->
+                營業時間
                 <h6>
                     營業時間：<span>24小時營業</span>
                 </h6>
-                <!-- 總瀏覽人數 -->
+                總瀏覽人數
                 <h6 style="color:#8b8a8a;">
                     <i class="fa-regular fa-eye"></i>&thinsp;瀏覽人數：<span>１</span>人
                 </h6>
@@ -170,7 +240,7 @@
         <hr>
         {% endfor %}
     </div>
-</div>
+</div> -->
 
 <!-- 景點詳細資料隱藏點擊 -->
 <div id="id01" class="row modal">
