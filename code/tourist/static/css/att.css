@@ -985,7 +985,46 @@ img {
 
 }
 
-.info_tit:hover {
+/* .info_tit:hover {
     text-decoration-style: solid;
     color: rgb(0, 85, 255);
+} */
+
+footer.jumbotron {
+    text-align: center;
+    background-image: url(../images/Datong.jpeg);
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+footer.jumbotron input {
+    background-color: transparent;
+    max-width: 350px;
+    margin: 30px auto;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+footer.jumbotron input::placeholder {
+    color: #fff;
+}
+
+footer.jumbotron .container {
+    color: #fff;
+    padding: 60px 0;
+}
+
+footer.jumbotron .container button.btn.btn-default {
+    background-color: rgba(248, 253, 138, 0.2);
+    color: #f8fd8a;
+    border: 1px solid #f8fd8a;
+    transition: 0.5s;
+}
+
+footer.jumbotron .container button.btn.btn-default:hover {
+    background-color: #f8fd8a;
+    color: #183158;
+    transform: scale(1.2);
 }
