@@ -64,7 +64,7 @@
         </div>
     </div>
 </nav> {% endcomment %}
-
+<!-- 動態大標 景點資訊 -->
 <div class="row jumbotron">
     <div class="container_info">
         <div class="active_tit">
@@ -83,40 +83,20 @@
         <div class="col-8" style="margin-bottom:30px ;" ng-app="">
             <!-- 搜尋框 -->
             <form autocomplete="off" class="d-flex" method="post" role="search" action="{% url 'search_results' %}">
-                <div class="container">
+                <div class="container_search">
                     <div class="searchInput">
                         {% csrf_token %}
                         <button class="icon" type="submit" id="searchClick"><i class="fas fa-search"></i></button>
                         <input type="search" ng-model="search_item" placeholder="想去哪玩.." id="myInput"
                             name="searchQuery">
+                        <!-- 進階搜尋 -->
                         <button class="filiter" type="submit"><i class="fa-solid fa-filter"></i></button>
                     </div>
                 </div>
-                <!-- 進階搜尋 -->
             </form>
         </div>
     </div>
 </div>
-
-<!-- 搜尋引擎
-<div class="row search_body">
-    <div class="col-2"></div>
-    <div class="col-8" style="margin-top:30px ;" ng-app="">
-        搜尋框
-        <form autocomplete="off" class="d-flex" method="post" role="search" action="{% url 'search_results' %}">
-            <div class="container">
-                <div class="searchInput">
-                    {% csrf_token %}
-                    <button class="icon" type="submit" id="searchClick"><i class="fas fa-search"></i></button>
-                    <input type="search" ng-model="search_item" placeholder="想去哪玩.." id="myInput" name="searchQuery">
-                    <button class="filiter" type="submit"><i class="fa-solid fa-filter"></i></button>
-                </div>
-            </div>
-            進階搜尋
-
-        </form>
-    </div>
-</div> -->
 
 
 <div class="row Att_Info">
@@ -480,114 +460,25 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
 <script>
-
-
-    // 取得代表模態框的元素物件
-    var modal = document.getElementById('id01');
-    // 當使用者點擊視窗時執行的函式
-    window.onclick = function (event) {
-        // 判斷點擊事件的目標是否是模態框元素本身
-        if (event.target == modal) {
-            // 如果是，將模態框的顯示樣式設定為 "none"，即隱藏模態框
-            modal.style.display = "none";
-        }
-    }
-
-
-
-    // 當點擊某個元素時觸發的函式，傳入的參數為觸發點擊事件的元素
-    function showInfo(element) {
-        // 從被點擊的元素中取得自定義屬性 'aId' 的值
-        var aId = $(element).data('aId');
-
-        // 發起 AJAX 請求
-        $.ajax({
-            url: '',  // 伺服器端的 URL
-            type: 'GET',  // 請求類型為 GET
-            data: {
-                a_id: aId  // 傳遞給伺服器的參數，以 a_id 為名
-            },
-            success: function (response) {
-                // 當請求成功時執行的處理程式
-
-                // 取得模態框元素
-                var showInfo = document.getElementById("id01");
-                // 將模態框的顯示樣式設定為 "block"，顯示模態框
-                showInfo.style.display = "block";
-
-                // 從回應中取得景點資料
-                var attractions = response;
-
-                // 將景點資料顯示在網頁中的相應元素內
-                var attractionsDetailName = document.getElementById('attractions-detail-name');
-                var attractionsDetailAddress = document.getElementById('attractions-detail-address');
-                var attractionsDetailPhone = document.getElementById('attractions-detail-phone');
-                var attractionsDetailRating = document.getElementById('selectedRating');
-
-                attractionsDetailName.textContent = attractions.a_name;
-                attractionsDetailAddress.textContent = "地址：" + attractions.address;
-                attractionsDetailPhone.textContent = "電話：" + attractions.phone;
-                attractionsDetailRating.textContent = attractions.rating;
-            },
-            error: function (xhr, status, error) {
-                // 請求失敗時的處理
-                console.log("AJAX請求失敗: " + error);
-            }
-        });
-    }
-
-    {% comment %} var showInfo = document.getElementById("id01");
-    showInfo.style.display = "block"; {% endcomment %}
-
-
-    //人潮分佈圖
-    var ctx = document.getElementById('chart').getContext('2d');
-    var chart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ["週一", "週二", "週三", "週四", "週五", "週六", "週日"],
-            datasets: [{
-                label: '人潮分佈狀況',
-                data: [12, 19, 3, 5, 18, 3, 20],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(54, 162, 235, 0.8)',
-                    'rgba(255, 206, 86, 0.8)',
-                    'rgba(75, 192, 192, 0.8)',
-                    'rgba(153, 102, 255, 0.8)',
-                    'rgba(255, 159, 64, 0.8)',
-                    'rgba(0, 0, 0, 0.8)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    ' rgba(0, 0, 0, 1)'
-                ],
-                borderWidth: 1
-            }]
+    //
+    //動態大標（景點資訊）
+    const scrollText = document.querySelector('.scroll-text');// 獲取本文元素
+    const scrollTextH1 = scrollText.querySelector('h1');// 獲取本文元素
+    // 定義停止位置
+    const stopScrollY = 120; // 在此位置停止
+    // 監聽滾動事件
+    window.addEventListener('scroll', function () {
+        // 獲取當前位置
+        const scrollY = window.scrollY;
+        // 當位置<=停止位置時，並移動
+        if (scrollY <= stopScrollY) {
+            // 根據位置調整本文位置，控制移動
+            const translateY = Math.min(scrollY, stopScrollY);
+            scrollTextH1.style.transform = `translate(0%, ${translateY}%)`;
         }
     });
 
-    // 取得選擇後的景點回傳的值
-    {% comment %}
-    $.ajax({
-        url: '',  // 替换为你的视图函数 URL
-        type: 'GET',
-        success: function (response) {
-            var attractions = response;
-
-            // 將資料放進網頁中
-
-            var attractionsDetailName = document.getElementById('attractions-detail-name');
-            attractionsDetailName.textContent = attractions.a_name;
-            console.log(attractionsDetailName);
-        }
-    }); {% endcomment %}
-
+    //
     //搜尋景點的部分
     function autocomplete(inp, arr) {
         var currentFocus; // 紀錄目前焦點所在的索引值
@@ -605,7 +496,7 @@
             searchClick = document.getElementById("searchClick");
             b = document.createElement("DIV");
             b.textContent = val; // 以輸入的值開頭
-            b.innerHTML = `<i class="fas fa-search" style="margin-right:12px;"></i><strong>${val}</strong>&emsp;<span style="color:#a1a1a1">--xx搜尋</span>`;
+            b.innerHTML = `<i class="fas fa-search" style="margin-right:12px;"></i><strong>${val}</strong>&emsp;<span style="color:#a1a1a1">-Trip搜尋</span>`;
             b.addEventListener("click", function (e) {
 
                 inp.value = val;
@@ -678,24 +569,112 @@
     var attractions = JSON.parse('{{ attractions_search_json|safe }}');
     autocomplete(document.getElementById("myInput"), attractions);
 
+    //
+    //點擊觸發詳細資訊
+    var modal = document.getElementById('id01');// 取得代表模態框的元素物件
+    // 當使用者點擊視窗時執行的函式
+    window.onclick = function (event) {
+        // 判斷點擊事件的目標是否是模態框元素本身
+        if (event.target == modal) {
+            // 如果是，將模態框的顯示樣式設定為 "none"，即隱藏模態框
+            modal.style.display = "none";
+        }
+    }
 
-    // 获取文本元素
-    const scrollText = document.querySelector('.scroll-text');
-    const scrollTextH1 = scrollText.querySelector('h1');
-    // 定义停止滚动的位置
-    const stopScrollY = 120; // 在此位置停止滚动
+    // 當點擊某個元素時觸發的函式，傳入的參數為觸發點擊事件的元素
+    function showInfo(element) {
+        // 從被點擊的元素中取得自定義屬性 'aId' 的值
+        var aId = $(element).data('aId');
 
-    // 监听滚动事件
-    window.addEventListener('scroll', function () {
-        // 获取当前滚动位置
-        const scrollY = window.scrollY;
+        // 發起 AJAX 請求
+        $.ajax({
+            url: '',  // 伺服器端的 URL
+            type: 'GET',  // 請求類型為 GET
+            data: {
+                a_id: aId  // 傳遞給伺服器的參數，以 a_id 為名
+            },
+            success: function (response) {
+                // 當請求成功時執行的處理程式
 
-        // 仅当滚动位置小于等于停止位置时，应用移动效果
-        if (scrollY <= stopScrollY) {
-            // 根据滚动位置调整文本位置，控制移动效果
-            const translateY = Math.min(scrollY, stopScrollY);
-            scrollTextH1.style.transform = `translate(0%, ${translateY}%)`;
+                // 取得模態框元素
+                var showInfo = document.getElementById("id01");
+                // 將模態框的顯示樣式設定為 "block"，顯示模態框
+                showInfo.style.display = "block";
+
+                // 從回應中取得景點資料
+                var attractions = response;
+
+                // 將景點資料顯示在網頁中的相應元素內
+                var attractionsDetailName = document.getElementById('attractions-detail-name');
+                var attractionsDetailAddress = document.getElementById('attractions-detail-address');
+                var attractionsDetailPhone = document.getElementById('attractions-detail-phone');
+                var attractionsDetailRating = document.getElementById('selectedRating');
+
+                attractionsDetailName.textContent = attractions.a_name;
+                attractionsDetailAddress.textContent = "地址：" + attractions.address;
+                attractionsDetailPhone.textContent = "電話：" + attractions.phone;
+                attractionsDetailRating.textContent = attractions.rating;
+            },
+            error: function (xhr, status, error) {
+                // 請求失敗時的處理
+                console.log("AJAX請求失敗: " + error);
+            }
+        });
+    }
+
+    {% comment %} var showInfo = document.getElementById("id01");
+    showInfo.style.display = "block"; {% endcomment %}
+
+    //
+    //人潮分佈圖
+    var ctx = document.getElementById('chart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["週一", "週二", "週三", "週四", "週五", "週六", "週日"],
+            datasets: [{
+                label: '人潮分佈狀況',
+                data: [12, 19, 3, 5, 18, 3, 20],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.8)',
+                    'rgba(153, 102, 255, 0.8)',
+                    'rgba(255, 159, 64, 0.8)',
+                    'rgba(0, 0, 0, 0.8)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    ' rgba(0, 0, 0, 1)'
+                ],
+                borderWidth: 1
+            }]
         }
     });
+
+    //
+    // 取得選擇後的景點回傳的值
+    {% comment %}
+    $.ajax({
+        url: '',  // 替换为你的视图函数 URL
+        type: 'GET',
+        success: function (response) {
+            var attractions = response;
+
+            // 將資料放進網頁中
+
+            var attractionsDetailName = document.getElementById('attractions-detail-name');
+            attractionsDetailName.textContent = attractions.a_name;
+            console.log(attractionsDetailName);
+        }
+    }); {% endcomment %}
+
+
 </script>
 {% endblock body %}
