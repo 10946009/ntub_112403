@@ -9,7 +9,13 @@ window.onresize = function(){
   bannerbgimg.style.height = window.innerHeight + "px";
 }
 
-
+//向下滑動
+document.querySelector('.scroll-down-button').addEventListener('click', function (e) {
+  e.preventDefault();
+  document.querySelector('#main').scrollIntoView({
+      behavior: 'smooth'
+  });
+});
 
 //收藏
 var heart = document.getElementsByClassName('heart_icon');
