@@ -17,6 +17,8 @@ document.querySelector('.scroll-down-button').addEventListener('click', function
   });
 });
 
+
+
 //收藏
 var heart = document.getElementsByClassName('heart_icon');
     // var span = document.getElementsByClassName('count');

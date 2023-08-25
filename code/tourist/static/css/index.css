@@ -15,6 +15,7 @@ html{
 	background-position: center;
 	opacity: 0.65;
 	position: relative;
+	z-index: 100;
 }
 .explore{
 	background-color: rgb(0, 166, 255);
@@ -124,13 +125,13 @@ html{
 .downa:hover{
 	background:linear-gradient(to bottom, #ffffff00, #848484a4);
 }
+.downa:hover .down{
+	color: #FFF;
+}
 .down{
 	font-size: 26px;
 	color: #97979797;
 	transition: color 0.3s;
-}
-.down:hover{
-	color: #FFF;
 }
 
 /* 可以调整按钮整体的大小，以适应更大的图标 */
