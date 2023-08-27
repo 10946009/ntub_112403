@@ -64,36 +64,119 @@
         </div>
     </div>
 </nav> {% endcomment %}
-
-<!-- 搜尋引擎 -->
-<div class="row search_body">
-    <div class="col-2"></div>
-    <div class="col-8" style="margin-top:30px ;" ng-app="">
-        <!-- 搜尋框 -->
-        <form autocomplete="off" class="d-flex" method="post" role="search" action="{% url 'search_results' %}">
-            <div class="container">
-                <div class="searchInput">
-                    {% csrf_token %}
-                    <button class="icon" type="submit" id="searchClick"><i class="fas fa-search"></i></button>
-                    <input type="search" ng-model="search_item" placeholder="想去哪玩.." id="myInput" name="searchQuery">
-                    <button class="filiter" type="submit"><i class="fa-solid fa-filter"></i></button>
-                </div>
+<!-- 動態大標 景點資訊 -->
+<div class="row jumbotron">
+    <div class="container_info">
+        <div class="active_tit">
+            <div class="scroll-text">
+                <h1>景&ensp;點&ensp;資&ensp;訊</h1>
             </div>
-            <!-- 進階搜尋 -->
-
-        </form>
+            <div class="scroll-text1">
+                <hr class="tit_hr">
+                <h5>Trip&ensp;Fun&ensp;Chill&ensp;趣放假</h5>
+            </div>
+        </div>
+    </div>
+    <!-- 搜尋引擎 -->
+    <div class="row search_body">
+        <div class="col-2"></div>
+        <div class="col-8" style="margin-bottom:30px ;" ng-app="">
+            <!-- 搜尋框 -->
+            <form autocomplete="off" class="d-flex" method="post" role="search" action="{% url 'search_results' %}">
+                <div class="container_search">
+                    <div class="searchInput">
+                        {% csrf_token %}
+                        <button class="icon" type="submit" id="searchClick"><i class="fas fa-search"></i></button>
+                        <input type="search" ng-model="search_item" placeholder="想去哪玩.." id="myInput"
+                            name="searchQuery">
+                        <!-- 進階搜尋 -->
+                        <button class="filiter" type="submit"><i class="fa-solid fa-filter"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-
-<div class="row Att_Info">
-    <div class="col-2 "></div>
+<div class="row" id="section_culture">
+    <div class="col-2"></div>
     <!-- 景點資訊主體 -->
-    <div class="col-8 ">
+    <div class="col-8 contaioner_information">
         <!-- 景點資訊條列 -->
         {% for item in search_list %}
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-5">
+                <div class="img_wrap" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                    data-center="transform: translateY(0px);opacity: 1">
+                    <p class="learn_more">Learn<br>More</p>
+                    <img data-name="{{ item.id }}" class="slide"
+                        src="/static/images/attractions/{{item.place_id}}_0.jpg"
+                        style="width:100%;max-width: 100%; cursor: pointer;" onclick="showInfo(this)"
+                        data-a-Id="{{ item.id }}" alt="" />
+                </div>
+            </div>
+            <div class="col-7 feature">
+                <!-- 景點名稱 -->
+                <h4 data-bottom-top="transform: translateY(-20px);opacity: 0"
+                    data-center="transform: translateY(0px);opacity: 1" onclick="showInfo(this)"
+                    data-a-Id="{{ item.id }}">{{item.a_name }}</h3>
+                    <!-- 星星數 -->
+                    <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                        data-center="transform: translateY(0px);opacity: 1">
+                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                        <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
+                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                        <span class="rating-star">&#9733;</span>
+                    </div>
+                    <!-- 地址 -->
+                    <h6 style="margin-top:5px;" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                        data-center="transform: translateY(0px);opacity: 1">
+                        地址：<span id="list-address">{{ item.address }}</span>
+                    </h6>
+                    <!-- 評分 -->
+                    <h6 style="margin-top:5px;" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                        data-center="transform: translateY(0px);opacity: 1">
+                        綜合評分： <span id="list-selectedRating">{{ item.rating }}</span> / 5 (2.1萬)
+                    </h6>
+                    <!-- 營業時間 -->
+                    <h6 data-bottom-top="transform: translateY(-20px);opacity: 0"
+                        data-center="transform: translateY(0px);opacity: 1">
+                        營業時間：<span>24小時營業</span>
+                    </h6>
+                    <!-- 總瀏覽人數 -->
+                    <h6 style="color:#8b8a8a;" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                        data-center="transform: translateY(0px);opacity: 1">
+                        <i class="fa-regular fa-eye"></i>&thinsp;瀏覽人數：<span>１</span>人
+                    </h6>
+                    <!-- 收藏按鈕 -->
+                    {% if item.is_favorite == "0" %}
+                    <button class="col_btn" name="submitfavorite" id="submitfavorite{{item.id}}"
+                        data-isfavorite="{{item.is_favorite}}" onclick="addFavorite({{item.id}})">
+                        <i class="fa-regular fa-bookmark"></i>&ensp;收藏</button>
+                    {% else %}
+                    <button class="col_btn" name="submitfavorite" id="submitfavorite{{item.id}}"
+                        data-isfavorite="{{item.is_favorite}}" onclick="addFavorite({{ item.id }})">
+                        <i class="fa-solid fa-bookmark"></i>&ensp;已收藏</button>
+                    {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        <!-- 更多 -->
+        <div class="row bottom">
+            <h5>Learn More >></h5>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="row Att_Info">
+    <div class="col-2 "></div>
+    景點資訊主體
+    <div class="col-8 ">
+        景點資訊條列
+        {% for item in search_list %}
         <div class="row Info_item">
-            <!-- 景點圖片 -->
+            景點圖片
             <div class="col-4">
                 <div class="w3-content" style="max-width:800px;position:relative;">
                     <img data-name="{{ item.id }}" class="slide"
@@ -108,7 +191,7 @@
                         src="/static/images/attractions/{{item.place_id}}_0.jpg"
                         style="width:100%;max-width: 100%; cursor: pointer;" onclick="showInfo(this)"
                         data-a-Id="{{ item.id }}">
-                    <!-- 收藏按鈕 -->
+                    收藏按鈕
                     {% if item.is_favorite == "0" %}
                     <button class="col_btn" name="submitfavorite" id="submitfavorite{{item.id}}"
                         data-isfavorite="{{item.is_favorite}}" onclick="addFavorite({{item.id}})">
@@ -118,17 +201,17 @@
                         data-isfavorite="{{item.is_favorite}}" onclick="addFavorite({{ item.id }})">
                         <i class="fa-solid fa-bookmark"></i></button>
                     {% endif %}
-                    <!-- 圖片滑動按鈕箭頭 -->
+                    圖片滑動按鈕箭頭
                     <a class=" w3-btn-floating_left" onclick="plusDivs(-1,'{{ item.id }}')">❮</a>
                     <a class="w3-btn-floating_right" onclick="plusDivs(1,'{{ item.id }}')">❯</a>
                 </div>
             </div>
-            <!-- 景點相關簡短資訊 -->
+            景點相關簡短資訊
             <div class="col-8 short_info" style="width:auto;">
-                <!-- 景點名稱 -->
+                景點名稱
                 <h5 class="info_tit" onclick="showInfo(this)" data-a-Id="{{ item.id }}">
                     {{item.a_name }}</h5>
-                <!-- 星星數 -->
+                星星數
                 <div class="rating">
                     <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
                     <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
@@ -136,19 +219,19 @@
                     <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
                     <span class="rating-star">&#9733;</span>
                 </div>
-                <!-- 地址 -->
+                地址
                 <h6 style="margin-top:5px;">
                     地址：<span id="list-address">{{ item.address }}</span>
                 </h6>
-                <!-- 評分 -->
+                評分
                 <h6 style="margin-top:5px;">
                     綜合評分： <span id="list-selectedRating">{{ item.rating }}</span> / 5 (2.1萬)
                 </h6>
-                <!-- 營業時間 -->
+                營業時間
                 <h6>
                     營業時間：<span>24小時營業</span>
                 </h6>
-                <!-- 總瀏覽人數 -->
+                總瀏覽人數
                 <h6 style="color:#8b8a8a;">
                     <i class="fa-regular fa-eye"></i>&thinsp;瀏覽人數：<span>１</span>人
                 </h6>
@@ -157,7 +240,7 @@
         <hr>
         {% endfor %}
     </div>
-</div>
+</div> -->
 
 <!-- 景點詳細資料隱藏點擊 -->
 <div id="id01" class="row modal">
@@ -428,8 +511,6 @@
                             style="margin-right: 5px;"></i>我要評論</button>
                 </div>
             </div>
-
-
             <div class="container" style="background-color:#f1f1f1">
                 <button type="button" onclick="document.getElementById('id01').style.display='none'"
                     class="cancelbtn">Close</button>
@@ -442,118 +523,41 @@
     </div>
 </div>
 
+<!-- footer-->
+<footer class="jumbotron">
+    <div class="container">
+        <h2>有哪些地方想跟我們分享？</h2>
+        <input class="form-control" placeholder="E-mail" />
+        <button class="btn btn-default">訂閱</button>
+    </div>
+</footer>
+
 <script src="../static/js/addFavorite.js"></script>
 <script src="../static/js/slideshow.js"></script>
 <script src="../static/js/attractions.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
 <script>
-
-
-    // 取得代表模態框的元素物件
-    var modal = document.getElementById('id01');
-    // 當使用者點擊視窗時執行的函式
-    window.onclick = function (event) {
-        // 判斷點擊事件的目標是否是模態框元素本身
-        if (event.target == modal) {
-            // 如果是，將模態框的顯示樣式設定為 "none"，即隱藏模態框
-            modal.style.display = "none";
-        }
-    }
-
-
-
-    // 當點擊某個元素時觸發的函式，傳入的參數為觸發點擊事件的元素
-    function showInfo(element) {
-        // 從被點擊的元素中取得自定義屬性 'aId' 的值
-        var aId = $(element).data('aId');
-
-        // 發起 AJAX 請求
-        $.ajax({
-            url: '',  // 伺服器端的 URL
-            type: 'GET',  // 請求類型為 GET
-            data: {
-                a_id: aId  // 傳遞給伺服器的參數，以 a_id 為名
-            },
-            success: function (response) {
-                // 當請求成功時執行的處理程式
-
-                // 取得模態框元素
-                var showInfo = document.getElementById("id01");
-                // 將模態框的顯示樣式設定為 "block"，顯示模態框
-                showInfo.style.display = "block";
-
-                // 從回應中取得景點資料
-                var attractions = response;
-
-                // 將景點資料顯示在網頁中的相應元素內
-                var attractionsDetailName = document.getElementById('attractions-detail-name');
-                var attractionsDetailAddress = document.getElementById('attractions-detail-address');
-                var attractionsDetailPhone = document.getElementById('attractions-detail-phone');
-                var attractionsDetailRating = document.getElementById('selectedRating');
-
-                attractionsDetailName.textContent = attractions.a_name;
-                attractionsDetailAddress.textContent = "地址：" + attractions.address;
-                attractionsDetailPhone.textContent = "電話：" + attractions.phone;
-                attractionsDetailRating.textContent = attractions.rating;
-            },
-            error: function (xhr, status, error) {
-                // 請求失敗時的處理
-                console.log("AJAX請求失敗: " + error);
-            }
-        });
-    }
-
-    {% comment %} var showInfo = document.getElementById("id01");
-    showInfo.style.display = "block"; {% endcomment %}
-
-
-    //人潮分佈圖
-    var ctx = document.getElementById('chart').getContext('2d');
-    var chart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ["週一", "週二", "週三", "週四", "週五", "週六", "週日"],
-            datasets: [{
-                label: '人潮分佈狀況',
-                data: [12, 19, 3, 5, 18, 3, 20],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(54, 162, 235, 0.8)',
-                    'rgba(255, 206, 86, 0.8)',
-                    'rgba(75, 192, 192, 0.8)',
-                    'rgba(153, 102, 255, 0.8)',
-                    'rgba(255, 159, 64, 0.8)',
-                    'rgba(0, 0, 0, 0.8)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    ' rgba(0, 0, 0, 1)'
-                ],
-                borderWidth: 1
-            }]
+    //
+    //動態大標（景點資訊）
+    const scrollText = document.querySelector('.scroll-text');// 獲取本文元素
+    const scrollTextH1 = scrollText.querySelector('h1');// 獲取本文元素
+    // 定義停止位置
+    const stopScrollY = 120; // 在此位置停止
+    // 監聽滾動事件
+    window.addEventListener('scroll', function () {
+        // 獲取當前位置
+        const scrollY = window.scrollY;
+        // 當位置<=停止位置時，並移動
+        if (scrollY <= stopScrollY) {
+            // 根據位置調整本文位置，控制移動
+            const translateY = Math.min(scrollY, stopScrollY);
+            scrollTextH1.style.transform = `translate(0%, ${translateY}%)`;
         }
     });
 
-    // 取得選擇後的景點回傳的值
-    {% comment %}
-    $.ajax({
-        url: '',  // 替换为你的视图函数 URL
-        type: 'GET',
-        success: function (response) {
-            var attractions = response;
-
-            // 將資料放進網頁中
-
-            var attractionsDetailName = document.getElementById('attractions-detail-name');
-            attractionsDetailName.textContent = attractions.a_name;
-            console.log(attractionsDetailName);
-        }
-    }); {% endcomment %}
-
+    //
     //搜尋景點的部分
     function autocomplete(inp, arr) {
         var currentFocus; // 紀錄目前焦點所在的索引值
@@ -571,7 +575,7 @@
             searchClick = document.getElementById("searchClick");
             b = document.createElement("DIV");
             b.textContent = val; // 以輸入的值開頭
-            b.innerHTML = `<i class="fas fa-search" style="margin-right:12px;"></i><strong>${val}</strong>&emsp;<span style="color:#a1a1a1">--xx搜尋</span>`;
+            b.innerHTML = `<i class="fas fa-search" style="margin-right:12px;"></i><strong>${val}</strong>&emsp;<span style="color:#a1a1a1">-Trip搜尋</span>`;
             b.addEventListener("click", function (e) {
 
                 inp.value = val;
@@ -643,6 +647,113 @@
     }
     var attractions = JSON.parse('{{ attractions_search_json|safe }}');
     autocomplete(document.getElementById("myInput"), attractions);
+
+    //
+    //點擊觸發詳細資訊
+    var modal = document.getElementById('id01');// 取得代表模態框的元素物件
+    // 當使用者點擊視窗時執行的函式
+    window.onclick = function (event) {
+        // 判斷點擊事件的目標是否是模態框元素本身
+        if (event.target == modal) {
+            // 如果是，將模態框的顯示樣式設定為 "none"，即隱藏模態框
+            modal.style.display = "none";
+        }
+    }
+
+    // 當點擊某個元素時觸發的函式，傳入的參數為觸發點擊事件的元素
+    function showInfo(element) {
+        // 從被點擊的元素中取得自定義屬性 'aId' 的值
+        var aId = $(element).data('aId');
+
+        // 發起 AJAX 請求
+        $.ajax({
+            url: '',  // 伺服器端的 URL
+            type: 'GET',  // 請求類型為 GET
+            data: {
+                a_id: aId  // 傳遞給伺服器的參數，以 a_id 為名
+            },
+            success: function (response) {
+                // 當請求成功時執行的處理程式
+
+                // 取得模態框元素
+                var showInfo = document.getElementById("id01");
+                // 將模態框的顯示樣式設定為 "block"，顯示模態框
+                showInfo.style.display = "block";
+
+                // 從回應中取得景點資料
+                var attractions = response;
+
+                // 將景點資料顯示在網頁中的相應元素內
+                var attractionsDetailName = document.getElementById('attractions-detail-name');
+                var attractionsDetailAddress = document.getElementById('attractions-detail-address');
+                var attractionsDetailPhone = document.getElementById('attractions-detail-phone');
+                var attractionsDetailRating = document.getElementById('selectedRating');
+
+                attractionsDetailName.textContent = attractions.a_name;
+                attractionsDetailAddress.textContent = "地址：" + attractions.address;
+                attractionsDetailPhone.textContent = "電話：" + attractions.phone;
+                attractionsDetailRating.textContent = attractions.rating;
+            },
+            error: function (xhr, status, error) {
+                // 請求失敗時的處理
+                console.log("AJAX請求失敗: " + error);
+            }
+        });
+    }
+
+    {% comment %} var showInfo = document.getElementById("id01");
+    showInfo.style.display = "block"; {% endcomment %}
+
+    //
+    //人潮分佈圖
+    var ctx = document.getElementById('chart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["週一", "週二", "週三", "週四", "週五", "週六", "週日"],
+            datasets: [{
+                label: '人潮分佈狀況',
+                data: [12, 19, 3, 5, 18, 3, 20],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.8)',
+                    'rgba(153, 102, 255, 0.8)',
+                    'rgba(255, 159, 64, 0.8)',
+                    'rgba(0, 0, 0, 0.8)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    ' rgba(0, 0, 0, 1)'
+                ],
+                borderWidth: 1
+            }]
+        }
+    });
+
+    //
+    // 取得選擇後的景點回傳的值
+    {% comment %}
+    $.ajax({
+        url: '',  // 替换为你的视图函数 URL
+        type: 'GET',
+        success: function (response) {
+            var attractions = response;
+
+            // 將資料放進網頁中
+
+            var attractionsDetailName = document.getElementById('attractions-detail-name');
+            attractionsDetailName.textContent = attractions.a_name;
+            console.log(attractionsDetailName);
+        }
+    }); {% endcomment %}
+
 
 </script>
 {% endblock body %}

@@ -1,69 +1,289 @@
-.detail_box {
-    float: right;
-    float: top;
-    border: 1px solid black;
+/* 景點動態大標（景點資訊） */
+.scroll-text {
+    width: 100%;
+    position: relative;
+    transform: 0%;
+    opacity: 0.8;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: transform 0.1s ease;
+}
+
+.scroll-text1 {
+    width: 100%;
+    position: absolute;
+    margin-top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.8;
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    transition: transform 0.1s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scroll-text h1 {
+    font-size: 40px;
+    font-family: "Noto Serif TC", serif;
+    font-weight: 400;
+}
+
+.scroll-text h5 {
+    color: rgb(0, 0, 0);
+    font-family: "Noto Serif TC", serif;
+    font-weight: 200;
+}
+
+.tit_hr {
+    width: 300px;
+    border: 2px solid rgb(0, 0, 0);
+    margin-bottom: 20px;
+}
+
+.jumbotron {
+    text-align: center;
+    background-image: url(../images/Datong.jpeg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.container_info {
+    color: #fff;
+    margin: 220px 0;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.active_tit {
+    background-color: rgba(194, 194, 194, 0.2);
+    width: 35%;
+    height: 240px;
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*  */
+
+/*搜尋引擎*/
+.autocomplete {
+    position: relative;
+    display: inline-block;
+}
+
+input {
+    border: 1px solid transparent;
+    background-color: #f1f1f1;
     padding: 10px;
-    height: 1520px;
-    width: 650px;
-    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.autocomplete-items {
+    text-align: left;
+    padding-left: 12px;
+    padding-right: 12px;
+    background-color: #f1f1f1;
+    padding-bottom: 20px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    position: absolute;
+    /* border: 1px solid #d4d4d4; */
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #f1f1f1;
+}
+
+.autocomplete-items div:hover {
+    background-color: #d9d8d8;
+}
+
+.autocomplete-active {
+    background-color: #d9d8d8 !important;
+    color: black;
+}
+
+.search_body {
     margin-top: 20px;
-    margin-right: 40px;
-    border-radius: 10px;
+    margin-bottom: 40px;
 }
 
-.inner_1 {
-    margin-top: 10px;
-    margin-left: 15px;
+::selection {
+    color: #fff;
+    background: #4a8fff;
 }
 
-#rightbox {
-    display: none;
+.container_search {
+    width: 100%;
+    padding: 0 30px 0 30px;
 }
+
+.container_search .searchInput {
+    display: inline-block;
+    background: #fff;
+    width: 100%;
+    border-radius: 30px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchInput input {
+    /* border: 1px solid #d4d4d4; */
+    height: 55px;
+    width: 100%;
+    outline: none;
+    padding: 0 50px 0 50px;
+    font-size: 18px;
+    transition: all 50ms ease-in-out;
+    font-size: 18px;
+    border-radius: 30px;
+    outline: none;
+    transition: border-radius 0.3s;
+    cursor: pointer;
+}
+
+.searchInput input:focus {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom: none;
+}
+
+.searchInput .icon {
+    border: none;
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+}
+
+.filiter {
+    border: none;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+}
+
+.filiter:hover {
+    color: rgb(122, 155, 233);
+}
+
+/*  */
+
+/* 景點簡短資訊 */
+#section_culture {
+    margin: 30px 0 50px 0;
+}
+
+.bottom {
+    text-align: center;
+}
+
+.bottom h5 {
+    color: #333;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.bottom h5:hover {
+    color: #B54434;
+    transform: scale(1.1);
+}
+
+#section_culture .img_wrap {
+    position: relative;
+    display: inline-block;
+    /* 讓容器只占用所需的寬度 */
+    height: 255px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.learn_more {
+    position: absolute;
+    top: 40%;
+    /* 調整位置到圖片上方 */
+    left: 40%;
+    /* 放置在圖片中央 */
+    transform: translate(-20%, -20%);
+    /* 水平置中 */
+    color: #fff;
+    padding: 20px;
+    font-size: 35px;
+    text-align: center;
+    opacity: 0;
+    border-radius: 3px;
+    transition: 0.5s;
+    border: 2px solid rgb(50, 50, 50);
+    line-height: 35px;
+}
+
+.img_wrap:hover .learn_more {
+    opacity: 1;
+    color: rgb(50, 50, 50);
+}
+
+
+.img_wrap .slide {
+    width: 100%;
+    transition: 0.5s;
+}
+
+.img_wrap:hover .slide {
+    opacity: 0.6;
+    transform: scale(1.2);
+}
+
+#section_culture h4 {
+    margin: 0 0 10px 0;
+    padding: 0 0 10px 0;
+    display: inline-block;
+    border-bottom: 5px solid #DCB879;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+body {
+    background-color: #f7ead37c;
+}
+
+#section_culture h4:hover {
+    color: #DCB879;
+    padding-right: 10px;
+}
+
+#section_culture .feature {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.feature.col_btn {
+    position: absolute;
+    top: 24px;
+    right: 20px;
+    transform: translate(50%, -50%);
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 4px 10px 4px 10px;
+}
+
+/*  */
 
 .close {
     display: flex;
     align-items: center;
-}
-
-.img_x {
-    width: 5%;
-    height: auto;
-    float: right;
-    display: inline;
-    cursor: pointer;
-}
-
-.img_x:hover {
-    transform: scale(1.2, 1.2);
-}
-
-.search_tool {
-    padding: 8px;
-    border-radius: 8px;
-    width: 50%;
-    margin-right: 12px;
-}
-
-.search_btn {
-    width: 6%;
-    border-radius: 8px;
-}
-
-.search_btn:hover {
-    background: rgb(204, 204, 204);
-}
-
-.search_field {
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-
-.Att_img {
-    width: 100%;
-    height: auto;
-    float: right;
-    display: block;
-    margin: auto;
 }
 
 [class*="col-"] {
@@ -174,8 +394,6 @@
     }
 }
 
-
-
 * {
     box-sizing: border-box;
 }
@@ -186,152 +404,9 @@
     display: table;
 }
 
-.Att_detail {
-    margin-top: 10px;
-}
-
-/*輸入框內的圖示屬性設定*/
-.inputWithin {
-    position: relative;
-    display: inline-block;
-}
-
-.inputWithin .icon {
-    position: absolute;
-    left: 3px;
-    top: calc(50% - 0.5em);
-}
-
-
-/*搜尋引擎*/
-.autocomplete {
-    position: relative;
-    display: inline-block;
-}
-
-input {
-    border: 1px solid transparent;
-    background-color: #f1f1f1;
-    padding: 10px;
-    font-size: 16px;
-}
-
-.autocomplete-items {
-    padding-left: 12px;
-    background-color: #f1f1f1;
-    padding-bottom: 20px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    position: absolute;
-    border: 1px solid #d4d4d4;
-    border-top: none;
-    z-index: 99;
-    top: 100%;
-    left: 0;
-    right: 0;
-}
-
-.autocomplete-items div {
-    padding: 10px;
+/* .info_tit {
     cursor: pointer;
-    background-color: #f1f1f1;
-}
-
-/*when hovering an item:*/
-.autocomplete-items div:hover {
-    background-color: #d9d8d8;
-}
-
-/*when navigating through the items using the arrow keys:*/
-.autocomplete-active {
-    background-color: #d9d8d8 !important;
-    color: black;
-}
-
-.search_body {
-    margin-top: 20px;
-    margin-bottom: 40px;
-}
-
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap'); */
-
-::selection {
-    color: #fff;
-    background: #4a8fff;
-}
-
-.container {
-    max-width: 100%;
-    padding: 0 30px 0 30px;
-}
-
-.container .searchInput {
-    display: inline-block;
-    background: #fff;
-    width: 100%;
-    border-radius: 50px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.searchInput input {
-    border: 1px solid #d4d4d4;
-    height: 55px;
-    width: 100%;
-    outline: none;
-    /* border-top-left-radius: 25px;
-    border-top-right-radius: 25px; */
-    padding: 0 50px 0 50px;
-    font-size: 18px;
-    transition: all 50ms ease-in-out;
-    font-size: 18px;
-    border-radius: 30px;
-    outline: none;
-    transition: border-radius 0.3s;
-    cursor: pointer;
-}
-
-.searchInput input:focus {
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-    border-bottom: none;
-}
-
-.searchInput .icon {
-    border: none;
-    position: absolute;
-    top: 50%;
-    left: 15px;
-    /* Adjust the distance from the right edge of the input */
-    transform: translateY(-50%);
-}
-
-.filiter {
-    border: none;
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    /* Adjust the distance from the right edge of the input */
-    transform: translateY(-50%);
-}
-
-.filiter:hover {
-    color: rgb(122, 155, 233);
-}
-
-.info_tit {
-    cursor: pointer;
-}
-
-
-/* .searchInput .icon:nth-last-child(1) {
-    border-bottom-right-radius: unset;
-    border-top-right-radius: 25px;
 } */
-
-
 
 .Info_item {
     margin-top: 20px;
@@ -341,19 +416,6 @@ input {
 
 .w3-btn-floating:hover {
     background-color: rgba(255, 255, 255, 0.439);
-}
-
-
-
-
-input[type=text],
-input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
 }
 
 /* Extra styles for the cancel button */
@@ -562,7 +624,7 @@ input[type=password] {
     }
 
     .rating {
-        font-size: 26px;
+        font-size: 30px;
     }
 
     .short_info h6 {
@@ -923,17 +985,46 @@ img {
 
 }
 
-.info_tit:hover {
+/* .info_tit:hover {
     text-decoration-style: solid;
     color: rgb(0, 85, 255);
+} */
+
+footer.jumbotron {
+    text-align: center;
+    background-image: url(../images/Datong.jpeg);
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
 }
 
-.w3-content .col_btn {
-    position: absolute;
-    top: 24px;
-    right: 20px;
-    transform: translate(50%, -50%);
-    background-color: #fff;
-    border-radius: 50%;
-    padding: 4px 10px 4px 10px;
+footer.jumbotron input {
+    background-color: transparent;
+    max-width: 350px;
+    margin: 30px auto;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+footer.jumbotron input::placeholder {
+    color: #fff;
+}
+
+footer.jumbotron .container {
+    color: #fff;
+    padding: 60px 0;
+}
+
+footer.jumbotron .container button.btn.btn-default {
+    background-color: rgba(248, 253, 138, 0.2);
+    color: #f8fd8a;
+    border: 1px solid #f8fd8a;
+    transition: 0.5s;
+}
+
+footer.jumbotron .container button.btn.btn-default:hover {
+    background-color: #f8fd8a;
+    color: #183158;
+    transform: scale(1.2);
 }

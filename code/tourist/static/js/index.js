@@ -1,3 +1,16 @@
+//圖片等於螢幕高度
+window.onload = function(){
+  var bannerbgimg = document.getElementsByClassName('banner');
+  bannerbgimg.style.height = window.innerHeight + "px";
+}
+//重新計算螢幕高度
+window.onresize = function(){
+  var bannerbgimg = document.getElementsByClassName('banner');
+  bannerbgimg.style.height = window.innerHeight + "px";
+}
+
+
+
 //收藏
 var heart = document.getElementsByClassName('heart_icon');
     // var span = document.getElementsByClassName('count');

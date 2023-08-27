@@ -7,7 +7,7 @@ html{
 	height: 100%;
 }
 .banner{
-	height: 600px;
+	height: 100vh;
 	width: 100%;
 	background: url(../images/IMG20220125115200.jpg);
 	background-repeat: no-repeat;
@@ -16,16 +16,77 @@ html{
 	opacity: 0.65;
 	position: relative;
 }
+.explore{
+	/* display: inline-block; */
+	width: 600px;
+	margin-left: 5px;
+	padding: 20px;
+}
+.explorea{
+	background-color: rgb(0, 166, 255);
+	font-size: 28px;
+	text-decoration-line: none;
+	color: black;
+	padding: 20px 40px;
+	transition: padding 0.3s;
+}
+.explorea:hover{
+	padding-left: 18px;
+}
 .systemname{
 	font-size: 100px;
 	font-weight: bold;
 	position: absolute;
-	top: 88%;
-	left: 10px;
-	transform: rotate(-5deg);
+	left: 10%;
+	width: 70%;
+	height: 500px;
+	border: 5px solid white;
 	font-family: 'HanyiSentyTea', sans-serif;
 	color: white;
 	text-shadow: 4px 4px 2px rgba(65, 65, 65, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+  	margin: 0 auto;
+  	margin-top: 50vh; /* 使用视口高度的一半来垂直居中 */
+  	transform: translateY(-50%); /* 负边距来修正垂直居中 */
+}
+.sysnamediv{
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 98%;
+	height: 96%;
+	border: 2px solid white;
+	white-space: nowrap;
+}
+.tfc{
+	margin-left: 10px;
+}
+.systxt{
+	font-size: 50px;
+	margin-top: 0;
+	margin-left: 10px;
+}
+.createbtn{
+	font-family: Microsoft JhengHei;
+	font-size: 32px;
+	text-decoration-line: none;
+	color: white;
+	box-shadow: 4px 4px 2px rgba(69, 69, 69, 0.7);
+	text-shadow: 2px 2px 2px rgba(207, 207, 207, 0.5);
+	display: block;
+	width: fit-content;
+	padding: 10px 15px;
+	margin-left: 50px;
+	/* border-radius: 15%; */
+	background-color: rgba(34, 34, 34,.8);
+	transition: background-color 0.3s ,color 0.3s;
+}
+.createbtn:hover{
+	background-color: #ff473d;
+	color: black;
 }
 
 /* 可以调整按钮整体的大小，以适应更大的图标 */
@@ -196,9 +257,9 @@ html{
 }
 
 @media( max-width: 768px ) {
-	.banner{
+	/* .banner{
 		height: 500px;
-	}
+	} */
 	.systemname{
 	  font-size: 60px;
 	}
@@ -227,9 +288,9 @@ html{
 	}
 }
 @media(max-width: 576px){
-	.banner{
+	/* .banner{
 		height: 350px;
-	}
+	} */
 	.systemname{
 		font-size: 50px;
 	}
@@ -295,17 +356,17 @@ html{
 	}
 }
 @media (max-width: 488px) {
-	.banner{
+	/* .banner{
 		height: 300px;
-	}
+	} */
 	.systemname{
 		font-size: 40px;
 	}
 }
 @media(max-width: 376px){
-	.banner{
+	/* .banner{
 		height: 300px;
-	}
+	} */
 	.systemname{
 		font-size: 35px;
 	}
