@@ -15,23 +15,28 @@ html{
 	background-position: center;
 	opacity: 0.65;
 	position: relative;
+	z-index: 100;
 }
 .explore{
-	/* display: inline-block; */
+	background-color: rgb(0, 166, 255);
+	height: 100px;
 	width: 600px;
 	margin-left: 5px;
-	padding: 20px;
+	line-height: 100px;
+	position: relative;
 }
 .explorea{
-	background-color: rgb(0, 166, 255);
+	display: block;
+	width: 100%;
 	font-size: 28px;
 	text-decoration-line: none;
-	color: black;
-	padding: 20px 40px;
-	transition: padding 0.3s;
+	color: white;
+	position: absolute;
+	left: 10%;
+	transition: left 0.3s;
 }
 .explorea:hover{
-	padding-left: 18px;
+	left: 8%;
 }
 .systemname{
 	font-size: 100px;
@@ -53,21 +58,19 @@ html{
   	transform: translateY(-50%); /* 负边距来修正垂直居中 */
 }
 .sysnamediv{
-	position: absolute;
-	top: 10px;
-	left: 10px;
 	width: 98%;
 	height: 96%;
 	border: 2px solid white;
-	white-space: nowrap;
+	line-height: 100px;
+	padding-top: 90px;
 }
 .tfc{
-	margin-left: 10px;
+	margin-left: 20px;
 }
 .systxt{
 	font-size: 50px;
 	margin-top: 0;
-	margin-left: 10px;
+	margin-left: 20px;
 }
 .createbtn{
 	font-family: Microsoft JhengHei;
@@ -77,16 +80,58 @@ html{
 	box-shadow: 4px 4px 2px rgba(69, 69, 69, 0.7);
 	text-shadow: 2px 2px 2px rgba(207, 207, 207, 0.5);
 	display: block;
-	width: fit-content;
-	padding: 10px 15px;
+	width: 150px;
+	line-height: 80px;
+	padding: 0 10px;
 	margin-left: 50px;
-	/* border-radius: 15%; */
+	border-radius: 15%;
 	background-color: rgba(34, 34, 34,.8);
 	transition: background-color 0.3s ,color 0.3s;
 }
 .createbtn:hover{
 	background-color: #ff473d;
 	color: black;
+	text-shadow: 2px 2px 2px rgba(86, 86, 86, 0.5);
+}
+
+.scroll-down-button {
+    position: absolute;
+    bottom: 20px; /* 调整按钮距离底部的距离 */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+.scroll-down-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.downa{
+	/* width: 50%; */
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	line-height: 50px;
+	text-align: center;
+	display: block;
+	background:linear-gradient(to bottom, #ffffff00, #000000a4);
+	/* background-color: #ffffff00; */
+}
+.downa:hover{
+	background:linear-gradient(to bottom, #ffffff00, #848484a4);
+}
+.downa:hover .down{
+	color: #FFF;
+}
+.down{
+	font-size: 26px;
+	color: #97979797;
+	transition: color 0.3s;
 }
 
 /* 可以调整按钮整体的大小，以适应更大的图标 */
@@ -211,6 +256,7 @@ html{
 	justify-content: center;
 	margin: 10px auto;
 }
+
 /*btn詳細資料*/
 .hot_spot_show{
 	display: flex;
@@ -255,13 +301,47 @@ html{
 	padding: 0 15px 0 0;
 	font-size: 18px;
 }
-
+@media (max-width:850px) {
+	.sysnamediv{
+		padding: 10px;
+		margin-left: 0;
+		width: 96%;
+		margin: 0 auto;
+	}
+	.systemname{
+		width: 80%;
+		height: 50%;
+		text-align: center;
+	}
+	.createbtn{
+		width: 150px;
+		font-size: 28px;
+		line-height: 60px;
+		border-radius: 0;
+		margin: 0 auto;
+	}
+	.tfc{
+		font-size: 70px;
+		margin-left: 0;
+	}
+	.systxt{
+		font-size: 60px;
+		margin-left: 0;
+	}
+}
 @media( max-width: 768px ) {
-	/* .banner{
-		height: 500px;
-	} */
+	.sysnamediv{
+		padding-top: 50px;
+		line-height: 70px;
+	}
 	.systemname{
 	  font-size: 60px;
+	}
+	.tfc{
+		font-size: 50px;
+	}
+	.systxt{
+		font-size: 45px;
 	}
 	.carousel-control-prev,
 	.carousel-control-next {
@@ -288,11 +368,18 @@ html{
 	}
 }
 @media(max-width: 576px){
-	/* .banner{
-		height: 350px;
-	} */
 	.systemname{
+		line-height: 40px;
 		font-size: 50px;
+	}
+	.tfc{
+		/* font-size: 40px; */
+	}
+	.createbtn{
+		font-size: 26px;
+	}
+	.systxt{
+		font-size: 40px;
 	}
 	.carousel-control-prev,
 	.carousel-control-next {
@@ -356,17 +443,17 @@ html{
 	}
 }
 @media (max-width: 488px) {
-	/* .banner{
-		height: 300px;
-	} */
+	.tfc{
+		font-size: 40px;
+	}
 	.systemname{
 		font-size: 40px;
 	}
+	.systxt{
+		font-size: 32px;
+	}
 }
 @media(max-width: 376px){
-	/* .banner{
-		height: 300px;
-	} */
 	.systemname{
 		font-size: 35px;
 	}
