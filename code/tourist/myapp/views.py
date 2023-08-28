@@ -85,7 +85,21 @@ def admin_comment(request):
 
 # 首頁
 def index(request):
-    return render(request, "index.html")
+    checklogin = check_login(request)
+    return render(request, "index.html", locals())
+
+
+# check login
+def check_login(request):
+    if request.user.is_authenticated:
+        return True
+    else:
+        return False
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect("/")
 
 
 # 登入頁
@@ -247,6 +261,8 @@ def search(request):
 
 # 建立行程首頁
 def create_index(request):
+    if not check_login(request):
+        return redirect("/login")
     num = 1
     if request.method == "POST":
         u_id = request.user.id
