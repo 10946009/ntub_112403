@@ -10,14 +10,24 @@ window.onresize = function(){
 }
 
 //向下滑動
+// document.querySelector('.scroll-down-button').addEventListener('click', function (e) {
+//   e.preventDefault();
+//   document.querySelector('#main').scrollIntoView({
+//       behavior: 'smooth'
+//   });
+// });
+
 document.querySelector('.scroll-down-button').addEventListener('click', function (e) {
   e.preventDefault();
-  document.querySelector('#main').scrollIntoView({
-      behavior: 'smooth'
+  const navbarHeight = document.querySelector('nav').offsetHeight; // 获取导航栏的高度
+  const targetElement = document.querySelector('#main');
+  const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navbarHeight;
+
+  window.scrollTo({
+    top: targetPosition,
+    behavior: 'smooth'
   });
 });
-
-
 
 //收藏
 var heart = document.getElementsByClassName('heart_icon');
