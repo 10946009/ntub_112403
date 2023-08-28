@@ -23,27 +23,15 @@
         <nav class="navbar navbar-expand-lg toolbar">
           <div class="container-fluid">
             <a class="navbar-brand" href="#" style="padding: 0;">
-              <img src="../static/images/logo_square1.png"
-                   class="logo_square1"
-                   id="logo_icon"
-                   alt="">
+              <img src="../static/images/logo_square1.png" class="logo_square1" id="logo_icon" alt="">
             </a>
             <form class="d-flex" role="search">
-              <input class="form-control me-auto search"
-                     type="search"
-                     placeholder="想去哪玩.."
-                     aria-label="Search">
+              <input class="form-control me-auto search" type="search" placeholder="想去哪玩.." aria-label="Search">
               <button class="btn btn-outline-success search_icon" type="submit">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </button>
             </form>
-            <button class="navbar-toggler ms-auto rwd_icon"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
+            <button class="navbar-toggler ms-auto rwd_icon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -59,11 +47,7 @@
                 </li>
                 {% if checklogin %}
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle"
-                       href="/login"
-                       role="button"
-                       data-bs-toggle="dropdown"
-                       aria-expanded="false">我的XX</a>
+                    <a class="nav-link dropdown-toggle"href="/login"role="button"data-bs-toggle="dropdown"aria-expanded="false">我的XX</a>
                     <ul class="dropdown-menu" style="z-index: 999;">
                       <li>
                         <a class="dropdown-item" href="/history">我的行程</a>
