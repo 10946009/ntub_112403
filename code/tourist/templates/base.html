@@ -49,11 +49,11 @@
                 <a class="nav-link dropdown-toggle" href="/login" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   我的XX
                 </a>
-                <ul class="dropdown-menu" style="z-index: 999;">
+                <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="/history">我的行程</a></li>
                   <li><a class="dropdown-item" href="/favorite">我的收藏</a></li>
                   <li><a class="dropdown-item" href="/share">我的分享</a></li>
-                  <li><a class="dropdown-item" href="#">我的分享XXXXXX</a></li>
+                  <li><a class="dropdown-item" href="#">我的分享XXXXX</a></li>
                 </ul>
               </li>
             </ul>
@@ -95,17 +95,38 @@
     
 
     //不在index.html的時候隱藏systemname
+    // window.onload = function() {
+    //   var isIndexPage = window.location.pathname === "/"; // 假设首页的路径是 "/"
+    //   var systemNameElement = document.getElementById("systemname");
+    //   var down = document.getElementsByClassName("downa");
+    //   var navbgcolor = document.querySelector(".toolbar");
+  
+    //   if(!isIndexPage){
+    //     if(systemNameElement){
+    //       systemNameElement.style.display = "none";
+    //       // down.style.display = "none";
+    //     }  
+    //     if(navbgcolor){
+    //       navbgcolor.classList.add("navchange");
+    //     }
+    //   }
+    // };
     window.onload = function() {
       var isIndexPage = window.location.pathname === "/"; // 假设首页的路径是 "/"
       var systemNameElement = document.getElementById("systemname");
+      var downElements = document.getElementsByClassName("downa");
       var navbgcolor = document.querySelector(".toolbar");
-  
-      if(!isIndexPage){
-        if(systemNameElement){
+
+      if (!isIndexPage) {
+        if (systemNameElement) {
           systemNameElement.style.display = "none";
-        }  
-        if(navbgcolor){
+        }
+        if (navbgcolor) {
           navbgcolor.classList.add("navchange");
+        }
+        //找down元素
+        for (var i = 0; i < downElements.length; i++) {
+          downElements[i].style.display = "none";
         }
       }
     };
