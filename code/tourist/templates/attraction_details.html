@@ -136,13 +136,16 @@
                     data-center="transform: translateY(0px);opacity: 1" onclick="showInfo(this)"
                     data-a-Id="{{ item.id }}">{{item.a_name }}</h3>
                     <!-- 星星數 -->
-                    <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
-                        data-center="transform: translateY(0px);opacity: 1">
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star">&#9733;</span>
+                    <div class="rating"
+                            data-bottom-top="transform: translateY(-20px);opacity: 0"
+                            data-center="transform: translateY(0px);opacity: 1;">
+                            {% for i in "12345" %}
+                            {% if i|add:0 <= item.rating %}
+                            <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                            {% else %}
+                            <span class="rating-star">&#9733;</span>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                     <!-- 地址 -->
                     <h6 style="margin-top:5px;" data-bottom-top="transform: translateY(-20px);opacity: 0"
