@@ -99,6 +99,32 @@ input {
     right: 0;
 }
 
+.searchContent {
+    text-align: left;
+    padding-left: 12px;
+    padding-right: 12px;
+    background-color: #f1f1f1;
+    padding-bottom: 20px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    position: absolute;
+    /* border: 1px solid #d4d4d4; */
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+#searchBox {
+    display: none;
+
+}
+
+#myInput:focus+#searchBox {
+    display: block;
+}
+
 .autocomplete-items div {
     padding: 10px;
     cursor: pointer;
