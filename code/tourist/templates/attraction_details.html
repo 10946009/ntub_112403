@@ -89,6 +89,21 @@
                         <button class="icon" type="submit" id="searchClick"><i class="fas fa-search"></i></button>
                         <input type="search" ng-model="search_item" placeholder="想去哪玩.." id="myInput"
                             name="searchQuery">
+                        <div id="searchBox">
+                            <div class="enter"></div>
+                            <div class="searchContent">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>&ensp;分類
+                                <table style=" width:30%;margin-left: 25px;">
+                                    <tr>
+                                        <td>123</td>
+                                        <td>123</td>
+                                        <td>123</td>
+                                        <td>123</td>
+                                    </tr>
+                                </table>
+                                請輸入搜尋內容...
+                            </div>
+                        </div>
                         <!-- 進階搜尋 -->
                         <button class="filiter" type="submit"><i class="fa-solid fa-filter"></i></button>
                     </div>
@@ -539,6 +554,24 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
 <script>
+
+    //
+    //進階的部分
+    const searchInput = document.getElementById("myInput");
+    const searchContent = document.getElementById("searchBox");
+    const enter = document.getElementById("enter");
+
+    searchInput.addEventListener("input", function () {
+        const inputValue = searchInput.value;
+        if (inputValue.trim() !== "") {
+            enter.textContent = inputValue;
+            searchContent.style.display = "none";
+        } else {
+            enter.textContent = "";
+            searchContent.style.display = "block";
+        }
+    });
+
     //
     //動態大標（景點資訊）
     const scrollText = document.querySelector('.scroll-text');// 獲取本文元素
@@ -557,7 +590,6 @@
         }
     });
 
-    //
     //搜尋景點的部分
     function autocomplete(inp, arr) {
         var currentFocus; // 紀錄目前焦點所在的索引值
