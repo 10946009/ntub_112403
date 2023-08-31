@@ -21,22 +21,34 @@ html{
 	background-color: rgb(0, 166, 255);
 	height: 100px;
 	width: 600px;
-	margin-left: 5px;
+	margin: 50px auto;
 	line-height: 100px;
 	position: relative;
 }
 .explorea{
 	display: block;
 	width: 100%;
-	font-size: 28px;
+	font-size: 36px;
+	font-weight: bolder;
 	text-decoration-line: none;
 	color: white;
 	position: absolute;
 	left: 10%;
 	transition: left 0.3s;
+	word-break: break-word; /* 确保文本断行 */
 }
 .explorea:hover{
 	left: 8%;
+}
+.arrow{
+	margin-left: 12px;
+}
+.arrowi{
+	background-color: white;
+	box-shadow: 2px 2px 15px rgb(93, 93, 93);
+	border-radius: 50%;
+	padding: 10px 12px;
+	color: black;
 }
 .systemname{
 	font-size: 100px;
@@ -143,6 +155,7 @@ html{
 	height: 200px; 
 }
 .heart_icon_img{
+	overflow: hidden;
 	position: relative;
 }
 /*輪播區塊css*/
@@ -174,7 +187,6 @@ html{
 	text-align: center;
 }
 .c_txt{
-	/* margin-top: 5px; */
 	margin:5px ;
 	padding: 5px;
 	text-align: justify;
@@ -237,24 +249,43 @@ html{
 
 
 /*熱門行程*/
-.hot_txt{
+
+.container{
+	width: 98%;
+	justify-content: center;
+	margin: 10px auto;
+}
+#container DIV{ 
 	text-align: center;
+	margin: 0px;
+	padding: 0px;
+    /* background-color:rgb(255, 255, 255);  */
+}
+.hideme{
+    opacity:0;
+}
+
+.hot_txt{
+	text-align: left;
 }
 .hot_spot_block{
+	/* padding: 5px; */
 	margin-bottom: 10px;
 	text-align: center;
 }
+.spot_data_btn{
+	margin-bottom: 10px;
+}
 .spot_img{
 	padding: 0;
+	transition: transform 0.3s;
+}
+.spot_img:hover{
+	transform: scale(1.1);
 }
 .spot_txt{
 	border: 1px solid #ccc;
 	padding: 10px 0px;
-}
-.container{
-	width: 90%;
-	justify-content: center;
-	margin: 10px auto;
 }
 
 /*btn詳細資料*/
@@ -366,6 +397,16 @@ html{
 		height: 100%;
 		object-fit: cover;
 	}
+	.explore{
+		height: 100px;
+		width: 500px;
+	}
+	.explorea{
+		font-size: 28px;
+	}
+	.arrow{
+		margin-left: 20px;
+	}
 }
 @media(max-width: 576px){
 	.systemname{
@@ -441,6 +482,24 @@ html{
 		/* width: 150px; */
 		border-radius: 10%;
 	}
+	.explore{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		align-content: center;
+		height: 120px;
+		width: 100%;
+	}
+	.explorea{
+		font-size: 28px;
+		left: 7%;
+	}
+	.explorea:hover{
+		left: 6%;
+	}
+	.arrow{
+		margin-left: 12px;
+	}
 }
 @media (max-width: 488px) {
 	.tfc{
@@ -451,6 +510,27 @@ html{
 	}
 	.systxt{
 		font-size: 32px;
+	}
+	.explore{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		align-content: center;
+		height: 120px;
+		width: 100%;
+	}
+	.explorea{
+		font-size: 22px;
+		left: 4%;
+	}
+	.explorea:hover{
+		left: 3%;
+	}
+	.arrow{
+		margin-left: 5px;
+	}
+	.arrowi{
+		padding: 8px 10px;
 	}
 }
 @media(max-width: 376px){
