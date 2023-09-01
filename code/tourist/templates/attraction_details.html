@@ -83,6 +83,7 @@
         <div class="col-8" style="margin-bottom:30px;" ng-app="">
             <!-- 搜尋框 -->
             <form autocomplete="off" class="d-flex" method="post" role="search" action="{% url 'search_results' %}">
+                {% csrf_token %}
                 <div class="container_search">
                     <div class="searchInput">
                         <button class="icon" type="submit" id="searchClick"><i class="fas fa-search"></i></button>
