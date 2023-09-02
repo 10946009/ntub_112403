@@ -18,7 +18,7 @@ from django.db.models import Q
 from django.core.mail import send_mail
 
 from geopy.distance import geodesic
-
+from django.contrib.auth.decorators import login_required
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 
@@ -114,17 +114,7 @@ def admin_comment(request):
 
 # 首頁
 def index(request):
-    checklogin = check_login(request)
     return render(request, "index.html", locals())
-
-
-# check login
-def check_login(request):
-    if request.user.is_authenticated:
-        return True
-    else:
-        return False
-
 
 def logout(request):
     auth.logout(request)
@@ -289,9 +279,8 @@ def search(request):
 
 
 # 建立行程首頁
+@login_required(login_url="/login")
 def create_index(request):
-    if not check_login(request):
-        return redirect("/login")
     num = 1
     if request.method == "POST":
         u_id = request.user.id
@@ -310,6 +299,7 @@ def create_index(request):
 
 
 # 建立行程
+@login_required(login_url="/login")
 def create(request, ct_id):
     user_favorite = [4, 6, 9, 10, 15, 16, 18]
     ct_data = Create_Travel.objects.get(id=ct_id)
@@ -497,6 +487,7 @@ def create(request, ct_id):
 
 
 # 我的行程(歷史紀錄)
+@login_required(login_url="/login")
 def history(request):
     my_history = []
     user_id = request.user.id
@@ -507,6 +498,7 @@ def history(request):
 
 
 # 我的最愛
+@login_required(login_url="/login")
 def favorite(request):
     favorite_list = []
     user_id = request.user.id
@@ -525,6 +517,7 @@ def share(request):
     return render(request, "share.html")
 
 
+@login_required(login_url="/login")
 def add_favorite(request):
     u_id = request.user.id
     aid = request.POST.get("aid")

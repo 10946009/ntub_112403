@@ -22,7 +22,7 @@
       <div class="banner">
         <nav class="navbar navbar-expand-lg toolbar" style="z-index: 100;">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#" style="padding: 0;">
+            <a class="navbar-brand" href="/" style="padding: 0;">
               <img src="../static/images/logo_square1.png" class="logo_square1" id="logo_icon" alt="">
             </a>
             <form class="d-flex" role="search">
@@ -45,7 +45,7 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/attraction_details">詳細景點</a>
                 </li>
-                {% if checklogin %}
+                {% if request.user.is_authenticated %}
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle"href="/login"role="button"data-bs-toggle="dropdown"aria-expanded="false">我的XX</a>
                     <ul class="dropdown-menu" style="z-index: 999;">
