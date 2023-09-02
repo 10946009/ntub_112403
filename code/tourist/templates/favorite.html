@@ -1,153 +1,234 @@
 
-  {% extends 'base.html' %}
-  {% block title %}我的收藏{% endblock %}
-  {% block content %}
-    <link rel="stylesheet" href="../static/css/favorite.css">
-    <link rel="stylesheet" href="../static/css/bootstrap2023.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-      .location-wrap img {
-        object-fit: cover;
-        width: 350px;
-        height: 300px;
-      }
+    {% extends 'base.html' %}
+    {% block title %}我的收藏{% endblock %}
+    {% block content %}
+      <link rel="stylesheet" href="../static/css/favorite.css">
+      <link rel="stylesheet" href="../static/css/bootstrap2023.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      <style>
+        .location-wrap img {
+          object-fit: cover;
+          width: 350px;
+          height: 300px;
+        }
 
-      .location-wrap {
-        width: 350px;
-        height: 300px;
+        .location-wrap {
+          width: 350px;
+          height: 300px;
+          overflow: hidden;
+          position: relative;
+        }
+
+        .location-heart {
+          position: absolute;
+          top: 0;
+          right: 0;
+          background-color: #fff;
+          border-radius: 50%;
+          padding: 9px;
+          color: red;
+          margin: 10px;
+          font-size: large;
+          cursor: pointer;
+        }
+        .description {
+        max-width: 100%;
         overflow: hidden;
-        position: relative;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        margin-bottom: 10px;
+        white-space: normal;
+      }
+      .tight-row {
+      margin-left: 170px; /* 負邊距將列向內縮 */
+      margin-right: 170px; /* 負邊距將列向內縮 */
       }
 
-      .location-heart {
-        position: absolute;
-        top: 0;
-        right: 0;
-        background-color: #fff;
-        border-radius: 50%;
-        padding: 9px;
-        color: red;
-        margin: 10px;
-        font-size: large;
-        cursor: pointer;
+      .tight-row .col-md-4 {
+      padding-left: 0px; /* 負邊距的相反數 */
+      padding-right: 0px; /* 負邊距的相反數 */
       }
-      .description {
-      max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
-      margin-bottom: 10px;
-      white-space: normal;
-    }
-    </style>
-  {% endblock %}
+      </style>
+    {% endblock %}
 
-  {% block body %}
-  
-  <!-- Tabs navs -->
-  <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
-    role="tab" aria-controls="home" aria-selected="true" onclick="saveTabState('home')">最愛景點</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
-      role="tab" aria-controls="contact" aria-selected="false" onclick="saveTabState('contact')">最愛行程</button>
-    </li>
-  </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-      <div class="cardContainer">
+    {% block body %}
+    
+    <!-- Tabs navs -->
+    <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+      role="tab" aria-controls="home" aria-selected="true" onclick="saveTabState('home')">最愛景點</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
+        role="tab" aria-controls="contact" aria-selected="false" onclick="saveTabState('contact')">最愛行程</button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="cardContainer">
+          <div class="row tight-row justify-content-center"> 
+            <div class="col-md-4 d-flex justify-content-center">
+              <div class="card">
+                <div class="location-wrap text-center"> 
+                  <img src="../static/images/101.jpg" class="img-responsive custom-image" width="100%">
+                  <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
+                </div>
+                <div class="card-body text-center">
+                  <h4 class="card-title">台北101</h4>
+                  <p class="card-text">高聳的地標性摩天大樓，設有商店、餐廳，以及位於 89 樓的觀景台。</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center">
+              <div class="card">
+                <div class="location-wrap text-center"> 
+                  <img src="../static/images/street.jpg" class="img-responsive custom-image" width="100%">
+                  <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
+                </div>
+                <div class="card-body text-center">
+                  <h4 class="card-title">九份老街</h4>
+                  <p class="card-text">繁忙的地區，以狹窄的街道、各式美食攤位及遼闊的山海景緻聞名。</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center">
+              <div class="card">
+                <div class="location-wrap text-center"> 
+                  <img src="../static/images/zoo.jpeg" class="img-responsive custom-image" width="100%">
+                  <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
+                </div>
+                <div class="card-body text-center">
+                  <h4 class="card-title">動物園</h4>
+                  <p class="card-text">大型的室內外動物園，附近風景優美，設有兒童區、纜車和接駁車。</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center">
+              <div class="card">
+                <div class="location-wrap text-center"> 
+                  <img src="../static/images/Datong.jpeg" class="img-responsive custom-image" width="100%">
+                  <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
+                </div>
+                <div class="card-body text-center">
+                  <h4 class="card-title">大同</h4>
+                  <p class="card-text">大稻埕位於台北市大同區，因擁有大片曬稻穀的空地而得其名。</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center">
+              <div class="card">
+                <div class="location-wrap text-center"> 
+                  <img src="../static/images/Daan.jpeg" class="img-responsive custom-image" width="100%">
+                  <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
+                </div>
+                <div class="card-body text-center">
+                  <h4 class="card-title">大安</h4>
+                  <p class="card-text">大安森林公園位於大安區，地處市中心，面積25.9293公頃，擁有「都市之肺」的美稱</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center">
+              <div class="card">
+                <div class="location-wrap text-center"> 
+                  <img src="../static/images/beitou.jpeg" class="img-responsive custom-image" width="100%">
+                  <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
+                </div>
+                <div class="card-body text-center">
+                  <h4 class="card-title">像學校</h4>
+                  <p class="card-text">大型的室內外動物園，附近風景優美，設有兒童區、纜車和接駁車。</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center">
+              <div class="card">
+                <div class="location-wrap text-center"> 
+                  <img src="../static/images/pingxi.jpg" class="img-responsive custom-image" width="100%">
+                  <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
+                </div>
+                <div class="card-body text-center">
+                  <h4 class="card-title">平溪</h4>
+                  <p class="card-text">大型的室內外動物園，附近風景優美，設有兒童區、纜車和接駁車。</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center">
+              <div class="card">
+                <div class="location-wrap text-center"> 
+                  <img src="../static/images/Songshan.jpeg" class="img-responsive custom-image" width="100%">
+                  <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
+                </div>
+                <div class="card-body text-center">
+                  <h4 class="card-title">漁人碼頭</h4>
+                  <p class="card-text">大型的室內外動物園，附近風景優美，設有兒童區、纜車和接駁車。</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center">
+              <div class="card">
+                <div class="location-wrap text-center"> 
+                  <img src="../static/images/Neihu.jpeg" class="img-responsive custom-image" width="100%">
+                  <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
+                </div>
+                <div class="card-body text-center">
+                  <h4 class="card-title">這是哪</h4>
+                  <p class="card-text">大型的室內外動物園，附近風景優美，設有兒童區、纜車和接駁車。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- 最愛行程的Tab内容 -->
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      <div class="container">
         <div class="row justify-content-center"> 
           <div class="col-md-4 d-flex justify-content-center">
             <div class="card">
               <div class="location-wrap text-center"> 
-                <img src="../static/images/101.jpg" class="img-responsive custom-image" width="100%">
+                <img src="../static/images/pingxi.jpg" class="img-responsive custom-image">
                 <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
               </div>
-              <div class="card-body">
-                <h4 class="card-title">台北101</h4>
-                <p class="card-text">高聳的地標性摩天大樓，設有商店、餐廳，以及位於 89 樓的觀景台。</p>
+              <div class="card-body text-center"> 
+                <h4 class="card-title">阿亮</h4>
+                <h5>0318台北平溪</h5>
+                <p class="description">20230318去平溪玩水一天</p>
+                <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
               </div>
             </div>
           </div>
-          <div class="col-sm-6 col-md-4">
+          <div class="col-md-4 d-flex justify-content-center">
             <div class="card">
               <div class="location-wrap text-center"> 
-                <img src="../static/images/street.jpg" class="img-responsive custom-image" width="100%">
+                <img src="../static/images/Daan.jpeg" class="img-responsive custom-image">
                 <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
               </div>
-              <div class="card-body">
-                <h4 class="card-title">九份老街</h4>
-                <p class="card-text">繁忙的地區，以狹窄的街道、各式美食攤位及遼闊的山海景緻聞名。</p>
+              <div class="card-body text-center"> 
+                <h4 class="card-title">小灣</h4>
+                <h5>0528台北大安</h5>
+                <p class="description">20230528大安自駕自由行</p>
+                <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
               </div>
             </div>
           </div>
-          <div class="col-sm-6 col-md-4">
+          <div class="col-md-4 d-flex justify-content-center">
             <div class="card">
               <div class="location-wrap text-center"> 
-                <img src="../static/images/zoo.jpeg" class="img-responsive custom-image" width="100%">
+                <img src="../static/images/Datong.jpeg" class="img-responsive custom-image">
                 <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
               </div>
-              <div class="card-body">
-                <h4 class="card-title">動物園</h4>
-                <p class="card-text">大型的室內外動物園，附近風景優美，設有兒童區、纜車和接駁車。</p>
+              <div class="card-body text-center"> 
+                <h4 class="card-title">奇美</h4>
+                <h5>0713大同區</h5>
+                <p class="description">20230713大同一日遊</p>
+                <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  <!-- 最愛行程的Tab内容 -->
-  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-    <div class="container">
-      <div class="row justify-content-center"> 
-        <div class="col-md-4 d-flex justify-content-center">
-          <div class="card">
-            <div class="location-wrap text-center"> 
-              <img src="../static/images/pingxi.jpg" class="img-responsive custom-image">
-              <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
-            </div>
-            <div class="card-body text-left"> 
-              <h4 class="card-title">阿亮</h4>
-              <h5>0318台北平溪</h5>
-              <p class="description">20230318去平溪玩水一天</p>
-              <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 d-flex justify-content-center">
-          <div class="card">
-            <div class="location-wrap text-center"> 
-              <img src="../static/images/Daan.jpeg" class="img-responsive custom-image">
-              <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
-            </div>
-            <div class="card-body text-left"> 
-              <h4 class="card-title">小灣</h4>
-              <h5>0528台北大安</h5>
-              <p class="description">20230528大安自駕自由行</p>
-              <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 d-flex justify-content-center">
-          <div class="card">
-            <div class="location-wrap text-center"> 
-              <img src="../static/images/Datong.jpeg" class="img-responsive custom-image">
-              <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
-            </div>
-            <div class="card-body text-left"> 
-              <h4 class="card-title">奇美</h4>
-              <h5>0713大同區</h5>
-              <p class="description">20230713大同一日遊</p>
-              <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-    <script src="/static/js/favorite.js"></script>
-  {% endblock body %}
+      <script src="/static/js/favorite.js"></script>
+    {% endblock body %}
