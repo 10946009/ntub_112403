@@ -25,7 +25,36 @@ from sklearn.preprocessing import MinMaxScaler
 dotenv_path = join(dirname(__file__), ".env")
 load_dotenv(dotenv_path, override=True)  # 設定 override 才會更新變數哦！
 GOOGLE_PLACES_API_KEY = os.environ.get("GOOGLE_PLACES_API_KEY")
-
+ATT_TYPE = {
+    'tourist_attraction':1,
+    'point_of_interest':2,
+    'establishment':3,
+    'park':4,
+    'place_of_worship':5,
+    'food':6,
+    'museum':7,
+    'landmark':8,
+    'grocery_or_supermarket':9,
+    'store':10,
+    'restaurant':11,
+    'library':12,
+    'school':13,
+    'jewelry_store':14,
+    'church':15,
+    'cafe':16,
+    'mosque':17,
+    'bakery':18,
+    'home_goods_store':19,
+    'art_gallery':20,
+    'route':21,
+    'hindu_temple':22,
+    'pet_store':23,
+    'movie_theater':24,
+    'amusement_park':25,
+    'zoo':26,
+    'meal_delivery':27,
+    'aquarium':28
+}
 ATT_TYPE_LIST = [
     [4, 25, 26, 28, 37],
     [5, 8, 15, 17, 22],
@@ -516,6 +545,9 @@ def add_favorite(request):
 
 
 def attraction_details(request):
+    all_type_name = list(ATT_TYPE.keys())
+    all_type_name_json = json.dumps(all_type_name)
+    print(all_type_name) 
     search_list = []
     # print(request.method)
     user = request.user.id
