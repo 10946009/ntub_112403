@@ -80,7 +80,7 @@
     <!-- 搜尋引擎 -->
     <div class="row search_body">
         <div class="col-2"></div>
-        <div class="col-8" style="margin-bottom:30px ;" ng-app="">
+        <div class="col-8" style="margin-bottom:30px;" ng-app="">
             <!-- 搜尋框 -->
             <form autocomplete="off" class="d-flex" method="post" role="search" action="{% url 'search_results' %}">
                 <div class="container_search">
@@ -89,6 +89,21 @@
                         <button class="icon" type="submit" id="searchClick"><i class="fas fa-search"></i></button>
                         <input type="search" ng-model="search_item" placeholder="想去哪玩.." id="myInput"
                             name="searchQuery">
+                        <div id="searchBox">
+                            <div class="enter"></div>
+                            <div class="searchContent">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>&ensp;分類
+                                <table style=" width:30%;margin-left: 25px;">
+                                    <tr>
+                                        <td>123</td>
+                                        <td>123</td>
+                                        <td>123</td>
+                                        <td>123</td>
+                                    </tr>
+                                </table>
+                                請輸入搜尋內容...
+                            </div>
+                        </div>
                         <!-- 進階搜尋 -->
                         <button class="filiter" type="submit"><i class="fa-solid fa-filter"></i></button>
                     </div>
@@ -121,13 +136,16 @@
                     data-center="transform: translateY(0px);opacity: 1" onclick="showInfo(this)"
                     data-a-Id="{{ item.id }}">{{item.a_name }}</h3>
                     <!-- 星星數 -->
-                    <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
-                        data-center="transform: translateY(0px);opacity: 1">
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star">&#9733;</span>
+                    <div class="rating"
+                            data-bottom-top="transform: translateY(-20px);opacity: 0"
+                            data-center="transform: translateY(0px);opacity: 1;">
+                            {% for i in "12345" %}
+                            {% if i|add:0 <= item.rating %}
+                            <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                            {% else %}
+                            <span class="rating-star">&#9733;</span>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                     <!-- 地址 -->
                     <h6 style="margin-top:5px;" data-bottom-top="transform: translateY(-20px);opacity: 0"
@@ -539,12 +557,30 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
 <script>
+
+    //
+    //進階的部分
+    const searchInput = document.getElementById("myInput");
+    const searchContent = document.getElementById("searchBox");
+    const enter = document.getElementById("enter");
+
+    searchInput.addEventListener("input", function () {
+        const inputValue = searchInput.value;
+        if (inputValue.trim() !== "") {
+            enter.textContent = inputValue;
+            searchContent.style.display = "none";
+        } else {
+            enter.textContent = "";
+            searchContent.style.display = "block";
+        }
+    });
+
     //
     //動態大標（景點資訊）
     const scrollText = document.querySelector('.scroll-text');// 獲取本文元素
     const scrollTextH1 = scrollText.querySelector('h1');// 獲取本文元素
     // 定義停止位置
-    const stopScrollY = 120; // 在此位置停止
+    const stopScrollY = 140; // 在此位置停止
     // 監聽滾動事件
     window.addEventListener('scroll', function () {
         // 獲取當前位置
@@ -557,7 +593,6 @@
         }
     });
 
-    //
     //搜尋景點的部分
     function autocomplete(inp, arr) {
         var currentFocus; // 紀錄目前焦點所在的索引值
