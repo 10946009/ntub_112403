@@ -554,7 +554,7 @@ def attraction_details(request):
         keyword_attrations_id = [1, 2, 3]
         for a_id in keyword_attrations_id:
             search_list.append(Attractions.objects.filter(id=a_id).values().first())
-
+    search_list = search_list[:10] #之後要改 目前避免當掉
     if request.GET.get("a_id") != None:
         choose_a_id = request.GET.get("a_id")  # 提取傳遞的值
         choose_attractions = Attractions.objects.filter(id=choose_a_id).values().first()
