@@ -34,6 +34,7 @@ urlpatterns = [
     path("forget_passwd/", views.forget_passwd, name="forget_passwd"),
     path("reset_passwd/", views.reset_passwd, name="reset_passwd"),
     path("register/", views.register),
+    path("register_verification/<str:token>/", views.register_verification),
     path("search/", views.search),
     path("createindex/", views.create_index),
     # path('create/<int:ct_id>/<int:choiceday>',views.create),
