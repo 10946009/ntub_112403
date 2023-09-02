@@ -16,7 +16,6 @@ window.onresize = function(){
 //       behavior: 'smooth'
 //   });
 // });
-
 document.querySelector('.scroll-down-button').addEventListener('click', function (e) {
   e.preventDefault();
   const navbarHeight = document.querySelector('nav').offsetHeight; // 获取导航栏的高度
@@ -101,5 +100,66 @@ $(function() {
       $(".dropdown_menu").fadeOut(200);
       $(".add_icon").removeClass("active");
     }
+  });
+});
+
+//滑到才顯示
+// $(document).ready(function() {
+//   /* Every time the window is scrolled ... */
+//   $(window).scroll( function(){
+//       /* Check the location of each desired element */
+//       $('.hideme').each( function(i){
+          
+//           var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+//           var bottom_of_window = $(window).scrollTop() + $(window).height();
+          
+//           /* If the object is completely visible in the window, fade it it */
+//           if( bottom_of_window > bottom_of_object ){
+              
+//               $(this).animate({'opacity':'1'},500);
+//           }
+//       }); 
+//   });
+// });
+
+$(document).ready(function() {
+  /* Every time the window is scrolled ... */
+  $(window).scroll(function() {
+    /* Check the location of each desired element */
+
+    // For .hideme
+    $('.hideme').each(function(i) {
+      var $this = $(this);
+      var bottom_of_object = $this.offset().top + $this.outerHeight();
+      var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+      if (bottom_of_window > bottom_of_object) {
+        $(this).animate({'opacity':'1'},500);
+      }
+    });
+
+    // For .hidemespot
+    $('.hidemespot').each(function(i) {
+      var $this = $(this);
+      var bottom_of_object = $this.offset().top + $this.outerHeight();
+      var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+      if (bottom_of_window > bottom_of_object) {
+        $(this).animate({'opacity':'1'},1000);
+      }
+    });
+
+    // For .hidemehot
+    $('.hidemehot').each(function(i) {
+      var $this = $(this);
+      var bottom_of_object = $this.offset().top + $this.outerHeight();
+      var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+      if (bottom_of_window > bottom_of_object) {
+        setTimeout(function() {
+          $this.animate({ 'opacity': '1' }, 1000); // 不同的延迟时间
+        }, i * 500); // 不同的延迟时间
+      }
+    });
   });
 });
