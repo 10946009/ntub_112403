@@ -1065,3 +1065,49 @@ footer.jumbotron .container button.btn.btn-default:hover {
     color: #183158;
     transform: scale(1.2);
 }
+
+#filiter_about {
+    background-color: #DCB879;
+}
+
+#filiter_about .img_trip {
+    mix-blend-mode: multiply;
+    background-size: cover;
+}
+
+.filiter_btn {
+    margin-top: 20px;
+}
+
+#show_filiter,
+#show_condition {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+    padding-top: 200px;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.att_form {
+    padding: 50px;
+}
+
+.topic_filiter:hover {
+    color: rgb(127, 4, 4);
+}
