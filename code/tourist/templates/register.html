@@ -100,7 +100,7 @@
                 <span style="color:rgb(207, 49, 49);">至少包含8個字元符號</span>
                 <br>
                 <p></p>
-                <input class="pure-button-register" type="submit" value="註冊">
+                <input class="pure-button-register" type="submit" value="註冊" onclick="checkemail()">
             </div>
         </form>
         <div class="message">
@@ -170,6 +170,8 @@
                 togglePassword1.classList.add('fa-eye');
             }
         });
-
+        function checkemail(){
+            alert("請到信箱收信完成註冊!");
+        }
     </script>
     {% endblock body %}
