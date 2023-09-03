@@ -116,6 +116,28 @@ input {
     right: 0;
 }
 
+.history_1 {
+    z-index: 1;
+    position: relative;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.close_history {
+    z-index: 2;
+    position: absolute;
+    /* 使用绝对定位相对于 .history_1 元素 */
+    top: 10px;
+    /* 距离顶部的距离，可以根据需要调整 */
+    right: 0;
+    /* 距离右侧的距离，设置为0表示紧贴右边 */
+    margin-right: 10px;
+}
+
+.history_1:hover {
+    background-color: #d9d8d8;
+}
+
 #searchBox {
     display: none;
 
@@ -171,7 +193,7 @@ input {
     height: 55px;
     width: 100%;
     outline: none;
-    padding: 0 50px 0 50px;
+    padding: 0 20px 0 50px;
     font-size: 18px;
     transition: all 50ms ease-in-out;
     font-size: 18px;
@@ -1080,7 +1102,8 @@ footer.jumbotron .container button.btn.btn-default:hover {
 }
 
 #show_filiter,
-#show_condition {
+#show_condition,
+#show_userfavorite {
     display: none;
     /* Hidden by default */
     position: fixed;
