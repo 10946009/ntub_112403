@@ -112,12 +112,13 @@
 </div>
 
 <!-- 人拖行李棟動圖（左） -->
-<div class="row" id="filiter_about" style="padding:40px;background-color: rgb(245, 233, 207);">
+<div class="row" id="filiter_about">
     <div class="col-5">
         <div class="img_trip" data-0="transform: translateX(-600px); opacity: 0; z-index: 2;"
-            data-500="transform: translateX(300px); opacity: 0.8"><img src="../static/images/tirp_.png" alt="">
+            data-500="transform: translateX(300px); opacity: 0.8">
+            <img src="../static/images/tirp_.png" alt="">
         </div>
-        <div class="road" style="position: relative; z-index: 1;">
+        <div class="road">
             <img src="../static/images/road.png" alt="" style="width: 100%; height: 50px">
         </div>
     </div>
@@ -131,29 +132,27 @@
                 <div class="row">
                     <div class="col-4 text-center topic_filiter" data-400="transform: scale(1.5); opacity: 0"
                         data-500="transform: scale(1); opacity: 1"
-                        style="margin-top: 60px;padding-left: 60px;padding-right: 60px;"
                         onclick="document.getElementById('show_filiter').style.display='block'">
                         <div style="cursor: pointer;">
                             <i class="fa-solid fa-plane" style="font-size: 60px;"></i><br>
-                            <h3 class="filiter_btn" style="margin-top: 20px;">景點主題</h3>
+                            <h3 class="filiter_btn">景點主題</h3>
                         </div>
                     </div>
                     <div class="col-4 text-center topic_filiter" data-400="transform: scale(1.5); opacity: 0"
                         data-500="transform: scale(1); opacity: 1"
-                        style="margin-top: 60px;padding-left: 60px;padding-right: 60px;"
                         onclick="document.getElementById('show_condition').style.display='block'">
-                        <div style="cursor: pointer;">
-                            <i class="fa-solid fa-list" style="font-size: 60px;"></i><br>
-                            <h3 class="filiter_btn" style="margin-top: 20px;">條件篩選</h3>
+                        <!-- 當有篩選條件時右上跳出1 2...等(ribbon) -->
+                        <div style="cursor: pointer; position: relative;">
+                            <i class="fa-solid fa-list" style="font-size: 60px;"></i> <span class="ribbon">1</span><br>
+                            <h3 class="filiter_btn">條件篩選</h3>
                         </div>
                     </div>
                     <div class="col-4 text-center topic_filiter" data-400="transform: scale(1.5); opacity: 0"
                         data-500="transform: scale(1); opacity: 1"
-                        style="margin-top: 60px;padding-left: 60px;padding-right: 60px;"
                         onclick="document.getElementById('show_userfavorite').style.display='block'">
                         <div style="cursor: pointer;">
                             <i class="fa-solid fa-thumbs-up" style="font-size: 60px;"></i><br>
-                            <h3 class="filiter_btn" style="margin-top: 20px;">最受歡迎</h3>
+                            <h3 class="filiter_btn">最受歡迎</h3>
                         </div>
                     </div>
                 </div>
@@ -164,70 +163,74 @@
 
 <!-- 景點主題 -->
 <div id="show_filiter" style="display: none;">
-    <form class="modal-content" action="/action_page.php" method="post" style="border-radius: 10px;">
+    <form class="modal-content" method="post" style="border-radius: 10px;">
         <div class="att_form">
             <span onclick="document.getElementById('show_filiter').style.display='none'" class="close"
                 title="Close Modal">&times;</span>
-            <h5>景點主題</h5>
-            <div class="filiter_search">
-                <table style=" width:60%;margin-left: 25px;margin-bottom:5px ;">
+            <h4>景點主題</h4>
+            <div class="filiter_search" id="filiter_search2">
+                <table style=" width:45%;margin-left: 10px;margin-bottom:5px ;">
                     <tr id="attractions_types">
-                        <td><button style="border-radius: 50px;">親子</button></td>
+                        <td><span class="more_btn">1</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="more_btn">最多人瀏覽</span></td>
+                        <td><span class="more_btn">最多人按讚</span></td>
+                        <td><span class="more_btn">最多人收藏</span></td>
                     </tr>
                     <!-- 讓多出來的放到第二行 -->
-                    <tr>
-                        <td><button style="border-radius: 50px;">親子</button></td>
-                    </tr>
                 </table>
             </div>
+            <div class="sure"><button class="sure_btn">篩選</button></div>
         </div>
     </form>
 </div>
 
 <!-- 條件篩選 -->
 <div id="show_condition" style="display: none;">
-    <form class="modal-content" action="/action_page.php" method="post" style="border-radius: 10px;">
+    <form class="modal-content" method="post" style="border-radius: 10px;">
         <div class="att_form">
             <span onclick="document.getElementById('show_condition').style.display='none'" class="close"
                 title="Close Modal">&times;</span>
-            <h5>條件篩選</h5>
-            <div class="filiter_search">
-                <table style=" width:60%;margin-left: 25px;margin-bottom:5px ;">
+            <h4>條件篩選</h4>
+            <div class="filiter_search" id="filiter_search1">
+                <table style=" width:45%;margin-left: 10px;margin-bottom:5px ;">
                     <tr>
-                        <td><button style="border-radius: 50px;">親子</button></td>
-                    </tr>
-                    <tr>
-                        <td><button style="border-radius: 50px;">親子</button></td>
+                        <td><span class="more_btn">最多人瀏覽</span></td>
+                        <td><span class="more_btn">最多人按讚</span></td>
+                        <td><span class="more_btn">最多人收藏</span></td>
                     </tr>
                 </table>
             </div>
+            <div class="sure"><button class="sure_btn">篩選</button></div>
         </div>
     </form>
 </div>
 
 <!-- 最受歡迎 -->
 <div id="show_userfavorite" style="display: none;">
-    <form class="modal-content" action="/action_page.php" method="post" style="border-radius: 10px;">
+    <form class="modal-content" method="post" style="border-radius: 10px;">
         <div class="att_form">
             <span onclick="document.getElementById('show_userfavorite').style.display='none'" class="close"
                 title="Close Modal">&times;</span>
-            <h5>最受歡迎</h5>
-            <div class="filiter_search">
-                <table style=" width:40%;margin-left: 10px;margin-bottom:5px ;">
+            <h4>最受歡迎</h4>
+            <div class="filiter_search" id="filiter_search">
+                <table style=" width:45%;margin-left: 10px;margin-bottom:5px ;">
                     <tr>
-                        <td><button style="border-radius: 50px;">最多人瀏覽</button></td>
-                        <td><button style="border-radius: 50px;">最多人按讚</button></td>
-                        <td><button style="border-radius: 50px;">最多人收藏</button></td>
+                        <td><span class="more_btn">最多人瀏覽</span></td>
+                        <td><span class="more_btn">最多人按讚</span></td>
+                        <td><span class="more_btn">最多人收藏</span></td>
                     </tr>
                 </table>
             </div>
+            <div class="sure"><button class="sure_btn">篩選</button></div>
         </div>
     </form>
 </div>
 
 
 <!-- 下方景點 -->
-<div class="row" id="section_culture">
+<div class="row" id="attractions_introduction">
     <div class="col-2"></div>
     <!-- 景點資訊主體 -->
     <div class="col-8 contaioner_information">
@@ -659,8 +662,8 @@
 <footer class="jumbotron">
     <div class="container">
         <h2>有哪些地方想跟我們分享？</h2>
-        <input class="form-control" placeholder="請輸入景點" />
-        <button class="btn btn-default">傳送</button>
+        <input class="form-control" placeholder="E-mail" />
+        <button class="btn btn-default">立即註冊</button>
     </div>
 </footer>
 
@@ -671,54 +674,76 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
 <script>
-
-
-    //
-    //進階的部分
-    var filiter_win = document.getElementById('show_condition');
-    window.onclick = function (event) {
-        // 判斷點擊事件的目標是否是模態框元素本身
-        if (event.target == filiter_win) {
-            // 如果是，將模態框的顯示樣式設定為 "none"，即隱藏模態框
-            filiter_win.style.display = "none";
-        }
-    }
-
-    var filiter_win = document.getElementById('show_filiter');
-    window.onclick = function (event) {
-        // 判斷點擊事件的目標是否是模態框元素本身
-        if (event.target == filiter_win) {
-            // 如果是，將模態框的顯示樣式設定為 "none"，即隱藏模態框
-            filiter_win.style.display = "none";
-        }
-    }
-
-    var filiter_win = document.getElementById('show_userfavorite');
-    window.onclick = function (event) {
-        // 判斷點擊事件的目標是否是模態框元素本身
-        if (event.target == filiter_win) {
-            // 如果是，將模態框的顯示樣式設定為 "none"，即隱藏模態框
-            filiter_win.style.display = "none";
-        }
-    }
-
-
-    // skrollr
+    // skrollr滑鼠滾動
     var s = skrollr.init();
 
-    //歷史紀錄
+    //進階的部分
+    var filiter_win = document.getElementById('show_condition');//條件篩選
+    window.onclick = function (event) {
+        // 判斷點擊事件的目標是否是模態框元素本身
+        if (event.target == filiter_win) {
+            filiter_win.style.display = "none";
+        }
+    }
+    var filiter_win = document.getElementById('show_filiter');//景點主題
+    window.onclick = function (event) {
+        // 判斷點擊事件的目標是否是模態框元素本身
+        if (event.target == filiter_win) {
+            filiter_win.style.display = "none";
+        }
+    }
+
+    var filiter_win = document.getElementById('show_userfavorite');//最受歡迎
+    window.onclick = function (event) {
+        // 判斷點擊事件的目標是否是模態框元素本身
+        if (event.target == filiter_win) {
+            filiter_win.style.display = "none";
+        }
+    }
+
+    var header = document.getElementById("filiter_search2");//景點主題裡面按鈕active（固定）
+    var btns = header.getElementsByClassName("more_btn");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+        });
+    }
+
+    var header = document.getElementById("filiter_search1");//條件篩選裡面按鈕active（固定）
+    var btns = header.getElementsByClassName("more_btn");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+        });
+    }
+
+    var header = document.getElementById("filiter_search");//最受歡迎裡面按鈕active（固定）
+    var btns = header.getElementsByClassName("more_btn");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+        });
+    }
+
+    //歷史紀錄（點一下input跳出來）
     const searchInput = document.getElementById("myInput");
     const searchBox = document.getElementById("searchBox");
     const enter = document.getElementById("enter");
 
+    //點不是input裡的元素就關起來
     document.addEventListener("click", function (event) {
-        // 點擊的東西是否是輸入框或其内部元素
         if (!searchBox.contains(event.target)) {
-            // 如果不是輸入框内的元素，則關閉
             searchBox.style.display = "none";
         }
     });
 
+    // 如果input裡有東西的話就關起來，沒有就打開歷史紀錄畫面
     searchInput.addEventListener("input", function () {
         const inputValue = myInput.value;
         if (inputValue.trim() !== "") {
@@ -728,39 +753,28 @@
         }
     });
 
+    // 點一下input內框跳出來歷史紀錄畫面
     searchInput.addEventListener("click", function (event) {
-        // 阻止事件冒泡，以防止觸發 document 上的點擊事件
-        event.stopPropagation();
-        // 顯示
+        event.stopPropagation();// 防止觸發 document 上的點擊事件
         searchBox.style.display = "block";
     });
 
     //delete歷史紀錄
     function deleteFunction(element) {
-
         var historyElement = element.closest('.history_1');
-
         if (historyElement) {
-            // 删除父元素
-            historyElement.remove();
+            historyElement.remove(); //連同父元素删除
         }
     }
-    //
 
-    //
-    //動態大標（景點資訊）
-    const scrollText = document.querySelector('.scroll-text');// 獲取本文元素
-    const scrollTextH1 = scrollText.querySelector('h1');// 獲取本文元素
-    // 定義停止位置
-    const stopScrollY = 140; // 在此位置停止
-    // 監聽滾動事件
+    //動態大標（景點資訊tripfunchill去放假）
+    const scrollText = document.querySelector('.scroll-text');
+    const scrollTextH1 = scrollText.querySelector('h1');
+    const stopScrollY = 140; //在此位置停止移動
     window.addEventListener('scroll', function () {
-        // 獲取當前位置
-        const scrollY = window.scrollY;
-        // 當位置<=停止位置時，並移動
-        if (scrollY <= stopScrollY) {
-            // 根據位置調整本文位置，控制移動
-            const translateY = Math.min(scrollY, stopScrollY);
+        const scrollY = window.scrollY;// 獲取當前位置
+        if (scrollY <= stopScrollY) {// 當位置<=停止位置時移動
+            const translateY = Math.min(scrollY, stopScrollY);//根據位置調整本文位置，控制移動
             scrollTextH1.style.transform = `translate(0%, ${translateY}%)`;
         }
     });
@@ -778,12 +792,11 @@
             a.setAttribute("class", "autocomplete-items"); // 設定DIV元素的class屬性
             this.parentNode.appendChild(a); // 將DIV元素加入輸入框的父元素中
 
-            // 將不在arr陣列中的值顯示在下拉清單
+            // 字跟著打在下面框框的部分
             searchClick = document.getElementById("searchClick");
             b = document.createElement("DIV");
-            b.textContent = val; // 以輸入的值開頭
+            b.textContent = val; // 輸入的值開頭
             b.innerHTML = `<i class="fas fa-search" style="margin-right:12px;"></i><strong>${val}</strong>&emsp;<span style="color:#a1a1a1">-Trip搜尋</span>`;
-
             b.addEventListener("click", function (e) {
                 inp.value = val;
                 closeAllLists();
@@ -791,13 +804,13 @@
             });
             a.appendChild(b);
 
+            //隨著元素尋找陣列裡輸入符合的元素
             for (i = 0; i < arr.length; i++) {
-                if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) { // 尋找符合輸入值的項目
+                if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
                     b = document.createElement("DIV"); // 建立新的DIV元素來放置該項目
-                    // 使用模板字串來設定該DIV元素的內容，包括符合的部分加上搜尋圖示和強調文字部分
                     b.innerHTML = `<i class="fas fa-search" style="margin-right:12px;"></i><strong>${arr[i].substr(0, val.length)}${arr[i].substr(val.length)}</strong>`;
                     b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>"; // 加入一個隱藏的input元素，用來存放選擇的值
-                    b.addEventListener("click", function (e) { // 點擊項目時的事件處理
+                    b.addEventListener("click", function (e) {
                         inp.value = this.getElementsByTagName("input")[0].value; // 設定輸入框的值為選擇的值
                         closeAllLists(); // 關閉所有項目清單
                         searchClick.click();
@@ -852,7 +865,7 @@
             }
         }
 
-        document.addEventListener("click", function (e) { // 點擊頁面其他區域時關閉所有項目清單
+        document.addEventListener("click", function (e) {
             closeAllLists(e.target);
         });
     }
@@ -863,14 +876,12 @@
     for (var i = 0; i < attractions_types_json.length; i++) {
         attractions_types.innerHTML += `<td><button style="border-radius: 50px; data-set="${i}">${attractions_types_json[i]}</button></td>`;
     }
-    //
-    //點擊觸發詳細資訊
-    var modal = document.getElementById('id01');// 取得代表模態框的元素物件
-    // 當使用者點擊視窗時執行的函式
+
+    //點擊開啟詳細資料
+    var modal = document.getElementById('id01');
     window.onclick = function (event) {
         // 判斷點擊事件的目標是否是模態框元素本身
         if (event.target == modal) {
-            // 如果是，將模態框的顯示樣式設定為 "none"，即隱藏模態框
             modal.style.display = "none";
         }
     }
@@ -879,7 +890,6 @@
     function showInfo(element) {
         // 從被點擊的元素中取得自定義屬性 'aId' 的值
         var aId = $(element).data('aId');
-
         // 發起 AJAX 請求
         $.ajax({
             url: '',  // 伺服器端的 URL
@@ -915,11 +925,9 @@
             }
         });
     }
-
     {% comment %} var showInfo = document.getElementById("id01");
     showInfo.style.display = "block"; {% endcomment %}
 
-    //
     //人潮分佈圖
     var ctx = document.getElementById('chart').getContext('2d');
     var chart = new Chart(ctx, {
@@ -952,23 +960,18 @@
         }
     });
 
-    //
     // 取得選擇後的景點回傳的值
     {% comment %}
     $.ajax({
-        url: '',  // 替换为你的视图函数 URL
+        url: '',  // 替換為函数URL
         type: 'GET',
         success: function (response) {
             var attractions = response;
-
             // 將資料放進網頁中
-
             var attractionsDetailName = document.getElementById('attractions-detail-name');
             attractionsDetailName.textContent = attractions.a_name;
             console.log(attractionsDetailName);
         }
     }); {% endcomment %}
-
-
 </script>
 {% endblock body %}
