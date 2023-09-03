@@ -15,6 +15,8 @@ from django.contrib import auth
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
 from django.db.models import Q
+
+from django.conf import settings
 from django.core.mail import send_mail
 from celery import shared_task
 import secrets  # 註冊token
@@ -174,13 +176,14 @@ def login(request):
 
 @shared_task
 def send_mail_function(email_title, email, email_body):
-    send_mail(
+    send = send_mail(
         email_title,
         None,
         "tripfunchill@gmail.com",
         [email],
         html_message=email_body,
     )
+    return send
 # 忘記密碼
 def forget_passwd(request):
     msg = ""
