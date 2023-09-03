@@ -20,6 +20,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from celery import shared_task
 import secrets  # 註冊token
+# from myapp.task import *
 
 from geopy.distance import geodesic
 from django.contrib.auth.decorators import login_required
@@ -176,14 +177,23 @@ def login(request):
 
 @shared_task
 def send_mail_function(email_title, email, email_body):
-    send = send_mail(
-        email_title,
-        None,
-        "tripfunchill@gmail.com",
-        [email],
-        html_message=email_body,
-    )
-    return send
+    try:
+        finish_send = send_mail(
+            email_title,
+            None,
+            "tripfunchill@gmail.com",
+            [email],
+            html_message=email_body,
+        )
+        if finish_send:
+            print(f"Email sent successfully to {email}")
+        else:
+            print(f"Email sending failed to {email}")
+        return finish_send
+    except Exception as e:
+        print(f"Error sending email: {str(e)}")
+        return False
+
 # 忘記密碼
 def forget_passwd(request):
     msg = ""
@@ -199,7 +209,7 @@ def forget_passwd(request):
                 print(request.session["code"])
                 email_title = f"重設密码，您的驗證碼：【{code}】"
                 email_body = f"<p>您的TripFunChill網站驗證碼為</p><h2><b>{code}</b></h2>請勿將這組驗證碼轉寄或提供給任何人。<br>若您沒提出此要求，請立刻更改密碼以防帳號被進一步盜用。<br>TripFunChill團隊敬上</p>"
-                send_mail_function.delay(email_title, email, email_body)
+                send_mail_function(email_title, email, email_body)
                 msg = "驗證碼已發送，請查收郵件"
                 return render(request, "reset_passwd.html", locals())
 
@@ -276,7 +286,7 @@ def register(request):
                     unit.save()
                     email_title = f"註冊信箱驗證："
                     email_body = f"<p>您的TripFunChill註冊驗證連結如下，請點選連結並完成註冊，謝謝!</p><h2><b>http://127.0.0.1:8000/register_verification/{verification_token}</b></h2>TripFunChill團隊敬上</p>"
-                    send_mail_function.delay(email_title, email, email_body)
+                    send_mail_function(email_title, email, email_body)
                     return redirect("/login")
                 else:
                     message = "密碼輸入不一致"
