@@ -16,8 +16,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
 from django.db.models import Q
 from django.core.mail import send_mail
-
-import secrets #註冊token
+from celery import shared_task
+import secrets  # 註冊token
 
 from geopy.distance import geodesic
 from django.contrib.auth.decorators import login_required
@@ -28,34 +28,34 @@ dotenv_path = join(dirname(__file__), ".env")
 load_dotenv(dotenv_path, override=True)  # 設定 override 才會更新變數哦！
 GOOGLE_PLACES_API_KEY = os.environ.get("GOOGLE_PLACES_API_KEY")
 ATT_TYPE = {
-    'tourist_attraction':1,
-    'point_of_interest':2,
-    'establishment':3,
-    'park':4,
-    'place_of_worship':5,
-    'food':6,
-    'museum':7,
-    'landmark':8,
-    'grocery_or_supermarket':9,
-    'store':10,
-    'restaurant':11,
-    'library':12,
-    'school':13,
-    'jewelry_store':14,
-    'church':15,
-    'cafe':16,
-    'mosque':17,
-    'bakery':18,
-    'home_goods_store':19,
-    'art_gallery':20,
-    'route':21,
-    'hindu_temple':22,
-    'pet_store':23,
-    'movie_theater':24,
-    'amusement_park':25,
-    'zoo':26,
-    'meal_delivery':27,
-    'aquarium':28
+    "tourist_attraction": 1,
+    "point_of_interest": 2,
+    "establishment": 3,
+    "park": 4,
+    "place_of_worship": 5,
+    "food": 6,
+    "museum": 7,
+    "landmark": 8,
+    "grocery_or_supermarket": 9,
+    "store": 10,
+    "restaurant": 11,
+    "library": 12,
+    "school": 13,
+    "jewelry_store": 14,
+    "church": 15,
+    "cafe": 16,
+    "mosque": 17,
+    "bakery": 18,
+    "home_goods_store": 19,
+    "art_gallery": 20,
+    "route": 21,
+    "hindu_temple": 22,
+    "pet_store": 23,
+    "movie_theater": 24,
+    "amusement_park": 25,
+    "zoo": 26,
+    "meal_delivery": 27,
+    "aquarium": 28,
 }
 ATT_TYPE_LIST = [
     [4, 25, 26, 28, 37],
@@ -118,6 +118,7 @@ def admin_comment(request):
 def index(request):
     return render(request, "index.html", locals())
 
+
 def logout(request):
     auth.logout(request)
     return redirect("/")
@@ -171,7 +172,15 @@ def login(request):
     print(request.session["code_result"])
     return render(request, "login.html", locals())
 
-
+@shared_task
+def send_mail_function(email_title, email, email_body):
+    send_mail(
+        email_title,
+        None,
+        "tripfunchill@gmail.com",
+        [email],
+        html_message=email_body,
+    )
 # 忘記密碼
 def forget_passwd(request):
     msg = ""
@@ -187,22 +196,13 @@ def forget_passwd(request):
                 print(request.session["code"])
                 email_title = f"重設密码，您的驗證碼：【{code}】"
                 email_body = f"<p>您的TripFunChill網站驗證碼為</p><h2><b>{code}</b></h2>請勿將這組驗證碼轉寄或提供給任何人。<br>若您沒提出此要求，請立刻更改密碼以防帳號被進一步盜用。<br>TripFunChill團隊敬上</p>"
-                send_status = send_mail(
-                    email_title,
-                    None,
-                    "tripfunchill@gmail.com",
-                    [
-                        data["email"],
-                    ],
-                    html_message=email_body,
-                )
+                send_mail_function.delay(email_title, email, email_body)
                 msg = "驗證碼已發送，請查收郵件"
                 return render(request, "reset_passwd.html", locals())
 
             else:
                 msg = "此信箱還沒註冊"
     return render(request, "forget_passwd.html", locals())
-
 
 def reset_passwd(request):
     msg = ""
@@ -267,40 +267,33 @@ def register(request):
                         username=username,
                         gender=gender,
                         birthday=birthday,
-                        verification_token=verification_token
+                        verification_token=verification_token,
                     )
                     unit.is_active = False
                     unit.save()
                     email_title = f"註冊信箱驗證："
                     email_body = f"<p>您的TripFunChill註冊驗證連結如下，請點選連結並完成註冊，謝謝!</p><h2><b>http://127.0.0.1:8000/register_verification/{verification_token}</b></h2>TripFunChill團隊敬上</p>"
-                    send_status = send_mail(
-                        email_title,
-                        None,
-                        "tripfunchill@gmail.com",
-                        [
-                            email,
-                        ],
-                        html_message=email_body,
-                    )
+                    send_mail_function.delay(email_title, email, email_body)
                     return redirect("/login")
                 else:
                     message = "密碼輸入不一致"
 
     return render(request, "register.html", locals())
+
+
 # 註冊驗證
-def register_verification(request,token): 
+def register_verification(request, token):
     try:
         user = User.objects.get(verification_token=token)
         user.is_active = True
         user.save()
         msg = "註冊成功!!"
         # 可以在這裡添加一個重定向，告訴用戶驗證成功，並將其導向登錄頁面
-        return render(request, 'register_msg.html',locals())
+        return render(request, "register_msg.html", locals())
     except User.DoesNotExist:
-        msg="註冊失敗(連結失效)"
+        msg = "註冊失敗(連結失效)"
         # 如果令牌無效，可以顯示一個錯誤消息
-        return render(request, 'register_msg.html',locals())
-
+        return render(request, "register_msg.html", locals())
 
 
 # 搜尋景點
@@ -467,13 +460,20 @@ def create(request, ct_id):
             get_user_address = list(map(float, request.POST["location"].split(",")))
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
-            unit = ChoiceDay_Ct.objects.create(
-                day=choiceday,
-                start_location_x=get_user_address[0],
-                start_location_y=get_user_address[1],
-                start_time=new_nowtime,
-                ct_id=ct_id,
-            )
+            unit_query = ChoiceDay_Ct.objects.filter(day=choiceday, ct_id=ct_id)
+            if unit_query.exists():
+                unit = unit_query.first()
+                unit.start_location_x = get_user_address[0]
+                unit.start_location_y = get_user_address[1]
+                unit.start_time = new_nowtime
+            else:
+                unit = ChoiceDay_Ct.objects.create(
+                    day=choiceday,
+                    start_location_x=get_user_address[0],
+                    start_location_y=get_user_address[1],
+                    start_time=new_nowtime,
+                    ct_id=ct_id,
+                )
             unit.save()
             choice_ct_id = unit.id
             if request.POST["all_id"] != "":
@@ -570,7 +570,7 @@ def add_favorite(request):
 def attraction_details(request):
     all_type_name = list(ATT_TYPE.keys())
     all_type_name_json = json.dumps(all_type_name)
-    print(all_type_name) 
+    print(all_type_name)
     search_list = []
     # print(request.method)
     user = request.user.id
@@ -584,7 +584,7 @@ def attraction_details(request):
         keyword_attrations_id = [1, 2, 3]
         for a_id in keyword_attrations_id:
             search_list.append(Attractions.objects.filter(id=a_id).values().first())
-    search_list = search_list[:10] #之後要改 目前避免當掉
+    search_list = search_list[:10]  # 之後要改 目前避免當掉
     if request.GET.get("a_id") != None:
         choose_a_id = request.GET.get("a_id")  # 提取傳遞的值
         choose_attractions = Attractions.objects.filter(id=choose_a_id).values().first()
