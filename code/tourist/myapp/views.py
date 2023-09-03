@@ -18,14 +18,43 @@ from django.db.models import Q
 from django.core.mail import send_mail
 
 from geopy.distance import geodesic
-
+from django.contrib.auth.decorators import login_required
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 
 dotenv_path = join(dirname(__file__), ".env")
 load_dotenv(dotenv_path, override=True)  # 設定 override 才會更新變數哦！
 GOOGLE_PLACES_API_KEY = os.environ.get("GOOGLE_PLACES_API_KEY")
-
+ATT_TYPE = {
+    'tourist_attraction':1,
+    'point_of_interest':2,
+    'establishment':3,
+    'park':4,
+    'place_of_worship':5,
+    'food':6,
+    'museum':7,
+    'landmark':8,
+    'grocery_or_supermarket':9,
+    'store':10,
+    'restaurant':11,
+    'library':12,
+    'school':13,
+    'jewelry_store':14,
+    'church':15,
+    'cafe':16,
+    'mosque':17,
+    'bakery':18,
+    'home_goods_store':19,
+    'art_gallery':20,
+    'route':21,
+    'hindu_temple':22,
+    'pet_store':23,
+    'movie_theater':24,
+    'amusement_park':25,
+    'zoo':26,
+    'meal_delivery':27,
+    'aquarium':28
+}
 ATT_TYPE_LIST = [
     [4, 25, 26, 28, 37],
     [5, 8, 15, 17, 22],
@@ -85,17 +114,7 @@ def admin_comment(request):
 
 # 首頁
 def index(request):
-    checklogin = check_login(request)
     return render(request, "index.html", locals())
-
-
-# check login
-def check_login(request):
-    if request.user.is_authenticated:
-        return True
-    else:
-        return False
-
 
 def logout(request):
     auth.logout(request)
@@ -260,9 +279,8 @@ def search(request):
 
 
 # 建立行程首頁
+@login_required(login_url="/login")
 def create_index(request):
-    if not check_login(request):
-        return redirect("/login")
     num = 1
     if request.method == "POST":
         u_id = request.user.id
@@ -281,6 +299,7 @@ def create_index(request):
 
 
 # 建立行程
+@login_required(login_url="/login")
 def create(request, ct_id):
     user_favorite = [4, 6, 9, 10, 15, 16, 18]
     ct_data = Create_Travel.objects.get(id=ct_id)
@@ -468,6 +487,7 @@ def create(request, ct_id):
 
 
 # 我的行程(歷史紀錄)
+@login_required(login_url="/login")
 def history(request):
     my_history = []
     user_id = request.user.id
@@ -478,6 +498,7 @@ def history(request):
 
 
 # 我的最愛
+@login_required(login_url="/login")
 def favorite(request):
     favorite_list = []
     user_id = request.user.id
@@ -496,6 +517,7 @@ def share(request):
     return render(request, "share.html")
 
 
+@login_required(login_url="/login")
 def add_favorite(request):
     u_id = request.user.id
     aid = request.POST.get("aid")
@@ -516,6 +538,9 @@ def add_favorite(request):
 
 
 def attraction_details(request):
+    all_type_name = list(ATT_TYPE.keys())
+    all_type_name_json = json.dumps(all_type_name)
+    print(all_type_name) 
     search_list = []
     # print(request.method)
     user = request.user.id
@@ -529,7 +554,7 @@ def attraction_details(request):
         keyword_attrations_id = [1, 2, 3]
         for a_id in keyword_attrations_id:
             search_list.append(Attractions.objects.filter(id=a_id).values().first())
-
+    search_list = search_list[:10] #之後要改 目前避免當掉
     if request.GET.get("a_id") != None:
         choose_a_id = request.GET.get("a_id")  # 提取傳遞的值
         choose_attractions = Attractions.objects.filter(id=choose_a_id).values().first()

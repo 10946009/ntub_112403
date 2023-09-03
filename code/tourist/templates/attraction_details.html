@@ -95,7 +95,7 @@
                                 <div class="filiter_search">
                                     <h6>主題分類</h6>
                                     <table style=" width:40%;margin-left: 25px;margin-bottom:5px ;">
-                                        <tr>
+                                        <tr id="attractions_types">
                                             <td><button style="border-radius: 50px;">親子</button></td>
                                             <td><button style="border-radius: 50px;">情侶</button></td>
                                             <td><button style="border-radius: 50px;">朋友</button></td>
@@ -754,7 +754,11 @@
     }
     var attractions = JSON.parse('{{ attractions_search_json|safe }}');
     autocomplete(document.getElementById("myInput"), attractions);
-
+    var attractions_types_json = JSON.parse('{{ all_type_name_json|safe }}');
+    var attractions_types = document.getElementById("attractions_types");
+    for (var i = 0; i < attractions_types_json.length; i++) {
+        attractions_types.innerHTML += `<td><button style="border-radius: 50px; data-set="${i}">${attractions_types_json[i]}</button></td>`;
+    }
     //
     //點擊觸發詳細資訊
     var modal = document.getElementById('id01');// 取得代表模態框的元素物件
