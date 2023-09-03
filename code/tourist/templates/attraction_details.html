@@ -82,90 +82,28 @@
         <div class="col-2"></div>
         <div class="col-8" style="margin-bottom:30px;" ng-app="">
             <!-- 搜尋框 -->
-            <form autocomplete="off" class="d-flex" method="post" role="search" action="{% url 'search_results' %}">
+            <form autocomplete="off" id="d-flex" class="d-flex" method="post" role="search"
+                action="{% url 'search_results' %}">
                 {% csrf_token %}
                 <div class="container_search">
                     <div class="searchInput">
                         <button class="icon" type="submit" id="searchClick"><i class="fas fa-search"></i></button>
                         <input type="search" ng-model="search_item" placeholder="想去哪玩.." id="myInput"
                             name="searchQuery">
+                        <!-- 歷史紀錄 -->
                         <div id="searchBox">
                             <div class="enter"></div>
                             <div class="searchContent">
-                                <!-- <div class="filiter_search">
-                                    <h6>主題分類</h6>
-                                    <table style=" width:40%;margin-left: 25px;margin-bottom:5px ;">
-                                        <tr id="attractions_types">
-                                            <td><button style="border-radius: 50px;">親子</button></td>
-                                            <td><button style="border-radius: 50px;">情侶</button></td>
-                                            <td><button style="border-radius: 50px;">朋友</button></td>
-                                            <td><button style="border-radius: 50px;">室內</button></td>
-                                            <td><button style="border-radius: 50px;">室外</button></td>
-                                            <td><button style="border-radius: 50px;">公園</button></td>
-                                        </tr>
-                                    </table>
-                                </div> -->
-                                <div class="hot_search" style="margin-top:5px ;">
-                                    <div class="row">
-                                        <h6>熱門搜尋</h6>
-                                        <div class="col-8 contaioner_information">
-                                            <!-- 景點資訊條列 -->
-                                            <div class="row" style="margin-bottom: 20px;">
-                                                <div class="col-5">
-                                                    <div class="img_wrap">
-                                                        <img data-name="{{ item.id }}" class="slide"
-                                                            src="/static/images/attractions/{{item.place_id}}_0.jpg"
-                                                            style="width:100%;max-width: 100%; cursor: pointer;"
-                                                            onclick="showInfo(this)" data-a-Id="{{ item.id }}" alt="" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-7 feature">
-                                                    <!-- 景點名稱 -->
-                                                    <h4 data-bottom-top="transform: translateY(-20px);opacity: 0"
-                                                        data-center="transform: translateY(0px);opacity: 1"
-                                                        onclick="showInfo(this)" data-a-Id="{{ item.id }}">{{item.a_name
-                                                        }}</h3>
-                                                        <!-- 星星數 -->
-                                                        <div class="rating"
-                                                            data-bottom-top="transform: translateY(-20px);opacity: 0"
-                                                            data-center="transform: translateY(0px);opacity: 1">
-                                                            <span class="rating-star"
-                                                                style="color: rgb(241, 226, 62);">&#9733;</span>
-                                                            <span class="rating-star"
-                                                                style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                                                            <span class="rating-star"
-                                                                style="color: rgb(241, 226, 62);">&#9733;</span>
-                                                            <span class="rating-star"
-                                                                style="color: rgb(241, 226, 62);">&#9733;</span>
-                                                            <span class="rating-star">&#9733;</span>
-                                                        </div>
-                                                        <!-- 地址 -->
-                                                        <h6 style="margin-top:5px;"
-                                                            data-bottom-top="transform: translateY(-20px);opacity: 0"
-                                                            data-center="transform: translateY(0px);opacity: 1">
-                                                            地址：<span id="list-address">{{ item.address }}</span>
-                                                        </h6>
-                                                        <!-- 評分 -->
-                                                        <h6 style="margin-top:5px;"
-                                                            data-bottom-top="transform: translateY(-20px);opacity: 0"
-                                                            data-center="transform: translateY(0px);opacity: 1">
-                                                            綜合評分： <span id="list-selectedRating">{{ item.rating
-                                                                }}</span> / 5 (2.1萬)
-                                                        </h6>
-                                                        <!-- 營業時間 -->
-                                                        <h6 data-bottom-top="transform: translateY(-20px);opacity: 0"
-                                                            data-center="transform: translateY(0px);opacity: 1">
-                                                            營業時間：<span>24小時營業</span>
-                                                        </h6>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <!-- history（目前放假資料） -->
+                                <div class="history_1" id="history_1">
+                                    <i class="fa-solid fa-clock-rotate-left"
+                                        style="margin-right: 12px;"></i><strong>123</strong>
+                                    <div class="close_history" onclick="deleteFunction(this)">
+                                        <i class="fa-solid fa-xmark" style="color: rgb(171, 5, 5);"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- 進階搜尋 -->
-                        <!-- <button class="filiter" type="submit"><i class="fa-solid fa-filter"></i></button> -->
                     </div>
                 </div>
             </form>
@@ -173,7 +111,7 @@
     </div>
 </div>
 
-
+<!-- 人拖行李棟動圖（左） -->
 <div class="row" id="filiter_about" style="padding:40px;background-color: rgb(245, 233, 207);">
     <div class="col-5">
         <div class="img_trip" data-0="transform: translateX(-600px); opacity: 0; z-index: 2;"
@@ -183,7 +121,7 @@
             <img src="../static/images/road.png" alt="" style="width: 100%; height: 50px">
         </div>
     </div>
-
+    <!-- 篩選工具（右） -->
     <div class="col-7">
         <div class="container_filiter">
             <div class="col-sm-7" style="text-align: center;">
@@ -211,10 +149,11 @@
                     </div>
                     <div class="col-4 text-center topic_filiter" data-400="transform: scale(1.5); opacity: 0"
                         data-500="transform: scale(1); opacity: 1"
-                        style="margin-top: 60px;padding-left: 60px;padding-right: 60px;">
+                        style="margin-top: 60px;padding-left: 60px;padding-right: 60px;"
+                        onclick="document.getElementById('show_userfavorite').style.display='block'">
                         <div style="cursor: pointer;">
                             <i class="fa-solid fa-thumbs-up" style="font-size: 60px;"></i><br>
-                            <h3 class="filiter_btn" style="margin-top: 20px;">大家最愛</h3>
+                            <h3 class="filiter_btn" style="margin-top: 20px;">最受歡迎</h3>
                         </div>
                     </div>
                 </div>
@@ -223,7 +162,7 @@
     </div>
 </div>
 
-
+<!-- 景點主題 -->
 <div id="show_filiter" style="display: none;">
     <form class="modal-content" action="/action_page.php" method="post" style="border-radius: 10px;">
         <div class="att_form">
@@ -245,6 +184,7 @@
     </form>
 </div>
 
+<!-- 條件篩選 -->
 <div id="show_condition" style="display: none;">
     <form class="modal-content" action="/action_page.php" method="post" style="border-radius: 10px;">
         <div class="att_form">
@@ -265,8 +205,28 @@
     </form>
 </div>
 
+<!-- 最受歡迎 -->
+<div id="show_userfavorite" style="display: none;">
+    <form class="modal-content" action="/action_page.php" method="post" style="border-radius: 10px;">
+        <div class="att_form">
+            <span onclick="document.getElementById('show_userfavorite').style.display='none'" class="close"
+                title="Close Modal">&times;</span>
+            <h5>最受歡迎</h5>
+            <div class="filiter_search">
+                <table style=" width:40%;margin-left: 10px;margin-bottom:5px ;">
+                    <tr>
+                        <td><button style="border-radius: 50px;">最多人瀏覽</button></td>
+                        <td><button style="border-radius: 50px;">最多人按讚</button></td>
+                        <td><button style="border-radius: 50px;">最多人收藏</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
 
 
+<!-- 下方景點 -->
 <div class="row" id="section_culture">
     <div class="col-2"></div>
     <!-- 景點資訊主體 -->
@@ -712,10 +672,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
 <script>
 
+
     //
-    //點擊觸發詳細資訊
-    var filiter_win = document.getElementById('show_condition');// 取得代表模態框的元素物件
-    // 當使用者點擊視窗時執行的函式
+    //進階的部分
+    var filiter_win = document.getElementById('show_condition');
     window.onclick = function (event) {
         // 判斷點擊事件的目標是否是模態框元素本身
         if (event.target == filiter_win) {
@@ -724,11 +684,16 @@
         }
     }
 
+    var filiter_win = document.getElementById('show_filiter');
+    window.onclick = function (event) {
+        // 判斷點擊事件的目標是否是模態框元素本身
+        if (event.target == filiter_win) {
+            // 如果是，將模態框的顯示樣式設定為 "none"，即隱藏模態框
+            filiter_win.style.display = "none";
+        }
+    }
 
-    //
-    //點擊觸發詳細資訊
-    var filiter_win = document.getElementById('show_filiter');// 取得代表模態框的元素物件
-    // 當使用者點擊視窗時執行的函式
+    var filiter_win = document.getElementById('show_userfavorite');
     window.onclick = function (event) {
         // 判斷點擊事件的目標是否是模態框元素本身
         if (event.target == filiter_win) {
@@ -741,8 +706,7 @@
     // skrollr
     var s = skrollr.init();
 
-    //
-    //進階的部分
+    //歷史紀錄
     const searchInput = document.getElementById("myInput");
     const searchBox = document.getElementById("searchBox");
     const enter = document.getElementById("enter");
@@ -764,7 +728,6 @@
         }
     });
 
-    // 添加一个點擊事件到輸入
     searchInput.addEventListener("click", function (event) {
         // 阻止事件冒泡，以防止觸發 document 上的點擊事件
         event.stopPropagation();
@@ -772,6 +735,17 @@
         searchBox.style.display = "block";
     });
 
+    //delete歷史紀錄
+    function deleteFunction(element) {
+
+        var historyElement = element.closest('.history_1');
+
+        if (historyElement) {
+            // 删除父元素
+            historyElement.remove();
+        }
+    }
+    //
 
     //
     //動態大標（景點資訊）
@@ -848,6 +822,10 @@
                 if (currentFocus > -1) { // 如果有選擇項目則觸發點擊事件
                     if (x) x[currentFocus].click();
                 }
+            }
+            if (e.key === 'Enter') {//用enter傳送
+                e.preventDefault(); // 阻止 Enter本來換行行為
+                document.getElementById('d-flex').submit(); // 提交
             }
         });
 
