@@ -49,20 +49,45 @@
       <p class="mytravel_txt_detail">天數：</p>
       <p class="mytravel_txt_detail">地點：</p>
     </div>
-    <button class="more_btn" data-target="more2">詳細資料</button>
+    <button class="more-btn-target more_btn" data-target="more2">詳細資料</button>
   </div>
-  <div id="more2" class="hidden-details">
-    <ul class="nav nav-underline">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">第一天</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">第二天</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">第三天</a>
-      </li>
-    </ul>
+  <div class="openmore more-content">
+    <div id="more2" class="hidden-details">
+      <ul class="nav nav-underline">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#content2-1" data-tab="2-1">第一天</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#content2-2" data-tab="2-2">第二天</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#content2-3" data-tab="2-3">第三天</a>
+        </li>
+      </ul>
+    </div>
+    <div class="content hidden-details" id="content2-1">
+      aaaaaaaaaaaaaaaaaaaaa<br>
+      aaaaaaaaaaaaaaaaaaaaa<br>
+      aaaaaaaaaaaaaaaaaaaaa<br>
+      aaaaaaaaaaaaaaaaaaaaa<br>
+      aaaaaaaaaaaaaaaaaaaaa<br>
+    </div>
+    
+    <div class="content hidden-details" id="content2-2">
+      ssssssssssssssssssssssss<br>
+      aaaaaaaaaaaaaaaaaaaaa<br>
+      aaaaaaaaaaaaaaaaaaaaa<br>
+      aaaaaaaaaaaaaaaaaaaaa<br>
+      aaaaaaaaaaaaaaaaaaaaa<br>
+    </div>
+    
+    <div class="content hidden-details" id="content2-3">
+      ssssssssssvdddddddddddddddd<br>
+      aaaaaaaaaaaaaaaaaaaaa<br>
+      aaaaaaaaaaaaaaaaaaaaa<br>
+      aaaaaaaaaaaaaaaaaaaaa<br>
+      aaaaaaaaaaaaaaaaaaaaa<br>
+    </div>
   </div>
 
   <div class="row mytravel">
@@ -71,26 +96,27 @@
     </div>
     <div class="col-md-8 mytravel_txt">
       <h4 class="mytravel_txt_title">行程名稱：</h4>
+      <h4 class="mytravel_review">喜愛程度：(別人按讚的)</h4>
       <p class="mytravel_txt_detail">天數：</p>
       <p class="mytravel_txt_detail">地點：</p>
     </div>
-    <button class="more_btn" data-target="more3">詳細資料</button>
+    <button class="more-btn-target more_btn" data-target="more3">詳細資料</button>
   </div>
-  <div class="openmore" style="display: none;">
+  <div class="openmore more-content" style="display: none;">
     <div id="more3">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#" data-tab="1">第一天</a>
+          <a class="nav-link active" aria-current="page" href="#content3-1" data-tab="3-1">第一天</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" data-tab="2">第二天</a>
+          <a class="nav-link" href="#content3-2" data-tab="3-2">第二天</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" data-tab="3">第三天</a>
+          <a class="nav-link" href="#content3-3" data-tab="3-3">第三天</a>
         </li>
       </ul>
     </div>
-    <div class="content hidden-details" id="content1">
+    <div class="content hidden-details" id="content3-1">
       aaaaaaaaaaaaaaaaaaaaa<br>
       aaaaaaaaaaaaaaaaaaaaa<br>
       aaaaaaaaaaaaaaaaaaaaa<br>
@@ -98,15 +124,15 @@
       aaaaaaaaaaaaaaaaaaaaa<br>
     </div>
     
-    <div class="content hidden-details" id="content2">
-      ssssssssssssssssssssssss><br>
+    <div class="content hidden-details" id="content3-2">
+      ssssssssssssssssssssssss<br>
       aaaaaaaaaaaaaaaaaaaaa<br>
       aaaaaaaaaaaaaaaaaaaaa<br>
       aaaaaaaaaaaaaaaaaaaaa<br>
       aaaaaaaaaaaaaaaaaaaaa<br>
     </div>
     
-    <div class="content hidden-details" id="content3">
+    <div class="content hidden-details" id="content3-3">
       ssssssssssvdddddddddddddddd<br>
       aaaaaaaaaaaaaaaaaaaaa<br>
       aaaaaaaaaaaaaaaaaaaaa<br>
@@ -121,32 +147,6 @@
 
 {% block content_script %}
 <script src="../static/js/history.js"></script>
-<script>
-
-
-  // document.addEventListener("DOMContentLoaded", function() {
-  //   var navLinks = document.querySelectorAll(".nav-link");
-  //   var contents = document.querySelectorAll(".content");
-
-  //   navLinks.forEach(function(navLink) {
-  //     navLink.addEventListener("click", function(event) {
-  //       event.preventDefault();
-
-  //       var selectedTab = navLink.getAttribute("data-tab");
-
-  //       contents.forEach(function(content) {
-  //         content.style.display = "none";
-  //       });
-
-  //       var selectedContent = document.getElementById("content" + selectedTab);
-  //       if (selectedContent) {
-  //         selectedContent.style.display = "block";
-  //       }
-  //     });
-  //   });
-  // });
-  
-</script>
 {% endblock %}
 
 
