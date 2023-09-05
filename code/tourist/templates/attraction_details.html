@@ -874,7 +874,8 @@
     var attractions_types_json = JSON.parse('{{ all_type_name_json|safe }}');
     var attractions_types = document.getElementById("attractions_types");
     for (var i = 0; i < attractions_types_json.length; i++) {
-        attractions_types.innerHTML += `<td><button style="border-radius: 50px; data-set="${i}">${attractions_types_json[i]}</button></td>`;
+        attractions_types.innerHTML += `<td><span class="more_btn" data-set="${i}">${attractions_types_json[i]}</span></td>`;
+        
     }
 
     //點擊開啟詳細資料
