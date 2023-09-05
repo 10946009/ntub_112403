@@ -15,9 +15,9 @@ document.addEventListener("DOMContentLoaded", function(){
 
           // 找到按鈕對應的 data-target 屬性的值
           const targetID = button.getAttribute("data-target");
-
+            console.log(targetID);
           // 找到對應的內容區域
-          const targetDiv = document.getElementById(targetID);
+          const targetDiv = document.getElementById("more"+targetID);
 
           // 隱藏所有內容區域
           openmoreDivs.forEach((div) => {
@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", function(){
           // 顯示點擊按鈕對應的內容區域
           if (targetDiv) {
               targetDiv.style.display = "block";
+              const firsttabDiv = document.querySelector(`[data-tab="${targetID}-1"]`);
+              firsttabDiv.click();
+
           }
 
           // 將按鈕移到其下方的內容區域
@@ -50,11 +53,11 @@ tabLinks.forEach((link) => {
       const tabID = link.getAttribute("data-tab");
 
       // 找到對應的內容區域
-      const content = document.getElementById(tabID);
-
+      const content = document.getElementById("content"+tabID);
+      
       if (content) {
           // 隱藏所有內容區域
-          const allContent = content.closest("#more3").querySelectorAll(".content");
+          const allContent = document.getElementById("more3").querySelectorAll(".content");
           allContent.forEach((c) => {
               c.style.display = "none";
           });
