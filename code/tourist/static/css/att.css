@@ -221,7 +221,7 @@ body {
 
 /* 動動圖那一塊 */
 #filiter_about {
-    background-color: #decaa6;
+    background-color: #ded1b8;
     padding: 40px;
 }
 
@@ -263,6 +263,20 @@ body {
 
 .att_form {
     padding: 50px;
+}
+
+/* 清除所有篩選條件 */
+.clear_btn {
+    display: inline-block;
+    padding: 4px 10px;
+    font-family: Arial;
+    margin-top: 6px;
+    font-size: 18px;
+}
+
+.clear_btn:hover {
+    text-decoration: underline;
+    color: red;
 }
 
 /* 篩選視窗裡面的內容物 */
