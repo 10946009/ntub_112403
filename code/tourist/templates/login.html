@@ -98,7 +98,11 @@
                 {% csrf_token %}
 
                 <input id="inputacc" type="email" placeholder="e-mail" name="email" required value="{{email}}">
-                <input id="inputpwd" type="password" placeholder="密碼" name="passwd" required>
+                <div class="password-container">
+                    <input id="inputpwd" type="password" placeholder="密碼" name="passwd" required>
+                    <i class="fa-solid fa-eye" id="show_pwd"></i>
+                </div>
+
                 <input id="result" type="hidden" name="code_result">
                 <div class="ch">
                     <input type="text" id="input" placeholder="請輸入驗證碼">
@@ -119,6 +123,22 @@
     </div>
     <div>&nbsp;</div>
     <script>
+        //密碼可見性
+        const togglePassword = document.getElementById('show_pwd');
+        const passwordField = document.getElementById('inputpwd');
+
+        togglePassword.addEventListener('click', function () {
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                togglePassword.classList.remove('fa-eye');
+                togglePassword.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                togglePassword.classList.remove('fa-eye-slash');
+                togglePassword.classList.add('fa-eye');
+            }
+        });
+
         //判斷是否為機器人-驗證
         var code_result = -1
         var code = "";//全域變數 紀錄驗證碼
