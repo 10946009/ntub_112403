@@ -18,12 +18,51 @@
     </div>
     <div class="col-8 mytravel_txt">
       <h4 class="mytravel_txt_title">行程名稱：{{item.ct_name}}</h4>
-      <p class="mytravel_txt_detail">天數：</p>
-      <p class="mytravel_txt_detail">地點：</p>
+      <h4 class="mytravel_review">喜愛程度：(別人按讚的)</h4>
+      <h4 class="mytravel_txt_detail">天數：</h4>
+      <h4 class="mytravel_txt_detail">地點：</h4>
     </div>
-    <a href="/create/{{item.id}}/1"><button class="more_btn">詳細資料</button></a>
+    <a href="/create/{{item.id}}/1"><button class="more-btn-target more_btn" data-target="{{item.id}}">詳細資料</button></a>
   </div>
-    {% endfor %}
+  <!-- <div class="openmore more-content" style="display: none;">
+    <div id="more3" >
+     more  <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#content3-1" data-tab="3-1">第一天</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#content3-2" data-tab="3-2">第二天</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#content3-3" data-tab="3-3">第三天</a>
+        </li>
+      </ul>
+      <div class="content hidden-details" id="content3-1">
+        第一天aaaaaaaaaaaaaaaaaaaaa<br>
+        aaaaaaaaaaaaaaaaaaaaa<br>
+        aaaaaaaaaaaaaaaaaaaaa<br>
+        aaaaaaaaaaaaaaaaaaaaa<br>
+        aaaaaaaaaaaaaaaaaaaaa<br>
+      </div>
+      
+      <div class="content hidden-details" id="content3-2">
+        第二天ssssssssssssssssssssssss<br>
+        aaaaaaaaaaaaaaaaaaaaa<br>
+        aaaaaaaaaaaaaaaaaaaaa<br>
+        aaaaaaaaaaaaaaaaaaaaa<br>
+        aaaaaaaaaaaaaaaaaaaaa<br>
+      </div>
+      
+      <div class="content hidden-details" id="content3-3">
+        第三天ssssssssssvdddddddddddddddd<br>
+        aaaaaaaaaaaaaaaaaaaaa<br>
+        aaaaaaaaaaaaaaaaaaaaa<br>
+        aaaaaaaaaaaaaaaaaaaaa<br>
+        aaaaaaaaaaaaaaaaaaaaa<br>
+      </div>
+    </div>
+  </div> -->
+  {% endfor %}
 
     <div class="row mytravel">
       <div class="col-4 mytravel_img">
@@ -36,59 +75,125 @@
       </div>
       <button class="more_btn" data-target="1">詳細資料</button>
     </div>
-    <div id="more1" class="hidden-details" style="display: none;">
+    <div id="more1" class="more hidden-details" style="display: none;">
       第一天<br>第二天<br>第三天
     </div>
     
-  <div class="row mytravel">
-    <div class="col-md-4 mytravel_img">
-      <img src="../static/images/dog.jpg" class="img-responsive" width="100%" alt="">
+    <div class="row mytravel">
+      <div class="col-md-4 mytravel_img">
+        <img src="../static/images/dog.jpg" class="img-responsive" width="100%" alt="">
+      </div>
+      <div class="col-md-8 mytravel_txt">
+        <h4 class="mytravel_txt_title">行程名稱：</h4>
+        <p class="mytravel_txt_detail">天數：</p>
+        <p class="mytravel_txt_detail">地點：</p>
+      </div>
+      <button class="more-btn-target more_btn" data-target="2">詳細資料</button>
     </div>
-    <div class="col-md-8 mytravel_txt">
-      <h4 class="mytravel_txt_title">行程名稱：</h4>
-      <p class="mytravel_txt_detail">天數：</p>
-      <p class="mytravel_txt_detail">地點：</p>
+    <div class="openmore more-content">
+      <div id="more2" class="more hidden-details">
+        <ul class="nav nav-underline">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#content2-1" data-tab="2-1">第一天</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#content2-2" data-tab="2-2">第二天</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#content2-3" data-tab="2-3">第三天</a>
+          </li>
+        </ul>
+        <div class="content hidden-details" id="content2-1">
+          <div class="content_align">
+            <div class="content_detail">
+              <h4>第1個景點</h4>
+              <h5>景點名稱：台北101</h5>
+              <p>日期：yyyy/mm/dd</p>
+              <p>抵達時間：早上</p>
+              <p>停留時間：</p>
+            </div>
+            <div class="gonext fa-solid fa-car-side">
+              <p>導航</p>
+            </div>
+            <div class="content_detail">
+              <h4>第2個景點</h4>
+              <h5>景點名稱：台北101</h5>
+              <p>日期：yyyy/mm/dd</p>
+              <p>抵達時間：早上</p>
+              <p>停留時間：</p>
+            </div>
+            <div class="gonext fa-solid fa-car-side">
+              <p>導航</p>
+            </div>
+            <div class="content_detail">
+              <h4>第3個景點</h4>
+              <h5>景點名稱：台北101</h5>
+              <p>日期：yyyy/mm/dd</p>
+              <p>抵達時間：中午</p>
+              <p>停留時間：</p>
+            </div>
+          </div>
+        </div>
+        <div class="content hidden-details" id="content2-2">
+          ssssssssssssssssssssssss<br>
+          aaaaaaaaaaaaaaaaaaaaa<br>
+          aaaaaaaaaaaaaaaaaaaaa<br>
+          aaaaaaaaaaaaaaaaaaaaa<br>
+          aaaaaaaaaaaaaaaaaaaaa<br>
+        </div>
+        <div class="content hidden-details" id="content2-3">
+          <div class="content_align">
+            <div class="content_detail">
+              <h4>第1個景點</h4>
+              <h5>景點名稱：台北101</h5>
+              <p>日期：yyyy/mm/dd</p>
+              <p>抵達時間：早上</p>
+              <p>停留時間：</p>
+            </div>
+            <div class="gonext fa-solid fa-car-side">
+              <p>導航</p>
+            </div>
+            <div class="content_detail">
+              <h4>第2個景點</h4>
+              <h5>景點名稱：台北101</h5>
+              <p>日期：yyyy/mm/dd</p>
+              <p>抵達時間：早上</p>
+              <p>停留時間：</p>
+            </div>
+            <div class="gonext fa-solid fa-car-side">
+              <p>導航</p>
+            </div>
+            <div class="content_detail">
+              <h4>第3個景點</h4>
+              <h5>景點名稱：台北101</h5>
+              <p>日期：yyyy/mm/dd</p>
+              <p>抵達時間：中午</p>
+              <p>停留時間：</p>
+            </div>
+            <div class="gonext fa-solid fa-car-side">
+              <p>導航</p>
+            </div>
+            <div class="content_detail">
+              <h4>第4個景點</h4>
+              <h5>景點名稱：台北101</h5>
+              <p>日期：yyyy/mm/dd</p>
+              <p>抵達時間：中午</p>
+              <p>停留時間：</p>
+            </div>
+            <div class="gonext fa-solid fa-car-side">
+              <p>導航</p>
+            </div>
+            <div class="content_detail">
+              <h4>第5個景點</h4>
+              <h5>景點名稱：台北101</h5>
+              <p>日期：yyyy/mm/dd</p>
+              <p>抵達時間：中午</p>
+              <p>停留時間：</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <button class="more-btn-target more_btn" data-target="2">詳細資料</button>
-  </div>
-  <div class="openmore more-content">
-    <div id="more2" class="hidden-details">
-      <ul class="nav nav-underline">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#content2-1" data-tab="2-1">第一天</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#content2-2" data-tab="2-2">第二天</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#content2-3" data-tab="2-3">第三天</a>
-        </li>
-      </ul>
-    </div>
-    <div class="content hidden-details" id="content2-1">
-      aaaaaaaaaaaaaaaaaaaaa<br>
-      aaaaaaaaaaaaaaaaaaaaa<br>
-      aaaaaaaaaaaaaaaaaaaaa<br>
-      aaaaaaaaaaaaaaaaaaaaa<br>
-      aaaaaaaaaaaaaaaaaaaaa<br>
-    </div>
-    
-    <div class="content hidden-details" id="content2-2">
-      ssssssssssssssssssssssss<br>
-      aaaaaaaaaaaaaaaaaaaaa<br>
-      aaaaaaaaaaaaaaaaaaaaa<br>
-      aaaaaaaaaaaaaaaaaaaaa<br>
-      aaaaaaaaaaaaaaaaaaaaa<br>
-    </div>
-    
-    <div class="content hidden-details" id="content2-3">
-      ssssssssssvdddddddddddddddd<br>
-      aaaaaaaaaaaaaaaaaaaaa<br>
-      aaaaaaaaaaaaaaaaaaaaa<br>
-      aaaaaaaaaaaaaaaaaaaaa<br>
-      aaaaaaaaaaaaaaaaaaaaa<br>
-    </div>
-  </div>
 
   <div class="row mytravel">
     <div class="col-md-4 mytravel_img">
@@ -97,13 +202,13 @@
     <div class="col-md-8 mytravel_txt">
       <h4 class="mytravel_txt_title">行程名稱：</h4>
       <h4 class="mytravel_review">喜愛程度：(別人按讚的)</h4>
-      <p class="mytravel_txt_detail">天數：</p>
-      <p class="mytravel_txt_detail">地點：</p>
+      <h4 class="mytravel_txt_detail">天數：</h4>
+      <h4 class="mytravel_txt_detail">地點：</h4>
     </div>
     <button class="more-btn-target more_btn" data-target="3">詳細資料</button>
   </div>
   <div class="openmore more-content" style="display: none;">
-    <div id="more3" >
+    <div id="more3" class="more hidden-details">
       <ul class="nav nav-tabs">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#content3-1" data-tab="3-1">第一天</a>
@@ -139,8 +244,8 @@
         aaaaaaaaaaaaaaaaaaaaa<br>
       </div>
     </div>
-    
   </div>
+
 </div>
 
 
