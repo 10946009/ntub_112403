@@ -44,6 +44,9 @@
 .hidden-details {
     display: none;
 }
+.nav{
+    padding: 5px;
+}
 .content_align{
     display: flex;
     align-items: center;
@@ -52,12 +55,21 @@
 .content_detail{
     height: 200px;
     width: 250px;
-    /* display: block; */
     display: inline-block;
     margin: 5px;
-    padding: 15px 10px;
+    padding: 10px;
     border: 1px solid black;
     border-radius: 10%;
+}
+.content_detail p{
+    margin-bottom: 10px;
+}
+.spotnum{
+    font-size: 18px;
+}
+.spot{
+    font-size: 20px;
+    font-weight: bold;
 }
 .gonext{
     margin: 5px;
@@ -65,4 +77,26 @@
     text-align: center;
     display: inline-block;
     cursor: pointer;
+}
+@media (max-width:1024px) {
+    .content{
+        margin: 5px auto;
+    }
+    .content_align{
+        display: block;
+    }
+    .content_detail{
+        height: 180px;
+        width: 250px;
+        display: block;
+        margin: 0 auto;
+        padding: 15px 10px;
+    }
+    .gonext{
+        display: block;
+        margin: 0 auto;
+    }
+    .gonextbtn{
+        margin: 0;
+    }
 }
