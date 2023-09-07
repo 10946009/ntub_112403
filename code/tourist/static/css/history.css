@@ -40,12 +40,33 @@
     padding: 10px 15px;
     background-color: rgb(255, 243, 151);
 }
+.share_icon{
+    font-size: 28px;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 5px;
+    right: 25px;
+    cursor: pointer;
+}
+.edit_icon{
+    font-size: 28px;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 5px;
+    right: 60px;
+    cursor: pointer;
+}
 /*展開詳細行程*/
 .hidden-details {
     display: none;
 }
 .nav{
     padding: 5px;
+}
+.nav-link{
+    color: black;
 }
 .content_align{
     display: flex;
