@@ -286,7 +286,7 @@ html{
 	padding: 0px;
     /* background-color:rgb(255, 255, 255);  */
 }
-.hideme, .hidemehot, .hidemespot{
+.hideme, .hidemehot, .hidemehottoleft, .hidemeexplore, .hidemespot{
     opacity:0;
 }
 
