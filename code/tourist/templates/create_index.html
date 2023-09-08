@@ -2,26 +2,25 @@
 {% block title %}建立行程{% endblock %}
 {% block content %}<link rel="stylesheet" href="../static/css/create.css">{% endblock %}
 {% block body %}
-  <form action="" method="post" style="margin-top: 20px;">
-    {% csrf_token %}
-    <span id="tabDL">行程名稱</span>
-    <input type="text"
-           class="input_txt"
-           name="createName"
-           id="createName"
-           value=""
-           required>
-    <span id="tabDL">開始日期</span>
-    <input type="date" id="createDate" name="createDate" required>
-    <span id="tabDL">行程天數</span>
-    <input type="number"
-           id="createDay"
-           name="createDay"
-           min="1"
-           value="1"
-           required>
-    <button class="btn btn-outline-success" type="submit">送出</button>
-  </form>
+<div class="bgimg">
+  <div class="block">
+    <form action="" method="post" class="formcss">
+      {% csrf_token %}
+      <div id="tabDL" class="txtdiv"><span class="txt">行程名稱</span><br>
+        <input type="text" name="createName" id="createName" value="" required class="inputspace">
+      </div>
+      
+      <div id="tabDL" class="txtdiv"><span class="txt">開始日期</span><br>
+        <input type="date" id="createDate" name="createDate" required class="inputspace">
+      </div>
+      
+      <div id="tabDL" class="txtdiv"><span class="txt">行程天數</span><br>
+        <input type="number" id="createDay" name="createDay" min="1" value="1" required class="inputspace">
+      </div>
+      <button class="btn btn-outline-success enterbtn" type="submit">送出</button>
+    </form>
+  </div>
+</div>
 {% endblock body %}
 {% block content_script %}
   <script src="../static/js/create.js"></script>
