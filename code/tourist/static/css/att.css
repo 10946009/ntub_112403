@@ -542,6 +542,12 @@ img {
     vertical-align: middle;
 }
 
+.container {
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-bottom: 50px;
+}
+
 /*詳細景點圖片*/
 .container1 {
     position: relative;
@@ -624,6 +630,25 @@ img {
 .active,
 .demo:hover {
     opacity: 1;
+}
+
+.change_btn {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.change1,
+.change2 {
+    flex: 1;
+    cursor: pointer;
+    padding-bottom: 10px;
+}
+
+.change1:hover,
+.change2:hover {
+    border-bottom: solid rgb(255, 0, 0) 2px;
 }
 
 /* icon */

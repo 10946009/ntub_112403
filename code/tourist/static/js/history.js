@@ -75,35 +75,3 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 
 });
-
-
-
-// const moreButton = document.querySelector(".more_btn");
-// const openmore = document.querySelector(".openmore");
-// const tabs = document.querySelectorAll(".nav-link");
-// const contents = document.querySelectorAll(".content");
-
-// moreButton.addEventListener("click", function () {
-//   if (openmore.style.display === "none" || openmore.style.display === "") {
-//     openmore.style.display = "block";
-//   } else {
-//     openmore.style.display = "none";
-//   }
-// });
-
-// tabs.forEach(tab => {
-//   tab.addEventListener("click", function (event) {
-//     event.preventDefault();
-//     // 隐藏所有内容
-//     contents.forEach(content => {
-//       content.style.display = "none";
-//     });
-    
-//     // 显示与点击标签相关的内容
-//     const tabId = this.getAttribute("data-tab");
-//     const contentToShow = document.getElementById("content" + tabId);
-//     if (contentToShow) {
-//       contentToShow.style.display = "block";
-//     }
-//   });
-// });
