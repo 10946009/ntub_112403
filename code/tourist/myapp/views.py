@@ -332,7 +332,7 @@ def create_index(request):
             travel_day=travel_day,
         )
         unit.save()
-        return redirect(f"/create/{unit.id}/{num}")
+        return redirect(f"/create/{unit.id}")
     return render(request, "create_index.html")
 
 
