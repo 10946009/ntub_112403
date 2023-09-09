@@ -78,7 +78,7 @@
                 <div class="card">
                   <div class="location-wrap text-center"> 
                     <img src="/static/images/attractions/{{item.place_id}}_0.jpg" class="img-responsive custom-image" width="100%">
-                    <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
+                      <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this,{{item.id}})" id="heart-icon"></i>
                   </div>
                   <div class="card-body text-center">
                     <h4 class="card-title">{{item.a_name}}</h4>
@@ -153,5 +153,23 @@
         </div>
       </div>
     </div>
-      <script src="/static/js/favorite.js"></script>
+    <script>
+      function toggleFavorite(heartIcon,a_id) {
+        /*if (heartIcon.style.color === "red") {
+          heartIcon.style.color = "gray";
+        } else {
+          heartIcon.style.color = "red";
+        }*/
+        var csrftoken = "{{ csrf_token }}";
+        ans = window.confirm('您確定要移除此景點嗎?');
+            if (ans == true) {
+              console.log("成功");
+              window.location.href = `/del_favorite/${a_id}`;
+            } else {
+              console.log("取消");
+            }
+        
+      }
+    </script>
+      {% comment %} <script src="/static/js/favorite.js"></script> {% endcomment %}
     {% endblock body %}

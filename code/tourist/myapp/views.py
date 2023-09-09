@@ -578,6 +578,18 @@ def favorite(request):
     # favorite_list =
     return render(request, "favorite.html", locals())
 
+@login_required(login_url="/login")
+def del_favorite(request,a_id):
+    u_id = request.user.id
+    if u_id != None:
+        if a_id:
+            data = Favorite.objects.get(u_id=u_id, a_id=a_id)
+            data.delete()
+            return redirect("/favorite")
+    else:
+        response_data = {"message": "尚未登入"}
+        return JsonResponse(response_data)
+
 
 # 分享行程
 def share(request):
@@ -598,7 +610,8 @@ def add_favorite(request):
                 unit.save()
             # 在這裡準備你想要回傳給前端的資料
             response_data = {"message": "操作成功"}
-            return JsonResponse(response_data)
+            user_favorite = Favorite.objects.filter(u_id=u_id).values()
+            return JsonResponse(response_data,user_favorite)
     else:
         response_data = {"message": "尚未登入"}
         return JsonResponse(response_data)
