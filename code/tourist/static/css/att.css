@@ -1,4 +1,14 @@
+* {
+    box-sizing: border-box;
+}
+
+/* 背景顏色 */
+body {
+    background-color: #f7ead37c;
+}
+
 /* 景點動態大標（景點資訊） */
+/* 內部白色景點資訊大四字 */
 .scroll-text {
     width: 100%;
     position: relative;
@@ -10,6 +20,7 @@
     transition: transform 0.1s ease;
 }
 
+/* 內部白色Tripfunchill(下面) */
 .scroll-text1 {
     width: 100%;
     position: absolute;
@@ -25,24 +36,28 @@
     align-items: center;
 }
 
+/* 景點資訊 */
 .scroll-text h1 {
     font-size: 50px;
     font-family: "Noto Serif TC", serif;
     font-weight: 400;
 }
 
+/* Tripfunchill */
 .scroll-text h5 {
     color: rgb(0, 0, 0);
     font-family: "Noto Serif TC", serif;
     font-weight: 200;
 }
 
+/* 那條線 */
 .tit_hr {
     width: 300px;
     border: 2px solid rgb(0, 0, 0);
     margin-bottom: 30px;
 }
 
+/* Parallax Scrolling背景 */
 .jumbotron {
     text-align: center;
     background-image: url(../images/Datong.jpeg);
@@ -51,12 +66,14 @@
     margin: 0;
 }
 
+/* Parallax Scrolling背景size */
 .container_info {
     color: #fff;
     margin: 280px 0;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
 }
 
+/* 內部白色景點資訊大四字(白色透明bgc) */
 .active_tit {
     background-color: rgba(194, 194, 194, 0.2);
     width: 35%;
@@ -67,21 +84,8 @@
     transform: translate(-50%, -50%);
 }
 
-/*  */
-
 /*搜尋引擎*/
-.autocomplete {
-    position: relative;
-    display: inline-block;
-}
-
-input {
-    border: 1px solid transparent;
-    background-color: #f1f1f1;
-    padding: 10px;
-    font-size: 16px;
-}
-
+/* 搜尋列表下面呈現的樣式(input時會跑出來的框) */
 .autocomplete-items {
     text-align: left;
     padding-left: 12px;
@@ -91,7 +95,6 @@ input {
     border-bottom-right-radius: 30px;
     border-bottom-left-radius: 30px;
     position: absolute;
-    /* border: 1px solid #d4d4d4; */
     border-top: none;
     z-index: 99;
     top: 100%;
@@ -99,6 +102,7 @@ input {
     right: 0;
 }
 
+/* 點一下input裡面會改變樣式 */
 .searchContent {
     text-align: left;
     padding-left: 12px;
@@ -108,7 +112,6 @@ input {
     border-bottom-right-radius: 30px;
     border-bottom-left-radius: 30px;
     position: absolute;
-    /* border: 1px solid #d4d4d4; */
     border-top: none;
     z-index: 99;
     top: 100%;
@@ -116,40 +119,58 @@ input {
     right: 0;
 }
 
+/* 歷史紀錄的部分 */
+/* 歷史紀錄的呈現容器 */
 #searchBox {
     display: none;
 
 }
 
+/* 點一下input跳出searchbox */
 #myInput:focus+#searchBox {
     display: block;
 }
 
+/* 歷史紀錄那一條 */
+.history_1 {
+    z-index: 1;
+    position: relative;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.history_1:hover {
+    background-color: #d9d8d8;
+}
+
+/* 關閉歷史紀錄(x的位置-靠右） */
+.close_history {
+    z-index: 2;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    margin-right: 10px;
+}
+
+/* autocomplete-item裏面div的樣式 */
 .autocomplete-items div {
     padding: 10px;
     cursor: pointer;
     background-color: #f1f1f1;
 }
 
+/* autocomplete-item碰到裏面div的樣式 */
 .autocomplete-items div:hover {
     background-color: #d9d8d8;
 }
 
-.autocomplete-active {
-    background-color: #d9d8d8 !important;
-    color: black;
-}
-
+/* 整個搜尋引擎的位置 */
 .search_body {
     margin-top: 20px;
     margin-bottom: 40px;
 }
 
-::selection {
-    color: #fff;
-    background: #4a8fff;
-}
-
+/* 整個搜尋引擎那條 */
 .container_search {
     width: 100%;
     padding: 0 30px 0 30px;
@@ -166,27 +187,30 @@ input {
     align-items: center;
 }
 
+/* (type:search input的樣式) */
 .searchInput input {
-    /* border: 1px solid #d4d4d4; */
+    border: 1px solid transparent;
+    background-color: #f1f1f1;
+    font-size: 16px;
     height: 55px;
     width: 100%;
     outline: none;
-    padding: 0 50px 0 50px;
+    padding: 0 20px 0 50px;
     font-size: 18px;
     transition: all 50ms ease-in-out;
-    font-size: 18px;
     border-radius: 30px;
     outline: none;
-    transition: border-radius 0.3s;
     cursor: pointer;
 }
 
+/* 點一下input內部改變角度 */
 .searchInput input:focus {
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
     border-bottom: none;
 }
 
+/* 搜尋小icon */
 .searchInput .icon {
     border: none;
     position: absolute;
@@ -195,57 +219,143 @@ input {
     transform: translateY(-50%);
 }
 
-.filiter {
-    border: none;
+/* 動動圖那一塊 */
+#filiter_about {
+    background-color: #decaa6;
+    padding: 40px;
+}
+
+/* 拖行李的圖 */
+#filiter_about .img_trip {
+    mix-blend-mode: multiply;
+    background-size: cover;
+}
+
+/* 那個馬路圖 */
+.road {
+    position: relative;
+    z-index: 1;
+}
+
+/* 篩選那部分 */
+.topic_filiter {
+    margin-top: 60px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+/* 篩選文字 */
+.filiter_btn {
+    margin-top: 20px;
+}
+
+.topic_filiter:hover {
+    color: rgb(127, 4, 4);
+}
+
+/* 篩選視窗 */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.att_form {
+    padding: 50px;
+}
+
+/* 篩選視窗裡面的內容物 */
+.more_btn {
+    display: inline-block;
+    padding: 4px 10px;
+    font-family: Arial;
+    border: solid #000 1.5px;
+    border-radius: 10px;
+    margin-top: 6px;
+    font-size: 18px;
+    background-color: rgb(245, 183, 76);
+}
+
+/* 點擊篩選視窗裡面的內容物（動作） */
+.active,
+.more_btn:hover {
+    background-color: rgb(235, 224, 169);
+    color: black;
+}
+
+/* 篩選按鈕 */
+.sure {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* 篩選按鈕 */
+.sure_btn {
+    font-size: 20px;
+    border-radius: 10px;
+    background-color: rgb(210, 4, 4);
+    color: white;
+}
+
+.sure_btn:hover {
+    background-color: rgb(247, 174, 174);
+    color: #000;
+}
+
+/* 篩選條條件篩選數量（右上） */
+.ribbon {
+    width: 30px;
+    font-size: 14px;
+    padding: 4px;
     position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
+    top: -12px;
+    text-align: center;
+    border-radius: 50px;
+    background-color: #ff9800;
+    color: white;
 }
 
-.filiter:hover {
-    color: rgb(122, 155, 233);
+/* 篩選小視窗 */
+#show_filiter,
+#show_condition,
+#show_userfavorite {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 200px;
+    padding-left: 150px;
+    padding-right: 150px;
 }
 
-/*  */
-
-/* 景點簡短資訊 */
-#section_culture {
+/* 景點簡短資訊(主體) */
+#attractions_introduction {
     margin: 30px 0 50px 0;
 }
 
-.bottom {
-    text-align: center;
-}
-
-.bottom h5 {
-    color: #333;
-    transition: 0.5s;
-    cursor: pointer;
-}
-
-.bottom h5:hover {
-    color: #B54434;
-    transform: scale(1.1);
-}
-
-#section_culture .img_wrap {
+/* 簡短資訊左方景點圖片 */
+#attractions_introduction .img_wrap {
     position: relative;
     display: inline-block;
-    /* 讓容器只占用所需的寬度 */
     height: 255px;
     overflow: hidden;
     cursor: pointer;
 }
 
+/* 圖片裡learn more方塊 */
 .learn_more {
     position: absolute;
     top: 40%;
-    /* 調整位置到圖片上方 */
     left: 40%;
-    /* 放置在圖片中央 */
     transform: translate(-20%, -20%);
-    /* 水平置中 */
     color: #fff;
     padding: 20px;
     font-size: 35px;
@@ -257,23 +367,26 @@ input {
     line-height: 35px;
 }
 
+/* 圖片裡learn more方塊(碰到動畫） */
 .img_wrap:hover .learn_more {
     opacity: 1;
     color: rgb(50, 50, 50);
 }
 
-
+/* 景點圖片 */
 .img_wrap .slide {
     width: 100%;
     transition: 0.5s;
 }
 
+/* 景點圖片(碰到動畫） */
 .img_wrap:hover .slide {
     opacity: 0.6;
     transform: scale(1.2);
 }
 
-#section_culture h4 {
+/* 景點名稱 */
+#attractions_introduction h4 {
     margin: 0 0 10px 0;
     padding: 0 0 10px 0;
     display: inline-block;
@@ -282,20 +395,19 @@ input {
     transition: 0.3s;
 }
 
-body {
-    background-color: #f7ead37c;
-}
-
-#section_culture h4:hover {
+/* 景點名稱(碰到動畫） */
+#attractions_introduction h4:hover {
     color: #DCB879;
     padding-right: 10px;
 }
 
-#section_culture .feature {
+/* 簡短景點右半邊那一塊 */
+#attractions_introduction .feature {
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
+/* 收藏景點按鈕 */
 .feature.col_btn {
     position: absolute;
     top: 24px;
@@ -306,17 +418,321 @@ body {
     padding: 4px 10px 4px 10px;
 }
 
-/*  */
+/* 下面learn more的部分 */
+.bottom {
+    text-align: center;
+}
 
+/* 下面learn more的部分 */
+.bottom h5 {
+    color: #333;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+/* 下面learn more的部分 */
+.bottom h5:hover {
+    color: #B54434;
+    transform: scale(1.1);
+}
+
+/* x的部分 */
 .close {
     display: flex;
     align-items: center;
 }
 
+/* 詳細景點 */
+/* 關閉詳細景點按鈕 */
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+/* 叉叉按鈕那一塊 */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+/* 詳細景點主體*/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 80px;
+}
+
+/* 詳細景點裡面內容*/
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* x的部分 */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+/* x的部分 */
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* 開啟詳細景點的特效 */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {
+        -webkit-transform: scale(0)
+    }
+
+    to {
+        -webkit-transform: scale(1)
+    }
+}
+
+@keyframes animatezoom {
+    from {
+        transform: scale(0)
+    }
+
+    to {
+        transform: scale(1)
+    }
+}
+
+
+img {
+    vertical-align: middle;
+}
+
+/*詳細景點圖片*/
+.container1 {
+    position: relative;
+}
+
+/*詳細景點圖片*/
+.mySlides {
+    display: none;
+}
+
+/*詳細景點圖片*/
+.cursor {
+    cursor: pointer;
+}
+
+/*詳細景點圖片（前後按鈕）*/
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/*詳細景點圖片（前後按鈕）*/
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/*詳細景點圖片（前後按鈕動畫）*/
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/*詳細景點圖片（圖片張數顯示）*/
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/*詳細景點圖片（圖片介紹）*/
+.caption-container {
+    text-align: center;
+    background-color: #222;
+    padding: 2px 16px;
+    color: white;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*詳細景點圖片*/
+.column {
+    float: left;
+    width: 16.66%;
+}
+
+/*詳細景點圖片*/
+.demo {
+    opacity: 0.6;
+}
+
+/*詳細景點圖片 動畫*/
+.active,
+.demo:hover {
+    opacity: 1;
+}
+
+/* icon */
+.fa {
+    font-size: 25px;
+}
+
+/* 星星icon */
+.checked {
+    color: rgb(241, 226, 62);
+}
+
+/* 所有評價*/
+.bar-container {
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+    width: 100%;
+    background-color: #f1f1f1;
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* 星星 */
+.nu_star {
+    margin-bottom: 18px;
+    margin-right: 10px;
+}
+
+.bar-5 {
+    border-radius: 50px;
+    width: 60%;
+    height: 18px;
+    background-color: #04AA6D;
+}
+
+.bar-4 {
+    border-radius: 50px;
+    width: 30%;
+    height: 18px;
+    background-color: #2196F3;
+}
+
+.bar-3 {
+    border-radius: 50px;
+    width: 10%;
+    height: 18px;
+    background-color: #00bcd4;
+}
+
+.bar-2 {
+    border-radius: 50px;
+    width: 4%;
+    height: 18px;
+    background-color: rgb(241, 226, 62);
+}
+
+.bar-1 {
+    border-radius: 50px;
+    width: 20%;
+    height: 18px;
+    background-color: #f44336;
+}
+
+/* 星星 */
+.star_container {
+    display: flex;
+    align-items: center;
+}
+
+/* all星星 */
+.total_star {
+    margin-bottom: 18px;
+}
+
+
+footer.jumbotron {
+    text-align: center;
+    background-image: url(../images/Datong.jpeg);
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+footer.jumbotron input {
+    background-color: transparent;
+    max-width: 350px;
+    margin: 30px auto;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+footer.jumbotron input::placeholder {
+    color: #fff;
+}
+
+footer.jumbotron .container {
+    color: #fff;
+    padding: 60px 0;
+}
+
+footer.jumbotron .container button.btn.btn-default {
+    background-color: rgba(248, 253, 138, 0.2);
+    color: #f8fd8a;
+    border: 1px solid #f8fd8a;
+    transition: 0.5s;
+}
+
+footer.jumbotron .container button.btn.btn-default:hover {
+    background-color: #f8fd8a;
+    color: #183158;
+    transform: scale(1.2);
+}
+
+/* RWD的部分 */
 [class*="col-"] {
     width: 100%;
 }
 
+/* RWD的部分 */
 @media only screen and (min-width: 600px) {
 
     /* For tablets: */
@@ -369,6 +785,7 @@ body {
     }
 }
 
+/* RWD的部分 */
 @media only screen and (min-width: 800px) {
 
     /* For desktop: */
@@ -421,117 +838,11 @@ body {
     }
 }
 
-* {
-    box-sizing: border-box;
-}
-
+/* RWD的部分 */
 .row::after {
     content: "";
     clear: both;
     display: table;
-}
-
-/* .info_tit {
-    cursor: pointer;
-} */
-
-.Info_item {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    /* cursor: pointer; */
-}
-
-.w3-btn-floating:hover {
-    background-color: rgba(255, 255, 255, 0.439);
-}
-
-/* Extra styles for the cancel button */
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-}
-
-/* Center the image and position the close button */
-.imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-    position: relative;
-}
-
-/* The Modal (background) */
-.modal {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
-    padding: 80px;
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto;
-    /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 80%;
-    /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button (x) */
-.close {
-    position: absolute;
-    right: 25px;
-    top: 0;
-    color: #000;
-    font-size: 35px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: red;
-    cursor: pointer;
-}
-
-/* Add Zoom Animation */
-.animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
-}
-
-@-webkit-keyframes animatezoom {
-    from {
-        -webkit-transform: scale(0)
-    }
-
-    to {
-        -webkit-transform: scale(1)
-    }
-}
-
-@keyframes animatezoom {
-    from {
-        transform: scale(0)
-    }
-
-    to {
-        transform: scale(1)
-    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -819,196 +1130,6 @@ body {
     }
 }
 
-.w3-btn-floating_left {
-    position: absolute;
-    top: 40%;
-    left: 0;
-    text-decoration: none;
-    font-size: 30px;
-}
-
-.w3-btn-floating_right {
-    position: absolute;
-    top: 40%;
-    right: 0;
-    text-decoration: none;
-    font-size: 30px;
-}
-
-img {
-    vertical-align: middle;
-}
-
-/* Position the image container (needed to position the left and right arrows) */
-.container1 {
-    position: relative;
-}
-
-/* Hide the images by default */
-.mySlides {
-    display: none;
-}
-
-/* Add a pointer when hovering over the thumbnail images */
-.cursor {
-    cursor: pointer;
-}
-
-/* Next & previous buttons */
-.prev,
-.next {
-    cursor: pointer;
-    position: absolute;
-    top: 40%;
-    width: auto;
-    padding: 16px;
-    margin-top: -50px;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-    -webkit-user-select: none;
-}
-
-/* Position the "next button" to the right */
-.next {
-    right: 0;
-    border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover,
-.next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-    color: #f2f2f2;
-    font-size: 12px;
-    padding: 8px 12px;
-    position: absolute;
-    top: 0;
-}
-
-/* Container for image text */
-.caption-container {
-    text-align: center;
-    background-color: #222;
-    padding: 2px 16px;
-    color: white;
-}
-
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-/* Six columns side by side */
-.column {
-    float: left;
-    width: 16.66%;
-}
-
-/* Add a transparency effect for thumnbail images */
-.demo {
-    opacity: 0.6;
-}
-
-.active,
-.demo:hover {
-    opacity: 1;
-}
-
-
-
-
-.heading {
-    font-size: 25px;
-    margin-right: 25px;
-}
-
-.fa {
-    font-size: 25px;
-}
-
-.checked {
-    color: rgb(241, 226, 62);
-}
-
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-/* The bar container */
-.bar-container {
-    border-bottom-right-radius: 50px;
-    border-top-right-radius: 50px;
-    border-bottom-left-radius: 50px;
-    border-top-left-radius: 50px;
-    width: 100%;
-    background-color: #f1f1f1;
-    text-align: center;
-    color: white;
-    margin-bottom: 20px;
-}
-
-.nu_star {
-    margin-bottom: 18px;
-    margin-right: 10px;
-}
-
-/* Individual bars */
-.bar-5 {
-    border-radius: 50px;
-    width: 60%;
-    height: 18px;
-    background-color: #04AA6D;
-}
-
-.bar-4 {
-    border-radius: 50px;
-    width: 30%;
-    height: 18px;
-    background-color: #2196F3;
-}
-
-.bar-3 {
-    border-radius: 50px;
-    width: 10%;
-    height: 18px;
-    background-color: #00bcd4;
-}
-
-.bar-2 {
-    border-radius: 50px;
-    width: 4%;
-    height: 18px;
-    background-color: rgb(241, 226, 62);
-}
-
-.bar-1 {
-    border-radius: 50px;
-    width: 20%;
-    height: 18px;
-    background-color: #f44336;
-}
-
-.star_container {
-    display: flex;
-    align-items: center;
-}
-
-.total_star {
-    margin-bottom: 18px;
-}
-
-/* Responsive layout - make the columns stack on top of each other instead of next to each other */
 @media (max-width: 400px) {
 
     .side,
@@ -1020,94 +1141,4 @@ img {
         display: none;
     }
 
-}
-
-/* .info_tit:hover {
-    text-decoration-style: solid;
-    color: rgb(0, 85, 255);
-} */
-
-footer.jumbotron {
-    text-align: center;
-    background-image: url(../images/Datong.jpeg);
-    background-size: cover;
-    background-attachment: fixed;
-    margin: 0;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
-}
-
-footer.jumbotron input {
-    background-color: transparent;
-    max-width: 350px;
-    margin: 30px auto;
-    border: 1px solid #fff;
-    color: #fff;
-}
-
-footer.jumbotron input::placeholder {
-    color: #fff;
-}
-
-footer.jumbotron .container {
-    color: #fff;
-    padding: 60px 0;
-}
-
-footer.jumbotron .container button.btn.btn-default {
-    background-color: rgba(248, 253, 138, 0.2);
-    color: #f8fd8a;
-    border: 1px solid #f8fd8a;
-    transition: 0.5s;
-}
-
-footer.jumbotron .container button.btn.btn-default:hover {
-    background-color: #f8fd8a;
-    color: #183158;
-    transform: scale(1.2);
-}
-
-#filiter_about {
-    background-color: #DCB879;
-}
-
-#filiter_about .img_trip {
-    mix-blend-mode: multiply;
-    background-size: cover;
-}
-
-.filiter_btn {
-    margin-top: 20px;
-}
-
-#show_filiter,
-#show_condition {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
-    padding-top: 200px;
-    padding-left: 150px;
-    padding-right: 150px;
-}
-
-.att_form {
-    padding: 50px;
-}
-
-.topic_filiter:hover {
-    color: rgb(127, 4, 4);
 }

@@ -5,6 +5,9 @@
 <link rel="stylesheet" href="../static/css/bootstrap2023.css">
 <!-- <link rel="stylesheet" href="../static/css/all.css"> -->
 <link rel="stylesheet" href="../static/js/createT.js">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/static/js/jquery-3.7.0.min.js"></script>
@@ -93,16 +96,22 @@
             <div style="text-align:center;color:red">{{ message }}</div>
             <form class="pure-form pure-form-stacked" id="LoginForm" action="" method="post">
                 {% csrf_token %}
-                
+
                 <input id="inputacc" type="email" placeholder="e-mail" name="email" required value="{{email}}">
-                <input id="inputpwd" type="password" placeholder="密碼" name="passwd" required>
-                <input id="result" type="hidden" name="code_result" >
+                <div class="password-container">
+                    <input id="inputpwd" type="password" placeholder="密碼" name="passwd" required>
+                    <i class="fa-solid fa-eye" id="show_pwd"></i>
+                </div>
+
+                <input id="result" type="hidden" name="code_result">
                 <div class="ch">
                     <input type="text" id="input" placeholder="請輸入驗證碼">
                     <p id="code"></p>
                     {% comment %} <input type="hidden" id="viewsCode" name="viewsCode" value=""> {% endcomment %}
                     <p></p>
-                    <a href="#" id="recode">更新</a>
+                    <!-- 更新按鈕 -->
+                    <a href="#" id="recode" style="font-size: 14px; color:blue;"><i
+                            class="fa-solid fa-rotate-left"></i></a>
                     <p></p>
                 </div>
                 <input id="validate" class="pure-button-login" type="submit" onclick="openPopup()" value="登入">
@@ -114,8 +123,24 @@
     </div>
     <div>&nbsp;</div>
     <script>
+        //密碼可見性
+        const togglePassword = document.getElementById('show_pwd');
+        const passwordField = document.getElementById('inputpwd');
+
+        togglePassword.addEventListener('click', function () {
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                togglePassword.classList.remove('fa-eye');
+                togglePassword.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                togglePassword.classList.remove('fa-eye-slash');
+                togglePassword.classList.add('fa-eye');
+            }
+        });
+
         //判斷是否為機器人-驗證
-        var code_result=-1
+        var code_result = -1
         var code = "";//全域變數 紀錄驗證碼
 
         var checkCode = document.getElementById("code");
@@ -196,7 +221,7 @@
                 document.getElementById("input").value = "";//清空文字框 
             }
             var result = document.getElementById("result");
-            result.value=code_result
+            result.value = code_result
             console.log(code)
             /*$.ajax({
                 type: "GET",

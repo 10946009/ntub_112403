@@ -24,13 +24,21 @@
     border: 1px solid #ccc;
 }
 
-.login input[type="text"] {
+.login #input {
     width: 55%;
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 5px;
     border: 1px solid #ccc;
     margin-right: 20px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
 .login input[type="email"] {
@@ -135,7 +143,7 @@
         padding: 20px;
     }
 
-    .login input[type="text"] {
+    .login #input {
         margin-right: 16px;
         width: 55%;
     }
@@ -176,7 +184,7 @@
         padding: 20px;
     }
 
-    .login input[type="text"] {
+    .login #input {
         margin-right: 16px;
         width: 50%;
     }
@@ -217,7 +225,7 @@
         padding: 20px;
     }
 
-    .login input[type="text"] {
+    .login #input {
         margin-right: 6px;
         width: 50%;
     }
@@ -274,4 +282,30 @@
 .ch {
     display: flex;
     align-items: center;
+}
+
+.password-container {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+}
+
+#inputpwd {
+    padding-right: 30px;
+}
+
+.fa-eye {
+    position: absolute;
+    top: 25px;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.fa-eye-slash {
+    position: absolute;
+    top: 25px;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
 }

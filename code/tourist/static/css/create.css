@@ -20,24 +20,9 @@
     border-radius: 10px;
     margin: 10px 0;
 }
-.tabf_a{
-    background-color: palevioletred;
-    padding: 8px;
-    border-radius: 5px;
-    color: white;
-    text-decoration: none;
-}
-.spot_r{
-    font-size: 20px;
-    margin: 10px;
-    width: 50px;
-}
-
 .yn{
     margin-right: 5px;
 }
-
-
 .container{
     /* display: flex; */
     justify-content: center;
@@ -69,9 +54,6 @@ main{
 .tabD{
     padding: 5px;
 }
-/* .col{
-    padding: 5px;
-} */
 .tab_day{
     text-decoration: none;
     color: black;
@@ -156,25 +138,6 @@ main{
 	display:block;
 }
 
-.chebox_item{
-    margin-top: 5px;
-    border: 1px solid #ccc;
-}
-.chebox{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.rec_spot{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.chebox_info{
-    padding: 10px;
-    font-size: 18px;
-    text-align: left;
-}
 
 .filter_btn{
     padding: 5px 8px;
