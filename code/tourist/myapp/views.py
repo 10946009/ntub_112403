@@ -549,10 +549,11 @@ def favorite(request):
     user_id = request.user.id
     # project = Project.objects.get(id=project_id)
     # 找出user的最愛清單的a.id
-    favorite_attrations_list = Favorite.objects.filter(u_id=user_id)
+    favorite_attrations_list = Favorite.objects.filter(u_id=user_id).values()
+    print(favorite_attrations_list)
     # a.id取出
     for a_id in favorite_attrations_list:
-        favorite_list.append(Attractions.objects.filter(id=a_id.a_id).values())
+        favorite_list.append(Attractions.objects.get(id=a_id["a_id"]))
     # favorite_list =
     return render(request, "favorite.html", locals())
 
