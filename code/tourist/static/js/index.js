@@ -149,7 +149,7 @@ $(document).ready(function() {
       }
     });
 
-    // For .hidemehot
+    // For .hidemehot熱門景點
     $('.hidemehot').each(function(i) {
       var $this = $(this);
       var bottom_of_object = $this.offset().top + $this.outerHeight();
@@ -157,7 +157,48 @@ $(document).ready(function() {
 
       if (bottom_of_window > bottom_of_object) {
         setTimeout(function() {
-          $this.animate({ 'opacity': '1' }, 1000); // 不同的延迟时间
+          $this.css('position','relative');
+          $this.css('top','-100%');
+          $this.animate({ 
+            'opacity': '1' ,
+            'top' : '0'
+          }, 1000); // 不同的延迟时间
+        }, i * 500); // 不同的延迟时间
+      }
+    })
+
+    // For .hidemehottoleft輪播
+    $('.hidemehottoleft').each(function(i) {
+      var $this = $(this);
+      var bottom_of_object = $this.offset().top + $this.outerHeight();
+      var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+      if (bottom_of_window > bottom_of_object) {
+        setTimeout(function() {
+          $this.css('position','relative');
+          $this.css('left','100%');
+          $this.animate({ 
+            'opacity': '1' ,
+            'left' : '0'
+          }, 1000); // 不同的延迟时间
+        }, i * 500); // 不同的延迟时间
+      }
+    });
+
+    // For .hidemeexplore
+    $('.hidemeexplore').each(function(i) {
+      var $this = $(this);
+      var bottom_of_object = $this.offset().top + $this.outerHeight();
+      var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+      if (bottom_of_window > bottom_of_object) {
+        setTimeout(function() {
+          $this.css('position','relative');
+          $this.css('top','100%');
+          $this.animate({ 
+            'opacity': '1' ,
+            'top' : '0'
+          }, 1000); // 不同的延迟时间
         }, i * 500); // 不同的延迟时间
       }
     });

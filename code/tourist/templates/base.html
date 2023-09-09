@@ -25,10 +25,10 @@
             <a class="navbar-brand" href="/" style="padding: 0;">
               <img src="../static/images/logo_square1.png" class="logo_square1" id="logo_icon" alt="">
             </a>
-            <form class="d-flex" role="search" action="{% url 'search_results' %}"  method="post" >
+            <form class="d-flex" role="search" action="{% url 'search_results' %}"  method="post" autocomplete="off">
               {% csrf_token %}
               <input class="form-control me-auto search" type="search" placeholder="想去哪玩.." aria-label="Search" name="searchQuery">
-              <button class="btn btn-outline-success search_icon" type="submit">
+              <button class="btn btn-outline-success search_icon" type="submit" id="searchClick">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </button>
             </form>
@@ -85,7 +85,7 @@
             <a href="/createindex" class="createbtn">建立行程</a>
           </div>
         </div>
-        <a href="#main" class="scroll-down-button  downa">
+        <a href="#main" class="scroll-down-button  downa" id="downicon">
           <i class="fa-solid fa-chevron-right fa-rotate-90 down"></i>
         </a>
       </div>
@@ -117,10 +117,12 @@
       var isIndexPage = window.location.pathname === "/"; // 假设首页的路径是 "/"
       var systemNameElement = document.getElementById("systemname");
       var navbgcolor = document.querySelector(".toolbar");
+      var downicon = document.getElementById("downicon");
   
       if(!isIndexPage){
         if(systemNameElement){
           systemNameElement.style.display = "none";
+          downicon.style.display = "none";
         }  
         if(navbgcolor){
           navbgcolor.classList.add("navchange");
