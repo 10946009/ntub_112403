@@ -119,6 +119,27 @@ def admin_comment(request):
 
 # 首頁
 def index(request):
+    # 抓熱門資料
+    # hot_result = Attractions.objects.order_by('rating', 'rating_total').values()[:9]
+    hot =[57,79,100,199,216,421,450,454,713]
+    hot_result = Attractions.objects.filter(id__in=hot).values()
+    # 讓資料3個一組
+    temp_hot=[]
+    hotAttractionsList=[]
+    for i in hot_result:
+        temp_hot.append(i)
+        if len(temp_hot)==3:
+            hotAttractionsList.append(temp_hot)
+            temp_hot=[]
+    if len(temp_hot) !=0:
+        hotAttractionsList.append(temp_hot)
+        temp_hot=[]
+
+    print(hotAttractionsList)
+    
+    # hot =[57,79,100,199,216,421,450,454,713]
+    # for a o in hot:
+    #     aDb = Attractions.objects.get()
     return render(request, "index.html", locals())
 
 
@@ -332,7 +353,7 @@ def create_index(request):
             travel_day=travel_day,
         )
         unit.save()
-        return redirect(f"/create/{unit.id}/{num}")
+        return redirect(f"/create/{unit.id}")
     return render(request, "create_index.html")
 
 
@@ -549,12 +570,25 @@ def favorite(request):
     user_id = request.user.id
     # project = Project.objects.get(id=project_id)
     # 找出user的最愛清單的a.id
-    favorite_attrations_list = Favorite.objects.filter(u_id=user_id)
+    favorite_attrations_list = Favorite.objects.filter(u_id=user_id).values()
+    print(favorite_attrations_list)
     # a.id取出
     for a_id in favorite_attrations_list:
-        favorite_list.append(Attractions.objects.filter(id=a_id.a_id).values())
+        favorite_list.append(Attractions.objects.get(id=a_id["a_id"]))
     # favorite_list =
     return render(request, "favorite.html", locals())
+
+@login_required(login_url="/login")
+def del_favorite(request,a_id):
+    u_id = request.user.id
+    if u_id != None:
+        if a_id:
+            data = Favorite.objects.get(u_id=u_id, a_id=a_id)
+            data.delete()
+            return redirect("/favorite")
+    else:
+        response_data = {"message": "尚未登入"}
+        return JsonResponse(response_data)
 
 
 # 分享行程
@@ -576,7 +610,8 @@ def add_favorite(request):
                 unit.save()
             # 在這裡準備你想要回傳給前端的資料
             response_data = {"message": "操作成功"}
-            return JsonResponse(response_data)
+            user_favorite = Favorite.objects.filter(u_id=u_id).values()
+            return JsonResponse(response_data,user_favorite)
     else:
         response_data = {"message": "尚未登入"}
         return JsonResponse(response_data)

@@ -17,15 +17,24 @@
         </span>
       </div>
       <div class="carousel-inner hidemehottoleft">
-        <div class="carousel-item active">
+        {% for i in hotAttractionsList %}
+
+          {% if forloop.first %}
+            <div class="carousel-item active">
+          {% else %}
+            <div class="carousel-item">
+          {% endif %}
+
           <div class="row">
+
+          {% for item in i %}
             <div class="col-4 carousel_block">
               <div class="imgcontainer">
                 <form action="/login" method="post">
                   <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
                   <input id="submitButton" type="submit" style="display: none;"><!-- 隐藏的提交按钮 -->
                 </form>
-                <img src="../static/images/chang.jpeg" class="img-responsive" alt="">
+                <img src="/static/images/attractions/{{item.place_id}}_0.jpg" class="img-responsive" alt="">
               </div> 
               <div class="group">
                 <i class="fa-solid fa-plus add_icon"></i>
@@ -37,72 +46,77 @@
               </div> 
               <div class="carousel_txt">
                 <h4 class="c_title">
-                  中正紀念堂
+                  {{item.a_name}}
                 </h4>
                 <p class="c_txt">
-                  位於台北市中正區....
+                  地址：{{item.address}}
                   <br>
-                  建議停留時間：大約1小時?
+                  評分：{{item.rating}}星
                 </p>
               </div>
             </div>
-            <div class="col-4 carousel_block">
-              <div class="imgcontainer">
-                <form action="/login" method="post">
-                  <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
-                  <input id="submitButton" type="submit" style="display: none;"><!-- 隐藏的提交按钮 -->
-                </form>
-                <img src="../static/images/beitou.jpeg" class="img-responsive" alt="">
-              </div>  
-              <div class="group">
-                <i class="fa-solid fa-plus add_icon"></i>
-                <div class="dropdown_menu" >
-                  <div><a class="dropdown_item" href="#">新增行程</a></div>
-                  <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
-                  <div><a class="dropdown_item" href="#">開車一日遊</a></div>
+          {% endfor %}
+              {% comment %} <div class="col-4 carousel_block">
+                <div class="imgcontainer">
+                  <form action="/login" method="post">
+                    <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
+                    <input id="submitButton" type="submit" style="display: none;"><!-- 隐藏的提交按钮 -->
+                  </form>
+                  <img src="../static/images/beitou.jpeg" class="img-responsive" alt="">
+                </div>  
+                <div class="group">
+                  <i class="fa-solid fa-plus add_icon"></i>
+                  <div class="dropdown_menu" >
+                    <div><a class="dropdown_item" href="#">新增行程</a></div>
+                    <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
+                    <div><a class="dropdown_item" href="#">開車一日遊</a></div>
+                  </div>
+                </div> 
+                <div class="carousel_txt">
+                  <h4 class="c_title">
+                    中正紀念堂
+                  </h4>
+                  <p class="c_txt">
+                    位於台北市中正區....
+                    <br>
+                    建議停留時間：大約1小時?
+                  </p>
                 </div>
-              </div> 
-              <div class="carousel_txt">
-                <h4 class="c_title">
-                  中正紀念堂
-                </h4>
-                <p class="c_txt">
-                  位於台北市中正區....
-                  <br>
-                  建議停留時間：大約1小時?
-                </p>
               </div>
-            </div>
-            <div class="col-4 carousel_block">
-              <div class="imgcontainer">
-                <form action="/login" method="post">
-                  <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
-                  <input id="submitButton" type="submit" style="display: none;"><!-- 隐藏的提交按钮 -->
-                </form>
-                <img src="../static/images/Daan.jpeg" class="img-responsive" alt="">
-              </div>  
-              <div class="group">
-                <i class="fa-solid fa-plus add_icon"></i>
-                <div class="dropdown_menu" >
-                  <div><a class="dropdown_item" href="#">新增行程</a></div>
-                  <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
-                  <div><a class="dropdown_item" href="#">開車一日遊</a></div>
+
+              <div class="col-4 carousel_block">
+                <div class="imgcontainer">
+                  <form action="/login" method="post">
+                    <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
+                    <input id="submitButton" type="submit" style="display: none;"><!-- 隐藏的提交按钮 -->
+                  </form>
+                  <img src="../static/images/Daan.jpeg" class="img-responsive" alt="">
+                </div>  
+                <div class="group">
+                  <i class="fa-solid fa-plus add_icon"></i>
+                  <div class="dropdown_menu" >
+                    <div><a class="dropdown_item" href="#">新增行程</a></div>
+                    <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
+                    <div><a class="dropdown_item" href="#">開車一日遊</a></div>
+                  </div>
+                </div> 
+                <div class="carousel_txt">
+                  <h4 class="c_title">
+                    中正紀念堂
+                  </h4>
+                  <p class="c_txt">
+                    位於台北市中正區....
+                    <br>
+                    建議停留時間：大約1小時?
+                  </p>
                 </div>
-              </div> 
-              <div class="carousel_txt">
-                <h4 class="c_title">
-                  中正紀念堂
-                </h4>
-                <p class="c_txt">
-                  位於台北市中正區....
-                  <br>
-                  建議停留時間：大約1小時?
-                </p>
-              </div>
+              </div> {% endcomment %}
+              
             </div>
           </div>
-        </div>
-        <div class="carousel-item">
+        {% endfor %}
+
+        {% comment %} <div class="carousel-item">
           <div class="row">
             <div class="col-4 carousel_block">
               <div class="imgcontainer">
@@ -357,7 +371,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> {% endcomment %}
   
       <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

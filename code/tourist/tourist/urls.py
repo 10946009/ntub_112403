@@ -47,6 +47,7 @@ urlpatterns = [
     # path('test/',views.test_input),
     path("useredit/", views.user_edit),
     path("add_favorite/", views.add_favorite),  # 沒有頁面
+    path("del_favorite/<int:a_id>", views.del_favorite),  # 沒有頁面
     # path('attraction_details/<int:a_id>',views.attraction_details),
     # path('sayhello/<str:username>',sayhello), #新增
 ]
