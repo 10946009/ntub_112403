@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function(){
         event.preventDefault();// 阻止錨點的默認跳轉行為
         
         const targetID = button.getAttribute("data-target");
-        console.log(targetID);
+        console.log("目前點擊的id為"+targetID);
         const targetDiv = document.getElementById("more"+targetID);
 
         // 隱藏所有內容區域
@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function(){
         if (targetDiv) {
             const istargetDiv = getComputedStyle(targetDiv).display === 'block';//getComputedStyle方法检查targetDiv的当前显示状态
             if(istargetDiv){
+                
                 targetDiv.style.display = "none";
             }else{
                 targetDiv.style.display = "block";
@@ -74,8 +75,13 @@ document.addEventListener("DOMContentLoaded", function(){
 
             const tabID = link.getAttribute("data-tab");
             const content = document.getElementById("content"+tabID);
-            
-            const idmore = ["more2","more3"];
+            const moreElements = document.querySelectorAll(".more");
+            const idmore = [];
+            moreElements.forEach((element) => {
+                const id = element.id;
+                idmore.push(id);
+            });
+            console.log(idmore);
 
             if (content) {
                 idmore.forEach((id) => {
@@ -87,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function(){
                             c.style.display = "none";
                         });
                         content.style.display = "block";
+                        
                     }
                 })
             }
