@@ -290,11 +290,11 @@
                         {% if item.is_favorite == "0" %}
                         <button class="col_btn" name="submitfavorite" id="submitfavorite{{item.id}}"
                             data-isfavorite="{{item.is_favorite}}" onclick="addFavorite({{item.id}})">
-                            <i class="fa-regular fa-bookmark"></i>&ensp;收藏</button>
+                            <i class="fa-regular fa-heart"></i>&ensp;收藏</button>
                         {% else %}
                         <button class="col_btn" name="submitfavorite" id="submitfavorite{{item.id}}"
                             data-isfavorite="{{item.is_favorite}}" onclick="addFavorite({{ item.id }})">
-                            <i class="fa-solid fa-bookmark"></i>&ensp;已收藏</button>
+                            <i class="fa-solid fa-heart"></i>&ensp;已收藏</button>
                         {% endif %}
                     </div>
             </div>
