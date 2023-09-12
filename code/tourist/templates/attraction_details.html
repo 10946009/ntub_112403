@@ -166,7 +166,8 @@
 
 <!-- 景點主題 -->
 <div id="show_filiter" style="display: none;">
-    <form class="modal-content" method="post" style="border-radius: 10px;">
+    <form class="modal-content" method="post" style="border-radius: 10px;"action="{% url 'serach_results_att_type' %}" >
+        {% csrf_token %}
         <div class="att_form">
             <span onclick="document.getElementById('show_filiter').style.display='none'" class="close"
                 title="Close Modal">&times;</span>
@@ -183,8 +184,9 @@
                     </tr>
                     <!-- 讓多出來的放到第二行 -->
                 </table>
+            <div class="sure"><button class="sure_btn" id="sure_att_type" name="sure_att_type" value="0">篩選</button></div>
             </div>
-            <div class="sure"><button class="sure_btn">篩選</button></div>
+            
         </div>
     </form>
 </div>
@@ -713,19 +715,33 @@
             filiter_win.style.display = "none";
         }
     }
+    // 放入景點標籤
+    var attractions = JSON.parse('{{ attractions_search_json|safe }}');
+    autocomplete(document.getElementById("myInput"), attractions);
+    var attractions_types_json = JSON.parse('{{ all_type_name_json|safe }}');
+    var attractions_types = document.getElementById("attractions_types");
+    attractions_types.innerHTML += "<tr>";
+    for (var i = 0; i < attractions_types_json.length; i++) {
+        attractions_types.innerHTML += `<td><span class="more_btn" data-set="${i+1}">${attractions_types_json[i]}</span></td>`;
+    }
 
+    //景點標籤按鈕
+    attractions_types.innerHTML += "</tr>"
     var header = document.getElementById("filiter_search2");//景點主題裡面按鈕active（固定）
     var btns = header.getElementsByClassName("more_btn");
+    var submit_btn = document.getElementById("sure_att_type");
     for (var i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", function () {
             var current = document.getElementsByClassName("active");
             current[0].className = current[0].className.replace(" active", "");
             this.className += " active";
+            submit_btn.value = this.dataset.set;
         });
     }
 
     var header = document.getElementById("filiter_search1");//條件篩選裡面按鈕active（固定）
     var btns = header.getElementsByClassName("more_btn");
+
     for (var i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", function () {
             var current = document.getElementsByClassName("active");
@@ -881,14 +897,6 @@
         document.addEventListener("click", function (e) {
             closeAllLists(e.target);
         });
-    }
-    var attractions = JSON.parse('{{ attractions_search_json|safe }}');
-    autocomplete(document.getElementById("myInput"), attractions);
-    var attractions_types_json = JSON.parse('{{ all_type_name_json|safe }}');
-    var attractions_types = document.getElementById("attractions_types");
-    for (var i = 0; i < attractions_types_json.length; i++) {
-        attractions_types.innerHTML += `<td><span class="more_btn" data-set="${i}">${attractions_types_json[i]}</span></td>`;
-
     }
 
     //點擊開啟詳細資料
