@@ -69,6 +69,45 @@ ATT_TYPE = {
     'spa':36, #溫泉
     'DIY':37, #DIY
 }
+ATT_TYPE_CHINESE= [
+    { 'name': '旅遊景點', 'id': 1 },
+    { 'name': '興趣點', 'id': 2 },
+    { 'name': '機構', 'id': 3 },
+    { 'name': '公園', 'id': 4 },
+    { 'name': '宗教場所', 'id': 5 },
+    { 'name': '食物', 'id': 6 },
+    { 'name': '博物館', 'id': 7 },
+    { 'name': '地標;標誌性建築', 'id': 8 },
+    { 'name': '雜貨店或超市', 'id': 9 },
+    { 'name': '商店', 'id': 10 },
+    { 'name': '餐廳', 'id': 11 },
+    { 'name': '圖書館', 'id': 12 },
+    { 'name': '學校', 'id': 13 },
+    { 'name': '珠寶店', 'id': 14 },
+    { 'name': '教堂(X)', 'id': 15 },
+    { 'name': '咖啡廳', 'id': 16 },
+    { 'name': '清真寺(宗教類)', 'id': 17 },
+    { 'name': '麵包店', 'id': 18 },
+    { 'name': '家居商品商店', 'id': 19 },
+    { 'name': '藝術', 'id': 20 },
+    { 'name': '夜景', 'id': 21 },
+    { 'name': '印度教寺廟', 'id': 22 },
+    { 'name': '寵物店', 'id': 23 },
+    { 'name': '電影院', 'id': 24 },
+    { 'name': '遊樂園', 'id': 25 },
+    { 'name': '動物園', 'id': 26 },
+    { 'name': '外送', 'id': 27 },
+    { 'name': '水族館', 'id': 28 },
+    { 'name': '花', 'id': 29 },
+    { 'name': '自然特徵', 'id': 30 },
+    { 'name': '夜市', 'id': 31 },
+    { 'name': '體育', 'id': 32 },
+    { 'name': '露營地', 'id': 33 },
+    { 'name': '購物商場', 'id': 34 },
+    { 'name': '電子商店', 'id': 35 },
+    { 'name': '溫泉', 'id': 36 },
+    { 'name': 'DIY', 'id': 37 }
+]
 ATT_TYPE_LIST = [
     [4, 25, 26, 28, 37],
     [5, 8, 15, 17, 22],
@@ -628,9 +667,9 @@ def add_favorite(request):
 
 
 def attraction_details(request):
-    # 取得景點名稱
-    all_type_name = list(ATT_TYPE.keys())
-    all_type_name_json = json.dumps(all_type_name)
+    # # 取得景點名稱
+    # all_type_name = list(ATT_TYPE_CHINESE.keys())
+    all_type_name_json = json.dumps(ATT_TYPE_CHINESE)
     
     #取得搜尋到的結果
     search_list = []
@@ -662,8 +701,8 @@ def attraction_details(request):
 
 def attraction_details_att_type(request):
     # 取得景點名稱
-    all_type_name = list(ATT_TYPE.keys())
-    all_type_name_json = json.dumps(all_type_name)
+    # all_type_name = list(ATT_TYPE_CHINESE.keys())
+    all_type_name_json = json.dumps(ATT_TYPE_CHINESE)
     att_type = [request.POST["sure_att_type"]]
     search_list = list(Attractions.objects.filter(att_type__contains=att_type).values())
     print(search_list)
