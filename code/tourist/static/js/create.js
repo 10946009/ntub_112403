@@ -1,16 +1,12 @@
-
-$(function(){
-  $('#contents section[id != "tab_c"]').hide();
-  $("a").click(function(){
-      $('#contents section').hide();
-
-      $($(this).attr("href")).show();
-
-      // $(this).addClass("current");
-      $(this).addClass("tab_a_active");
-      
-      return false;
-  });
+//tab切換
+function saveTabState(tabName) {
+  localStorage.setItem('selectedTab', tabName);
+}
+document.addEventListener('DOMContentLoaded', function() {
+  const selectedTab = localStorage.getItem('selectedTab');
+  if (selectedTab === 'contact') {
+    document.getElementById('contact-tab').click();
+  }
 });
 
 $(function(){
@@ -28,9 +24,7 @@ $(function(){
               }
           });
       });
-
   });
-
 })
 
 
@@ -55,6 +49,7 @@ var heart = document.getElementsByClassName('heart_icon');
     } 
 
 
+//add選單
 function toggleDropdownMenu(addIcon) {
   var group = addIcon.closest('.group'); // 找到包含 addIcon 的最近的 .group 容器
   var dropdownMenu = group.find('.dropdown_menu'); // 使用 jQuery 的 find() 方法尋找 .dropdown_menu 元素
@@ -63,38 +58,34 @@ function toggleDropdownMenu(addIcon) {
   addIcon.onclick = function() {
     if (flagAdd) {
       flagAdd = false;
-      dropdownMenu.fadeIn(200); // 使用 jQuery 的 fadeIn() 方法顯示 .dropdown_menu
+      dropdownMenu.fadeIn(200); 
       } else {
       flagAdd = true;
-      dropdownMenu.fadeOut(200); // 使用 jQuery 的 fadeOut() 方法隱藏 .dropdown_menu
+      dropdownMenu.fadeOut(200);
     }
-    // 可根據需求在這裡添加其他共用功能
   };
 }
-
+//add dropdown
 $(function() {
-  var currentMenu = null; // 儲存當前打開的 .dropdown_menu
-  var currentIcon = null; // 儲存當前打開的 .add_icon
-
-  $(".dropdown_menu").hide(); // 隱藏所有 .dropdown_menu 元素
+  $(".dropdown_menu").hide();
 
   $(".add_icon").click(function() {
     var addIcon = $(this);
-    var dropdownMenu = $(this).siblings(".dropdown_menu");
-    
-    // 如果當前打開的 .dropdown_menu 不是這個被點擊的 .dropdown_menu，就關閉它
-    if (currentMenu && currentMenu[0] !== dropdownMenu[0]) {
-      currentMenu.fadeOut(200);
-      currentIcon.removeClass("active");
-    }
-    dropdownMenu.fadeToggle(200); // 使用 fadeToggle() 方法切換顯示和隱藏 .dropdown_menu
-    currentMenu = dropdownMenu.is(":visible") ? dropdownMenu : null; // 更新當前打開的 .dropdown_menu
-    currentIcon = dropdownMenu.is(":visible") ? addIcon : null; // 更新當前打開的 .dropdown_menu
-  
-    addIcon.toggleClass("active"); // 切換當前 .add_icon 的 active 樣式，來改變顏色
-    
+    var dropdownMenu = addIcon.siblings(".dropdown_menu");
+
+    // 如果 .dropdown_menu 是可見的，則點擊 .add_icon 會隱藏它，否則顯示它
+    dropdownMenu.fadeToggle(200);
+    addIcon.toggleClass("active");
   });
-});   
+
+  // 點選任意地方時，檢查點擊的目標元素是否位於 .group 內部，若不是則隱藏 .dropdown_menu
+  $(document).click(function(event) {
+    if (!$(event.target).closest(".group").length) {
+      $(".dropdown_menu").fadeOut(200);
+      $(".add_icon").removeClass("active");
+    }
+  });
+});
 
 var dialog,x;
 window.onload=function(){
