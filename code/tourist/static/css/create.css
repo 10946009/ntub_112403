@@ -1,5 +1,6 @@
 .bgimg{
-    background: url(../images/IMG20230626211007_01.jpg);
+    /* background: url(../images/1526735109814.jpg); */
+    background: url(../images/bg5.png);
     background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
@@ -50,6 +51,7 @@
     color: #000;
     font-size: 20px;
     padding: 5px 15px;
+    box-shadow: 3px 2px 4px #333;
     background-color: rgb(255, 255, 135);
     border: 0px;
     transition: background-color 0.3s;
@@ -65,18 +67,36 @@ main{
 }
 .tab_div{
     padding: 10px;
-    margin-top: 10px;
+    margin-top: 50px;
 }
 .tabtitle{
     margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
     text-align: center;
+}
+.tab_a{
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+    padding: 10px 15px;
+}
+.tab_a:hover{
+    /* font-weight: bolder; */
+}
+.tab_a_active{
+    /* font-weight: bolder; */
 }
 .tabc_txt{
     font-size: 20px;
 }
 .create_txt{
-    
     font-size: 20px;
+}
+.createdata{
+    margin: 0 auto;
 }
 .spot{
     width: 200px;
@@ -101,18 +121,6 @@ main{
 .col-md-4{
     margin: 5px 0;
     font-size: 20px;
-}
-.tab_a{
-    text-decoration: none;
-    color: black;
-    font-size: 24px;
-    padding: 0;
-}
-.tab_a:hover{
-    font-weight: bolder;
-}
-.tab_a_active{
-    font-weight: bolder;
 }
 .tabD{
     padding: 5px;

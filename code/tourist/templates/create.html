@@ -7,35 +7,50 @@
 {% block body %}
 <main>
   <div class="container tab_div">
-    <div class="row justify-content-md-center tabtitle">
-      <div class="col col-3" style="padding: 0;">
+    <div class="tabtitle">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link tab_a active" aria-current="page" href="#tab_c">建立行程</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link tab_a" href="#tab_f">我的收藏</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link tab_a" href="#tab_r" id="clickRecommend">推薦景點</a>
+        </li>
+      </ul>
+    </div>
+    <!-- <div class="row justify-content-md-center tabtitle">
+      <div class="col col-4" style="padding: 0;">
         <a href="#tab_c" class="tab_a">建立行程</a>
       </div>
-      <div class="col col-3" style="padding: 0;">
+      <div class="col col-4" style="padding: 0;">
         <a href="#tab_f" class="tab_a">我的收藏</a>
       </div>
-      <div class="col col-3" style="padding: 0;">
+      <div class="col col-4" style="padding: 0;">
         <a href="#tab_r" class="tab_a"  id="clickRecommend">推薦景點</a>
       </div>
-    </div>
+    </div> -->
   </div>
   <div id="contents">
     <section id="tab_c" ng-app="" ng-init="name='行程名稱'">
       <div>
         <form action="">
-          <div class="row" style="width: 80%;">
-            <div class="col-md-4 tabc_txt">
+          <div class="row createdata" style="width: 80%;">
+            <div class="col-md-6 tabc_txt">
               行程名稱：{{ name }}
               {% comment %} <input type="text" class="input_txt" ng-model="travName"  style="width: 180px" value="{{ name }}"> {% endcomment %}
             </div>
-            <div class="col-md-4 tabc_txt">
+            <div class="col-md-6 tabc_txt">
               出發日期：{{ start_day }}
               {% comment %} <input type="date" class="input_txt" value="{{ start_day }}"> {% endcomment %}
             </div>
-            {% comment %} <div class="col-md-4 tabc_txt">
+            {% comment %} 
+            <div class="col-md-4 tabc_txt">
               結束日期：
               <input type="date" class="input_txt" value="2023-05-26">
-            </div> {% endcomment %}
+            </div> 
+            {% endcomment %}
           </div>
         </form>
       </div>
