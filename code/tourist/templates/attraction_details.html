@@ -724,11 +724,11 @@
     autocomplete(document.getElementById("myInput"), attractions);
     var attractions_types_json = JSON.parse('{{ all_type_name_json|safe }}');
     var attractions_types = document.getElementById("attractions_types");
-    console.log(attractions_types_json);
+
     attractions_types.innerHTML += "<tr>";
 
     attractions_types_json.forEach(function (item) {
-        console.log(item);
+        //console.log(item);
         attractions_types.innerHTML += `<td><span class="more_btn" data-set="${item.id}">${item.name}</span></td>`;
     });
     //景點標籤按鈕
@@ -813,7 +813,22 @@
             scrollTextH1.style.transform = `translate(0%, ${translateY}%)`;
         }
     });
-
+    function searchText(search_text) {
+        $.ajax({
+            url: '',  // 伺服器端的 URL
+            type: 'GET',  // 請求類型為 GET
+            data: {
+                search_text: search_text  // 傳遞給伺服器的參數，以 a_id 為名
+            },
+            success: function (response) {
+                console.log(search_text);
+            },
+            error: function (xhr, status, error) {
+                // 請求失敗時的處理
+                console.log("search_textAJAX請求失敗: " + error);
+            }
+        });
+    }
     //搜尋景點的部分
     function autocomplete(inp, arr) {
         var currentFocus; // 紀錄目前焦點所在的索引值
@@ -834,6 +849,7 @@
             b.innerHTML = `<i class="fas fa-search" style="margin-right:12px;"></i><strong>${val}</strong>&emsp;<span style="color:#a1a1a1">-Trip搜尋</span>`;
             b.addEventListener("click", function (e) {
                 inp.value = val;
+                searchText(val);
                 closeAllLists();
                 searchClick.click();
             });
@@ -847,6 +863,7 @@
                     b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>"; // 加入一個隱藏的input元素，用來存放選擇的值
                     b.addEventListener("click", function (e) {
                         inp.value = this.getElementsByTagName("input")[0].value; // 設定輸入框的值為選擇的值
+                        searchText(this.getElementsByTagName("input")[0].value);
                         closeAllLists(); // 關閉所有項目清單
                         searchClick.click();
                     });
@@ -953,6 +970,9 @@
             }
         });
     }
+
+
+    
     {% comment %} var showInfo = document.getElementById("id01");
     showInfo.style.display = "block"; {% endcomment %}
 
