@@ -59,6 +59,7 @@ body {
 
 /* Parallax Scrolling背景 */
 .jumbotron {
+    height: 100vh;
     text-align: center;
     background-image: url(../images/Datong.jpeg);
     background-size: cover;
@@ -727,7 +728,8 @@ img {
 }
 
 
-footer.jumbotron {
+.jumbotron1 {
+    height: 40vh;
     text-align: center;
     background-image: url(../images/Datong.jpeg);
     background-size: cover;
@@ -736,7 +738,7 @@ footer.jumbotron {
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
 }
 
-footer.jumbotron input {
+.jumbotron1 input {
     background-color: transparent;
     max-width: 350px;
     margin: 30px auto;
@@ -744,23 +746,23 @@ footer.jumbotron input {
     color: #fff;
 }
 
-footer.jumbotron input::placeholder {
+.jumbotron1 input::placeholder {
     color: #fff;
 }
 
-footer.jumbotron .container {
+.jumbotron1 .container {
     color: #fff;
     padding: 60px 0;
 }
 
-footer.jumbotron .container button.btn.btn-default {
+.jumbotron1 .container button.btn.btn-default {
     background-color: rgba(248, 253, 138, 0.2);
     color: #f8fd8a;
     border: 1px solid #f8fd8a;
     transition: 0.5s;
 }
 
-footer.jumbotron .container button.btn.btn-default:hover {
+.jumbotron1 .container button.btn.btn-default:hover {
     background-color: #f8fd8a;
     color: #183158;
     transform: scale(1.2);
