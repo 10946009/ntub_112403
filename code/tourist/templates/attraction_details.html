@@ -112,8 +112,8 @@
 <!-- 人拖行李棟動圖（左） -->
 <div class="row" id="filiter_about">
     <div class="col-5">
-        <div class="img_trip" data-0="transform: translateX(-600px); opacity: 0; z-index: 2;"
-            data-500="transform: translateX(300px); opacity: 0.8">
+        <div class="img_trip" data-0="transform: translateX(-120%); opacity: 0; z-index: 2;"
+            data-500="transform: translateX(60%); opacity: 0.8">
             <img src="../static/images/tirp_.png" alt="">
         </div>
         <div class="road">
@@ -166,7 +166,7 @@
 
 <!-- 景點主題 -->
 <div id="show_filiter" style="display: none;">
-    <form class="modal-content" method="post" style="border-radius: 10px;"action="{% url 'serach_results_att_type' %}" >
+    <form class="modal-content" method="post" style="border-radius: 10px;" action="{% url 'serach_results_att_type' %}">
         {% csrf_token %}
         <div class="att_form">
             <span onclick="document.getElementById('show_filiter').style.display='none'" class="close"
@@ -184,9 +184,10 @@
                     </tr>
                     <!-- 讓多出來的放到第二行 -->
                 </table>
-            <div class="sure"><button class="sure_btn" id="sure_att_type" name="sure_att_type" value="0">篩選</button></div>
+                <div class="sure"><button class="sure_btn" id="sure_att_type" name="sure_att_type" value="0">篩選</button>
+                </div>
             </div>
-            
+
         </div>
     </form>
 </div>
@@ -674,7 +675,7 @@
 </div>
 
 <!-- footer-->
-<footer class="jumbotron">
+<footer class="jumbotron1">
     <div class="container">
         <h2>有哪些地方想跟我們分享？</h2>
         <input class="form-control" placeholder="E-mail" />
@@ -723,10 +724,10 @@
     console.log(attractions_types_json);
     attractions_types.innerHTML += "<tr>";
 
-        attractions_types_json.forEach(function(item) {
-            console.log(item);
-            attractions_types.innerHTML += `<td><span class="more_btn" data-set="${item.id}">${item.name}</span></td>`;
-        });
+    attractions_types_json.forEach(function (item) {
+        console.log(item);
+        attractions_types.innerHTML += `<td><span class="more_btn" data-set="${item.id}">${item.name}</span></td>`;
+    });
     //景點標籤按鈕
     attractions_types.innerHTML += "</tr>"
     var header = document.getElementById("filiter_search2");//景點主題裡面按鈕active（固定）
