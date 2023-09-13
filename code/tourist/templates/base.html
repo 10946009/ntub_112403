@@ -16,6 +16,14 @@
           crossorigin="anonymous"
           referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <style>
+      .nav-link{
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        text-shadow: 2px 2px 2px #333;
+      }
+      </style>
   </head>
   <body>
     {% block toolbar %}
@@ -48,7 +56,7 @@
                 </li>
                 {% if request.user.is_authenticated %}
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle"href="/login"role="button"data-bs-toggle="dropdown"aria-expanded="false">我的XX</a>
+                    <a class="nav-link dropdown-toggle" href="/login" role="button" data-bs-toggle="dropdown" aria-expanded="false">我的XX</a>
                     <ul class="dropdown-menu" style="z-index: 999;">
                       <li>
                         <a class="dropdown-item" href="/history">我的行程</a>
@@ -116,7 +124,7 @@
     window.onload = function() {
       var isIndexPage = window.location.pathname === "/"; // 假设首页的路径是 "/"
       var systemNameElement = document.getElementById("systemname");
-      var navbgcolor = document.querySelector(".toolbar");
+      // var navbgcolor = document.querySelector(".toolbar");
       var downicon = document.getElementById("downicon");
   
       if(!isIndexPage){
@@ -124,9 +132,9 @@
           systemNameElement.style.display = "none";
           downicon.style.display = "none";
         }  
-        if(navbgcolor){
-          navbgcolor.classList.add("navchange");
-        }
+        // if(navbgcolor){
+        //   navbgcolor.classList.add("navchange");
+        // }
       }
     };
   </script>
