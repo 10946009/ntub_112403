@@ -35,13 +35,16 @@ html{
 	position: absolute;
 	left: 10%;
 	transition: left 0.3s;
+	text-shadow: 3px 3px 5px #333;
 	word-break: break-word; /* 确保文本断行 */
 }
 .explorea:hover{
 	left: 8%;
 }
 .arrow{
-	margin-left: 12px;
+	position: absolute;
+	right: 30px;
+	/* margin-left: 12px; */
 }
 .arrowi{
 	background-color: white;
@@ -150,7 +153,7 @@ html{
 .carousel-control-prev,
 .carousel-control-next {
 	position: absolute;
-	top: 180px;
+	top: 150px;
 	width: 50px;
 	height: 200px; 
 }
@@ -409,7 +412,7 @@ html{
 	.carousel-control-prev,
 	.carousel-control-next {
 		position: absolute;
-		top: 170px;
+		top: 100px;
 		width: 50px;
 		height: 110px; 
 	}
@@ -436,9 +439,6 @@ html{
 	.explorea{
 		font-size: 28px;
 	}
-	.arrow{
-		margin-left: 20px;
-	}
 }
 @media(max-width: 576px){
 	.systemname{
@@ -454,9 +454,9 @@ html{
 	.carousel-control-prev,
 	.carousel-control-next {
 		position: absolute;
-		top: 165px;
+		top: 90px;
 		width: 40px;
-		height: 70px; 
+		height: 90px; 
 	}
 	.c_title{
 		margin-bottom: 2px;
@@ -517,17 +517,17 @@ html{
 		align-items: center;
 		align-content: center;
 		height: 120px;
-		width: 100%;
+		width: 90%;
 	}
 	.explorea{
 		font-size: 28px;
-		left: 7%;
+		left: 8%;
 	}
 	.explorea:hover{
 		left: 6%;
 	}
 	.arrow{
-		margin-left: 12px;
+		right: 10px;
 	}
 	.triangle::before {
 		border-right: 400px solid transparent; 
@@ -544,32 +544,21 @@ html{
 	.systxt{
 		font-size: 32px;
 	}
-	.explore{
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		align-content: center;
-		height: 120px;
-		width: 100%;
-	}
-	.explorea{
-		font-size: 22px;
-		left: 4%;
-	}
-	.explorea:hover{
-		left: 3%;
-	}
-	.arrow{
-		margin-left: 5px;
-	}
-	.arrowi{
-		padding: 8px 10px;
-	}
 	.hot_spot_title{
 		font-size: 28px;
 	}
 	.hot_icon{
 		width: 28px;
+	}
+	.explorea{
+		font-size: 26px;
+	}
+	.arrow{
+		right: 6px;
+	}
+	.arrowi{
+		padding: 10px;
+		font-size: 24px;
 	}
 	.triangle::before {
 		border-right: 300px solid transparent; 
