@@ -20,6 +20,8 @@ from dotenv import load_dotenv, find_dotenv
 dotenv_path = join(dirname(__file__), ".env")
 load_dotenv(dotenv_path, override=True)  # 設定 override 才會更新變數哦！
 DBPWD = os.environ.get("DBPWD")
+EMAIL = os.environ.get("EMAIL")
+EMAIL_PWD = os.environ.get("EMAIL_PWD")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -147,10 +149,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'tripfunchill@gmail.com'  # 使用您的Google电子邮件地址
-EMAIL_HOST_PASSWORD = 'dupvowflucpbbtyx'  # 使用您的Google电子邮件密码或应用程序密码
+EMAIL_HOST_USER = EMAIL  # 使用您的Google电子邮件地址
+EMAIL_HOST_PASSWORD = EMAIL_PWD  # 使用您的Google电子邮件密码或应用程序密码
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'tripfunchill@gmail.com'  # 使用您的Google电子邮件地址6
+DEFAULT_FROM_EMAIL = EMAIL  # 使用您的Google电子邮件地址6
 
 
 # Celery
