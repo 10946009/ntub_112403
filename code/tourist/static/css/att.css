@@ -360,7 +360,7 @@ body {
 #attractions_introduction .img_wrap {
     position: relative;
     display: inline-block;
-    height: 255px;
+    height: 90%;
     overflow: hidden;
     cursor: pointer;
 }
@@ -379,7 +379,7 @@ body {
     border-radius: 3px;
     transition: 0.5s;
     border: 2px solid rgb(50, 50, 50);
-    line-height: 35px;
+    line-height: 40px;
 }
 
 /* 圖片裡learn more方塊(碰到動畫） */

@@ -234,6 +234,10 @@
     </form>
 </div>
 
+<div class="row">
+    <p>根據...的結果搜尋出：</p>
+</div>
+
 
 <!-- 下方景點 -->
 <div class="row" id="attractions_introduction">
@@ -244,7 +248,7 @@
         {% for item in search_list %}
         <div class="row" style="margin-bottom: 20px;">
             <div class="col-5">
-                <div class="img_wrap" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                <div class="img_wrap" style=" height: 90%;" data-bottom-top="transform: translateY(-20px);opacity: 0"
                     data-center="transform: translateY(0px);opacity: 1">
                     <p class="learn_more">Learn<br>More</p>
                     <img data-name="{{ item.id }}" class="slide"
@@ -259,16 +263,15 @@
                     data-center="transform: translateY(0px);opacity: 1" onclick="showInfo(this)"
                     data-a-Id="{{ item.id }}">{{item.a_name }}</h3>
                     <!-- 星星數 -->
-                    <div class="rating"
-                            data-bottom-top="transform: translateY(-20px);opacity: 0"
-                            data-center="transform: translateY(0px);opacity: 1;">
-                            {% for i in "12345" %}
-                            {% if i|add:0 <= item.rating %}
-                            <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                    <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                        data-center="transform: translateY(0px);opacity: 1;">
+                        {% for i in "12345" %}
+                        {% if i|add:0 <= item.rating %} <span class="rating-star" style="color: rgb(241, 226, 62);">
+                            &#9733;</span>
                             {% else %}
                             <span class="rating-star">&#9733;</span>
                             {% endif %}
-                        {% endfor %}
+                            {% endfor %}
                     </div>
                     <!-- 地址 -->
                     <h6 style="margin-top:5px;" data-bottom-top="transform: translateY(-20px);opacity: 0"
@@ -972,7 +975,7 @@
     }
 
 
-    
+
     {% comment %} var showInfo = document.getElementById("id01");
     showInfo.style.display = "block"; {% endcomment %}
 
