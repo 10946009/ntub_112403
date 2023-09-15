@@ -17,10 +17,15 @@ html{
 	position: relative;
 	z-index: 100;
 }
-.carimg1{
+.carimg1, .carimg2{
 	transition:opacity 0.5s ease;
 }
 .carimg1:hover{
+	opacity: 1;
+	transition:opacity 0.5s ease;
+	content: url(../images/Datong.jpeg);
+}
+.carimg2:hover{
 	opacity: 1;
 	transition:opacity 0.5s ease;
 	content: url(../images/beitou.jpeg);
