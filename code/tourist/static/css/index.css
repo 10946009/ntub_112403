@@ -17,6 +17,14 @@ html{
 	position: relative;
 	z-index: 100;
 }
+.carimg1{
+	transition:opacity 0.5s ease;
+}
+.carimg1:hover{
+	opacity: 1;
+	transition:opacity 0.5s ease;
+	content: url(../images/beitou.jpeg);
+}
 .explore{
 	background-color: rgb(0, 166, 255);
 	height: 100px;

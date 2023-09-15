@@ -27,12 +27,12 @@
 
           <div class="row">
 
-          {% for item in i %}
+          <!-- {% for item in i %}
             <div class="col-4 carousel_block">
               <div class="imgcontainer">
                 <form action="/login" method="post">
                   <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
-                  <input id="submitButton" type="submit" style="display: none;"><!-- 隐藏的提交按钮 -->
+                  <input id="submitButton" type="submit" style="display: none;">
                 </form>
                 <img src="/static/images/attractions/{{item.place_id}}_0.jpg" class="img-responsive" alt="">
               </div> 
@@ -55,8 +55,8 @@
                 </p>
               </div>
             </div>
-          {% endfor %}
-              {% comment %} <div class="col-4 carousel_block">
+          {% endfor %} -->
+              <div class="col-4 carousel_block">
                 <div class="imgcontainer">
                   <form action="/login" method="post">
                     <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
@@ -90,7 +90,7 @@
                     <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
                     <input id="submitButton" type="submit" style="display: none;"><!-- 隐藏的提交按钮 -->
                   </form>
-                  <img src="../static/images/Daan.jpeg" class="img-responsive" alt="">
+                  <img src="../static/images/Daan.jpeg" class="img-responsive carimg1" alt="">
                 </div>  
                 <div class="group">
                   <i class="fa-solid fa-plus add_icon"></i>
@@ -102,7 +102,7 @@
                 </div> 
                 <div class="carousel_txt">
                   <h4 class="c_title">
-                    中正紀念堂
+                    中正紀念堂123
                   </h4>
                   <p class="c_txt">
                     位於台北市中正區....
@@ -110,7 +110,7 @@
                     建議停留時間：大約1小時?
                   </p>
                 </div>
-              </div> {% endcomment %}
+              </div>
               
             </div>
           </div>
