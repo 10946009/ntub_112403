@@ -481,191 +481,193 @@
                 </div>
                 <hr style="border:2px solid #b3b2b2">
                 <div class="change_btn">
-                    <div class="change1">總覽</div>
+                    <div class="change1 active1">總覽</div>
                     <div class="change2">評論</div>
                 </div>
 
-
-
-
-                <div class="Att_detail">
-                    <!-- 景點介紹 -->
-                    <h6>xxx(景點),然後介紹他....</h6>
-                    <!-- 詳細地址 -->
-                    <h5 id="attractions-detail-address">
-                        地址：116台北市文山區新光路二段30號
-                    </h5>
-                    <!-- 詳細電話 -->
-                    <h5 id="attractions-detail-phone">
-                        電話：02－2938－2300
-                    </h5>
-                    <!-- 詳細營業時間 -->
-                    <!-- <h5>
+                <div class="change_content">
+                    <!-- 總覽按鈕 -->
+                    <div class="change_content1">
+                        <!-- 景點介紹 -->
+                        <h6>xxx(景點),然後介紹他....</h6>
+                        <!-- 詳細地址 -->
+                        <h5 id="attractions-detail-address">
+                            地址：116台北市文山區新光路二段30號
+                        </h5>
+                        <!-- 詳細電話 -->
+                        <h5 id="attractions-detail-phone">
+                            電話：02－2938－2300
+                        </h5>
+                        <!-- 詳細營業時間 -->
+                        <!-- <h5>
                         營業時間： <span style="color: red;">已打烊</span> <span style="color: rgb(21, 81, 140);">
                             *開始營業時間：9:00</span>
                     </h5> -->
-                    <!-- 詳細建議停留時間 -->
-                    <h5>
-                        建議停留時間：
-                    </h5>
-                    <!-- 詳細旺季月份 -->
-                    <h5>旺季月份：</h5>
-                    <hr style="border:2px solid #b3b2b2">
-                    <!-- 使用者提問及回答 -->
-                    <div class="question">
+                        <!-- 詳細建議停留時間 -->
                         <h5>
-                            問題與解答：
+                            建議停留時間：
                         </h5>
-                        <h6 style="margin-left: 20px; color: #707070;">問：春節有開嗎？</h6>
-                        <h6 style="margin-left: 20px; color: #707070;">答：有初一早上9點開，其他時間8點半。</h6>
-                        <h6 style="margin-left: 20px; color:#a8a8a8">更多...</h6>
-                        <button style="border-radius: 8px;"><i class="fa-solid fa-message"
-                                style="margin-right: 5px;"></i>我要發問</button>
+                        <!-- 詳細旺季月份 -->
+                        <h5>旺季月份：</h5>
+                        <hr style="border:2px solid #b3b2b2">
+                        <!-- 使用者提問及回答 -->
+                        <div class="question">
+                            <h5>
+                                問題與解答：
+                            </h5>
+                            <h6 style="margin-left: 20px; color: #707070;">問：春節有開嗎？</h6>
+                            <h6 style="margin-left: 20px; color: #707070;">答：有初一早上9點開，其他時間8點半。</h6>
+                            <h6 style="margin-left: 20px; color:#a8a8a8">更多...</h6>
+                            <button style="border-radius: 8px;"><i class="fa-solid fa-message"
+                                    style="margin-right: 5px;"></i>我要發問</button>
 
-                    </div>
-                    <hr style="border:2px solid #b3b2b2">
-                    <!-- 人潮資訊 -->
-                    <h5>
-                        人潮資訊：
-                    </h5>
-                    <!-- 人潮圖表 -->
-                    <div>
-                        <canvas id="chart" width="300" height="150"></canvas>
-                    </div>
-                    <hr style="border:2px solid #b3b2b2">
-                    <!-- 使用者總評論 -->
-                    <h5>
-                        評論摘要：
-                    </h5>
-                    <div class="row" style="margin-bottom: 20px;">
-
-                        <hr style="border:2px solid #f1f1f1">
-                        <div class="col-3">
-                            <div class=" row">
-                                <div class="total_score_star">
-                                    <p style="font-size:60px;margin-left: 30px;"><strong>4.0</strong></p>
-                                </div>
-                                <div class="total_star">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                </div>
-                                <p style="margin-left: 30px;">63,261 則評論</p>
-                            </div>
                         </div>
-                        <div class="col-9">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="star_container">
-                                        <div class="nu_star">5</div>
-                                        <div class="bar-container">
-                                            <div class="bar-5"></div>
-                                        </div>
+                        <hr style="border:2px solid #b3b2b2">
+                        <!-- 人潮資訊 -->
+                        <h5>
+                            人潮資訊：
+                        </h5>
+                        <!-- 人潮圖表 -->
+                        <div>
+                            <canvas id="chart" width="300" height="150"></canvas>
+                        </div>
+                    </div>
+                    <!-- 評論按鈕 -->
+                    <div class="change_content1">
+                        <!-- 使用者總評論 -->
+                        <h5>
+                            評論摘要：
+                        </h5>
+                        <div class="row" style="margin-bottom: 20px;">
+
+                            <hr style="border:2px solid #f1f1f1">
+                            <div class="col-3">
+                                <div class=" row">
+                                    <div class="total_score_star">
+                                        <p style="font-size:60px;margin-left: 30px;"><strong>4.0</strong></p>
                                     </div>
-                                    <div class="star_container">
-                                        <div class="nu_star">4</div>
-                                        <div class="bar-container">
-                                            <div class="bar-4"></div>
-                                        </div>
+                                    <div class="total_star">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
                                     </div>
-                                    <div class="star_container">
-                                        <div class="nu_star">3</div>
-                                        <div class="bar-container">
-                                            <div class="bar-3"></div>
-                                        </div>
-                                    </div>
-                                    <div class="star_container">
-                                        <div class="nu_star">2</div>
-                                        <div class="bar-container">
-                                            <div class="bar-2"></div>
-                                        </div>
-                                    </div>
-                                    <div class="star_container">
-                                        <div class="nu_star">1</div>
-                                        <div class="bar-container">
-                                            <div class="bar-1"></div>
-                                        </div>
-                                    </div>
+                                    <p style="margin-left: 30px;">63,261 則評論</p>
                                 </div>
                             </div>
-                        </div>
+                            <div class="col-9">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="star_container">
+                                            <div class="nu_star">5</div>
+                                            <div class="bar-container">
+                                                <div class="bar-5"></div>
+                                            </div>
+                                        </div>
+                                        <div class="star_container">
+                                            <div class="nu_star">4</div>
+                                            <div class="bar-container">
+                                                <div class="bar-4"></div>
+                                            </div>
+                                        </div>
+                                        <div class="star_container">
+                                            <div class="nu_star">3</div>
+                                            <div class="bar-container">
+                                                <div class="bar-3"></div>
+                                            </div>
+                                        </div>
+                                        <div class="star_container">
+                                            <div class="nu_star">2</div>
+                                            <div class="bar-container">
+                                                <div class="bar-2"></div>
+                                            </div>
+                                        </div>
+                                        <div class="star_container">
+                                            <div class="nu_star">1</div>
+                                            <div class="bar-container">
+                                                <div class="bar-1"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                    </div>
-                    <!-- 使用者留言評論 -->
-                    <div class="comment">
-                        <div class="avatar">
-                            <img src="/static/images/head.png" alt="User Avatar">
                         </div>
-                        <div class="comment-content">
-                            <h5 class="username">
-                                李
-                            </h5>
-                            <div class="rating">
-                                <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                                <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                                <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                                <span class="rating-star">&#9733;</span>
-                                <span class="rating-star">&#9733;</span>
+                        <!-- 使用者留言評論 -->
+                        <div class="comment">
+                            <div class="avatar">
+                                <img src="/static/images/head.png" alt="User Avatar">
                             </div>
-                            <p class="comment-text">
-                                天氣冷來到動物園，動物們顯得心情不好，跟人類一樣也會冷到不想到，看到最多的是背影跟屁股，也是一種難得的經驗。
-                                <br>
-                                <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
-                                    2033</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="comment">
-                        <div class="avatar">
-                            <img src="/static/images/head.png" alt="User Avatar">
-                        </div>
-                        <div class="comment-content">
-                            <h5 class="username">
-                                sun
-                            </h5>
-                            <div class="rating">
-                                <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                                <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                                <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                                <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                                <span class="rating-star">&#9733;</span>
+                            <div class="comment-content">
+                                <h5 class="username">
+                                    李
+                                </h5>
+                                <div class="rating">
+                                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                                    <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
+                                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                                    <span class="rating-star">&#9733;</span>
+                                    <span class="rating-star">&#9733;</span>
+                                </div>
+                                <p class="comment-text">
+                                    天氣冷來到動物園，動物們顯得心情不好，跟人類一樣也會冷到不想到，看到最多的是背影跟屁股，也是一種難得的經驗。
+                                    <br>
+                                    <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
+                                        2033</span>
+                                </p>
                             </div>
-                            <p class="comment-text">
-                                帶小孩來看動物很棒！可以玩一整天！廁所很多很方便,用餐座位如果能再多一些就好了!麥當勞大排長龍實在太誇張！希望能增設其他餐廳或便利商店~
-                                <br>
-                                <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
-                                    2023</span>
-                            </p>
                         </div>
-                    </div>
-                    <div class="comment">
-                        <div class="avatar">
-                            <img src="/static/images/head.png" alt="User Avatar">
-                        </div>
-                        <div class="comment-content">
-                            <h5 class="username">
-                                李+0
-                            </h5>
-                            <div class="rating">
-                                <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                                <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                                <span class="rating-star">&#9733;</span>
-                                <span class="rating-star">&#9733;</span>
-                                <span class="rating-star">&#9733;</span>
+                        <div class="comment">
+                            <div class="avatar">
+                                <img src="/static/images/head.png" alt="User Avatar">
                             </div>
-                            <p class="comment-text">
-                                我實在越來越覺得動物園越來越差，維修的東西擴建的項目越來越多，但都沒有東西完成！太誇張了
-                                <br>
-                                <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
-                                    2023</span>
-                            </p>
+                            <div class="comment-content">
+                                <h5 class="username">
+                                    sun
+                                </h5>
+                                <div class="rating">
+                                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                                    <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
+                                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                                    <span class="rating-star">&#9733;</span>
+                                </div>
+                                <p class="comment-text">
+                                    帶小孩來看動物很棒！可以玩一整天！廁所很多很方便,用餐座位如果能再多一些就好了!麥當勞大排長龍實在太誇張！希望能增設其他餐廳或便利商店~
+                                    <br>
+                                    <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
+                                        2023</span>
+                                </p>
+                            </div>
                         </div>
+                        <div class="comment">
+                            <div class="avatar">
+                                <img src="/static/images/head.png" alt="User Avatar">
+                            </div>
+                            <div class="comment-content">
+                                <h5 class="username">
+                                    李+0
+                                </h5>
+                                <div class="rating">
+                                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                                    <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
+                                    <span class="rating-star">&#9733;</span>
+                                    <span class="rating-star">&#9733;</span>
+                                    <span class="rating-star">&#9733;</span>
+                                </div>
+                                <p class="comment-text">
+                                    我實在越來越覺得動物園越來越差，維修的東西擴建的項目越來越多，但都沒有東西完成！太誇張了
+                                    <br>
+                                    <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
+                                        2023</span>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- 撰寫評論 -->
+                        <button style="border-radius: 8px;position: relative; left: 45%;"><i class="fa-solid fa-pen"
+                                style="margin-right: 5px;"></i>我要評論</button>
                     </div>
-                    <!-- 撰寫評論 -->
-                    <button style="border-radius: 8px;position: relative; left: 45%;"><i class="fa-solid fa-pen"
-                            style="margin-right: 5px;"></i>我要評論</button>
                 </div>
             </div>
             <div class="container" style="background-color:#f1f1f1">
@@ -695,9 +697,23 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script>
+
+    $(function () {
+        $('.change_btn div').click(function () {
+            $(this).addClass('active1').siblings().removeClass('active1');
+            var index = $(this).index();
+            $(".change_content .change_content1").eq(index).show().siblings().hide();
+        })
+    })
+
+
     // skrollr滑鼠滾動
-    var s = skrollr.init();
+    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (!isMobile) {
+        var s = skrollr.init();
+    }
 
     //進階的部分
     var filiter_win = document.getElementById('show_condition');//條件篩選
