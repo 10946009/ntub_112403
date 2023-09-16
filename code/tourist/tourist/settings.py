@@ -12,6 +12,17 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv, find_dotenv
+
+
+dotenv_path = join(dirname(__file__), ".env")
+load_dotenv(dotenv_path, override=True)  # 設定 override 才會更新變數哦！
+DBPWD = os.environ.get("DBPWD")
+EMAIL = os.environ.get("EMAIL")
+EMAIL_PWD = os.environ.get("EMAIL_PWD")
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -83,13 +94,13 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',  #PostgreSQL
         'NAME': 'trip',  #資料庫名稱
         'USER': 'postgres',  #資料庫帳號
-        'PASSWORD': '******',  #資料庫密碼   修改為自己的密碼
+        'PASSWORD': DBPWD,  #資料庫密碼   修改為自己的密碼
         'HOST': 'localhost',  #Server(伺服器)位址
         'PORT': '5432'  #PostgreSQL Port號
     }
 }
 
-
+AUTH_USER_MODEL = 'myapp.User'
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -133,3 +144,21 @@ STATICFILES_DIRS = [ #加入static路徑
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+# email設定
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = EMAIL  # 使用您的Google电子邮件地址
+EMAIL_HOST_PASSWORD = EMAIL_PWD  # 使用您的Google电子邮件密码或应用程序密码
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL  # 使用您的Google电子邮件地址6
+
+
+# Celery
+BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Taipei'

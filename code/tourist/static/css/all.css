@@ -14,24 +14,22 @@ html{
 	position: fixed;
 	width: 100%;
 	top: 0;
-	background-color: rgb(255, 255, 255);
-	background-color: rgba(255, 255, 255, 0.644);
+	background-color: rgba(193, 193, 193, 0.504);
 }
-.nav-link{
+/* .nav-link{
+	color: white;
+	font-size: 18px;
 	font-weight: bold;
-	text-shadow: 2px 2px 2px #ffffff;
-}
-.dropdown-toggle{
-	/* position: relative; */
-}
+	text-shadow: 2px 2px 2px #333;
+} */
 .dropdown-menu{
 	/* position: absolute;
 	right: 80px; */
 	margin: 0 0 0 -30px;
 }
-.navchange{
+/* .navchange{
 	background-color: beige;
-}
+} */
 .search{
 	width: 400px;
 	opacity: 0.8;
@@ -45,9 +43,6 @@ html{
 .search_icon:hover{
 	border-color: rgb(248, 219, 30);
 	background-color: rgb(248, 219, 30);
-}
-.nav-link{
-	font-size: 18px;
 }
 
 @media (max-width:768px) {
