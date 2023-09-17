@@ -647,9 +647,10 @@ def share(request):
     return render(request, "share.html")
 
 
-@login_required(login_url="/login")
+# @login_required(login_url="/login")
 def add_favorite(request):
     u_id = request.user.id
+    print("u_id",u_id)
     aid = request.POST.get("aid")
     if u_id != None:
         if aid:
@@ -661,12 +662,11 @@ def add_favorite(request):
                 unit.save()
             # 在這裡準備你想要回傳給前端的資料
             response_data = {"message": "操作成功"}
-            user_favorite = Favorite.objects.filter(u_id=u_id).values()
-            return JsonResponse(response_data,user_favorite)
+            user_favorite = list(Favorite.objects.filter(u_id=u_id).values())
+            return JsonResponse({"response_data": response_data, "user_favorite": user_favorite})
     else:
         response_data = {"message": "尚未登入"}
-        return JsonResponse(response_data)
-
+        return JsonResponse({"response_data": response_data})
 
 
 def attraction_details(request):

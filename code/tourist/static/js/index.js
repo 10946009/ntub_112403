@@ -31,25 +31,25 @@ document.querySelector('.scroll-down-button').addEventListener('click', function
 
 //收藏
 var heart = document.getElementsByClassName('heart_icon');
-    // var span = document.getElementsByClassName('count');
-    for(var i = 0;i < heart.length; i++){
-        // var count;
-        (function(i){
-            var flag = true;//點擊收藏
-            heart[i].onclick = function(){
-                if(flag){
-                    flag = false;//無收藏被點擊
-                    this.className = "fa-solid fa-heart heart_icon active_heart";
-                    // ++span[i].innerHTML;
-                }else{
-                    flag = true//點擊取消收藏
-                    this.className = "fa-solid fa-heart heart_icon";
-                    // --span[i].innerHTML;
-                }
-            }  
-        })(i);
-    } 
-
+// var span = document.getElementsByClassName('count');
+for(var i = 0;i < heart.length; i++){
+    // var count;
+    (function(i){
+        var flag = true;//點擊收藏
+        heart[i].onclick = function(){
+            if(flag){
+                flag = false;//無收藏被點擊
+                this.className = "fa-solid fa-heart heart_icon active_heart";
+                // ++span[i].innerHTML;
+            }else{
+                flag = true//點擊取消收藏
+                this.className = "fa-solid fa-heart heart_icon";
+                // --span[i].innerHTML;
+            }
+            addFavorite_index(this.getAttribute("data-aid"));
+        }  
+    })(i);
+} 
 
 //熱門行程詳細資訊
 $(function(){
