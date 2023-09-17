@@ -200,51 +200,41 @@ def logout(request):
 
 
 # 登入頁
-def login(request):
+def login(request,code_result=None):
     result = 0
     message = ""
-    request.session["message"] = ""
-    request.session["code_result"] = -1
-    if request.method == "GET" and request.headers.get("X-Requested-With"):
-        print("hello")
-        request.session["code_result"] = request.GET.get("code_result")
-        if request.session["code_result"] == "0":
-            request.session["message"] = "請輸入帳號密碼"
-        elif request.session["code_result"] == "1":
-            request.session["message"] = "請輸入驗證碼"
-        elif request.session["code_result"] == "2":
-            request.session["message"] = "驗證碼錯誤"
-        elif request.session["code_result"] == "3":
-            request.session["message"] = "正確"
 
     if request.method == "POST":
-        submitted_code = request.POST.get("viewsCode")
-        print(submitted_code)
-        print(request.method, request.session["code_result"])
-        result = 2
-        print(request.POST)
+        code_result=request.POST["code_result"]
+        print("code_result",code_result)
         email = request.POST["email"]
         password = request.POST["passwd"]
         user = authenticate(request, email=email, password=password)
         print("user", user)
-        if user is not None:
-            if user.is_active:
-                # 驗證成功，登錄用戶
-                auth.login(request, user)
-                print(result)
-                # 重定向到其他頁面或執行其他操作
-                return redirect("/")
+        if code_result =="0":
+            message="請輸入帳號密碼"
+        elif code_result=="1":
+            message="請輸入驗證碼"
+        elif code_result=="2":
+            message="驗證碼錯誤"
+        elif code_result=="3":
+            print(request.POST)
+            if user is not None:
+                if user.is_active:
+                    # 驗證成功，登錄用戶
+                    auth.login(request, user)
+                    print(result)
+                    # 重定向到其他頁面或執行其他操作
+                    return redirect("/")
+                else:
+                    # 驗證失敗，顯示錯誤信息
+                    message = "帳號或密碼錯誤"
+                    result = 1
             else:
                 # 驗證失敗，顯示錯誤信息
-                request.session["message"] = "帳號或密碼錯誤"
                 result = 1
-        else:
-            result = 1
-            request.session["message"] = "帳號或密碼錯誤"
-    message = request.session["message"]
-    print("result", result)
-    print("message", message)
-    print(request.session["code_result"])
+                message = "帳號或密碼錯誤"
+    print('message',message)
     return render(request, "login.html", locals())
 
 # @shared_task
