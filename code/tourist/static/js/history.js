@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function(){
   });
 
     // 選擇所有的內容區域中的連結
-    const tabLinks = document.querySelectorAll(".nav-link");
+    const tabLinks = document.querySelectorAll(".history-nav-link");
 
     // 設置每個連結的點擊事件監聽器
     tabLinks.forEach((link) => {
