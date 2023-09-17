@@ -30,7 +30,11 @@
           {% for item in i %}
             <div class="col-4 carousel_block">
               <div class="imgcontainer">
-                <button class="fa-solid fa-heart heart_icon"data-isfavorite="1" data-aid="{{item.id}}" style="border:none;"></button>
+                {% if item.is_favorite == "1" %} 
+                  <button class="fa-solid fa-heart heart_icon active_heart"data-isfavorite="{{item.is_favorite}}" data-aid="{{item.id}}" style="border:none;"></button>
+                {% else %}
+                  <button class="fa-solid fa-heart heart_icon"data-isfavorite="{{item.is_favorite}}" data-aid="{{item.id}}" style="border:none;"></button>
+                {% endif %}
                 <img src="/static/images/attractions/{{item.place_id}}_0.jpg" class="img-responsive" alt="">
               </div> 
               <div class="group">

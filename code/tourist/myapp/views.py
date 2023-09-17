@@ -174,6 +174,13 @@ def index(request):
     # hot_result = Attractions.objects.order_by('rating', 'rating_total').values()[:9]
     hot =[57,79,100,199,216,421,450,454,713]
     hot_result = Attractions.objects.filter(id__in=hot).values()
+    user = request.user.id
+
+    for index,attractions in enumerate(hot_result):
+        if Favorite.objects.filter(u_id=user, a_id=attractions["id"]).exists():
+            hot_result[index].setdefault("is_favorite", "1")
+        else:
+            hot_result[index].setdefault("is_favorite", "0")
     # 讓資料3個一組
     temp_hot=[]
     hotAttractionsList=[]
