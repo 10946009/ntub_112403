@@ -23,7 +23,7 @@
       <h4 class="mytravel_txt_detail">地點：</h4>
     </div>
     <div class="edit">
-      <a href="/create" class="edita">
+      <a href="/create/{{item.id}}" class="edita">
         <span class="fa-solid fa-pen-to-square edit_icon"><br>
           <span class="icontxt">編輯</span>
         </span>
@@ -41,7 +41,7 @@
       <ul class="nav nav-underline">
         {% for i in "x"|rjust:item.travel_day %}
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#content{{item.id}}-{{forloop.counter}}" data-tab="{{item.id}}-{{forloop.counter}}">day {{forloop.counter}}</a>
+          <a style="color: black;" class="nav-link" aria-current="page" href="#content{{item.id}}-{{forloop.counter}}" data-tab="{{item.id}}-{{forloop.counter}}">D{{forloop.counter}}</a>
         </li>
         {% endfor %}
       </ul>
@@ -107,13 +107,13 @@
       <div id="more2" class="more hidden-details">
         <ul class="nav nav-underline">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#content2-1" data-tab="2-1">第一天</a>
+            <a style="color: black;" class="nav-link active" aria-current="page" href="#content2-1" data-tab="2-1">第一天</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#content2-2" data-tab="2-2">第二天</a>
+            <a style="color: black;" class="nav-link" href="#content2-2" data-tab="2-2">第二天</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#content2-3" data-tab="2-3">第三天</a>
+            <a style="color: black;" class="nav-link" href="#content2-3" data-tab="2-3">第三天</a>
           </li>
         </ul>
         <div class="content hidden-details" id="content2-1">
@@ -246,13 +246,13 @@
     <div id="more3" class="more hidden-details">
       <ul class="nav nav-underline">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#content3-1" data-tab="3-1">第一天</a>
+          <a style="color: black;" class="nav-link active" aria-current="page" href="#content3-1" data-tab="3-1">第一天</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#content3-2" data-tab="3-2">第二天</a>
+          <a style="color: black;" class="nav-link" href="#content3-2" data-tab="3-2">第二天</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#content3-3" data-tab="3-3">第三天</a>
+          <a style="color: black;" class="nav-link" href="#content3-3" data-tab="3-3">第三天</a>
         </li>
       </ul>
       <div class="content hidden-details" id="content3-1">

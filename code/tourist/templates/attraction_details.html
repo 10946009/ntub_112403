@@ -112,8 +112,8 @@
 <!-- 人拖行李棟動圖（左） -->
 <div class="row" id="filiter_about">
     <div class="col-5">
-        <div class="img_trip" data-0="transform: translateX(-600px); opacity: 0; z-index: 2;"
-            data-500="transform: translateX(300px); opacity: 0.8">
+        <div class="img_trip" data-0="transform: translateX(-120%); opacity: 0; z-index: 2;"
+            data-500="transform: translateX(60%); opacity: 0.8">
             <img src="../static/images/tirp_.png" alt="">
         </div>
         <div class="road">
@@ -166,7 +166,7 @@
 
 <!-- 景點主題 -->
 <div id="show_filiter" style="display: none;">
-    <form class="modal-content" method="post" style="border-radius: 10px;"action="{% url 'serach_results_att_type' %}" >
+    <form class="modal-content" method="post" style="border-radius: 10px;" action="{% url 'serach_results_att_type' %}">
         {% csrf_token %}
         <div class="att_form">
             <span onclick="document.getElementById('show_filiter').style.display='none'" class="close"
@@ -184,9 +184,10 @@
                     </tr>
                     <!-- 讓多出來的放到第二行 -->
                 </table>
-            <div class="sure"><button class="sure_btn" id="sure_att_type" name="sure_att_type" value="0">篩選</button></div>
+                <div class="sure"><button class="sure_btn" id="sure_att_type" name="sure_att_type" value="0">篩選</button>
+                </div>
             </div>
-            
+
         </div>
     </form>
 </div>
@@ -233,6 +234,10 @@
     </form>
 </div>
 
+<div class="row">
+    <p>根據...的結果搜尋出：</p>
+</div>
+
 
 <!-- 下方景點 -->
 <div class="row" id="attractions_introduction">
@@ -243,7 +248,7 @@
         {% for item in search_list %}
         <div class="row" style="margin-bottom: 20px;">
             <div class="col-5">
-                <div class="img_wrap" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                <div class="img_wrap" style=" height: 90%;" data-bottom-top="transform: translateY(-20px);opacity: 0"
                     data-center="transform: translateY(0px);opacity: 1">
                     <p class="learn_more">Learn<br>More</p>
                     <img data-name="{{ item.id }}" class="slide"
@@ -259,12 +264,14 @@
                     data-a-Id="{{ item.id }}">{{item.a_name }}</h3>
                     <!-- 星星數 -->
                     <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
-                        data-center="transform: translateY(0px);opacity: 1">
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star">&#9733;</span>
+                        data-center="transform: translateY(0px);opacity: 1;">
+                        {% for i in "12345" %}
+                        {% if i|add:0 <= item.rating %} <span class="rating-star" style="color: rgb(241, 226, 62);">
+                            &#9733;</span>
+                            {% else %}
+                            <span class="rating-star">&#9733;</span>
+                            {% endif %}
+                            {% endfor %}
                     </div>
                     <!-- 地址 -->
                     <h6 style="margin-top:5px;" data-bottom-top="transform: translateY(-20px);opacity: 0"
@@ -674,7 +681,7 @@
 </div>
 
 <!-- footer-->
-<footer class="jumbotron">
+<footer class="jumbotron1">
     <div class="container">
         <h2>有哪些地方想跟我們分享？</h2>
         <input class="form-control" placeholder="E-mail" />
@@ -720,13 +727,13 @@
     autocomplete(document.getElementById("myInput"), attractions);
     var attractions_types_json = JSON.parse('{{ all_type_name_json|safe }}');
     var attractions_types = document.getElementById("attractions_types");
-    console.log(attractions_types_json);
+
     attractions_types.innerHTML += "<tr>";
 
-        attractions_types_json.forEach(function(item) {
-            console.log(item);
-            attractions_types.innerHTML += `<td><span class="more_btn" data-set="${item.id}">${item.name}</span></td>`;
-        });
+    attractions_types_json.forEach(function (item) {
+        //console.log(item);
+        attractions_types.innerHTML += `<td><span class="more_btn" data-set="${item.id}">${item.name}</span></td>`;
+    });
     //景點標籤按鈕
     attractions_types.innerHTML += "</tr>"
     var header = document.getElementById("filiter_search2");//景點主題裡面按鈕active（固定）
@@ -809,7 +816,22 @@
             scrollTextH1.style.transform = `translate(0%, ${translateY}%)`;
         }
     });
-
+    function searchText(search_text) {
+        $.ajax({
+            url: '',  // 伺服器端的 URL
+            type: 'GET',  // 請求類型為 GET
+            data: {
+                search_text: search_text  // 傳遞給伺服器的參數，以 a_id 為名
+            },
+            success: function (response) {
+                console.log(search_text);
+            },
+            error: function (xhr, status, error) {
+                // 請求失敗時的處理
+                console.log("search_textAJAX請求失敗: " + error);
+            }
+        });
+    }
     //搜尋景點的部分
     function autocomplete(inp, arr) {
         var currentFocus; // 紀錄目前焦點所在的索引值
@@ -830,6 +852,7 @@
             b.innerHTML = `<i class="fas fa-search" style="margin-right:12px;"></i><strong>${val}</strong>&emsp;<span style="color:#a1a1a1">-Trip搜尋</span>`;
             b.addEventListener("click", function (e) {
                 inp.value = val;
+                searchText(val);
                 closeAllLists();
                 searchClick.click();
             });
@@ -843,6 +866,7 @@
                     b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>"; // 加入一個隱藏的input元素，用來存放選擇的值
                     b.addEventListener("click", function (e) {
                         inp.value = this.getElementsByTagName("input")[0].value; // 設定輸入框的值為選擇的值
+                        searchText(this.getElementsByTagName("input")[0].value);
                         closeAllLists(); // 關閉所有項目清單
                         searchClick.click();
                     });
@@ -949,6 +973,9 @@
             }
         });
     }
+
+
+
     {% comment %} var showInfo = document.getElementById("id01");
     showInfo.style.display = "block"; {% endcomment %}
 
