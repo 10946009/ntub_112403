@@ -20,6 +20,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from celery import shared_task
 import secrets  # 註冊token
+from django.template.loader import render_to_string #頁面轉成html
 # from myapp.task import *
 
 from geopy.distance import geodesic
@@ -676,6 +677,19 @@ def attraction_details(request):
     user = request.user.id
     attractions_search = list(Attractions.objects.values_list("a_name", flat=True))
     attractions_search_json = json.dumps(attractions_search)
+
+    if request.method == "GET" and request.GET.get("search_text") != None:
+        query = request.GET.get("search_text")
+        search_list = list(Attractions.objects.filter(a_name__contains=query).values())
+        print(search_list)
+        html = render_to_string(
+            template_name="attraction_details_search.html", 
+            context={"search_list": search_list}
+        )
+        data_dict = {"keyword_search_list": html}
+
+        return JsonResponse(data=data_dict, safe=False)
+        
     if request.method == "POST":
         query = request.POST.get("searchQuery")
         search_url = "/attraction_details/?query=" + query
@@ -696,7 +710,7 @@ def attraction_details(request):
             search_list[index].setdefault("is_favorite", "1")
         else:
             search_list[index].setdefault("is_favorite", "0")
-    print(search_list)
+    # print(search_list)
     return render(request, "attraction_details.html", locals())
 
 def attraction_details_att_type(request):
