@@ -293,11 +293,11 @@ body {
 }
 
 /* 點擊篩選視窗裡面的內容物（動作） */
-.active,
+/* .active,
 .more_btn:hover {
     background-color: rgb(235, 224, 169);
     color: black;
-}
+} */
 
 /* 篩選按鈕 */
 .sure {
