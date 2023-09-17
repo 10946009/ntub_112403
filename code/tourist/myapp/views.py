@@ -28,6 +28,8 @@ from django.contrib.auth.decorators import login_required
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 
+from django.forms.models import model_to_dict
+
 dotenv_path = join(dirname(__file__), ".env")
 load_dotenv(dotenv_path, override=True)  # 設定 override 才會更新變數哦！
 GOOGLE_PLACES_API_KEY = os.environ.get("GOOGLE_PLACES_API_KEY")
@@ -701,8 +703,12 @@ def attraction_details(request):
     search_list = search_list[:10]  # 之後要改 目前避免當掉
     if request.GET.get("a_id") != None:
         choose_a_id = request.GET.get("a_id")  # 提取傳遞的值
-        choose_attractions = Attractions.objects.filter(id=choose_a_id).values().first()
-        return JsonResponse(choose_attractions)
+        choose_attractions = Attractions.objects.get(id=choose_a_id)
+        choose_attractions.hit +=1
+        choose_attractions.save()
+        choose_attractions_dict = model_to_dict(choose_attractions)
+        print(choose_attractions_dict)
+        return JsonResponse(choose_attractions_dict, safe=False)
 
     # 判斷是否已收藏
     for index, search in enumerate(search_list):
