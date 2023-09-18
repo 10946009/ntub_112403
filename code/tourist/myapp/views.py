@@ -174,6 +174,13 @@ def index(request):
     # hot_result = Attractions.objects.order_by('rating', 'rating_total').values()[:9]
     hot =[57,79,100,199,216,421,450,454,713]
     hot_result = Attractions.objects.filter(id__in=hot).values()
+    user = request.user.id
+
+    for index,attractions in enumerate(hot_result):
+        if Favorite.objects.filter(u_id=user, a_id=attractions["id"]).exists():
+            hot_result[index].setdefault("is_favorite", "1")
+        else:
+            hot_result[index].setdefault("is_favorite", "0")
     # 讓資料3個一組
     temp_hot=[]
     hotAttractionsList=[]
@@ -200,51 +207,41 @@ def logout(request):
 
 
 # 登入頁
-def login(request):
+def login(request,code_result=None):
     result = 0
     message = ""
-    request.session["message"] = ""
-    request.session["code_result"] = -1
-    if request.method == "GET" and request.headers.get("X-Requested-With"):
-        print("hello")
-        request.session["code_result"] = request.GET.get("code_result")
-        if request.session["code_result"] == "0":
-            request.session["message"] = "請輸入帳號密碼"
-        elif request.session["code_result"] == "1":
-            request.session["message"] = "請輸入驗證碼"
-        elif request.session["code_result"] == "2":
-            request.session["message"] = "驗證碼錯誤"
-        elif request.session["code_result"] == "3":
-            request.session["message"] = "正確"
 
     if request.method == "POST":
-        submitted_code = request.POST.get("viewsCode")
-        print(submitted_code)
-        print(request.method, request.session["code_result"])
-        result = 2
-        print(request.POST)
+        code_result=request.POST["code_result"]
+        print("code_result",code_result)
         email = request.POST["email"]
         password = request.POST["passwd"]
         user = authenticate(request, email=email, password=password)
         print("user", user)
-        if user is not None:
-            if user.is_active:
-                # 驗證成功，登錄用戶
-                auth.login(request, user)
-                print(result)
-                # 重定向到其他頁面或執行其他操作
-                return redirect("/")
+        if code_result =="0":
+            message="請輸入帳號密碼"
+        elif code_result=="1":
+            message="請輸入驗證碼"
+        elif code_result=="2":
+            message="驗證碼錯誤"
+        elif code_result=="3":
+            print(request.POST)
+            if user is not None:
+                if user.is_active:
+                    # 驗證成功，登錄用戶
+                    auth.login(request, user)
+                    print(result)
+                    # 重定向到其他頁面或執行其他操作
+                    return redirect("/")
+                else:
+                    # 驗證失敗，顯示錯誤信息
+                    message = "帳號或密碼錯誤"
+                    result = 1
             else:
                 # 驗證失敗，顯示錯誤信息
-                request.session["message"] = "帳號或密碼錯誤"
                 result = 1
-        else:
-            result = 1
-            request.session["message"] = "帳號或密碼錯誤"
-    message = request.session["message"]
-    print("result", result)
-    print("message", message)
-    print(request.session["code_result"])
+                message = "帳號或密碼錯誤"
+    print('message',message)
     return render(request, "login.html", locals())
 
 # @shared_task
@@ -647,9 +644,10 @@ def share(request):
     return render(request, "share.html")
 
 
-@login_required(login_url="/login")
+# @login_required(login_url="/login")
 def add_favorite(request):
     u_id = request.user.id
+    print("u_id",u_id)
     aid = request.POST.get("aid")
     if u_id != None:
         if aid:
@@ -661,12 +659,11 @@ def add_favorite(request):
                 unit.save()
             # 在這裡準備你想要回傳給前端的資料
             response_data = {"message": "操作成功"}
-            user_favorite = Favorite.objects.filter(u_id=u_id).values()
-            return JsonResponse(response_data,user_favorite)
+            user_favorite = list(Favorite.objects.filter(u_id=u_id).values())
+            return JsonResponse({"response_data": response_data, "user_favorite": user_favorite})
     else:
         response_data = {"message": "尚未登入"}
-        return JsonResponse(response_data)
-
+        return JsonResponse({"response_data": response_data})
 
 
 def attraction_details(request):

@@ -49,10 +49,11 @@
           {% for item in i %}
             <div class="col-4 carousel_block">
               <div class="imgcontainer">
-                <form action="/login" method="post">
-                  <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
-                  <input id="submitButton" type="submit" style="display: none;">
-                </form>
+                {% if item.is_favorite == "1" %} 
+                  <button class="fa-solid fa-heart heart_icon active_heart"data-isfavorite="{{item.is_favorite}}" data-aid="{{item.id}}" style="border:none;"></button>
+                {% else %}
+                  <button class="fa-solid fa-heart heart_icon"data-isfavorite="{{item.is_favorite}}" data-aid="{{item.id}}" style="border:none;"></button>
+                {% endif %}
                 <img src="/static/images/attractions/{{item.place_id}}_0.jpg" class="img-responsive" alt="">
               </div> 
               <div class="group">
@@ -111,7 +112,7 @@
             <div class="imgcontainer">
               <form action="/login" method="post">
                 <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
-                <input id="submitButton" type="submit" style="display: none;"><!-- 隐藏的提交按钮 -->
+                <input id="submitButton" type="submit" style="display: none;" click><!-- 隐藏的提交按钮 -->
               </form>
               <img src="../static/images/Daan.jpeg" class="img-responsive carimg2" alt="">
             </div>  
@@ -204,6 +205,7 @@
       <div class="col-md-4 hot_spot_block hidemespot" style="padding: 5px;">
         <div class="heart_icon_img">
           <img src="../static/images/street.jpg" class="spot_img img-responsive" width="100%">
+          <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this,{{item.id}})" id="heart-icon"></i>
           <form action="/login" method="post">
             <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
             <input id="submitButton" type="submit" style="display: none;">
@@ -239,14 +241,8 @@
  
 {% block content_script %}
 <script src="../static/js/index.js"></script>
+<script src="../static/js/addFavorite.js"></script>
 
-<script>
-  //送出表單(收藏
-  function submitForm() {
-    document.getElementById("heartForm").submit();
-      
-  }
-</script>
 {% endblock %}
 
 </html>
