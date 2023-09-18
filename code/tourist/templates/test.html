@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Carousel Example</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .hover, .hover1 {
+      position: relative;
+      margin: 0 auto;
+    }
+
+    .hover img {
+      position: absolute;
+      left: 0;
+      -webkit-transition: opacity 0.5s ease-in-out;
+      -moz-transition: opacity 0.5s ease-in-out;
+      -o-transition: opacity 0.5s ease-in-out;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .hover img.top:hover {
+      opacity: 0;
+    }
+
+    .hover1 img.top:hover {
+      opacity: 0;
+    }
+    /* .hover1 {
+      position: relative;
+      margin: 0 auto;
+    } */
+    
+    .hover1 img {
+      position: absolute;
+      left: 250px;
+      -webkit-transition: opacity 0.5s ease-in-out;
+      -moz-transition: opacity 0.5s ease-in-out;
+      -o-transition: opacity 0.5s ease-in-out;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-4">
+            <div class="hover">
+              <img src="../static/images/beitou.jpeg" class="img-responsive bottom" alt="">
+              <img src="../static/images/Datong.jpeg" class="img-responsive top" alt="">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="hover1">
+              <img src="../static/images/Daan.jpeg" class="img-responsive bottom" alt="">
+              <img src="../static/images/101.jpg" class="img-responsive top" alt="">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
