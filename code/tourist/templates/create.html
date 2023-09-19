@@ -10,15 +10,15 @@
     <div class="tabtitle">
       <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link tab_a active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+          <button class="create-nav-link tab_a active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
         role="tab" aria-controls="home" aria-selected="true" onclick="saveTabState('home')">建立行程</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link tab_a" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
+          <button class="create-nav-link tab_a" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
           role="tab" aria-controls="contact" aria-selected="false" onclick="saveTabState('contact')">我的收藏</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link tab_a" id="recommend-tab" data-bs-toggle="tab" data-bs-target="#recommend" type="button"
+          <button class="create-nav-link tab_a" id="recommend-tab" data-bs-toggle="tab" data-bs-target="#recommend" type="button"
           role="tab" aria-controls="recommend" aria-selected="false" onclick="saveTabState('recommend')">推薦景點</button>
         </li>
       </ul>
@@ -48,74 +48,76 @@
         </form>
       </div>
       <div class="row">
-        <div>
+        <div style="display: flex;justify-content: center;align-items: center;align-content: center;">
           <ul class="nav nav-underline">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">第一天</a>
+              <a class="create-nav-link createday active" aria-current="page" href="#">第一天</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">第二天</a>
+              <a class="create-nav-link createday" href="#">第二天</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="create-nav-link createday" href="#">第三天</a>
             </li>
           </ul>
         </div>
-        <div class="col-md-4 div_day" style="background-color: #fffdc8;">
-          <div class="row">
-            <div class="div_day " style="text-align: center;">
-              <div class="tabD">
-                <span ng-bind="travName"></span>
-              </div>
-              {% comment %} <button id="addDay">+一天</button> {% endcomment %}
-              {% comment %} <button class="tab_day">第{{ day }}天</button> {% endcomment %}
-              <div class="tabD" id="addDaydiv">
-                {% for day in travelday %}
-                  <span class="tab_day" onclick="clickDay({{day}})">第{{ day }}天</span>
-                  <p></p>
-                {% endfor %}
-              </div>
-              <div class=" tabc_txt">
-                <span class="save" id="saveDays">儲存</span>
+        <div class="row" style="margin-top: 10px;">
+          <div class="col-md-4 div_day" style="background-color: #fffdc8;">
+            <div class="row">
+              <div class="div_day " style="text-align: center;">
+                <div class="tabD">
+                  <span ng-bind="travName"></span>
+                </div>
+                {% comment %} <button id="addDay">+一天</button> {% endcomment %}
+                {% comment %} <button class="tab_day">第{{ day }}天</button> {% endcomment %}
+                <div class="tabD" id="addDaydiv">
+                  {% for day in travelday %}
+                    <span class="tab_day" onclick="clickDay({{day}})">第{{ day }}天</span>
+                    <p></p>
+                  {% endfor %}
+                </div>
+                <div class=" tabc_txt">
+                  <span class="save" id="saveDays">儲存</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-8" style="background-color: #eee;">
-          <form action="#tab_c" style="color: black;">
-            <div>
-              <div class="tabD">
-                <span id="tabDT">請輸入出發時間：</span>
-                <input type="time" name="nowtime" id="nowtime" value="09:00">
+          <div class="col-md-8" style="background-color: #eee;">
+            <form action="#tab_c" style="color: black;">
+              <div>
+                <div class="tabD">
+                  <span id="tabDT">請輸入出發時間：</span>
+                  <input type="time" name="nowtime" id="nowtime" value="09:00">
+                </div>
+                <div class="tabD">
+                  <span id="tabDL">使用者位置：</span>
+                  <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation">
+                  <input type="hidden" placeholder="day" class="nowday" id="nowday">
+                </div>
               </div>
-              <div class="tabD">
-                <span id="tabDL">使用者位置：</span>
-                <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation">
-                <input type="hidden" placeholder="day" class="nowday" id="nowday">
-              </div>
+            </form>
+            <div id="OrderAttractions">
+              {% for attractions in ct_attractions_list %}
+              
+              {% endfor %}
+              <!-- <span class="create_txt" >第</span>
+                <button style="border: none;">+</button> -->
+              <!--我在JS~~~~~~~~~~~
+                <div class="spot" id="spot1">
+                  國父紀念館
+                  <p>位在台北市XX區</p>
+                  <p>
+                    目前人潮流量：適中
+                    <br>
+                    營業時間：09:00-18:00
+                    <br>
+                    建議停留時間：1小時
+                  </p>
+                </div>
+              -->
             </div>
-          </form>
-          <div id="OrderAttractions">
-            {% for attractions in ct_attractions_list %}
-            
-            {% endfor %}
-            <!-- <span class="create_txt" >第</span>
-              <button style="border: none;">+</button> -->
-            <!--我在JS~~~~~~~~~~~
-              <div class="spot" id="spot1">
-                國父紀念館
-                <p>位在台北市XX區</p>
-                <p>
-                  目前人潮流量：適中
-                  <br>
-                  營業時間：09:00-18:00
-                  <br>
-                  建議停留時間：1小時
-                </p>
-              </div>
-            -->
+            <div id="RemainderAttractions"></div>
           </div>
-          <div id="RemainderAttractions"></div>
         </div>
       </div>
     </div>
@@ -308,342 +310,11 @@
       </div>
     </div>
   </div>
-  <div class="container tab_div">
-    <div class="tabtitle">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link tab_a active" aria-current="page" href="#tab_c">建立行程</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link tab_a" href="#tab_f">我的收藏</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link tab_a" href="#tab_r" id="clickRecommend">推薦景點</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div id="contents">
-    <section id="tab_c" ng-app="" ng-init="name='行程名稱'">
-      <div>
-        <form action="">
-          <div class="row createdata" style="width: 80%;">
-            <div class="col-md-6 tabc_txt">
-              行程名稱：{{ name }}
-              {% comment %} <input type="text" class="input_txt" ng-model="travName"  style="width: 180px" value="{{ name }}"> {% endcomment %}
-            </div>
-            <div class="col-md-6 tabc_txt">
-              出發日期：{{ start_day }}
-              {% comment %} <input type="date" class="input_txt" value="{{ start_day }}"> {% endcomment %}
-            </div>
-            {% comment %} 
-            <div class="col-md-4 tabc_txt">
-              結束日期：
-              <input type="date" class="input_txt" value="2023-05-26">
-            </div> 
-            {% endcomment %}
-          </div>
-        </form>
-      </div>
-      <div class="row">
-        <div class="col-md-4 div_day" style="background-color: #fffdc8;">
-          <div class="row">
-            <div class="div_day " style="text-align: center;">
-              <div class="tabD">
-                <span ng-bind="travName"></span>
-              </div>
-              {% comment %} <button id="addDay">+一天</button> {% endcomment %}
-              {% comment %} <button class="tab_day">{{ day }} Day</button> {% endcomment %}
-              <div class="tabD" id="addDaydiv">
-                {% for day in travelday %}
-                  <button onclick="clickDay({{day}})">{{ day }} Day</button>
-                  <p></p>
-                {% endfor %}
-              </div>
-              <div class=" tabc_txt">
-                <button class="input_txt" id="saveDays">儲存</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-8" style="background-color: #eee;">
-          <form action="#tab_c">
-            <div>
-              <div class="tabD">
-                <span id="tabDT">請輸入出發時間：</span>
-                <input type="time" name="nowtime" id="nowtime" value="09:00">
-              </div>
-              <div class="tabD">
-                <span id="tabDL">使用者位置：</span>
-                <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation">
-                <input type="hidden" placeholder="day" class="nowday" id="nowday">
-              </div>
-            </div>
-          </form>
-          <div id="OrderAttractions">
-            {% for attractions in ct_attractions_list %}
-            
-            {% endfor %}
-            <!-- <span class="create_txt" >第</span>
-              <button style="border: none;">+</button> -->
-            <!--我在JS~~~~~~~~~~~
-              <div class="spot" id="spot1">
-                國父紀念館
-                <p>位在台北市XX區</p>
-                <p>
-                  目前人潮流量：適中
-                  <br>
-                  營業時間：09:00-18:00
-                  <br>
-                  建議停留時間：1小時
-                </p>
-              </div>
-            -->
-          </div>
-          <div id="RemainderAttractions"></div>
-        </div>
-      </div>
-    </section>
-  <section id="tab_f" style="clear: both;margin-top: 10px;">
-    <!-- <span>我的收藏</span> -->
-    <div class="row">
-      <div class="col-lg-4 col-md-6">
-        <div style="text-align: center;">
-          <div class="heart_icon_box">
-            <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
-            <i class="fa-solid fa-heart heart_icon"></i>
-          </div>
-          <div class="spot_like_txt">
-            <h3 class="spot_title">平溪老街</h3>
-            <p>123456</p>
-            <div class="group">
-              <i class="fa-solid fa-plus add_icon"></i>
-              <div class="dropdown_menu">
-                <div>
-                  <a class="dropdown_item" href="#tab_c">新增行程</a>
-                </div>
-                <div>
-                  <a class="dropdown_item" href="#">捷運一日遊</a>
-                </div>
-                <div>
-                  <a class="dropdown_item" href="#">開車一日遊</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div style="text-align: center;">
-          <div class="heart_icon_box">
-            <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
-            <i class="fa-solid fa-heart heart_icon"></i>
-          </div>
-          <div class="spot_like_txt">
-            <h3 class="spot_title">平溪老街</h3>
-            <p>123456</p>
-            <div class="group">
-              <i class="fa-solid fa-plus add_icon"></i>
-              <div class="dropdown_menu">
-                <div>
-                  <a class="dropdown_item" href="#tab_c">新增行程</a>
-                </div>
-                <div>
-                  <a class="dropdown_item" href="#">捷運一日遊</a>
-                </div>
-                <div>
-                  <a class="dropdown_item" href="#">開車一日遊</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div style="text-align: center;">
-          <div class="heart_icon_box">
-            <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
-            <i class="fa-solid fa-heart heart_icon"></i>
-          </div>
-          <div class="spot_like_txt">
-            <h3 class="spot_title">平溪老街</h3>
-            <p>123456</p>
-            <div class="group">
-              <i class="fa-solid fa-plus add_icon"></i>
-              <div class="dropdown_menu">
-                <div>
-                  <a class="dropdown_item" href="#tab_c">新增行程</a>
-                </div>
-                <div>
-                  <a class="dropdown_item" href="#">捷運一日遊</a>
-                </div>
-                <div>
-                  <a class="dropdown_item" href="#">開車一日遊</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section id="tab_r"  style="margin-top: 10px;">
-    <!-- <span>景點推薦</span> -->
-    <div style="display: flex; justify-content: center; margin-top: 5px;">
-      <form class="d-flex" role="search" style="width:80%">
-        <input class="form-control me-2"type="search"placeholder="查詢景點"aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">
-          Search
-        </button>
-      </form>
-    </div>
-    <form action="" style="margin: 20px;" class="form_rec">
-      <select name="s_day" id="s_day" style="font-size: 18px;">
-        <option value="1">
-          第
-        </option>
-        <option value="2">
-          第二天
-        </option>
-      </select>
-      <!-- <select name="s_local" id="s_local" style="font-size: 18px;">
-        <option value="tai">
-          台北市
-        </option>
-      </select>
-      <select name="s_local_sec" id="s_local_sec" style="font-size: 18px;">
-        <option value="sec1">中正區</option>
-        <option value="sec2">士林區</option>
-        <option value="sec3">內湖區</option>
-        <option value="sec4">中山區</option>
-        <option value="sec5">大同區</option>
-        <option value="sec6">松山區</option>
-        <option value="sec7">萬華區</option>
-        <option value="sec8">北投區</option>
-        <option value="sec9">大安區</option>
-        <option value="sec10">信義區</option>
-        <option value="sec11">南港區</option>
-        <option value="sec12">文山區</option>
-      </select> -->
-      <div style="font-size: 20px; margin: 5px auto;">
-        <span><strong>是否推薦相似景點</strong></span>
-        <input type="radio" id="yes" value="是" name="yn" style="margin-left: 5px;">
-        <strong>是</strong>
-        <input type="radio" id="no" value="否" name="yn" style="margin-left: 5px;">
-        <strong>否</strong>
-        <input type="submit" value="儲存" style="border-radius: 10px; margin-left: 5px">
-      </div>
-      <div class="dialog" id="dialog">
-        <form action="#">
-          <span>是否需要推薦相似景點</span>
-          <br>
-          <label class="yn" for="yes">
-            是
-          </label>
-          <input type="radio" id="yes" value="是" name="yn">
-          <label class="yn" for="no">
-            否
-          </label>
-          <input type="radio" id="no" value="否" name="yn">
-          <br>
-          <input type="submit" value="確定">
-        </form>
-      </div>
-    </form>
-    <div id="button">
-      <button class="filter_btn" value="all">台北市</button>
-      <button class="filter_btn" value="zhongzheng">中正區</button>
-      <button class="filter_btn" value="shilin">士林區</button>
-      <button class="filter_btn" value="neihu">內湖區</button>
-      <button class="filter_btn" value="zhongshan">中山區</button>
-      <button class="filter_btn" value="datong">大同區</button>
-      <button class="filter_btn" value="songshan">松山區</button>
-      <button class="filter_btn" value="wanhua">萬華區</button>
-      <button class="filter_btn" value="beitou">北投區</button>
-      <button class="filter_btn" value="daan">大安區</button>
-      <button class="filter_btn" value="shingyi">信義區</button>
-      <button class="filter_btn" value="nangan">南港區</button>
-      <button class="filter_btn" value="wenshan">文山區</button>
-    </div>
-  <div class="filter row">
-    <form action="">
-      {% csrf_token %}
-      <div class="shingyi col-md-6"
-           name="AttractionsContainer"
-           id="AttractionsContainer">
-        <!--我在JS QQ-->
-      </div>
-      <a href="#tab_r" class="tab_a"  id="clickLikeAttractions">
-        <button value="提交">
-          提交
-        </button>
-      </a>
-    </form>
-    {% comment %} <div class="beitou col-md-6">
-      <div class="col-5">
-        <img src="/static/images/beitou.jpeg" alt=""  height="250">
-      </div>
-      <div class="col-7">
-        <div style="text-align: left;">
-          <p>景點名稱</p>
-          <p>地址</p>
-        </div>
-      </div>
-    </div>
-    <div class="datong col-md-6">
-      <div class="col-5">
-        <img src="/static/images/Datong.jpeg" alt=""  height="250">
-      </div>
-      <div class="col-7">
-        <div style="text-align: left;">
-          <p>景點名稱</p>
-          <p>地址</p>
-        </div>
-      </div>
-    </div>
-    <div class="shilin"><img src="/static/images/Shilin.jpeg" alt=""  height="250"></div>
-    <div class="zhongshan"><img src="/static/images/Zhongshan.jpeg" alt=""  height="250"></div> {% endcomment %}
-    {% comment %} </div> {% endcomment %}
-  </div>
-  <div class="row">
-    <form action="">
-      {% csrf_token %}
-      <div class="shingyi col-md-6"
-           name="AttractionsContainer"
-           id="AttractionsContainer_o">
-        <!--我在JS QQ-->
-      </div>
-      <a href="#tab_c" class="tab_a"  id="clickLikeAttractions_o">
-        <button value="提交">
-          提交1
-        </button>
-      </a>
-    </form>
-  </div>
 </main>
 {% endblock body %}
 {% block content_script %}
   <script src="/static/js/create.js"></script>
   <script>
-    $(function(){
-      $("button").click(function(){
-          var target = $(this).attr("value");
-
-    
-          $(".filter div").each(function(){
-              $(this).animate({"opacity":0},100,function(){
-                  $(this).hide();
-    
-                  if($(this).hasClass(target) || target == "all"){
-                      $(this).show();
-                      $(this).animate({"opacity":1},100);
-                  }
-              });
-          });
-    
-      });
-    
-    })
 
     window.addEventListener = function() {
       geoFindMe();
