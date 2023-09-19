@@ -2,25 +2,6 @@
 {% block title %}首頁{% endblock %}
 {% block content %}
   <link rel="stylesheet" href="../static/css/index.css">
-  <!-- <style>
-    #hover{
-      position: relative;
-      margin: 0 auto;
-    }
-
-    #hover img {
-      position: absolute;
-      left: 0;
-      -webkit-transition: opacity 1s ease-in-out;
-      -moz-transition: opacity 1s ease-in-out;
-      -o-transition: opacity 1s ease-in-out;
-      transition: opacity 1s ease-in-out;
-    }
-    #hover img.top:hover {
-      opacity: 0;
-    }
-
-    </style> -->
 {% endblock %}
  
 
@@ -76,18 +57,18 @@
               </div>
             </div>
           {% endfor %}
-          <!-- 下面這兩個滑過去會變圖片 -->
+          <!-- 留下來的下面這兩個滑過去會變圖片 -->
           <div class="col-4 carousel_block">
             <div class="imgcontainer">
               <form action="/login" method="post">
                 <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
                 <input id="submitButton" type="submit" style="display: none;"><!-- 隐藏的提交按钮 -->
               </form>
-              <img src="../static/images/beitou.jpeg" class="img-responsive carimg1" alt="">
-              <!-- <div id="hover">
+              <!-- <img src="../static/images/beitou.jpeg" class="img-responsive carimg1" alt=""> -->
+              <div id="hover">
                 <img src="../static/images/beitou.jpeg" class="img-responsive bottom" alt="">
                 <img src="../static/images/Datong.jpeg" class="img-responsive top" alt="">
-              </div> -->
+              </div>
             </div>  
             <div class="group">
               <i class="fa-solid fa-plus add_icon"></i>
@@ -114,7 +95,11 @@
                 <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
                 <input id="submitButton" type="submit" style="display: none;" click><!-- 隐藏的提交按钮 -->
               </form>
-              <img src="../static/images/Daan.jpeg" class="img-responsive carimg2" alt="">
+              <!-- <img src="../static/images/Daan.jpeg" class="img-responsive carimg2" alt=""> -->
+              <div id="hover">
+                <img src="../static/images/Datong.jpeg" class="img-responsive bottom" alt="">
+                <img src="../static/images/beitou.jpeg" class="img-responsive top" alt="">
+              </div>
             </div>  
             <div class="group">
               <i class="fa-solid fa-plus add_icon"></i>
