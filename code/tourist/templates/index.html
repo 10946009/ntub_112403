@@ -190,9 +190,9 @@
       <div class="col-md-4 hot_spot_block hidemespot" style="padding: 5px;">
         <div class="heart_icon_img">
           <img src="../static/images/street.jpg" class="spot_img img-responsive" width="100%">
-          <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this,{{item.id}})" id="heart-icon"></i>
+          <!-- <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this,{{item.id}})" id="heart-icon"></i> -->
           <form action="/login" method="post">
-            <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
+            <label for="submitButton" class="fa-solid fa-heart heart_icon" onclick="toggleFavorite(this,{{item.id}})" id="heart_icon"></label>
             <input id="submitButton" type="submit" style="display: none;">
           </form>
         </div>
