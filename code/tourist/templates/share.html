@@ -8,14 +8,15 @@
 {% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> 主要影響toolbar的原因 {% endcomment %}
 {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> {% endcomment %}
 <style>
-  .location-wrap img {
-    object-fit: cover;
-    width: 350px; 
-    height: 300px;
-  }
-
   .location-wrap {
-    position: relative; 
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .location-wrap img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
   }
   .description {
     max-width: 100%;
@@ -30,15 +31,10 @@
 
 
   .delete-icon {
-    position: absolute;
-    top: 435px;  
-    right: 100px;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
     background-image: url('../static/images/trash-icon.png');
     background-size: cover;
     cursor: pointer;
+    margin-left: 10px;
   }
 
   .heart-icon {
@@ -59,6 +55,12 @@
 
   input[type="checkbox"] {
     display: none;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
   }
 </style>
 {% endblock %}
@@ -81,8 +83,10 @@
             <h4 class="card-title">阿亮</h4>
             <h5>0318台北平溪</h5>
             <p class="description">20230318去平溪玩水一天</p>
+            <div class = "container">
             <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
             <span class="delete-icon" style="color: black;"><i class="fas fa-trash-alt"></i></span>
+            </div>
           </div>
         </div>
       </div>
