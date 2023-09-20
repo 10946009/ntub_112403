@@ -565,9 +565,23 @@ def attraction_details(request):
     attractions_search_json = json.dumps(attractions_search)
 
     if request.method == "GET" and request.GET.get("search_text") != None:
-        query = request.GET.get("search_text")
-        search_list = list(Attractions.objects.filter(a_name__contains=query).values())
-        print(search_list)
+        search_list=[]
+        print(request.GET)
+        att_type = [request.GET.get("att_type[]")]
+        search_text = request.GET.get("search_text")
+        # 初始化一个Q对象，表示没有过滤条件
+        filter_condition = Q()
+        # 如果search_text不为空，添加a_name__contains查询条件
+        print(search_text,att_type)
+        if search_text:
+            filter_condition |= Q(a_name__contains=search_text)
+
+        # 如果att_type不为空，添加att_type__contains查询条件
+        if att_type:
+            filter_condition |= Q(att_type__contains=att_type)
+
+        search_list = list(Attractions.objects.filter(filter_condition)[:30].values())
+        print(len(search_list))
         html = render_to_string(
             template_name="attraction_details_search.html", 
             context={"search_list": search_list}
