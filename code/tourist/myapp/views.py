@@ -93,7 +93,11 @@ def logout(request):
 def login(request,code_result=None):
     result = 0
     message = ""
-
+    alert_msg=""
+    next="/"
+    if request.GET.get('next'):
+        next = request.GET.get('next')
+        alert_msg = "請先登入!"
     if request.method == "POST":
         code_result=request.POST["code_result"]
         print("code_result",code_result)
@@ -115,7 +119,7 @@ def login(request,code_result=None):
                     auth.login(request, user)
                     print(result)
                     # 重定向到其他頁面或執行其他操作
-                    return redirect("/")
+                    return redirect(next)
                 else:
                     # 驗證失敗，顯示錯誤信息
                     message = "帳號或密碼錯誤"
