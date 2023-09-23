@@ -1,130 +1,146 @@
+{% extends 'base.html' %}
+{% block title %}我的收藏{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="../static/css/favorite.css">
+<link rel="stylesheet" href="../static/css/bootstrap2023.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
+<style>
 
-    {% extends 'base.html' %}
-    {% block title %}我的收藏{% endblock %}
-    {% block content %}
-      <link rel="stylesheet" href="../static/css/favorite.css">
-      <link rel="stylesheet" href="../static/css/bootstrap2023.css">
-      <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
-      <style>
-       
-      </style>
-    {% endblock %}
+</style>
+{% endblock %}
 
-    {% block body %}
-    
-    <!-- Tabs navs -->
-    <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
-      role="tab" aria-controls="home" aria-selected="true" onclick="saveTabState('home')">最愛景點</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
-        role="tab" aria-controls="contact" aria-selected="false" onclick="saveTabState('contact')">最愛行程</button>
-      </li>
-    </ul>
+{% block body %}
 
-    <div class="tab-content" id="myTabContent" style="width: 80%;margin: 0 auto;">
-      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" style="display: flex;justify-content: center;align-items: center;align-content: center;">
-        <div class="cardContainer">
-          <div class="row" style="width: 90%;"> 
-            {% for item in favorite_list %} 
-              <div class="col-md-4 col-sm-6">
-                <div class="card">
-                  <div class="location-wrap text-center"> 
-                    <img src="/static/images/attractions/{{item.place_id}}_0.jpg" class="img-responsive custom-image" width="100%">
-                      <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this,{{item.id}})" id="heart-icon"></i>
-                  </div>
-                  <div class="card-body text-center">
-                    <h4 class="card-title">{{item.a_name}}</h4>
-                    <p>{{item.rating}}星 {{item.rating_total}}則評論</p>
-                  </div>
-                </div>
-              </div>
-            {% endfor %}
-            {% comment %} 
-            <div class="col-md-4 d-flex justify-content-center">
-              <div class="card">
-                <div class="location-wrap text-center"> 
-                  <img src="../static/images/Neihu.jpeg" class="img-responsive custom-image" width="100%">
-                  <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
-                </div>
-                <div class="card-body text-center">
-                  <h4 class="card-title">這是哪</h4>
-                  <p class="card-text">大型的室內外動物園，附近風景優美，設有兒童區、纜車和接駁車。</p>
-                </div>
-              </div>
-            </div> 
-            {% endcomment %}
+<!-- Tabs navs -->
+<ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab"
+      aria-controls="home" aria-selected="true" onclick="saveTabState('home')">最愛景點</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab"
+      aria-controls="contact" aria-selected="false" onclick="saveTabState('contact')">最愛行程</button>
+  </li>
+</ul>
+
+<div class="tab-content" id="myTabContent" style="width: 80%;margin: 0 auto;">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <div class="cardContainer">
+      <div class="row" style="width: 90%;">
+        {% for item in favorite_list %}
+        <div class="col-md-4 col-sm-6">
+          <div class="card">
+            <div class="location-wrap text-center">
+              <img src="/static/images/attractions/{{item.place_id}}_0.jpg" class="img-responsive custom-image"
+                width="100%">
+              <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this,{{item.id}})"
+                id="heart-icon"></i>
+            </div>
+            <div class="card-body text-center">
+              <h4 class="card-title">{{item.a_name}}</h4>
+              <p>{{item.rating}}星 {{item.rating_total}}則評論</p>
+            </div>
           </div>
         </div>
+        {% endfor %}
+        {% comment %}
+        <div class="col-md-4 d-flex justify-content-center">
+          <div class="card">
+            <div class="location-wrap text-center">
+              <img src="../static/images/Neihu.jpeg" class="img-responsive custom-image" width="100%">
+              <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
+            </div>
+            <div class="card-body text-center">
+              <h4 class="card-title">這是哪</h4>
+              <p class="card-text">大型的室內外動物園，附近風景優美，設有兒童區、纜車和接駁車。</p>
+            </div>
+          </div>
+        </div>
+        {% endcomment %}
       </div>
-    <!-- 最愛行程的Tab内容 -->
-    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-      <div class="container">
-        <div class="row justify-content-center"> 
-          <div class="col-md-4 d-flex justify-content-center">
-            <div class="card">
-              <div class="location-wrap text-center"> 
-                <img src="../static/images/pingxi.jpg" class="img-responsive custom-image">
-                <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
-              </div>
-              <div class="card-body text-center"> 
-                <h4 class="card-title">阿亮</h4>
-                <h5>0318台北平溪</h5>
-                <p class="description">20230318去平溪玩水一天</p>
-                <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
-              </div>
+    </div>
+  </div>
+  <!-- 最愛行程的Tab内容 -->
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+    <div class="container">
+      <div class="row" style="width: 90%;">
+        <div class="col-md-4 col-sm-6">
+          <div class="card">
+            <div class="location-wrap text-center">
+              <img src="../static/images/pingxi.jpg" class="img-responsive custom-image" width="100%">
+              <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
+            </div>
+            <div class="card-body text-center">
+              <h4 class="card-title">阿亮</h4>
+              <h5>0318台北平溪</h5>
+              <p class="description">20230318去平溪玩水一天</p>
+              <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
             </div>
           </div>
-          <div class="col-md-4 d-flex justify-content-center">
-            <div class="card">
-              <div class="location-wrap text-center"> 
-                <img src="../static/images/Daan.jpeg" class="img-responsive custom-image">
-                <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
-              </div>
-              <div class="card-body text-center"> 
-                <h4 class="card-title">小灣</h4>
-                <h5>0528台北大安</h5>
-                <p class="description">20230528大安自駕自由行</p>
-                <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
-              </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="card">
+            <div class="location-wrap text-center">
+              <img src="../static/images/Daan.jpeg" class="img-responsive custom-image" width="100%">
+              <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
+            </div>
+            <div class="card-body text-center">
+              <h4 class="card-title">小灣</h4>
+              <h5>0528台北大安</h5>
+              <p class="description">20230528大安自駕自由行</p>
+              <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
             </div>
           </div>
-          <div class="col-md-4 d-flex justify-content-center">
-            <div class="card">
-              <div class="location-wrap text-center"> 
-                <img src="../static/images/Datong.jpeg" class="img-responsive custom-image">
-                <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
-              </div>
-              <div class="card-body text-center"> 
-                <h4 class="card-title">奇美</h4>
-                <h5>0713大同區</h5>
-                <p class="description">20230713大同一日遊</p>
-                <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
-              </div>
+        </div>
+        <!-- <div class="col-md-4 col-sm-6">
+          <div class="card">
+            <div class="location-wrap text-center">
+              <img src="../static/images/Daan.jpeg" class="img-responsive custom-image" width="100%">
+              <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
+            </div>
+            <div class="card-body text-center">
+              <h4 class="card-title">小灣</h4>
+              <h5>0528台北大安</h5>
+              <p class="description">20230528大安自駕自由行</p>
+              <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
+            </div>
+          </div>
+        </div> -->
+        <div class="col-md-4 col-sm-6">
+          <div class="card">
+            <div class="location-wrap text-center">
+              <img src="../static/images/Datong.jpeg" class="img-responsive custom-image" width="100%">
+              <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
+            </div>
+            <div class="card-body text-center">
+              <h4 class="card-title">奇美</h4>
+              <h5>0713大同區</h5>
+              <p class="description">20230713大同一日遊</p>
+              <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <script>
-      function toggleFavorite(heartIcon,a_id) {
-        /*if (heartIcon.style.color === "red") {
-          heartIcon.style.color = "gray";
-        } else {
-          heartIcon.style.color = "red";
-        }*/
-        var csrftoken = "{{ csrf_token }}";
-        ans = window.confirm('您確定要移除此景點嗎?');
-            if (ans == true) {
-              console.log("成功");
-              window.location.href = `/del_favorite/${a_id}`;
-            } else {
-              console.log("取消");
-            }
-        
+  </div>
+  <script>
+    function toggleFavorite(heartIcon, a_id) {
+      /*if (heartIcon.style.color === "red") {
+        heartIcon.style.color = "gray";
+      } else {
+        heartIcon.style.color = "red";
+      }*/
+      var csrftoken = "{{ csrf_token }}";
+      ans = window.confirm('您確定要移除此景點嗎?');
+      if (ans == true) {
+        console.log("成功");
+        window.location.href = `/del_favorite/${a_id}`;
+      } else {
+        console.log("取消");
       }
-    </script>
-      {% comment %} <script src="/static/js/favorite.js"></script> {% endcomment %}
-    {% endblock body %}
+
+    }
+  </script>
+  {% comment %}
+  <script src="/static/js/favorite.js"></script> {% endcomment %}
+  {% endblock body %}
