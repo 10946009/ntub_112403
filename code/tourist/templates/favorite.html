@@ -6,55 +6,7 @@
       <link rel="stylesheet" href="../static/css/bootstrap2023.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
       <style>
-       .location-heart {
-          position: absolute;
-          top: 0;
-          right: 0;
-          background-color: #fff;
-          border-radius: 50%;
-          padding: 9px;
-          color: red;
-          margin: 10px;
-          font-size: large;
-          cursor: pointer;
-        }
-        .description {
-        max-width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-        margin-bottom: 10px;
-        white-space: normal;
-      }
-      .tight-row {
-      margin-left: 200px;
-      margin-right: 200px;
-      }
-      .container {
-    text-align: center;
-    padding: 10px; 
-      }
-      .col-md-4 {
-  margin-bottom: 15px
-}
-      .img {
-    max-width: 100%;
-  }
-  .location-wrap {
-  width: 350px;
-  height: 200px;
-  overflow: hidden;
-  position: relative;
-}
-
-.location-wrap img {
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
+       
       </style>
     {% endblock %}
 
@@ -76,7 +28,7 @@
       <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
         <div class="cardContainer">
           <div class="row tight-row justify-content-center"> 
-            {% for item in favorite_list %}
+            {% for item in favorite_list %} 
               <div class="col-md-4 d-flex justify-content-center">
                 <div class="card">
                   <div class="location-wrap text-center"> 

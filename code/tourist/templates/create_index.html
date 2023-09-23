@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}建立行程{% endblock %}
-{% block content %}<link rel="stylesheet" href="../static/css/create.css">{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="../static/css/create.css">
+{% endblock %}
 <script>
   // 检查用户是否已登录
   if (!{{ user.is_authenticated }}) {
@@ -31,6 +33,5 @@
 {% endblock body %}
 {% block content_script %}
   <script src="../static/js/create.js"></script>
-  <script></script>
 {% endblock %}
 </html>

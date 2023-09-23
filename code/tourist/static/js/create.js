@@ -9,23 +9,24 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-$(function(){
-  $("button").click(function(){
-      var target = $(this).attr("value");
+//篩選
+// $(function(){
+//   $("button").click(function(){
+//       var target = $(this).attr("value");
 
 
-      $(".filter div").each(function(){
-          $(this).animate({"opacity":0},300,function(){
-              $(this).hide();
+//       $(".filter div").each(function(){
+//           $(this).animate({"opacity":0},300,function(){
+//               $(this).hide();
 
-              if($(this).hasClass(target) || target == "all"){
-                  $(this).show();
-                  $(this).animate({"opacity":1},300);
-              }
-          });
-      });
-  });
-})
+//               if($(this).hasClass(target) || target == "all"){
+//                   $(this).show();
+//                   $(this).animate({"opacity":1},300);
+//               }
+//           });
+//       });
+//   });
+// })
 
 
 var heart = document.getElementsByClassName('heart_icon');
@@ -37,7 +38,7 @@ var heart = document.getElementsByClassName('heart_icon');
             heart[i].onclick = function(){
                 if(flag){
                     flag = false;//無收藏被點擊
-                    this.className = "fa-solid fa-heart heart_icon active";
+                    this.className = "fa-solid fa-heart heart_icon heart_active";
                     // ++span[i].innerHTML;
                 }else{
                     flag = true//點擊取消收藏

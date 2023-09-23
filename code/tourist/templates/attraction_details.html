@@ -166,7 +166,7 @@
 
 <!-- 景點主題 -->
 <div id="show_filiter" style="display: none;">
-    <form class="modal-content" method="post" style="border-radius: 10px;" action="{% url 'serach_results_att_type' %}">
+    <div class="modal-content" method="post" style="border-radius: 10px;">
         {% csrf_token %}
         <div class="att_form">
             <span onclick="document.getElementById('show_filiter').style.display='none'" class="close"
@@ -189,7 +189,7 @@
             </div>
 
         </div>
-    </form>
+    </div>
 </div>
 
 <!-- 條件篩選 -->
@@ -235,7 +235,7 @@
 </div>
 
 <div class="row">
-    <p>根據<span id="type_key_word">123</span>的結果搜尋出：</p>
+    <p>根據<span id="type_key_word"></span>的結果搜尋出：</p>
 </div>
 
 
@@ -702,7 +702,12 @@
             submit_btn.value = this.dataset.set;
         });
     }
-
+    submit_btn.addEventListener("click", function () {
+        console.log('hello');
+        var search_type_key_word = document.getElementById('type_key_word');
+        console.log(search_type_key_word.textContent);
+        searchText(search_type_key_word.textContent);
+    });
     var header = document.getElementById("filiter_search1");//條件篩選裡面按鈕active（固定）
     var btns = header.getElementsByClassName("more_btn");
 
@@ -772,12 +777,20 @@
         }
     });
     function searchText(search_text) {
+        console.log(search_text);
         var search_type_key_word = document.getElementById('type_key_word');
+        var att_type_list = document.getElementsByClassName('more_btn active');
+        var att_type = [];
+        for(var i=0;i<att_type_list.length;i++){
+            att_type.push(att_type_list[i].getAttribute('data-set'));
+        }
+        console.log(att_type);
         $.ajax({
             url: '',  // 伺服器端的 URL
             type: 'GET',  // 請求類型為 GET
             data: {
-                search_text: search_text  // 傳遞給伺服器的參數，以 a_id 為名
+                search_text: search_text,  // 傳遞給伺服器的參數，以 a_id 為名
+                att_type: att_type
             },
             success: function (response) {
                 

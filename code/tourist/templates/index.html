@@ -30,12 +30,12 @@
           {% for item in i %}
             <div class="col-4 carousel_block">
               <div class="imgcontainer">
-                {% if item.is_favorite == "1" %} 
-                  <button class="fa-solid fa-heart heart_icon active_heart"data-isfavorite="{{item.is_favorite}}" data-aid="{{item.id}}" style="border:none;"></button>
-                {% else %}
-                  <button class="fa-solid fa-heart heart_icon"data-isfavorite="{{item.is_favorite}}" data-aid="{{item.id}}" style="border:none;"></button>
-                {% endif %}
                 <img src="/static/images/attractions/{{item.place_id}}_0.jpg" class="img-responsive" alt="">
+                {% if item.is_favorite == "1" %} 
+                  <button class="fa-solid fa-heart heart_icon active_heart"data-isfavorite="{{item.is_favorite}}" data-aid="{{item.id}}"></button>
+                {% else %}
+                  <button class="fa-solid fa-heart heart_icon"data-isfavorite="{{item.is_favorite}}" data-aid="{{item.id}}"></button>
+                {% endif %}
               </div> 
               <div class="group">
                 <i class="fa-solid fa-plus add_icon"></i>
@@ -57,14 +57,18 @@
               </div>
             </div>
           {% endfor %}
-          <!-- 下面這兩個滑過去會變圖片 -->
+          <!-- 留下來的下面這兩個滑過去會變圖片 -->
           <div class="col-4 carousel_block">
             <div class="imgcontainer">
+              <!-- <img src="../static/images/beitou.jpeg" class="img-responsive carimg1" alt=""> -->
+              <div id="hover">
+                <img src="../static/images/beitou.jpeg" class="img-responsive bottom" alt="">
+                <img src="../static/images/Datong.jpeg" class="img-responsive top" alt="">
+              </div>
               <form action="/login" method="post">
                 <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
                 <input id="submitButton" type="submit" style="display: none;"><!-- 隐藏的提交按钮 -->
               </form>
-              <img src="../static/images/beitou.jpeg" class="img-responsive carimg1" alt="">
             </div>  
             <div class="group">
               <i class="fa-solid fa-plus add_icon"></i>
@@ -91,7 +95,11 @@
                 <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
                 <input id="submitButton" type="submit" style="display: none;" click><!-- 隐藏的提交按钮 -->
               </form>
-              <img src="../static/images/Daan.jpeg" class="img-responsive carimg2" alt="">
+              <!-- <img src="../static/images/Daan.jpeg" class="img-responsive carimg2" alt=""> -->
+              <div id="hover">
+                <img src="../static/images/Datong.jpeg" class="img-responsive bottom" alt="">
+                <img src="../static/images/beitou.jpeg" class="img-responsive top" alt="">
+              </div>
             </div>  
             <div class="group">
               <i class="fa-solid fa-plus add_icon"></i>
@@ -182,9 +190,9 @@
       <div class="col-md-4 hot_spot_block hidemespot" style="padding: 5px;">
         <div class="heart_icon_img">
           <img src="../static/images/street.jpg" class="spot_img img-responsive" width="100%">
-          <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this,{{item.id}})" id="heart-icon"></i>
+          <!-- <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this,{{item.id}})" id="heart-icon"></i> -->
           <form action="/login" method="post">
-            <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
+            <label for="submitButton" class="fa-solid fa-heart heart_icon" onclick="toggleFavorite(this,{{item.id}})" id="heart_icon"></label>
             <input id="submitButton" type="submit" style="display: none;">
           </form>
         </div>

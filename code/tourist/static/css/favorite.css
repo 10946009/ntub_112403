@@ -5,14 +5,15 @@
   flex-wrap: wrap;
   gap: 20px;
 }
-  .card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    border: 2px solid;
-    width: 350px;
-  }
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  border: 2px solid;
+  width: 350px;
+  max-width: 100%; /* 添加這一行 */
+}
   .card img {
     max-width: 100%;
     height: auto;
@@ -27,6 +28,51 @@
   .zoomIn {
     animation: zoomIn 0.3s ease-in-out;
   }
+  .location-heart {
+    position: absolute;
+    top: 10px; 
+    right: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 9px;
+    color: red;
+    font-size: large;
+    cursor: pointer;
+  }
+  .description {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  margin-bottom: 10px;
+  white-space: normal;
+}
+.tight-row {
+margin-left: 200px;
+margin-right: 200px;
+}
+.container {
+text-align: center;
+padding: 10px; 
+}
+.col-md-4 {
+margin-bottom: 15px
+}
+.img {
+max-width: 100%;
+}
+.location-wrap {
+  overflow: hidden;
+  position: relative;
+}
+
+.location-wrap img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
   @keyframes zoomIn {
     from {
       transform: scale(1);

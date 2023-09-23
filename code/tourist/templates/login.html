@@ -83,6 +83,19 @@
         </div>
     </div>
     <div>&nbsp;</div>
+
+    <script>
+        var alertMsg = "{{alert_msg}}"
+        document.addEventListener("DOMContentLoaded", function() {
+            // 检查 alertMsg 的值并执行操作
+            if (alertMsg === "請先登入!") {
+                alert(alertMsg);  // 如果 alertMsg 的值为 "請先登入!"，则弹出提示框
+            }
+
+            // 在这里可以包含其他 JavaScript 代码
+        });
+    </script>
+
     <script>
         //密碼可見性
         const togglePassword = document.getElementById('show_pwd');

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import myapp.views as views
-
+import myapp.viewsConst as viewsConst
 # from myapp.views import sayhello,get_all_taiwan,opentime #新增
 
 urlpatterns = [
