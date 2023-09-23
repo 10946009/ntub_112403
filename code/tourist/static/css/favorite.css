@@ -5,41 +5,61 @@
   flex-wrap: wrap;
   gap: 20px;
 }
+
 .card {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0;
   border: 2px solid;
-  width: 350px;
-  max-width: 100%; /* 添加這一行 */
+  /* width: 350px; */
+  max-width: 100%;
+  /* 添加這一行 */
 }
-  .card img {
-    max-width: 100%;
-    height: auto;
-  }
+
+.card img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 隐藏非活动选项卡的内容 */
+.tab-pane {
+  display: none;
+  height: 0;
+  overflow: hidden;
+}
+
+/* 显示活动选项卡的内容 */
+.tab-pane.active {
+  display: block;
+  height: auto;
+}
 .location-heart.active {
   color: red;
 }
+
 .my-nav-tabs .nav-link {
-   margin-right: 100px;
-   margin-left: 100px;
-  }
-  .zoomIn {
-    animation: zoomIn 0.3s ease-in-out;
-  }
-  .location-heart {
-    position: absolute;
-    top: 10px; 
-    right: 10px;
-    background-color: #fff;
-    border-radius: 50%;
-    padding: 9px;
-    color: red;
-    font-size: large;
-    cursor: pointer;
-  }
-  .description {
+  margin-right: 100px;
+  margin-left: 100px;
+}
+
+.zoomIn {
+  animation: zoomIn 0.3s ease-in-out;
+}
+
+.location-heart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 9px;
+  color: red;
+  font-size: large;
+  cursor: pointer;
+}
+
+.description {
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -49,20 +69,25 @@
   margin-bottom: 10px;
   white-space: normal;
 }
+
 .tight-row {
-margin-left: 200px;
-margin-right: 200px;
+  margin-left: 200px;
+  margin-right: 200px;
 }
+
 .container {
-text-align: center;
-padding: 10px; 
+  text-align: center;
+  padding: 10px;
 }
+
 .col-md-4 {
-margin-bottom: 15px
+  margin-bottom: 15px
 }
+
 .img {
-max-width: 100%;
+  max-width: 100%;
 }
+
 .location-wrap {
   overflow: hidden;
   position: relative;
@@ -73,25 +98,29 @@ max-width: 100%;
   height: auto;
   object-fit: cover;
 }
-  @keyframes zoomIn {
-    from {
-      transform: scale(1);
-    }
-    to {
-      transform: scale(1.3);
-    }
+
+@keyframes zoomIn {
+  from {
+    transform: scale(1);
   }
 
-  @media screen and (min-width: 769px) {
-    .card {
+  to {
+    transform: scale(1.3);
+  }
+}
+
+@media screen and (min-width: 769px) {
+  /* .card {
       max-width: 350px;
-    }
+    } */
+}
+
+@media screen and (max-width: 576px) {
+  .card {
+    width: 100%;
   }
-  @media screen and (max-width: 576px) {
-    .card {
-      width: 100%;
-    }
-    .cardContainer {
-      width: 100%;
-    }
+
+  .cardContainer {
+    width: 100%;
   }
+}
