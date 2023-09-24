@@ -1,17 +1,22 @@
 {% extends 'base.html' %}
 {% block title %}景點資訊{% endblock %}
 {% block content %}
-{% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+{% comment %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" /> {% endcomment %}
 <link rel="stylesheet" href="../static/css/att.css">
 <link rel="stylesheet" href="../static/css/comment.css">
 <link rel="stylesheet" href="/lib/w3.css">
-{% comment %} <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> 主要影響toolbar的原因 {% endcomment %}
-{% comment %} <script src="../static/js/jquery-3.7.0.min.js"></script> {% endcomment %}
+{% comment %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> 主要影響toolbar的原因 {%
+endcomment %}
+{% comment %}
+<script src="../static/js/jquery-3.7.0.min.js"></script> {% endcomment %}
 <script src="../static/js/bootstrap.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-{% comment %} <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> {% endcomment %}
+{% comment %}
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> {% endcomment %}
 {% endblock %}
 
 {% block body %}
@@ -454,6 +459,12 @@
                             </h5>
                             <h6 style="margin-left: 20px; color: #707070;">問：春節有開嗎？</h6>
                             <h6 style="margin-left: 20px; color: #707070;">答：有初一早上9點開，其他時間8點半。</h6>
+                            <h6 style="margin-left: 20px; color: #707070;">問：春節有開嗎？</h6>
+                            <h6 style="margin-left: 20px; color: #707070;">答：有初一早上9點開，其他時間8點半。</h6>
+                            <h6 style="margin-left: 20px; color: #707070;">問：春節有開嗎？</h6>
+                            <h6 style="margin-left: 20px; color: #707070;">答：有初一早上9點開，其他時間8點半。</h6>
+                            <h6 style="margin-left: 20px; color: #707070;">問：春節有開嗎？</h6>
+                            <h6 style="margin-left: 20px; color: #707070;">答：有初一早上9點開，其他時間8點半。</h6>
                             <h6 style="margin-left: 20px; color:#a8a8a8">更多...</h6>
                             <button style="border-radius: 8px;"><i class="fa-solid fa-message"
                                     style="margin-right: 5px;"></i>我要發問</button>
@@ -694,8 +705,8 @@
     var submit_btn = document.getElementById("sure_att_type");
     for (var i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", function () {
-            var current =  document.querySelectorAll(".more_btn.active");
-            if (current != null && current.length > 0){
+            var current = document.querySelectorAll(".more_btn.active");
+            if (current != null && current.length > 0) {
                 current[0].className = current[0].className.replace(" active", "");
             };
             this.className += " active";
@@ -781,7 +792,7 @@
         var search_type_key_word = document.getElementById('type_key_word');
         var att_type_list = document.getElementsByClassName('more_btn active');
         var att_type = [];
-        for(var i=0;i<att_type_list.length;i++){
+        for (var i = 0; i < att_type_list.length; i++) {
             att_type.push(att_type_list[i].getAttribute('data-set'));
         }
         console.log(att_type);
@@ -793,10 +804,10 @@
                 att_type: att_type
             },
             success: function (response) {
-                
+
                 const search_detail_div = $('#replaceable-content');
                 search_detail_div.html(response['keyword_search_list']);
-                search_type_key_word.textContent =search_text;
+                search_type_key_word.textContent = search_text;
             },
             error: function (xhr, status, error) {
                 // 請求失敗時的處理
@@ -1016,6 +1027,6 @@
             console.log(attractionsDetailName);
         }
     }); {% endcomment %}
-    
+
 </script>
 {% endblock body %}
