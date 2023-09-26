@@ -27,16 +27,53 @@
 
           <div class="row">
 
-          {% for item in i %}
-            <div class="col-4 carousel_block">
+            {% for item in i %}
+              <div class="col-4 carousel_block">
+                <div class="imgcontainer">
+                  <div id="hover">
+                    {% comment %} 將下方的bottom修改為想切換的圖片 {% endcomment %}
+                    <img src="../static/images/beitou.jpeg" class="img-responsive bottom" alt=""> 
+                    <img src="/static/images/attractions/{{item.place_id}}_0.jpg" class="img-responsive top" alt="">
+                  </div>
+                  {% if item.is_favorite == "1" %} 
+                    <button class="fa-solid fa-heart heart_icon active_heart"data-isfavorite="{{item.is_favorite}}" data-aid="{{item.id}}"></button>
+                  {% else %}
+                    <button class="fa-solid fa-heart heart_icon"data-isfavorite="{{item.is_favorite}}" data-aid="{{item.id}}"></button>
+                  {% endif %}
+                </div> 
+                <div class="group">
+                  <i class="fa-solid fa-plus add_icon"></i>
+                  <div class="dropdown_menu" >
+                    <div><a class="dropdown_item" href="#">新增行程</a></div>
+                    <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
+                    <div><a class="dropdown_item" href="#">開車一日遊</a></div>
+                  </div>
+                </div> 
+                <div class="carousel_txt">
+                  <h4 class="c_title">
+                    {{item.a_name}}
+                  </h4>
+                  <p class="c_txt">
+                    地址：{{item.address}}
+                    <br>
+                    評分：{{item.rating}}星
+                  </p>
+                </div>
+              </div>
+            {% endfor %}
+            <!-- 留下來的下面這兩個滑過去會變圖片 -->
+            {% comment %} <div class="col-4 carousel_block">
               <div class="imgcontainer">
-                <img src="/static/images/attractions/{{item.place_id}}_0.jpg" class="img-responsive" alt="">
-                {% if item.is_favorite == "1" %} 
-                  <button class="fa-solid fa-heart heart_icon active_heart"data-isfavorite="{{item.is_favorite}}" data-aid="{{item.id}}"></button>
-                {% else %}
-                  <button class="fa-solid fa-heart heart_icon"data-isfavorite="{{item.is_favorite}}" data-aid="{{item.id}}"></button>
-                {% endif %}
-              </div> 
+                <!-- <img src="../static/images/beitou.jpeg" class="img-responsive carimg1" alt=""> -->
+                <div id="hover">
+                  <img src="../static/images/beitou.jpeg" class="img-responsive bottom" alt="">
+                  <img src="../static/images/Datong.jpeg" class="img-responsive top" alt="">
+                </div>
+                <form action="/login" method="post">
+                  <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
+                  <input id="submitButton" type="submit" style="display: none;"><!-- 隐藏的提交按钮 -->
+                </form>
+              </div>  
               <div class="group">
                 <i class="fa-solid fa-plus add_icon"></i>
                 <div class="dropdown_menu" >
@@ -47,80 +84,47 @@
               </div> 
               <div class="carousel_txt">
                 <h4 class="c_title">
-                  {{item.a_name}}
+                  中正紀念堂
                 </h4>
                 <p class="c_txt">
-                  地址：{{item.address}}
+                  位於台北市中正區....
                   <br>
-                  評分：{{item.rating}}星
+                  建議停留時間：大約1小時?
                 </p>
               </div>
             </div>
-          {% endfor %}
-          <!-- 留下來的下面這兩個滑過去會變圖片 -->
-          <div class="col-4 carousel_block">
-            <div class="imgcontainer">
-              <!-- <img src="../static/images/beitou.jpeg" class="img-responsive carimg1" alt=""> -->
-              <div id="hover">
-                <img src="../static/images/beitou.jpeg" class="img-responsive bottom" alt="">
-                <img src="../static/images/Datong.jpeg" class="img-responsive top" alt="">
-              </div>
-              <form action="/login" method="post">
-                <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
-                <input id="submitButton" type="submit" style="display: none;"><!-- 隐藏的提交按钮 -->
-              </form>
-            </div>  
-            <div class="group">
-              <i class="fa-solid fa-plus add_icon"></i>
-              <div class="dropdown_menu" >
-                <div><a class="dropdown_item" href="#">新增行程</a></div>
-                <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
-                <div><a class="dropdown_item" href="#">開車一日遊</a></div>
-              </div>
-            </div> 
-            <div class="carousel_txt">
-              <h4 class="c_title">
-                中正紀念堂
-              </h4>
-              <p class="c_txt">
-                位於台北市中正區....
-                <br>
-                建議停留時間：大約1小時?
-              </p>
-            </div>
+            <div class="col-4 carousel_block">
+              <div class="imgcontainer">
+                <form action="/login" method="post">
+                  <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
+                  <input id="submitButton" type="submit" style="display: none;" click><!-- 隐藏的提交按钮 -->
+                </form>
+                <!-- <img src="../static/images/Daan.jpeg" class="img-responsive carimg2" alt=""> -->
+                <div id="hover">
+                  <img src="../static/images/Datong.jpeg" class="img-responsive bottom" alt="">
+                  <img src="../static/images/beitou.jpeg" class="img-responsive top" alt="">
+                </div>
+              </div>  
+              <div class="group">
+                <i class="fa-solid fa-plus add_icon"></i>
+                <div class="dropdown_menu" >
+                  <div><a class="dropdown_item" href="#">新增行程</a></div>
+                  <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
+                  <div><a class="dropdown_item" href="#">開車一日遊</a></div>
+                </div>
+              </div> 
+              <div class="carousel_txt">
+                <h4 class="c_title">
+                  中正紀念堂123
+                </h4>
+                <p class="c_txt">
+                  位於台北市中正區....
+                  <br>
+                  建議停留時間：大約1小時?
+                </p>
+              </div> 
+            </div>{% endcomment %}
           </div>
-          <div class="col-4 carousel_block">
-            <div class="imgcontainer">
-              <form action="/login" method="post">
-                <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
-                <input id="submitButton" type="submit" style="display: none;" click><!-- 隐藏的提交按钮 -->
-              </form>
-              <!-- <img src="../static/images/Daan.jpeg" class="img-responsive carimg2" alt=""> -->
-              <div id="hover">
-                <img src="../static/images/Datong.jpeg" class="img-responsive bottom" alt="">
-                <img src="../static/images/beitou.jpeg" class="img-responsive top" alt="">
-              </div>
-            </div>  
-            <div class="group">
-              <i class="fa-solid fa-plus add_icon"></i>
-              <div class="dropdown_menu" >
-                <div><a class="dropdown_item" href="#">新增行程</a></div>
-                <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
-                <div><a class="dropdown_item" href="#">開車一日遊</a></div>
-              </div>
-            </div> 
-            <div class="carousel_txt">
-              <h4 class="c_title">
-                中正紀念堂123
-              </h4>
-              <p class="c_txt">
-                位於台北市中正區....
-                <br>
-                建議停留時間：大約1小時?
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
       {% endfor %}
       {% comment %} 
