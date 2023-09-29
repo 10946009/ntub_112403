@@ -32,57 +32,136 @@
           <div class="row createdata" style="width: 80%;">
             <div class="col-md-6 tabc_txt">
               行程名稱：{{ name }}
-              {% comment %} <input type="text" class="input_txt" ng-model="travName"  style="width: 180px" value="{{ name }}"> {% endcomment %}
             </div>
             <div class="col-md-6 tabc_txt">
               出發日期：{{ start_day }}
-              {% comment %} <input type="date" class="input_txt" value="{{ start_day }}"> {% endcomment %}
             </div>
-            {% comment %} 
-            <div class="col-md-4 tabc_txt">
-              結束日期：
-              <input type="date" class="input_txt" value="2023-05-26">
-            </div> 
-            {% endcomment %}
           </div>
         </form>
       </div>
-      <div class="row">
-        <div style="display: flex;justify-content: center;align-items: center;align-content: center;">
-          <ul class="nav nav-underline">
-            <li class="nav-item">
-              <a class="create-nav-link createday active" aria-current="page" href="#">第一天</a>
+      <div class="" style="display: flex;justify-content: center;align-items: center;align-content: center;">
+        <div class="childtabdiv" style="width: 90%;">
+          <ul class="nav nav-underline flex justify-content-center my-nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="create-child-nav-link createday active" aria-current="page" id="child1-tab"
+                data-bs-toggle="tab" data-bs-target="#child1" type="button" role="tab"
+                aria-controls="child1" aria-selected="true" onclick="saveTabState('child1')">
+                第一天
+              </a>
             </li>
-            <li class="nav-item">
-              <a class="create-nav-link createday" href="#">第二天</a>
+            <li class="nav-item" role="presentation">
+              <a class="create-child-nav-link createday" id="child2-tab"
+                data-bs-toggle="tab" data-bs-target="#child2" type="button" role="tab"
+                aria-controls="child2" aria-selected="false" onclick="saveTabState('child2')">
+                第二天
+              </a>
             </li>
-            <li class="nav-item">
-              <a class="create-nav-link createday" href="#">第三天</a>
+            <li class="nav-item" role="presentation">
+              <a class="create-child-nav-link createday" id="child3-tab"
+                data-bs-toggle="tab" data-bs-target="#child3" type="button" role="tab"
+                aria-controls="child3" aria-selected="false" onclick="saveTabState('child3')">
+                第三天
+              </a>
             </li>
           </ul>
-        </div>
-        <div class="row" style="margin-top: 10px;">
-          <div class="col-md-4 div_day" style="background-color: #fffdc8;">
-            <div class="row">
-              <div class="div_day " style="text-align: center;">
-                <div class="tabD">
-                  <span ng-bind="travName"></span>
-                </div>
-                {% comment %} <button id="addDay">+一天</button> {% endcomment %}
-                {% comment %} <button class="tab_day">第{{ day }}天</button> {% endcomment %}
-                <div class="tabD" id="addDaydiv">
-                  {% for day in travelday %}
-                    <span class="tab_day" onclick="clickDay({{day}})">第{{ day }}天</span>
-                    <p></p>
-                  {% endfor %}
-                </div>
-                <div class=" tabc_txt">
-                  <span class="save" id="saveDays">儲存</span>
+          <div class="tab-child1" id="myTabchild1" style="margin: 10px auto;display: flex;align-items: center;align-content: center;">
+            <!-- <div class="col-md-4 div_day" style="background-color: #fffdc8;">
+              <div class="row">
+                <div class="div_day " style="text-align: center;">
+                  <div class="tabD">
+                    <span ng-bind="travName"></span>
+                  </div>
+                  <div class="tabD" id="addDaydiv">
+                    {% for day in travelday %}
+                      <span class="tab_day" onclick="clickDay({{day}})">第{{ day }}天</span>
+                      <p></p>
+                    {% endfor %}
+                  </div>
+                  <div class=" tabc_txt">
+                    <span class="save" id="saveDays">儲存</span>
+                  </div>
                 </div>
               </div>
+            </div> -->
+            <div class="tab-pane fade show active" id="child1" role="tabpanel" 
+              aria-labelledby="child1-tab" style="width: 90%;background-color: #eee;padding: 10px;margin: 0 auto;">
+              <form action="#tab_c" style="color: black;">
+                <div>
+                  <div class="tabD">
+                    <span id="tabDT">請輸入出發時間：</span>
+                    <input type="time" name="nowtime" id="nowtime" value="09:00">
+                  </div>
+                  <div class="tabD">
+                    <span id="tabDL">使用者位置：</span>
+                    <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation">
+                    <input type="hidden" placeholder="day" class="nowday" id="nowday">
+                  </div>
+                </div>
+              </form>
+              <div id="OrderAttractions">
+                {% for attractions in ct_attractions_list %}
+                
+                {% endfor %}
+                <!-- <span class="create_txt" >第</span>
+                  <button style="border: none;">+</button> -->
+                <!--我在JS~~~~~~~~~~~
+                  <div class="spot" id="spot1">
+                    國父紀念館
+                    <p>位在台北市XX區</p>
+                    <p>
+                      目前人潮流量：適中
+                      <br>
+                      營業時間：09:00-18:00
+                      <br>
+                      建議停留時間：1小時
+                    </p>
+                  </div>
+                -->
+              </div>
+              <div id="RemainderAttractions"></div>
             </div>
           </div>
-          <div class="col-md-8" style="background-color: #eee;">
+          <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab"
+            style="width: 90%;background-color: #333;padding: 10px;margin: 0 auto;">
+            <!-- 測試測試測試測試測試測試測試測試 -->
+            <form action="#tab_c" style="color: black;">
+              <div>
+                <div class="tabD">
+                  <span id="tabDT">請輸入出發時間：</span>
+                  <input type="time" name="nowtime" id="nowtime" value="09:00">
+                </div>
+                <div class="tabD">
+                  <span id="tabDL">使用者位置：</span>
+                  <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation">
+                  <input type="hidden" placeholder="day" class="nowday" id="nowday">
+                </div>
+              </div>
+            </form>
+            <div id="OrderAttractions">
+              {% for attractions in ct_attractions_list %}
+              
+              {% endfor %}
+              <!-- <span class="create_txt" >第</span>
+                <button style="border: none;">+</button> -->
+              <!--我在JS~~~~~~~~~~~
+                <div class="spot" id="spot1">
+                  國父紀念館
+                  <p>位在台北市XX區</p>
+                  <p>
+                    目前人潮流量：適中
+                    <br>
+                    營業時間：09:00-18:00
+                    <br>
+                    建議停留時間：1小時
+                  </p>
+                </div>
+              -->
+            </div>
+            <div id="RemainderAttractions"></div>
+          </div>
+          <div class="tab-pane fade" id="child3" role="tabpanel" aria-labelledby="child3-tab"
+            style="width: 90%;background-color: #ccc;padding: 10px;margin: 0 auto;">
+            <!-- 測試測試測試測試測試測試測試測試 -->
             <form action="#tab_c" style="color: black;">
               <div>
                 <div class="tabD">

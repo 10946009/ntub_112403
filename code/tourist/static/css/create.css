@@ -60,6 +60,15 @@
     background-color: #0022ff;
 }
 /* create的 */
+.tab-pane {
+    display: none;
+    height: 0;
+    overflow: hidden;
+}
+.tab-pane.active {
+    display: block;
+    height: auto;
+}
 main{
     margin: 0 auto;
     width: 95%;
@@ -68,7 +77,7 @@ main{
 }
 .tab_div{
     padding: 10px;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 .tabtitle{
     margin-top: 15px;
@@ -102,6 +111,7 @@ main{
 	animation: heart 0.5s linear;
     font-weight: bolder;
 }
+/* 天數的 */
 .createday{
     text-decoration: none;
     color: #000;
@@ -116,6 +126,21 @@ main{
 .createdata{
     margin: 0 auto;
 }
+.create-child-nav-link{
+    background-color: rgba(255, 255, 255, 0);
+    border: 0px solid rgba(255, 255, 255, 0);
+    transition: border 0.5s;
+    text-shadow: 3px 2px 4px #333;
+    font-size: 20px;
+}
+.create-child-nav-link:hover{
+    border-bottom: 1px solid #5f5f5f;
+}
+.input_txt{
+    width: 200px;
+}
+
+/* 收藏CSS */
 .favoritedata{
     color: #000;
 }
@@ -282,7 +307,10 @@ main{
 
 @media(max-width: 768px){
     main{
-        margin-top: 10%;
+        margin-top: 5%;
+    }
+    .tabtitle{
+        margin-top: 10px;
     }
     .tab_a{
         font-size: 20px;
@@ -293,9 +321,6 @@ main{
     .block{
         height: 500px;
         width: 400px;
-    }
-    main{
-        margin-top: 15%;
     }
     .tab_a{
         font-size: 18px;
@@ -310,9 +335,6 @@ main{
     }
 }
 @media(max-width: 376px){
-    main{
-        margin-top: 15%;
-    }
     .tab_a{
         font-size: 14px;
     }
