@@ -15,8 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-import myapp.views as views
-import myapp.viewsConst as viewsConst
+from myapp import old_views as old_views
+from myapp.views import (
+    index,
+    login,
+    forget_pwd,
+    register,
+    create_index,
+    create,
+    history,
+    favorite,
+    attraction_details,
+)
+
+
 # from myapp.views import sayhello,get_all_taiwan,opentime #新增
 
 urlpatterns = [
@@ -28,27 +40,31 @@ urlpatterns = [
     # path('admin_login/',views.admin_login),
     # path('admin_manageuser/',views.admin_manageuser),
     # path('admin_comment/',views.admin_comment),
-    path("", views.index),
-    path("login/", views.login),
-    path("logout/", views.logout),
-    path("forget_passwd/", views.forget_passwd, name="forget_passwd"),
-    path("reset_passwd/", views.reset_passwd, name="reset_passwd"),
-    path("register/", views.register),
-    path("register_verification/<str:token>/", views.register_verification),
-    path("search/", views.search),
-    path("createindex/", views.create_index),
+    path("", index.index),
+    path("login/", login.login),
+    path("logout/", login.logout),
+    path("forget_passwd/", forget_pwd.forget_passwd, name="forget_passwd"),
+    path("reset_passwd/", forget_pwd.reset_passwd, name="reset_passwd"),
+    path("register/", register.register),
+    path("register_verification/<str:token>/", register.register_verification),
+    path("search/", old_views.search),
+    path("createindex/", create_index.create_index),
     # path('create/<int:ct_id>/<int:choiceday>',views.create),
-    path("create/<int:ct_id>", views.create),
-    path("history/", views.history),
-    path("favorite/", views.favorite),
-    path("share/", views.share),
-    path("attraction_details/", views.attraction_details, name="search_results"),
-    path("attraction_details/<int:aid>", views.attraction_details),
-    path("serach_results_att_type", views.attraction_details_att_type ,name="serach_results_att_type"),
+    path("create/<int:ct_id>", create.create),
+    path("history/", history.history),
+    path("favorite/", favorite.favorite),
+    path("share/", old_views.share),
+    path("attraction_details/", attraction_details.attraction_details, name="search_results"),
+    path("attraction_details/<int:aid>", attraction_details.attraction_details),
+    path(
+        "serach_results_att_type",
+        attraction_details.attraction_details_att_type,
+        name="serach_results_att_type",
+    ),
     # path('test/',views.test_input),
-    path("useredit/", views.user_edit),
-    path("add_favorite/", views.add_favorite),  # 沒有頁面
-    path("del_favorite/<int:a_id>", views.del_favorite),  # 沒有頁面
+    path("useredit/", old_views.user_edit),
+    path("add_favorite/", favorite.add_favorite),  # 沒有頁面
+    path("del_favorite/<int:a_id>", favorite.del_favorite),  # 沒有頁面
     # path('attraction_details/<int:a_id>',views.attraction_details),
     # path('sayhello/<str:username>',sayhello), #新增
 ]
