@@ -197,7 +197,7 @@ endcomment %}
                 <!-- 清除所有篩選按鈕 -->
                 <div class="text-center row" style="margin:20px auto;" data-400="transform: scale(1.5); opacity: 0"
                     data-500="transform: scale(1); opacity: 1">
-                    <span class="clear_btn" style="cursor: pointer;">清除所有篩選</span>
+                    <span class="clear_btn" id="clear_btn" style="cursor: pointer;">清除所有篩選</span>
                 </div>
             </div>
         </div>
@@ -281,8 +281,7 @@ endcomment %}
 
 <div class="row" style="margin-top: 20px;margin-left:20px;" data-450="opacity: 0"
     data-500="transform: scale(1); opacity: 1">
-    <h5>根據<span id="type_key_word" class="tag-cloud">100</span><span>,</span><span
-            class="tag-cloud">100</span><span>,</span><span class="tag-cloud">100</span>的篩選條件搜尋出以下景點：</h5>
+    <h5>根據<span id="type_key_word"></span>的篩選條件搜尋出以下景點：</h5>
 </div>
 
 
@@ -688,7 +687,8 @@ endcomment %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script>
-
+    sessionStorage.clear();
+    var search_text_list=[];
     $(function () {
         $('.change_btn div').click(function () {
             $(this).addClass('active1').siblings().removeClass('active1');
@@ -752,22 +752,34 @@ endcomment %}
             };
             this.className += " active";
             submit_btn.value = this.dataset.set;
+            console.log(this.textContent);
+            sessionStorage.setItem(this.textContent,'att_type');
+            searchText(this.dataset.set,'att_type');
         });
     }
-    submit_btn.addEventListener("click", function () {
+    {% comment %} submit_btn.addEventListener("click", function () {
         console.log('hello');
-        var search_type_key_word = document.getElementById('type_key_word');
-        console.log(search_type_key_word.textContent);
-        searchText(search_type_key_word.textContent);
-    });
+        search_type_key_word_list = [];
+        
+        var search_type_key_word = document.getElementById('type_key_word').textContent;
+        var search_type_key_word_span = search_type_key_word.getElementsByTagName('span');
+        
+        for(var i = 0; i < search_type_key_word_span.length; i++){
+            search_type_key_word_list.push(search_type_key_word_span[i].textContent);
+        }
+        searchText(search_type_key_word,'att_type');
+    }); {% endcomment %}
     var header = document.getElementById("filiter_search1");//條件篩選裡面按鈕active（固定）
     var btns = header.getElementsByClassName("more_btn");
 
     for (var i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", function () {
+            console.log(this.textContent)
             var current = document.getElementsByClassName("active");
             current[0].className = current[0].className.replace(" active", "");
             this.className += " active";
+
+            
         });
     }
 
@@ -778,9 +790,17 @@ endcomment %}
             var current = document.getElementsByClassName("active");
             current[0].className = current[0].className.replace(" active", "");
             this.className += " active";
+            
         });
     }
-
+    var clear_btn = document.getElementById("clear_btn");
+    clear_btn.addEventListener("click", function () {
+        var search_type_key_word = document.getElementById('type_key_word');
+        while (search_type_key_word.firstChild) {
+            search_type_key_word.removeChild(search_type_key_word.firstChild);
+          }
+          sessionStorage.clear();
+    });
     //歷史紀錄（點一下input跳出來）
     const searchInput = document.getElementById("myInput");
     const searchBox = document.getElementById("searchBox");
@@ -828,27 +848,34 @@ endcomment %}
             scrollTextH1.style.transform = `translate(0%, ${translateY}%)`;
         }
     });
-    function searchText(search_text) {
-        console.log(search_text);
+    
+    function searchText(search_text,data_type) {
+        // data_type= keyword_search,tag_search,popular_search
+        console.log(search_text,data_type)
+        
         var search_type_key_word = document.getElementById('type_key_word');
-        var att_type_list = document.getElementsByClassName('more_btn active');
-        var att_type = [];
-        for (var i = 0; i < att_type_list.length; i++) {
-            att_type.push(att_type_list[i].getAttribute('data-set'));
-        }
-        console.log(att_type);
+
         $.ajax({
             url: '',  // 伺服器端的 URL
             type: 'GET',  // 請求類型為 GET
             data: {
                 search_text: search_text,  // 傳遞給伺服器的參數，以 a_id 為名
-                att_type: att_type
+                data_type:data_type,
             },
             success: function (response) {
 
                 const search_detail_div = $('#replaceable-content');
                 search_detail_div.html(response['keyword_search_list']);
-                search_type_key_word.textContent = search_text;
+                var keys = Object.keys(sessionStorage);
+                while (search_type_key_word.firstChild) {
+                    search_type_key_word.removeChild(search_type_key_word.firstChild);
+                  }
+                keys.forEach(function(key) {
+                    console.log(key);
+                    search_type_key_word.innerHTML += '<span class="tag-cloud">'+key+'<span>';
+                });
+
+
             },
             error: function (xhr, status, error) {
                 // 請求失敗時的處理
@@ -876,7 +903,8 @@ endcomment %}
             b.innerHTML = `<i class="fas fa-search" style="margin-right:12px;"></i><strong>${val}</strong>&emsp;<span style="color:#a1a1a1">-Trip搜尋</span>`;
             b.addEventListener("click", function (e) {
                 inp.value = val;
-                searchText(val);
+                sessionStorage.setItem(val,'keyword_search');
+                searchText(val,'a_name');
                 closeAllLists();
                 // searchClick.click();
             });
@@ -890,7 +918,8 @@ endcomment %}
                     b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>"; // 加入一個隱藏的input元素，用來存放選擇的值
                     b.addEventListener("click", function (e) {
                         inp.value = this.getElementsByTagName("input")[0].value; // 設定輸入框的值為選擇的值
-                        searchText(this.getElementsByTagName("input")[0].value);
+                        sessionStorage.setItem(this.getElementsByTagName("input")[0].value,'keyword_search');
+                        searchText(this.getElementsByTagName("input")[0].value,'keyword_search');
                         closeAllLists(); // 關閉所有項目清單
                         // searchClick.click();
                     });
