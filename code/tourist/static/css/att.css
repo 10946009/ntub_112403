@@ -38,6 +38,7 @@ body {
 
 /* 景點資訊 */
 .scroll-text h1 {
+    color: rgb(255, 255, 255);
     font-family: system-ui;
     font-size: 60px;
     /* font-family: "Noto Serif TC", serif; */
@@ -47,7 +48,7 @@ body {
 /* Tripfunchill */
 .scroll-text h5 {
     font-size: 24px;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     font-family: system-ui;
     /* font-family: "Noto Serif TC", serif; */
     font-weight: 200;
@@ -64,7 +65,7 @@ body {
 .jumbotron {
     height: 100vh;
     text-align: center;
-    background-image: url(../images/Datong.jpeg);
+    background-image: url(../images/att_picture.png);
     background-size: cover;
     background-attachment: fixed;
     margin: 0;
@@ -764,7 +765,7 @@ img {
 .jumbotron1 {
     height: 40vh;
     text-align: center;
-    background-image: url(../images/Datong.jpeg);
+    background-image: url(../images/att_picture.png);
     background-size: cover;
     background-attachment: fixed;
     margin: 0;
