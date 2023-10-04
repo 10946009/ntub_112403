@@ -21,6 +21,16 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+//open篩選
+function openfiliter(){
+  var showfiliter = document.querySelector(".show_filiter")
+  if(showfiliter.style.display === "none" || showfiliter.style.display === ""){
+    showfiliter.style.display = "block";
+  }else{
+    showfiliter.style.display = "none";
+  }
+}
+
 //篩選
 // $(function(){
 //   $("button").click(function(){
