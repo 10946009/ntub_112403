@@ -5,7 +5,7 @@
 <script></script>
 {% endblock %}
 {% block body %}
-<main>
+<main style="z-index: 1;">
   <div class="save_div">
     <span class="create_day_save" id="saveDays">儲存</span>
   </div>
@@ -103,6 +103,84 @@
                   </div>
                 </div>
               </form>
+              <div class="col-lg-4 col-md-6">
+                <div style="text-align: center;">
+                  <div class="heart_icon_box">
+                    <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
+                    <i class="fa-solid fa-heart heart_icon"></i>
+                  </div>
+                  <div class="spot_like_txt">
+                    <h3 class="spot_title">平溪老街</h3>
+                    <p>123456</p>
+                    <div class="group">
+                      <i class="fa-solid fa-plus add_icon"></i>
+                      <div class="dropdown_menu">
+                        <div>
+                          <a class="dropdown_item" href="#tab_c">新增行程</a>
+                        </div>
+                        <div>
+                          <a class="dropdown_item" href="#">捷運一日遊</a>
+                        </div>
+                        <div>
+                          <a class="dropdown_item" href="#">開車一日遊</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6">
+                <div style="text-align: center;">
+                  <div class="heart_icon_box">
+                    <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
+                    <i class="fa-solid fa-heart heart_icon"></i>
+                  </div>
+                  <div class="spot_like_txt">
+                    <h3 class="spot_title">平溪老街</h3>
+                    <p>123456</p>
+                    <div class="group">
+                      <i class="fa-solid fa-plus add_icon"></i>
+                      <div class="dropdown_menu">
+                        <div>
+                          <a class="dropdown_item" href="#tab_c">新增行程</a>
+                        </div>
+                        <div>
+                          <a class="dropdown_item" href="#">捷運一日遊</a>
+                        </div>
+                        <div>
+                          <a class="dropdown_item" href="#">開車一日遊</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6">
+                <div style="text-align: center;">
+                  <div class="heart_icon_box">
+                    <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
+                    <i class="fa-solid fa-heart heart_icon"></i>
+                  </div>
+                  <div class="spot_like_txt">
+                    <h3 class="spot_title">平溪老街</h3>
+                    <p>123456</p>
+                    <div class="group">
+                      <i class="fa-solid fa-plus add_icon"></i>
+                      <div class="dropdown_menu">
+                        <div>
+                          <a class="dropdown_item" href="#tab_c">新增行程</a>
+                        </div>
+                        <div>
+                          <a class="dropdown_item" href="#">捷運一日遊</a>
+                        </div>
+                        <div>
+                          <a class="dropdown_item" href="#">開車一日遊</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div id="OrderAttractions">
                 {% for attractions in ct_attractions_list %}
 
@@ -299,8 +377,8 @@
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </div> -->
-      <form action="" style="margin: 20px;color: black;" class="form_rec">
-        <span>選擇推薦第幾天</span>
+      <form action="" style="color: black;display: flex;align-items: center;align-content: center;justify-content: center;" class="form_rec">
+        <!-- <span style="font-size: 18px;">選擇推薦第幾天</span>
         <select name="s_day" id="s_day" style="font-size: 18px;">
           <option value="1">
             第一天
@@ -308,31 +386,7 @@
           <option value="2">
             第二天
           </option>
-        </select>
-        <!-- <div style="font-size: 20px; margin: 5px auto;">
-          <span><strong>是否推薦相似景點</strong></span>
-          <input type="radio" id="yes" value="是" name="yn" style="margin-left: 5px;">
-          <strong>是</strong>
-          <input type="radio" id="no" value="否" name="yn" style="margin-left: 5px;">
-          <strong>否</strong>
-          <input type="submit" value="儲存" style="border-radius: 10px; margin-left: 5px">
-        </div> -->
-        <!-- <div class="dialog" id="dialog">
-          <form action="#">
-            <span>是否需要推薦相似景點</span>
-            <br>
-            <label class="yn" for="yes">
-              是
-            </label>
-            <input type="radio" id="yes" value="是" name="yn">
-            <label class="yn" for="no">
-              否
-            </label>
-            <input type="radio" id="no" value="否" name="yn">
-            <br>
-            <input type="submit" value="確定">
-          </form>
-        </div> -->
+        </select> -->
       </form>
 
       <div class="filter row">
@@ -453,7 +507,7 @@
           <div class="shingyi col-md-6" name="AttractionsContainer" id="AttractionsContainer">
             <!--我在JS QQ-->
           </div>
-          <a href="#tab_r" class="tab_a" id="clickLikeAttractions">
+          <a href="#tab_r" class="tab_a submit1" id="clickLikeAttractions">
             <button value="提交">提交</button>
           </a>
         </form>
@@ -487,7 +541,7 @@
         <form action="">
           {% csrf_token %}
           <div class="shingyi col-md-6" name="AttractionsContainer" id="AttractionsContainer_o"><!--我在JS QQ--></div>
-          <a href="#tab_c" class="tab_a" id="clickLikeAttractions_o">
+          <a href="#tab_c" class="tab_a submit2" id="clickLikeAttractions_o">
             <button value="提交">提交1</button>
           </a>
         </form>
