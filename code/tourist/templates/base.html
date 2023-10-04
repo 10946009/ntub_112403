@@ -56,7 +56,7 @@
                 </li>
                 {% if request.user.is_authenticated %}
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="/login" role="button" data-bs-toggle="dropdown" aria-expanded="false">我的XX</a>
+                    <a class="nav-link dropdown-toggle" href="/login" role="button" data-bs-toggle="dropdown" aria-expanded="false">我的資訊</a>
                     <ul class="dropdown-menu" style="z-index: 999;">
                       <li>
                         <a class="dropdown-item" href="/history">我的行程</a>
@@ -68,7 +68,7 @@
                         <a class="dropdown-item" href="/share">我的分享</a>
                       </li>
                       <li>
-                        <a class="dropdown-item" href="#">我的分享XXXXXX</a>
+                        <a class="dropdown-item" href="/useredit">我的設定</a>
                       </li>
                       <li>
                         <a class="dropdown-item" href="/logout">登出</a>
