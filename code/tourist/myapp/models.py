@@ -60,6 +60,7 @@ class Attractions(models.Model):
     stay_time = models.IntegerField(null=True, blank=False)
     hot_month = ArrayField(models.IntegerField())
     att_type = ArrayField(models.IntegerField())
+    detail = models.TextField(max_length=255, null=False, blank=False, default="")
     # def __str__(self):
     #     return f'{self.id} {self.a_name}'
 
