@@ -297,6 +297,7 @@
         </form>
       </div> -->
       <form action="" style="margin: 20px;color: black;" class="form_rec">
+        <span>選擇推薦第幾天</span>
         <select name="s_day" id="s_day" style="font-size: 18px;">
           <option value="1">
             第一天
@@ -305,15 +306,15 @@
             第二天
           </option>
         </select>
-        <div style="font-size: 20px; margin: 5px auto;">
+        <!-- <div style="font-size: 20px; margin: 5px auto;">
           <span><strong>是否推薦相似景點</strong></span>
           <input type="radio" id="yes" value="是" name="yn" style="margin-left: 5px;">
           <strong>是</strong>
           <input type="radio" id="no" value="否" name="yn" style="margin-left: 5px;">
           <strong>否</strong>
           <input type="submit" value="儲存" style="border-radius: 10px; margin-left: 5px">
-        </div>
-        <div class="dialog" id="dialog">
+        </div> -->
+        <!-- <div class="dialog" id="dialog">
           <form action="#">
             <span>是否需要推薦相似景點</span>
             <br>
@@ -328,12 +329,12 @@
             <br>
             <input type="submit" value="確定">
           </form>
-        </div>
+        </div> -->
       </form>
 
       <div class="filter row">
         <form action="">
-          <div class="filiter">
+          <div class="filiter" style="padding: 12px;">
             <div class="filiter_tagtxt" onclick="openfiliter()">
               <span class="filiter_txt"><i class="fa-solid fa-filter"></i>篩選標籤</span>
             </div>
@@ -358,11 +359,91 @@
               </div>
             </div>
           </div>
-          <div class="row show_rec" id="show_rec">
-            <div class="col-4">
-              <img src="../static/images/101.jpg" class="img-responsive round button" width="100%" alt="">
-              <input type="checkbox" name="variety" value="公園 親子" />
-              <span class="round button">公園</span>
+
+          <div id="checkbox">
+            <div class="row" style="padding: 12px;">
+              <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
+                <div class="checkimg_div">
+                  <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
+                    onclick="pickspot(this)">
+                    <span class="checkspot" style="display: block;cursor: pointer;">
+                      <img src="../static/images/101.jpg" class="img-responsive" width="100%" alt="">
+                    </span>
+                  </label>
+                </div>
+                <div class="spottxtdiv">
+                  <div class="checkspottxt">
+                    <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
+                    <span>地址：</span><br>
+                    <span>評價：</span><br>
+                    <span>營業時間：</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
+                <div class="checkimg_div">
+                  <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
+                    onclick="pickspot(this)">
+                    <span class="checkspot" style="display: block;cursor: pointer;">
+                      <img src="../static/images/101.jpg" class="img-responsive" width="100%" alt="">
+                    </span>
+                  </label>
+                </div>
+                <div class="spottxtdiv">
+                  <div class="checkspottxt">
+                    <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
+                    <span>地址：</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
+                <div class="checkimg_div">
+                  <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
+                    onclick="pickspot(this)">
+                    <span class="checkspot" style="display: block;cursor: pointer;">
+                      <img src="../static/images/101.jpg" class="img-responsive" width="100%" alt="">
+                    </span>
+                  </label>
+                </div>
+                <div class="spottxtdiv">
+                  <div class="checkspottxt">
+                    <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
+                    <span>地址：</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
+                <div class="checkimg_div">
+                  <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
+                    onclick="pickspot(this)">
+                    <span class="checkspot" style="display: block;cursor: pointer;">
+                      <img src="../static/images/101.jpg" class="img-responsive" width="100%" alt="">
+                    </span>
+                  </label>
+                </div>
+                <div class="spottxtdiv">
+                  <div class="checkspottxt">
+                    <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
+                    <span>地址：</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
+                <div class="checkimg_div">
+                  <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
+                    onclick="pickspot(this)">
+                    <span class="checkspot" style="display: block;cursor: pointer;">
+                      <img src="../static/images/101.jpg" class="img-responsive" width="100%" alt="">
+                    </span>
+                  </label>
+                </div>
+                <div class="spottxtdiv">
+                  <div class="checkspottxt">
+                    <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
+                    <span>地址：</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           {% csrf_token %}

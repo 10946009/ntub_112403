@@ -1,13 +1,3 @@
-//tab切換
-// function saveTabState(tabName) {
-//   localStorage.setItem('selectedTab', tabName);
-// }
-// document.addEventListener('DOMContentLoaded', function() {
-//   const selectedTab = localStorage.getItem('selectedTab');
-//   if (selectedTab === 'contact') {
-//     document.getElementById('contact-tab').click();
-//   }
-// });
 document.addEventListener('DOMContentLoaded', function () {
   const selectedTab = localStorage.getItem('selectedTab');
   if (selectedTab === 'contact') {
@@ -31,24 +21,16 @@ function openfiliter(){
   }
 }
 
-//篩選
-// $(function(){
-//   $("button").click(function(){
-//       var target = $(this).attr("value");
-
-
-//       $(".filter div").each(function(){
-//           $(this).animate({"opacity":0},300,function(){
-//               $(this).hide();
-
-//               if($(this).hasClass(target) || target == "all"){
-//                   $(this).show();
-//                   $(this).animate({"opacity":1},300);
-//               }
-//           });
-//       });
-//   });
-// })
+// pick spot css
+function pickspot(checkbox) {
+  checkbox.checked = !checkbox.checked;
+  var div = checkbox.parentElement.parentElement; // 取得包含checkbox的div
+  if (checkbox.checked) {
+    div.classList.add("pickimg"); 
+  } else {
+    div.classList.remove("pickimg"); 
+  }
+}
 
 
 var heart = document.getElementsByClassName('heart_icon');

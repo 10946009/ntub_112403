@@ -324,11 +324,12 @@ main {
     border-radius: 10px;
     border: 1px solid black;
 }
-.filiter_txt{
+
+.filiter_txt {
     padding: 10px;
 }
 
-.show_filiter{
+.show_filiter {
     display: none;
 }
 
@@ -365,6 +366,22 @@ main {
 
 #checkbox .round {
     border-radius: 10px;
+}
+
+.pickimg {
+    padding: 0;
+    border: 1px solid blue;
+    transform: scale(0.95);
+}
+
+.spottxtdiv {
+    margin: 0;
+    border: 1px solid #33333394;
+    border-top: 0;
+}
+
+.checkspottxt {
+    color: black;
 }
 
 .dialog {
