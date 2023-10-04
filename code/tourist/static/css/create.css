@@ -80,18 +80,21 @@
 }
 
 main {
-    position: relative;
+    /* position: relative; */
     margin: 0 auto;
     width: 95%;
     justify-content: center;
     z-index: 100;
+}
+.pageedit{
+    position: relative;
 }
 .save_div{
     position: fixed;
     bottom: 5px;
     right: 5px;
 }
-.create_day_save{
+.create_day_save, .recommend_submit1{
     display: block;
     width: 80px;
     height: 50px;
@@ -102,6 +105,7 @@ main {
     border: 1px solid black;
     border-radius: 10px;
     cursor: pointer;
+    color: #000;
 }
 
 .tab_div {

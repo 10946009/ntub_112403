@@ -6,9 +6,6 @@
 {% endblock %}
 {% block body %}
 <main style="z-index: 1;">
-  <div class="save_div">
-    <span class="create_day_save" id="saveDays">儲存</span>
-  </div>
   <div class="container tab_div">
     <div class="tabtitle">
       <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
@@ -33,7 +30,7 @@
   <!-- 建立行程 -->
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-      <div>
+      <div class="pageedit">
         <form action="" class="createdataform">
           <div class="row createdata" style="width: 80%;">
             <div class="col-md-6 tabc_txt">
@@ -44,6 +41,9 @@
             </div>
           </div>
         </form>
+        <div class="save_div">
+          <span class="create_day_save" id="saveDays">儲存</span>
+        </div>
       </div>
       <div class="" style="display: flex;justify-content: center;align-items: center;align-content: center;">
         <div class="childtabdiv" style="width: 90%;">
@@ -285,7 +285,7 @@
     </div>
 
     <!-- 我的收藏 -->
-    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab" style="width: 90%;margin: 0 auto;">
       <div class="row favoritedata">
         <div class="col-lg-4 col-md-6">
           <div style="text-align: center;">
@@ -370,7 +370,7 @@
 
     <!-- 推薦景點 -->
     <div class="tab-pane fade" id="recommend" role="tabpanel" aria-labelledby="recommend-tab"
-      style="margin: 0 auto;width: 90%;">
+      style="margin: 0 auto;width: 80%;position: relative;">
       <!-- <div style="display: flex; justify-content: center; margin:5px auto;">
         <form class="d-flex" role="search" style="width:80%">
           <input class="form-control me-2" type="search" placeholder="查詢景點" aria-label="Search">
@@ -388,10 +388,9 @@
           </option>
         </select> -->
       </form>
-
       <div class="filter row">
         <form action="">
-          <div class="filiter" style="padding: 12px;">
+          <!-- <div class="filiter" style="padding: 12px;">
             <div class="filiter_tagtxt" onclick="openfiliter()">
               <span class="filiter_txt"><i class="fa-solid fa-filter"></i>篩選標籤</span>
             </div>
@@ -415,7 +414,7 @@
                 </label>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <div id="checkbox">
             <div class="row" style="padding: 12px;">
@@ -507,8 +506,8 @@
           <div class="shingyi col-md-6" name="AttractionsContainer" id="AttractionsContainer">
             <!--我在JS QQ-->
           </div>
-          <a href="#tab_r" class="tab_a submit1" id="clickLikeAttractions">
-            <button value="提交">提交</button>
+          <a href="#tab_r" class="tab_a submit1" id="clickLikeAttractions" style="position: fixed;bottom: 0;right: 0;">
+            <button class="recommend_submit1" value="提交">提交</button>
           </a>
         </form>
         {% comment %}
