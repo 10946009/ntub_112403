@@ -117,23 +117,58 @@ endcomment %}
 <!-- 人拖行李棟動圖（左） -->
 <div class="row" id="filiter_about">
     <div class="col-5">
-        <div class="img_trip" data-0="transform: translateX(-120%); opacity: 0; z-index: 2;"
-            data-500="transform: translateX(60%); opacity: 0.8">
-            <img src="../static/images/tirp_.png" alt="">
+        <div class="cloud" data-0="transform: translateX(-20%); opacity: 0;"
+            data-500="transform: translateX(10%); opacity: 0.8">
+            <img src="../static/images/sun.png" alt="" style="width: 80px; z-index: 2;margin-right: 80px;">
+            <img src="../static/images/cloud1.png" alt=""
+                style="width: 80px; margin-top: 50px; margin-right: 50px; z-index: 2;">
+            <img src="../static/images/cloud1.png" alt=""
+                style="width: 80px; margin-top: 0px; margin-right: 50px; z-index: 2;">
+            <img src="../static/images/cloud1.png" alt="" style="width: 80px; margin-top: 30px; z-index: 2;">
         </div>
-        <div class="road">
-            <img src="../static/images/road.png" alt="" style="width: 100%; height: 50px">
+        <div class="img_trip" data-0="transform: translateX(-520%); opacity: 0;"
+            data-500="transform: translateX(120%); opacity: 0.8">
+            <img src="../static/images/TripFun.png" alt="" style="width: 500px; z-index: 2;">
+        </div>
+        <div class="img_trip" data-0="transform: translateX(-1120%); opacity: 0;"
+            data-500="transform: translateX(1060%); opacity: 0.8">
+            <img src="../static/images/travel.png" alt="" style="width: 100px; z-index: 2;margin-top: -30px;">
         </div>
     </div>
     <!-- 篩選工具（右） -->
     <div class="col-7">
         <div class="container_filiter">
-            <div class="col-sm-7" style="text-align: center;">
+            <div class="col-sm-7" style="text-align: center;padding-right: 20px;">
                 <h2 data-300="opacity: 0" data-500="opacity: 1"><i class="fa-solid fa-face-smile"
                         style="margin-right: 5px; color: rgb(162, 133, 43);"></i>篩選工具</h2>
                 <hr style="margin: 0 auto;">
-                <div class="row">
-                    <div class="col-4 text-center topic_filiter" data-400="transform: scale(1.5); opacity: 0"
+                <div class="row three_choice">
+                    <div class="column" data-400="transform: scale(1.5); opacity: 0"
+                        data-500="transform: scale(1); opacity: 1"
+                        onclick="document.getElementById('show_filiter').style.display='block'">
+                        <div style="cursor: pointer;">
+                            <i class="fa-solid fa-plane" style="font-size: 60px;"></i><br>
+                            <h3 class="filiter_btn">景點主題</h3>
+                        </div>
+                    </div>
+                    <div class="column" data-400="transform: scale(1.5); opacity: 0"
+                        data-500="transform: scale(1); opacity: 1"
+                        onclick="document.getElementById('show_condition').style.display='block'">
+                        <!-- 當有篩選條件時右上跳出1 2...等(ribbon) -->
+                        <div style="cursor: pointer; position: relative;">
+                            <i class="fa-solid fa-list" style="font-size: 60px;"></i> <span class="ribbon">1</span><br>
+                            <h3 class="filiter_btn">條件篩選</h3>
+                        </div>
+                    </div>
+                    <div class="column" data-400="transform: scale(1.5); opacity: 0"
+                        data-500="transform: scale(1); opacity: 1"
+                        onclick="document.getElementById('show_userfavorite').style.display='block'">
+                        <div style="cursor: pointer;">
+                            <i class="fa-solid fa-thumbs-up" style="font-size: 60px;"></i><br>
+                            <h3 class="filiter_btn">最受歡迎</h3>
+                        </div>
+                    </div>
+                    <!-- <div class="col-4 text-center topic_filiter" data-400="transform: scale(1.5); opacity: 0"
                         data-500="transform: scale(1); opacity: 1"
                         onclick="document.getElementById('show_filiter').style.display='block'">
                         <div style="cursor: pointer;">
@@ -144,7 +179,7 @@ endcomment %}
                     <div class="col-4 text-center topic_filiter" data-400="transform: scale(1.5); opacity: 0"
                         data-500="transform: scale(1); opacity: 1"
                         onclick="document.getElementById('show_condition').style.display='block'">
-                        <!-- 當有篩選條件時右上跳出1 2...等(ribbon) -->
+                        當有篩選條件時右上跳出1 2...等(ribbon)
                         <div style="cursor: pointer; position: relative;">
                             <i class="fa-solid fa-list" style="font-size: 60px;"></i> <span class="ribbon">1</span><br>
                             <h3 class="filiter_btn">條件篩選</h3>
@@ -157,7 +192,7 @@ endcomment %}
                             <i class="fa-solid fa-thumbs-up" style="font-size: 60px;"></i><br>
                             <h3 class="filiter_btn">最受歡迎</h3>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- 清除所有篩選按鈕 -->
                 <div class="text-center row" style="margin:20px auto;" data-400="transform: scale(1.5); opacity: 0"
@@ -166,6 +201,9 @@ endcomment %}
                 </div>
             </div>
         </div>
+    </div>
+    <div class="road">
+        <img src="../static/images/road1.png" alt="" style="width: 100%; height: 50px; z-index: 1;">
     </div>
 </div>
 
@@ -179,15 +217,17 @@ endcomment %}
             <h4>景點主題</h4>
             <div class="filiter_search" id="filiter_search2">
                 <table style=" width:45%;margin-left: 10px;margin-bottom:5px ;">
-                    <tr id="attractions_types">
-                        <td><span class="more_btn">1</span></td>
-                    </tr>
-                    <tr>
-                        <td><span class="more_btn">最多人瀏覽</span></td>
-                        <td><span class="more_btn">最多人按讚</span></td>
-                        <td><span class="more_btn">最多人收藏</span></td>
-                    </tr>
-                    <!-- 讓多出來的放到第二行 -->
+                    <div id="attractions_types">
+                        <!-- <tr>
+                            <td><span class="more_btn"></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="more_btn">最多人瀏覽</span></td>
+                            <td><span class="more_btn">最多人按讚</span></td>
+                            <td><span class="more_btn">最多人收藏</span></td>
+                        </tr> -->
+                        <!-- 讓多出來的放到第二行 -->
+                    </div>
                 </table>
                 <div class="sure"><button class="sure_btn" id="sure_att_type" name="sure_att_type" value="0">篩選</button>
                 </div>
@@ -470,7 +510,6 @@ endcomment %}
                             <h6 style="margin-left: 20px; color:#a8a8a8">更多...</h6>
                             <button style="border-radius: 8px;"><i class="fa-solid fa-message"
                                     style="margin-right: 5px;"></i>我要發問</button>
-
                         </div>
                         <hr style="border:2px solid #b3b2b2">
                         <!-- 人潮資訊 -->
@@ -781,7 +820,7 @@ endcomment %}
     //動態大標（景點資訊tripfunchill去放假）
     const scrollText = document.querySelector('.scroll-text');
     const scrollTextH1 = scrollText.querySelector('h1');
-    const stopScrollY = 140; //在此位置停止移動
+    const stopScrollY = 120; //在此位置停止移動
     window.addEventListener('scroll', function () {
         const scrollY = window.scrollY;// 獲取當前位置
         if (scrollY <= stopScrollY) {// 當位置<=停止位置時移動
