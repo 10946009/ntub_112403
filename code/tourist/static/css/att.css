@@ -4,7 +4,7 @@
 
 /* 背景顏色 */
 body {
-    background-color: #f7ead37c;
+    background-color: #d0cecb7c;
 }
 
 /* 景點動態大標（景點資訊） */
@@ -38,15 +38,18 @@ body {
 
 /* 景點資訊 */
 .scroll-text h1 {
-    font-size: 50px;
-    font-family: "Noto Serif TC", serif;
+    font-family: system-ui;
+    font-size: 60px;
+    /* font-family: "Noto Serif TC", serif; */
     font-weight: 400;
 }
 
 /* Tripfunchill */
 .scroll-text h5 {
+    font-size: 24px;
     color: rgb(0, 0, 0);
-    font-family: "Noto Serif TC", serif;
+    font-family: system-ui;
+    /* font-family: "Noto Serif TC", serif; */
     font-weight: 200;
 }
 
@@ -222,27 +225,35 @@ body {
 
 /* 動動圖那一塊 */
 #filiter_about {
-    background-color: #ded1b8;
-    padding: 40px;
+    /* background-color: #e4dbc9; */
+    background-color: #cbe7f8;
+    padding-top: 30px;
 }
 
 /* 拖行李的圖 */
 #filiter_about .img_trip {
-    mix-blend-mode: multiply;
-    background-size: cover;
+    width: 50px;
+    /* mix-blend-mode: multiply;
+    background-size: cover; */
 }
 
 /* 那個馬路圖 */
 .road {
     position: relative;
-    z-index: 1;
 }
 
 /* 篩選那部分 */
-.topic_filiter {
+.three_choice {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 篩選分三份 */
+.column {
     margin-top: 60px;
     padding-left: 60px;
     padding-right: 60px;
+    flex: 1;
 }
 
 /* 篩選文字 */
@@ -250,7 +261,7 @@ body {
     margin-top: 20px;
 }
 
-.topic_filiter:hover {
+.column:hover {
     color: rgb(127, 4, 4);
 }
 
@@ -351,6 +362,7 @@ body {
     padding-right: 150px;
 }
 
+/* 篩選條件結果標籤 */
 .tag-cloud {
     margin-left: 10px;
     margin-right: 10px;
@@ -672,7 +684,6 @@ img {
 .change_content .change_content1:first-child {
     display: block;
 }
-
 
 /* icon */
 .fa {
