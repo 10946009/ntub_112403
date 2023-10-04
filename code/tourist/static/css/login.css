@@ -41,7 +41,7 @@ input[type="text"] {
     border: 1px solid #ccc;
 }
 
-.login input[type="email"] {
+/* .login input[type="email"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -51,7 +51,7 @@ input[type="text"] {
     font-family: inherit;
     font-size: inherit;
     line-height: inherit
-}
+} */
 
 .login input[type="submit"] {
     width: 100%;
@@ -296,7 +296,7 @@ input[type="text"] {
 
 .fa-eye {
     position: absolute;
-    top: 25px;
+    top: 28px;
     right: 10px;
     transform: translateY(-50%);
     cursor: pointer;
@@ -304,7 +304,7 @@ input[type="text"] {
 
 .fa-eye-slash {
     position: absolute;
-    top: 25px;
+    top: 28px;
     right: 10px;
     transform: translateY(-50%);
     cursor: pointer;

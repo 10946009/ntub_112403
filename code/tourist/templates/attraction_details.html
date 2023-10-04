@@ -162,7 +162,7 @@ endcomment %}
                 <!-- 清除所有篩選按鈕 -->
                 <div class="text-center row" style="margin:20px auto;" data-400="transform: scale(1.5); opacity: 0"
                     data-500="transform: scale(1); opacity: 1">
-                    <span class="clear_btn">清除所有篩選</span>
+                    <span class="clear_btn" style="cursor: pointer;">清除所有篩選</span>
                 </div>
             </div>
         </div>
@@ -239,8 +239,10 @@ endcomment %}
     </form>
 </div>
 
-<div class="row">
-    <p>根據<span id="type_key_word"></span>的結果搜尋出：</p>
+<div class="row" style="margin-top: 20px;margin-left:20px;" data-450="opacity: 0"
+    data-500="transform: scale(1); opacity: 1">
+    <h5>根據<span id="type_key_word" class="tag-cloud">100</span><span>,</span><span
+            class="tag-cloud">100</span><span>,</span><span class="tag-cloud">100</span>的篩選條件搜尋出以下景點：</h5>
 </div>
 
 
