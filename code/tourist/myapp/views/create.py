@@ -12,7 +12,7 @@ from .final_order import final_order
 # 建立行程
 @login_required(login_url="/login")
 def create(request, ct_id):
-    user_favorite = [4, 6, 9, 10, 15, 16, 18]
+    user_favorite = [4, 6, 9, 10, 15, 16, 18] #需修改新增的部分
     ct_data = Create_Travel.objects.get(id=ct_id)
     choiceday = 1
     try:
@@ -87,7 +87,7 @@ def create(request, ct_id):
 
         if ct_status == "2":
             o_attractions_list = request.POST.getlist("all_select[]")
-            print(o_attractions_list)
+            print('o_attractions_list我在這!!!!!!!!!!!!!!!!!!',o_attractions_list)
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
             final = final_order(
