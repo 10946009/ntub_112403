@@ -1,20 +1,21 @@
 /* create_index的 */
-.bgimg{
+.bgimg {
     /* background: url(../images/1526735109814.jpg); */
     background: url(../images/bg5.png);
     background-size: cover;
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-	background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
     display: flex;
     justify-content: center;
     align-content: center;
     align-items: center;
     height: 100vh;
     width: 100vw;
-	opacity: 0.65;
+    opacity: 0.65;
 }
-.block{
+
+.block {
     height: 500px;
     width: 500px;
     background-color: rgba(255, 255, 255, 0.497);
@@ -25,26 +26,31 @@
     align-items: center;
     align-content: center;
 }
-.formcss{
+
+.formcss {
     display: block;
     justify-content: center;
 }
-.txtdiv{
+
+.txtdiv {
     text-align: center;
     margin-bottom: 20px;
 }
-.txt{
+
+.txt {
     font-weight: bold;
     font-size: 28px;
     color: black;
     text-shadow: 3px 3px 3px rgb(91, 91, 91);
 }
-.inputspace{
+
+.inputspace {
     width: 250px;
     height: 32px;
     font-weight: bolder;
 }
-.enterbtn{
+
+.enterbtn {
     display: block;
     margin: 10px auto;
     font-weight: bolder;
@@ -56,30 +62,36 @@
     border: 0px;
     transition: background-color 0.3s;
 }
-.enterbtn:hover{
+
+.enterbtn:hover {
     background-color: #0022ff;
 }
+
 /* create的 */
 .tab-pane {
     display: none;
     height: 0;
     overflow: hidden;
 }
+
 .tab-pane.active {
     display: block;
     height: auto;
 }
-main{
+
+main {
     margin: 0 auto;
     width: 95%;
     justify-content: center;
     z-index: 100;
 }
-.tab_div{
+
+.tab_div {
     padding: 10px;
     margin-top: 30px;
 }
-.tabtitle{
+
+.tabtitle {
     margin-top: 15px;
     display: flex;
     justify-content: center;
@@ -87,64 +99,77 @@ main{
     align-content: center;
     text-align: center;
 }
-.tab_a{
+
+.tab_a {
     text-decoration: none;
     color: black;
     font-size: 24px;
     padding: 10px 15px;
 }
-.tabc_txt{
+
+.tabc_txt {
     color: #000;
     font-size: 20px;
 }
-.create-nav-link{
+
+.create-nav-link {
     background-color: rgba(255, 255, 255, 0);
     border: 0px solid rgba(255, 255, 255, 0);
     transition: border 0.5s;
     text-shadow: 3px 2px 4px #333;
 }
-.create-nav-link:hover{
+
+.create-nav-link:hover {
     border-bottom: 1px solid #5f5f5f;
 }
-.active{
-	color: #1b3fe1;
-	animation: heart 0.5s linear;
+
+.active {
+    color: #1b3fe1;
+    animation: heart 0.5s linear;
     font-weight: bolder;
 }
+
 /* 天數的 */
-.createday{
+.createday {
     text-decoration: none;
     color: #000;
     padding: 5px;
 }
-.create_txt{
+
+.create_txt {
     font-size: 20px;
 }
-.createdataform{
+
+.createdataform {
     padding: 10px auto;
 }
-.createdata{
+
+.createdata {
     margin: 0 auto;
 }
-.create-child-nav-link{
+
+.create-child-nav-link {
     background-color: rgba(255, 255, 255, 0);
     border: 0px solid rgba(255, 255, 255, 0);
     transition: border 0.5s;
     text-shadow: 3px 2px 4px #333;
     font-size: 20px;
 }
-.create-child-nav-link:hover{
+
+.create-child-nav-link:hover {
     border-bottom: 1px solid #5f5f5f;
 }
-.input_txt{
+
+.input_txt {
     width: 200px;
 }
 
 /* 收藏CSS */
-.favoritedata{
+.favoritedata {
     color: #000;
 }
-.tab_day{
+
+.tab_day {
     display: inline-block;
     padding: 5px;
     cursor: pointer;
@@ -152,19 +177,21 @@ main{
     text-decoration: none;
     color: black;
 }
+
 /* .tab_day:hover{
     color: #525252;
     font-weight: bolder;
     font-size: larger;
 } */
-.save{
+.save {
     display: inline-block;
     padding: 5px 10px;
     cursor: pointer;
     border: 1px solid black;
     border-radius: 20%;
 }
-.spot{
+
+.spot {
     width: 200px;
     height: auto;
     padding: 5px;
@@ -172,170 +199,257 @@ main{
     border-radius: 10px;
     margin: 10px 0;
 }
-.yn{
+
+.yn {
     margin-right: 5px;
 }
-.container{
+
+.container {
     /* display: flex; */
     justify-content: center;
 }
-.col{
+
+.col {
     margin: 5px 0;
     padding: 0;
     font-size: 20px;
 }
-.col-md-4{
+
+.col-md-4 {
     margin: 5px 0;
     font-size: 20px;
 }
-.tabD{
+
+.tabD {
     padding: 5px;
 }
-.div_day{
+
+.div_day {
     margin: 0;
 }
-.tabc_txt{
+
+.tabc_txt {
     font-size: 20px;
     text-align: center;
     padding: 5px;
 }
-.heart_icon_box{
+
+.heart_icon_box {
     position: relative;
     border: 1px solid #000;
 }
-.heart_icon{
-	position: absolute;
-	top: 0;
-	right: 0;
-	padding: 10px;
-	background-color: rgba(255, 255, 255);
-	border-radius: 50%;
-	margin: 10px;
-	color: rgba(0, 0, 0, 0.3);
-	cursor: pointer;
+
+.heart_icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    background-color: rgba(255, 255, 255);
+    border-radius: 50%;
+    margin: 10px;
+    color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
 }
-.heart_active{/*收藏動畫*/
-	color: #E1251B;
-	animation: heart 0.5s linear;
+
+.heart_active {
+    /*收藏動畫*/
+    color: #E1251B;
+    animation: heart 0.5s linear;
 }
-.spot_like_txt{
-	position: relative;
+
+.spot_like_txt {
+    position: relative;
     border: 1px solid #ccc;
 }
-.spot_title{
+
+.spot_title {
     font-size: 24px;
 }
-.add_icon{
-	position: absolute;
-	top: 0;
-	right: 0;
-	padding: 10px;
-	margin: 5px;
-	border-radius: 30%;
-	color: white;
-	background-color: #ccc;
-	cursor: pointer;
-}
-.add_icon.active {
-  background-color: rgb(255, 236, 22);
-}
-.dropdown_menu{
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 150px;
-	border-radius: 10%;
-	background-color: beige;
-	text-align: left;
-	margin-top: 40px;
-}
-.dropdown_item{
-	text-decoration-line: none;
-	color: black;
-	display: block;
-	border-radius: 10%;
-	padding: 5px;
-}
-.dropdown_item:hover{
-	background-color: bisque;
-}
 
-  
-  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {
-	display:block;
-}
-
-
-.filter_btn{
-    padding: 5px 8px;
+.add_icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
     margin: 5px;
-    background-color: rgb(255, 255, 119);
-    border-radius: 15%;
-    border: 2px gray none;
-}
-.filter_btn:hover{
-    background-color: rgb(255, 118, 59);
-    font-weight: bold;
+    border-radius: 30%;
+    color: white;
+    background-color: #ccc;
+    cursor: pointer;
 }
 
-.dialog{
-    position:fixed;
+.add_icon.active {
+    background-color: rgb(255, 236, 22);
+}
+
+.dropdown_menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    border-radius: 10%;
+    background-color: beige;
+    text-align: left;
+    margin-top: 40px;
+}
+
+.dropdown_item {
+    text-decoration-line: none;
+    color: black;
+    display: block;
+    border-radius: 10%;
+    padding: 5px;
+}
+
+.dropdown_item:hover {
+    background-color: bisque;
+}
+
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+    display: block;
+}
+
+.filiter_tagtxt {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    /* width: 100px; */
+    text-align: center;
+    font-size: 20px;
+    color: black;
+    background-color: #ccc;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.filiter_txt {
+    padding: 10px;
+}
+
+.show_filiter {
+    display: none;
+}
+
+#show_rec input[type="checkbox"] {
+    display: none;
+}
+
+/* 隱藏前面的框框 */
+#checkbox input[type="checkbox"] {
+    display: none;
+}
+
+/* 選擇input裡面距離checked最近的button */
+#checkbox input:checked+.button {
+    background: #5e7380;
+    color: #fff;
+    text-shadow: 3px 3px 4px #000;
+    font-size: 18px;
+}
+
+#checkbox .button {
+    display: inline-block;
+    margin: 0 5px 10px 0;
+    padding: 5px 10px;
+    background: #dbdbdb;
+    color: #333;
+    cursor: pointer;
+}
+
+#checkbox .button:hover {
+    background: #bbb;
+    color: #fff;
+}
+
+#checkbox .round {
+    border-radius: 10px;
+}
+
+.pickimg {
+    padding: 0;
+    border: 1px solid blue;
+    transform: scale(0.95);
+}
+
+.spottxtdiv {
+    margin: 0;
+    border: 1px solid #33333394;
+    border-top: 0;
+}
+
+.checkspottxt {
+    color: black;
+}
+
+.dialog {
+    position: fixed;
     top: 100px;
     left: 45%;
     width: 400px;
     height: 200px;
-    border:1px solid #888888;
+    border: 1px solid #888888;
     border-radius: 10px;
     background-color: #eeeeee;
     /* box-shadow:0px 0px 10px; */
     padding: 10px;
-    transform:translate(-100px,0px);
-    display:none;
+    transform: translate(-100px, 0px);
+    display: none;
     font-size: 20px;
     font-weight: bolder;
     text-align: center;
     padding-top: 60px;
-  }
-  .dialog>.close{
+}
+
+.dialog>.close {
     position: absolute;
     top: 0px;
     right: 5px;
-    cursor:pointer;/*cursor游標pointer指針:改變鼠標*/
-  }
+    cursor: pointer;
+    /*cursor游標pointer指針:改變鼠標*/
+}
 
 
-@media(max-width: 768px){
-    main{
+@media(max-width: 768px) {
+    main {
         margin-top: 5%;
     }
-    .tabtitle{
+
+    .tabtitle {
         margin-top: 10px;
     }
-    .tab_a{
+
+    .tab_a {
         font-size: 20px;
     }
-         
+
 }
-@media(max-width: 576px){
-    .block{
+
+@media(max-width: 576px) {
+    .block {
         height: 500px;
         width: 400px;
     }
-    .tab_a{
+
+    .tab_a {
         font-size: 18px;
     }
 }
+
 @media (max-width: 480px) {
-    .block{
+    .block {
         width: 300px;
     }
-    .inputspace{
+
+    .inputspace {
         width: 200px;
     }
 }
-@media(max-width: 376px){
-    .tab_a{
+
+@media(max-width: 376px) {
+    .tab_a {
         font-size: 14px;
     }
 }
