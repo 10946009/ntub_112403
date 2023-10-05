@@ -753,8 +753,8 @@ endcomment %}
             this.className += " active";
             submit_btn.value = this.dataset.set;
             console.log(this.textContent);
-            sessionStorage.setItem(this.textContent,'att_type');
-            searchText(this.dataset.set,'att_type');
+            sessionStorage.setItem(this.textContent,'tag_search');
+            searchText(this.dataset.set,'tag_search');
         });
     }
     {% comment %} submit_btn.addEventListener("click", function () {
@@ -848,7 +848,18 @@ endcomment %}
             scrollTextH1.style.transform = `translate(0%, ${translateY}%)`;
         }
     });
+    function getAllSessionStorageData() {
+        var data = []; // 創建一個空對象來保存所有的sessionStorage資料
     
+        for (var i = 0; i < sessionStorage.length; i++) {
+            var key = sessionStorage.key(i); // 獲取sessionStorage的鍵
+            var value = sessionStorage.getItem(key); // 獲取鍵對應的值
+            
+            data.push(key,value); // 將鍵值對添加到data對象中
+        }
+    
+        return data; // 返回包含所有sessionStorage資料的對象
+    }
     function searchText(search_text,data_type) {
         // data_type= keyword_search,tag_search,popular_search
         console.log(search_text,data_type)
@@ -861,6 +872,7 @@ endcomment %}
             data: {
                 search_text: search_text,  // 傳遞給伺服器的參數，以 a_id 為名
                 data_type:data_type,
+                sessionStorage:getAllSessionStorageData()
             },
             success: function (response) {
 
