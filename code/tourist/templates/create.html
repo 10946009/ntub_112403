@@ -674,14 +674,14 @@
         var length_fr = final_remainder_result_list.length;
 
         if (length_fr != 0) {
-          RemainderAttractions.innerHTML += '<hr>剩餘的部分';
+          RemainderAttractions.innerHTML += '<div class="hr_container"><hr></div>';
           for (let r = 0; r < length_fr; r++) {
             final_remainder_result = final_remainder_result_list[r];
             final_remainder_crow_opening = final_remainder_crow_opening_list[r];
             console.log('final_remainder_result', final_remainder_result);
             console.log('final_remainder_crow_opening', final_remainder_crow_opening);
             count++;
-            var temp_r = '<div class="spot" id="spot' + count + '">';
+            var temp_r = '<div style="color: black" class="spot" id="spot' + count + '" style="margin-bottom:10px">';
             temp_r += final_remainder_result.a_name;
             temp_r += '<div id="hiddenId" style="display: none;">' + final_remainder_result.id + '</div>';;
             temp_r += '<p>'+final_remainder_result.address+'<br>';

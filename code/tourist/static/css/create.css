@@ -86,16 +86,19 @@ main {
     justify-content: center;
     z-index: 100;
 }
-.pageedit{
+
+.pageedit {
     position: relative;
 }
-.save_div{
+
+.save_div {
     position: fixed;
     bottom: 5px;
     right: 5px;
 }
 
-.create_day_save, .recommend_submit1{
+.create_day_save,
+.recommend_submit1 {
     display: block;
     width: 80px;
     height: 50px;
@@ -215,12 +218,39 @@ main {
 }
 
 .spot {
-    width: 200px;
+    width: 250px;
     height: auto;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 10px;
     margin: 10px 0;
+    /* color: #000; */
+}
+
+
+/* 定义外部容器 */
+.hr_container {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+/* 定义伪元素用于显示文本 */
+.hr_container::after {
+    content: "評估較不適合行程時間的景點";
+    color: red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5px 10px;
+    background-color: #eee;
+}
+
+.hr_container hr {
+    background-color: red;
+    height: 5px;
+    border: none;
 }
 
 .yn {
@@ -403,18 +433,18 @@ main {
     border-top: 0;
 }
 
-.checkimg_div{
+.checkimg_div {
     position: relative;
     height: 300px;
     overflow: hidden;
 }
 
-.checkimg_div img{
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	position: absolute;
-	left: 0;
+.checkimg_div img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
     top: 0;
 }
 
@@ -422,7 +452,7 @@ main {
     color: black;
 }
 
-.spottxt{
+.spottxt {
     font-size: 16px;
 }
 
@@ -454,8 +484,8 @@ main {
 }
 
 @media (max-width: 850px) {
-    .checkimg_div{
-		height: 200px;
+    .checkimg_div {
+        height: 200px;
     }
 }
 
@@ -471,10 +501,12 @@ main {
     .tab_a {
         font-size: 20px;
     }
-    .submit1{
+
+    .submit1 {
         padding: 5px;
     }
-    .recommend_submit1{
+
+    .recommend_submit1 {
         font-size: 18px;
     }
 
@@ -489,14 +521,17 @@ main {
     .tab_a {
         font-size: 18px;
     }
-    .submit1{
+
+    .submit1 {
         padding: 0;
     }
-    .recommend_submit1{
+
+    .recommend_submit1 {
         font-size: 16px;
     }
-    .checkimg_div{
-		height: 300px;
+
+    .checkimg_div {
+        height: 300px;
     }
 }
 
