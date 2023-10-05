@@ -74,25 +74,6 @@
           {% for days in travelday %}
             <div class="tab-child{{ days }}" id="myTabchild{{ days }}"
               style="margin: 10px auto;display: flex;align-items: center;align-content: center;">
-              <!-- <div class="col-md-4 div_day" style="background-color: #fffdc8;">
-                <div class="row">
-                  <div class="div_day " style="text-align: center;">
-                    <div class="tabD">
-                      <span ng-bind="travName"></span>
-                    </div>
-                    <div class="tabD" id="addDaydiv">
-                      {% for day in travelday %}
-                        <span class="tab_day" onclick="clickDay({{day}})">第{{ day }}天</span>
-                        <p></p>
-                      {% endfor %}
-                    </div>
-                    <div class=" tabc_txt">
-                      <span class="save" id="saveDays">儲存</span>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
-
               <div class="tab-pane fade {% if forloop.counter == 1 %}show active{% endif %}" id="child{{days}}" role="tabpanel" aria-labelledby="child{{days}}-tab"
                 style="width: 90%;background-color: #eee;padding: 10px;margin: 0 auto;">
                 <form action="#tab_c" style="color: black;">
@@ -108,85 +89,7 @@
                     </div>
                   </div>
                 </form>
-                <div class="col-lg-4 col-md-6">
-                  <div style="text-align: center;">
-                    <div class="heart_icon_box">
-                      <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
-                      <i class="fa-solid fa-heart heart_icon"></i>
-                    </div>
-                    <div class="spot_like_txt">
-                      <h3 class="spot_title">平溪老街</h3>
-                      <p>123456</p>
-                      <div class="group">
-                        <i class="fa-solid fa-plus add_icon"></i>
-                        <div class="dropdown_menu">
-                          <div>
-                            <a class="dropdown_item" href="#tab_c">新增行程</a>
-                          </div>
-                          <div>
-                            <a class="dropdown_item" href="#">捷運一日遊</a>
-                          </div>
-                          <div>
-                            <a class="dropdown_item" href="#">開車一日遊</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                  <div style="text-align: center;">
-                    <div class="heart_icon_box">
-                      <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
-                      <i class="fa-solid fa-heart heart_icon"></i>
-                    </div>
-                    <div class="spot_like_txt">
-                      <h3 class="spot_title">平溪老街</h3>
-                      <p>123456</p>
-                      <div class="group">
-                        <i class="fa-solid fa-plus add_icon"></i>
-                        <div class="dropdown_menu">
-                          <div>
-                            <a class="dropdown_item" href="#tab_c">新增行程</a>
-                          </div>
-                          <div>
-                            <a class="dropdown_item" href="#">捷運一日遊</a>
-                          </div>
-                          <div>
-                            <a class="dropdown_item" href="#">開車一日遊</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                  <div style="text-align: center;">
-                    <div class="heart_icon_box">
-                      <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
-                      <i class="fa-solid fa-heart heart_icon"></i>
-                    </div>
-                    <div class="spot_like_txt">
-                      <h3 class="spot_title">平溪老街</h3>
-                      <p>123456</p>
-                      <div class="group">
-                        <i class="fa-solid fa-plus add_icon"></i>
-                        <div class="dropdown_menu">
-                          <div>
-                            <a class="dropdown_item" href="#tab_c">新增行程</a>
-                          </div>
-                          <div>
-                            <a class="dropdown_item" href="#">捷運一日遊</a>
-                          </div>
-                          <div>
-                            <a class="dropdown_item" href="#">開車一日遊</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div id="OrderAttractions">
+                <div id="OrderAttractions" style="color: black;">
                   {% for attractions in ct_attractions_list %}
 
                   {% endfor %}
@@ -212,7 +115,8 @@
           {% endfor %}
 
 
-          {% comment %} <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab"
+          {% comment %} 
+          <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab"
             style="width: 90%;background-color: #333;padding: 10px;margin: 0 auto;">
             <!-- 測試測試測試測試測試測試測試測試 -->
             <form action="#tab_c" style="color: black;">
@@ -270,24 +174,10 @@
               {% for attractions in ct_attractions_list %}
 
               {% endfor %}
-              <!-- <span class="create_txt" >第</span>
-                <button style="border: none;">+</button> -->
-              <!--我在JS~~~~~~~~~~~
-                <div class="spot" id="spot1">
-                  國父紀念館
-                  <p>位在台北市XX區</p>
-                  <p>
-                    目前人潮流量：適中
-                    <br>
-                    營業時間：09:00-18:00
-                    <br>
-                    建議停留時間：1小時
-                  </p>
-                </div>
-              -->
             </div>
             <div id="RemainderAttractions"></div>
-          </div> {% endcomment %}
+          </div> 
+          {% endcomment %}
         </div>
       </div>
     </div>
@@ -378,7 +268,7 @@
 
     <!-- 推薦景點 -->
     <div class="tab-pane fade" id="recommend" role="tabpanel" aria-labelledby="recommend-tab"
-      style="margin: 0 auto;width: 80%;position: relative;">
+      style="margin: 0 auto;width: 90%;position: relative;">
       <!-- <div style="display: flex; justify-content: center; margin:5px auto;">
         <form class="d-flex" role="search" style="width:80%">
           <input class="form-control me-2" type="search" placeholder="查詢景點" aria-label="Search">
@@ -425,8 +315,8 @@
           </div> -->
 
           <div id="checkbox">
-            <div class="row" style="padding: 12px;">
-              <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
+            <div class="row" style="padding: 12px;" id="AttractionsContainer">
+              {% comment %} <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
                 <div class="checkimg_div">
                   <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
                     onclick="pickspot(this)">
@@ -443,8 +333,10 @@
                     <span>營業時間：</span>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
+              </div> {% endcomment %}
+            </div>
+            <div class="row" style="padding: 12px;" id="AttractionsContainer_o">
+              {% comment %} <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
                 <div class="checkimg_div">
                   <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
                     onclick="pickspot(this)">
@@ -456,60 +348,15 @@
                 <div class="spottxtdiv">
                   <div class="checkspottxt">
                     <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
-                    <span>地址：</span>
+                    <span class="spottxt spottxtaddress">地址：</span><br>
+                    <span class="spottxt spottxtstar">評價：</span><br>
+                    <span class="spottxt spottxttime">營業時間：</span>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
-                <div class="checkimg_div">
-                  <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
-                    onclick="pickspot(this)">
-                    <span class="checkspot" style="display: block;cursor: pointer;">
-                      <img src="../static/images/101.jpg" class="img-responsive" width="100%" alt="">
-                    </span>
-                  </label>
-                </div>
-                <div class="spottxtdiv">
-                  <div class="checkspottxt">
-                    <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
-                    <span>地址：</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
-                <div class="checkimg_div">
-                  <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
-                    onclick="pickspot(this)">
-                    <span class="checkspot" style="display: block;cursor: pointer;">
-                      <img src="../static/images/101.jpg" class="img-responsive" width="100%" alt="">
-                    </span>
-                  </label>
-                </div>
-                <div class="spottxtdiv">
-                  <div class="checkspottxt">
-                    <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
-                    <span>地址：</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
-                <div class="checkimg_div">
-                  <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
-                    onclick="pickspot(this)">
-                    <span class="checkspot" style="display: block;cursor: pointer;">
-                      <img src="../static/images/101.jpg" class="img-responsive" width="100%" alt="">
-                    </span>
-                  </label>
-                </div>
-                <div class="spottxtdiv">
-                  <div class="checkspottxt">
-                    <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
-                    <span>地址：</span>
-                  </div>
-                </div>
-              </div>
+              </div> {% endcomment %}
             </div>
           </div>
+          
           <div class="shingyi col-md-6" name="AttractionsContainer" id="AttractionsContainer" style="display:block ;">
             <!--我在JS QQ-->
           </div>
@@ -619,13 +466,33 @@
         // 進一步處理回傳的值，例如顯示在頁面上
         var m_list = response.m_list;  // 假設 m_list 是 JSON 中的一個鍵
         var crow_opening_list = response.crow_opening_list;  // 假設 crow_opening_list 是 JSON 中的一個鍵
+        console.log(crow_opening_list);
         var mListContainer = document.getElementById("AttractionsContainer")
-        for (var item of m_list) {
-          mListContainer.innerHTML += '<input type="checkbox" value="' + item.place_id + '">';
+        for (var i = 0; i < m_list.length; i++) {
+          mListContainer.innerHTML+=`<div class="col-md-4 col-sm-6" style="margin-bottom: 5px;" value="${m_list[i].place_id}">
+            <div class="checkimg_div">
+              <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
+                onclick="pickspot(this)">
+                <span class="checkspot" style="display: block;cursor: pointer;">
+                  <img src="/static/images/attractions/${m_list[i].place_id+'_0'}.jpg" class="img-responsive" width="100%" alt="">
+                </span>
+              </label>
+            </div>
+            <div class="spottxtdiv">
+              <div class="checkspottxt">
+                <p style="text-align: center;padding: 5px;margin-bottom: 5px;">${m_list[i].a_name}</p>
+                <span class="spottxt spottxtaddress">地址：${m_list[i].address}</span><br>
+                <span class="spottxt spottxtstar">評價：${m_list[i].rating}</span><br>
+                <span class="spottxt spottxttime">營業時間：${crow_opening_list[i].opening}</span>
+              </div>
+            </div>
+          </div>`
+
+          {% comment %} mListContainer.innerHTML += '<input type="checkbox" value="' + item.place_id + '">';
           mListContainer.innerHTML += '<div class="col-5"><img src="/static/images/attractions/' + item.place_id + '_0.jpg" alt=""  height="250"></div>';
           mListContainer.innerHTML += '<div class="col-7"><div style="text-align: left;">';
           mListContainer.innerHTML += "<p>" + item.a_name + "<p>";
-          mListContainer.innerHTML += "<p>" + item.address + "<p></div></div>";
+          mListContainer.innerHTML += "<p>" + item.address + "<p></div></div>"; {% endcomment %}
 
         }
 
@@ -640,12 +507,16 @@
   var clickLikeAttractions = document.getElementById('clickLikeAttractions');
   clickLikeAttractions.addEventListener("click", function (e) {
     var select_aid = document.getElementById('AttractionsContainer');
-    var selectedCheckboxes = select_aid.querySelectorAll('input[type="checkbox"]:checked');
+    //var selectedCheckboxes = select_aid.querySelectorAll('input[type="checkbox"]:checked');
+    var selectedCheckboxes = select_aid.getElementsByClassName('pickimg');
+    console.log(selectedCheckboxes);
+    
     var select_aid_list = [];
     var nowtime = document.getElementById("nowtime");
-    selectedCheckboxes.forEach(function (checkbox) {
-      select_aid_list.push(checkbox.value);
-      all_select.push(checkbox.value)
+    Array.from(selectedCheckboxes).forEach(function (checkbox) {
+      console.log(checkbox);
+      select_aid_list.push(checkbox.getAttribute('value'));
+      all_select.push(checkbox.getAttribute('value'))
     });
     console.log('选中的复选框值:', select_aid_list);
     console.log('目前所選的所有值', all_select)
@@ -662,7 +533,7 @@
       success: function (response) {
         // 在這裡處理伺服器回傳的 JSON 數據
         console.log(response);  // 查看回傳的值
-        alert("正確");
+        //alert("正確");
         // 進一步處理回傳的值，例如顯示在頁面上
         var o_list = response.o_list;  // 假設 m_list 是 JSON 中的一個鍵
         var o_crow_opening_list = response.o_crow_opening_list;  // 假設 crow_opening_list 是 JSON 中的一個鍵
@@ -671,9 +542,9 @@
         // 將畫面1隱藏
         select_aid.style.display = 'none';
         clickLikeAttractions.style.display='none';
-
-        mListContainer.style.display = 'block';
-        clickLikeAttractions_o.style.display = 'block';
+        
+        mListContainer.style.display = '';
+        clickLikeAttractions_o.style.display = '';
         /* 修改提交為送出的ID與文字
         
         if (linkButton) {
@@ -688,13 +559,34 @@
           buttonElement.textContent = '送出';
         }*/
         
-        for (var item of o_list) {
-          mListContainer.innerHTML += '<input type="checkbox" value="' + item.place_id + '">';
-          mListContainer.innerHTML += '<div class="col-5"><img src="/static/images/attractions/' + item.place_id + '_0.jpg" alt=""  height="250"></div>'
-          mListContainer.innerHTML += '<div class="col-7"><div style="text-align: left;">'
+        for (var i = 0; i < o_list.length; i++)  {
+          mListContainer.innerHTML+=`<div class="col-md-4 col-sm-6" style="margin-bottom: 5px;" value="${o_list[i].place_id}">
+            <div class="checkimg_div">
+              <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
+                onclick="pickspot(this)">
+                <span class="checkspot" style="display: block;cursor: pointer;">
+                  <img src="/static/images/attractions/${o_list[i].place_id+'_0'}.jpg" class="img-responsive" width="100%" alt="">
+                </span>
+              </label>
+            </div>
+            <div class="spottxtdiv">
+              <div class="checkspottxt">
+                <p style="text-align: center;padding: 5px;margin-bottom: 5px;">${o_list[i].a_name}</p>
+                <span class="spottxt spottxtaddress">地址：${o_list[i].address}</span><br>
+                <span class="spottxt spottxtstar">評價：${o_list[i].rating}</span><br>
+                <span class="spottxt spottxttime">營業時間：${o_crow_opening_list[i].opening}</span>
+              </div>
+            </div>
+          </div>`
+
+
+
+          //mListContainer.innerHTML += '<input type="checkbox" value="' + item.place_id + '">';
+          //mListContainer.innerHTML += '<div class="col-5"><img src="/static/images/attractions/' + item.place_id + '_0.jpg" alt=""  height="250"></div>'
+          //mListContainer.innerHTML += '<div class="col-7"><div style="text-align: left;">'
           //mListContainer.innerHTML += "<p>" + item.place_id + "<p>";
-          mListContainer.innerHTML += "<p>" + item.a_name + "<p>";
-          mListContainer.innerHTML += "<p>" + item.address + "<p></div></div>";
+          //mListContainer.innerHTML += "<p>" + item.a_name + "<p>";
+          //mListContainer.innerHTML += "<p>" + item.address + "<p></div></div>";
             
         }
 
@@ -711,12 +603,14 @@
   var clickLikeAttractions_o = document.getElementById('clickLikeAttractions_o');
   clickLikeAttractions_o.addEventListener("click", function (e) {
     var o_select_aid = document.getElementById('AttractionsContainer_o');
-    var o_selectedCheckboxes = o_select_aid.querySelectorAll('input[type="checkbox"]:checked');
+    //var o_selectedCheckboxes = o_select_aid.querySelectorAll('input[type="checkbox"]:checked');
+    var o_selectedCheckboxes = o_select_aid.getElementsByClassName('pickimg');
     var o_select_aid_list = [];
     var nowtime = document.getElementById("nowtime");
-    o_selectedCheckboxes.forEach(function (checkbox) {
-      o_select_aid_list.push(checkbox.value);
-      all_select.push(checkbox.value)
+    Array.from(o_selectedCheckboxes).forEach(function (checkbox) {
+      o_select_aid_list.push(checkbox.getAttribute('value'));
+      all_select.push(checkbox.getAttribute('value'))
+      
     });
     console.log('选中的复选框值(相似):', o_select_aid_list);
     console.log('目前所選的所有值', all_select)
@@ -745,25 +639,30 @@
         var final_crow_opening_list = response.final_crow_opening_list;  // 假設 crow_opening_list 是 JSON 中的一個鍵
         var final_remainder_result_list = response.final_remainder_result_list;  // 假設 m_list 是 JSON 中的一個鍵
         var final_remainder_crow_opening_list = response.final_remainder_crow_opening_list;  // 假設 crow_opening_list 是 JSON 中的一個鍵
-
+        var final_now_time_list = response.final_now_time_list;  // 假設 crow_opening_list 是 JSON 中的一個鍵
         //安排完的景點
         var OrderAttractions = document.getElementById("OrderAttractions")
         var count = 0
         var length_f = final_result_list.length;
         var all_a = []
         for (let i = 0; i < length_f; i++) {
+          var stay_time = final_result_list[i].stay_time;
+          if (stay_time == 0){
+            stay_time = 150;
+          }
           final_result = final_result_list[i];
           final_crow_opening = final_crow_opening_list[i];
           console.log('final_result', final_result);
           console.log('final_crow_opening', final_crow_opening);
+          console.log(final_now_time_list)
           count++;
           all_a.push(final_result.id)
           var temp = '<div class="spot" id="spot' + count + '">';
           temp += final_result.a_name;
-          temp += '<p>位在台北市XX區';
-          temp += '<p>目前人潮流量：<br>';
+          temp += '<p>'+final_result.address;
+          temp += '<p>當下可能的人潮流量：'+final_crow_opening.crowd[parseInt(final_now_time_list[i]/60,10)]+'<br>';
           temp += '<p>營業時間：' + final_crow_opening.opening + '<br>';
-          temp += '<p>建議停留時間：' + final_result.stay_time + '<br>';
+          temp += '<p>建議停留時間：' + stay_time + '<br>';
           temp += '</div>';
 
           OrderAttractions.innerHTML += temp;
@@ -775,18 +674,18 @@
         var length_fr = final_remainder_result_list.length;
 
         if (length_fr != 0) {
-          RemainderAttractions.innerHTML += '<hr>剩餘的部分';
+          RemainderAttractions.innerHTML += '<div class="hr_container"><hr></div>';
           for (let r = 0; r < length_fr; r++) {
             final_remainder_result = final_remainder_result_list[r];
             final_remainder_crow_opening = final_remainder_crow_opening_list[r];
             console.log('final_remainder_result', final_remainder_result);
             console.log('final_remainder_crow_opening', final_remainder_crow_opening);
             count++;
-            var temp_r = '<div class="spot" id="spot' + count + '">';
+            var temp_r = '<div style="color: black" class="spot" id="spot' + count + '" style="margin-bottom:10px">';
             temp_r += final_remainder_result.a_name;
             temp_r += '<div id="hiddenId" style="display: none;">' + final_remainder_result.id + '</div>';;
-            temp_r += '<p>位在台北市XX區';
-            temp_r += '<p>目前人潮流量：<br>';
+            temp_r += '<p>'+final_remainder_result.address+'<br>';
+            //temp_r += '<p>目前人潮流量：<br>';
             temp_r += '<p>營業時間：' + final_remainder_crow_opening.opening + '<br>';
             temp_r += '<p>建議停留時間：' + final_remainder_result.stay_time + '<br>';
             temp_r += '</div>';
