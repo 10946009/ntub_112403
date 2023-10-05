@@ -38,7 +38,7 @@ body {
 
 /* 景點資訊 */
 .scroll-text h1 {
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-family: system-ui;
     font-size: 60px;
     /* font-family: "Noto Serif TC", serif; */
@@ -48,7 +48,7 @@ body {
 /* Tripfunchill */
 .scroll-text h5 {
     font-size: 24px;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-family: system-ui;
     /* font-family: "Noto Serif TC", serif; */
     font-weight: 200;
@@ -80,9 +80,9 @@ body {
 
 /* 內部白色景點資訊大四字(白色透明bgc) */
 .active_tit {
-    background-color: rgba(194, 194, 194, 0.2);
-    width: 35%;
-    height: 300px;
+    background-color: rgba(113, 113, 113, 0.2);
+    width: 40%;
+    height: 320px;
     position: absolute;
     top: 400px;
     left: 50%;
@@ -227,7 +227,7 @@ body {
 /* 動動圖那一塊 */
 #filiter_about {
     /* background-color: #e4dbc9; */
-    background-color: #6893ae;
+    background-color: #62a6d4bc;
     padding-top: 30px;
 }
 

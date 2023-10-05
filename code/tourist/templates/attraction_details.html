@@ -76,7 +76,7 @@ endcomment %}
             </div>
             <div class="scroll-text1">
                 <hr class="tit_hr">
-                <h5 style="color: rgb(255, 255, 255);">Trip&ensp;Fun&ensp;Chill&ensp;趣放假</h5>
+                <h5>Trip&ensp;Fun&ensp;Chill&ensp;趣放假</h5>
             </div>
         </div>
     </div>
@@ -140,7 +140,7 @@ endcomment %}
         <div class="container_filiter">
             <div class="col-sm-7" style="text-align: center;padding-right: 20px;">
                 <h2 data-300="opacity: 0" data-500="opacity: 1"><i class="fa-solid fa-face-smile"
-                        style="margin-right: 5px; color: rgb(162, 133, 43);"></i>篩選工具</h2>
+                        style="margin-right: 5px; color: rgb(119, 119, 119);"></i>篩選工具</h2>
                 <hr style="margin: 0 auto;">
                 <div class="row three_choice">
                     <div class="column" data-400="transform: scale(1.5); opacity: 0"
@@ -688,7 +688,7 @@ endcomment %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script>
     sessionStorage.clear();
-    var search_text_list=[];
+    var search_text_list = [];
     $(function () {
         $('.change_btn div').click(function () {
             $(this).addClass('active1').siblings().removeClass('active1');
@@ -760,14 +760,14 @@ endcomment %}
     {% comment %} submit_btn.addEventListener("click", function () {
         console.log('hello');
         search_type_key_word_list = [];
-        
+
         var search_type_key_word = document.getElementById('type_key_word').textContent;
         var search_type_key_word_span = search_type_key_word.getElementsByTagName('span');
-        
-        for(var i = 0; i < search_type_key_word_span.length; i++){
+
+        for (var i = 0; i < search_type_key_word_span.length; i++) {
             search_type_key_word_list.push(search_type_key_word_span[i].textContent);
         }
-        searchText(search_type_key_word,'att_type');
+        searchText(search_type_key_word, 'att_type');
     }); {% endcomment %}
     var header = document.getElementById("filiter_search1");//條件篩選裡面按鈕active（固定）
     var btns = header.getElementsByClassName("more_btn");
@@ -779,7 +779,7 @@ endcomment %}
             current[0].className = current[0].className.replace(" active", "");
             this.className += " active";
 
-            
+
         });
     }
 
@@ -790,7 +790,7 @@ endcomment %}
             var current = document.getElementsByClassName("active");
             current[0].className = current[0].className.replace(" active", "");
             this.className += " active";
-            
+
         });
     }
     var clear_btn = document.getElementById("clear_btn");
@@ -798,8 +798,8 @@ endcomment %}
         var search_type_key_word = document.getElementById('type_key_word');
         while (search_type_key_word.firstChild) {
             search_type_key_word.removeChild(search_type_key_word.firstChild);
-          }
-          sessionStorage.clear();
+        }
+        sessionStorage.clear();
     });
     //歷史紀錄（點一下input跳出來）
     const searchInput = document.getElementById("myInput");
@@ -862,8 +862,8 @@ endcomment %}
     }
     function searchText(search_text,data_type) {
         // data_type= keyword_search,tag_search,popular_search
-        console.log(search_text,data_type)
-        
+        console.log(search_text, data_type)
+
         var search_type_key_word = document.getElementById('type_key_word');
 
         $.ajax({
@@ -881,10 +881,10 @@ endcomment %}
                 var keys = Object.keys(sessionStorage);
                 while (search_type_key_word.firstChild) {
                     search_type_key_word.removeChild(search_type_key_word.firstChild);
-                  }
-                keys.forEach(function(key) {
+                }
+                keys.forEach(function (key) {
                     console.log(key);
-                    search_type_key_word.innerHTML += '<span class="tag-cloud">'+key+'<span>';
+                    search_type_key_word.innerHTML += '<span class="tag-cloud">' + key + '<span>';
                 });
 
 
@@ -915,8 +915,8 @@ endcomment %}
             b.innerHTML = `<i class="fas fa-search" style="margin-right:12px;"></i><strong>${val}</strong>&emsp;<span style="color:#a1a1a1">-Trip搜尋</span>`;
             b.addEventListener("click", function (e) {
                 inp.value = val;
-                sessionStorage.setItem(val,'keyword_search');
-                searchText(val,'a_name');
+                sessionStorage.setItem(val, 'keyword_search');
+                searchText(val, 'a_name');
                 closeAllLists();
                 // searchClick.click();
             });
@@ -930,8 +930,8 @@ endcomment %}
                     b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>"; // 加入一個隱藏的input元素，用來存放選擇的值
                     b.addEventListener("click", function (e) {
                         inp.value = this.getElementsByTagName("input")[0].value; // 設定輸入框的值為選擇的值
-                        sessionStorage.setItem(this.getElementsByTagName("input")[0].value,'keyword_search');
-                        searchText(this.getElementsByTagName("input")[0].value,'keyword_search');
+                        sessionStorage.setItem(this.getElementsByTagName("input")[0].value, 'keyword_search');
+                        searchText(this.getElementsByTagName("input")[0].value, 'keyword_search');
                         closeAllLists(); // 關閉所有項目清單
                         // searchClick.click();
                     });
