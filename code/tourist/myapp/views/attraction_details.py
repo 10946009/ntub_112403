@@ -9,9 +9,22 @@ from .viewsConst import ATT_TYPE_CHINESE
 
 
 def keyword_search(search_text, filter_condition_and, filter_condition_or, method):
+    
     # Q物件可以用&和|來串接，串接後的Q物件可以用來過濾資料
-    filter_condition_and &= Q(**{f"{method}__contains": search_text})
-    filter_condition_or |= Q(**{f"{method}__contains": search_text})
+    if method == "tag_search":
+        matching_dict = None
+        for item in ATT_TYPE_CHINESE:
+            if item.get('name') == search_text:
+                matching_dict = item
+                break
+
+        if matching_dict:
+            search_text = [matching_dict.get('id')]
+            print("相符的id是：", search_text)
+        else:
+            print("未找到相符的字典")
+    filter_condition_and &= Q(**{f"{TEX_CALL[method]}__contains": search_text})
+    filter_condition_or |= Q(**{f"{TEX_CALL[method]}__contains": search_text})
     return filter_condition_and, filter_condition_or
 
 TEX_CALL = {
@@ -35,15 +48,17 @@ def attraction_details(request):
         # 初始化一个Q对象，表示没有过滤条件
         filter_condition_and = Q()
         filter_condition_or = Q()
+        session_storage = request.GET.getlist('sessionStorage[]', []) 
 
         data_type = request.GET.get("data_type")
-        search_text =  [request.GET.get("search_text")] if data_type == "att_type" else request.GET.get("search_text")
-            
-
-        filter_condition_and, filter_condition_or = keyword_search(
-            search_text, filter_condition_and, filter_condition_or, data_type
-        )
-
+        while len(session_storage) > 0:
+            data_type = session_storage.pop()
+            search_text = session_storage.pop()
+            print(search_text, data_type)
+            filter_condition_and, filter_condition_or = keyword_search(
+                search_text, filter_condition_and, filter_condition_or, data_type
+            )
+        print(filter_condition_and)
         search_list_and = list(
             Attractions.objects.filter(filter_condition_and)[:30].values()
         )
