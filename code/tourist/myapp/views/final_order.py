@@ -5,6 +5,7 @@ def final_order(o_attractions_list, now_time, week, stay_time, user_favorite):
     final_list = []
     remainder_list = []
     all_list = []
+    now_time_list = [now_time]
     while len(o_attractions_list) > 0:
         temp = order_check_attractions(
             o_attractions_list, now_time, week, stay_time, user_favorite
@@ -13,6 +14,7 @@ def final_order(o_attractions_list, now_time, week, stay_time, user_favorite):
             break
         final_list.append(temp)
         now_time += stay_time
+        now_time_list.append(now_time)
         o_attractions_list = list(set(o_attractions_list) - set(final_list))
     remainder_list = [
         Attractions.objects.get(place_id=x).place_id
@@ -27,4 +29,5 @@ def final_order(o_attractions_list, now_time, week, stay_time, user_favorite):
     print("final_list!!!!!!!!!!!!!", final_list)
     all_list.append(final_list)
     all_list.append(remainder_list)
+    all_list.append(now_time_list)
     return all_list

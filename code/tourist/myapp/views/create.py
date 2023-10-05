@@ -126,6 +126,8 @@ def create(request, ct_id):
                 # final_remainder_result_list = list(final_remainder_result_list)
             except:
                 pass
+
+            final_now_time_list = final[2]
             # ------------
             print("final_result_list", final_result_list)
             print("final_crow_opening_list", final_crow_opening_list)
@@ -133,13 +135,14 @@ def create(request, ct_id):
             print(
                 "final_remainder_crow_opening_list", final_remainder_crow_opening_list
             )
-
+            print('final_now_time_list',final_now_time_list)
             return JsonResponse(
                 {
                     "final_result_list": final_result_list,
                     "final_crow_opening_list": final_crow_opening_list,
                     "final_remainder_result_list": final_remainder_result_list,
                     "final_remainder_crow_opening_list": final_remainder_crow_opening_list,
+                    'final_now_time_list':final_now_time_list,
                 }
             )
         choice_ct_id = -1
