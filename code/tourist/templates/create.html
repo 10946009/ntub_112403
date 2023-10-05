@@ -74,25 +74,6 @@
           {% for days in travelday %}
             <div class="tab-child{{ days }}" id="myTabchild{{ days }}"
               style="margin: 10px auto;display: flex;align-items: center;align-content: center;">
-              <!-- <div class="col-md-4 div_day" style="background-color: #fffdc8;">
-                <div class="row">
-                  <div class="div_day " style="text-align: center;">
-                    <div class="tabD">
-                      <span ng-bind="travName"></span>
-                    </div>
-                    <div class="tabD" id="addDaydiv">
-                      {% for day in travelday %}
-                        <span class="tab_day" onclick="clickDay({{day}})">第{{ day }}天</span>
-                        <p></p>
-                      {% endfor %}
-                    </div>
-                    <div class=" tabc_txt">
-                      <span class="save" id="saveDays">儲存</span>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
-
               <div class="tab-pane fade {% if forloop.counter == 1 %}show active{% endif %}" id="child{{days}}" role="tabpanel" aria-labelledby="child{{days}}-tab"
                 style="width: 90%;background-color: #eee;padding: 10px;margin: 0 auto;">
                 <form action="#tab_c" style="color: black;">
@@ -108,85 +89,7 @@
                     </div>
                   </div>
                 </form>
-                <div class="col-lg-4 col-md-6">
-                  {% comment %} <div style="text-align: center;">
-                    <div class="heart_icon_box">
-                      <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
-                      <i class="fa-solid fa-heart heart_icon"></i>
-                    </div>
-                    <div class="spot_like_txt">
-                      <h3 class="spot_title">平溪老街</h3>
-                      <p>123456</p>
-                      <div class="group">
-                        <i class="fa-solid fa-plus add_icon"></i>
-                        <div class="dropdown_menu">
-                          <div>
-                            <a class="dropdown_item" href="#tab_c">新增行程</a>
-                          </div>
-                          <div>
-                            <a class="dropdown_item" href="#">捷運一日遊</a>
-                          </div>
-                          <div>
-                            <a class="dropdown_item" href="#">開車一日遊</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                  <div style="text-align: center;">
-                    <div class="heart_icon_box">
-                      <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
-                      <i class="fa-solid fa-heart heart_icon"></i>
-                    </div>
-                    <div class="spot_like_txt">
-                      <h3 class="spot_title">平溪老街</h3>
-                      <p>123456</p>
-                      <div class="group">
-                        <i class="fa-solid fa-plus add_icon"></i>
-                        <div class="dropdown_menu">
-                          <div>
-                            <a class="dropdown_item" href="#tab_c">新增行程</a>
-                          </div>
-                          <div>
-                            <a class="dropdown_item" href="#">捷運一日遊</a>
-                          </div>
-                          <div>
-                            <a class="dropdown_item" href="#">開車一日遊</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                  <div style="text-align: center;">
-                    <div class="heart_icon_box">
-                      <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
-                      <i class="fa-solid fa-heart heart_icon"></i>
-                    </div>
-                    <div class="spot_like_txt">
-                      <h3 class="spot_title">平溪老街</h3>
-                      <p>123456</p>
-                      <div class="group">
-                        <i class="fa-solid fa-plus add_icon"></i>
-                        <div class="dropdown_menu">
-                          <div>
-                            <a class="dropdown_item" href="#tab_c">新增行程</a>
-                          </div>
-                          <div>
-                            <a class="dropdown_item" href="#">捷運一日遊</a>
-                          </div>
-                          <div>
-                            <a class="dropdown_item" href="#">開車一日遊</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> {% endcomment %}
-                </div>
-                <div id="OrderAttractions">
+                <div id="OrderAttractions" style="color: black;">
                   {% for attractions in ct_attractions_list %}
 
                   {% endfor %}
@@ -212,7 +115,8 @@
           {% endfor %}
 
 
-          {% comment %} <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab"
+          {% comment %} 
+          <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab"
             style="width: 90%;background-color: #333;padding: 10px;margin: 0 auto;">
             <!-- 測試測試測試測試測試測試測試測試 -->
             <form action="#tab_c" style="color: black;">
@@ -270,24 +174,10 @@
               {% for attractions in ct_attractions_list %}
 
               {% endfor %}
-              <!-- <span class="create_txt" >第</span>
-                <button style="border: none;">+</button> -->
-              <!--我在JS~~~~~~~~~~~
-                <div class="spot" id="spot1">
-                  國父紀念館
-                  <p>位在台北市XX區</p>
-                  <p>
-                    目前人潮流量：適中
-                    <br>
-                    營業時間：09:00-18:00
-                    <br>
-                    建議停留時間：1小時
-                  </p>
-                </div>
-              -->
             </div>
             <div id="RemainderAttractions"></div>
-          </div> {% endcomment %}
+          </div> 
+          {% endcomment %}
         </div>
       </div>
     </div>
@@ -378,7 +268,7 @@
 
     <!-- 推薦景點 -->
     <div class="tab-pane fade" id="recommend" role="tabpanel" aria-labelledby="recommend-tab"
-      style="margin: 0 auto;width: 80%;position: relative;">
+      style="margin: 0 auto;width: 90%;position: relative;">
       <!-- <div style="display: flex; justify-content: center; margin:5px auto;">
         <form class="d-flex" role="search" style="width:80%">
           <input class="form-control me-2" type="search" placeholder="查詢景點" aria-label="Search">
@@ -458,9 +348,9 @@
                 <div class="spottxtdiv">
                   <div class="checkspottxt">
                     <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
-                    <span>地址：</span><br>
-                    <span>評價：</span><br>
-                    <span>營業時間：</span>
+                    <span class="spottxt spottxtaddress">地址：</span><br>
+                    <span class="spottxt spottxtstar">評價：</span><br>
+                    <span class="spottxt spottxttime">營業時間：</span>
                   </div>
                 </div>
               </div> {% endcomment %}
@@ -591,9 +481,9 @@
             <div class="spottxtdiv">
               <div class="checkspottxt">
                 <p style="text-align: center;padding: 5px;margin-bottom: 5px;">${m_list[i].a_name}</p>
-                <span>地址：${m_list[i].address}</span><br>
-                <span>評價：${m_list[i].rating}</span><br>
-                <span>營業時間：${crow_opening_list[i].opening}</span>
+                <span class="spottxt spottxtaddress">地址：${m_list[i].address}</span><br>
+                <span class="spottxt spottxtstar">評價：${m_list[i].rating}</span><br>
+                <span class="spottxt spottxttime">營業時間：${crow_opening_list[i].opening}</span>
               </div>
             </div>
           </div>`
@@ -682,9 +572,9 @@
             <div class="spottxtdiv">
               <div class="checkspottxt">
                 <p style="text-align: center;padding: 5px;margin-bottom: 5px;">${o_list[i].a_name}</p>
-                <span>地址：${o_list[i].address}</span><br>
-                <span>評價：${o_list[i].rating}</span><br>
-                <span>營業時間：${o_crow_opening_list[i].opening}</span>
+                <span class="spottxt spottxtaddress">地址：${o_list[i].address}</span><br>
+                <span class="spottxt spottxtstar">評價：${o_list[i].rating}</span><br>
+                <span class="spottxt spottxttime">營業時間：${o_crow_opening_list[i].opening}</span>
               </div>
             </div>
           </div>`

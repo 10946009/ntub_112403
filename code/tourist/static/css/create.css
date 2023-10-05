@@ -94,6 +94,7 @@ main {
     bottom: 5px;
     right: 5px;
 }
+
 .create_day_save, .recommend_submit1{
     display: block;
     width: 80px;
@@ -402,8 +403,27 @@ main {
     border-top: 0;
 }
 
+.checkimg_div{
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+}
+
+.checkimg_div img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	position: absolute;
+	left: 0;
+    top: 0;
+}
+
 .checkspottxt {
     color: black;
+}
+
+.spottxt{
+    font-size: 16px;
 }
 
 .dialog {
@@ -433,6 +453,11 @@ main {
     /*cursor游標pointer指針:改變鼠標*/
 }
 
+@media (max-width: 850px) {
+    .checkimg_div{
+		height: 200px;
+    }
+}
 
 @media(max-width: 768px) {
     main {
@@ -446,6 +471,12 @@ main {
     .tab_a {
         font-size: 20px;
     }
+    .submit1{
+        padding: 5px;
+    }
+    .recommend_submit1{
+        font-size: 18px;
+    }
 
 }
 
@@ -457,6 +488,15 @@ main {
 
     .tab_a {
         font-size: 18px;
+    }
+    .submit1{
+        padding: 0;
+    }
+    .recommend_submit1{
+        font-size: 16px;
+    }
+    .checkimg_div{
+		height: 300px;
     }
 }
 
