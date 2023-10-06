@@ -746,10 +746,13 @@ endcomment %}
     var submit_btn = document.getElementById("sure_att_type");
     for (var i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", function () {
-            var current = document.querySelectorAll(".more_btn.active");
-            if (current != null && current.length > 0) {
-                current[0].className = current[0].className.replace(" active", "");
-            };
+            if(this.className.includes("active")){
+                this.className = this.className.replace(" active", "");
+                submit_btn.value = "";
+                sessionStorage.removeItem(this.textContent);
+                searchText(this.dataset.set,'tag_search');
+                return;
+            }
             this.className += " active";
             submit_btn.value = this.dataset.set;
             console.log(this.textContent);
