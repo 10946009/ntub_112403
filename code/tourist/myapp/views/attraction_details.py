@@ -89,13 +89,21 @@ def attraction_details(request):
 
 
     search_list = search_list[:10]  # 之後要改 目前避免當掉
+
     if request.GET.get("a_id") != None:
+        
         choose_a_id = request.GET.get("a_id")  # 提取傳遞的值
         choose_attractions = Attractions.objects.get(id=choose_a_id)
         choose_attractions.hit += 1
         choose_attractions.save()
         choose_attractions_dict = model_to_dict(choose_attractions)
-        print(choose_attractions_dict)
+
+        detail_html = render_to_string(
+            template_name="attraction_details_detail.html",
+            context={"detail": choose_attractions_dict},
+        )
+        detail_data_dict = {"attractions_detail_html": detail_html}
+        return JsonResponse(data=detail_data_dict, safe=False)
         return JsonResponse(choose_attractions_dict, safe=False)
 
     # 判斷是否已收藏

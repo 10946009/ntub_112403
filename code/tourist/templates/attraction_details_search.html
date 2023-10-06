@@ -44,7 +44,7 @@
             <!-- 總瀏覽人數 -->
             <h6 style="color:#8b8a8a;" data-bottom-top="transform: translateY(-20px);opacity: 0"
                 data-center="transform: translateY(0px);opacity: 1">
-                <i class="fa-regular fa-eye"></i>&thinsp;瀏覽人數：<span>１</span>人
+                <i class="fa-regular fa-eye"></i>&thinsp;瀏覽人數：<span>{{item.hit}}</span>人
             </h6>
             <!-- 收藏按鈕 -->
             <div data-bottom-top="transform: translateY(-20px);opacity: 0"
@@ -64,3 +64,4 @@
 {% empty %}
     <div>查無資料</div>
 {% endfor %}
+
