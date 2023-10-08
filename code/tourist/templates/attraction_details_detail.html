@@ -315,6 +315,16 @@
 <script src="../static/js/slideshow.js"></script>
 <script>
     //總覽評論切換
+    sessionStorage.clear();
+    var search_text_list = [];
+    $(function () {
+        $('.change_btn div').click(function () {
+            $(this).addClass('active1').siblings().removeClass('active1');
+            var index = $(this).index();
+            $(".change_content .change_content1").eq(index).show().siblings().hide();
+        })
+    })
+    //總覽評論切換
     var change1 = document.querySelector(".change1");
     var change2 = document.querySelector(".change2");
 

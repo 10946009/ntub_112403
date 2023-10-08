@@ -385,24 +385,14 @@ endcomment %}
 </footer>
 
 <script src="../static/js/addFavorite.js"></script>
-{% comment %} <script src="../static/js/slideshow.js"></script> {% endcomment %}
+{% comment %}
+<script src="../static/js/slideshow.js"></script> {% endcomment %}
 <script src="../static/js/attractions.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script>
-    sessionStorage.clear();
-    var search_text_list = [];
-    $(function () {
-        $('.change_btn div').click(function () {
-            $(this).addClass('active1').siblings().removeClass('active1');
-            var index = $(this).index();
-            $(".change_content .change_content1").eq(index).show().siblings().hide();
-        })
-    })
-
-
     // skrollr滑鼠滾動
     var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     if (!isMobile) {
@@ -451,18 +441,18 @@ endcomment %}
     var submit_btn = document.getElementById("sure_att_type");
     for (var i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", function () {
-            if(this.className.includes("active")){
+            if (this.className.includes("active")) {
                 this.className = this.className.replace(" active", "");
                 submit_btn.value = "";
                 sessionStorage.removeItem(this.textContent);
-                searchText(this.dataset.set,'tag_search');
+                searchText(this.dataset.set, 'tag_search');
                 return;
             }
             this.className += " active";
             submit_btn.value = this.dataset.set;
             console.log(this.textContent);
-            sessionStorage.setItem(this.textContent,'tag_search');
-            searchText(this.dataset.set,'tag_search');
+            sessionStorage.setItem(this.textContent, 'tag_search');
+            searchText(this.dataset.set, 'tag_search');
         });
     }
     {% comment %} submit_btn.addEventListener("click", function () {
@@ -558,17 +548,17 @@ endcomment %}
     });
     function getAllSessionStorageData() {
         var data = []; // 創建一個空對象來保存所有的sessionStorage資料
-    
+
         for (var i = 0; i < sessionStorage.length; i++) {
             var key = sessionStorage.key(i); // 獲取sessionStorage的鍵
             var value = sessionStorage.getItem(key); // 獲取鍵對應的值
-            
-            data.push(key,value); // 將鍵值對添加到data對象中
+
+            data.push(key, value); // 將鍵值對添加到data對象中
         }
-    
+
         return data; // 返回包含所有sessionStorage資料的對象
     }
-    function searchText(search_text,data_type) {
+    function searchText(search_text, data_type) {
         // data_type= keyword_search,tag_search,popular_search
         console.log(search_text, data_type)
 
@@ -579,8 +569,8 @@ endcomment %}
             type: 'GET',  // 請求類型為 GET
             data: {
                 search_text: search_text,  // 傳遞給伺服器的參數，以 a_id 為名
-                data_type:data_type,
-                sessionStorage:getAllSessionStorageData()
+                data_type: data_type,
+                sessionStorage: getAllSessionStorageData()
             },
             success: function (response) {
 
@@ -740,7 +730,7 @@ endcomment %}
     {% comment %} var showInfo = document.getElementById("id01");
     showInfo.style.display = "block"; {% endcomment %}
 
- 
+
 
     // 取得選擇後的景點回傳的值
     {% comment %}
