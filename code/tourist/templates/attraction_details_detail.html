@@ -2,13 +2,11 @@
     <form class="modal-content animate" action="/action_page.php" method="post">
         <!-- 關閉詳細景點資料 -->
         <div class="imgcontainer">
-            <span onclick="document.getElementById('id01').style.display='none'"
-                  class="close"
-                  title="Close Modal">&times;</span>
+            <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                title="Close Modal">&times;</span>
         </div>
         <!-- 詳細景點資訊顯示 -->
-        <div class="container"
-             style="padding-right:50px;
+        <div class="container" style="padding-right:50px;
                     padding-left:50px;
                     padding-bottom:50px">
             <div>
@@ -17,13 +15,13 @@
                 <!-- 詳細景點星星數 -->
                 <div class="rating" style="margin-bottom: 10px;">
                     {% for i in "12345" %}
-                        {% if i|add:0 <= detail.rating %}
-                            <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
+                    {% if i|add:0 <= detail.rating %} <span class="rating-star" style="color: rgb(241, 226, 62);">
+                        &#9733;</span>
                         {% else %}
-                            <span class="rating-star">&#9733;</span>
+                        <span class="rating-star">&#9733;</span>
                         {% endif %}
-                    {% endfor %}
-                    <span id="selectedRating"></span> / 5 ({{ detail.rating_total }})
+                        {% endfor %}
+                        <span id="selectedRating"></span> / 5 ({{ detail.rating_total }})
                 </div>
             </div>
             <!-- 詳細景點圖片 -->
@@ -59,46 +57,28 @@
                 </div>
                 <div class="row">
                     <div class="column">
-                        <img class="demo cursor"
-                             src="../static/images/beitou.jpeg"
-                             style="width:100%"
-                             onclick="currentSlide(1)"
-                             alt="北投溫泉">
+                        <img class="demo cursor" src="../static/images/beitou.jpeg" style="width:100%"
+                            onclick="currentSlide(1)" alt="北投溫泉">
                     </div>
                     <div class="column">
-                        <img class="demo cursor"
-                             src="../static/images/Datong.jpeg"
-                             style="width:100%"
-                             onclick="currentSlide(2)"
-                             alt="大稻埕">
+                        <img class="demo cursor" src="../static/images/Datong.jpeg" style="width:100%"
+                            onclick="currentSlide(2)" alt="大稻埕">
                     </div>
                     <div class="column">
-                        <img class="demo cursor"
-                             src="../static/images/Xinyi.jpeg"
-                             style="width:100%"
-                             onclick="currentSlide(3)"
-                             alt="台北101">
+                        <img class="demo cursor" src="../static/images/Xinyi.jpeg" style="width:100%"
+                            onclick="currentSlide(3)" alt="台北101">
                     </div>
                     <div class="column">
-                        <img class="demo cursor"
-                             src="../static/images/Shilin.jpeg"
-                             style="width:100%"
-                             onclick="currentSlide(4)"
-                             alt="士林夜市">
+                        <img class="demo cursor" src="../static/images/Shilin.jpeg" style="width:100%"
+                            onclick="currentSlide(4)" alt="士林夜市">
                     </div>
                     <div class="column">
-                        <img class="demo cursor"
-                             src="../static/images/Songshan.jpeg"
-                             style="width:100%"
-                             onclick="currentSlide(5)"
-                             alt="松山">
+                        <img class="demo cursor" src="../static/images/Songshan.jpeg" style="width:100%"
+                            onclick="currentSlide(5)" alt="松山">
                     </div>
                     <div class="column">
-                        <img class="demo cursor"
-                             src="../static/images/twotwoeight.jpeg"
-                             style="width:100%"
-                             onclick="currentSlide(6)"
-                             alt="二二八公園">
+                        <img class="demo cursor" src="../static/images/twotwoeight.jpeg" style="width:100%"
+                            onclick="currentSlide(6)" alt="二二八公園">
                     </div>
                 </div>
             </div>
@@ -264,7 +244,7 @@
                                 天氣冷來到動物園，動物們顯得心情不好，跟人類一樣也會冷到不想到，看到最多的是背影跟屁股，也是一種難得的經驗。
                                 <br>
                                 <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
-                                2033</span>
+                                    2033</span>
                             </p>
                         </div>
                     </div>
@@ -287,7 +267,7 @@
                                 帶小孩來看動物很棒！可以玩一整天！廁所很多很方便,用餐座位如果能再多一些就好了!麥當勞大排長龍實在太誇張！希望能增設其他餐廳或便利商店~
                                 <br>
                                 <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
-                                2023</span>
+                                    2023</span>
                             </p>
                         </div>
                     </div>
@@ -310,7 +290,7 @@
                                 我實在越來越覺得動物園越來越差，維修的東西擴建的項目越來越多，但都沒有東西完成！太誇張了
                                 <br>
                                 <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
-                                2023</span>
+                                    2023</span>
                             </p>
                         </div>
                     </div>
@@ -322,9 +302,7 @@
             </div>
         </div>
         <div class="container" style="background-color:#f1f1f1">
-            <button type="button"
-                    onclick="document.getElementById('id01').style.display='none'"
-                    class="cancelbtn">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">
                 Close
             </button>
             <!-- 總瀏覽人數 -->
@@ -336,55 +314,55 @@
 </div>
 <script src="../static/js/slideshow.js"></script>
 <script>
-        //總覽評論切換
-        var change1 = document.querySelector(".change1");
-        var change2 = document.querySelector(".change2");
-    
-        change1.addEventListener("click", function () {
-            change1.style.color = "gray";
-            change1.style.borderBottom = "2px solid red";
-            change2.style.borderBottom = "none";
-            change2.style.color = "black";
-        });
-    
-        change2.addEventListener("click", function () {
-            change2.style.color = "gray";
-            change2.style.borderBottom = "2px solid red";
-            change1.style.borderBottom = "none";
-            change1.style.color = "black";
-        });
-    
-    
-    
-        //人潮分佈圖
-        var ctx = document.getElementById('chart').getContext('2d');
-        var chart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ["週一", "週二", "週三", "週四", "週五", "週六", "週日"],
-                datasets: [{
-                    label: '人潮分佈狀況',
-                    data: [12, 19, 3, 5, 18, 3, 20],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.8)',
-                        'rgba(54, 162, 235, 0.8)',
-                        'rgba(255, 206, 86, 0.8)',
-                        'rgba(75, 192, 192, 0.8)',
-                        'rgba(153, 102, 255, 0.8)',
-                        'rgba(255, 159, 64, 0.8)',
-                        'rgba(0, 0, 0, 0.8)'
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        ' rgba(0, 0, 0, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            }
-        });
+    //總覽評論切換
+    var change1 = document.querySelector(".change1");
+    var change2 = document.querySelector(".change2");
+
+    change1.addEventListener("click", function () {
+        change1.style.color = "gray";
+        change1.style.borderBottom = "2px solid red";
+        change2.style.borderBottom = "none";
+        change2.style.color = "black";
+    });
+
+    change2.addEventListener("click", function () {
+        change2.style.color = "gray";
+        change2.style.borderBottom = "2px solid red";
+        change1.style.borderBottom = "none";
+        change1.style.color = "black";
+    });
+
+
+
+    //人潮分佈圖
+    var ctx = document.getElementById('chart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["週一", "週二", "週三", "週四", "週五", "週六", "週日"],
+            datasets: [{
+                label: '人潮分佈狀況',
+                data: [12, 19, 3, 5, 18, 3, 20],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.8)',
+                    'rgba(153, 102, 255, 0.8)',
+                    'rgba(255, 159, 64, 0.8)',
+                    'rgba(0, 0, 0, 0.8)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    ' rgba(0, 0, 0, 1)'
+                ],
+                borderWidth: 1
+            }]
+        }
+    });
 </script>

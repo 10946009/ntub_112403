@@ -1,5 +1,5 @@
 //詳細景點資訊幻燈片圖
-let slideIndex1 = 1;
+var slideIndex1 = 1;
 showSlides(slideIndex1);
 function plusSlides(n) {
   showSlides((slideIndex1 += n));
