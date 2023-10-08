@@ -371,305 +371,10 @@ endcomment %}
         {% endfor %}
     </div>
 </div> -->
-
 <!-- 景點詳細資料隱藏點擊 -->
 <div id="id01" class="row modal">
-    <div class="col-12 col-s-12">
-        <form class="modal-content animate" action="/action_page.php" method="post">
-            <!-- 關閉詳細景點資料 -->
-            <div class="imgcontainer">
-                <span onclick="document.getElementById('id01').style.display='none'" class="close"
-                    title="Close Modal">&times;</span>
-            </div>
-            <!-- 詳細景點資訊顯示 -->
-            <div class="container" style="padding-right:50px;padding-left:50px;padding-bottom:50px;">
-                <div>
-                    <!-- 詳細景點名稱 -->
-                    <h3 style="color: rgb(172, 78, 1)" id="attractions-detail-name"></h3>
-                    <!-- 詳細景點星星數 -->
-                    <div class="rating" style="margin-bottom: 10px;">
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                        <span class="rating-star">&#9733;</span>
-                        <span id="selectedRating"></span> / 5 (6.3萬)
-                    </div>
-                </div>
-                <!-- 詳細景點圖片 -->
-                <div class="container1">
-                    <div class="mySlides">
-                        <div class="numbertext">1 / 6</div>
-                        <img src="../static/images/beitou.jpeg" style="width:100%">
-                    </div>
-
-                    <div class="mySlides">
-                        <div class="numbertext">2 / 6</div>
-                        <img src="../static/images/Datong.jpeg" style="width:100%">
-                    </div>
-
-                    <div class="mySlides">
-                        <div class="numbertext">3 / 6</div>
-                        <img src="../static/images/Xinyi.jpeg" style="width:100%">
-                    </div>
-
-                    <div class="mySlides">
-                        <div class="numbertext">4 / 6</div>
-                        <img src="../static/images/Shilin.jpeg" style="width:100%">
-                    </div>
-
-                    <div class="mySlides">
-                        <div class="numbertext">5 / 6</div>
-                        <img src="../static/images/Songshan.jpeg" style="width:100%">
-                    </div>
-
-                    <div class="mySlides">
-                        <div class="numbertext">6 / 6</div>
-                        <img src="../static/images/twotwoeight.jpeg" style="width:100%">
-                    </div>
-
-                    <a class="prev" onclick="plusSlides(-1)">❮</a>
-                    <a class="next" onclick="plusSlides(1)">❯</a>
-
-                    <div class="caption-container">
-                        <p id="caption"></p>
-                    </div>
-
-                    <div class="row">
-                        <div class="column">
-                            <img class="demo cursor" src="../static/images/beitou.jpeg" style="width:100%"
-                                onclick="currentSlide(1)" alt="北投溫泉">
-                        </div>
-                        <div class="column">
-                            <img class="demo cursor" src="../static/images/Datong.jpeg" style="width:100%"
-                                onclick="currentSlide(2)" alt="大稻埕">
-                        </div>
-                        <div class="column">
-                            <img class="demo cursor" src="../static/images/Xinyi.jpeg" style=" width:100%"
-                                onclick="currentSlide(3)" alt="台北101">
-                        </div>
-                        <div class="column">
-                            <img class="demo cursor" src="../static/images/Shilin.jpeg" style="width:100%"
-                                onclick="currentSlide(4)" alt="士林夜市">
-                        </div>
-                        <div class="column">
-                            <img class="demo cursor" src="../static/images/Songshan.jpeg" style="width:100%"
-                                onclick="currentSlide(5)" alt="松山">
-                        </div>
-                        <div class="column">
-                            <img class="demo cursor" src="../static/images/twotwoeight.jpeg" style="width:100%"
-                                onclick="currentSlide(6)" alt="二二八公園">
-                        </div>
-                    </div>
-                </div>
-                <hr style="border:2px solid #b3b2b2">
-                <div class="change_btn">
-                    <div class="change1 active1">總覽</div>
-                    <div class="change2">評論</div>
-                </div>
-
-                <div class="change_content">
-                    <!-- 總覽按鈕 -->
-                    <div class="change_content1">
-                        <!-- 景點介紹 -->
-                        <h6>xxx(景點),然後介紹他....</h6>
-                        <!-- 詳細地址 -->
-                        <h5 id="attractions-detail-address">
-                            地址：116台北市文山區新光路二段30號
-                        </h5>
-                        <!-- 詳細電話 -->
-                        <h5 id="attractions-detail-phone">
-                            電話：02－2938－2300
-                        </h5>
-                        <!-- 詳細營業時間 -->
-                        <!-- <h5>
-                        營業時間： <span style="color: red;">已打烊</span> <span style="color: rgb(21, 81, 140);">
-                            *開始營業時間：9:00</span>
-                    </h5> -->
-                        <!-- 詳細建議停留時間 -->
-                        <h5>
-                            建議停留時間：
-                        </h5>
-                        <!-- 詳細旺季月份 -->
-                        <h5>旺季月份：</h5>
-                        <hr style="border:2px solid #b3b2b2">
-                        <!-- 使用者提問及回答 -->
-                        <div class="question">
-                            <h5>
-                                問題與解答：
-                            </h5>
-                            <h6 style="margin-left: 20px; color: #707070;">問：春節有開嗎？</h6>
-                            <h6 style="margin-left: 20px; color: #707070;">答：有初一早上9點開，其他時間8點半。</h6>
-                            <h6 style="margin-left: 20px; color: #707070;">問：春節有開嗎？</h6>
-                            <h6 style="margin-left: 20px; color: #707070;">答：有初一早上9點開，其他時間8點半。</h6>
-                            <h6 style="margin-left: 20px; color: #707070;">問：春節有開嗎？</h6>
-                            <h6 style="margin-left: 20px; color: #707070;">答：有初一早上9點開，其他時間8點半。</h6>
-                            <h6 style="margin-left: 20px; color: #707070;">問：春節有開嗎？</h6>
-                            <h6 style="margin-left: 20px; color: #707070;">答：有初一早上9點開，其他時間8點半。</h6>
-                            <h6 style="margin-left: 20px; color:#a8a8a8">更多...</h6>
-                            <button style="border-radius: 8px;"><i class="fa-solid fa-message"
-                                    style="margin-right: 5px;"></i>我要發問</button>
-                        </div>
-                        <hr style="border:2px solid #b3b2b2">
-                        <!-- 人潮資訊 -->
-                        <h5>
-                            人潮資訊：
-                        </h5>
-                        <!-- 人潮圖表 -->
-                        <div>
-                            <canvas id="chart" width="300" height="150"></canvas>
-                        </div>
-                    </div>
-                    <!-- 評論按鈕 -->
-                    <div class="change_content1">
-                        <!-- 使用者總評論 -->
-                        <h5>
-                            評論摘要：
-                        </h5>
-                        <div class="row" style="margin-bottom: 20px;">
-
-                            <hr style="border:2px solid #f1f1f1">
-                            <div class="col-3">
-                                <div class=" row">
-                                    <div class="total_score_star">
-                                        <p style="font-size:60px;margin-left: 30px;"><strong>4.0</strong></p>
-                                    </div>
-                                    <div class="total_star">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                    </div>
-                                    <p style="margin-left: 30px;">63,261 則評論</p>
-                                </div>
-                            </div>
-                            <div class="col-9">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="star_container">
-                                            <div class="nu_star">5</div>
-                                            <div class="bar-container">
-                                                <div class="bar-5"></div>
-                                            </div>
-                                        </div>
-                                        <div class="star_container">
-                                            <div class="nu_star">4</div>
-                                            <div class="bar-container">
-                                                <div class="bar-4"></div>
-                                            </div>
-                                        </div>
-                                        <div class="star_container">
-                                            <div class="nu_star">3</div>
-                                            <div class="bar-container">
-                                                <div class="bar-3"></div>
-                                            </div>
-                                        </div>
-                                        <div class="star_container">
-                                            <div class="nu_star">2</div>
-                                            <div class="bar-container">
-                                                <div class="bar-2"></div>
-                                            </div>
-                                        </div>
-                                        <div class="star_container">
-                                            <div class="nu_star">1</div>
-                                            <div class="bar-container">
-                                                <div class="bar-1"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- 使用者留言評論 -->
-                        <div class="comment">
-                            <div class="avatar">
-                                <img src="/static/images/head.png" alt="User Avatar">
-                            </div>
-                            <div class="comment-content">
-                                <h5 class="username">
-                                    李
-                                </h5>
-                                <div class="rating">
-                                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                                    <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                                    <span class="rating-star">&#9733;</span>
-                                    <span class="rating-star">&#9733;</span>
-                                </div>
-                                <p class="comment-text">
-                                    天氣冷來到動物園，動物們顯得心情不好，跟人類一樣也會冷到不想到，看到最多的是背影跟屁股，也是一種難得的經驗。
-                                    <br>
-                                    <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
-                                        2033</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <div class="avatar">
-                                <img src="/static/images/head.png" alt="User Avatar">
-                            </div>
-                            <div class="comment-content">
-                                <h5 class="username">
-                                    sun
-                                </h5>
-                                <div class="rating">
-                                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                                    <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                                    <span class="rating-star">&#9733;</span>
-                                </div>
-                                <p class="comment-text">
-                                    帶小孩來看動物很棒！可以玩一整天！廁所很多很方便,用餐座位如果能再多一些就好了!麥當勞大排長龍實在太誇張！希望能增設其他餐廳或便利商店~
-                                    <br>
-                                    <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
-                                        2023</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <div class="avatar">
-                                <img src="/static/images/head.png" alt="User Avatar">
-                            </div>
-                            <div class="comment-content">
-                                <h5 class="username">
-                                    李+0
-                                </h5>
-                                <div class="rating">
-                                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                                    <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                                    <span class="rating-star">&#9733;</span>
-                                    <span class="rating-star">&#9733;</span>
-                                    <span class="rating-star">&#9733;</span>
-                                </div>
-                                <p class="comment-text">
-                                    我實在越來越覺得動物園越來越差，維修的東西擴建的項目越來越多，但都沒有東西完成！太誇張了
-                                    <br>
-                                    <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
-                                        2023</span>
-                                </p>
-                            </div>
-                        </div>
-                        <!-- 撰寫評論 -->
-                        <button style="border-radius: 8px;position: relative; left: 45%;"><i class="fa-solid fa-pen"
-                                style="margin-right: 5px;"></i>我要評論</button>
-                    </div>
-                </div>
-            </div>
-            <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                    class="cancelbtn">Close</button>
-                <!-- 總瀏覽人數 -->
-                <h6 style="color:#8b8a8a; float: right;">
-                    <i class="fa-regular fa-eye"></i>&thinsp;瀏覽人數：<span>１</span>人
-                </h6>
-            </div>
-        </form>
-    </div>
+    {% include 'attraction_details_detail.html' %}
 </div>
-
 <!-- footer-->
 <footer class="jumbotron1">
     <div class="container">
@@ -680,7 +385,7 @@ endcomment %}
 </footer>
 
 <script src="../static/js/addFavorite.js"></script>
-<script src="../static/js/slideshow.js"></script>
+{% comment %} <script src="../static/js/slideshow.js"></script> {% endcomment %}
 <script src="../static/js/attractions.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -746,10 +451,13 @@ endcomment %}
     var submit_btn = document.getElementById("sure_att_type");
     for (var i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", function () {
-            var current = document.querySelectorAll(".more_btn.active");
-            if (current != null && current.length > 0) {
-                current[0].className = current[0].className.replace(" active", "");
-            };
+            if(this.className.includes("active")){
+                this.className = this.className.replace(" active", "");
+                submit_btn.value = "";
+                sessionStorage.removeItem(this.textContent);
+                searchText(this.dataset.set,'tag_search');
+                return;
+            }
             this.className += " active";
             submit_btn.value = this.dataset.set;
             console.log(this.textContent);
@@ -1012,25 +720,13 @@ endcomment %}
             },
             success: function (response) {
                 // 當請求成功時執行的處理程式
-
+                const attractions_detail_div = $('#id01');
+                attractions_detail_div.html(response['attractions_detail_html']);
+                console.log(attractions_detail_div)
                 // 取得模態框元素
                 var showInfo = document.getElementById("id01");
                 // 將模態框的顯示樣式設定為 "block"，顯示模態框
                 showInfo.style.display = "block";
-
-                // 從回應中取得景點資料
-                var attractions = response;
-
-                // 將景點資料顯示在網頁中的相應元素內
-                var attractionsDetailName = document.getElementById('attractions-detail-name');
-                var attractionsDetailAddress = document.getElementById('attractions-detail-address');
-                var attractionsDetailPhone = document.getElementById('attractions-detail-phone');
-                var attractionsDetailRating = document.getElementById('selectedRating');
-
-                attractionsDetailName.textContent = attractions.a_name;
-                attractionsDetailAddress.textContent = "地址：" + attractions.address;
-                attractionsDetailPhone.textContent = "電話：" + attractions.phone;
-                attractionsDetailRating.textContent = attractions.rating;
             },
             error: function (xhr, status, error) {
                 // 請求失敗時的處理
@@ -1044,57 +740,7 @@ endcomment %}
     {% comment %} var showInfo = document.getElementById("id01");
     showInfo.style.display = "block"; {% endcomment %}
 
-    //總覽評論切換
-    var change1 = document.querySelector(".change1");
-    var change2 = document.querySelector(".change2");
-
-    change1.addEventListener("click", function () {
-        change1.style.color = "gray";
-        change1.style.borderBottom = "2px solid red";
-        change2.style.borderBottom = "none";
-        change2.style.color = "black";
-    });
-
-    change2.addEventListener("click", function () {
-        change2.style.color = "gray";
-        change2.style.borderBottom = "2px solid red";
-        change1.style.borderBottom = "none";
-        change1.style.color = "black";
-    });
-
-
-
-    //人潮分佈圖
-    var ctx = document.getElementById('chart').getContext('2d');
-    var chart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ["週一", "週二", "週三", "週四", "週五", "週六", "週日"],
-            datasets: [{
-                label: '人潮分佈狀況',
-                data: [12, 19, 3, 5, 18, 3, 20],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(54, 162, 235, 0.8)',
-                    'rgba(255, 206, 86, 0.8)',
-                    'rgba(75, 192, 192, 0.8)',
-                    'rgba(153, 102, 255, 0.8)',
-                    'rgba(255, 159, 64, 0.8)',
-                    'rgba(0, 0, 0, 0.8)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    ' rgba(0, 0, 0, 1)'
-                ],
-                borderWidth: 1
-            }]
-        }
-    });
+ 
 
     // 取得選擇後的景點回傳的值
     {% comment %}

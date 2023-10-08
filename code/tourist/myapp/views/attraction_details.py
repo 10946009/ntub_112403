@@ -68,6 +68,12 @@ def attraction_details(request):
             .values()
         )
         search_list = search_list_and + search_list_or
+            # 判斷是否已收藏
+        for index, search in enumerate(search_list):
+            if Favorite.objects.filter(u_id=user, a_id=search["id"]).exists():
+                search_list[index].setdefault("is_favorite", "1")
+            else:
+                search_list[index].setdefault("is_favorite", "0")
 
         html = render_to_string(
             template_name="attraction_details_search.html",
@@ -76,23 +82,28 @@ def attraction_details(request):
         data_dict = {"keyword_search_list": html}
 
         return JsonResponse(data=data_dict, safe=False)
-
-    if request.method == "POST":
-        query = request.POST.get("searchQuery")
-        search_url = "/attraction_details/?query=" + query
-        search_list = list(Attractions.objects.filter(a_name__contains=query).values())
     else:  # 後續要改(目前為顯示前3筆
         keyword_attrations_id = [1, 2, 3]
         for a_id in keyword_attrations_id:
             search_list.append(Attractions.objects.filter(id=a_id).values().first())
+
+
     search_list = search_list[:10]  # 之後要改 目前避免當掉
+
     if request.GET.get("a_id") != None:
+        
         choose_a_id = request.GET.get("a_id")  # 提取傳遞的值
         choose_attractions = Attractions.objects.get(id=choose_a_id)
         choose_attractions.hit += 1
         choose_attractions.save()
         choose_attractions_dict = model_to_dict(choose_attractions)
-        print(choose_attractions_dict)
+
+        detail_html = render_to_string(
+            template_name="attraction_details_detail.html",
+            context={"detail": choose_attractions_dict},
+        )
+        detail_data_dict = {"attractions_detail_html": detail_html}
+        return JsonResponse(data=detail_data_dict, safe=False)
         return JsonResponse(choose_attractions_dict, safe=False)
 
     # 判斷是否已收藏
