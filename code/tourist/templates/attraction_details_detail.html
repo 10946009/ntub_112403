@@ -107,30 +107,34 @@
                     <hr style="border:2px solid #b3b2b2">
                     <!-- 使用者提問及回答 -->
                     <div class="question">
-                        <h5>問題與解答：</h5>
-                        <h6 style="margin-left: 20px; color: #707070;">問：春節有開嗎？</h6>
-                        <h6 style="margin-left: 20px; color: #707070;">答：有初一早上9點開，其他時間8點半。</h6>
-                        <h6 style="margin-left: 20px; color: #707070;">
-                            問：春節有開嗎？
+                        <div class="qa-section">
+                            <h5>問題與解答：</h5>
+                            <h6 style="margin-left: 20px; color: #707070;">問：春節有開嗎？</h6>
+                            <h6 style="margin-left: 20px; color: #707070;">答：有初一早上9點開，其他時間8點半。</h6>
+                            <h6 style="margin-left: 20px; color: #707070;">
+                                問：春節有開嗎？
+                            </h6>
+                            <h6 style="margin-left: 20px; color: #707070;">
+                                答：有初一早上9點開，其他時間8點半。
+                            </h6>
+                            <h6 style="margin-left: 20px; color: #707070;">
+                                問：春節有開嗎？
+                            </h6>
+                            <h6 style="margin-left: 20px; color: #707070;">
+                                答：有初一早上9點開，其他時間8點半。
+                            </h6>
+                            <h6 style="margin-left: 20px; color: #707070;">
+                                問：春節有開嗎？
+                            </h6>
+                            <h6 style="margin-left: 20px; color: #707070;">
+                                答：有初一早上9點開，其他時間8點半。
+                            </h6>
+                        </div>
+                        <h6 style="margin-left: 20px; color:#a8a8a8; cursor: pointer;" class="toggleButton"
+                            id="toggleButton">
+                            <span>更多...</span>
                         </h6>
-                        <h6 style="margin-left: 20px; color: #707070;">
-                            答：有初一早上9點開，其他時間8點半。
-                        </h6>
-                        <h6 style="margin-left: 20px; color: #707070;">
-                            問：春節有開嗎？
-                        </h6>
-                        <h6 style="margin-left: 20px; color: #707070;">
-                            答：有初一早上9點開，其他時間8點半。
-                        </h6>
-                        <h6 style="margin-left: 20px; color: #707070;">
-                            問：春節有開嗎？
-                        </h6>
-                        <h6 style="margin-left: 20px; color: #707070;">
-                            答：有初一早上9點開，其他時間8點半。
-                        </h6>
-                        <h6 style="margin-left: 20px; color:#a8a8a8">
-                            更多...
-                        </h6>
+
                         <button style="border-radius: 8px;">
                             <i class="fa-solid fa-message" style="margin-right: 5px;"></i>我要發問
                         </button>
@@ -314,6 +318,22 @@
 </div>
 <script src="../static/js/slideshow.js"></script>
 <script>
+    // 更多問題功能
+    var qaSection = document.querySelector('.qa-section');
+    var toggleButton = document.getElementById('toggleButton');
+    //前三行内容
+    var isHidden = true;
+    toggleButton.addEventListener('click', function () {
+        if (isHidden) {
+            qaSection.style.webkitLineClamp = 'unset';
+            toggleButton.textContent = '顯示最小';
+        } else {
+            qaSection.style.webkitLineClamp = '3';
+            toggleButton.textContent = '更多...';
+        }
+        isHidden = !isHidden;
+    });
+
     //總覽評論切換
     sessionStorage.clear();
     var search_text_list = [];
