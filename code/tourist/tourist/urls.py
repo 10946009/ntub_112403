@@ -26,6 +26,7 @@ from myapp.views import (
     history,
     favorite,
     attraction_details,
+    travel_detail,
 )
 
 
@@ -67,4 +68,5 @@ urlpatterns = [
     path("del_favorite/<int:a_id>", favorite.del_favorite),  # 沒有頁面
     # path('attraction_details/<int:a_id>',views.attraction_details),
     # path('sayhello/<str:username>',sayhello), #新增
+    path('travel_detail/', travel_detail.travel_detail),
 ]
