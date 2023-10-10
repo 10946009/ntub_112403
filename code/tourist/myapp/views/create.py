@@ -8,20 +8,51 @@ from .viewsConst import ATT_TYPE_CHINESE
 from .recommend import recommend
 from .recommend_near import recommend_near
 from .final_order import final_order
+import requests
+from geopy.geocoders import Nominatim
 
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv, find_dotenv
 
+dotenv_path = join(dirname(__file__), ".env")
+load_dotenv(dotenv_path, override=True)  # 設定 override 才會更新變數哦！
+GOOGLE_PLACES_API_KEY = os.environ.get("GOOGLE_PLACES_API_KEY")
+apikey = GOOGLE_PLACES_API_KEY
 def format_minutes_as_time(minutes):
     hours, remainder_minutes = divmod(minutes, 60)
     return f"{hours:02d}:{remainder_minutes:02d}"
 
 
+def local_to_address(lat,lng):
+    print("lat",lat)
+    print("lng",lng)
+    base_url = 'https://maps.googleapis.com/maps/api/geocode/json'
+    params = {
+        'latlng': f'{lat},{lng}',
+        'key': apikey,
+        'language': 'zh-TW'  # 设置语言为繁体中文
+    }
+
+    # 发送请求
+    response = requests.get(base_url, params=params)
+    data = response.json()
+
+    # 解析结果
+    if data['status'] == 'OK' and len(data['results']) > 0:
+        formatted_address = data['results'][0]['formatted_address']
+        print('地址：', formatted_address)
+    else:
+        formatted_address = "無法獲取地址"
+        print('无法获取地址')
+    return formatted_address
 # 建立行程
 @login_required(login_url="/login")
 def create(request, ct_id):
     user_favorite = [4, 6, 9, 10, 15, 16, 18] #需修改新增的部分
     ct_data = Create_Travel.objects.get(id=ct_id)
     choiceday = 1
-
+    # apikey = GOOGLE_PLACES_API_KEY
     travelday = range(1, ct_data.travel_day + 1)
     name = ct_data.ct_name
     start_day = ct_data.start_day
@@ -37,13 +68,13 @@ def create(request, ct_id):
     all_ct_data = []
     crowd_index_list=[]
     crowd_list=[]
-    local = ""
+    local_address = ""
     user_nowtime=""
     try:
         # 抓出這是哪一筆行程且天數為第1天(後續要改成抓全部
         ct_attractions_data = ChoiceDay_Ct.objects.get(ct_id=ct_id, day=choiceday) 
         # 抓目前位置
-        # local = ct_attractions_data.start_location_x + ',' +ct_attractions_data.start_location_y
+        # local_address = local_to_address(ct_attractions_data.start_location_x ,ct_attractions_data.start_location_y)
         # 抓出發時間
         user_nowtime = format_minutes_as_time(ct_attractions_data.start_time)
         
@@ -251,15 +282,5 @@ def create(request, ct_id):
 
             print("hello")
 
-        #收藏景點的部分
-        favorite_list = []
-        user_id = request.user.id
-        # project = Project.objects.get(id=project_id)
-        # 找出user的最愛清單的a.id
-        favorite_attrations_list = Favorite.objects.filter(u_id=user_id).values()
-        print(favorite_attrations_list)
-        # a.id取出
-        for a_id in favorite_attrations_list:
-            favorite_list.append(Attractions.objects.get(id=a_id["a_id"]))
 
     return render(request, "create.html", locals())
