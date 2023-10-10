@@ -89,9 +89,23 @@
                     </div>
                   </div>
                 </form>
+                {% comment %} ct_attractions_co_list
+                ct_attractions_detail_list {% endcomment %}
                 <div id="OrderAttractions" style="color: black;">
-                  {% for attractions in ct_attractions_list %}
+                  
 
+                  {% for data in all_ct_data %}
+                    
+                    <div style="color: black" class="spot" id="spot{{data.attraction.order}}" style="margin-bottom:10px">
+                      {{data.detail.a_name}}
+                      <div id="hiddenId" style="display: none;">
+                        {{data.detail.id}}
+                      </div>
+                      <p>{{data.detail.address}} <br>
+                      <p>當下可能的人潮流量：{{data.crowd_list}}%<br>
+                      <p>營業時間： {% for time in data.co.opening %} {% if forloop.counter != 1 %},{% endif %} {{time}} {% endfor %}<br>
+                      <p>建議停留時間： {% if data.detail.stay_time == 0 %}150{% else %}{{data.detail.stay_time}}{% endif %} 分鐘<br>
+                    </div>
                   {% endfor %}
                   <!-- <span class="create_txt" >第</span>
                     <button style="border: none;">+</button> -->
@@ -655,12 +669,15 @@
           console.log('final_result', final_result);
           console.log('final_crow_opening', final_crow_opening);
           console.log(final_now_time_list)
+
+          final_now_time_list[i] = final_now_time_list[i] % 1440;
+
           count++;
           all_a.push(final_result.id)
           var temp = '<div class="spot" id="spot' + count + '">';
           temp += final_result.a_name;
           temp += '<p>'+final_result.address;
-          temp += '<p>當下可能的人潮流量：'+final_crow_opening.crowd[parseInt(final_now_time_list[i]/60,10)]+'<br>';
+          temp += '<p>當下可能的人潮流量：'+final_crow_opening.crowd[parseInt(final_now_time_list[i]/60,10)]+'%<br>';  //抓取當下時間點的人潮
           temp += '<p>營業時間：' + final_crow_opening.opening + '<br>';
           temp += '<p>建議停留時間：' + stay_time + '<br>';
           temp += '</div>';
@@ -685,7 +702,7 @@
             temp_r += final_remainder_result.a_name;
             temp_r += '<div id="hiddenId" style="display: none;">' + final_remainder_result.id + '</div>';;
             temp_r += '<p>'+final_remainder_result.address+'<br>';
-            //temp_r += '<p>目前人潮流量：<br>';
+            temp_r += '<p>當下可能的人潮流量：'+final_remainder_crow_opening.crowd[parseInt(final_now_time_list[i]/60,10)]+'%<br>';
             temp_r += '<p>營業時間：' + final_remainder_crow_opening.opening + '<br>';
             temp_r += '<p>建議停留時間：' + final_remainder_result.stay_time + '<br>';
             temp_r += '</div>';
