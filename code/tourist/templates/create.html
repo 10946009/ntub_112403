@@ -80,7 +80,7 @@
                   <div>
                     <div class="tabD">
                       <span id="tabDT">請輸入出發時間：</span>
-                      <input type="time" name="nowtime" id="nowtime" value="09:00">
+                      <input type="time" name="nowtime" id="nowtime" {% if user_nowtime %}value="{{user_nowtime}}"{% else %}value="09:00"{% endif %}>
                     </div>
                     <div class="tabD">
                       <span id="tabDL">使用者位置：</span>
@@ -199,6 +199,7 @@
     <!-- 我的收藏 -->
     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab" style="width: 90%;margin: 0 auto;">
       <div class="row favoritedata">
+
         <div class="col-lg-4 col-md-6">
           <div style="text-align: center;">
             <div class="heart_icon_box">
@@ -225,6 +226,7 @@
             </div>
           </div>
         </div>
+
         <div class="col-lg-4 col-md-6">
           <div style="text-align: center;">
             <div class="heart_icon_box">
@@ -251,6 +253,7 @@
             </div>
           </div>
         </div>
+
         <div class="col-lg-4 col-md-6">
           <div style="text-align: center;">
             <div class="heart_icon_box">
@@ -277,6 +280,7 @@
             </div>
           </div>
         </div>
+        
       </div>
     </div>
 
@@ -435,6 +439,7 @@
     function success(position) {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
+      //if(userLocation.value==''){}
       userLocation.value = latitude + ',' + longitude;
       console.log(userLocation.value);
     }
@@ -481,7 +486,21 @@
         var m_list = response.m_list;  // 假設 m_list 是 JSON 中的一個鍵
         var crow_opening_list = response.crow_opening_list;  // 假設 crow_opening_list 是 JSON 中的一個鍵
         console.log(crow_opening_list);
+
+        //第一步驟的div與按鈕(第一次推薦景點)
         var mListContainer = document.getElementById("AttractionsContainer")
+        var clickLikeAttractions = document.getElementById('clickLikeAttractions');
+        //第二步驟的div與按鈕(推薦相似景點)
+        var mListContainer_o = document.getElementById("AttractionsContainer_o")
+        var clickLikeAttractions_o = document.getElementById('clickLikeAttractions_o');
+        // 將畫面1打開
+        mListContainer.style.display = '';
+        clickLikeAttractions.style.display='';
+        // 將畫面2隱藏
+        mListContainer_o.style.display = 'none';
+        clickLikeAttractions_o.style.display = 'none';
+        
+        mListContainer.innerHTML='';
         for (var i = 0; i < m_list.length; i++) {
           mListContainer.innerHTML+=`<div class="col-md-4 col-sm-6" style="margin-bottom: 5px;" value="${m_list[i].place_id}">
             <div class="checkimg_div">
@@ -551,13 +570,13 @@
         // 進一步處理回傳的值，例如顯示在頁面上
         var o_list = response.o_list;  // 假設 m_list 是 JSON 中的一個鍵
         var o_crow_opening_list = response.o_crow_opening_list;  // 假設 crow_opening_list 是 JSON 中的一個鍵
-        var mListContainer = document.getElementById("AttractionsContainer_o")
+        var mListContainer_o = document.getElementById("AttractionsContainer_o")
         var clickLikeAttractions_o = document.getElementById('clickLikeAttractions_o');
         // 將畫面1隱藏
         select_aid.style.display = 'none';
         clickLikeAttractions.style.display='none';
         
-        mListContainer.style.display = '';
+        mListContainer_o.style.display = '';
         clickLikeAttractions_o.style.display = '';
         /* 修改提交為送出的ID與文字
         
@@ -572,9 +591,9 @@
           buttonElement.value = '送出';
           buttonElement.textContent = '送出';
         }*/
-        
+        mListContainer_o.innerHTML=''
         for (var i = 0; i < o_list.length; i++)  {
-          mListContainer.innerHTML+=`<div class="col-md-4 col-sm-6" style="margin-bottom: 5px;" value="${o_list[i].place_id}">
+          mListContainer_o.innerHTML+=`<div class="col-md-4 col-sm-6" style="margin-bottom: 5px;" value="${o_list[i].place_id}">
             <div class="checkimg_div">
               <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
                 onclick="pickspot(this)">
@@ -659,6 +678,7 @@
         var count = 0
         var length_f = final_result_list.length;
         var all_a = []
+        OrderAttractions.innerHTML='';
         for (let i = 0; i < length_f; i++) {
           var stay_time = final_result_list[i].stay_time;
           if (stay_time == 0){
@@ -679,7 +699,7 @@
           temp += '<p>'+final_result.address;
           temp += '<p>當下可能的人潮流量：'+final_crow_opening.crowd[parseInt(final_now_time_list[i]/60,10)]+'%<br>';  //抓取當下時間點的人潮
           temp += '<p>營業時間：' + final_crow_opening.opening + '<br>';
-          temp += '<p>建議停留時間：' + stay_time + '<br>';
+          temp += '<p>建議停留時間：' + stay_time + '分鐘<br>';
           temp += '</div>';
 
           OrderAttractions.innerHTML += temp;
@@ -691,7 +711,7 @@
         var length_fr = final_remainder_result_list.length;
 
         if (length_fr != 0) {
-          RemainderAttractions.innerHTML += '<div class="hr_container"><hr></div>';
+          RemainderAttractions.innerHTML = '<div class="hr_container"><hr></div>';
           for (let r = 0; r < length_fr; r++) {
             final_remainder_result = final_remainder_result_list[r];
             final_remainder_crow_opening = final_remainder_crow_opening_list[r];

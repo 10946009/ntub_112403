@@ -9,6 +9,12 @@ from .recommend import recommend
 from .recommend_near import recommend_near
 from .final_order import final_order
 
+
+def format_minutes_as_time(minutes):
+    hours, remainder_minutes = divmod(minutes, 60)
+    return f"{hours:02d}:{remainder_minutes:02d}"
+
+
 # 建立行程
 @login_required(login_url="/login")
 def create(request, ct_id):
@@ -31,13 +37,21 @@ def create(request, ct_id):
     all_ct_data = []
     crowd_index_list=[]
     crowd_list=[]
+    local = ""
+    user_nowtime=""
     try:
         # 抓出這是哪一筆行程且天數為第1天(後續要改成抓全部
         ct_attractions_data = ChoiceDay_Ct.objects.get(ct_id=ct_id, day=choiceday) 
+        # 抓目前位置
+        # local = ct_attractions_data.start_location_x + ',' +ct_attractions_data.start_location_y
+        # 抓出發時間
+        user_nowtime = format_minutes_as_time(ct_attractions_data.start_time)
+        
         # 抓出這筆行程中的所有景點
         ct_attractions_list = Attractions_Ct.objects.filter(
             choice_ct_id=ct_attractions_data.id
         ).values()
+       
         # 抓出所有景點的詳細資料
         for a in ct_attractions_list:
             crowd_index_list.append(int(a['a_start_time']%1400//60)) #人潮流量索引
@@ -236,5 +250,16 @@ def create(request, ct_id):
                     new_nowtime += 150
 
             print("hello")
+
+        #收藏景點的部分
+        favorite_list = []
+        user_id = request.user.id
+        # project = Project.objects.get(id=project_id)
+        # 找出user的最愛清單的a.id
+        favorite_attrations_list = Favorite.objects.filter(u_id=user_id).values()
+        print(favorite_attrations_list)
+        # a.id取出
+        for a_id in favorite_attrations_list:
+            favorite_list.append(Attractions.objects.get(id=a_id["a_id"]))
 
     return render(request, "create.html", locals())
