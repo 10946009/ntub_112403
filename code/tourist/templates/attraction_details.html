@@ -438,35 +438,21 @@ endcomment %}
     attractions_types.innerHTML += "</tr>"
     var header = document.getElementById("filiter_search2");//景點主題裡面按鈕active（固定）
     var btns = header.getElementsByClassName("more_btn");
-    var submit_btn = document.getElementById("sure_att_type");
     for (var i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", function () {
             if (this.className.includes("active")) {
                 this.className = this.className.replace(" active", "");
-                submit_btn.value = "";
                 sessionStorage.removeItem(this.textContent);
                 searchText(this.dataset.set, 'tag_search');
                 return;
             }
             this.className += " active";
-            submit_btn.value = this.dataset.set;
             console.log(this.textContent);
             sessionStorage.setItem(this.textContent, 'tag_search');
             searchText(this.dataset.set, 'tag_search');
         });
     }
-    {% comment %} submit_btn.addEventListener("click", function () {
-        console.log('hello');
-        search_type_key_word_list = [];
 
-        var search_type_key_word = document.getElementById('type_key_word').textContent;
-        var search_type_key_word_span = search_type_key_word.getElementsByTagName('span');
-
-        for (var i = 0; i < search_type_key_word_span.length; i++) {
-            search_type_key_word_list.push(search_type_key_word_span[i].textContent);
-        }
-        searchText(search_type_key_word, 'att_type');
-    }); {% endcomment %}
     var header = document.getElementById("filiter_search1");//條件篩選裡面按鈕active（固定）
     var btns = header.getElementsByClassName("more_btn");
 
@@ -558,10 +544,10 @@ endcomment %}
 
         return data; // 返回包含所有sessionStorage資料的對象
     }
+// 用來刷新搜尋結果的function
     function searchText(search_text, data_type) {
         // data_type= keyword_search,tag_search,popular_search
         console.log(search_text, data_type)
-
         var search_type_key_word = document.getElementById('type_key_word');
 
         $.ajax({
@@ -582,10 +568,21 @@ endcomment %}
                 }
                 keys.forEach(function (key) {
                     console.log(key);
-                    search_type_key_word.innerHTML += '<span class="tag-cloud">' + key + '<span>';
+                    search_type_key_word.innerHTML += `<span class="tag-cloud">${key}<span>`;
                 });
-
-
+                tagCloud = document.getElementsByClassName("tag-cloud");
+                console.log(tagCloud);
+                for (var i = 0; i < tagCloud.length; i++) {
+                    tagCloud[i].addEventListener("click", function () {
+                        var current= document.getElementsByClassName('more_btn active');
+                        for (var i = 0; i < current.length; i++) {
+                            if(current[i].textContent === this.textContent){
+                                console.log(current[i].textContent);
+                                current[i].click();
+                            }
+                        }
+                    });
+                }
             },
             error: function (xhr, status, error) {
                 // 請求失敗時的處理
