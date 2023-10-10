@@ -574,13 +574,19 @@ endcomment %}
                 console.log(tagCloud);
                 for (var i = 0; i < tagCloud.length; i++) {
                     tagCloud[i].addEventListener("click", function () {
-                        var current= document.getElementsByClassName('more_btn active');
-                        for (var i = 0; i < current.length; i++) {
-                            if(current[i].textContent === this.textContent){
-                                console.log(current[i].textContent);
-                                current[i].click();
+                        if (sessionStorage[this.textContent] === 'keyword_search') {
+                            sessionStorage.removeItem(this.textContent);
+                            searchText(this.textContent, 'keyword_search');
+                        } else if (sessionStorage[this.textContent] === 'tag_search') {
+                            var current= document.getElementsByClassName('more_btn active');
+                            for (var i = 0; i < current.length; i++) {
+                                if(current[i].textContent === this.textContent){
+                                    console.log(current[i].textContent);
+                                    current[i].click();
+                                }
                             }
                         }
+
                     });
                 }
             },
@@ -590,6 +596,12 @@ endcomment %}
             }
         });
     }
+
+    // 點擊keyword即可移除的功能
+var tagCloud = document.getElementsByClassName("tag-cloud");
+
+
+
     //搜尋景點的部分
     function autocomplete(inp, arr) {
         var currentFocus; // 紀錄目前焦點所在的索引值
