@@ -4,17 +4,17 @@
         <div class="img_wrap" style=" height: 90%;" data-bottom-top="transform: translateY(-20px);opacity: 0"
             data-center="transform: translateY(0px);opacity: 1">
             <p class="learn_more">Learn<br>More</p>
-            <img data-name="{{ item.id }}" class="slide"
-                src="/static/images/attractions/{{item.place_id}}_0.jpg"
-                style="width:100%;max-width: 100%; cursor: pointer;" onclick="showInfo(this)"
+            <img data-name="{{ item.id }}" class="slide" src="/static/images/attractions/{{item.place_id}}_0.jpg"
+                style="width:100%;max-width: 100%; cursor: pointer;" onclick="toggleContent(this)"
                 data-a-Id="{{ item.id }}" alt="" />
         </div>
+        <!-- onclick="showInfo(this)" -->
     </div>
     <div class="col-7 feature">
         <!-- 景點名稱 -->
         <h4 data-bottom-top="transform: translateY(-20px);opacity: 0"
-            data-center="transform: translateY(0px);opacity: 1" onclick="showInfo(this)"
-            data-a-Id="{{ item.id }}">{{item.a_name }}</h3>
+            data-center="transform: translateY(0px);opacity: 1" data-a-Id="{{ item.id }}" onclick="toggleContent(this)">
+            {{item.a_name }}</h3>
             <!-- 星星數 -->
             <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
                 data-center="transform: translateY(0px);opacity: 1;">
@@ -62,6 +62,5 @@
     </div>
 </div>
 {% empty %}
-    <div>查無資料</div>
+<div>查無資料</div>
 {% endfor %}
-

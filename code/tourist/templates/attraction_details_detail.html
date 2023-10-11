@@ -1,18 +1,142 @@
-<div class="col-12 col-s-12">
+<div class="row">
+    <div class="col-1" style="margin-top: -70px; text-align: center;">
+        <h1 onclick="toggleContent() " style="cursor: pointer;"> <i class="fa-regular fa-circle-left"></i></h1>
+    </div>
+    <div class="col-10">
+        <!-- 景點名稱 -->
+        <div class="detail_name">
+            <div class="detail_name__header">
+                <div class="detail_name__headerGrid">
+                    <h3 style="color: rgb(172, 78, 1)" id="attractions-detail-name">{{ detail.a_name }}</h3>
+                </div>
+                <div class="detail_name__headerGrid">123</div>
+                <div class="detail_name__headerGrid">456</div>
+            </div>
+        </div>
+        <!-- 星星數 -->
+        <div class="rating" style="margin-bottom: 10px;">
+            {% for i in "12345" %}
+            {% if i|add:0 <= detail.rating %} <span class="rating-star" style="color: rgb(241, 226, 62);">
+                &#9733;</span>
+                {% else %}
+                <span class="rating-star">&#9733;</span>
+                {% endif %}
+                {% endfor %}
+                <span id="selectedRating"></span> / 5 ({{ detail.rating_total }})
+        </div>
+        <!-- 圖片 -->
+        <div class="detail_img" style="margin-top: 10px;">
+            <div class="detail_img__header">
+                <div class="detail_img__headerGrid">
+                    <img src="../static/images/Datong.jpeg" class="show_detail_img"
+                        style="margin-top: 1px; width:100%;max-width: 100%;" alt="">
+                </div>
+                <div class="detail_img__headerGrid">
+                    <div class="row">
+                        <img src="../static/images/Datong.jpeg" class="show_detail_img" style=" width:100%;" alt="">
+                        <div class="image-container">
+                            <img src="../static/images/Datong.jpeg" class="show_detail_img"
+                                style="width: 100%;margin-top: 2px;" alt="">
+                            <a href="#" class="see_all_btn">查看所有照片</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="detail_detail" style="margin-top: -20px;">
+            <div class="detail_detail__header">
+                <div class="detail_detail__headerGrid">
+                    <!-- 景點介紹 -->
+                    <h6 style="font-size: 18px;">關於</h6>
+                    <h6>{{ detail.detail }}</h6>
+                    <!-- 地址 -->
+                    <h6 style="margin-top: 20px; font-size: 18px;" id="attractions-detail-address">
+                        地址：{{detail.address}}
+                    </h6>
+                    <!-- 電話 -->
+                    {% if detail.phone != "" %}<h6 id="attractions-detail-phone"
+                        style="margin-top: 20px;font-size: 18px;">
+                        電話：{{detail.phone }}
+                    </h6>{% endif %}
+                    <!-- 營業時間 -->
+                    <h6 style="margin-top: 20px;font-size: 18px;">
+                        營業時間：
+                        <!-- <span style="color: red;">已打烊</span> <span style="color: rgb(21, 81, 140);">*開始營業時間：9:00</span> -->
+                    </h6>
+                    <!-- 建議停留時間 -->
+                    <h6 style="margin-top: 20px;font-size: 18px;">建議停留時間：{{ detail.stay_time }}</h6>
+                    <!-- 旺季月份 -->
+                    <h6 style="margin-top: 20px;font-size: 18px;">旺季月份：{{ detail.hot_month }}</h6>
+                    <!-- <hr style="border:2px solid #b3b2b2"> -->
+                    <!-- 人潮資訊 -->
+                    <h6 style="margin-top: 20px;font-size: 18px;">
+                        人潮資訊：
+                    </h6>
+                    <!-- 圖表 -->
+                    <div>
+                        <canvas id="chart" width="300" height="150"></canvas>
+                    </div>
+                </div>
+                <!-- 使用者提問及回答 -->
+                <div class="detail_detail__headerGrid">
+                    <div class="question">
+                        <div class="qa-section">
+                            <h5 style="font-size: 24px;">問題與解答</h5>
+                            <h6 style="margin-left: 20px; color: #707070;">問：春節有開嗎？</h6>
+                            <h6 style="margin-left: 20px; color: #707070;">答：有初一早上9點開，其他時間8點半。</h6>
+                            <h6 style="margin-left: 20px; color: #707070;">
+                                問：春節有開嗎？
+                            </h6>
+                            <h6 style="margin-left: 20px; color: #707070;">
+                                答：有初一早上9點開，其他時間8點半。
+                            </h6>
+                            <h6 style="margin-left: 20px; color: #707070;">
+                                問：春節有開嗎？
+                            </h6>
+                            <h6 style="margin-left: 20px; color: #707070;">
+                                答：有初一早上9點開，其他時間8點半。
+                            </h6>
+                            <h6 style="margin-left: 20px; color: #707070;">
+                                問：春節有開嗎？
+                            </h6>
+                            <h6 style="margin-left: 20px; color: #707070;">
+                                答：有初一早上9點開，其他時間8點半。
+                            </h6>
+                        </div>
+                        <h6 style="margin-left: 20px; color:#a8a8a8; cursor: pointer;" class="toggleButton"
+                            id="toggleButton">
+                            <span>更多...</span>
+                        </h6>
+
+                        <button style="border-radius: 8px;">
+                            <i class="fa-solid fa-message" style="margin-right: 5px;"></i>我要發問
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- <div class="col-12 col-s-12">
     <form class="modal-content animate" action="/action_page.php" method="post">
-        <!-- 關閉詳細景點資料 -->
+        關閉詳細景點資料
         <div class="imgcontainer">
             <span onclick="document.getElementById('id01').style.display='none'" class="close"
                 title="Close Modal">&times;</span>
         </div>
-        <!-- 詳細景點資訊顯示 -->
+        詳細景點資訊顯示
         <div class="container" style="padding-right:50px;
                     padding-left:50px;
                     padding-bottom:50px">
             <div>
-                <!-- 詳細景點名稱 -->
+                詳細景點名稱
                 <h3 style="color: rgb(172, 78, 1)" id="attractions-detail-name">{{ detail.a_name }}</h3>
-                <!-- 詳細景點星星數 -->
+                詳細景點星星數
                 <div class="rating" style="margin-bottom: 10px;">
                     {% for i in "12345" %}
                     {% if i|add:0 <= detail.rating %} <span class="rating-star" style="color: rgb(241, 226, 62);">
@@ -24,7 +148,7 @@
                         <span id="selectedRating"></span> / 5 ({{ detail.rating_total }})
                 </div>
             </div>
-            <!-- 詳細景點圖片 -->
+            詳細景點圖片
             <div class="container1">
                 <div class="mySlides">
                     <div class="numbertext">1 / 6</div>
@@ -57,8 +181,8 @@
                 </div>
                 <div class="row">
                     <div class="column">
-                        <img class="demo cursor" src="/static/images/attractions/{{detail.place_id}}_0.jpg" style="width:100%"
-                            onclick="currentSlide(1)" alt="北投溫泉">
+                        <img class="demo cursor" src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                            style="width:100%" onclick="currentSlide(1)" alt="北投溫泉">
                     </div>
                     <div class="column">
                         <img class="demo cursor" src="../static/images/Datong.jpeg" style="width:100%"
@@ -88,24 +212,24 @@
                 <div class="change2">評論</div>
             </div>
             <div class="change_content">
-                <!-- 總覽按鈕 -->
+                總覽按鈕
                 <div class="change_content1">
-                    <!-- 景點介紹 -->
+                    景點介紹
                     <h6>{{ detail.detail }}</h6>
-                    <!-- 詳細地址 -->
+                    詳細地址
                     <h5 id="attractions-detail-address">地址：{{ detail.address }}</h5>
-                    <!-- 詳細電話 -->
+                    詳細電話
                     {% if detail.phone != "" %}<h5 id="attractions-detail-phone">電話：{{ detail.phone }}</h5>{% endif %}
-                    <!-- 詳細營業時間 -->
-                    <!-- <h5>
+                    詳細營業時間
+                    <h5>
                         營業時間： <span style="color: red;">已打烊</span> <span style="color: rgb(21, 81, 140);">*開始營業時間：9:00</span>
-                    </h5> -->
-                    <!-- 詳細建議停留時間 -->
+                    </h5>
+                    詳細建議停留時間
                     <h5>建議停留時間：{{ detail.stay_time }}</h5>
-                    <!-- 詳細旺季月份 -->
+                    詳細旺季月份
                     <h5>旺季月份：{{ detail.hot_month }}</h5>
                     <hr style="border:2px solid #b3b2b2">
-                    <!-- 使用者提問及回答 -->
+                    使用者提問及回答
                     <div class="question">
                         <div class="qa-section">
                             <h5>問題與解答：</h5>
@@ -140,18 +264,18 @@
                         </button>
                     </div>
                     <hr style="border:2px solid #b3b2b2">
-                    <!-- 人潮資訊 -->
+                    人潮資訊
                     <h5>
                         人潮資訊：
                     </h5>
-                    <!-- 人潮圖表 -->
+                    人潮圖表
                     <div>
                         <canvas id="chart" width="300" height="150"></canvas>
                     </div>
                 </div>
-                <!-- 評論按鈕 -->
+                評論按鈕
                 <div class="change_content1">
-                    <!-- 使用者總評論 -->
+                    使用者總評論
                     <h5>
                         評論摘要：
                     </h5>
@@ -228,7 +352,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- 使用者留言評論 -->
+                    使用者留言評論
                     <div class="comment">
                         <div class="avatar">
                             <img src="/static/images/head.png" alt="User Avatar">
@@ -298,7 +422,7 @@
                             </p>
                         </div>
                     </div>
-                    <!-- 撰寫評論 -->
+                    撰寫評論
                     <button style="border-radius: 8px;position: relative; left: 45%;">
                         <i class="fa-solid fa-pen" style="margin-right: 5px;"></i>我要評論
                     </button>
@@ -309,13 +433,13 @@
             <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">
                 Close
             </button>
-            <!-- 總瀏覽人數 -->
+            總瀏覽人數
             <h6 style="color:#8b8a8a; float: right;">
                 <i class="fa-regular fa-eye"></i>&thinsp;瀏覽人數：<span>１</span>人
             </h6>
         </div>
     </form>
-</div>
+</div> -->
 <script src="../static/js/slideshow.js"></script>
 <script>
     // 更多問題功能

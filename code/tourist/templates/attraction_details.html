@@ -372,7 +372,7 @@ endcomment %}
     </div>
 </div> -->
 <!-- 景點詳細資料隱藏點擊 -->
-<div id="id01" class="row modal">
+<div id="id01" class="row" style="display: none;">
     {% include 'attraction_details_detail.html' %}
 </div>
 <!-- footer-->
@@ -393,6 +393,19 @@ endcomment %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script>
+    // 本文內容切換
+    function toggleContent() {
+        var content1 = document.getElementById("replaceable-content");
+        var content2 = document.getElementById("id01");
+
+        if (content1.style.display === "none") {
+            content1.style.display = "block";
+            content2.style.display = "none";
+        } else {
+            content1.style.display = "none";
+            content2.style.display = "block";
+        }
+    }
     // skrollr滑鼠滾動
     var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     if (!isMobile) {
@@ -544,7 +557,7 @@ endcomment %}
 
         return data; // 返回包含所有sessionStorage資料的對象
     }
-// 用來刷新搜尋結果的function
+    // 用來刷新搜尋結果的function
     function searchText(search_text, data_type) {
         // data_type= keyword_search,tag_search,popular_search
         console.log(search_text, data_type)
@@ -578,9 +591,9 @@ endcomment %}
                             sessionStorage.removeItem(this.textContent);
                             searchText(this.textContent, 'keyword_search');
                         } else if (sessionStorage[this.textContent] === 'tag_search') {
-                            var current= document.getElementsByClassName('more_btn active');
+                            var current = document.getElementsByClassName('more_btn active');
                             for (var i = 0; i < current.length; i++) {
-                                if(current[i].textContent === this.textContent){
+                                if (current[i].textContent === this.textContent) {
                                     console.log(current[i].textContent);
                                     current[i].click();
                                 }
@@ -598,7 +611,7 @@ endcomment %}
     }
 
     // 點擊keyword即可移除的功能
-var tagCloud = document.getElementsByClassName("tag-cloud");
+    var tagCloud = document.getElementsByClassName("tag-cloud");
 
 
 
