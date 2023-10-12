@@ -217,6 +217,10 @@ main {
     border-radius: 20%;
 }
 
+.list{
+    cursor: pointer;
+}
+
 .spot {
     width: 250px;
     height: auto;

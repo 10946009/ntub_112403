@@ -114,9 +114,9 @@
                     <div style="color: black" class="spot" id="spot{{data.attraction.order}}" style="margin-bottom:10px">
                       {{data.detail.a_name}}
                       <div id="hiddenId" style="display: none;">
-                        {{data.detail.id}}
+                        景點名稱：{{data.detail.id}}
                       </div>
-                      <p>{{data.detail.address}} <br>
+                      <p>地址：{{data.detail.address}} <br>
                       <p>當下可能的人潮流量：{{data.crowd_list}}%<br>
                       <p>營業時間： {% for time in data.co.opening %} {% if forloop.counter != 1 %},{% endif %} {{time}} {% endfor %}<br>
                       <p>建議停留時間： {% if data.detail.stay_time == 0 %}150{% else %}{{data.detail.stay_time}}{% endif %} 分鐘<br>
