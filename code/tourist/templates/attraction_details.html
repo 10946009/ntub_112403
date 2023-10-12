@@ -372,7 +372,7 @@ endcomment %}
     </div>
 </div> -->
 <!-- 景點詳細資料隱藏點擊 -->
-<div id="id01" class="row" style="display: none;">
+<div id="id01" class="row" style="display:none;">
     {% include 'attraction_details_detail.html' %}
 </div>
 <!-- footer-->
@@ -735,9 +735,16 @@ endcomment %}
                 attractions_detail_div.html(response['attractions_detail_html']);
                 console.log(attractions_detail_div)
                 // 取得模態框元素
-                var showInfo = document.getElementById("id01");
-                // 將模態框的顯示樣式設定為 "block"，顯示模態框
-                showInfo.style.display = "block";
+                // var showInfo = document.getElementById("id01");
+                // // 將模態框的顯示樣式設定為 "block"，顯示模態框
+                // showInfo.style.display = "block";
+                if (content1.style.display === "none") {
+                    content1.style.display = "block";
+                    content2.style.display = "none";
+                } else {
+                    content1.style.display = "none";
+                    content2.style.display = "block";
+                }
             },
             error: function (xhr, status, error) {
                 // 請求失敗時的處理
