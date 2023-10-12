@@ -394,7 +394,8 @@ endcomment %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script>
     // 本文內容切換
-    function toggleContent() {
+    function toggleContent(aid) {
+        showInfo(aid);
         var content1 = document.getElementById("replaceable-content");
         var content2 = document.getElementById("id01");
 
@@ -720,9 +721,7 @@ endcomment %}
     }
 
     // 當點擊某個元素時觸發的函式，傳入的參數為觸發點擊事件的元素
-    function showInfo(element) {
-        // 從被點擊的元素中取得自定義屬性 'aId' 的值
-        var aId = $(element).data('aId');
+    function showInfo(aId) {
         // 發起 AJAX 請求
         $.ajax({
             url: '',  // 伺服器端的 URL
