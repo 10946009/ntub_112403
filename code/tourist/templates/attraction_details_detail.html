@@ -60,7 +60,7 @@
                                 關於
                             </h6>
                             <h6>{{ detail.detail }}</h6>
-                            <hr style=" border:1px solid #777777; width: 95%;">
+                            <hr style=" border:1px solid #777777; max-width: 95%;">
                             <!-- 地址 -->
                             <h6 style="margin-top: 20px; font-size: 20px;" id="attractions-detail-address">
                                 <i class="fa-solid fa-location-dot" style="color: rgb(201, 1, 1);"></i>
@@ -166,7 +166,7 @@
                                         </div>
                                         <div>
                                             <h6 class="see_more">
-                                                查看所有問題
+                                                查看所有問題（？）
                                             </h6>
                                         </div>
                                     </div>
@@ -196,13 +196,16 @@
                                 id="toggleButton">
                                 <span>更多...</span>
                             </h6> -->
+
+                            <!-- 提問按鈕 -->
                             <div style="text-align: center;">
-                                <h5 class="ask_qa" id="ask_qa" onclick="showLoaderAndContent()">
+                                <h6 class="ask_qa" id="ask_qa" onclick="showLoaderAndContent()">
                                     提出問題
-                                </h5>
+                                </h6>
                             </div>
                         </div>
                     </div>
+                    <!-- 鄰近景點 -->
                     <div class="row" style="margin-left: 10px;">
                         <h5 style="font-size: 24px; margin-top: 20px;">
                             <i class="fa-solid fa-map"></i>
@@ -290,21 +293,22 @@
                 </div>
             </div>
         </div>
+        <!-- 訊問問題點擊載入動畫loader -->
         <div class="ask_big" id="ask_big" style="display: none;">
             <div class="background-mask" id="background-mask">
                 <div class="loader"></div>
             </div>
         </div>
+        <!-- 詢問問題彈跳框框 -->
         <div class="out_ask_qa" id="out_ask_qa">
             <div id="ask_qa_container" class="ask_qa_container">
-                <form class="ask-content" action="">
-                    <div class="ask_container">
-                        <h6 style="font-size: 20px;" id="attractions-detail-address">
-                            <i class="fa-solid fa-file"></i>
+                <form class="ask-content" id="ask-content" action="">
+                    <div class="ask_container" id="ask_container">
+                        <h5 style="font-size: 24px;" id="attractions-detail-address">
                             提出問題
-                        </h6>
-                        <span style="color:rgb(67, 65, 65);font-size: 16px; font-style: italic;margin-left: 20px;">
-                            {{ detail.a_name }}</span>
+                        </h5>
+                        <span style="font-size: 18px; font-style: italic;color: rgb(172, 78, 1)">
+                            <strong>{{ detail.a_name }}</strong></span>
                         <span onclick="close_ask_qa()" class="close" id="close" title="關閉">&times;</span>
                     </div>
                     <div class="ask_qa_con" style="padding: 20px;">
@@ -323,20 +327,142 @@
                             </div>
                         </div>
                         <div>
-                            <textarea name="" id="" cols="100%" rows="7"
+                            <textarea name="user_ask" id="user_ask" cols="100%" rows="7"
                                 style="resize:none; border-radius: 10px;max-width: 100%; "
                                 placeholder="向使用者社群提出詢或尋求建議。"></textarea>
                         </div>
                     </div>
                     <div class="post_ask">
                         <span class="ask_btn_cancel" id="ask_btn_cancel">取消</span>
-                        <span class="ask_btn_ok">張貼</span>
+                        <span class="ask_btn_ok" id="ask_btn_ok">張貼</span>
                     </div>
                 </form>
             </div>
         </div>
 
-
+        <div class="all_ask_qa" id="all_ask_qa">
+            <div id="all_ask_qa_container" class="all_ask_qa_container" style="height: 700px; overflow-y: scroll;">
+                <form class="all_ask-content" id="all_ask-content" action="">
+                    <div class="all_ask_container" id="all_ask_container">
+                        <h3 id="attractions-detail-address">
+                            {{ detail.a_name }}
+                        </h3>
+                        <span style="color:rgb(67, 65, 65);font-size: 14px; font-style: italic;">
+                            {{detail.address}}</span>
+                        <span onclick="close_ask_qa()" class="all_close" id="all_close" title="關閉">&times;</span>
+                    </div>
+                    <hr style=" border:1px solid #777777; max-width: 100%;">
+                    <div class="all_ask_qa_con">
+                        <div class="all_ask_qa_comment">
+                            <div class="all_ask_qa_list">
+                                <h5>有餐廳嗎？</h5>
+                                <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer; font-size: 16px;"
+                                    id="myIcon1"></i>
+                            </div>
+                            <div class="tooltip2" id="myTooltip2" style="cursor: pointer;">檢舉</div>
+                            <div style="font-size: 18px; margin-bottom: 20px;">
+                                <span style="margin-right: 20px;cursor: pointer;"><i class="fa-regular fa-thumbs-up"
+                                        style=" color: rgb(0, 102, 255);"></i> 12</span>
+                                <span style="cursor: pointer;"><i class="fa-regular fa-comment"
+                                        style=" color: rgb(89, 198, 53);"></i> 4</span>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="avatar">
+                                <img src="../static/images/dog.jpg" alt="User Avatar">
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username">
+                                    彭德<br>
+                                    <span style="color: gray; font-size: 12px; font-style: italic;">3天前 &ensp;</span>
+                                </h6>
+                                <h6 style="margin-bottom: 20px;">有 美食廣場 又便宜又好美。</h6>
+                                <span style="margin-right: 20px;cursor: pointer;font-size: 18px;"><i
+                                        class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i> 5</span>
+                                <h6 class="qa_text">還有3個答案</h6>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="avatar">
+                                <img src="../static/images/an.jpeg" alt="User Avatar">
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username">
+                                    安妮雅<br>
+                                    <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
+                                            class="fa-solid fa-crown"></i>在地嚮導
+                                        &ensp;</span>
+                                </h6>
+                            </div>
+                        </div>
+                        <div>
+                            <textarea name="" id="" cols="80%" rows="5"
+                                style="resize:none; border-radius: 10px;max-width: 90%;margin-left: 40px; padding: 10px;"
+                                placeholder="回答問題"></textarea>
+                        </div>
+                    </div>
+                    <!-- 之後會補上判斷textarea是否是空值以觸發ask_btn_ok按鈕（空直不能點張貼） -->
+                    <div class="post_ask">
+                        <span class="all_ask_btn_ok" id="all_ask_btn_ok">張貼</span>
+                    </div>
+                    <hr style=" border:1px solid #777777; max-width: 100%;">
+                    <div class="all_ask_qa_con">
+                        <div class="all_ask_qa_comment">
+                            <div class="all_ask_qa_list">
+                                <h5>春節有開嗎？</h5>
+                                <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer; font-size: 16px;"
+                                    id="myIcon1"></i>
+                            </div>
+                            <div class="tooltip2" id="myTooltip2" style="cursor: pointer;">檢舉</div>
+                            <div style="font-size: 18px; margin-bottom: 20px;">
+                                <span style="margin-right: 20px;cursor: pointer;"><i class="fa-regular fa-thumbs-up"
+                                        style=" color: rgb(0, 102, 255);"></i> 8</span>
+                                <span style="cursor: pointer;"><i class="fa-regular fa-comment"
+                                        style=" color: rgb(89, 198, 53);"></i> 3</span>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="avatar">
+                                <img src="../static/images/peka.webp" alt="User Avatar">
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username">
+                                    皮卡丘<br>
+                                    <span style="color: gray; font-size: 12px; font-style: italic;">3天前 &ensp;</span>
+                                </h6>
+                                <h6 style="margin-bottom: 20px;">有初一早上9點開，其他時間8點半</h6>
+                                <span style="margin-right: 20px;cursor: pointer;font-size: 18px;"><i
+                                        class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i> 2</span>
+                                <h6 class="qa_text">還有1個答案</h6>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="avatar">
+                                <img src="../static/images/dog.jpg" alt="User Avatar">
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username">
+                                    彭德<br>
+                                    <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
+                                            class="fa-solid fa-crown"></i>在地嚮導
+                                        &ensp;</span>
+                                </h6>
+                            </div>
+                        </div>
+                        <div>
+                            <textarea name="" id="" cols="80%" rows="5"
+                                style="resize:none; border-radius: 10px;max-width: 90%;margin-left: 40px; padding: 10px;"
+                                placeholder="回答問題"></textarea>
+                        </div>
+                    </div>
+                    <!-- 之後會補上判斷textarea是否是空值以觸發ask_btn_ok按鈕（空直不能點張貼） -->
+                    <div class="post_ask">
+                        <span class="all_ask_btn_ok" id="all_ask_btn_ok">張貼</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- 分享 -->
         <div class="row">
             <div class="col-12">
                 <h5 style="font-size: 24px; margin-top: 20px;">
@@ -346,6 +472,7 @@
             </div>
         </div>
         <hr style="border:2px solid #777777">
+        <!-- 評論 -->
         <div class="row">
             <div class="col-12">
                 <!-- 使用者總評論 -->
@@ -830,19 +957,33 @@
 <!-- 圖表會用到script -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
+    // ask_tips提示點擊
+    var icon1 = document.getElementById("myIcon1");
+    var tooltip2 = document.getElementById("myTooltip2");
+    var all_ask_qa_container = document.getElementById("all_ask_qa_container");
+
+    icon1.addEventListener("click", function () {
+        if (tooltip2.style.display === "block") {
+            tooltip2.style.display = "none";
+        } else {
+            tooltip2.style.display = "block";
+        }
+    });
+    document.addEventListener("click", function (event) {
+        if (event.target == all_ask_qa_container) {
+            tooltip2.style.display = "none";
+        }
+    });
+
+    // loader動作
     function showLoaderAndContent() {
         var loader = document.getElementById("ask_big");
         var out_ask_qa = document.getElementById("out_ask_qa");
-
-        // 显示 loader 元素
         loader.style.display = "block";
-
-        // 模拟加载过程，例如使用 setTimeout
         setTimeout(function () {
-            // 加载完成后隐藏 loader 元素并显示 out_ask_qa
             loader.style.display = "none";
             out_ask_qa.style.display = "block";
-        }, 500); // 假设加载需要2秒完成
+        }, 500);
     }
 
     // 打開詢問問題方塊

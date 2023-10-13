@@ -1387,6 +1387,21 @@ img {
     padding-top: 150px;
 }
 
+/* .all_ask_qa {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 150px;
+} */
+
+
 /* 詢問問題框框 */
 .ask_qa_container {
     background: rgb(221, 219, 219);
@@ -1395,11 +1410,11 @@ img {
     margin: 50px auto;
 }
 
-/* 提問彈跳窗 */
+/* 提問彈跳窗(ask,name) */
 .ask_container {
     background-color: rgb(170, 171, 171);
     position: relative;
-    padding: 2px 8px 8px 8px;
+    padding: 20px;
 }
 
 /* 提示icon */
@@ -1412,6 +1427,18 @@ img {
 .tooltip1 {
     width: 250px;
     display: none;
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.tooltip2 {
+    width: 40px;
+    display: none;
+    right: 23%;
     position: absolute;
     background-color: #333;
     color: #fff;
@@ -1442,6 +1469,79 @@ img {
 
 .ask_btn_cancel:hover,
 .ask_btn_ok:hover {
+    color: white;
+    background-color: #727474;
+}
+
+/* 所有問題框框 */
+.all_ask_qa_container {
+    background: rgb(221, 219, 219);
+    border: black solid;
+    width: 70%;
+    margin: 50px auto;
+    padding: 20px 40px 20px 40px;
+}
+
+/* 所有問題彈跳窗（name,address) */
+.all_ask_container {
+    position: relative;
+    /* padding: 20px 40px 20px 40px; */
+}
+
+/* 所有問題x按鈕 */
+.all_close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+/* 所有問題x按鈕 */
+.all_close:hover,
+.all_close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* 檢舉icon */
+.all_ask_qa_list {
+    display: flex;
+    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+}
+
+/* 更多問題（還有..個） */
+.qa_text {
+    font-size: 14px;
+    margin-top: 20px;
+    text-decoration: underline;
+    color: #185889;
+    cursor: pointer;
+}
+
+.qa_text:hover {
+    color: #521889;
+}
+
+/* 回覆 */
+.all_ask_btn_ok {
+    cursor: pointer;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    padding: 2px 20px 2px 20px;
+    font-family: Arial;
+    border: #000 solid;
+    background-color: #a5a6a7;
+    font-size: 14px;
+    margin-right: 40px;
+    margin-top: 20px;
+}
+
+.all_ask_btn_ok:hover {
     color: white;
     background-color: #727474;
 }
