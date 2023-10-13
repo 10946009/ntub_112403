@@ -55,42 +55,42 @@
                     <div class="detail_detail__header">
                         <div class="detail_detail__headerGrid">
                             <!-- 景點介紹 -->
-                            <h6 style="font-size: 18px;">
+                            <h6 style="font-size: 20px;">
                                 <i class="fa-solid fa-book-open"></i>
                                 關於
                             </h6>
                             <h6>{{ detail.detail }}</h6>
                             <hr style=" border:1px solid #777777; width: 95%;">
                             <!-- 地址 -->
-                            <h6 style="margin-top: 20px; font-size: 18px;" id="attractions-detail-address">
+                            <h6 style="margin-top: 20px; font-size: 20px;" id="attractions-detail-address">
                                 <i class="fa-solid fa-location-dot" style="color: rgb(201, 1, 1);"></i>
                                 地址：{{detail.address}}
                             </h6>
                             <!-- 電話 -->
                             {% if detail.phone != "" %}<h6 id="attractions-detail-phone"
-                                style="margin-top: 20px;font-size: 18px;">
+                                style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-phone" style="color: rgb(9, 145, 2);"></i>
                                 電話：{{detail.phone }}
                             </h6>{% endif %}
                             <!-- 營業時間 -->
-                            <h6 style="margin-top: 20px;font-size: 18px;">
+                            <h6 style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-clock" style="color: rgb(2, 79, 161);"></i>
                                 營業時間：
                                 <!-- <span style="color: red;">已打烊</span> <span style="color: rgb(21, 81, 140);">*開始營業時間：9:00</span> -->
                             </h6>
                             <!-- 建議停留時間 -->
-                            <h6 style="margin-top: 20px;font-size: 18px;">
+                            <h6 style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-person-walking-luggage" style="color: rgb(174, 65, 150);"></i>
                                 建議停留時間：{{ detail.stay_time }}
                             </h6>
                             <!-- 旺季月份 -->
-                            <h6 style="margin-top: 20px;font-size: 18px;">
+                            <h6 style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-calendar-days" style="color: rgb(168, 126, 0);"></i>
                                 旺季月份：{{ detail.hot_month }}
                             </h6>
                             <!-- <hr style="border:2px solid #b3b2b2"> -->
                             <!-- 人潮資訊 -->
-                            <h6 style="margin-top: 20px;font-size: 18px;">
+                            <h6 style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-person-circle-exclamation" style="color: rgb(67, 1, 159);"></i>
                                 人潮資訊：
                                 <!-- 圖表 -->
@@ -290,6 +290,49 @@
                 </div>
             </div>
         </div>
+        <div id="ask_qa_container" class="ask_qa_container" style="border: black solid; width: 42%; margin: 50px auto;">
+            <form class="ask-content" action="">
+                <div class="ask_container" style="background-color: rgb(170, 171, 171);">
+                    <h6 style="font-size: 20px;" id="attractions-detail-address">
+                        <i class="fa-solid fa-file"></i>
+                        提出問題
+                    </h6>
+                    <span style="color:rgb(67, 65, 65);font-size: 16px; font-style: italic;margin-left: 20px;">
+                        {{ detail.a_name }}</span>
+                    <span onclick="close_ask_qa()" class="close" title="關閉">&times;</span>
+                </div>
+                <div class="ask_qa_con" style="padding: 20px;">
+                    <div class="comment">
+                        <div class="avatar">
+                            <img src="../static/images/an.jpeg" alt="User Avatar">
+                        </div>
+                        <div class="comment-content">
+                            <h6 class="username">
+                                安妮雅<br>
+                                <span style="color: gray; font-size: 12px; font-style: italic;">公開發佈 &ensp;</span>
+                                <i class="icon fa-solid fa-circle-exclamation" id="myIcon"></i>
+                                <div class="tooltip1" id="myTooltip1">您的貼文會與個人資料名稱及相片一併公開顯示，出現在網路上的各項TripFunChill服務、採用
+                                    TripFunChill服務的第三方網站和應用程式中。貼文必須遵循 TripFunChill政策的規定。</div>
+                            </h6>
+                        </div>
+                    </div>
+                    <div>
+                        <textarea name="" id="" cols="50" rows="7"
+                            style="resize:none; border-radius: 10px;max-width: 100%; "
+                            placeholder="向使用者社群提出詢或尋求建議。"></textarea>
+                        <!-- <textarea id="story" name="story" rows="5" cols="33">
+                        It was a dark and stormy night...
+                        </textarea> -->
+                    </div>
+                </div>
+                <div class="post_ask">
+                    <span class="ask_btn_cancel">取消</span>
+                    <span class="ask_btn_ok">張貼</span>
+                </div>
+            </form>
+        </div>
+
+
         <div class="row">
             <div class="col-12">
                 <h5 style="font-size: 24px; margin-top: 20px;">
@@ -783,6 +826,26 @@
 <!-- 圖表會用到script -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
+    // ask提示框
+    var icon = document.getElementById("myIcon");
+    var tooltip = document.getElementById("myTooltip1");
+
+    icon.addEventListener("click", function () {
+        if (tooltip.style.display === "block") {
+            tooltip.style.display = "none";
+        } else {
+            tooltip.style.display = "block";
+        }
+    });
+
+    // 如果用户点击其他地方，隐藏提示框
+    document.addEventListener("click", function (event) {
+        if (event.target !== icon && event.target !== tooltip) {
+            tooltip.style.display = "none";
+        }
+    });
+
+
     // 更多問題功能
     var qaSection = document.querySelector('.qa-section');
     var toggleButton = document.getElementById('toggleButton');
