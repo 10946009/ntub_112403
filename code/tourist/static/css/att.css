@@ -1447,12 +1447,23 @@ img {
 }
 
 /* 載入圈圈 */
-.loader {
-    border: 5px solid #f3f3f3;
+/* .loader {
+    border: 8px solid #f3f3f3;
     border-radius: 50%;
-    border-top: 5px solid #3498db;
+    border-top: 8px solid orange;
     width: 30px;
     height: 30px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+} */
+.loader {
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid orange;
+    border-right: 8px solid rgb(11, 214, 11);
+    border-bottom: 8px solid rgb(0, 200, 255);
+    width: 40px;
+    height: 40px;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
 }
