@@ -197,7 +197,7 @@
                                 <span>更多...</span>
                             </h6> -->
                             <div style="text-align: center;">
-                                <h5 class="ask_qa">
+                                <h5 class="ask_qa" id="ask_qa">
                                     提出問題
                                 </h5>
                             </div>
@@ -290,46 +290,46 @@
                 </div>
             </div>
         </div>
-        <div id="ask_qa_container" class="ask_qa_container" style="border: black solid; width: 42%; margin: 50px auto;">
-            <form class="ask-content" action="">
-                <div class="ask_container" style="background-color: rgb(170, 171, 171);">
-                    <h6 style="font-size: 20px;" id="attractions-detail-address">
-                        <i class="fa-solid fa-file"></i>
-                        提出問題
-                    </h6>
-                    <span style="color:rgb(67, 65, 65);font-size: 16px; font-style: italic;margin-left: 20px;">
-                        {{ detail.a_name }}</span>
-                    <span onclick="close_ask_qa()" class="close" title="關閉">&times;</span>
-                </div>
-                <div class="ask_qa_con" style="padding: 20px;">
-                    <div class="comment">
-                        <div class="avatar">
-                            <img src="../static/images/an.jpeg" alt="User Avatar">
+        <div class="out_ask_qa" id="out_ask_qa">
+            <div id="ask_qa_container" class="ask_qa_container">
+                <form class="ask-content" action="">
+                    <div class="ask_container">
+                        <h6 style="font-size: 20px;" id="attractions-detail-address">
+                            <i class="fa-solid fa-file"></i>
+                            提出問題
+                        </h6>
+                        <span style="color:rgb(67, 65, 65);font-size: 16px; font-style: italic;margin-left: 20px;">
+                            {{ detail.a_name }}</span>
+                        <span onclick="close_ask_qa()" class="close" id="close" title="關閉">&times;</span>
+                    </div>
+                    <div class="ask_qa_con" style="padding: 20px;">
+                        <div class="comment">
+                            <div class="avatar">
+                                <img src="../static/images/an.jpeg" alt="User Avatar">
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username">
+                                    安妮雅<br>
+                                    <span style="color: gray; font-size: 12px; font-style: italic;">公開發佈 &ensp;</span>
+                                    <i class="icon fa-solid fa-circle-exclamation" id="myIcon"></i>
+                                    <div class="tooltip1" id="myTooltip1">
+                                        您的貼文會與個人資料名稱及相片一併公開顯示，出現在網路上的各項TripFunChill服務、採用
+                                        TripFunChill服務的第三方網站和應用程式中。貼文必須遵循 TripFunChill政策的規定。</div>
+                                </h6>
+                            </div>
                         </div>
-                        <div class="comment-content">
-                            <h6 class="username">
-                                安妮雅<br>
-                                <span style="color: gray; font-size: 12px; font-style: italic;">公開發佈 &ensp;</span>
-                                <i class="icon fa-solid fa-circle-exclamation" id="myIcon"></i>
-                                <div class="tooltip1" id="myTooltip1">您的貼文會與個人資料名稱及相片一併公開顯示，出現在網路上的各項TripFunChill服務、採用
-                                    TripFunChill服務的第三方網站和應用程式中。貼文必須遵循 TripFunChill政策的規定。</div>
-                            </h6>
+                        <div>
+                            <textarea name="" id="" cols="100%" rows="7"
+                                style="resize:none; border-radius: 10px;max-width: 100%; "
+                                placeholder="向使用者社群提出詢或尋求建議。"></textarea>
                         </div>
                     </div>
-                    <div>
-                        <textarea name="" id="" cols="50" rows="7"
-                            style="resize:none; border-radius: 10px;max-width: 100%; "
-                            placeholder="向使用者社群提出詢或尋求建議。"></textarea>
-                        <!-- <textarea id="story" name="story" rows="5" cols="33">
-                        It was a dark and stormy night...
-                        </textarea> -->
+                    <div class="post_ask">
+                        <span class="ask_btn_cancel" id="ask_btn_cancel">取消</span>
+                        <span class="ask_btn_ok">張貼</span>
                     </div>
-                </div>
-                <div class="post_ask">
-                    <span class="ask_btn_cancel">取消</span>
-                    <span class="ask_btn_ok">張貼</span>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
 
 
@@ -826,7 +826,29 @@
 <!-- 圖表會用到script -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
-    // ask提示框
+    // 打開詢問問題方塊
+    var ask_qa = document.getElementById('ask_qa');
+    var ask_qa_container = document.getElementById('ask_qa_container');
+    var out_ask_qa = document.getElementById('out_ask_qa');
+    ask_qa.addEventListener("click", function () {
+        out_ask_qa.style.display = "block";
+        event.stopPropagation();
+    });
+    document.addEventListener("click", function (event) {
+        if (event.target != ask_qa_container) {
+            out_ask_qa.style.display = "none";
+        }
+    });
+    var close = document.getElementById('close');
+    close.addEventListener("click", function () {
+        out_ask_qa.style.display = "none";
+    });
+    var ask_btn_cancel = document.getElementById('ask_btn_cancel');
+    ask_btn_cancel.addEventListener("click", function () {
+        out_ask_qa.style.display = "none";
+    });
+
+    // ask_tips提示點擊
     var icon = document.getElementById("myIcon");
     var tooltip = document.getElementById("myTooltip1");
 
@@ -837,7 +859,6 @@
             tooltip.style.display = "block";
         }
     });
-
     // 如果用户点击其他地方，隐藏提示框
     document.addEventListener("click", function (event) {
         if (event.target !== icon && event.target !== tooltip) {
