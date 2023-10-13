@@ -197,7 +197,7 @@
                                 <span>更多...</span>
                             </h6> -->
                             <div style="text-align: center;">
-                                <h5 class="ask_qa" id="ask_qa">
+                                <h5 class="ask_qa" id="ask_qa" onclick="showLoaderAndContent()">
                                     提出問題
                                 </h5>
                             </div>
@@ -288,6 +288,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="ask_big" id="ask_big" style="display: none;">
+            <div class="background-mask" id="background-mask">
+                <div class="loader"></div>
             </div>
         </div>
         <div class="out_ask_qa" id="out_ask_qa">
@@ -826,14 +831,29 @@
 <!-- 圖表會用到script -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
+    function showLoaderAndContent() {
+        var loader = document.getElementById("ask_big");
+        var out_ask_qa = document.getElementById("out_ask_qa");
+
+        // 显示 loader 元素
+        loader.style.display = "block";
+
+        // 模拟加载过程，例如使用 setTimeout
+        setTimeout(function () {
+            // 加载完成后隐藏 loader 元素并显示 out_ask_qa
+            loader.style.display = "none";
+            out_ask_qa.style.display = "block";
+        }, 500); // 假设加载需要2秒完成
+    }
+
     // 打開詢問問題方塊
     var ask_qa = document.getElementById('ask_qa');
     var ask_qa_container = document.getElementById('ask_qa_container');
     var out_ask_qa = document.getElementById('out_ask_qa');
-    ask_qa.addEventListener("click", function () {
-        out_ask_qa.style.display = "block";
-        event.stopPropagation();
-    });
+    // ask_qa.addEventListener("click", function () {
+    //     out_ask_qa.style.display = "block";
+    //     event.stopPropagation();
+    // });
     document.addEventListener("click", function (event) {
         if (event.target != ask_qa_container) {
             out_ask_qa.style.display = "none";
