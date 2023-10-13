@@ -318,8 +318,7 @@
                                     <span style="color: gray; font-size: 12px; font-style: italic;">公開發佈 &ensp;</span>
                                     <i class="icon fa-solid fa-circle-exclamation" id="myIcon"></i>
                                     <div class="tooltip1" id="myTooltip1">
-                                        您的貼文會與個人資料名稱及相片一併公開顯示，出現在網路上的各項TripFunChill服務、採用
-                                        TripFunChill服務的第三方網站和應用程式中。貼文必須遵循 TripFunChill政策的規定。</div>
+                                        您的貼文會與個人資料名稱及相片一併公開顯示，出現在網站上的各個地方。貼文必須遵循TripFunChill政策的規定。</div>
                                 </h6>
                             </div>
                         </div>
@@ -855,7 +854,7 @@
     //     event.stopPropagation();
     // });
     document.addEventListener("click", function (event) {
-        if (event.target != ask_qa_container) {
+        if (event.target == out_ask_qa) {
             out_ask_qa.style.display = "none";
         }
     });
