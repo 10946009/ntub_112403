@@ -96,7 +96,7 @@ def attraction_details(request):
         choose_attractions.hit += 1
         choose_attractions.save()
         choose_attractions_dict = model_to_dict(choose_attractions)
-
+        is_favorite = Favorite.objects.filter(u_id=user, a_id=choose_attractions.id).exists()
         detail_html = render_to_string(
             template_name="attraction_details_detail.html",
             context={"detail": choose_attractions_dict},
@@ -104,12 +104,7 @@ def attraction_details(request):
         detail_data_dict = {"attractions_detail_html": detail_html}
         return JsonResponse(data=detail_data_dict, safe=False)
 
-    # 判斷是否已收藏
-    for index, search in enumerate(search_list):
-        if Favorite.objects.filter(u_id=user, a_id=search["id"]).exists():
-            search_list[index].setdefault("is_favorite", "1")
-        else:
-            search_list[index].setdefault("is_favorite", "0")
+    search_list = is_favorite_list(user, search_list)
     # print(search_list)
     return render(request, "attraction_details.html", locals())
 
@@ -122,3 +117,13 @@ def attraction_details_att_type(request):
     search_list = list(Attractions.objects.filter(att_type__contains=att_type).values())
     print(search_list)
     return render(request, "attraction_details.html", locals())
+
+
+    # 判斷search_list中是否已收藏的景點
+def is_favorite_list(user, search_list):
+    for index, search in enumerate(search_list):
+        if Favorite.objects.filter(u_id=user, a_id=search["id"]).exists():
+            search_list[index].setdefault("is_favorite", "1")
+        else:
+            search_list[index].setdefault("is_favorite", "0")
+    return search_list

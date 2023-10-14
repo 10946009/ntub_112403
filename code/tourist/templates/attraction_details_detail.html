@@ -13,8 +13,13 @@
                 <div class="detail_name__headerGrid" style="text-align: center; font-size: 24px;">
                     <i class="fa-solid fa-arrow-up-from-bracket icon_name" title="分享"
                         style="border: black solid; border-radius: 60px;padding:6px 8px 6px 8px;"></i>
-                    <i class="fa-regular fa-heart icon_name" title="收藏"
+                        {% if is_favorite %}
+                        <i class="fas fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}" onclick="addFavorite_index({{detail.id}})" 
                         style="border: black solid; border-radius: 50px;padding:6px;"></i>
+                        {% else %}
+                        <i class="far fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}" onclick="addFavorite_index({{detail.id}})"
+                        style="border: black solid; border-radius: 50px;padding:6px;"></i>
+                        {% endif %}
                 </div>
             </div>
         </div>
