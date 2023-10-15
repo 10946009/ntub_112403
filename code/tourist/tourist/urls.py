@@ -62,6 +62,7 @@ urlpatterns = [
         attraction_details.attraction_details_att_type,
         name="serach_results_att_type",
     ),
+    path("base_search/", attraction_details.attraction_details_search,name="search_results_base"),
     # path('test/',views.test_input),
     path("useredit/", old_views.user_edit),
     path("add_favorite/", favorite.add_favorite),  # 沒有頁面

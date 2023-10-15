@@ -33,9 +33,10 @@
             <a class="navbar-brand" href="/" style="padding: 0;">
               <img src="../static/images/logo_square1.png" class="logo_square1" id="logo_icon" alt="">
             </a>
-            <form class="d-flex" role="search" action="{% url 'search_results' %}"  method="post" autocomplete="off">
+            <form class="d-flex" role="search" action="{% url 'search_results_base' %}"  method="post" autocomplete="off">
               {% csrf_token %}
-              <input class="form-control me-auto search" type="search" placeholder="想去哪玩.." aria-label="Search" name="searchQuery">
+              <input class="form-control me-auto search" type="search" placeholder="想去哪玩.." aria-label="Search" name="search_text">
+              <input type="hidden" name="data_type" value="keyword_search">
               <button class="btn btn-outline-success search_icon" type="submit" id="searchClick">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </button>
@@ -137,5 +138,7 @@
         // }
       }
     };
+
+    
   </script>
 </html>
