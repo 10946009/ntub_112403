@@ -44,7 +44,7 @@ class Crowd_OpeningAdmin(admin.ModelAdmin):
     ordering=('id',)
 admin.site.register(Crowd_Opening,Crowd_OpeningAdmin)
 
-# 建立行程首頁資訊----------------------------------------------
+# 建立行程首頁資訊(我的行程)----------------------------------------------
 class Create_TravelAdmin(admin.ModelAdmin):
     list_display=('id','ct_name','start_day','travel_day','u_id')
     ordering=('id',)
@@ -63,10 +63,10 @@ class Attractions_CtAdmin(admin.ModelAdmin):
 admin.site.register(Attractions_Ct,Attractions_CtAdmin)
 
 # 我的行程------------------------------------------------------
-class HistoryAdmin(admin.ModelAdmin):
-    list_display=('id','status','like','ct_id')
-    ordering=('id',)
-admin.site.register(History,HistoryAdmin)
+# class HistoryAdmin(admin.ModelAdmin):
+#     list_display=('id','status','like','ct_id')
+#     ordering=('id',)
+# admin.site.register(History,HistoryAdmin)
 
 # 評論----------------------------------------------------------
 class AttractionsCommentAdmin(admin.ModelAdmin):
@@ -74,7 +74,7 @@ class AttractionsCommentAdmin(admin.ModelAdmin):
 admin.site.register(AttractionsComment,AttractionsCommentAdmin)
 
 class TravelCommentAdmin(admin.ModelAdmin):
-    list_display=('id','u_id','h_id','comment_date')
+    list_display=('id','u_id','ct_id','comment_date')
 admin.site.register(TravelComment,TravelCommentAdmin)
 # 評論按讚----------------------------------------------------------
 class AttractionsCommentFavoriteAdmin(admin.ModelAdmin):
@@ -91,10 +91,10 @@ class FavoriteAdmin(admin.ModelAdmin):
     ordering=('id',)
 admin.site.register(Favorite,FavoriteAdmin)
 # 我的最愛(行程)-------------------------------------------------------
-# class TravelFavoriteAdmin(admin.ModelAdmin):
-#     list_display=('id','ct_id','u_id')
-#     ordering=('id',)
-# admin.site.register(TravelFavorite,TravelFavoriteAdmin)
+class TravelFavoriteAdmin(admin.ModelAdmin):
+    list_display=('id','ct_id','u_id')
+    ordering=('id',)
+admin.site.register(TravelFavorite,TravelFavoriteAdmin)
 
 # 搜尋紀錄-------------------------------------------------------
 class SearchAdmin(admin.ModelAdmin):

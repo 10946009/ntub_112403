@@ -10,10 +10,9 @@
     <!--資料庫有東西就會顯示-->
     {% for item in all_data %}
       <div class="row mytravel">
-        
-        <!--照片-->
+        <!--照片(先預設為第一個景點的照片)-->
         <div class="col-md-4 mytravel_img">
-          <img src="../static/images/dog.jpg"
+          <img src="/static/images/attractions/{{item.allAttractions.0.0.a_id.place_id}}_0.jpg"
                class="img-responsive"
                width="100%"
                alt="">
