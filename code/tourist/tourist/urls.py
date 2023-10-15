@@ -27,7 +27,8 @@ from myapp.views import (
     favorite,
     attraction_details,
     travel_detail,
-    share
+    share,
+    comment
 )
 
 
@@ -75,4 +76,6 @@ urlpatterns = [
     # path('attraction_details/<int:a_id>',views.attraction_details),
     # path('sayhello/<str:username>',sayhello), #新增
     path('travel_detail/', travel_detail.travel_detail),
+    path('comment/', comment.save_attractions_comment,name="attraction_comment"),
+    path('comment/', comment.save_travel_comment,name="travel_comment"),
 ]
