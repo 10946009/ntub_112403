@@ -5,8 +5,13 @@
 {% block content %}<link rel="stylesheet" href="../static/css/history.css">{% endblock %}
 
 {% block body %}
-
+  
   <div class="main">
+    <div>
+      <a href="/history">All</a>
+      <a href="/history/1">已分享</a>
+      <a href="/history/0">未分享</a>
+    </div>
     <!--資料庫有東西就會顯示-->
     {% for item in all_data %}
       <div class="row mytravel">
