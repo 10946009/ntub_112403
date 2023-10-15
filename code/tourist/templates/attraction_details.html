@@ -393,6 +393,7 @@ endcomment %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script>
+    sessionStorage.clear();
     if("{{from_base_search_text | safe}}" != null){
         searchText("{{from_base_search_text | safe}}", 'keyword_search');
     }
