@@ -1,88 +1,122 @@
 <!-- 我的行程頁面(歷史紀錄) -->
-
-
 {% extends 'base.html' %}
+{% load custom_tags %}
 {% block title %}我的行程{% endblock %}
-{% block content %}
-  <link rel="stylesheet" href="../static/css/history.css">
-{% endblock %}
+{% block content %}<link rel="stylesheet" href="../static/css/history.css">{% endblock %}
 
 {% block body %}
 
-<div class="main">
-  <!--資料庫有東西就會顯示-->
-  {% for item in my_history %}
-  <div class="row mytravel">
-    <div class="col-md-4 mytravel_img">
-      <img src="../static/images/dog.jpg" class="img-responsive" width="100%" alt="">
-    </div>
-    <div class="col-md-8 mytravel_txt">
-      <h4 class="mytravel_txt_title">行程名稱：{{item.ct_name}}</h4>
-      <h4 class="mytravel_review">喜愛程度：(別人按讚的)</h4>
-      <h4 class="mytravel_txt_detail">天數：{{item.travel_day}}</h4>
-      <h4 class="mytravel_txt_detail">地點：</h4>
-    </div>
-    <div class="edit">
-      <a href="/create/{{item.id}}" class="edita">
-        <span class="fa-solid fa-pen-to-square edit_icon"><br>
-          <span class="icontxt">編輯</span>
-        </span>
-      </a>
-    </div>
-    <div class="share">
-      <span class="fa-solid fa-share share_icon"><br>
-        <span class="icontxt">分享</span>
-      </span>
-    </div>
-    <button class="more-btn-target more_btn" data-target="{{item.id}}">詳細資料</button>
-  </div>
-  <div class="openmore more-content" style="display: none;">
-    <div id="more{{item.id}}" class="more hidden-details">
-      <ul class="nav nav-underline">
-        {% for i in "x"|rjust:item.travel_day %}
-        <li class="nav-item">
-          <a style="color: black;" class="history-nav-link" aria-current="page" href="#content{{item.id}}-{{forloop.counter}}" data-tab="{{item.id}}-{{forloop.counter}}">D{{forloop.counter}}</a>
-        </li>
-        {% endfor %}
-      </ul>
-      {% for i in "x"|rjust:item.travel_day %}
-      <div class="content hidden-details" id="content{{item.id}}-{{forloop.counter}}">
-        <div class="content_align">
-          <div class="content_detail">
-            <span class="spotnum">景點1：<span class="spot">台北101</span></span>
-            <p>日期：yyyy/mm/dd</p>
-            <p>抵達時間：早上</p>
-            <p>停留時間：</p>
-          </div>
-          <div class="gonext">
-            <a href="https://www.google.com/maps" class="gonexta">
-              <i class="fa-solid fa-car-side"></i>
-              <p class="gonextbtn">導航</p>
-            </a>
-          </div>
-          <div class="content_detail">
-            <span class="spotnum">景點2：<span class="spot">台北101</span></span>
-            <p>日期：yyyy/mm/dd</p>
-            <p>抵達時間：早上</p>
-            <p>停留時間：</p>
-          </div>
-          <!-- <div class="gonext">
-            <a href="https://www.google.com/maps" class="gonexta">
-              <i class="fa-solid fa-car-side"></i>
-              <p class="gonextbtn">導航</p>
-            </a>
-          </div> -->
+  <div class="main">
+    <!--資料庫有東西就會顯示-->
+    {% for item in all_data %}
+      <div class="row mytravel">
+        
+        <!--照片-->
+        <div class="col-md-4 mytravel_img">
+          <img src="../static/images/dog.jpg"
+               class="img-responsive"
+               width="100%"
+               alt="">
+        </div>
+
+        <!--行程基本資料-->
+        <div class="col-md-8 mytravel_txt">
+          <h4 class="mytravel_txt_title">行程名稱：{{ item.my_history.ct_name }}</h4>
+          <h4 class="mytravel_review">喜愛程度：(別人按讚的)</h4>
+          <h4 class="mytravel_txt_detail">天數：{{ item.my_history.travel_day }}</h4>
+          <h4 class="mytravel_txt_detail">地點：</h4>
+        </div>
+
+        <!--編輯分享按紐-->
+        <div class="edit">
+          <a href="/create/{{ item.my_history.id }}" class="edita">
+            <span class="fa-solid fa-pen-to-square edit_icon">
+              <br>
+              <span class="icontxt">編輯</span>
+            </span>
+          </a>
+        </div>
+        <div class="share">
+          <span class="fa-solid fa-share share_icon">
+            <br>
+            <span class="icontxt">分享</span>
+          </span>
+        </div>
+        <button class="more-btn-target more_btn" data-target="{{ item.my_history.id }}">詳細資料</button>
+      </div>
+
+      <!--開啟詳細資料顯示的內容-->
+      <div class="openmore more-content" style="display: none;">
+        <div id="more{{ item.my_history.id }}" class="more hidden-details">
+          <ul class="nav nav-underline">
+            {% for i in "x"|rjust:item.my_history.travel_day %}
+              <li class="nav-item">
+                <a style="color: black"
+                   class="history-nav-link"
+                   aria-current="page"
+                   href="#content{{ item.my_history.id }}-{{ forloop.counter }}"
+                   data-tab="{{ item.my_history.id }}-{{ forloop.counter }}">D{{ forloop.counter }}</a>
+              </li><!--顯示"ct_id - travel_day"-->
+            {% endfor %}
+          </ul>
+          {% comment %} {% for i in "x"|rjust:item.my_history.travel_day %} {% endcomment %}
+
+          {% for details in item.allAttractions %}
+            {% with counter=forloop.counter0 %}
+              <div class="content hidden-details"
+                  id="content{{ item.my_history.id }}-{{ forloop.counter }}">
+                <div class="content_align">
+                  {% for detail in details %}
+                    {% if forloop.counter0 == 0 %}
+                      <div class="content_detail">
+                        起始位置
+                      </div>
+                      <div class="gonext">
+                        {% for location in item.choiceday_ct %}
+                          {% if forloop.counter0 == counter %}
+                            <a href="https://www.google.com/maps/dir/?api=1&origin={{ location.start_location_x }},{{ location.start_location_y }}&destination={{detail.a_id.location_x}},{{detail.a_id.location_y}}&travelmode=driving"
+                            class="gonexta">
+                          {% endif %}
+                        {% endfor %}
+                          <i class="fa-solid fa-car-side"></i>
+                          <p class="gonextbtn">導航</p>
+                        </a>
+                      </div>
+                    {% else %}
+                      {% with previous_detail=item.allAttractions|get_previous_item:forloop.counter0 %}
+                        <div class="gonext">
+                          <a href="https://www.google.com/maps/dir/?api=1&origin={{ previous_detail.a_id.location_x }},{{ previous_detail.a_id.location_y }}&destination={{detail.a_id.location_x}},{{detail.a_id.location_y}}&travelmode=driving"
+                            class="gonexta">
+                            <i class="fa-solid fa-car-side"></i>
+                            <p class="gonextbtn">導航</p>
+                          </a>
+                        </div>
+                      {% endwith %}
+                    {% endif %}
+                    <div class="content_detail">
+                      <span class="spotnum"><span class="spot">{{ detail.a_id.a_name }}</span></span>
+                      <p>日期：yyyy/mm/dd</p>
+                      <p>抵達時間：早上</p>
+                      <p>停留時間：</p>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endwith %}
+          {% endfor %}
+
+
         </div>
       </div>
-      {% endfor %}
-    </div>
-  </div>
-  {% endfor %}
+    {% endfor %}
 
-    
+ 
     <div class="row mytravel">
       <div class="col-md-4 mytravel_img">
-        <img src="../static/images/dog.jpg" class="img-responsive" width="100%" alt="">
+        <img src="../static/images/dog.jpg"
+             class="img-responsive"
+             width="100%"
+             alt="">
       </div>
       <div class="col-md-8 mytravel_txt">
         <h4 class="mytravel_txt_title">行程名稱：</h4>
@@ -91,13 +125,15 @@
       </div>
       <div class="edit">
         <a href="/create" class="edita">
-          <span class="fa-solid fa-pen-to-square edit_icon"><br>
+          <span class="fa-solid fa-pen-to-square edit_icon">
+            <br>
             <span class="icontxt">編輯</span>
           </span>
         </a>
       </div>
       <div class="share">
-        <span class="fa-solid fa-share share_icon"><br>
+        <span class="fa-solid fa-share share_icon">
+          <br>
           <span class="icontxt">分享</span>
         </span>
       </div>
@@ -107,13 +143,23 @@
       <div id="more2" class="more hidden-details">
         <ul class="nav nav-underline">
           <li class="nav-item">
-            <a style="color: black;" class="history-nav-link active" aria-current="page" href="#content2-1" data-tab="2-1">第一天</a>
+            <a style="color: black"
+               class="history-nav-link active"
+               aria-current="page"
+               href="#content2-1"
+               data-tab="2-1">第一天</a>
           </li>
           <li class="nav-item">
-            <a style="color: black;" class="history-nav-link" href="#content2-2" data-tab="2-2">第二天</a>
+            <a style="color: black"
+               class="history-nav-link"
+               href="#content2-2"
+               data-tab="2-2">第二天</a>
           </li>
           <li class="nav-item">
-            <a style="color: black;" class="history-nav-link" href="#content2-3" data-tab="2-3">第三天</a>
+            <a style="color: black"
+               class="history-nav-link"
+               href="#content2-3"
+               data-tab="2-3">第三天</a>
           </li>
         </ul>
         <div class="content hidden-details" id="content2-1">
@@ -122,266 +168,424 @@
               <span class="spotnum">景點1：<span class="spot">台北101</span></span>
               <p>日期：yyyy/mm/dd</p>
               <p>抵達時間：早上</p>
-              <p>停留時間：</p>
+              <p>
+                停留時間：
+              </p>
             </div>
             <div class="gonext">
               <a href="https://www.google.com/maps" class="gonexta">
                 <i class="fa-solid fa-car-side"></i>
-                <p class="gonextbtn">導航</p>
+                <p class="gonextbtn">
+                  導航
+                </p>
               </a>
             </div>
             <div class="content_detail">
               <span class="spotnum">景點2：<span class="spot">台北101</span></span>
-              <p>日期：yyyy/mm/dd</p>
-              <p>抵達時間：早上</p>
-              <p>停留時間：</p>
+              <p>
+                日期：yyyy/mm/dd
+              </p>
+              <p>
+                抵達時間：早上
+              </p>
+              <p>
+                停留時間：
+              </p>
             </div>
             <div class="gonext">
               <a href="https://www.google.com/maps" class="gonexta">
                 <i class="fa-solid fa-car-side"></i>
-                <p class="gonextbtn">導航</p>
+                <p class="gonextbtn">
+                  導航
+                </p>
               </a>
             </div>
             <div class="content_detail">
               <span class="spotnum">景點3：<span class="spot">台北101</span></span>
-              <p>日期：yyyy/mm/dd</p>
-              <p>抵達時間：中午</p>
-              <p>停留時間：</p>
+              <p>
+                日期：yyyy/mm/dd
+              </p>
+              <p>
+                抵達時間：中午
+              </p>
+              <p>
+                停留時間：
+              </p>
             </div>
           </div>
         </div>
         <div class="content hidden-details" id="content2-2">
-          ssssssssssssssssssssssss<br>
-          aaaaaaaaaaaaaaaaaaaaa<br>
-          aaaaaaaaaaaaaaaaaaaaa<br>
-          aaaaaaaaaaaaaaaaaaaaa<br>
-          aaaaaaaaaaaaaaaaaaaaa<br>
+          ssssssssssssssssssssssss
+          <br>
+          aaaaaaaaaaaaaaaaaaaaa
+          <br>
+          aaaaaaaaaaaaaaaaaaaaa
+          <br>
+          aaaaaaaaaaaaaaaaaaaaa
+          <br>
+          aaaaaaaaaaaaaaaaaaaaa
+          <br>
         </div>
         <div class="content hidden-details" id="content2-3">
           <div class="content_align">
             <div class="content_detail">
               <span class="spotnum">景點1：<span class="spot">台北101</span></span>
-              <p>日期：yyyy/mm/dd</p>
-              <p>抵達時間：早上</p>
-              <p>停留時間：</p>
+              <p>
+                日期：yyyy/mm/dd
+              </p>
+              <p>
+                抵達時間：早上
+              </p>
+              <p>
+                停留時間：
+              </p>
             </div>
             <div class="gonext">
               <a href="https://www.google.com/maps" class="gonexta">
                 <i class="fa-solid fa-car-side"></i>
-                <p class="gonextbtn">導航</p>
+                <p class="gonextbtn">
+                  導航
+                </p>
               </a>
             </div>
             <div class="content_detail">
               <span class="spotnum">景點2：<span class="spot">台北101</span></span>
-              <p>日期：yyyy/mm/dd</p>
-              <p>抵達時間：早上</p>
-              <p>停留時間：</p>
+              <p>
+                日期：yyyy/mm/dd
+              </p>
+              <p>
+                抵達時間：早上
+              </p>
+              <p>
+                停留時間：
+              </p>
             </div>
             <div class="gonext">
               <a href="https://www.google.com/maps" class="gonexta">
                 <i class="fa-solid fa-car-side"></i>
-                <p class="gonextbtn">導航</p>
+                <p class="gonextbtn">
+                  導航
+                </p>
               </a>
             </div>
             <div class="content_detail">
               <span class="spotnum">景點3：<span class="spot">台北101</span></span>
-              <p>日期：yyyy/mm/dd</p>
-              <p>抵達時間：中午</p>
-              <p>停留時間：</p>
+              <p>
+                日期：yyyy/mm/dd
+              </p>
+              <p>
+                抵達時間：中午
+              </p>
+              <p>
+                停留時間：
+              </p>
             </div>
             <div class="gonext">
               <a href="https://www.google.com/maps" class="gonexta">
                 <i class="fa-solid fa-car-side"></i>
-                <p class="gonextbtn">導航</p>
+                <p class="gonextbtn">
+                  導航
+                </p>
               </a>
             </div>
             <div class="content_detail">
               <span class="spotnum">景點4：<span class="spot">台北101</span></span>
-              <p>日期：yyyy/mm/dd</p>
-              <p>抵達時間：中午</p>
-              <p>停留時間：</p>
+              <p>
+                日期：yyyy/mm/dd
+              </p>
+              <p>
+                抵達時間：中午
+              </p>
+              <p>
+                停留時間：
+              </p>
             </div>
             <div class="gonext">
               <a href="https://www.google.com/maps" class="gonexta">
                 <i class="fa-solid fa-car-side"></i>
-                <p class="gonextbtn">導航</p>
+                <p class="gonextbtn">
+                  導航
+                </p>
               </a>
             </div>
             <div class="content_detail">
               <span class="spotnum">景點5：<span class="spot">中正紀念堂</span></span>
-              <p>日期：yyyy/mm/dd</p>
-              <p>抵達時間：中午</p>
-              <p>停留時間：</p>
+              <p>
+                日期：yyyy/mm/dd
+              </p>
+              <p>
+                抵達時間：中午
+              </p>
+              <p>
+                停留時間：
+              </p>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-  <div class="row mytravel">
-    <div class="col-md-4 mytravel_img">
-      <img src="../static/images/dog.jpg" class="img-responsive" width="100%" alt="">
-    </div>
-    <div class="col-md-8 mytravel_txt">
-      <h4 class="mytravel_txt_title">行程名稱：</h4>
-      <h4 class="mytravel_review">喜愛程度：(別人按讚的)</h4>
-      <h4 class="mytravel_txt_detail">天數：</h4>
-      <h4 class="mytravel_txt_detail">地點：</h4>
-    </div>
-    <div class="edit">
-      <a href="/create" class="edita">
-        <span class="fa-solid fa-pen-to-square edit_icon"><br>
-          <span class="icontxt">編輯</span>
+    <div class="row mytravel">
+      <div class="col-md-4 mytravel_img">
+        <img src="../static/images/dog.jpg"
+             class="img-responsive"
+             width="100%"
+             alt="">
+      </div>
+      <div class="col-md-8 mytravel_txt">
+        <h4 class="mytravel_txt_title">
+          行程名稱：
+        </h4>
+        <h4 class="mytravel_review">
+          喜愛程度：(別人按讚的)
+        </h4>
+        <h4 class="mytravel_txt_detail">
+          天數：
+        </h4>
+        <h4 class="mytravel_txt_detail">
+          地點：
+        </h4>
+      </div>
+      <div class="edit">
+        <a href="/create" class="edita">
+          <span class="fa-solid fa-pen-to-square edit_icon">
+            <br>
+            <span class="icontxt">編輯</span>
+          </span>
+        </a>
+      </div>
+      <div class="share">
+        <span class="fa-solid fa-share share_icon">
+          <br>
+          <span class="icontxt">分享</span>
         </span>
-      </a>
+      </div>
+      <button class="more-btn-target more_btn" data-target="3">
+        詳細資料
+      </button>
     </div>
-    <div class="share">
-      <span class="fa-solid fa-share share_icon"><br>
-        <span class="icontxt">分享</span>
-      </span>
-    </div>
-    <button class="more-btn-target more_btn" data-target="3">詳細資料</button>
-  </div>
-  <div class="openmore more-content" style="display: none;">
-    <div id="more3" class="more hidden-details">
-      <ul class="nav nav-underline">
-        <li class="nav-item">
-          <a style="color: black;" class="history-nav-link active" aria-current="page" href="#content3-1" data-tab="3-1">第一天</a>
-        </li>
-        <li class="nav-item">
-          <a style="color: black;" class="history-nav-link" href="#content3-2" data-tab="3-2">第二天</a>
-        </li>
-        <li class="nav-item">
-          <a style="color: black;" class="history-nav-link" href="#content3-3" data-tab="3-3">第三天</a>
-        </li>
-      </ul>
-      <div class="content hidden-details" id="content3-1">
-        <div class="content_align">
-          <div class="content_detail">
-            <span class="spotnum">景點1：<span class="spot">台北101</span></span>
-            <p>日期：yyyy/mm/dd</p>
-            <p>抵達時間：早上</p>
-            <p>停留時間：</p>
+    <div class="openmore more-content" style="display: none;">
+      <div id="more3" class="more hidden-details">
+        <ul class="nav nav-underline">
+          <li class="nav-item">
+            <a style="color: black"
+               class="history-nav-link active"
+               aria-current="page"
+               href="#content3-1"
+               data-tab="3-1">第一天</a>
+          </li>
+          <li class="nav-item">
+            <a style="color: black"
+               class="history-nav-link"
+               href="#content3-2"
+               data-tab="3-2">第二天</a>
+          </li>
+          <li class="nav-item">
+            <a style="color: black"
+               class="history-nav-link"
+               href="#content3-3"
+               data-tab="3-3">第三天</a>
+          </li>
+        </ul>
+        <div class="content hidden-details" id="content3-1">
+          <div class="content_align">
+            <div class="content_detail">
+              <span class="spotnum">景點1：<span class="spot">台北101</span></span>
+              <p>
+                日期：yyyy/mm/dd
+              </p>
+              <p>
+                抵達時間：早上
+              </p>
+              <p>
+                停留時間：
+              </p>
+            </div>
+            <div class="gonext">
+              <a href="https://www.google.com/maps" class="gonexta">
+                <i class="fa-solid fa-car-side"></i>
+                <p class="gonextbtn">
+                  導航
+                </p>
+              </a>
+            </div>
+            <div class="content_detail">
+              <span class="spotnum">景點2：<span class="spot">台北101</span></span>
+              <p>
+                日期：yyyy/mm/dd
+              </p>
+              <p>
+                抵達時間：早上
+              </p>
+              <p>
+                停留時間：
+              </p>
+            </div>
+            <div class="gonext">
+              <a href="https://www.google.com/maps" class="gonexta">
+                <i class="fa-solid fa-car-side"></i>
+                <p class="gonextbtn">
+                  導航
+                </p>
+              </a>
+            </div>
+            <div class="content_detail">
+              <span class="spotnum">景點3：<span class="spot">台北101</span></span>
+              <p>
+                日期：yyyy/mm/dd
+              </p>
+              <p>
+                抵達時間：中午
+              </p>
+              <p>
+                停留時間：
+              </p>
+            </div>
+            <div class="gonext">
+              <a href="https://www.google.com/maps" class="gonexta">
+                <i class="fa-solid fa-car-side"></i>
+                <p class="gonextbtn">
+                  導航
+                </p>
+              </a>
+            </div>
+            <div class="content_detail">
+              <span class="spotnum">景點4：<span class="spot">台北101</span></span>
+              <p>
+                日期：yyyy/mm/dd
+              </p>
+              <p>
+                抵達時間：中午
+              </p>
+              <p>
+                停留時間：
+              </p>
+            </div>
+            <div class="gonext">
+              <a href="https://www.google.com/maps" class="gonexta">
+                <i class="fa-solid fa-car-side"></i>
+                <p class="gonextbtn">
+                  導航
+                </p>
+              </a>
+            </div>
+            <div class="content_detail">
+              <span class="spotnum">景點5：<span class="spot">中正紀念堂</span></span>
+              <p>
+                日期：yyyy/mm/dd
+              </p>
+              <p>
+                抵達時間：中午
+              </p>
+              <p>
+                停留時間：
+              </p>
+            </div>
           </div>
-          <div class="gonext">
-            <a href="https://www.google.com/maps" class="gonexta">
-              <i class="fa-solid fa-car-side"></i>
-              <p class="gonextbtn">導航</p>
-            </a>
+        </div>
+ 
+        <div class="content hidden-details" id="content3-2">
+          <div class="content_align">
+            <div class="content_detail">
+              <span class="spotnum">景點1：<span class="spot">台北101</span></span>
+              <p>
+                日期：yyyy/mm/dd
+              </p>
+              <p>
+                抵達時間：早上
+              </p>
+              <p>
+                停留時間：
+              </p>
+            </div>
+            <div class="gonext">
+              <a href="https://www.google.com/maps" class="gonexta">
+                <i class="fa-solid fa-car-side"></i>
+                <p class="gonextbtn">
+                  導航
+                </p>
+              </a>
+            </div>
+            <div class="content_detail">
+              <span class="spotnum">景點2：<span class="spot">台北101</span></span>
+              <p>
+                日期：yyyy/mm/dd
+              </p>
+              <p>
+                抵達時間：早上
+              </p>
+              <p>
+                停留時間：
+              </p>
+            </div>
+            <div class="gonext">
+              <a href="https://www.google.com/maps" class="gonexta">
+                <i class="fa-solid fa-car-side"></i>
+                <p class="gonextbtn">
+                  導航
+                </p>
+              </a>
+            </div>
+            <div class="content_detail">
+              <span class="spotnum">景點3：<span class="spot">台北101</span></span>
+              <p>
+                日期：yyyy/mm/dd
+              </p>
+              <p>
+                抵達時間：中午
+              </p>
+              <p>
+                停留時間：
+              </p>
+            </div>
           </div>
-          <div class="content_detail">
-            <span class="spotnum">景點2：<span class="spot">台北101</span></span>
-            <p>日期：yyyy/mm/dd</p>
-            <p>抵達時間：早上</p>
-            <p>停留時間：</p>
-          </div>
-          <div class="gonext">
-            <a href="https://www.google.com/maps" class="gonexta">
-              <i class="fa-solid fa-car-side"></i>
-              <p class="gonextbtn">導航</p>
-            </a>
-          </div>
-          <div class="content_detail">
-            <span class="spotnum">景點3：<span class="spot">台北101</span></span>
-            <p>日期：yyyy/mm/dd</p>
-            <p>抵達時間：中午</p>
-            <p>停留時間：</p>
-          </div>
-          <div class="gonext">
-            <a href="https://www.google.com/maps" class="gonexta">
-              <i class="fa-solid fa-car-side"></i>
-              <p class="gonextbtn">導航</p>
-            </a>
-          </div>
-          <div class="content_detail">
-            <span class="spotnum">景點4：<span class="spot">台北101</span></span>
-            <p>日期：yyyy/mm/dd</p>
-            <p>抵達時間：中午</p>
-            <p>停留時間：</p>
-          </div>
-          <div class="gonext">
-            <a href="https://www.google.com/maps" class="gonexta">
-              <i class="fa-solid fa-car-side"></i>
-              <p class="gonextbtn">導航</p>
-            </a>
-          </div>
-          <div class="content_detail">
-            <span class="spotnum">景點5：<span class="spot">中正紀念堂</span></span>
-            <p>日期：yyyy/mm/dd</p>
-            <p>抵達時間：中午</p>
-            <p>停留時間：</p>
+        </div>
+ 
+        <div class="content hidden-details" id="content3-3">
+          <div class="content_align">
+            <div class="content_detail">
+              <span class="spotnum">景點1：<span class="spot">台北101</span></span>
+              <p>
+                日期：yyyy/mm/dd
+              </p>
+              <p>
+                抵達時間：下午
+              </p>
+              <p>
+                停留時間：
+              </p>
+            </div>
+            <div class="gonext">
+              <a href="https://www.google.com/maps" class="gonexta">
+                <i class="fa-solid fa-car-side"></i>
+                <p class="gonextbtn">
+                  導航
+                </p>
+              </a>
+            </div>
+            <div class="content_detail">
+              <span class="spotnum">景點2：<span class="spot">台北101</span></span>
+              <p>
+                日期：yyyy/mm/dd
+              </p>
+              <p>
+                抵達時間：晚上
+              </p>
+              <p>
+                停留時間：
+              </p>
+            </div>
           </div>
         </div>
       </div>
-      
-      <div class="content hidden-details" id="content3-2">
-        <div class="content_align">
-          <div class="content_detail">
-            <span class="spotnum">景點1：<span class="spot">台北101</span></span>
-            <p>日期：yyyy/mm/dd</p>
-            <p>抵達時間：早上</p>
-            <p>停留時間：</p>
-          </div>
-          <div class="gonext">
-            <a href="https://www.google.com/maps" class="gonexta">
-              <i class="fa-solid fa-car-side"></i>
-              <p class="gonextbtn">導航</p>
-            </a>
-          </div>
-          <div class="content_detail">
-            <span class="spotnum">景點2：<span class="spot">台北101</span></span>
-            <p>日期：yyyy/mm/dd</p>
-            <p>抵達時間：早上</p>
-            <p>停留時間：</p>
-          </div>
-          <div class="gonext">
-            <a href="https://www.google.com/maps" class="gonexta">
-              <i class="fa-solid fa-car-side"></i>
-              <p class="gonextbtn">導航</p>
-            </a>
-          </div>
-          <div class="content_detail">
-            <span class="spotnum">景點3：<span class="spot">台北101</span></span>
-            <p>日期：yyyy/mm/dd</p>
-            <p>抵達時間：中午</p>
-            <p>停留時間：</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="content hidden-details" id="content3-3">
-        <div class="content_align">
-          <div class="content_detail">
-            <span class="spotnum">景點1：<span class="spot">台北101</span></span>
-            <p>日期：yyyy/mm/dd</p>
-            <p>抵達時間：下午</p>
-            <p>停留時間：</p>
-          </div>
-          <div class="gonext">
-            <a href="https://www.google.com/maps" class="gonexta">
-              <i class="fa-solid fa-car-side"></i>
-              <p class="gonextbtn">導航</p>
-            </a>
-          </div>
-          <div class="content_detail">
-            <span class="spotnum">景點2：<span class="spot">台北101</span></span>
-            <p>日期：yyyy/mm/dd</p>
-            <p>抵達時間：晚上</p>
-            <p>停留時間：</p>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 
-</div>
+  </div>
 
 
 {% endblock body %}
 
-{% block content_script %}
-<script src="../static/js/history.js"></script>
-{% endblock %}
+{% block content_script %}<script src="../static/js/history.js"></script>{% endblock %}
 
 
 </html>
