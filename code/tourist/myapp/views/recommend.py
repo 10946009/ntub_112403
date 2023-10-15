@@ -7,7 +7,7 @@ from .check_opening import check_opening
 from .check_distance import check_distance
 # ------------------------------------第1步驟(推薦周遭景點)
 def recommend(user_favorite, now_time, get_user_address, day, stay_time):
-    client = googlemaps.Client(key=GOOGLE_PLACES_API_KEY)
+    # client = googlemaps.Client(key=GOOGLE_PLACES_API_KEY)
     week = datetime(int(day[0:4]), int(day[5:7]), int(day[8:])).weekday() + 1
 
     # # 1.先選擇固定的5個景點作為M集合（正常為我們根據使用者輸入的位置去進行推薦。大約為開車30分鐘內會到且有營業的地點）

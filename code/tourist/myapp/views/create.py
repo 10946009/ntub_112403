@@ -8,21 +8,51 @@ from .viewsConst import ATT_TYPE_CHINESE
 from .recommend import recommend
 from .recommend_near import recommend_near
 from .final_order import final_order
+import requests
+from geopy.geocoders import Nominatim
 
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv, find_dotenv
+
+dotenv_path = join(dirname(__file__), ".env")
+load_dotenv(dotenv_path, override=True)  # 設定 override 才會更新變數哦！
+GOOGLE_PLACES_API_KEY = os.environ.get("GOOGLE_PLACES_API_KEY")
+apikey = GOOGLE_PLACES_API_KEY
+def format_minutes_as_time(minutes):
+    hours, remainder_minutes = divmod(minutes, 60)
+    return f"{hours:02d}:{remainder_minutes:02d}"
+
+
+def local_to_address(lat,lng):
+    print("lat",lat)
+    print("lng",lng)
+    base_url = 'https://maps.googleapis.com/maps/api/geocode/json'
+    params = {
+        'latlng': f'{lat},{lng}',
+        'key': apikey,
+        'language': 'zh-TW'  # 设置语言为繁体中文
+    }
+
+    # 发送请求
+    response = requests.get(base_url, params=params)
+    data = response.json()
+
+    # 解析结果
+    if data['status'] == 'OK' and len(data['results']) > 0:
+        formatted_address = data['results'][0]['formatted_address']
+        print('地址：', formatted_address)
+    else:
+        formatted_address = "無法獲取地址"
+        print('无法获取地址')
+    return formatted_address
 # 建立行程
 @login_required(login_url="/login")
 def create(request, ct_id):
-    user_favorite = [4, 6, 9, 10, 15, 16, 18]
+    user_favorite = [4, 6, 9, 10, 15, 16, 18] #需修改新增的部分
     ct_data = Create_Travel.objects.get(id=ct_id)
     choiceday = 1
-    try:
-        ct_attractions_data = ChoiceDay_Ct.objects.get(ct_id=ct_id, day=choiceday)
-        ct_attractions_list = Attractions_Ct.objects.filter(
-            choice_ct_id=ct_attractions_data.id
-        ).values()
-    except:
-        ct_attractions_list = []
-    print(ct_attractions_list)
+    # apikey = GOOGLE_PLACES_API_KEY
     travelday = range(1, ct_data.travel_day + 1)
     name = ct_data.ct_name
     start_day = ct_data.start_day
@@ -30,9 +60,57 @@ def create(request, ct_id):
         datetime(int(start_day[0:4]), int(start_day[5:7]), int(start_day[8:])).weekday()
         + 1
     )
-    ct_id = ct_data.id
+    # ct_id = ct_data.id
 
     stay_time = 150
+    ct_attractions_detail_list=[]
+    ct_attractions_co_list=[]
+    all_ct_data = []
+    crowd_index_list=[]
+    crowd_list=[]
+    local_address = ""
+    user_nowtime=""
+    try:
+        # 抓出這是哪一筆行程且天數為第1天(後續要改成抓全部
+        ct_attractions_data = ChoiceDay_Ct.objects.get(ct_id=ct_id, day=choiceday) 
+        # 抓目前位置
+        # local_address = local_to_address(ct_attractions_data.start_location_x ,ct_attractions_data.start_location_y)
+        # 抓出發時間
+        user_nowtime = format_minutes_as_time(ct_attractions_data.start_time)
+        
+        # 抓出這筆行程中的所有景點
+        ct_attractions_list = Attractions_Ct.objects.filter(
+            choice_ct_id=ct_attractions_data.id
+        ).values()
+       
+        # 抓出所有景點的詳細資料
+        for a in ct_attractions_list:
+            crowd_index_list.append(int(a['a_start_time']%1400//60)) #人潮流量索引
+            ct_attractions_detail_list.append(Attractions.objects.get(id=a['a_id']))
+        print('ct_attractions_detail_list',ct_attractions_detail_list)
+        print('crowd_index_list',crowd_index_list)
+        # 抓出景點的人潮與營業時間(第1天)
+        for co in ct_attractions_detail_list:
+            ct_attractions_co_list.append(Crowd_Opening.objects.get(a_id=co.id,week=week))
+        #抓人潮流量
+        for i in range(len(ct_attractions_list)):
+            crowd_list.append(ct_attractions_co_list[i].crowd[crowd_index_list[i]]) 
+        print('ct_attractions_co_list',ct_attractions_co_list)
+        print('crowd_list',crowd_list)
+        
+        
+        # 合併上面四個資料
+        for attraction, detail, co, crowd_list in zip(ct_attractions_list, ct_attractions_detail_list, ct_attractions_co_list,crowd_list):
+            all_ct_data.append({
+                'attraction': attraction,
+                'detail': detail,
+                'co': co,
+                'crowd_list' : crowd_list
+            })
+    except:
+        ct_attractions_list = []
+    print(ct_attractions_list)
+
     if request.method == "POST":
         ct_status = request.POST["ct_status"]
         print(ct_status)
@@ -87,7 +165,7 @@ def create(request, ct_id):
 
         if ct_status == "2":
             o_attractions_list = request.POST.getlist("all_select[]")
-            print(o_attractions_list)
+            print('o_attractions_list我在這!!!!!!!!!!!!!!!!!!',o_attractions_list)
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
             final = final_order(
@@ -126,6 +204,8 @@ def create(request, ct_id):
                 # final_remainder_result_list = list(final_remainder_result_list)
             except:
                 pass
+
+            final_now_time_list = final[2]
             # ------------
             print("final_result_list", final_result_list)
             print("final_crow_opening_list", final_crow_opening_list)
@@ -133,13 +213,14 @@ def create(request, ct_id):
             print(
                 "final_remainder_crow_opening_list", final_remainder_crow_opening_list
             )
-
+            print('final_now_time_list',final_now_time_list)
             return JsonResponse(
                 {
                     "final_result_list": final_result_list,
                     "final_crow_opening_list": final_crow_opening_list,
                     "final_remainder_result_list": final_remainder_result_list,
                     "final_remainder_crow_opening_list": final_remainder_crow_opening_list,
+                    'final_now_time_list':final_now_time_list,
                 }
             )
         choice_ct_id = -1
@@ -200,5 +281,6 @@ def create(request, ct_id):
                     new_nowtime += 150
 
             print("hello")
+
 
     return render(request, "create.html", locals())

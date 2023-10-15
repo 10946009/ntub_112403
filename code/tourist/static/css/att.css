@@ -4,7 +4,7 @@
 
 /* 背景顏色 */
 body {
-    background-color: #f7ead37c;
+    background-color: #d5d5d5bf;
 }
 
 /* 景點動態大標（景點資訊） */
@@ -38,15 +38,19 @@ body {
 
 /* 景點資訊 */
 .scroll-text h1 {
-    font-size: 50px;
-    font-family: "Noto Serif TC", serif;
+    color: rgb(0, 0, 0);
+    font-family: system-ui;
+    font-size: 60px;
+    /* font-family: "Noto Serif TC", serif; */
     font-weight: 400;
 }
 
 /* Tripfunchill */
 .scroll-text h5 {
+    font-size: 24px;
     color: rgb(0, 0, 0);
-    font-family: "Noto Serif TC", serif;
+    font-family: system-ui;
+    /* font-family: "Noto Serif TC", serif; */
     font-weight: 200;
 }
 
@@ -61,7 +65,7 @@ body {
 .jumbotron {
     height: 100vh;
     text-align: center;
-    background-image: url(../images/Datong.jpeg);
+    background-image: url(../images/att_picture.png);
     background-size: cover;
     background-attachment: fixed;
     margin: 0;
@@ -76,9 +80,9 @@ body {
 
 /* 內部白色景點資訊大四字(白色透明bgc) */
 .active_tit {
-    background-color: rgba(194, 194, 194, 0.2);
-    width: 35%;
-    height: 300px;
+    background-color: rgba(113, 113, 113, 0.2);
+    width: 40%;
+    height: 320px;
     position: absolute;
     top: 400px;
     left: 50%;
@@ -222,27 +226,35 @@ body {
 
 /* 動動圖那一塊 */
 #filiter_about {
-    background-color: #ded1b8;
-    padding: 40px;
+    /* background-color: #e4dbc9; */
+    background-color: #62a6d4bc;
+    padding-top: 30px;
 }
 
 /* 拖行李的圖 */
 #filiter_about .img_trip {
-    mix-blend-mode: multiply;
-    background-size: cover;
+    width: 50px;
+    /* mix-blend-mode: multiply;
+    background-size: cover; */
 }
 
 /* 那個馬路圖 */
 .road {
     position: relative;
-    z-index: 1;
 }
 
 /* 篩選那部分 */
-.topic_filiter {
+.three_choice {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 篩選分三份 */
+.column {
     margin-top: 60px;
     padding-left: 60px;
     padding-right: 60px;
+    flex: 1;
 }
 
 /* 篩選文字 */
@@ -250,7 +262,7 @@ body {
     margin-top: 20px;
 }
 
-.topic_filiter:hover {
+.column:hover {
     color: rgb(127, 4, 4);
 }
 
@@ -351,6 +363,7 @@ body {
     padding-right: 150px;
 }
 
+/* 篩選條件結果標籤 */
 .tag-cloud {
     margin-left: 10px;
     margin-right: 10px;
@@ -673,6 +686,18 @@ img {
     display: block;
 }
 
+/* 更多/展開收起功能 */
+.qa-section {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.toggleButton span:hover {
+    color: #185889;
+    /* 将文本颜色更改为红色（您可以根据需要修改颜色） */
+}
 
 /* icon */
 .fa {
@@ -753,7 +778,7 @@ img {
 .jumbotron1 {
     height: 40vh;
     text-align: center;
-    background-image: url(../images/Datong.jpeg);
+    background-image: url(../images/att_picture.png);
     background-size: cover;
     background-attachment: fixed;
     margin: 0;
@@ -908,64 +933,43 @@ img {
     display: table;
 }
 
-@media only screen and (max-width: 600px) {
-
-    /* For mobile phones: */
+/* @media only screen and (max-width: 600px) {
     [class*="col-"] {
         width: 100%;
     }
-
     .imgcontainer {
         text-align: center;
         margin: 10px 0 10px 0;
         position: relative;
     }
-
-    /* The Modal (background) */
     .modal {
         display: none;
-        /* Hidden by default */
         position: fixed;
-        /* Stay in place */
         z-index: 1;
-        /* Sit on top */
         left: 0;
         top: 0;
         width: 100%;
-        /* Full width */
         height: 100%;
-        /* Full height */
         overflow: auto;
-        /* Enable scroll if needed */
         background-color: rgb(0, 0, 0);
-        /* Fallback color */
         background-color: rgba(0, 0, 0, 0.4);
-        /* Black w/ opacity */
         padding: 0;
     }
-
-    /* Modal Content/Box */
     .modal-content {
         background-color: #fefefe;
         margin: 0 auto;
-        /* 5% from the top, 15% from the bottom and centered */
         border: 1px solid #888;
         width: 100%;
-        /* Could be more or less, depending on screen size */
-    }
 
+    }
     .cancelbtn {
         width: 100%;
     }
-
     .aa {
         display: flex;
         justify-content: center;
-        /* 在主軸上置中 */
         align-items: center;
-        /* 在交叉軸上置中 */
     }
-
     .active_tit {
         background-color: rgba(194, 194, 194, 0.2);
         width: 100%;
@@ -976,9 +980,8 @@ img {
         transform: translate(-50%, -50%);
     }
 
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1280px) {
+} */
+/* @media only screen and (min-width: 768px) and (max-width: 1280px) {
     .col-3 {
         width: 16.66%;
     }
@@ -994,9 +997,9 @@ img {
     .col-8 {
         width: 83.33%;
     }
-}
+} */
 
-@media only screen and (min-width: 1800px) and (max-width: 2300px) {
+/* @media only screen and (min-width: 1800px) and (max-width: 2300px) {
     .col-3 {
         width: 16.66%;
     }
@@ -1089,9 +1092,9 @@ img {
         font-size: 20px;
     }
 
-}
+} */
 
-@media only screen and (min-width: 2300px) {
+/* @media only screen and (min-width: 2300px) {
 
 
     #myInput {
@@ -1191,9 +1194,10 @@ img {
     .comment-text .span {
         font-size: 24px;
     }
-}
+} */
 
-@media (max-width: 400px) {
+/* @media (max-width: 400px) {
+
 
     .side,
     .middle {
@@ -1204,4 +1208,175 @@ img {
         display: none;
     }
 
+} */
+/* grid景點名稱 */
+.detail_name {
+    max-width: 100%;
+    cursor: pointer;
 }
+
+.detail_name__header {
+    display: grid;
+    grid-template-columns: 10fr 1fr 1fr;
+    grid-gap: 2px;
+    margin-bottom: 2px;
+}
+
+.detail_name__headerGrid {
+    text-align: center;
+}
+
+/* grid景點圖片 */
+.detail_img {
+    max-width: 100%;
+    margin: 50px auto;
+    cursor: pointer;
+}
+
+.detail_img__header {
+    display: grid;
+    grid-template-columns: 8fr 4fr;
+    grid-gap: 2px;
+    margin-bottom: 2px;
+}
+
+.detail_img__headerGrid {
+    text-align: center;
+}
+
+.show_detail_img:hover {
+    opacity: 0.7;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* 查看景點所有圖片 */
+.see_all_btn {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 50px;
+    padding: 10px 15px;
+    text-decoration: none;
+}
+
+.see_all_btn:hover {
+    background-color: rgb(100, 99, 99);
+}
+
+/* grid景點資訊 */
+.detail_detail {
+    max-width: 100%;
+}
+
+.detail_detail__header {
+    display: grid;
+    grid-template-columns: 9fr 6fr;
+    grid-gap: 2px;
+}
+
+/* grid景點問題 */
+.question {
+    border: rgb(148, 145, 145) solid;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+
+/* .detail_detail__headerGrid {
+    text-align: center;
+} */
+
+/* .Cart__product {
+    display: grid;
+    grid-template-columns: 2fr 7fr 3fr 3fr 3fr 3fr;
+    grid-gap: 2px;
+    margin-bottom: 2px;
+    height: 70px;
+}
+
+.Cart__productGrid {
+    padding: 5px;
+}
+
+.Cart__productImg {
+    background-image: url(https://fakeimg.pl/640x480/c0cfe8/?text=Img);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.Cart__productTitle {
+    overflow: hidden;
+    line-height: 25px;
+}
+
+.Cart__productPrice,
+.Cart__productQuantity,
+.Cart__productTotal,
+.Cart__productDel {
+    text-align: center;
+    line-height: 60px;
+} */
+
+/* @media screen and (max-width: 820px) {
+    .detail_img__header__header {
+        display: none;
+    }
+
+    .Cart__product {
+        box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.5);
+        margin-bottom: 10px;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 2fr 2fr 2fr 2fr 2fr 2fr 1fr;
+        grid-template-areas:
+            "img title title title title title del"
+            "img price price quantity total total del";
+    }
+
+    .Cart__productImg {
+        grid-area: img;
+    }
+
+    .Cart__productTitle {
+        grid-area: title;
+    }
+
+    .Cart__productPrice,
+    .Cart__productQuantity,
+    .Cart__productTotal,
+    .Cart__productDel {
+        line-height: initial;
+    }
+
+    .Cart__productPrice {
+        grid-area: price;
+        text-align: right;
+    }
+
+    .Cart__productQuantity {
+        grid-area: quantity;
+        text-align: left;
+    }
+
+    .Cart__productQuantity::before {
+        content: "x";
+    }
+
+    .Cart__productTotal {
+        grid-area: total;
+        text-align: right;
+        color: red;
+    }
+
+    .Cart__productDel {
+        grid-area: del;
+        line-height: 60px;
+        background: #ffc0cb26;
+    }
+} */
