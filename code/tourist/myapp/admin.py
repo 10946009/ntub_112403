@@ -90,6 +90,11 @@ class FavoriteAdmin(admin.ModelAdmin):
     list_display=('id','a_id','u_id')
     ordering=('id',)
 admin.site.register(Favorite,FavoriteAdmin)
+# 我的最愛(行程)-------------------------------------------------------
+# class TravelFavoriteAdmin(admin.ModelAdmin):
+#     list_display=('id','ct_id','u_id')
+#     ordering=('id',)
+# admin.site.register(TravelFavorite,TravelFavoriteAdmin)
 
 # 搜尋紀錄-------------------------------------------------------
 class SearchAdmin(admin.ModelAdmin):

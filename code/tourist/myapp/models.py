@@ -149,11 +149,16 @@ class TravelCommentFavorite(models.Model):
         to=User, on_delete=models.SET_DEFAULT, default=-1
     )  # user沒了留言u_id會被設為null
 
-
+# 我的最愛
 class Favorite(models.Model):
     u = models.ForeignKey(to=User, on_delete=models.CASCADE)
     a = models.ForeignKey(to=Attractions, on_delete=models.CASCADE)
-
+    
+class TravelFavorite(models.Model):
+    u = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    ct = models.ForeignKey(
+        to=Create_Travel, on_delete=models.SET_DEFAULT, default=-1
+    )  # 行程沒了歷史也會被刪除
 
 class Search(models.Model):
     attractions = models.ManyToManyField(Attractions)
