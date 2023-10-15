@@ -4,12 +4,21 @@ from django.contrib.auth.decorators import login_required
 
 # 我的行程(歷史紀錄)
 @login_required(login_url="/login")
-def history(request):
+def history(request,select=None):
+    
+
     my_history = []
     user_id = request.user.id
     print(user_id)
-    # 抓出此user的所有行程資料
-    my_history = Create_Travel.objects.filter(u_id=user_id).values()
+    if select==0:
+        # 抓出此user的未分享行程資料
+        my_history = Create_Travel.objects.filter(u_id=user_id,status=False).order_by('id').values()
+    elif select==1:
+        # 抓出此user的分享行程資料
+        my_history = Create_Travel.objects.filter(u_id=user_id,status=True).order_by('id').values()
+    else:
+        # 抓出此user的所有行程資料
+        my_history = Create_Travel.objects.filter(u_id=user_id).order_by('id').values()
     print('my_history',my_history)
     choiceday_ct = []
     # 抓出ct_id相同的資料(可能會有day1、day2之類的)
@@ -22,7 +31,7 @@ def history(request):
         ct_allattractions_list = []
         temp_allattractions = []
         for i in item:
-            temp_allattractions =Attractions_Ct.objects.filter(choice_ct_id=i['id']).values()
+            temp_allattractions =Attractions_Ct.objects.filter(choice_ct_id=i['id']).order_by('order').values()
             for temp in range(len(temp_allattractions)):
                 aid = temp_allattractions[temp]['a_id']
                 temp_allattractions[temp]['a_id'] = Attractions.objects.get(id=aid)
