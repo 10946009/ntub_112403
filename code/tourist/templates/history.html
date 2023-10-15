@@ -68,14 +68,16 @@
                 <div class="content_align">
                   {% for detail in details %}
                     {% if forloop.counter0 == 0 %}
+                      <!-- 起始位置格式設定在這~~ -->
                       <div class="content_detail">
                         起始位置
                       </div>
                       <div class="gonext">
+                        <!--顯示使用者設定的起始位置到第一個景點的導航-->
                         {% for location in item.choiceday_ct %}
-                          {% if forloop.counter0 == counter %}
+                          {% if forloop.counter0 == counter %}<!--顯示當forloop次數與上面counter相同時才會顯示  如counter目前為1，forloo為0什麼都不做，為1的時候顯示資料-->
                             <a href="https://www.google.com/maps/dir/?api=1&origin={{ location.start_location_x }},{{ location.start_location_y }}&destination={{detail.a_id.location_x}},{{detail.a_id.location_y}}&travelmode=driving"
-                            class="gonexta">
+                            class="gonexta" target="_blank">
                           {% endif %}
                         {% endfor %}
                           <i class="fa-solid fa-car-side"></i>
@@ -83,6 +85,7 @@
                         </a>
                       </div>
                     {% else %}
+                      <!--使用客製化的filter來抓取前一次迴圈的資料進行導航-->
                       {% with previous_detail=item.allAttractions|get_previous_item:forloop.counter0 %}
                         <div class="gonext">
                           <a href="https://www.google.com/maps/dir/?api=1&origin={{ previous_detail.a_id.location_x }},{{ previous_detail.a_id.location_y }}&destination={{detail.a_id.location_x}},{{detail.a_id.location_y}}&travelmode=driving"
@@ -93,6 +96,8 @@
                         </div>
                       {% endwith %}
                     {% endif %}
+
+                    <!--要塞的資料-->
                     <div class="content_detail">
                       <span class="spotnum"><span class="spot">{{ detail.a_id.a_name }}</span></span>
                       <p>日期：yyyy/mm/dd</p>
@@ -110,7 +115,7 @@
       </div>
     {% endfor %}
 
- 
+    <!-- 以下為原本寫死的資料  可以註解或刪掉~-->
     <div class="row mytravel">
       <div class="col-md-4 mytravel_img">
         <img src="../static/images/dog.jpg"
