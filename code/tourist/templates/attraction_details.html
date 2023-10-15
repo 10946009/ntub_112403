@@ -393,6 +393,9 @@ endcomment %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script>
+    if("{{from_base_search_text | safe}}" != null){
+        searchText("{{from_base_search_text | safe}}", 'keyword_search');
+    }
     // 本文內容切換
     function toggleContent(aid) {
         showInfo(aid);
@@ -637,7 +640,7 @@ endcomment %}
             b.addEventListener("click", function (e) {
                 inp.value = val;
                 sessionStorage.setItem(val, 'keyword_search');
-                searchText(val, 'a_name');
+                searchText(val, 'keyword_search');
                 closeAllLists();
                 // searchClick.click();
             });
