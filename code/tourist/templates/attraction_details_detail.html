@@ -550,8 +550,8 @@
                                 </h6>
                             </div>
                         </div>
-                        <div class="comment" id="comment_share"
-                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
+                        <div class="comment" id="comment_share" style="top:0; cursor: pointer; padding: 0 20px 0 20px; "
+                            onclick="Share_Copytips()">
                             <div class="" style="font-size: 30px; padding-top: 5px;">
                                 <i class="fa-solid fa-link"></i>
                             </div>
@@ -561,6 +561,7 @@
                                 </h6>
                             </div>
                         </div>
+                        <div id="share_tips">已將連結複製到剪貼簿。</div>
                     </div>
                     <!-- <div class="post_ask">
                         <span class="ask_btn_cancel" id="ask_btn_cancel">取消</span>
@@ -1174,6 +1175,15 @@
     closeShare.addEventListener("click", function () {
         share_an_att.style.display = "none";
     });
+
+    // 已經copy提示
+    function Share_Copytips() {
+        var x = document.getElementById("share_tips");
+        x.className = "copy";
+        setTimeout(function () {
+            x.className = x.className.replace("copy", "");
+        }, 3000);
+    }
 
 
     // // 更多問題功能
