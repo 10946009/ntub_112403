@@ -35,11 +35,20 @@
             </span>
           </a>
         </div>
-        <div class="share">
-          <span class="fa-solid fa-share share_icon">
+        <div class="share" id="ct_share">
+          {% if item.my_history.status == True %}
+            <i class="fa-solid fa-share share_icon" title="已分享" id="submitfavorite_share{{item.my_history.id}}" data-isfavorite="1" onclick="add_favorite_share({{item.my_history.id}})"></i>
+            <span class="icontxt" id="icontxt{{item.my_history.id}}">已分享</span>
+            {% comment %} <span class="fa-solid fa-share share_icon">
             <br>
-            <span class="icontxt">分享</span>
-          </span>
+            <span class="icontxt">已分享</span> {% endcomment %}
+          {% else %}
+            <i class="fa-solid fa-share share_icon" title="收藏" id="submitfavorite_share{{item.my_history.id}}" data-isfavorite="0" onclick="add_favorite_share({{item.my_history.id}})"></i>
+            <span class="icontxt" id="icontxt{{item.my_history.id}}">分享</span>
+            {% comment %} <span class="fa-solid fa-share share_icon">
+            <br>
+            <span class="icontxt">分享</span> {% endcomment %}
+          {% endif %}
         </div>
         <button class="more-btn-target more_btn" data-target="{{ item.my_history.id }}">詳細資料</button>
       </div>
@@ -587,9 +596,43 @@
   </div>
 
 
-{% endblock body %}
 
-{% block content_script %}<script src="../static/js/history.js"></script>{% endblock %}
+
+<script>
+  function add_favorite_share(ctid){
+    // var sharediv = document.getElementById("ct_share");
+    var favoriteButton = document.getElementById("submitfavorite_share" + ctid);
+    var text = document.getElementById("icontxt" + ctid);
+    var isFavoriteValue = favoriteButton.getAttribute("data-isfavorite");
+    if (isFavoriteValue === "1") {
+      //favoriteButton.setAttribute("class", "fa-regular fa-heart");
+      favoriteButton.setAttribute("data-isfavorite", "0");
+      text.textContent = "分享";
+    } else {
+      //favoriteButton.setAttribute("class", "fa-regular fa-heart");
+      favoriteButton.setAttribute("data-isfavorite", "1");
+      text.textContent = "已分享";
+    }
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    $.ajax({
+        headers: { 'X-CSRFToken': csrftoken },
+        type: "POST",
+        url: "/add_favorite_share/",
+        data: {
+            'ctid': ctid,
+        },
+        success: function (data) {
+            console.log(data);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.error("Error:", textStatus, errorThrown);
+        }
+    });
+  };
+</script>
+{% endblock body %}
+{% block content_script %}<script src="/static/js/history.js"></script>{% endblock %}
+
 
 
 </html>
