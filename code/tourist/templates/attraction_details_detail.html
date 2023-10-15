@@ -13,13 +13,15 @@
                 <div class="detail_name__headerGrid" style="text-align: center; font-size: 24px;">
                     <i class="fa-solid fa-arrow-up-from-bracket icon_name" title="分享"
                         style="border: black solid; border-radius: 60px;padding:6px 8px 6px 8px;"></i>
-                        {% if is_favorite %}
-                        <i class="fas fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}" onclick="addFavorite_index({{detail.id}})" 
+                    {% if is_favorite %}
+                    <i class="fas fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}"
+                        onclick="addFavorite_index({{detail.id}})"
                         style="border: black solid; border-radius: 50px;padding:6px;"></i>
-                        {% else %}
-                        <i class="far fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}" onclick="addFavorite_index({{detail.id}})"
+                    {% else %}
+                    <i class="far fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}"
+                        onclick="addFavorite_index({{detail.id}})"
                         style="border: black solid; border-radius: 50px;padding:6px;"></i>
-                        {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -170,8 +172,8 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <h6 class="see_more">
-                                                查看所有問題（？）
+                                            <h6 class="see_more" id="see_more" onclick="showAllLoaderAndContent()">
+                                                查看所有問題（6）
                                             </h6>
                                         </div>
                                     </div>
@@ -344,7 +346,13 @@
                 </form>
             </div>
         </div>
-
+        <!-- 查看所有問題點擊載入動畫loader -->
+        <div class="all_ask_big" id="all_ask_big" style="display: none;">
+            <div class="all_background-mask" id="all_background-mask">
+                <div class="all_loader"></div>
+            </div>
+        </div>
+        <!-- 查看所有問題 -->
         <div class="all_ask_qa" id="all_ask_qa">
             <div id="all_ask_qa_container" class="all_ask_qa_container" style="height: 700px; overflow-y: scroll;">
                 <form class="all_ask-content" id="all_ask-content" action="">
@@ -401,15 +409,16 @@
                             </div>
                         </div>
                         <div>
-                            <textarea name="" id="" cols="80%" rows="5"
+                            <textarea name="" id="" cols="100%" rows="5"
                                 style="resize:none; border-radius: 10px;max-width: 90%;margin-left: 40px; padding: 10px;"
                                 placeholder="回答問題"></textarea>
+                            <!-- 之後會補上判斷textarea是否是空值以觸發ask_btn_ok按鈕（空直不能點張貼） -->
+                            <div class="post_ask">
+                                <span class="all_ask_btn_ok" id="all_ask_btn_ok">張貼</span>
+                            </div>
                         </div>
                     </div>
-                    <!-- 之後會補上判斷textarea是否是空值以觸發ask_btn_ok按鈕（空直不能點張貼） -->
-                    <div class="post_ask">
-                        <span class="all_ask_btn_ok" id="all_ask_btn_ok">張貼</span>
-                    </div>
+
                     <hr style=" border:1px solid #777777; max-width: 100%;">
                     <div class="all_ask_qa_con">
                         <div class="all_ask_qa_comment">
@@ -455,14 +464,14 @@
                             </div>
                         </div>
                         <div>
-                            <textarea name="" id="" cols="80%" rows="5"
+                            <textarea name="" id="" cols="100%" rows="5"
                                 style="resize:none; border-radius: 10px;max-width: 90%;margin-left: 40px; padding: 10px;"
                                 placeholder="回答問題"></textarea>
+                            <!-- 之後會補上判斷textarea是否是空值以觸發ask_btn_ok按鈕（空直不能點張貼） -->
+                            <div class="post_ask">
+                                <span class="all_ask_btn_ok" id="all_ask_btn_ok">張貼</span>
+                            </div>
                         </div>
-                    </div>
-                    <!-- 之後會補上判斷textarea是否是空值以觸發ask_btn_ok按鈕（空直不能點張貼） -->
-                    <div class="post_ask">
-                        <span class="all_ask_btn_ok" id="all_ask_btn_ok">張貼</span>
                     </div>
                 </form>
             </div>
@@ -962,7 +971,7 @@
 <!-- 圖表會用到script -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
-    // ask_tips提示點擊
+    // ask_tips提示點擊(查看)
     var icon1 = document.getElementById("myIcon1");
     var tooltip2 = document.getElementById("myTooltip2");
     var all_ask_qa_container = document.getElementById("all_ask_qa_container");
@@ -1030,23 +1039,48 @@
             tooltip.style.display = "none";
         }
     });
+    // loader動作（查看更多問題）
+    function showAllLoaderAndContent() {
+        var all_loader = document.getElementById("all_ask_big");
+        var all_ask_qa = document.getElementById("all_ask_qa");
+        all_loader.style.display = "block";
+        setTimeout(function () {
+            all_loader.style.display = "none";
+            all_ask_qa.style.display = "block";
+        }, 500);
+    }
 
+    // 打開查看更多問提問題方塊
+    var see_more = document.getElementById('see_more');
+    var all_ask_qa_container = document.getElementById('all_ask_qa_container');
+    var all_ask_qa = document.getElementById('all_ask_qa');
 
-    // 更多問題功能
-    var qaSection = document.querySelector('.qa-section');
-    var toggleButton = document.getElementById('toggleButton');
-    //前三行内容
-    var isHidden = true;
-    toggleButton.addEventListener('click', function () {
-        if (isHidden) {
-            qaSection.style.webkitLineClamp = 'unset';
-            toggleButton.textContent = '顯示最小';
-        } else {
-            qaSection.style.webkitLineClamp = '3';
-            toggleButton.textContent = '更多...';
+    document.addEventListener("click", function (event) {
+        if (event.target == all_ask_qa) {
+            all_ask_qa.style.display = "none";
         }
-        isHidden = !isHidden;
     });
+    var all_close = document.getElementById('all_close');
+    all_close.addEventListener("click", function () {
+        all_ask_qa.style.display = "none";
+    });
+
+
+    // // 更多問題功能
+    // var qaSection = document.querySelector('.qa-section');
+    // var toggleButton = document.getElementById('toggleButton');
+    // //前三行内容
+    // var isHidden = true;
+    // toggleButton.addEventListener('click', function () {
+    //     if (isHidden) {
+    //         qaSection.style.webkitLineClamp = 'unset';
+    //         toggleButton.textContent = '顯示最小';
+    //     } else {
+    //         qaSection.style.webkitLineClamp = '3';
+    //         toggleButton.textContent = '更多...';
+    //     }
+    //     isHidden = !isHidden;
+    // });
 
     //總覽評論切換
     sessionStorage.clear();
