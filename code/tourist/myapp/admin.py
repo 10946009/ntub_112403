@@ -70,12 +70,21 @@ admin.site.register(History,HistoryAdmin)
 
 # 評論----------------------------------------------------------
 class AttractionsCommentAdmin(admin.ModelAdmin):
-    list_display=('id','u_id','a_id','score','comment_date')
+    list_display=('id','u_id','a_id','comment_date')
 admin.site.register(AttractionsComment,AttractionsCommentAdmin)
 
 class TravelCommentAdmin(admin.ModelAdmin):
-    list_display=('id','u_id','h_id','score','comment_date')
+    list_display=('id','u_id','h_id','comment_date')
 admin.site.register(TravelComment,TravelCommentAdmin)
+# 評論按讚----------------------------------------------------------
+class AttractionsCommentFavoriteAdmin(admin.ModelAdmin):
+    list_display=('id','u_id','ac_id')
+admin.site.register(AttractionsCommentFavorite,AttractionsCommentFavoriteAdmin)
+
+class TravelCommentFavoriteAdmin(admin.ModelAdmin):
+    list_display=('id','u_id','tc_id')
+admin.site.register(TravelCommentFavorite,TravelCommentFavoriteAdmin)
+
 # 我的最愛-------------------------------------------------------
 class FavoriteAdmin(admin.ModelAdmin):
     list_display=('id','a_id','u_id')
