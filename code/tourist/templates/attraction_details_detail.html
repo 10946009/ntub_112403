@@ -1,25 +1,30 @@
 <div class="row">
-    <div class="col-1" style="margin-top: -70px; text-align: center;">
-        <h1 onclick="toggleContent() " style="cursor: pointer;"> <i class="fa-regular fa-circle-left"></i></h1>
+    <div class="col-1" style="margin-top: -70px; margin-left: 20px;">
+        <h1 onclick="toggleContent() " style="cursor: pointer;" title="上一頁"> <i class="fa-regular fa-circle-left"></i>
+        </h1>
     </div>
     <div class="col-10">
         <!-- 景點名稱 -->
         <div class="detail_name">
             <div class="detail_name__header">
                 <div class="detail_name__headerGrid">
-                    <h3 style="color: rgb(172, 78, 1)" id="attractions-detail-name">{{ detail.a_name }}</h3>
+                    <h2 style="color: rgb(172, 78, 1)" id="attractions-detail-name">{{ detail.a_name }}</h2>
                 </div>
-                <div class="detail_name__headerGrid">123</div>
-                <div class="detail_name__headerGrid">456</div>
+                <div class="detail_name__headerGrid" style="text-align: center; font-size: 24px;">
+                    <i class="fa-solid fa-arrow-up-from-bracket icon_name" title="分享"
+                        style="border: black solid; border-radius: 60px;padding:6px 8px 6px 8px;"></i>
+                    <i class="fa-regular fa-heart icon_name" title="收藏"
+                        style="border: black solid; border-radius: 50px;padding:6px;"></i>
+                </div>
             </div>
         </div>
         <!-- 星星數 -->
         <div class="rating" style="margin-bottom: 10px;">
             {% for i in "12345" %}
-            {% if i|add:0 <= detail.rating %} <span class="rating-star" style="color: rgb(241, 226, 62);">
-                &#9733;</span>
+            {% if i|add:0 <= detail.rating %} <i class="fa-solid fa-star" style="color:yellow;"></i>
                 {% else %}
-                <span class="rating-star">&#9733;</span>
+                <!-- <i class="fa-regular fa-star"></i> -->
+                <i class="fa-regular fa-star-half-stroke" style="color:yellow;"></i>
                 {% endif %}
                 {% endfor %}
                 <span id="selectedRating"></span> / 5 ({{ detail.rating_total }})
@@ -28,14 +33,15 @@
         <div class="detail_img" style="margin-top: 10px;">
             <div class="detail_img__header">
                 <div class="detail_img__headerGrid">
-                    <img src="../static/images/Datong.jpeg" class="show_detail_img"
+                    <img src="/static/images/attractions/{{detail.place_id}}_0.jpg" class="show_detail_img"
                         style="margin-top: 1px; width:100%;max-width: 100%;" alt="">
                 </div>
                 <div class="detail_img__headerGrid">
                     <div class="row">
-                        <img src="../static/images/Datong.jpeg" class="show_detail_img" style=" width:100%;" alt="">
+                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg" class="show_detail_img"
+                            style=" width:100%;" alt="">
                         <div class="image-container">
-                            <img src="../static/images/Datong.jpeg" class="show_detail_img"
+                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg" class="show_detail_img"
                                 style="width: 100%;margin-top: 2px;" alt="">
                             <a href="#" class="see_all_btn">查看所有照片</a>
                         </div>
@@ -44,75 +50,408 @@
             </div>
         </div>
         <div class="detail_detail" style="margin-top: -20px;">
-            <div class="detail_detail__header">
-                <div class="detail_detail__headerGrid">
-                    <!-- 景點介紹 -->
-                    <h6 style="font-size: 18px;">關於</h6>
-                    <h6>{{ detail.detail }}</h6>
-                    <!-- 地址 -->
-                    <h6 style="margin-top: 20px; font-size: 18px;" id="attractions-detail-address">
-                        地址：{{detail.address}}
-                    </h6>
-                    <!-- 電話 -->
-                    {% if detail.phone != "" %}<h6 id="attractions-detail-phone"
-                        style="margin-top: 20px;font-size: 18px;">
-                        電話：{{detail.phone }}
-                    </h6>{% endif %}
-                    <!-- 營業時間 -->
-                    <h6 style="margin-top: 20px;font-size: 18px;">
-                        營業時間：
-                        <!-- <span style="color: red;">已打烊</span> <span style="color: rgb(21, 81, 140);">*開始營業時間：9:00</span> -->
-                    </h6>
-                    <!-- 建議停留時間 -->
-                    <h6 style="margin-top: 20px;font-size: 18px;">建議停留時間：{{ detail.stay_time }}</h6>
-                    <!-- 旺季月份 -->
-                    <h6 style="margin-top: 20px;font-size: 18px;">旺季月份：{{ detail.hot_month }}</h6>
-                    <!-- <hr style="border:2px solid #b3b2b2"> -->
-                    <!-- 人潮資訊 -->
-                    <h6 style="margin-top: 20px;font-size: 18px;">
-                        人潮資訊：
-                    </h6>
-                    <!-- 圖表 -->
-                    <div>
-                        <canvas id="chart" width="300" height="150"></canvas>
+            <div class="row">
+                <div class="col-7">
+                    <div class="detail_detail__header">
+                        <div class="detail_detail__headerGrid">
+                            <!-- 景點介紹 -->
+                            <h6 style="font-size: 18px;">
+                                <i class="fa-solid fa-book-open"></i>
+                                關於
+                            </h6>
+                            <h6>{{ detail.detail }}</h6>
+                            <hr style=" border:1px solid #777777; width: 95%;">
+                            <!-- 地址 -->
+                            <h6 style="margin-top: 20px; font-size: 18px;" id="attractions-detail-address">
+                                <i class="fa-solid fa-location-dot" style="color: rgb(201, 1, 1);"></i>
+                                地址：{{detail.address}}
+                            </h6>
+                            <!-- 電話 -->
+                            {% if detail.phone != "" %}<h6 id="attractions-detail-phone"
+                                style="margin-top: 20px;font-size: 18px;">
+                                <i class="fa-solid fa-phone" style="color: rgb(9, 145, 2);"></i>
+                                電話：{{detail.phone }}
+                            </h6>{% endif %}
+                            <!-- 營業時間 -->
+                            <h6 style="margin-top: 20px;font-size: 18px;">
+                                <i class="fa-solid fa-clock" style="color: rgb(2, 79, 161);"></i>
+                                營業時間：
+                                <!-- <span style="color: red;">已打烊</span> <span style="color: rgb(21, 81, 140);">*開始營業時間：9:00</span> -->
+                            </h6>
+                            <!-- 建議停留時間 -->
+                            <h6 style="margin-top: 20px;font-size: 18px;">
+                                <i class="fa-solid fa-person-walking-luggage" style="color: rgb(174, 65, 150);"></i>
+                                建議停留時間：{{ detail.stay_time }}
+                            </h6>
+                            <!-- 旺季月份 -->
+                            <h6 style="margin-top: 20px;font-size: 18px;">
+                                <i class="fa-solid fa-calendar-days" style="color: rgb(168, 126, 0);"></i>
+                                旺季月份：{{ detail.hot_month }}
+                            </h6>
+                            <!-- <hr style="border:2px solid #b3b2b2"> -->
+                            <!-- 人潮資訊 -->
+                            <h6 style="margin-top: 20px;font-size: 18px;">
+                                <i class="fa-solid fa-person-circle-exclamation" style="color: rgb(67, 1, 159);"></i>
+                                人潮資訊：
+                                <!-- 圖表 -->
+                                <div>
+                                    <!-- <canvas id="chart" width="300" height="150"></canvas> -->
+                                    <canvas id="people_if_Chart" width="700px" height="500px"></canvas>
+                                </div>
+                            </h6>
+                        </div>
                     </div>
                 </div>
                 <!-- 使用者提問及回答 -->
-                <div class="detail_detail__headerGrid">
-                    <div class="question">
-                        <div class="qa-section">
-                            <h5 style="font-size: 24px;">問題與解答</h5>
-                            <h6 style="margin-left: 20px; color: #707070;">問：春節有開嗎？</h6>
-                            <h6 style="margin-left: 20px; color: #707070;">答：有初一早上9點開，其他時間8點半。</h6>
-                            <h6 style="margin-left: 20px; color: #707070;">
-                                問：春節有開嗎？
-                            </h6>
-                            <h6 style="margin-left: 20px; color: #707070;">
-                                答：有初一早上9點開，其他時間8點半。
-                            </h6>
-                            <h6 style="margin-left: 20px; color: #707070;">
-                                問：春節有開嗎？
-                            </h6>
-                            <h6 style="margin-left: 20px; color: #707070;">
-                                答：有初一早上9點開，其他時間8點半。
-                            </h6>
-                            <h6 style="margin-left: 20px; color: #707070;">
-                                問：春節有開嗎？
-                            </h6>
-                            <h6 style="margin-left: 20px; color: #707070;">
-                                答：有初一早上9點開，其他時間8點半。
-                            </h6>
+                <div class="col-5">
+                    <div class="detail_detail__headerGrid">
+                        <div class="question">
+                            <div class="qa-section">
+                                <h5 style="font-size: 24px;">
+                                    <i class="fa-solid fa-circle-question" style="color: gray;"></i>
+                                    問題與解答
+                                </h5>
+                                <div style="margin-left:20px ;color: #707070;">
+                                    <div class="row">
+                                        <div class="comment">
+                                            <div class="avatar">
+                                                <img src="../static/images/peka.webp" alt="User Avatar">
+                                            </div>
+                                            <div class="comment-content">
+                                                <h5 class="username">
+                                                    皮卡丘
+                                                </h5>
+                                                <p class="comment-text">
+                                                    春節有開嗎？
+                                                    <br>
+                                                    <span style="color:gray;font-size: 12px; font-style: italic;">3天前
+                                                        &emsp;<span class="reply">回覆</span>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="comment">
+                                            <div class="avatar">
+                                                <img src="../static/images/an.jpeg" alt="User Avatar">
+                                            </div>
+                                            <div class="comment-content">
+                                                <h5 class="username">
+                                                    安妮雅
+                                                </h5>
+                                                <p class="comment-text">
+                                                    請問這星期一有開嗎！
+                                                    <br>
+                                                    <span style="color:gray;font-size: 12px; font-style: italic;">4天前
+                                                        &emsp;<span class="reply">回覆</span>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="comment">
+                                            <div class="avatar">
+                                                <img src="../static/images/dog.jpg" alt="User Avatar">
+                                            </div>
+                                            <div class="comment-content">
+                                                <h5 class="username">
+                                                    彭德
+                                                </h5>
+                                                <p class="comment-text">
+                                                    汪汪汪！！！有開嗎！
+                                                    <br>
+                                                    <span style="color:gray;font-size: 12px; font-style: italic;">6天前
+                                                        &emsp;<span class="reply">回覆</span>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h6 class="see_more">
+                                                查看所有問題
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <!-- <h6>問：春節有開嗎？</h6>
+                                    <h6>答：有初一早上9點開，其他時間8點半。</h6>
+                                    <h6>
+                                        問：春節有開嗎？
+                                    </h6>
+                                    <h6>
+                                        答：有初一早上9點開，其他時間8點半。
+                                    </h6>
+                                    <h6>
+                                        問：春節有開嗎？
+                                    </h6>
+                                    <h6>
+                                        答：有初一早上9點開，其他時間8點半。
+                                    </h6>
+                                    <h6>
+                                        問：春節有開嗎？
+                                    </h6>
+                                    <h6>
+                                        答：有初一早上9點開，其他時間8點半。
+                                    </h6> -->
+                                </div>
+                            </div>
+                            <!-- <h6 style="margin-left: 20px; color:#a8a8a8; cursor: pointer;" class="toggleButton"
+                                id="toggleButton">
+                                <span>更多...</span>
+                            </h6> -->
+                            <div style="text-align: center;">
+                                <h5 class="ask_qa">
+                                    提出問題
+                                </h5>
+                            </div>
                         </div>
-                        <h6 style="margin-left: 20px; color:#a8a8a8; cursor: pointer;" class="toggleButton"
-                            id="toggleButton">
-                            <span>更多...</span>
-                        </h6>
-
-                        <button style="border-radius: 8px;">
-                            <i class="fa-solid fa-message" style="margin-right: 5px;"></i>我要發問
-                        </button>
+                    </div>
+                    <div class="row" style="margin-left: 10px;">
+                        <h5 style="font-size: 24px; margin-top: 20px;">
+                            <i class="fa-solid fa-map"></i>
+                            鄰近景點
+                        </h5>
+                        <div class="row">
+                            <div class="detail_near__header">
+                                <div class="detail_near__headerGrid">
+                                    <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                        class="show_detail_img" style="margin-top: 1px; width:100%;max-width: 100%;"
+                                        alt="">
+                                </div>
+                                <div class="detail_near__headerGrid">
+                                    <h4 data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                        data-center="transform: translateY(0px);opacity: 1" data-a-Id="{{ item.id }}"
+                                        onclick="toggleContent({{ item.id }})">
+                                        {{item.a_name }}</h3>
+                                        <!-- 星星數 -->
+                                        <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                            data-center="transform: translateY(0px);opacity: 1;">
+                                            {% for i in "12345" %}
+                                            {% if i|add:0 <= item.rating %} <span class="rating-star"
+                                                style="color: rgb(241, 226, 62);">
+                                                &#9733;</span>
+                                                {% else %}
+                                                <span class="rating-star">&#9733;</span>
+                                                {% endif %}
+                                                {% endfor %}
+                                        </div>
+                                        <!-- 評分 -->
+                                        <h6 style="margin-top:5px;"
+                                            data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                            data-center="transform: translateY(0px);opacity: 1">
+                                            綜合評分： <span id="list-selectedRating">{{ item.rating }}</span> / 5
+                                            ({{item.rating_total}}則評分)
+                                        </h6>
+                                        <!-- 總瀏覽人數 -->
+                                        <h6 style="color:#8b8a8a;"
+                                            data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                            data-center="transform: translateY(0px);opacity: 1">
+                                            <i class="fa-regular fa-eye"></i>&thinsp;瀏覽人數：<span>{{item.hit}}</span>人
+                                        </h6>
+                                </div>
+                            </div>
+                            <div class="detail_near__header">
+                                <div class="detail_near__headerGrid">
+                                    <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                        class="show_detail_img" style="margin-top: 1px; width:100%;max-width: 100%;"
+                                        alt="">
+                                </div>
+                                <div class="detail_near__headerGrid">
+                                    <h4 data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                        data-center="transform: translateY(0px);opacity: 1" data-a-Id="{{ item.id }}"
+                                        onclick="toggleContent({{ item.id }})">
+                                        {{item.a_name }}</h3>
+                                        <!-- 星星數 -->
+                                        <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                            data-center="transform: translateY(0px);opacity: 1;">
+                                            {% for i in "12345" %}
+                                            {% if i|add:0 <= item.rating %} <span class="rating-star"
+                                                style="color: rgb(241, 226, 62);">
+                                                &#9733;</span>
+                                                {% else %}
+                                                <span class="rating-star">&#9733;</span>
+                                                {% endif %}
+                                                {% endfor %}
+                                        </div>
+                                        <!-- 評分 -->
+                                        <h6 style="margin-top:5px;"
+                                            data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                            data-center="transform: translateY(0px);opacity: 1">
+                                            綜合評分： <span id="list-selectedRating">{{ item.rating }}</span> / 5
+                                            ({{item.rating_total}}則評分)
+                                        </h6>
+                                        <!-- 總瀏覽人數 -->
+                                        <h6 style="color:#8b8a8a;"
+                                            data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                            data-center="transform: translateY(0px);opacity: 1">
+                                            <i class="fa-regular fa-eye"></i>&thinsp;瀏覽人數：<span>{{item.hit}}</span>人
+                                        </h6>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h5 style="font-size: 24px; margin-top: 20px;">
+                    <i class="fa-solid fa-share" style="color:orange;"></i>
+                    分享內容
+                </h5>
+            </div>
+        </div>
+        <hr style="border:2px solid #777777">
+        <div class="row">
+            <div class="col-12">
+                <!-- 使用者總評論 -->
+                <h5 style="font-size: 24px;">
+                    <i class="fa-solid fa-pen" style="color: gray;"></i>
+                    評論
+                </h5>
+                <div class="row" style="margin-bottom: 20px;">
+                    <!-- <hr style="border:2px solid #f1f1f1"> -->
+                    <div class="col-3">
+                        <div class=" row" style="text-align:center;">
+                            <div class="total_score_star">
+                                <p style="font-size:60px;">
+                                    <strong>4.0</strong>
+                                </p>
+                            </div>
+                            <div class="total_star">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+                            <p>
+                                63,261 則評論
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="star_container">
+                                    <div class="nu_star">
+                                        5
+                                    </div>
+                                    <div class="bar-container">
+                                        <div class="bar-5">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="star_container">
+                                    <div class="nu_star">
+                                        4
+                                    </div>
+                                    <div class="bar-container">
+                                        <div class="bar-4">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="star_container">
+                                    <div class="nu_star">
+                                        3
+                                    </div>
+                                    <div class="bar-container">
+                                        <div class="bar-3">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="star_container">
+                                    <div class="nu_star">
+                                        2
+                                    </div>
+                                    <div class="bar-container">
+                                        <div class="bar-2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="star_container">
+                                    <div class="nu_star">
+                                        1
+                                    </div>
+                                    <div class="bar-container">
+                                        <div class="bar-1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment">
+                    <div class="avatar">
+                        <img src="/static/images/head.png" alt="User Avatar">
+                    </div>
+                    <div class="comment-content">
+                        <h5 class="username">
+                            李
+                        </h5>
+                        <div class="rating">
+                            <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                            <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                            <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                            <span class="rating-star">&#9733;</span>
+                            <span class="rating-star">&#9733;</span>
+                        </div>
+                        <p class="comment-text">
+                            天氣冷來到動物園，動物們顯得心情不好，跟人類一樣也會冷到不想到，看到最多的是背影跟屁股，也是一種難得的經驗。
+                            <br>
+                            <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
+                                2033</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="comment">
+                    <div class="avatar">
+                        <img src="/static/images/head.png" alt="User Avatar">
+                    </div>
+                    <div class="comment-content">
+                        <h5 class="username">
+                            sun
+                        </h5>
+                        <div class="rating">
+                            <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                            <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                            <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                            <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                            <span class="rating-star">&#9733;</span>
+                        </div>
+                        <p class="comment-text">
+                            帶小孩來看動物很棒！可以玩一整天！廁所很多很方便,用餐座位如果能再多一些就好了!麥當勞大排長龍實在太誇張！希望能增設其他餐廳或便利商店~
+                            <br>
+                            <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
+                                2023</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="comment">
+                    <div class="avatar">
+                        <img src="/static/images/head.png" alt="User Avatar">
+                    </div>
+                    <div class="comment-content">
+                        <h5 class="username">
+                            李+0
+                        </h5>
+                        <div class="rating">
+                            <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                            <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                            <span class="rating-star">&#9733;</span>
+                            <span class="rating-star">&#9733;</span>
+                            <span class="rating-star">&#9733;</span>
+                        </div>
+                        <p class="comment-text">
+                            我實在越來越覺得動物園越來越差，維修的東西擴建的項目越來越多，但都沒有東西完成！太誇張了
+                            <br>
+                            <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
+                                2023</span>
+                        </p>
+                    </div>
+                </div>
+                <!-- 撰寫評論 -->
+                <!-- <button style="border-radius: 8px;position: relative; left: 45%;">
+                    <i class="fa-solid fa-pen" style="margin-right: 5px;"></i>我要評論
+                </button> -->
             </div>
         </div>
     </div>
@@ -441,6 +780,8 @@
     </form>
 </div> -->
 <script src="../static/js/slideshow.js"></script>
+<!-- 圖表會用到script -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
     // 更多問題功能
     var qaSection = document.querySelector('.qa-section');
@@ -489,34 +830,97 @@
 
 
     //人潮分佈圖
-    var ctx = document.getElementById('chart').getContext('2d');
+    // var ctx = document.getElementById('chart').getContext('2d');
+    // var chart = new Chart(ctx, {
+    //     type: 'bar',
+    //     data: {
+    //         labels: ["週一", "週二", "週三", "週四", "週五", "週六", "週日"],
+    //         datasets: [{
+    //             label: '人潮分佈狀況',
+    //             data: [12, 19, 3, 5, 18, 3, 20],
+    //             backgroundColor: [
+    //                 'rgba(255, 99, 132, 0.8)',
+    //                 'rgba(54, 162, 235, 0.8)',
+    //                 'rgba(255, 206, 86, 0.8)',
+    //                 'rgba(75, 192, 192, 0.8)',
+    //                 'rgba(153, 102, 255, 0.8)',
+    //                 'rgba(255, 159, 64, 0.8)',
+    //                 'rgba(0, 0, 0, 0.8)'
+    //             ],
+    //             borderColor: [
+    //                 'rgba(255,99,132,1)',
+    //                 'rgba(54, 162, 235, 1)',
+    //                 'rgba(255, 206, 86, 1)',
+    //                 'rgba(75, 192, 192, 1)',
+    //                 'rgba(153, 102, 255, 1)',
+    //                 'rgba(255, 159, 64, 1)',
+    //                 ' rgba(0, 0, 0, 1)'
+    //             ],
+    //             borderWidth: 1
+    //         }]
+    //     }
+    // });
+
+    //人潮分佈圖(有加時間,數量)
+    var data = [
+        { "Time": "2020–09–01 00:00", "Volume": 1523 },
+        { "Time": "2020–09–01 01:00", "Volume": 1010 },
+        { "Time": "2020–09–01 02:00", "Volume": 1304 },
+        { "Time": "2020–09–01 03:00", "Volume": 1106 },
+        { "Time": "2020–09–01 04:00", "Volume": 1312 },
+        { "Time": "2020–09–01 05:00", "Volume": 1017 },
+        { "Time": "2020–09–01 06:00", "Volume": 1066 },
+        { "Time": "2020–09–01 07:00", "Volume": 1475 },
+        { "Time": "2020–09–01 08:00", "Volume": 1270 },
+        { "Time": "2020–09–01 09:00", "Volume": 1496 },
+        { "Time": "2020–09–01 10:00", "Volume": 1712 },
+        { "Time": "2020–09–01 11:00", "Volume": 1068 },
+        { "Time": "2020–09–01 12:00", "Volume": 1018 },
+        { "Time": "2020–09–01 13:00", "Volume": 1283 },
+        { "Time": "2020–09–01 14:00", "Volume": 1659 },
+        { "Time": "2020–09–01 15:00", "Volume": 1050 },
+        { "Time": "2020–09–01 16:00", "Volume": 1200 },
+        { "Time": "2020–09–01 17:00", "Volume": 1138 },
+        { "Time": "2020–09–01 18:00", "Volume": 1386 },
+        { "Time": "2020–09–01 19:00", "Volume": 1041 },
+        { "Time": "2020–09–01 20:00", "Volume": 1734 },
+        { "Time": "2020–09–01 21:00", "Volume": 1372 },
+        { "Time": "2020–09–01 22:00", "Volume": 1270 },
+        { "Time": "2020–09–01 23:00", "Volume": 1207 }];
+    var ctx = document.getElementById('people_if_Chart').getContext('2d');
     var chart = new Chart(ctx, {
-        type: 'bar',
+        type: 'line',
         data: {
-            labels: ["週一", "週二", "週三", "週四", "週五", "週六", "週日"],
+            labels: data.map(x => x.Time.slice(11, 16)),
             datasets: [{
-                label: '人潮分佈狀況',
-                data: [12, 19, 3, 5, 18, 3, 20],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(54, 162, 235, 0.8)',
-                    'rgba(255, 206, 86, 0.8)',
-                    'rgba(75, 192, 192, 0.8)',
-                    'rgba(153, 102, 255, 0.8)',
-                    'rgba(255, 159, 64, 0.8)',
-                    'rgba(0, 0, 0, 0.8)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    ' rgba(0, 0, 0, 1)'
-                ],
-                borderWidth: 1
+                label: '人潮流量',
+                data: data.map(x => x.Volume),
+                // Line
+                lineTension: 0,
+                backgroundColor: '#FF5376',
+                borderColor: '#FF5376',
+                fill: false,
+                borderWidth: 2,
+                // Point
+                pointRadius: 5,
+                pointHoverRadius: 7,
             }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: '人潮流量',
+                position: 'bottom',
+                fontSize: 24,
+                fontStyle: 'normal',
+                fontFamily: 'Century Gothic'
+            },
+            legend: {
+                display: false
+            },
+            responsive: false
         }
     });
+
+
 </script>

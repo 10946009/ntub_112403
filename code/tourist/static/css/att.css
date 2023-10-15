@@ -706,7 +706,7 @@ img {
 
 /* 星星icon */
 .checked {
-    color: rgb(241, 226, 62);
+    color: rgb(225, 216, 41);
 }
 
 /* 所有評價*/
@@ -1209,6 +1209,12 @@ img {
     }
 
 } */
+
+.fa-circle-left:hover {
+    transform: translateX(-10px);
+    color: #c82c2c;
+}
+
 /* grid景點名稱 */
 .detail_name {
     max-width: 100%;
@@ -1217,13 +1223,18 @@ img {
 
 .detail_name__header {
     display: grid;
-    grid-template-columns: 10fr 1fr 1fr;
+    grid-template-columns: 11fr 1fr;
     grid-gap: 2px;
     margin-bottom: 2px;
 }
 
-.detail_name__headerGrid {
+/* .detail_name__headerGrid {
     text-align: center;
+} */
+
+.icon_name:hover {
+    background-color: #000;
+    color: white;
 }
 
 /* grid景點圖片 */
@@ -1287,6 +1298,58 @@ img {
     border-radius: 20px;
 }
 
+#people_if_Chart {
+    margin: auto;
+    margin-top: 50px;
+    /* background: #f9e498; */
+    display: block;
+}
+
+.reply {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.reply:hover {
+    color: #185889;
+}
+
+.see_more {
+    /* text-align: center; */
+    cursor: pointer;
+    color: rgb(16, 54, 206);
+    font-size: 16px;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.ask_qa {
+    cursor: pointer;
+    display: inline-block;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 25px;
+    background-color: #333;
+    margin-top: 8px;
+}
+
+.ask_qa:hover {
+    background-color: rgb(100, 99, 99);
+}
+
+.detail_near__header {
+    border-radius: 10px;
+    border: #000 solid;
+    display: grid;
+    grid-template-columns: 7fr 8fr;
+    grid-gap: 2px;
+    margin-bottom: 2px;
+}
+
+.detail_near__headerGrid {
+    padding: 10px;
+    /* text-align: center; */
+}
 
 /* .detail_detail__headerGrid {
     text-align: center;

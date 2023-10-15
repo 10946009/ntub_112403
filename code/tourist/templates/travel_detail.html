@@ -4,44 +4,78 @@
 
 {% block content %}
 {% comment %} CSS放這~~ {% endcomment %}
-.comment-card {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin: 10px;
-    background-color: #f9f9f9;
-}
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行程詳細頁面</title>
+<link rel="stylesheet" href="travel_detail.css">
+<style>
+    body {
+        margin-top: 60px;
+    }
 
-.comment-card h3 {
-    font-size: 20px;
-    color: #333;
-}
+    .container {
+        width: 80%;
+        margin: 0 auto;
+    }
 
-.comment-card p {
-    font-size: 16px;
-    color: #666;
-}
+    .title-buttons {
+        float: right;
+    }
 
-.comment-card .rating {
-    font-size: 18px;
-    color: #FFD700;
-}
+    .like-button, .share-button {
+        margin-left: 10px;
+    }
 
-label, select, input, button {
-    margin: 10px;
-}
+    .page-title {
+        font-size: 24px;
+        font-weight: bold;
+    }
 
-#filter-button {
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-}
+    .provider-info {
+        color: #555;
+    }
 
-#search-box {
-    border: 1px solid #ddd;
-    padding: 5px;
-}
+    .comment-count {
+        color: #555;
+        cursor: pointer;
+    }
+
+    .comment-count:hover {
+        text-decoration: underline;
+    }
+
+    .scroll-to-comments {
+        cursor: pointer;
+        color: #007BFF;
+    }
+
+    .scroll-to-comments:hover {
+        text-decoration: underline;
+    }
+
+    .image-container {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .main-image {
+        flex: 2;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .small-images {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .small-image {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+</style>
 {% endblock %}
 
 
@@ -49,64 +83,62 @@ label, select, input, button {
 {% block body %}
 {% comment %} 內容在這~~~ {% endcomment %}
 <!DOCTYPE html>
-<html>
-<head>
-    <title>行程評論</title>
-    <style>
-        /* 樣式評論和篩選條件 */
-    </style>
-</head>
 <body>
-    <h1>行程評論</h1>
-
-    <!-- 篩選條件 -->
-    <label for="sort-by">排序：</label>
-    <select id="sort-by">
-        <option value="newest">最新</option>
-        <option value="rating">評分</option>
-    </select>
-    <button id="filter-button">篩選</button>
-
-    <input type="text" id="search-box" placeholder="搜尋評論">
-
-    <div id="comments">
-    </div>
-
-    <script>
-
-        const comments = [
-        ];
-
-        function filterAndDisplayComments() {
-            const sortBy = document.getElementById("sort-by").value;
-            const searchKeyword = document.getElementById("search-box").value.toLowerCase();
-
-            const filteredComments = comments.filter(comment => {
-                return comment.text.toLowerCase().includes(searchKeyword);
-            });
-
-            if (sortBy === "newest") {
-                filteredComments.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-            } else if (sortBy === "rating") {
-                filteredComments.sort((a, b) => b.rating - a.rating);
-            }
-
-            const commentsContainer = document.getElementById("comments");
-            commentsContainer.innerHTML = "";
-
-            filteredComments.forEach(comment => {
-                const commentCard = document.createElement("div");
-                commentCard.classList.add("comment-card");
-                commentsContainer.appendChild(commentCard);
-            });
-        }
-
-        filterAndDisplayComments();
-
-        document.getElementById("filter-button").addEventListener("click", filterAndDisplayComments);
-
-        document.getElementById("search-box").addEventListener("input", filterAndDisplayComments);
-    </script>
+    <header>
+        <div class="container" style="width: 80%;">
+        <h1 class="page-title">來自台北的千島湖和坪林茶園</h1>
+        <div class="title-buttons">
+            <div class="like-button">❤️</div>
+            <div class="share-button">分享</div>
+        </div>
+        <p class="provider-info">提供者：宏祥旅行社 - 台灣旅遊首選</p>
+        <p class="comment-count">有35則評論 <span class="scroll-to-comments">查看評論</span></p>
+    </header>
+    
+    <section class="image-container">
+        <div class="container">
+            <div class="main-image">
+                <img src="../static/images/Daan.jpeg" class="img-responsive custom-image">
+            </div>
+            <div class="small-images">
+                <div class="small-image">
+                    <img src="../static/images/Daan.jpeg" class="img-responsive custom-image">
+                </div>
+                <div class="small-image">
+                    <img src="../static/images/Daan.jpeg" class="img-responsive custom-image">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="reviews">
+        <div class="container" style="width: 80%;">
+        <h2>評論</h2>
+        <div class="review">
+            <div class="user-info">
+                <img src="user-avatar.jpg" alt="cle727">
+                <p>用戶名稱</p>
+            </div>
+            <div class="rating">
+                <span>評分：5/5</span>
+            </div>
+            <div class="comment">
+                <p>這個行程太棒了！我喜歡每一刻。</p>
+            </div>
+        </div>
+        <div class="review">
+            <div class="user-info">
+                <img src="user-avatar.jpg" alt="John F">
+                <p>另一位用戶</p>
+            </div>
+            <div class="rating">
+                <span>評分：4/5</span>
+            </div>
+            <div class="comment">
+                <p>我在這次旅行中度過了美好的時光。強烈推薦！</p>
+            </div>
+        </div>
+        <!-- 添加更多評論 -->
+    </section>
 </body>
 </html>
 {% endblock body %}
