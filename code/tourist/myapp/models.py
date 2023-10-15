@@ -80,6 +80,8 @@ class Create_Travel(models.Model):
     start_day = models.TextField(max_length=255, null=False, blank=False)
     create_date = models.DateField(auto_now_add=True)
     travel_day = models.IntegerField(null=False, blank=False, default=1)
+    status = models.BooleanField(null=False, blank=False, default=0)
+    like = models.IntegerField(default=0, null=False, blank=False)
 
 
 class ChoiceDay_Ct(models.Model):
@@ -104,12 +106,12 @@ class Attractions_Ct(models.Model):
     order = models.IntegerField(null=False, blank=False)
 
 
-class History(models.Model):
-    ct = models.ForeignKey(
-        to=Create_Travel, on_delete=models.SET_DEFAULT, default=-1
-    )  # 行程沒了歷史也會被刪除
-    status = models.BooleanField()
-    like = models.IntegerField(default=0, null=True, blank=True)
+# class History(models.Model):
+#     ct = models.ForeignKey(
+#         to=Create_Travel, on_delete=models.SET_DEFAULT, default=-1
+#     )  # 行程沒了歷史也會被刪除
+#     status = models.BooleanField()
+#     like = models.IntegerField(default=0, null=True, blank=True)
 
 
 class AttractionsComment(models.Model):
@@ -120,23 +122,43 @@ class AttractionsComment(models.Model):
         to=Attractions, on_delete=models.SET_DEFAULT, default=-1
     )  # 景點沒了留言a_id會被設為null
     content = models.TextField(max_length=255,default="")
-    score = models.FloatField(null=False, blank=False, default=0)
     comment_date = models.DateField(auto_now_add=True, null=False, blank=False)
 
+class AttractionsCommentFavorite(models.Model):
+    ac = models.ForeignKey(
+        to=AttractionsComment, on_delete=models.CASCADE, default=-1
+    )  # 景點沒了留言a_id會被設為null
+    u = models.ForeignKey(
+        to=User, on_delete=models.SET_DEFAULT, default=-1
+    )  # user沒了留言u_id會被設為null
+
+    
 class TravelComment(models.Model):
     u = models.ForeignKey(
         to=User, on_delete=models.SET_DEFAULT, default=-1
     )  # user沒了留言u_id會被設為null
-    h = models.ForeignKey(
-        to=History, on_delete=models.SET_DEFAULT, default=-1
-    )  # 分享沒了留言會被設為null
+    ct = models.ForeignKey(to=Create_Travel, on_delete=models.SET_DEFAULT , default=-1)
     content = models.TextField(max_length=255,default="")
-    score = models.FloatField(null=False, blank=False)
     comment_date = models.DateField(auto_now_add=True, null=False, blank=False)
+
+class TravelCommentFavorite(models.Model):
+    tc = models.ForeignKey(
+        to=TravelComment, on_delete=models.CASCADE, default=-1
+    )  # 景點沒了留言a_id會被設為null
+    u = models.ForeignKey(
+        to=User, on_delete=models.SET_DEFAULT, default=-1
+    )  # user沒了留言u_id會被設為null
+
+# 我的最愛
 class Favorite(models.Model):
     u = models.ForeignKey(to=User, on_delete=models.CASCADE)
     a = models.ForeignKey(to=Attractions, on_delete=models.CASCADE)
 
+class TravelFavorite(models.Model):
+    u = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    ct = models.ForeignKey(
+        to=Create_Travel, on_delete=models.SET_DEFAULT, default=-1
+    )  # 行程沒了歷史也會被刪除
 
 class Search(models.Model):
     attractions = models.ManyToManyField(Attractions)

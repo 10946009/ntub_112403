@@ -62,9 +62,6 @@ def search(request):
 
 
 
-# 分享行程
-def share(request):
-    return render(request, "share.html")
 
 
 def user_edit(request):

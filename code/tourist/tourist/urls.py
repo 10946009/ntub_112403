@@ -27,6 +27,7 @@ from myapp.views import (
     favorite,
     attraction_details,
     travel_detail,
+    share
 )
 
 
@@ -53,8 +54,12 @@ urlpatterns = [
     # path('create/<int:ct_id>/<int:choiceday>',views.create),
     path("create/<int:ct_id>", create.create),
     path("history/", history.history),
+    path("history/<int:select>", history.history),
     path("favorite/", favorite.favorite),
-    path("share/", old_views.share),
+
+    path("share/", share.share),
+    path("add_favorite_share/", share.add_favorite_share),
+
     path("attraction_details/", attraction_details.attraction_details, name="search_results"),
     path("attraction_details/<int:aid>", attraction_details.attraction_details),
     path(
