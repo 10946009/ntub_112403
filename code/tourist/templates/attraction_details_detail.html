@@ -133,7 +133,9 @@
                                                     春節有開嗎？
                                                     <br>
                                                     <span style="color:gray;font-size: 12px; font-style: italic;">3天前
-                                                        &emsp;<span class="reply">回覆</span>
+                                                        &emsp;
+                                                        <!-- <span class="reply"
+                                                            onclick="showAllLoaderAndContent()">回覆</span> -->
                                                     </span>
                                                 </p>
                                             </div>
@@ -150,7 +152,8 @@
                                                     請問這星期一有開嗎！
                                                     <br>
                                                     <span style="color:gray;font-size: 12px; font-style: italic;">4天前
-                                                        &emsp;<span class="reply">回覆</span>
+                                                        &emsp;
+                                                        <!-- <span class="reply">回覆</span> -->
                                                     </span>
                                                 </p>
                                             </div>
@@ -167,7 +170,8 @@
                                                     汪汪汪！！！有開嗎！
                                                     <br>
                                                     <span style="color:gray;font-size: 12px; font-style: italic;">6天前
-                                                        &emsp;<span class="reply">回覆</span>
+                                                        &emsp;
+                                                        <!-- <span class="reply">回覆</span> -->
                                                     </span>
                                                 </p>
                                             </div>
@@ -369,6 +373,64 @@
                     <div class="all_ask_qa_con">
                         <div class="all_ask_qa_comment">
                             <div class="all_ask_qa_list">
+                                <h5>春節有開嗎？</h5>
+                                <div style="position: relative;">
+                                    <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer; font-size: 16px;"
+                                        id="myIcon1"></i>
+                                    <div class="tooltip2" id="myTooltip2">
+                                        檢舉
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="font-size: 18px; margin-bottom: 20px;">
+                                <span style="margin-right: 20px;cursor: pointer;"><i class="fa-regular fa-thumbs-up"
+                                        style=" color: rgb(0, 102, 255);"></i> 8</span>
+                                <span style="cursor: pointer;"><i class="fa-regular fa-comment"
+                                        style=" color: rgb(89, 198, 53);"></i> 3</span>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="avatar">
+                                <img src="../static/images/dog.jpg" alt="User Avatar">
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username">
+                                    彭德<br>
+                                    <span style="color: gray; font-size: 12px; font-style: italic;">3天前 &ensp;</span>
+                                </h6>
+                                <h6 style="margin-bottom: 20px;">有初一早上9點開，其他時間8點半</h6>
+                                <span style="margin-right: 20px;cursor: pointer;font-size: 18px;"><i
+                                        class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i> 2</span>
+                                <h6 class="qa_text">還有1個答案</h6>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="avatar">
+                                <img src="../static/images/peka.webp" alt="User Avatar">
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username">
+                                    皮卡丘<br>
+                                    <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
+                                            class="fa-solid fa-crown"></i>在地嚮導
+                                        &ensp;</span>
+                                </h6>
+                            </div>
+                        </div>
+                        <div>
+                            <textarea name="" id="" cols="100%" rows="5"
+                                style="resize:none; border-radius: 10px;max-width: 90%;margin-left: 40px; padding: 10px;"
+                                placeholder="回答問題"></textarea>
+                            <!-- 之後會補上判斷textarea是否是空值以觸發ask_btn_ok按鈕（空直不能點張貼） -->
+                            <div class="post_ask">
+                                <span class="all_ask_btn_ok" id="all_ask_btn_ok">張貼</span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style=" border:1px solid #777777; max-width: 100%;">
+                    <div class="all_ask_qa_con">
+                        <div class="all_ask_qa_comment">
+                            <div class="all_ask_qa_list">
                                 <h5>有餐廳嗎？</h5>
                                 <div style="position: relative;">
                                     <!-- id要不同才能點開icon顯示檢舉 -->
@@ -408,64 +470,6 @@
                             <div class="comment-content">
                                 <h6 class="username">
                                     安妮雅<br>
-                                    <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
-                                            class="fa-solid fa-crown"></i>在地嚮導
-                                        &ensp;</span>
-                                </h6>
-                            </div>
-                        </div>
-                        <div>
-                            <textarea name="" id="" cols="100%" rows="5"
-                                style="resize:none; border-radius: 10px;max-width: 90%;margin-left: 40px; padding: 10px;"
-                                placeholder="回答問題"></textarea>
-                            <!-- 之後會補上判斷textarea是否是空值以觸發ask_btn_ok按鈕（空直不能點張貼） -->
-                            <div class="post_ask">
-                                <span class="all_ask_btn_ok" id="all_ask_btn_ok">張貼</span>
-                            </div>
-                        </div>
-                    </div>
-                    <hr style=" border:1px solid #777777; max-width: 100%;">
-                    <div class="all_ask_qa_con">
-                        <div class="all_ask_qa_comment">
-                            <div class="all_ask_qa_list">
-                                <h5>春節有開嗎？</h5>
-                                <div style="position: relative;">
-                                    <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer; font-size: 16px;"
-                                        id="myIcon1"></i>
-                                    <div class="tooltip2" id="myTooltip2">
-                                        檢舉
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="font-size: 18px; margin-bottom: 20px;">
-                                <span style="margin-right: 20px;cursor: pointer;"><i class="fa-regular fa-thumbs-up"
-                                        style=" color: rgb(0, 102, 255);"></i> 8</span>
-                                <span style="cursor: pointer;"><i class="fa-regular fa-comment"
-                                        style=" color: rgb(89, 198, 53);"></i> 3</span>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <div class="avatar">
-                                <img src="../static/images/peka.webp" alt="User Avatar">
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username">
-                                    皮卡丘<br>
-                                    <span style="color: gray; font-size: 12px; font-style: italic;">3天前 &ensp;</span>
-                                </h6>
-                                <h6 style="margin-bottom: 20px;">有初一早上9點開，其他時間8點半</h6>
-                                <span style="margin-right: 20px;cursor: pointer;font-size: 18px;"><i
-                                        class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i> 2</span>
-                                <h6 class="qa_text">還有1個答案</h6>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <div class="avatar">
-                                <img src="../static/images/dog.jpg" alt="User Avatar">
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username">
-                                    彭德<br>
                                     <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
                                             class="fa-solid fa-crown"></i>在地嚮導
                                         &ensp;</span>
