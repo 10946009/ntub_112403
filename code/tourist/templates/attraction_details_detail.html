@@ -104,7 +104,7 @@
                                 <!-- 圖表 -->
                                 <div>
                                     <!-- <canvas id="chart" width="300" height="150"></canvas> -->
-                                    <canvas id="people_if_Chart" width="700px" height="500px"></canvas>
+                                    <canvas id="people_if_Chart" width="680px" height="520px"></canvas>
                                 </div>
                             </h6>
                         </div>
@@ -489,7 +489,7 @@
                 </form>
             </div>
         </div>
-
+        <!-- 分享彈跳框框 -->
         <div class="share_an_att" id="share_an_att">
             <div id="share_an_att_container" class="share_an_att_container">
                 <form class="share_an_att-content" id="share_an_att-content" action="">
@@ -1206,35 +1206,6 @@
     //     isHidden = !isHidden;
     // });
 
-    //總覽評論切換
-    sessionStorage.clear();
-    var search_text_list = [];
-    $(function () {
-        $('.change_btn div').click(function () {
-            $(this).addClass('active1').siblings().removeClass('active1');
-            var index = $(this).index();
-            $(".change_content .change_content1").eq(index).show().siblings().hide();
-        })
-    })
-    //總覽評論切換
-    var change1 = document.querySelector(".change1");
-    var change2 = document.querySelector(".change2");
-
-    change1.addEventListener("click", function () {
-        change1.style.color = "gray";
-        change1.style.borderBottom = "2px solid red";
-        change2.style.borderBottom = "none";
-        change2.style.color = "black";
-    });
-
-    change2.addEventListener("click", function () {
-        change2.style.color = "gray";
-        change2.style.borderBottom = "2px solid red";
-        change1.style.borderBottom = "none";
-        change1.style.color = "black";
-    });
-
-
 
     //人潮分佈圖
     // var ctx = document.getElementById('chart').getContext('2d');
@@ -1328,6 +1299,35 @@
             responsive: false
         }
     });
+
+    //總覽評論切換
+    sessionStorage.clear();
+    var search_text_list = [];
+    $(function () {
+        $('.change_btn div').click(function () {
+            $(this).addClass('active1').siblings().removeClass('active1');
+            var index = $(this).index();
+            $(".change_content .change_content1").eq(index).show().siblings().hide();
+        })
+    })
+    //總覽評論切換
+    var change1 = document.querySelector(".change1");
+    var change2 = document.querySelector(".change2");
+
+    change1.addEventListener("click", function () {
+        change1.style.color = "gray";
+        change1.style.borderBottom = "2px solid red";
+        change2.style.borderBottom = "none";
+        change2.style.color = "black";
+    });
+
+    change2.addEventListener("click", function () {
+        change2.style.color = "gray";
+        change2.style.borderBottom = "2px solid red";
+        change1.style.borderBottom = "none";
+        change1.style.color = "black";
+    });
+
 
 
 </script>
