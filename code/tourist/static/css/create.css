@@ -217,20 +217,85 @@ main {
     border-radius: 20%;
 }
 
-.list{
-    cursor: pointer;
+/* 我的範例 */
+
+.list {
+    margin: 200px auto;
+    width: 200px;
 }
+
+.innerlist {
+    margin: 10px;
+    text-align: left;
+    padding: 5px;
+    width: 400px;
+    height: 200px;
+    /* line-height: 200px; */
+    background-color: skyblue;
+    box-shadow: 3px 3px 4px #333;
+}
+
+.innerlist .moving {
+    background-color: transparent;
+    color: transparent;
+    border: 1px dashed #ccc;
+}
+
+.sortable {
+    margin: 0;
+    padding: 0;
+    width: 60%;
+}
+
+.innsersortable {
+    margin: 0 3px 3px 3px;
+    padding: 0.4em;
+    padding-left: 1.5em;
+    font-size: 1.4em;
+    height: 20px;
+}
+
+
+
+
+
+/* 我的範例 */
 
 .spot {
-    width: 250px;
-    height: auto;
+    margin: 10px;
+    text-align: left;
     padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    margin: 10px 0;
-    /* color: #000; */
+    width: 400px;
+    height: 200px;
+    /* line-height: 200px; */
+    background-color: skyblue;
+    box-shadow: 3px 3px 4px #333;
 }
 
+.spot p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.spot .moving {
+    background-color: transparent;
+    color: transparent;
+    border: 1px dashed #ccc;
+}
+
+.sortable {
+    margin: 0;
+    padding: 0;
+    width: 60%;
+}
+
+.innsersortable {
+    margin: 0 3px 3px 3px;
+    padding: 0.4em;
+    padding-left: 1.5em;
+    font-size: 1.4em;
+    height: 20px;
+}
 
 /* 定义外部容器 */
 .hr_container {

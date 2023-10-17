@@ -104,7 +104,7 @@
                                 <!-- 圖表 -->
                                 <div>
                                     <!-- <canvas id="chart" width="300" height="150"></canvas> -->
-                                    <canvas id="people_if_Chart" width="700px" height="500px"></canvas>
+                                    <canvas id="people_if_Chart" width="680px" height="520px"></canvas>
                                 </div>
                             </h6>
                         </div>
@@ -489,7 +489,7 @@
                 </form>
             </div>
         </div>
-
+        <!-- 分享彈跳框框(ok) -->
         <div class="share_an_att" id="share_an_att">
             <div id="share_an_att_container" class="share_an_att_container">
                 <form class="share_an_att-content" id="share_an_att-content" action="">
@@ -574,15 +574,101 @@
                 </form>
             </div>
         </div>
+
+
+        <div class="photo_att" id="photo_att">
+            <div id="photo_big_att_container" class="photo_big_att_container">
+                <form class="photo_att-content" id="photo_att-content" action="">
+                    <div class="photo_att_container" id="photo_att_container">
+                        <h5 style="font-size: 24px;">關於{{ detail.a_name }}的所有照片&emsp;</h5>
+                        <i class="fa-solid fa-xmark" id="closeShare"></i>
+                    </div>
+
+                    <div class="photo_att_con">
+                        <div class="comment" id="comment_share"
+                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
+                            <div class="" style="font-size: 36px;">
+                                <i class="fa-brands fa-facebook"></i>
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username" style="padding: 10px;">
+                                    分享到Facebook
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="comment" id="comment_share"
+                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
+                            <div class="" style="font-size: 36px;">
+                                <i class="fa-brands fa-facebook-messenger"></i>
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username" style="padding: 10px;">
+                                    分享到Messenger
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="comment" id="comment_share"
+                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
+                            <div class="" style="font-size: 36px;">
+                                <i class="fa-brands fa-instagram" style="margin: 0 2px 0 3px;"></i>
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username" style="padding: 10px;">
+                                    分享到Instagram
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="comment" id="comment_share"
+                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
+                            <div class="" style="font-size: 34px;">
+                                <i class="fa-solid fa-envelope" style="margin:0 2px 0 1px;"></i>
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username" style="padding: 10px;">
+                                    透過電子郵件分享
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="comment" id="comment_share"
+                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
+                            <div class="" style="font-size: 36px;">
+                                <i class="fa-solid fa-qrcode" style="margin: 0 3px 0 3px;"></i>
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username" style="padding: 10px;">
+                                    QR 碼
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="comment" id="comment_share" style="top:0; cursor: pointer; padding: 0 20px 0 20px; "
+                            onclick="Share_Copytips()">
+                            <div class="" style="font-size: 30px; padding-top: 5px;">
+                                <i class="fa-solid fa-link"></i>
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username" style="padding: 10px;">
+                                    複製連結
+                                </h6>
+                            </div>
+                        </div>
+                        <div id="share_tips">已將連結複製到剪貼簿。</div>
+                    </div>
+                    <!-- <div class="post_ask">
+                        <span class="ask_btn_cancel" id="ask_btn_cancel">取消</span>
+                        <span class="ask_btn_ok" id="ask_btn_ok">張貼</span>
+                    </div> -->
+                </form>
+            </div>
+        </div>
         <!-- 分享 -->
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-12">
                 <h5 style="font-size: 24px; margin-top: 20px;">
                     <i class="fa-solid fa-share" style="color:orange;"></i>
                     分享內容
                 </h5>
             </div>
-        </div>
+        </div> -->
         <hr style="border:2px solid #777777">
         <!-- 評論 -->
         <div class="row">
@@ -1206,35 +1292,6 @@
     //     isHidden = !isHidden;
     // });
 
-    //總覽評論切換
-    sessionStorage.clear();
-    var search_text_list = [];
-    $(function () {
-        $('.change_btn div').click(function () {
-            $(this).addClass('active1').siblings().removeClass('active1');
-            var index = $(this).index();
-            $(".change_content .change_content1").eq(index).show().siblings().hide();
-        })
-    })
-    //總覽評論切換
-    var change1 = document.querySelector(".change1");
-    var change2 = document.querySelector(".change2");
-
-    change1.addEventListener("click", function () {
-        change1.style.color = "gray";
-        change1.style.borderBottom = "2px solid red";
-        change2.style.borderBottom = "none";
-        change2.style.color = "black";
-    });
-
-    change2.addEventListener("click", function () {
-        change2.style.color = "gray";
-        change2.style.borderBottom = "2px solid red";
-        change1.style.borderBottom = "none";
-        change1.style.color = "black";
-    });
-
-
 
     //人潮分佈圖
     // var ctx = document.getElementById('chart').getContext('2d');
@@ -1328,6 +1385,35 @@
             responsive: false
         }
     });
+
+    //總覽評論切換
+    sessionStorage.clear();
+    var search_text_list = [];
+    $(function () {
+        $('.change_btn div').click(function () {
+            $(this).addClass('active1').siblings().removeClass('active1');
+            var index = $(this).index();
+            $(".change_content .change_content1").eq(index).show().siblings().hide();
+        })
+    })
+    //總覽評論切換
+    var change1 = document.querySelector(".change1");
+    var change2 = document.querySelector(".change2");
+
+    change1.addEventListener("click", function () {
+        change1.style.color = "gray";
+        change1.style.borderBottom = "2px solid red";
+        change2.style.borderBottom = "none";
+        change2.style.color = "black";
+    });
+
+    change2.addEventListener("click", function () {
+        change2.style.color = "gray";
+        change2.style.borderBottom = "2px solid red";
+        change1.style.borderBottom = "none";
+        change1.style.color = "black";
+    });
+
 
 
 </script>
