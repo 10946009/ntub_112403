@@ -44,15 +44,17 @@
           {% if item.my_history.status == True %}
             <i class="fa-solid fa-share share_icon" title="已分享" id="submitfavorite_share{{item.my_history.id}}" data-isfavorite="1" onclick="add_favorite_share({{item.my_history.id}})"></i>
             <span class="icontxt" id="icontxt{{item.my_history.id}}">已分享</span>
-            {% comment %} <span class="fa-solid fa-share share_icon">
-            <br>
-            <span class="icontxt">已分享</span> {% endcomment %}
+            {% comment %} 
+            <span class="fa-solid fa-share share_icon"><br>
+            <span class="icontxt">已分享</span> 
+            {% endcomment %}
           {% else %}
             <i class="fa-solid fa-share share_icon" title="收藏" id="submitfavorite_share{{item.my_history.id}}" data-isfavorite="0" onclick="add_favorite_share({{item.my_history.id}})"></i>
             <span class="icontxt" id="icontxt{{item.my_history.id}}">分享</span>
-            {% comment %} <span class="fa-solid fa-share share_icon">
-            <br>
-            <span class="icontxt">分享</span> {% endcomment %}
+            {% comment %} 
+            <span class="fa-solid fa-share share_icon"><br>
+            <span class="icontxt">分享</span> 
+            {% endcomment %}
           {% endif %}
         </div>
         <button class="more-btn-target more_btn" data-target="{{ item.my_history.id }}">詳細資料</button>
