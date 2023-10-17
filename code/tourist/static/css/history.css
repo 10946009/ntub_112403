@@ -69,11 +69,11 @@
     display: block;
     width: 35px;
     height: 30px;
+    text-align: center;
     position: absolute;
     top: 5px;
     right: 60px;
     padding: 0;
-    text-align: center;
 }
 .edita{
     font-size: 28px;

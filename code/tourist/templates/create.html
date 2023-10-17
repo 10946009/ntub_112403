@@ -107,42 +107,40 @@
                 {% comment %} ct_attractions_co_list
                 ct_attractions_detail_list {% endcomment %}
                 <div id="OrderAttractions" style="color: black;">
+
+                  <div class="list" style="cursor: pointer;">
+                    <div class="innerlist" draggable="true">
+                        <p style="font-size: 22px;font-weight: bold;">景點名稱：</p>
+                        <p style="font-size: 18px;margin-bottom: 10px;">地址：</p>
+                        <p style="font-size: 18px;margin-bottom: 10px;">營業時間：</p>
+                        <p style="font-size: 18px;margin-bottom: 10px;">當下可能的人潮流量：</p>
+                        <p style="font-size: 18px;margin-bottom: 10px;">建議停留時間：</p>
+                    </div>
+                    <div class="innerlist" draggable="true">2</div>
+                    <div class="innerlist" draggable="true">3</div>
+                    <div class="innerlist" draggable="true">4</div>
+                    <div class="innerlist" draggable="true">5</div>
+                  </div>
                   
 
                   {% for data in all_ct_data %}
-                    
-                    <div style="color: black" class="spot" id="spot{{data.attraction.order}}" style="margin-bottom:10px">
+                  <div class="list" style="cursor: pointer;">
+                    <div class="spot innerlist" draggable="true" id="spot{{data.attraction.order}}" style="color: black;margin-bottom:10px" >
                       {{data.detail.a_name}}
-                      <div id="hiddenId" style="display: none;">
-                        景點名稱：{{data.detail.id}}
-                      </div>
+                      <p id="hiddenId" style="display: none;">景點名稱：{{data.detail.id}}</p>
                       <p>地址：{{data.detail.address}} <br>
                       <p>當下可能的人潮流量：{{data.crowd_list}}%<br>
                       <p>營業時間： {% for time in data.co.opening %} {% if forloop.counter != 1 %},{% endif %} {{time}} {% endfor %}<br>
                       <p>建議停留時間： {% if data.detail.stay_time == 0 %}150{% else %}{{data.detail.stay_time}}{% endif %} 分鐘<br>
                     </div>
+                  </div>
+                    
                   {% endfor %}
-                  <!-- <span class="create_txt" >第</span>
-                    <button style="border: none;">+</button> -->
-                  <!--我在JS~~~~~~~~~~~
-                    <div class="spot" id="spot1">
-                      國父紀念館
-                      <p>位在台北市XX區</p>
-                      <p>
-                        目前人潮流量：適中
-                        <br>
-                        營業時間：09:00-18:00
-                        <br>
-                        建議停留時間：1小時
-                      </p>
-                    </div>
-                  -->
                 </div>
                 <div id="RemainderAttractions"></div>
               </div>
             </div>
           {% endfor %}
-
 
           {% comment %} 
           <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab"
@@ -349,7 +347,8 @@
 
           <div id="checkbox">
             <div class="row" style="padding: 12px;" id="AttractionsContainer">
-              {% comment %} <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
+              {% comment %} 
+              <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
                 <div class="checkimg_div">
                   <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
                     onclick="pickspot(this)">
@@ -366,10 +365,12 @@
                     <span>營業時間：</span>
                   </div>
                 </div>
-              </div> {% endcomment %}
+              </div> 
+              {% endcomment %}
             </div>
             <div class="row" style="padding: 12px;" id="AttractionsContainer_o">
-              {% comment %} <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
+              {% comment %} 
+              <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
                 <div class="checkimg_div">
                   <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
                     onclick="pickspot(this)">
@@ -386,7 +387,8 @@
                     <span class="spottxt spottxttime">營業時間：</span>
                   </div>
                 </div>
-              </div> {% endcomment %}
+              </div> 
+              {% endcomment %}
             </div>
           </div>
           
@@ -431,13 +433,14 @@
         <div class="zhongshan"><img src="/static/images/Zhongshan.jpeg" alt="" height="250"></div> {% endcomment %}
       </div>
       
-      {% comment %} <div class="row">
-        
+      {% comment %} 
+      <div class="row">
         <a href="#tab_c" class="tab_a submit2" id="clickLikeAttractions_o">
           <button value="提交">提交1</button>
         </a>
       </div>
-    </div> {% endcomment %}
+    </div> 
+    {% endcomment %}
   </div>
 </main>
 {% endblock body %}
@@ -712,8 +715,8 @@
 
           count++;
           all_a.push(final_result.id)
-          var temp = '<div class="spot" id="spot' + count + '">';
-          temp += final_result.a_name;
+          var temp = '<div class="spot innerlist" id="spot' + count + '">';
+          temp += '<p style="font-size: 22px;font-weight: bold;">'+final_result.a_name;
           temp += '<p>'+final_result.address;
           temp += '<p>當下可能的人潮流量：'+final_crow_opening.crowd[parseInt(final_now_time_list[i]/60,10)]+'%<br>';  //抓取當下時間點的人潮
           temp += '<p>營業時間：' + final_crow_opening.opening + '<br>';
