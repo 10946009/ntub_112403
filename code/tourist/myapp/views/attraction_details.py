@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.template.loader import render_to_string  # 頁面轉成html
 from django.forms.models import model_to_dict
 from .viewsConst import ATT_TYPE_CHINESE
-
+from .findpicture import get_picture_list
 
 def keyword_search(search_text, filter_condition_and, filter_condition_or, method):
     
@@ -103,10 +103,12 @@ def attraction_details(request,from_base_search_text=None):
         crowd_dict = [{"week":x['week'] , "crowd":x['crowd']} for x in crowd_list]
         crowd_dict = json.dumps(crowd_dict)
         print(crowd_dict)
+        picture_list = get_picture_list(choose_attractions.place_id)
+        print(picture_list)
         #轉HTML格式
         detail_html = render_to_string(
             template_name="attraction_details_detail.html",
-            context={"detail": choose_attractions_dict,"crowd":crowd_dict},
+            context={"detail": choose_attractions_dict,"crowd":crowd_dict,"picture_list":picture_list},
         )
         detail_data_dict = {"attractions_detail_html": detail_html}
         return JsonResponse(data=detail_data_dict, safe=False)
