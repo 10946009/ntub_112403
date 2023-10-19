@@ -35,7 +35,7 @@
                 <i class="fa-regular fa-star-half-stroke" style="color:yellow;"></i>
                 {% endif %}
                 {% endfor %}
-                <span id="selectedRating"></span> / 5 ({{ detail.rating_total }})
+                <span id="selectedRating">{{detail.rating}} / 5 ({{ detail.rating_total }})</span> 
         </div>
         <!-- 圖片 -->
         <div class="detail_img" style="margin-top: 10px;">
@@ -597,14 +597,14 @@
                                             class="show_detail_img"
                                             style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
                                         <div class="photo-text">
-                                            所有照片（{{picture_list.count}})
+                                            所有照片（{{picture_list|length}}）
                                         </div>
                                     </div>
                                     <div class="detail_photo__headerGrid" id="detail_photo__headerGrid_user">
                                         <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
                                             class="show_detail_img" style="width: 100%;" alt="">
                                         <div class="photo-text">
-                                            旅客（7)
+                                            旅客（7）
                                         </div>
                                     </div>
                                 </div>
@@ -666,19 +666,13 @@
                                             <p>{{ detail.a_name }}</p>
                                         </div>
                                     </div>
+                                    {% for picture in picture_list %}
                                     <div class="mySlides">
-                                        <div class="phototext">第1頁&emsp;(共3頁)</div>
-                                        <img class="mySlide" src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                        <div class="phototext">第{{forloop.counter}}頁&emsp;(共{{picture_list | length}}頁)</div>
+                                        <img class="mySlide" src="/static/images/attractions/{{picture}}"
                                             style="width: 100%;">
                                     </div>
-                                    <div class="mySlides">
-                                        <div class="phototext">第2頁&emsp;(共3頁)</div>
-                                        <img src="../static/images/Datong.jpeg" style="width:100%">
-                                    </div>
-                                    <div class="mySlides">
-                                        <div class="phototext">第3頁&emsp;(共3頁)</div>
-                                        <img class="mySlide" src="../static/images/beitou.jpeg" style="width:100%">
-                                    </div>
+                                    {% endfor %}
                                     <div style="text-align: center; font-size: 24px;">
                                         <a class="w3-btn-floating photo_btn_left" onclick="plusDivs(-1)">
                                             <i class="fa-solid fa-arrow-left"></i></a>
