@@ -615,44 +615,49 @@
                                 style="margin-top: 10px; height: 500px; overflow-y: scroll;">
                                 <div class="show_detail_photo__header">
                                     {% for picture in picture_list %}
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{picture}}" class="show_detail_img"
-                                            id="show_detail_img" style="margin-top: 1px; width:100%; max-width: 100%;"
-                                            alt="">
+                                    <div class="choice_slide">
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{picture}}" class="show_detail_img"
+                                                id="show_detail_img"
+                                                style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                        </div>
                                     </div>
                                     {% endfor %}
                                 </div>
                                 <!--  -->
-                                {% comment %} <div class="show_detail_photo__header">
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img"
-                                            style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+
+                                {% comment %} <div class="choice_slide">
+                                    <div class="show_detail_photo__header">
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img"
+                                                style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                        </div>
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img" style="width: 100%;" alt="">
+                                        </div>
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img" style="width: 100%;" alt="">
+                                        </div>
                                     </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
+                                    <div class="show_detail_photo__header">
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img"
+                                                style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                        </div>
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img" style="width: 100%;" alt="">
+                                        </div>
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img" style="width: 100%;" alt="">
+                                        </div>
                                     </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
-                                    </div>
-                                </div>
-                                <div class="show_detail_photo__header">
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img"
-                                            style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
-                                    </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
-                                    </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
-                                    </div>
-                                </div> {% endcomment %}
+                                </div>{% endcomment %}
                             </div>
                             <!-- 所有照片（幻燈片） -->
                             <div class="slide_this_photo" id="slide_this_photo" style="display: none; width: 100%;">
@@ -1194,20 +1199,27 @@
     var change_sigle_photo = document.getElementById("change_sigle_photo");
     var slide_this_photo = document.getElementById("slide_this_photo");
     var show_all_detail_photo = document.getElementById("show_all_detail_photo");
+    var choice_slide = document.getElementsByClassName("choice_slide");
     var isHidden = true;
     var isChange = true;
-    show_detail_img.addEventListener("click", function () {
-        if (isHidden) {
-            show_all_detail_photo.style.display = "none";
-            slide_this_photo.style.display = "block";
-        }
-    });
+
+    // 幻燈片（各個照片點擊跳出）
+    for (var i = 0; i < choice_slide.length; i++) {
+        choice_slide[i].addEventListener("click", function () {
+            if (isHidden) {
+                show_all_detail_photo.style.display = "none";
+                slide_this_photo.style.display = "block";
+            }
+        });
+    }
+    // 相片集按鈕切換
     change_sigle_photo.addEventListener("click", function () {
         if (isChange) {
             slide_this_photo.style.display = "none";
             show_all_detail_photo.style.display = "block";
         }
     });
+    // 所有（點擊）跳到相片集 在幻燈片時
     detail_photo__headerGrid_all.addEventListener("click", function () {
         if (isChange) {
             slide_this_photo.style.display = "none";
