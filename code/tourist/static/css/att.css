@@ -1771,14 +1771,14 @@ img {
 
 /* 景點圖片彈跳窗 */
 .photo_att_container {
-    padding: 20px 20px 10px 20px;
+    padding: 20px 20px 10px 10px;
     position: relative;
     border-bottom: rgb(185, 182, 182) solid;
 }
 
 /* 相簿 */
 .photo_book {
-    padding: 20px 30px 40px 40px;
+    padding: 20px 30px 20px 40px;
     border-right: rgb(185, 182, 182) solid;
 }
 
@@ -1817,7 +1817,7 @@ img {
 
 /* 右邊圖片集 */
 .photo_show_book {
-    padding: 20px 40px 40px 10px;
+    padding: 10px 40px 40px 10px;
 }
 
 .show_all_detail_photo {
@@ -1841,7 +1841,74 @@ img {
     opacity: 0.7;
 }
 
+#detail_photo__headerGrid_all {
+    border: 1px solid black;
+}
 
+.photo_btn_left {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    position: absolute;
+    top: 45%;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    border-radius: 50px;
+    width: 35px;
+}
+
+.photo_btn_right {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    position: absolute;
+    top: 45%;
+    right: 0;
+    background-color: rgb(0, 0, 0);
+    border-radius: 50px;
+    width: 35px;
+}
+
+.photo_btn_right:hover,
+.photo_btn_left:hover {
+    background-color: rgb(101, 100, 100);
+}
+
+.phototext {
+    background-color: rgba(0, 0, 0, 0.293);
+    color: #ffffff;
+    font-size: 16px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.change_sigle_photo {
+    cursor: pointer;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border-radius: 30px;
+    background-color: #000;
+    color: white;
+}
+
+.change_sigle_photo:hover {
+    background-color: rgb(101, 100, 100);
+}
+
+.illustrate_photo {
+    color: white;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.293);
+    height: 25%;
+    width: 100%
+}
 
 /* .Cart__product {
     display: grid;
