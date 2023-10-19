@@ -615,11 +615,11 @@
                                 style="margin-top: 10px; height: 500px; overflow-y: scroll;">
                                 <div class="show_detail_photo__header">
                                     {% for picture in picture_list %}
-                                    <div class="choice_slide">
+                                    <div class="choice_slide"data-set="{{forloop.counter}}">
                                         <div class="show_detail_photo__headerGrid">
                                             <img src="/static/images/attractions/{{picture}}" class="show_detail_img"
                                                 id="show_detail_img"
-                                                style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                                style="margin-top: 1px; width:100%; max-width: 100%;" alt="" >
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -1195,7 +1195,8 @@
             x[i].style.display = "none";
         }
         x[slideIndex - 1].style.display = "block";
-        console.log(x[slideIndex - 1]);
+        console.log("選擇的x");
+        console.log(x[slideIndex - 1])
     }
         
     // focus點擊的地方（所有與旅客）
@@ -1223,6 +1224,10 @@
     // 幻燈片（各個照片點擊跳出）
     for (var i = 0; i < choice_slide.length; i++) {
         choice_slide[i].addEventListener("click", function () {
+            console.log(this.dataset.set);
+            slideIndex = parseInt(this.dataset.set);
+            showDivs(this.dataset.set);
+            
             if (isHidden) {
                 show_all_detail_photo.style.display = "none";
                 slide_this_photo.style.display = "block";
