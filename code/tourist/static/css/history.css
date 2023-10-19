@@ -89,11 +89,15 @@
 .hidden-details {
     display: none;
 }
+.details {
+  margin-top: 10px;
+}
 .nav{
     padding: 5px;
 }
 .history-nav-link{
     color: black;
+    font-weight: bold;
 }
 .content_align{
     display: flex;

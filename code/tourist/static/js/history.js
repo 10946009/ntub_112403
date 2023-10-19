@@ -1,3 +1,17 @@
+
+// $(function(){
+//     $(".details{{ item.my_history.id }}btn").click(function(){
+//       $("#details{{ item.my_history.id }}").slideToggle('slow',function(){
+//         if($(this).is(":visible")){
+//           $(".details{{ item.my_history.id }}btn").text("收起資料")
+//           $(".details{{ item.my_history.id }}btn").css("background-color","rgb(255, 85, 85)")
+//         }else{
+//           $(".details{{ item.my_history.id }}btn").text("詳細資料")
+//           $(".details{{ item.my_history.id }}btn").css("background-color","")
+//         }
+//       })
+//     })
+//   })
 document.addEventListener('DOMContentLoaded',function(){
     
   // 获取所有的 "詳細資料" 按钮

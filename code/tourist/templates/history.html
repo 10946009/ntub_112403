@@ -2,466 +2,184 @@
 {% extends 'base.html' %}
 {% load custom_tags %}
 {% block title %}我的行程{% endblock %}
-{% block content %}<link rel="stylesheet" href="../static/css/history.css">{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="../static/css/history.css">{% endblock %}
 
 {% block body %}
-  
-  <div class="main">
-    <div>
-      <a href="/history">All</a>
-      <a href="/history/1">已分享</a>
-      <a href="/history/0">未分享</a>
+
+<div class="main">
+  <div>
+    <a href="/history">All</a>
+    <a href="/history/1">已分享</a>
+    <a href="/history/0">未分享</a>
+  </div>
+  <!--資料庫有東西就會顯示-->
+  {% for item in all_data %}
+  <div class="row mytravel">
+    <!--照片(先預設為第一個景點的照片)-->
+    <div class="col-md-4 mytravel_img">
+      <img src="/static/images/attractions/{{item.allAttractions.0.0.a_id.place_id}}_0.jpg" class="img-responsive"
+        width="100%" alt="">
     </div>
-    <!--資料庫有東西就會顯示-->
-    {% for item in all_data %}
-      <div class="row mytravel">
-        <!--照片(先預設為第一個景點的照片)-->
-        <div class="col-md-4 mytravel_img">
-          <img src="/static/images/attractions/{{item.allAttractions.0.0.a_id.place_id}}_0.jpg"
-               class="img-responsive"
-               width="100%"
-               alt="">
-        </div>
 
-        <!--行程基本資料-->
-        <div class="col-md-8 mytravel_txt">
-          <h4 class="mytravel_txt_title">行程名稱：{{ item.my_history.ct_name }}</h4>
-          <h4 class="mytravel_review">喜愛程度：(別人按讚的)</h4>
-          <h4 class="mytravel_txt_detail">天數：{{ item.my_history.travel_day }}</h4>
-          <h4 class="mytravel_txt_detail">地點：</h4>
-        </div>
+    <!--行程基本資料-->
+    <div class="col-md-8 mytravel_txt">
+      <h4 class="mytravel_txt_title">行程名稱：{{ item.my_history.ct_name }}</h4>
+      <h4 class="mytravel_review">喜愛程度：(別人按讚的)</h4>
+      <h4 class="mytravel_txt_detail">天數：{{ item.my_history.travel_day }}</h4>
+      <h4 class="mytravel_txt_detail">地點：</h4>
+    </div>
 
-        <!--編輯分享按紐-->
-        <div class="edit">
-          <a href="/create/{{ item.my_history.id }}" class="edita">
-            <span class="fa-solid fa-pen-to-square edit_icon">
-              <br>
-              <span class="icontxt">編輯</span>
-            </span>
-          </a>
-        </div>
-        <div class="share" id="ct_share">
-          {% if item.my_history.status == True %}
-            <i class="fa-solid fa-share share_icon" title="已分享" id="submitfavorite_share{{item.my_history.id}}" data-isfavorite="1" onclick="add_favorite_share({{item.my_history.id}})"></i>
-            <span class="icontxt" id="icontxt{{item.my_history.id}}">已分享</span>
-            {% comment %} 
-            <span class="fa-solid fa-share share_icon"><br>
-            <span class="icontxt">已分享</span> 
-            {% endcomment %}
-          {% else %}
-            <i class="fa-solid fa-share share_icon" title="收藏" id="submitfavorite_share{{item.my_history.id}}" data-isfavorite="0" onclick="add_favorite_share({{item.my_history.id}})"></i>
-            <span class="icontxt" id="icontxt{{item.my_history.id}}">分享</span>
-            {% comment %} 
-            <span class="fa-solid fa-share share_icon"><br>
-            <span class="icontxt">分享</span> 
-            {% endcomment %}
+    <!--編輯分享按紐-->
+    <div class="edit">
+      <a href="/create/{{ item.my_history.id }}" class="edita">
+        <span class="fa-solid fa-pen-to-square edit_icon">
+          <br>
+          <span class="icontxt">編輯</span>
+        </span>
+      </a>
+    </div>
+    <div class="share" id="ct_share">
+      {% if item.my_history.status == True %}
+      <i class="fa-solid fa-share share_icon" title="已分享" id="submitfavorite_share{{item.my_history.id}}"
+        data-isfavorite="1" onclick="add_favorite_share({{item.my_history.id}})"></i>
+      <span class="icontxt" id="icontxt{{item.my_history.id}}">已分享</span>
+      {% comment %}
+      <span class="fa-solid fa-share share_icon"><br>
+        <span class="icontxt">已分享</span>
+        {% endcomment %}
+        {% else %}
+        <i class="fa-solid fa-share share_icon" title="收藏" id="submitfavorite_share{{item.my_history.id}}"
+          data-isfavorite="0" onclick="add_favorite_share({{item.my_history.id}})"></i>
+        <span class="icontxt" id="icontxt{{item.my_history.id}}">分享</span>
+        {% comment %}
+        <span class="fa-solid fa-share share_icon"><br>
+          <span class="icontxt">分享</span>
+          {% endcomment %}
           {% endif %}
-        </div>
-        <button class="more-btn-target more_btn" data-target="details{{ item.my_history.id }}">詳細資料</button>
-      </div>
+    </div>
+    <button class="more_btn details{{ item.my_history.id }}btn" data-target="details{{ item.my_history.id }}">詳細資料</button>
+  </div>
 
-      <!--開啟詳細資料顯示的內容-->
-      <!-- <div class="openmore more-content" style="display: none;"> -->
-        <div id="details{{ item.my_history.id }}" class="more hidden-details">
-          <ul class="nav nav-tabs flex my-nav-tabs" id="myTab" role="tablist">
-            {% for i in "x"|rjust:item.my_history.travel_day %}
-              <li class="nav-item" role="presentation">
-                <button class="nav-link tab_a active" id="first{{ item.my_history.id }}-tab" data-bs-toggle="tab" data-bs-target="#first{{ item.my_history.id }}" type="button"
-                role="tab" aria-controls="first{{ item.my_history.id }}" aria-selected="true">Day {{ forloop.counter }}</button>
-                <!-- <a style="color: black"
+  <!--開啟詳細資料顯示的內容-->
+  <div id="details{{ item.my_history.id }}" class="hidden-details details">
+    <ul class="nav nav-tabs flex my-nav-tabs" id="myTab" role="tablist">
+      {% for i in "x"|rjust:item.my_history.travel_day %}
+      <li class="nav-item" role="presentation">
+        <button class="nav-link tab_a active" id="first{{ item.my_history.id }}-tab" data-bs-toggle="tab"
+          data-bs-target="#first{{ item.my_history.id }}" type="button" role="tab"
+          aria-controls="first{{ item.my_history.id }}" aria-selected="true">Day {{ forloop.counter }}</button>
+        <!-- <a style="color: black"
                    class="history-nav-link"
                    aria-current="page"
                    href="#content{{ item.my_history.id }}-{{ forloop.counter }}"
                    data-tab="{{ item.my_history.id }}-{{ forloop.counter }}">D{{ forloop.counter }}</a> -->
-              </li><!--顯示"ct_id - travel_day"-->
-            {% endfor %}
-          </ul>
-          {% comment %} {% for i in "x"|rjust:item.my_history.travel_day %} {% endcomment %}
+      </li><!--顯示"ct_id - travel_day"-->
+      {% endfor %}
+    </ul>
+    {% comment %} {% for i in "x"|rjust:item.my_history.travel_day %} {% endcomment %}
 
-          {% for details in item.allAttractions %}
-            {% with counter=forloop.counter0 %}
-              <div class="content hidden-details"
-                  id="content{{ item.my_history.id }}-{{ forloop.counter }}">
-                <div class="content_align">
-                  {% for detail in details %}
-                    {% if forloop.counter0 == 0 %}
-                      <!-- 起始位置格式設定在這~~ -->
-                      <div class="content_detail">
-                        起始位置
-                      </div>
-                      <div class="gonext">
-                        <!--顯示使用者設定的起始位置到第一個景點的導航-->
-                        {% for location in item.choiceday_ct %}
-                          {% if forloop.counter0 == counter %}<!--顯示當forloop次數與上面counter相同時才會顯示  如counter目前為1，forloo為0什麼都不做，為1的時候顯示資料-->
-                            <a href="https://www.google.com/maps/dir/?api=1&origin={{ location.start_location_x }},{{ location.start_location_y }}&destination={{detail.a_id.location_x}},{{detail.a_id.location_y}}&travelmode=driving"
-                            class="gonexta" target="_blank">
-                          {% endif %}
-                        {% endfor %}
-                          <i class="fa-solid fa-car-side"></i>
-                          <p class="gonextbtn">導航</p>
-                        </a>
-                      </div>
-                    {% else %}
-                      <!--使用客製化的filter來抓取前一次迴圈的資料進行導航-->
-                      {% with previous_detail=item.allAttractions|get_previous_item:forloop.counter0 %}
-                        <div class="gonext">
-                          <a href="https://www.google.com/maps/dir/?api=1&origin={{ previous_detail.a_id.location_x }},{{ previous_detail.a_id.location_y }}&destination={{detail.a_id.location_x}},{{detail.a_id.location_y}}&travelmode=driving"
-                            class="gonexta">
-                            <i class="fa-solid fa-car-side"></i>
-                            <p class="gonextbtn">導航</p>
-                          </a>
-                        </div>
-                      {% endwith %}
-                    {% endif %}
-
-                    <!--要塞的資料-->
-                    <div class="content_detail">
-                      <span class="spotnum"><span class="spot">{{ detail.a_id.a_name }}</span></span>
-                      <p>日期：yyyy/mm/dd</p>
-                      <p>抵達時間：早上</p>
-                      <p>停留時間：</p>
-                    </div>
-                  {% endfor %}
-                </div>
-              </div>
-            {% endwith %}
-          {% endfor %}
-
-
+    {% for details in item.allAttractions %}
+    {% with counter=forloop.counter0 %}
+    <div class="content hidden-details" id="content{{ item.my_history.id }}-{{ forloop.counter }}">
+      <div class="content_align">
+        {% for detail in details %}
+        {% if forloop.counter0 == 0 %}
+        <!-- 起始位置格式設定在這~~ -->
+        <div class="content_detail">
+          起始位置
         </div>
-      <!-- </div> -->
+        <div class="gonext">
+          <!--顯示使用者設定的起始位置到第一個景點的導航-->
+          {% for location in item.choiceday_ct %}
+          {% if forloop.counter0 == counter %}<!--顯示當forloop次數與上面counter相同時才會顯示  如counter目前為1，forloo為0什麼都不做，為1的時候顯示資料-->
+          <a href="https://www.google.com/maps/dir/?api=1&origin={{ location.start_location_x }},{{ location.start_location_y }}&destination={{detail.a_id.location_x}},{{detail.a_id.location_y}}&travelmode=driving"
+            class="gonexta" target="_blank">
+            {% endif %}
+            {% endfor %}
+            <i class="fa-solid fa-car-side"></i>
+            <p class="gonextbtn">導航</p>
+          </a>
+        </div>
+        {% else %}
+        <!--使用客製化的filter來抓取前一次迴圈的資料進行導航-->
+        {% with previous_detail=item.allAttractions|get_previous_item:forloop.counter0 %}
+        <div class="gonext">
+          <a href="https://www.google.com/maps/dir/?api=1&origin={{ previous_detail.a_id.location_x }},{{ previous_detail.a_id.location_y }}&destination={{detail.a_id.location_x}},{{detail.a_id.location_y}}&travelmode=driving"
+            class="gonexta">
+            <i class="fa-solid fa-car-side"></i>
+            <p class="gonextbtn">導航</p>
+          </a>
+        </div>
+        {% endwith %}
+        {% endif %}
+
+        <!--要塞的資料-->
+        <div class="content_detail">
+          <span class="spotnum"><span class="spot">{{ detail.a_id.a_name }}</span></span>
+          <p>日期：yyyy/mm/dd</p>
+          <p>抵達時間：早上</p>
+          <p>停留時間：</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endwith %}
     {% endfor %}
 
-    <!-- 以下為原本寫死的資料  可以註解或刪掉~-->
-    <div class="row mytravel">
-      <div class="col-md-4 mytravel_img">
-        <img src="../static/images/cake01.jpg"
-             class="img-responsive"
-             width="100%"
-             alt="">
-      </div>
-      <div class="col-md-8 mytravel_txt">
-        <h4 class="mytravel_txt_title">行程名稱：</h4>
-        <p class="mytravel_txt_detail">天數：</p>
-        <p class="mytravel_txt_detail">地點：</p>
-      </div>
-      <div class="edit">
-        <a href="/create" class="edita">
-          <span class="fa-solid fa-pen-to-square edit_icon">
-            <br>
-            <span class="icontxt">編輯</span>
-          </span>
-        </a>
-      </div>
-      <div class="share">
-        <span class="fa-solid fa-share share_icon">
-          <br>
-          <span class="icontxt">分享</span>
-        </span>
-      </div>
-      <button class="more-btn-target more_btn" data-target="details2">詳細資料</button>
-    </div>
-    <div class="openmore more-content">
-      <div id="details2" class="more hidden-details">
-        <ul class="nav nav-tabs flex my-nav-tabs" id="myTab2" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button class="nav-link tab_a active" id="first2-tab" data-bs-toggle="tab" data-bs-target="#first2" type="button"
-              role="tab" aria-controls="first2" aria-selected="true">第一天</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link tab_a" id="second2-tab" data-bs-toggle="tab" data-bs-target="#second2" type="button"
-              role="tab" aria-controls="second2" aria-selected="false">第二天</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link tab_a" id="third2-tab" data-bs-toggle="tab" data-bs-target="#third2" type="button"
-              role="tab" aria-controls="third2" aria-selected="false">第三天</button>
-          </li>
-        </ul>
-        <div class="tab-content" id="myTabContent2">
-          <div class="tab-pane fade show active" id="first2" role="tabpanel" aria-labelledby="first2-tab">
-            <div class="content_align">
-              <div class="content_detail">
-                <span class="spotnum">景點1：<span class="spot">台北101</span></span>
-                <p>日期：yyyy/mm/dd</p>
-                <p>抵達時間：早上</p>
-                <p>
-                  停留時間：
-                </p>
-              </div>
-              <div class="gonext">
-                <a href="https://www.google.com/maps" class="gonexta">
-                  <i class="fa-solid fa-car-side"></i>
-                  <p class="gonextbtn">
-                    導航
-                  </p>
-                </a>
-              </div>
-              <div class="content_detail">
-                <span class="spotnum">景點2：<span class="spot">台北101</span></span>
-                <p>
-                  日期：yyyy/mm/dd
-                </p>
-                <p>
-                  抵達時間：早上
-                </p>
-                <p>
-                  停留時間：
-                </p>
-              </div>
-              <div class="gonext">
-                <a href="https://www.google.com/maps" class="gonexta">
-                  <i class="fa-solid fa-car-side"></i>
-                  <p class="gonextbtn">
-                    導航
-                  </p>
-                </a>
-              </div>
-              <div class="content_detail">
-                <span class="spotnum">景點3：<span class="spot">台北101</span></span>
-                <p>
-                  日期：yyyy/mm/dd
-                </p>
-                <p>
-                  抵達時間：中午
-                </p>
-                <p>
-                  停留時間：
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="second2" role="tabpanel" aria-labelledby="second2-tab">
-            我是B2的內容<br>
-            我是B2的內容<br>
-            我是B2的內容<br>
-            我是B2的內容<br>
-          </div>
-          <div class="tab-pane fade" id="third2" role="tabpanel" aria-labelledby="third2-tab">
-            我是B3的內容<br>
-            我是B3的內容<br>
-            我是B3的內容<br>
-            我是B3的內容<br>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="row mytravel">
-      <div class="col-md-4 mytravel_img">
-        <img src="../static/images/dog.jpg"
-             class="img-responsive"
-             width="100%"
-             alt="">
-      </div>
-      <div class="col-md-8 mytravel_txt">
-        <h4 class="mytravel_txt_title">行程名稱：</h4>
-        <h4 class="mytravel_review">喜愛程度：(別人按讚的)</h4>
-        <h4 class="mytravel_txt_detail">天數：</h4>
-        <h4 class="mytravel_txt_detail">地點：</h4>
-      </div>
-      <div class="edit">
-        <a href="/create" class="edita">
-          <span class="fa-solid fa-pen-to-square edit_icon">
-            <br>
-            <span class="icontxt">編輯</span>
-          </span>
-        </a>
-      </div>
-      <div class="share">
-        <span class="fa-solid fa-share share_icon">
-          <br>
-          <span class="icontxt">分享</span>
-        </span>
-      </div>
-      <button class="more-btn-target more_btn" data-target="details3">詳細資料</button>
+  </div>
+  {% endfor %}
+
+  <!-- 以下為原本寫死的資料  可以註解或刪掉~-->
+  <div class="row mytravel">
+    <div class="col-md-4 mytravel_img">
+      <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
     </div>
-    <!-- <div class="openmore more-content" style="display: none;"> -->
-      <div id="details3" class="more hidden-details">
-        <ul class="nav nav-tabs flex my-nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button class="nav-link tab_a active" id="first-tab" data-bs-toggle="tab" data-bs-target="#first" type="button"
-              role="tab" aria-controls="first" aria-selected="true">第一天</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link tab_a" id="second-tab" data-bs-toggle="tab" data-bs-target="#second" type="button"
-              role="tab" aria-controls="second" aria-selected="false">第二天</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link tab_a" id="third-tab" data-bs-toggle="tab" data-bs-target="#third" type="button"
-              role="tab" aria-controls="third" aria-selected="false">第三天</button>
-          </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="first" role="tabpanel" aria-labelledby="first-tab">
-            <div class="content_align">
-              <div class="content_detail">
-                <span class="spotnum">景點1：<span class="spot">台北101</span></span>
-                <p>
-                  日期：yyyy/mm/dd
-                </p>
-                <p>
-                  抵達時間：早上
-                </p>
-                <p>
-                  停留時間：
-                </p>
-              </div>
-              <div class="gonext">
-                <a href="https://www.google.com/maps" class="gonexta">
-                  <i class="fa-solid fa-car-side"></i>
-                  <p class="gonextbtn">
-                    導航
-                  </p>
-                </a>
-              </div>
-              <div class="content_detail">
-                <span class="spotnum">景點2：<span class="spot">台北101</span></span>
-                <p>
-                  日期：yyyy/mm/dd
-                </p>
-                <p>
-                  抵達時間：早上
-                </p>
-                <p>
-                  停留時間：
-                </p>
-              </div>
-              <div class="gonext">
-                <a href="https://www.google.com/maps" class="gonexta">
-                  <i class="fa-solid fa-car-side"></i>
-                  <p class="gonextbtn">
-                    導航
-                  </p>
-                </a>
-              </div>
-              <div class="content_detail">
-                <span class="spotnum">景點3：<span class="spot">台北101</span></span>
-                <p>
-                  日期：yyyy/mm/dd
-                </p>
-                <p>
-                  抵達時間：中午
-                </p>
-                <p>
-                  停留時間：
-                </p>
-              </div>
-              <div class="gonext">
-                <a href="https://www.google.com/maps" class="gonexta">
-                  <i class="fa-solid fa-car-side"></i>
-                  <p class="gonextbtn">
-                    導航
-                  </p>
-                </a>
-              </div>
-              <div class="content_detail">
-                <span class="spotnum">景點4：<span class="spot">台北101</span></span>
-                <p>
-                  日期：yyyy/mm/dd
-                </p>
-                <p>
-                  抵達時間：中午
-                </p>
-                <p>
-                  停留時間：
-                </p>
-              </div>
-              <div class="gonext">
-                <a href="https://www.google.com/maps" class="gonexta">
-                  <i class="fa-solid fa-car-side"></i>
-                  <p class="gonextbtn">
-                    導航
-                  </p>
-                </a>
-              </div>
-              <div class="content_detail">
-                <span class="spotnum">景點5：<span class="spot">中正紀念堂</span></span>
-                <p>
-                  日期：yyyy/mm/dd
-                </p>
-                <p>
-                  抵達時間：中午
-                </p>
-                <p>
-                  停留時間：
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
-            <div class="content_align">
-              <div class="content_detail">
-                <span class="spotnum">景點1：<span class="spot">台北101</span></span>
-                <p>
-                  日期：yyyy/mm/dd
-                </p>
-                <p>
-                  抵達時間：早上
-                </p>
-                <p>
-                  停留時間：
-                </p>
-              </div>
-              <div class="gonext">
-                <a href="https://www.google.com/maps" class="gonexta">
-                  <i class="fa-solid fa-car-side"></i>
-                  <p class="gonextbtn">
-                    導航
-                  </p>
-                </a>
-              </div>
-              <div class="content_detail">
-                <span class="spotnum">景點2：<span class="spot">台北101</span></span>
-                <p>
-                  日期：yyyy/mm/dd
-                </p>
-                <p>
-                  抵達時間：早上
-                </p>
-                <p>
-                  停留時間：
-                </p>
-              </div>
-              <div class="gonext">
-                <a href="https://www.google.com/maps" class="gonexta">
-                  <i class="fa-solid fa-car-side"></i>
-                  <p class="gonextbtn">
-                    導航
-                  </p>
-                </a>
-              </div>
-              <div class="content_detail">
-                <span class="spotnum">景點3：<span class="spot">台北101</span></span>
-                <p>
-                  日期：yyyy/mm/dd
-                </p>
-                <p>
-                  抵達時間：中午
-                </p>
-                <p>
-                  停留時間：
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="third" role="tabpanel" aria-labelledby="third-tab">
-            我是A3的內容<br>
-            我是A3的內容<br>
-            我是A3的內容<br>
-            我是A3的內容<br>
-          </div>
-        </div>
- 
-        <div class="content hidden-details" id="content3-3">
+    <div class="col-md-8 mytravel_txt">
+      <h4 class="mytravel_txt_title">行程名稱：</h4>
+      <p class="mytravel_txt_detail">天數：</p>
+      <p class="mytravel_txt_detail">地點：</p>
+    </div>
+    <div class="edit">
+      <a href="/create" class="edita">
+        <span class="fa-solid fa-pen-to-square edit_icon">
+          <br>
+          <span class="icontxt">編輯</span>
+        </span>
+      </a>
+    </div>
+    <div class="share">
+      <span class="fa-solid fa-share share_icon">
+        <br>
+        <span class="icontxt">分享</span>
+      </span>
+    </div>
+    <button class="more_btn" data-target="details2">詳細資料</button>
+  </div>
+  <div class="openmore more-content">
+    <div id="details2" class="more hidden-details">
+      <ul class="nav nav-tabs flex my-nav-tabs" id="myTab2" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link tab_a active" id="first2-tab" data-bs-toggle="tab" data-bs-target="#first2"
+            type="button" role="tab" aria-controls="first2" aria-selected="true">第一天</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link tab_a" id="second2-tab" data-bs-toggle="tab" data-bs-target="#second2" type="button"
+            role="tab" aria-controls="second2" aria-selected="false">第二天</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link tab_a" id="third2-tab" data-bs-toggle="tab" data-bs-target="#third2" type="button"
+            role="tab" aria-controls="third2" aria-selected="false">第三天</button>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent2">
+        <div class="tab-pane fade show active" id="first2" role="tabpanel" aria-labelledby="first2-tab">
           <div class="content_align">
             <div class="content_detail">
               <span class="spotnum">景點1：<span class="spot">台北101</span></span>
-              <p>
-                日期：yyyy/mm/dd
-              </p>
-              <p>
-                抵達時間：下午
-              </p>
+              <p>日期：yyyy/mm/dd</p>
+              <p>抵達時間：早上</p>
               <p>
                 停留時間：
               </p>
@@ -480,7 +198,27 @@
                 日期：yyyy/mm/dd
               </p>
               <p>
-                抵達時間：晚上
+                抵達時間：早上
+              </p>
+              <p>
+                停留時間：
+              </p>
+            </div>
+            <div class="gonext">
+              <a href="https://www.google.com/maps" class="gonexta">
+                <i class="fa-solid fa-car-side"></i>
+                <p class="gonextbtn">
+                  導航
+                </p>
+              </a>
+            </div>
+            <div class="content_detail">
+              <span class="spotnum">景點3：<span class="spot">台北101</span></span>
+              <p>
+                日期：yyyy/mm/dd
+              </p>
+              <p>
+                抵達時間：中午
               </p>
               <p>
                 停留時間：
@@ -488,16 +226,269 @@
             </div>
           </div>
         </div>
+        <div class="tab-pane fade" id="second2" role="tabpanel" aria-labelledby="second2-tab">
+          我是B2的內容<br>
+          我是B2的內容<br>
+          我是B2的內容<br>
+          我是B2的內容<br>
+        </div>
+        <div class="tab-pane fade" id="third2" role="tabpanel" aria-labelledby="third2-tab">
+          我是B3的內容<br>
+          我是B3的內容<br>
+          我是B3的內容<br>
+          我是B3的內容<br>
+        </div>
       </div>
-    <!-- </div> -->
-
+    </div>
   </div>
+
+  <div class="row mytravel">
+    <div class="col-md-4 mytravel_img">
+      <img src="../static/images/dog.jpg" class="img-responsive" width="100%" alt="">
+    </div>
+    <div class="col-md-8 mytravel_txt">
+      <h4 class="mytravel_txt_title">行程名稱：</h4>
+      <h4 class="mytravel_review">喜愛程度：(別人按讚的)</h4>
+      <h4 class="mytravel_txt_detail">天數：</h4>
+      <h4 class="mytravel_txt_detail">地點：</h4>
+    </div>
+    <div class="edit">
+      <a href="/create" class="edita">
+        <span class="fa-solid fa-pen-to-square edit_icon">
+          <br>
+          <span class="icontxt">編輯</span>
+        </span>
+      </a>
+    </div>
+    <div class="share">
+      <span class="fa-solid fa-share share_icon">
+        <br>
+        <span class="icontxt">分享</span>
+      </span>
+    </div>
+    <button class="more_btn" data-target="details3">詳細資料</button>
+  </div>
+  <div id="details3" class="more hidden-details">
+    <ul class="nav nav-tabs flex my-nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link tab_a active" id="first-tab" data-bs-toggle="tab" data-bs-target="#first" type="button"
+          role="tab" aria-controls="first" aria-selected="true">第一天</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link tab_a" id="second-tab" data-bs-toggle="tab" data-bs-target="#second" type="button"
+          role="tab" aria-controls="second" aria-selected="false">第二天</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link tab_a" id="third-tab" data-bs-toggle="tab" data-bs-target="#third" type="button"
+          role="tab" aria-controls="third" aria-selected="false">第三天</button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="first" role="tabpanel" aria-labelledby="first-tab">
+        <div class="content_align">
+          <div class="content_detail">
+            <span class="spotnum">景點1：<span class="spot">台北101</span></span>
+            <p>
+              日期：yyyy/mm/dd
+            </p>
+            <p>
+              抵達時間：早上
+            </p>
+            <p>
+              停留時間：
+            </p>
+          </div>
+          <div class="gonext">
+            <a href="https://www.google.com/maps" class="gonexta">
+              <i class="fa-solid fa-car-side"></i>
+              <p class="gonextbtn">
+                導航
+              </p>
+            </a>
+          </div>
+          <div class="content_detail">
+            <span class="spotnum">景點2：<span class="spot">台北101</span></span>
+            <p>
+              日期：yyyy/mm/dd
+            </p>
+            <p>
+              抵達時間：早上
+            </p>
+            <p>
+              停留時間：
+            </p>
+          </div>
+          <div class="gonext">
+            <a href="https://www.google.com/maps" class="gonexta">
+              <i class="fa-solid fa-car-side"></i>
+              <p class="gonextbtn">
+                導航
+              </p>
+            </a>
+          </div>
+          <div class="content_detail">
+            <span class="spotnum">景點3：<span class="spot">台北101</span></span>
+            <p>
+              日期：yyyy/mm/dd
+            </p>
+            <p>
+              抵達時間：中午
+            </p>
+            <p>
+              停留時間：
+            </p>
+          </div>
+          <div class="gonext">
+            <a href="https://www.google.com/maps" class="gonexta">
+              <i class="fa-solid fa-car-side"></i>
+              <p class="gonextbtn">
+                導航
+              </p>
+            </a>
+          </div>
+          <div class="content_detail">
+            <span class="spotnum">景點4：<span class="spot">台北101</span></span>
+            <p>
+              日期：yyyy/mm/dd
+            </p>
+            <p>
+              抵達時間：中午
+            </p>
+            <p>
+              停留時間：
+            </p>
+          </div>
+          <div class="gonext">
+            <a href="https://www.google.com/maps" class="gonexta">
+              <i class="fa-solid fa-car-side"></i>
+              <p class="gonextbtn">
+                導航
+              </p>
+            </a>
+          </div>
+          <div class="content_detail">
+            <span class="spotnum">景點5：<span class="spot">中正紀念堂</span></span>
+            <p>
+              日期：yyyy/mm/dd
+            </p>
+            <p>
+              抵達時間：中午
+            </p>
+            <p>
+              停留時間：
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
+        <div class="content_align">
+          <div class="content_detail">
+            <span class="spotnum">景點1：<span class="spot">台北101</span></span>
+            <p>
+              日期：yyyy/mm/dd
+            </p>
+            <p>
+              抵達時間：早上
+            </p>
+            <p>
+              停留時間：
+            </p>
+          </div>
+          <div class="gonext">
+            <a href="https://www.google.com/maps" class="gonexta">
+              <i class="fa-solid fa-car-side"></i>
+              <p class="gonextbtn">
+                導航
+              </p>
+            </a>
+          </div>
+          <div class="content_detail">
+            <span class="spotnum">景點2：<span class="spot">台北101</span></span>
+            <p>
+              日期：yyyy/mm/dd
+            </p>
+            <p>
+              抵達時間：早上
+            </p>
+            <p>
+              停留時間：
+            </p>
+          </div>
+          <div class="gonext">
+            <a href="https://www.google.com/maps" class="gonexta">
+              <i class="fa-solid fa-car-side"></i>
+              <p class="gonextbtn">
+                導航
+              </p>
+            </a>
+          </div>
+          <div class="content_detail">
+            <span class="spotnum">景點3：<span class="spot">台北101</span></span>
+            <p>
+              日期：yyyy/mm/dd
+            </p>
+            <p>
+              抵達時間：中午
+            </p>
+            <p>
+              停留時間：
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="third" role="tabpanel" aria-labelledby="third-tab">
+        我是A3的內容<br>
+        我是A3的內容<br>
+        我是A3的內容<br>
+        我是A3的內容<br>
+      </div>
+    </div>
+
+    <div class="content hidden-details" id="content3-3">
+      <div class="content_align">
+        <div class="content_detail">
+          <span class="spotnum">景點1：<span class="spot">台北101</span></span>
+          <p>
+            日期：yyyy/mm/dd
+          </p>
+          <p>
+            抵達時間：下午
+          </p>
+          <p>
+            停留時間：
+          </p>
+        </div>
+        <div class="gonext">
+          <a href="https://www.google.com/maps" class="gonexta">
+            <i class="fa-solid fa-car-side"></i>
+            <p class="gonextbtn">
+              導航
+            </p>
+          </a>
+        </div>
+        <div class="content_detail">
+          <span class="spotnum">景點2：<span class="spot">台北101</span></span>
+          <p>
+            日期：yyyy/mm/dd
+          </p>
+          <p>
+            抵達時間：晚上
+          </p>
+          <p>
+            停留時間：
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 
 
 
 <script>
-  function add_favorite_share(ctid){
+  function add_favorite_share(ctid) {
     // var sharediv = document.getElementById("ct_share");
     var favoriteButton = document.getElementById("submitfavorite_share" + ctid);
     var text = document.getElementById("icontxt" + ctid);
@@ -513,23 +504,24 @@
     }
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     $.ajax({
-        headers: { 'X-CSRFToken': csrftoken },
-        type: "POST",
-        url: "/add_favorite_share/",
-        data: {
-            'ctid': ctid,
-        },
-        success: function (data) {
-            console.log(data);
-        },
-        error: function (xhr, textStatus, errorThrown) {
-            console.error("Error:", textStatus, errorThrown);
-        }
+      headers: { 'X-CSRFToken': csrftoken },
+      type: "POST",
+      url: "/add_favorite_share/",
+      data: {
+        'ctid': ctid,
+      },
+      success: function (data) {
+        console.log(data);
+      },
+      error: function (xhr, textStatus, errorThrown) {
+        console.error("Error:", textStatus, errorThrown);
+      }
     });
   };
 </script>
 {% endblock body %}
-{% block content_script %}<script src="/static/js/history.js"></script>{% endblock %}
+{% block content_script %}
+<script src="/static/js/history.js"></script>{% endblock %}
 
 
 
