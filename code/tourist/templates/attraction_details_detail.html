@@ -501,7 +501,6 @@
                         <h5 style="font-size: 22px;">分享到...</h5>
                         <i class="fa-solid fa-xmark" id="closeShare"></i>
                     </div>
-
                     <div class="share_att_con">
                         <div class="comment" id="comment_share"
                             style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
@@ -578,7 +577,7 @@
                 </form>
             </div>
         </div>
-        <!-- 查看所有圖片彈跳框框 -->
+        <!-- 查看所有圖片彈跳框框（ok) -->
         <div class="photo_att" id="photo_att">
             <div id="photo_big_att_container" class="photo_big_att_container">
                 <form class="photo_att-content" id="photo_att-content" action="">
@@ -610,49 +609,55 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- 右邊圖片框(切換) -->
                         <div class="col-8 photo_show_book">
                             <div class="show_all_detail_photo" id="show_all_detail_photo"
                                 style="margin-top: 10px; height: 500px; overflow-y: scroll;">
                                 <div class="show_detail_photo__header">
                                     {% for picture in picture_list %}
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{picture}}" class="show_detail_img"
-                                            id="show_detail_img" style="margin-top: 1px; width:100%; max-width: 100%;"
-                                            alt="">
+                                    <div class="choice_slide">
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{picture}}" class="show_detail_img"
+                                                id="show_detail_img"
+                                                style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                        </div>
                                     </div>
                                     {% endfor %}
                                 </div>
                                 <!--  -->
-                                {% comment %} <div class="show_detail_photo__header">
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img"
-                                            style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+
+                                {% comment %} <div class="choice_slide">
+                                    <div class="show_detail_photo__header">
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img"
+                                                style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                        </div>
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img" style="width: 100%;" alt="">
+                                        </div>
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img" style="width: 100%;" alt="">
+                                        </div>
                                     </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
+                                    <div class="show_detail_photo__header">
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img"
+                                                style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                        </div>
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img" style="width: 100%;" alt="">
+                                        </div>
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img" style="width: 100%;" alt="">
+                                        </div>
                                     </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
-                                    </div>
-                                </div>
-                                <div class="show_detail_photo__header">
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img"
-                                            style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
-                                    </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
-                                    </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
-                                    </div>
-                                </div> {% endcomment %}
+                                </div>{% endcomment %}
                             </div>
                             <!-- 所有照片（幻燈片） -->
                             <div class="slide_this_photo" id="slide_this_photo" style="display: none; width: 100%;">
@@ -684,91 +689,9 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="photo_att_con">
-                        <div class="comment" id="comment_share"
-                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
-                            <div class="" style="font-size: 36px;">
-                                <i class="fa-brands fa-facebook"></i>
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username" style="padding: 10px;">
-                                    分享到Facebook
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="comment" id="comment_share"
-                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
-                            <div class="" style="font-size: 36px;">
-                                <i class="fa-brands fa-facebook-messenger"></i>
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username" style="padding: 10px;">
-                                    分享到Messenger
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="comment" id="comment_share"
-                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
-                            <div class="" style="font-size: 36px;">
-                                <i class="fa-brands fa-instagram" style="margin: 0 2px 0 3px;"></i>
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username" style="padding: 10px;">
-                                    分享到Instagram
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="comment" id="comment_share"
-                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
-                            <div class="" style="font-size: 34px;">
-                                <i class="fa-solid fa-envelope" style="margin:0 2px 0 1px;"></i>
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username" style="padding: 10px;">
-                                    透過電子郵件分享
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="comment" id="comment_share"
-                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
-                            <div class="" style="font-size: 36px;">
-                                <i class="fa-solid fa-qrcode" style="margin: 0 3px 0 3px;"></i>
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username" style="padding: 10px;">
-                                    QR 碼
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="comment" id="comment_share" style="top:0; cursor: pointer; padding: 0 20px 0 20px; "
-                            onclick="Share_Copytips()">
-                            <div class="" style="font-size: 30px; padding-top: 5px;">
-                                <i class="fa-solid fa-link"></i>
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username" style="padding: 10px;">
-                                    複製連結
-                                </h6>
-                            </div>
-                        </div>
-                        <div id="share_tips">已將連結複製到剪貼簿。</div>
-                    </div> -->
-                    <!-- <div class="post_ask">
-                        <span class="ask_btn_cancel" id="ask_btn_cancel">取消</span>
-                        <span class="ask_btn_ok" id="ask_btn_ok">張貼</span>
-                    </div> -->
                 </form>
             </div>
         </div>
-        <!-- 分享 -->
-        <!-- <div class="row">
-            <div class="col-12">
-                <h5 style="font-size: 24px; margin-top: 20px;">
-                    <i class="fa-solid fa-share" style="color:orange;"></i>
-                    分享內容
-                </h5>
-            </div>
-        </div> -->
         <hr style="border:2px solid #777777">
         <!-- 評論 -->
         <div class="row">
@@ -1270,20 +1193,27 @@
     var change_sigle_photo = document.getElementById("change_sigle_photo");
     var slide_this_photo = document.getElementById("slide_this_photo");
     var show_all_detail_photo = document.getElementById("show_all_detail_photo");
+    var choice_slide = document.getElementsByClassName("choice_slide");
     var isHidden = true;
     var isChange = true;
-    show_detail_img.addEventListener("click", function () {
-        if (isHidden) {
-            show_all_detail_photo.style.display = "none";
-            slide_this_photo.style.display = "block";
-        }
-    });
+
+    // 幻燈片（各個照片點擊跳出）
+    for (var i = 0; i < choice_slide.length; i++) {
+        choice_slide[i].addEventListener("click", function () {
+            if (isHidden) {
+                show_all_detail_photo.style.display = "none";
+                slide_this_photo.style.display = "block";
+            }
+        });
+    }
+    // 相片集按鈕切換
     change_sigle_photo.addEventListener("click", function () {
         if (isChange) {
             slide_this_photo.style.display = "none";
             show_all_detail_photo.style.display = "block";
         }
     });
+    // 所有（點擊）跳到相片集 在幻燈片時
     detail_photo__headerGrid_all.addEventListener("click", function () {
         if (isChange) {
             slide_this_photo.style.display = "none";
