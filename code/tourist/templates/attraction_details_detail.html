@@ -85,7 +85,11 @@
                             <!-- 營業時間 -->
                             <h6 style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-clock" style="color: rgb(2, 79, 161);"></i>
-                                營業時間：
+                                營業時間：<br>
+                                {% for  opentime in opentime_list %}
+                                {{chinese_week}}
+                                禮拜{{opentime.week}}：{% for open in  opentime.opening %}{{open}}{% endfor %}<br>
+                                {% endfor %}
                                 <!-- <span style="color: red;">已打烊</span> <span style="color: rgb(21, 81, 140);">*開始營業時間：9:00</span> -->
                             </h6>
                             <!-- 建議停留時間 -->
@@ -1184,19 +1188,14 @@
     }
 
     function showDivs(n) {
-        console.log(n);
         var i;
         var x = document.getElementsByClassName("mySlides");
-        console.log(x);
         if (n > x.length) { slideIndex = 1 }
         if (n < 1) { slideIndex = x.length };
         for (i = 0; i < x.length; i++) {
-            console.log(i);
             x[i].style.display = "none";
         }
         x[slideIndex - 1].style.display = "block";
-        console.log("選擇的x");
-        console.log(x[slideIndex - 1])
     }
         
     // focus點擊的地方（所有與旅客）
@@ -1224,7 +1223,6 @@
     // 幻燈片（各個照片點擊跳出）
     for (var i = 0; i < choice_slide.length; i++) {
         choice_slide[i].addEventListener("click", function () {
-            console.log(this.dataset.set);
             slideIndex = parseInt(this.dataset.set);
             showDivs(this.dataset.set);
             

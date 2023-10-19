@@ -102,13 +102,14 @@ def attraction_details(request,from_base_search_text=None):
         crowd_list = list(crowd)
         crowd_dict = [{"week":x['week'] , "crowd":x['crowd']} for x in crowd_list]
         crowd_dict = json.dumps(crowd_dict)
-        print(crowd_dict)
+        chinese_week = ['','一','二','三','四','五','六','日']
+        opentime_list = [{"week":chinese_week[int(x['week'])] , "opening":x['opening']} for x in crowd_list]
+        
         picture_list = get_picture_list(choose_attractions.place_id)
-        print(picture_list)
         #轉HTML格式
         detail_html = render_to_string(
             template_name="attraction_details_detail.html",
-            context={"detail": choose_attractions_dict,"crowd":crowd_dict,"picture_list":picture_list},
+            context={"detail": choose_attractions_dict,"crowd":crowd_dict,"picture_list":picture_list,"opentime_list":opentime_list},
         )
         detail_data_dict = {"attractions_detail_html": detail_html}
         return JsonResponse(data=detail_data_dict, safe=False)
