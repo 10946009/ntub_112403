@@ -1175,6 +1175,29 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
+    // 幻燈片(切換過來的)
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+        console.log(n);
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        console.log(x);
+        if (n > x.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = x.length };
+        for (i = 0; i < x.length; i++) {
+            console.log(i);
+            x[i].style.display = "none";
+        }
+        x[slideIndex - 1].style.display = "block";
+        console.log(x[slideIndex - 1]);
+    }
+        
     // focus點擊的地方（所有與旅客）
     var detail_photo__headerGrid_all = document.getElementById("detail_photo__headerGrid_all");//所有
     detail_photo__headerGrid_all.addEventListener("click", function () {
@@ -1189,7 +1212,7 @@
 
     // 切換相片和幻燈片功能
     var detail_photo__headerGrid_all = document.getElementById("detail_photo__headerGrid_all");
-    var show_detail_img = document.getElementById("show_detail_img");
+    var choice_slide = document.getElementsByClassName("choice_slide");
     var change_sigle_photo = document.getElementById("change_sigle_photo");
     var slide_this_photo = document.getElementById("slide_this_photo");
     var show_all_detail_photo = document.getElementById("show_all_detail_photo");
@@ -1220,26 +1243,6 @@
             show_all_detail_photo.style.display = "block";
         }
     });
-
-    // 幻燈片(切換過來的)
-    var slideIndex = 1;
-    showDivs(slideIndex);
-
-    function plusDivs(n) {
-        showDivs(slideIndex += n);
-    }
-
-    function showDivs(n) {
-        var i;
-        var x = document.getElementsByClassName("mySlides");
-        if (n > x.length) { slideIndex = 1 }
-        if (n < 1) { slideIndex = x.length };
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-        }
-        x[slideIndex - 1].style.display = "block";
-    }
-
 
     // loader動作（查看所有圖片）
     function showPhotoDetail() {
@@ -1445,14 +1448,12 @@
     var total_data = [];
     var data_crowdlist = [];
     var crowd = JSON.parse('{{crowd | safe}}')
-    console.log(crowd);
     for (var i = 0; i < crowd.length; i++) {
         for (var j = 0; j < crowd[i].crowd.length; j++) {
             data_crowdlist.push({
                 "Time": `2020–09–01 ${j}:00`,
                 "Volume": crowd[i].crowd[j]
             });
-            console.log(data_crowdlist);
         }
         total_data.push({
             "week": crowd[i].week,
@@ -1461,7 +1462,6 @@
         data_crowdlist = [];
     }
     var data = total_data[0].crowd;
-    console.log(data);
     {% comment %} var data = [
         { "Time": "2020–09–01 00:00", "Volume": 1523 },
         { "Time": "2020–09–01 01:00", "Volume": 1010 },
