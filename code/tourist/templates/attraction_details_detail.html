@@ -46,10 +46,11 @@
                 </div>
                 <div class="detail_img__headerGrid">
                     <div class="row">
-                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg" class="show_detail_img"
+                        
+                        <img src="/static/images/attractions/{% if picture_list.1 %}{{picture_list.1}}{% else %}{{picture_list.0}}{% endif %}" class="show_detail_img"
                             style=" width:100%;" alt="" onclick="showPhotoDetail()">
                         <div class="image-container">
-                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg" class="show_detail_img"
+                            <img src="/static/images/attractions/{% if picture_list.1 %}{{picture_list.2}}{% else %}{{picture_list.0}}{% endif %}" class="show_detail_img"
                                 style="width: 100%;margin-top: 2px;" alt="" onclick="showPhotoDetail()">
                             <a id="see_all_btn" class="see_all_btn" onclick="showPhotoDetail()">查看所有照片</a>
                         </div>
@@ -594,7 +595,7 @@
                                             class="show_detail_img"
                                             style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
                                         <div class="photo-text">
-                                            所有照片（10)
+                                            所有照片（{{picture_list.count}})
                                         </div>
                                     </div>
                                     <div class="detail_photo__headerGrid">
@@ -605,23 +606,22 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="detail_photo__header">
-                                    <div class="detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img"
-                                            style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
-                                        <div class="photo-text">
-                                            所有照片（10)
-                                        </div>
-                                    </div>
-                                    <div class="detail_photo__headerGrid"></div>
-                                </div>
                             </div>
                         </div>
                         <div class="col-8 photo_show_book">
                             <div class="show_all_detail_photo"
                                 style="margin-top: 10px; height: 500px; overflow-y: scroll;">
                                 <div class="show_detail_photo__header">
+                                    {% for  picture in picture_list %}
+                                    <div class="show_detail_photo__headerGrid">
+                                        <img src="/static/images/attractions/{{picture}}"
+                                            class="show_detail_img"
+                                            style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <!---->
+                                {% comment %} <div class="show_detail_photo__header">
                                     <div class="show_detail_photo__headerGrid">
                                         <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
                                             class="show_detail_img"
@@ -650,22 +650,7 @@
                                         <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
                                             class="show_detail_img" style="width: 100%;" alt="">
                                     </div>
-                                </div>
-                                <div class="show_detail_photo__header">
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img"
-                                            style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
-                                    </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
-                                    </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
-                                    </div>
-                                </div>
+                                </div> {% endcomment %}
                             </div>
                         </div>
                     </div>
