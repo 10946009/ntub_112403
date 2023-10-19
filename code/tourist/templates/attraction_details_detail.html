@@ -121,6 +121,7 @@
                                 </h5>
                                 <div style="margin-left:20px ;color: #707070;">
                                     <div class="row">
+                                        {% for c in commentlist  %}
                                         <div class="comment">
                                             <div class="avatar">
                                                 <img src="../static/images/peka.webp" alt="User Avatar">
@@ -140,6 +141,7 @@
                                                 </p>
                                             </div>
                                         </div>
+                                        {% endfor %}
                                         <div class="comment">
                                             <div class="avatar">
                                                 <img src="../static/images/an.jpeg" alt="User Avatar">
@@ -1435,7 +1437,27 @@
     // });
 
     //人潮分佈圖(有加時間,數量)
-    var data = [
+    var total_data = [];
+    var data_crowdlist = [];
+    var crowd = JSON.parse('{{crowd | safe}}')
+    console.log(crowd);
+    for (var i = 0; i < crowd.length; i++) {
+        for(var j =0; j < crowd[i].crowd.length; j++){ 
+            data_crowdlist.push({
+                "Time":`2020–09–01 ${j}:00`,
+                "Volume": crowd[i].crowd[j]
+            });
+            console.log(data_crowdlist);
+        }
+        total_data.push({
+            "week": crowd[i].week,
+            "crowd": data_crowdlist
+        });
+        data_crowdlist = [];
+    }
+    var data = total_data[0].crowd;
+    console.log(data);
+    {% comment %} var data = [
         { "Time": "2020–09–01 00:00", "Volume": 1523 },
         { "Time": "2020–09–01 01:00", "Volume": 1010 },
         { "Time": "2020–09–01 02:00", "Volume": 1304 },
@@ -1459,7 +1481,7 @@
         { "Time": "2020–09–01 20:00", "Volume": 1734 },
         { "Time": "2020–09–01 21:00", "Volume": 1372 },
         { "Time": "2020–09–01 22:00", "Volume": 1270 },
-        { "Time": "2020–09–01 23:00", "Volume": 1207 }];
+        { "Time": "2020–09–01 23:00", "Volume": 1207 }]; {% endcomment %}
     var ctx = document.getElementById('people_if_Chart').getContext('2d');
     var chart = new Chart(ctx, {
         type: 'line',
