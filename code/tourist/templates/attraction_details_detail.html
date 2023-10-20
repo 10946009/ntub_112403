@@ -1203,14 +1203,13 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
+    // 點擊還有一個答案的功能
     var comment_qa = document.getElementById("comment_qa");
     var qa_text = document.getElementById("qa_text");
-
     qa_text.addEventListener("click", function () {
         qa_text.style.display = "none";
         comment_qa.style.display = "block";
     });
-
 
     // 幻燈片(切換過來的)
     var slideIndex = 1;
