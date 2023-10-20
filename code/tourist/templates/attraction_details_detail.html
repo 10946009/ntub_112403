@@ -411,7 +411,26 @@
                                 <h6 style="margin-bottom: 20px;">有初一早上9點開，其他時間8點半</h6>
                                 <span style="margin-right: 20px;cursor: pointer;font-size: 18px;"><i
                                         class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i> 2</span>
-                                <h6 class="qa_text">還有1個答案</h6>
+                                <h6 class="qa_text" id="qa_text">還有1個答案</h6>
+                            </div>
+                        </div>
+                        <!-- （點開還有1個答案功能） -->
+                        <div id="comment_qa" style="display: none;">
+                            <div class="comment">
+                                <div class="avatar">
+                                    <img src="../static/images/an.jpeg" alt="User Avatar">
+                                </div>
+                                <div class="comment-content">
+                                    <h6 class="username">
+                                        安妮雅<br>
+                                        <span style="color: gray; font-size: 12px; font-style: italic;">5天前
+                                            &ensp;</span>
+                                    </h6>
+                                    <h6 style="margin-bottom: 20px;">有開，初一我有去！</h6>
+                                    <span style="margin-right: 20px;cursor: pointer;font-size: 18px;"><i
+                                            class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i>
+                                        2</span>
+                                </div>
                             </div>
                         </div>
                         <div class="comment">
@@ -465,11 +484,13 @@
                             <div class="comment-content">
                                 <h6 class="username">
                                     彭德<br>
-                                    <span style="color: gray; font-size: 12px; font-style: italic;">3天前 &ensp;</span>
+                                    <span style="color: gray; font-size: 12px; font-style: italic;">3天前
+                                        &ensp;</span>
                                 </h6>
                                 <h6 style="margin-bottom: 20px;">有 美食廣場 又便宜又好美。</h6>
                                 <span style="margin-right: 20px;cursor: pointer;font-size: 18px;"><i
-                                        class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i> 5</span>
+                                        class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i>
+                                    5</span>
                                 <h6 class="qa_text">還有3個答案</h6>
                             </div>
                         </div>
@@ -1182,6 +1203,15 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
+    var comment_qa = document.getElementById("comment_qa");
+    var qa_text = document.getElementById("qa_text");
+
+    qa_text.addEventListener("click", function () {
+        qa_text.style.display = "none";
+        comment_qa.style.display = "block";
+    });
+
+
     // 幻燈片(切換過來的)
     var slideIndex = 1;
     showDivs(slideIndex);
