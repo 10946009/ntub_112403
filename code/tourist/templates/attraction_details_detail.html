@@ -35,7 +35,7 @@
                 <i class="fa-regular fa-star-half-stroke" style="color:yellow;"></i>
                 {% endif %}
                 {% endfor %}
-                <span id="selectedRating">{{detail.rating}} / 5 ({{ detail.rating_total }})</span> 
+                <span id="selectedRating">{{detail.rating}} / 5 ({{ detail.rating_total }})</span>
         </div>
         <!-- 圖片 -->
         <div class="detail_img" style="margin-top: 10px;">
@@ -74,28 +74,30 @@
                             <!-- 地址(點擊連動到google導航) -->
                             <h6 style="margin-top: 20px; font-size: 20px;" id="attractions-detail-address">
                                 <i class="fa-solid fa-location-dot" style="color: rgb(201, 1, 1);"></i>
-                                地址：<a href="#">{{detail.address}}</a>
+                                地址：<a href="#" style="color: blue;">{{detail.address}}</a>
                             </h6>
                             <!-- 電話 -->
                             {% if detail.phone != "" %}<h6 id="attractions-detail-phone"
                                 style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-phone" style="color: rgb(9, 145, 2);"></i>
-                                電話：{{detail.phone }}
+                                電話：<a href="#" style="color: blue;">{{detail.phone }}</a>
                             </h6>{% endif %}
                             <!-- 營業時間 -->
                             <h6 style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-clock" style="color: rgb(2, 79, 161);"></i>
                                 營業時間：<br>
-                                {% for  opentime in opentime_list %}
-                                {{chinese_week}}
-                                禮拜{{opentime.week}}：{% for open in  opentime.opening %}{{open}}{% endfor %}<br>
-                                {% endfor %}
+                                <div style="margin-left: 25px; margin-top: 10px;">
+                                    {% for opentime in opentime_list %}
+                                    {{chinese_week}}
+                                    禮拜{{opentime.week}}：{% for open in opentime.opening %}{{open}}{% endfor %}<br>
+                                    {% endfor %}
+                                </div>
                                 <!-- <span style="color: red;">已打烊</span> <span style="color: rgb(21, 81, 140);">*開始營業時間：9:00</span> -->
                             </h6>
                             <!-- 建議停留時間 -->
                             <h6 style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-person-walking-luggage" style="color: rgb(174, 65, 150);"></i>
-                                建議停留時間：{{ detail.stay_time }}
+                                建議停留時間：{{ detail.stay_time }} 分鐘
                             </h6>
                             <!-- 旺季月份 -->
                             <h6 style="margin-top: 20px;font-size: 20px;">
@@ -619,11 +621,11 @@
                                 style="margin-top: 10px; height: 500px; overflow-y: scroll;">
                                 <div class="show_detail_photo__header">
                                     {% for picture in picture_list %}
-                                    <div class="choice_slide"data-set="{{forloop.counter}}">
+                                    <div class="choice_slide" data-set="{{forloop.counter}}">
                                         <div class="show_detail_photo__headerGrid">
                                             <img src="/static/images/attractions/{{picture}}" class="show_detail_img"
                                                 id="show_detail_img"
-                                                style="margin-top: 1px; width:100%; max-width: 100%;" alt="" >
+                                                style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -677,7 +679,8 @@
                                     </div>
                                     {% for picture in picture_list %}
                                     <div class="mySlides">
-                                        <div class="phototext">第{{forloop.counter}}頁&emsp;(共{{picture_list | length}}頁)</div>
+                                        <div class="phototext">第{{forloop.counter}}頁&emsp;(共{{picture_list | length}}頁)
+                                        </div>
                                         <img class="mySlide" src="/static/images/attractions/{{picture}}"
                                             style="width: 100%;">
                                     </div>
@@ -1197,7 +1200,7 @@
         }
         x[slideIndex - 1].style.display = "block";
     }
-        
+
     // focus點擊的地方（所有與旅客）
     var detail_photo__headerGrid_all = document.getElementById("detail_photo__headerGrid_all");//所有
     detail_photo__headerGrid_all.addEventListener("click", function () {
@@ -1225,7 +1228,7 @@
         choice_slide[i].addEventListener("click", function () {
             slideIndex = parseInt(this.dataset.set);
             showDivs(this.dataset.set);
-            
+
             if (isHidden) {
                 show_all_detail_photo.style.display = "none";
                 slide_this_photo.style.display = "block";
