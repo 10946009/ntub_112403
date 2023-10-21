@@ -234,7 +234,47 @@
                             鄰近景點
                         </h5>
                         <div class="row">
+                            {% for near in near_attractions %}
                             <div class="detail_near__header">
+                                <div class="detail_near__headerGrid">
+                                    <img src="/static/images/attractions/{{near.place_id}}_0.jpg"
+                                        class="show_detail_img" style="margin-top: 1px; width:100%;max-width: 100%;"
+                                        alt="">
+                                </div>
+                                <div class="detail_near__headerGrid">
+                                    <h4 data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                        data-center="transform: translateY(0px);opacity: 1" data-a-Id="{{ near.id }}"
+                                        onclick="toggleContent({{ near.id }})">
+                                        {{near.a_name }}</h3>
+                                        <!-- 星星數 -->
+                                        <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                            data-center="transform: translateY(0px);opacity: 1;">
+                                            {% for i in "12345" %}
+                                            {% if i|add:0 <= near.rating %} <span class="rating-star"
+                                                style="color: rgb(241, 226, 62);">
+                                                &#9733;</span>
+                                                {% else %}
+                                                <span class="rating-star">&#9733;</span>
+                                                {% endif %}
+                                                {% endfor %}
+                                        </div>
+                                        <!-- 評分 -->
+                                        <h6 style="margin-top:5px;"
+                                            data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                            data-center="transform: translateY(0px);opacity: 1">
+                                            綜合評分： <span id="list-selectedRating">{{ near.rating }}</span> / 5
+                                            ({{near.rating_total}}則評分)
+                                        </h6>
+                                        <!-- 總瀏覽人數 -->
+                                        <h6 style="color:#8b8a8a;"
+                                            data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                            data-center="transform: translateY(0px);opacity: 1">
+                                            <i class="fa-regular fa-eye"></i>&thinsp;瀏覽人數：<span>{{near.hit}}</span>人
+                                        </h6>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% comment %} <div class="detail_near__header">
                                 <div class="detail_near__headerGrid">
                                     <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
                                         class="show_detail_img" style="margin-top: 1px; width:100%;max-width: 100%;"
@@ -271,45 +311,7 @@
                                             <i class="fa-regular fa-eye"></i>&thinsp;瀏覽人數：<span>{{item.hit}}</span>人
                                         </h6>
                                 </div>
-                            </div>
-                            <div class="detail_near__header">
-                                <div class="detail_near__headerGrid">
-                                    <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                        class="show_detail_img" style="margin-top: 1px; width:100%;max-width: 100%;"
-                                        alt="">
-                                </div>
-                                <div class="detail_near__headerGrid">
-                                    <h4 data-bottom-top="transform: translateY(-20px);opacity: 0"
-                                        data-center="transform: translateY(0px);opacity: 1" data-a-Id="{{ item.id }}"
-                                        onclick="toggleContent({{ item.id }})">
-                                        {{item.a_name }}</h3>
-                                        <!-- 星星數 -->
-                                        <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
-                                            data-center="transform: translateY(0px);opacity: 1;">
-                                            {% for i in "12345" %}
-                                            {% if i|add:0 <= item.rating %} <span class="rating-star"
-                                                style="color: rgb(241, 226, 62);">
-                                                &#9733;</span>
-                                                {% else %}
-                                                <span class="rating-star">&#9733;</span>
-                                                {% endif %}
-                                                {% endfor %}
-                                        </div>
-                                        <!-- 評分 -->
-                                        <h6 style="margin-top:5px;"
-                                            data-bottom-top="transform: translateY(-20px);opacity: 0"
-                                            data-center="transform: translateY(0px);opacity: 1">
-                                            綜合評分： <span id="list-selectedRating">{{ item.rating }}</span> / 5
-                                            ({{item.rating_total}}則評分)
-                                        </h6>
-                                        <!-- 總瀏覽人數 -->
-                                        <h6 style="color:#8b8a8a;"
-                                            data-bottom-top="transform: translateY(-20px);opacity: 0"
-                                            data-center="transform: translateY(0px);opacity: 1">
-                                            <i class="fa-regular fa-eye"></i>&thinsp;瀏覽人數：<span>{{item.hit}}</span>人
-                                        </h6>
-                                </div>
-                            </div>
+                            </div> {% endcomment %}
                         </div>
                     </div>
                 </div>
