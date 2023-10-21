@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-1" style="margin-top: -70px; margin-left: 20px;">
-        <h1 onclick="toggleContent() " style="cursor: pointer;" title="上一頁"> <i class="fa-regular fa-circle-left"></i>
+        <h1 onclick="showInfo()" style="cursor: pointer;" title="上一頁"> <i class="fa-regular fa-circle-left"></i>
         </h1>
     </div>
     <div class="col-10">
@@ -235,7 +235,7 @@
                         </h5>
                         <div class="row">
                             {% for near in near_attractions %}
-                            <div class="detail_near__header">
+                            <div class="detail_near__header" onclick="showInfo({{ near.id }})">
                                 <div class="detail_near__headerGrid">
                                     <img src="/static/images/attractions/{{near.place_id}}_0.jpg"
                                         class="show_detail_img" style="margin-top: 1px; width:100%;max-width: 100%;"
@@ -244,7 +244,7 @@
                                 <div class="detail_near__headerGrid">
                                     <h4 data-bottom-top="transform: translateY(-20px);opacity: 0"
                                         data-center="transform: translateY(0px);opacity: 1" data-a-Id="{{ near.id }}"
-                                        onclick="toggleContent({{ near.id }})">
+                                        >
                                         {{near.a_name }}</h3>
                                         <!-- 星星數 -->
                                         <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
@@ -283,7 +283,7 @@
                                 <div class="detail_near__headerGrid">
                                     <h4 data-bottom-top="transform: translateY(-20px);opacity: 0"
                                         data-center="transform: translateY(0px);opacity: 1" data-a-Id="{{ item.id }}"
-                                        onclick="toggleContent({{ item.id }})">
+                                        onclick="showInfo({{ item.id }})">
                                         {{item.a_name }}</h3>
                                         <!-- 星星數 -->
                                         <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
