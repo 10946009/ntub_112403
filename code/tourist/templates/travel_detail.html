@@ -98,7 +98,7 @@
         
         .user-info {
             display: flex;
-            align-items: center;
+            align-items: left;
         }
         
         .user-info img {
@@ -111,6 +111,37 @@
         
         .comment {
             margin-left: 10px;
+        }
+        .image-description {
+            margin-top: 10px;
+            text-align: left;
+        }
+        
+        .image-description h3 {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .image-description p {
+            font-size: 16px;
+            margin: 0;
+        }
+        .itinerary {
+            margin: 20px 0;
+        }
+        
+        .day-box {
+            background-color: yellow;
+            display: inline-block;
+            padding: 10px;
+            border: 2px solid #ffcc00;
+            border-radius: 5px;
+        }
+        
+        .day-box span {
+            font-weight: bold;
+            font-size: 18px;
         }
 </style>
 {% endblock %}
@@ -147,6 +178,23 @@
                 <div class="main-image">
                     <img src="https://via.placeholder.com/720x480" class="img-responsive custom-image">
                 </div>
+                <div class="image-description">
+                    <h3>關於</h3>
+                    <p>在京都隱藏的寶石的自行車探索中，您將擊敗人群並參觀更加寧靜的城市。從禪宗花園到被聯合國教科文組織列為金閣寺的寺廟，這裡是您在戶外活動中度過美好時光的完美方式。您還將從導遊那裡了解日本的歷史和文化。而且你可以打包燈，因為提供了可折疊的自行車和頭盔。</p>
+                </div>
+                <section class="itinerary">
+                    <div class="day-box">
+                        <span>Day 1</span>
+                    </div>
+                    <p>高鐵左營站 > 欣興租車 > 左營高鐟站前店 > 汽機車出租推薦 > 佳適旅舍 > 站前館 > くら寿司 > 藏壽司 > 高雄時代大道店(全球旗艦店) > 鈴鹿賽道樂園 > 瑞豐夜市 > 愛河愛之船 > 佳適旅舍 > 站前館</p>
+                </section>
+                
+                <section class="itinerary">
+                    <div class="day-box">
+                        <span>Day 2</span>
+                    </div>
+                    <p>高鐵左營站 > 欣興租車 > 左營高鐟站前店 > 汽機車出租推薦 > 佳適旅舍 > 站前館 > くら寿司 > 藏壽司 > 高雄時代大道店(全球旗艦店) > 鈴鹿賽道樂園 > 瑞豐夜市 > 愛河愛之船 > 佳適旅舍 > 站前館</p>
+                </section>
             </div>
             <div class="small-images">
                 <div class="small-image">
