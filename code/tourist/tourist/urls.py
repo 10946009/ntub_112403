@@ -28,7 +28,8 @@ from myapp.views import (
     attraction_details,
     travel_detail,
     share,
-    comment
+    comment,
+    user_edit
 )
 
 
@@ -70,7 +71,7 @@ urlpatterns = [
     ),
     path("base_search/", attraction_details.attraction_details_search,name="search_results_base"),
     # path('test/',views.test_input),
-    path("useredit/", old_views.user_edit),
+    path("useredit/", user_edit.user_edit),
     path("add_favorite/", favorite.add_favorite),  # 沒有頁面
     path("del_favorite/<int:a_id>", favorite.del_favorite),  # 沒有頁面
     # path('attraction_details/<int:a_id>',views.attraction_details),
