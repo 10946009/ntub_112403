@@ -9,72 +9,109 @@
     <title>行程詳細頁面</title>
 <link rel="stylesheet" href="travel_detail.css">
 <style>
-    body {
-        margin-top: 60px;
-    }
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+    
+        .container {
+            width: 80%;
+            margin: 80px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        header {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            align-items: center;
+            padding: 10px;
+        }
+    
+        .title-buttons {
+            display: flex;
+            align-items: center;
+        }
+    
+        .like-button, .share-button {
+            margin-left: 10px;
+        }
+    
+        .page-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+            margin-right: auto;
+        }
+    
+        .main-content {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            width: 90%;
+        }
+    
+        .image-container {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+    
+        .main-image, .small-image {
+            width: 100%;
+            max-height: 100%;
+        }
+    
+        .small-image + .small-image {
+            margin-top: 6px;
+        }
+        .title-info-container {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            align-items: center;
+            padding: 10px;
+        }       
 
-    .container {
-        width: 80%;
-        margin: 0 auto;
-    }
+        .title-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-right: auto;
+        }
 
-    .title-buttons {
-        float: right;
-    }
-
-    .like-button, .share-button {
-        margin-left: 10px;
-    }
-
-    .page-title {
-        font-size: 24px;
-        font-weight: bold;
-    }
-
-    .provider-info {
-        color: #555;
-    }
-
-    .comment-count {
-        color: #555;
-        cursor: pointer;
-    }
-
-    .comment-count:hover {
-        text-decoration: underline;
-    }
-
-    .scroll-to-comments {
-        cursor: pointer;
-        color: #007BFF;
-    }
-
-    .scroll-to-comments:hover {
-        text-decoration: underline;
-    }
-
-    .image-container {
-        display: flex;
-        align-items: flex-start;
-    }
-
-    .main-image {
-        flex: 2;
-        max-width: 100%;
-        height: auto;
-    }
-
-    .small-images {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .small-image {
-        max-width: 100%;
-        height: auto;
-        margin-bottom: 10px;
-    }
+        .provider, .reviews-count {
+            margin: 0;
+        }
+        .review {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-info img {
+            margin-right: 10px;
+        }
+        
+        .rating, .comment {
+            flex-grow: 1;
+        }
+        
+        .comment {
+            margin-left: 10px;
+        }
 </style>
 {% endblock %}
 
@@ -83,62 +120,71 @@
 {% block body %}
 {% comment %} 內容在這~~~ {% endcomment %}
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行程詳細頁面</title>
+    <link rel="stylesheet" href="travel_detail.css">
+</head>
 <body>
-    <header>
-        <div class="container" style="width: 80%;">
-        <h1 class="page-title">來自台北的千島湖和坪林茶園</h1>
-        <div class="title-buttons">
-            <div class="like-button">❤️</div>
-            <div class="share-button">分享</div>
+    <div class="container">
+        <header>
+            <h1 class="page-title">來自台北的千島湖和坪林茶園</h1>
+            <div class="title-buttons">
+                <div class="share-button">分享</div>
+                <div class="like-button">❤️</div>
+            </div>
+        </header>
+        <div class="title-info-container">
+            <div class="title-info">
+                <p class="provider">提供者：XXX</p>
+                <p class="reviews-count">有幾則評論：XX</p>
+            </div>
         </div>
-        <p class="provider-info">提供者：宏祥旅行社 - 台灣旅遊首選</p>
-        <p class="comment-count">有35則評論 <span class="scroll-to-comments">查看評論</span></p>
-    </header>
-    
-    <section class="image-container">
-        <div class="container">
-            <div class="main-image">
-                <img src="../static/images/Daan.jpeg" class="img-responsive custom-image">
+        <section class="main-content">
+            <div class="image-container">
+                <div class="main-image">
+                    <img src="https://via.placeholder.com/720x480" class="img-responsive custom-image">
+                </div>
             </div>
             <div class="small-images">
                 <div class="small-image">
-                    <img src="../static/images/Daan.jpeg" class="img-responsive custom-image">
+                    <img src="https://via.placeholder.com/440x237" class="img-responsive custom-image">
                 </div>
                 <div class="small-image">
-                    <img src="../static/images/Daan.jpeg" class="img-responsive custom-image">
+                    <img src="https://via.placeholder.com/440x237" class="img-responsive custom-image">
                 </div>
             </div>
-        </div>
-    </section>
-    <section class="reviews">
-        <div class="container" style="width: 80%;">
-        <h2>評論</h2>
-        <div class="review">
-            <div class="user-info">
-                <img src="user-avatar.jpg" alt="cle727">
-                <p>用戶名稱</p>
+        </section>
+        <section class="reviews">
+            <h2>評論</h2>
+            <div class="review">
+                <div class="user-info">
+                    <img src="user-avatar.jpg" alt="cle727">
+                    <p>用戶名稱</p>
+                </div>
+                <div class="rating">
+                    <span>評分：5/5</span>
+                </div>
+                <div class="comment">
+                    <p>這個行程太棒了！我喜歡每一刻。</p>
+                </div>
             </div>
-            <div class="rating">
-                <span>評分：5/5</span>
+            <div class="review">
+                <div class="user-info">
+                    <img src="user-avatar.jpg" alt="John F">
+                    <p>另一位用戶</p>
+                </div>
+                <div class="rating">
+                    <span>評分：4/5</span>
+                </div>
+                <div class="comment">
+                    <p>我在這次旅行中度過了美好的時光。強烈推薦！</p>
+                </div>
             </div>
-            <div class="comment">
-                <p>這個行程太棒了！我喜歡每一刻。</p>
-            </div>
-        </div>
-        <div class="review">
-            <div class="user-info">
-                <img src="user-avatar.jpg" alt="John F">
-                <p>另一位用戶</p>
-            </div>
-            <div class="rating">
-                <span>評分：4/5</span>
-            </div>
-            <div class="comment">
-                <p>我在這次旅行中度過了美好的時光。強烈推薦！</p>
-            </div>
-        </div>
-        <!-- 添加更多評論 -->
-    </section>
+        </section>
+    </div>
 </body>
 </html>
 {% endblock body %}
