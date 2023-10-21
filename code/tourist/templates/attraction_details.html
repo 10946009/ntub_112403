@@ -728,6 +728,8 @@ endcomment %}
                 const attractions_detail_div = $('#id01');
                 attractions_detail_div.html(response['attractions_detail_html']);
                 console.log(attractions_detail_div)
+                content1.style.display = "none";
+                content2.style.display = "block";
                 // 取得模態框元素
                 // var showInfo = document.getElementById("id01");
                 // // 將模態框的顯示樣式設定為 "block"，顯示模態框
@@ -739,8 +741,6 @@ endcomment %}
                 console.log("AJAX請求失敗: " + error);
             }
         });
-            content1.style.display = "none";
-            content2.style.display = "block";
         }else{
             content1.style.display = "block";
             content2.style.display = "none";

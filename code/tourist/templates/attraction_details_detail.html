@@ -220,11 +220,21 @@
                             </h6> -->
 
                             <!-- 提問按鈕 -->
+                            {% if request.user.is_authenticated %}
+                                <div style="text-align: center;">
+                                    <h6 class="ask_qa" id="ask_qa" onclick="showLoaderAndContent()">
+                                        提出問題
+                                    </h6>
+                                </div>
+                            {% else %}
+                            <a href="/login">
                             <div style="text-align: center;">
-                                <h6 class="ask_qa" id="ask_qa" onclick="showLoaderAndContent()">
-                                    提出問題
+                                <h6 class="ask_qa" id="ask_qa">
+                                    登入後即可提問
                                 </h6>
                             </div>
+                        </a>
+                            {% endif %}
                         </div>
                     </div>
                     <!-- 鄰近景點 -->
@@ -342,7 +352,7 @@
                             </div>
                             <div class="comment-content">
                                 <h6 class="username">
-                                    安妮雅<br>
+                                    {{user.username}}<br>
                                     <span style="color: gray; font-size: 12px; font-style: italic;">公開發佈 &ensp;</span>
                                     <i class="icon fa-solid fa-circle-exclamation" id="myIcon"></i>
                                     <div class="tooltip1" id="myTooltip1">

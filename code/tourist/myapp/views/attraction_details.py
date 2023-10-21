@@ -57,9 +57,14 @@ def attraction_details(request, from_base_search_text=None):
     # all_type_name = list(ATT_TYPE_CHINESE.keys())
     all_type_name_json = json.dumps(ATT_TYPE_CHINESE)
 
+    
     # 取得搜尋到的結果
     search_list = []
-    user = request.user.id
+    if request.user.id:
+        user = User.objects.get(id=request.user.id)
+    else:
+        user = None
+
     attractions_search = list(Attractions.objects.values_list("a_name", flat=True))
     attractions_search_json = json.dumps(attractions_search)
     # print(request.GET)
@@ -88,7 +93,7 @@ def attraction_details(request, from_base_search_text=None):
         search_list = search_list_and + search_list_or
         # 判斷是否已收藏
         for index, search in enumerate(search_list):
-            if Favorite.objects.filter(u_id=user, a_id=search["id"]).exists():
+            if user and Favorite.objects.filter(u_id=user.id, a_id=search["id"]).exists():
                 search_list[index].setdefault("is_favorite", "1")
             else:
                 search_list[index].setdefault("is_favorite", "0")
@@ -114,9 +119,11 @@ def attraction_details(request, from_base_search_text=None):
         choose_attractions.hit += 1
         choose_attractions.save()
         choose_attractions_dict = model_to_dict(choose_attractions)
+        # 判斷是否已收藏
+        
         is_favorite = Favorite.objects.filter(
-            u_id=user, a_id=choose_attractions.id
-        ).exists()
+            u_id=user.id, a_id=choose_attractions.id
+        ).exists() if user  else False
         # 取得擁擠資訊
         crowd = (
             Crowd_Opening.objects.filter(a_id=choose_attractions.id)
@@ -169,9 +176,9 @@ def attraction_details_att_type(request):
     # 判斷search_list中是否已收藏的景點
 
 
-def is_favorite_list(user, search_list):
+def is_favorite_list(userobject, search_list):
     for index, search in enumerate(search_list):
-        if Favorite.objects.filter(u_id=user, a_id=search["id"]).exists():
+        if userobject and Favorite.objects.filter(u_id=userobject.id, a_id=search["id"]).exists():
             search_list[index].setdefault("is_favorite", "1")
         else:
             search_list[index].setdefault("is_favorite", "0")
