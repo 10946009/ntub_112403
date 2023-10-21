@@ -400,16 +400,7 @@ endcomment %}
     // 本文內容切換
     function toggleContent(aid) {
         showInfo(aid);
-        var content1 = document.getElementById("replaceable-content");
-        var content2 = document.getElementById("id01");
 
-        if (content1.style.display === "none") {
-            content1.style.display = "block";
-            content2.style.display = "none";
-        } else {
-            content1.style.display = "none";
-            content2.style.display = "block";
-        }
     }
     // skrollr滑鼠滾動
     var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -742,6 +733,9 @@ endcomment %}
                 // var showInfo = document.getElementById("id01");
                 // // 將模態框的顯示樣式設定為 "block"，顯示模態框
                 // showInfo.style.display = "block";
+                var content1 = document.getElementById("replaceable-content");
+                var content2 = document.getElementById("id01");
+        
                 if (content1.style.display === "none") {
                     content1.style.display = "block";
                     content2.style.display = "none";
