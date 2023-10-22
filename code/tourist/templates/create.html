@@ -15,17 +15,17 @@
         <li class="nav-item" role="presentation">
           <button class="create-nav-link tab_a active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
             type="button" role="tab" aria-controls="home" aria-selected="true"
-            onclick="saveTabState('home')">建立行程</button>
+            >建立行程</button>
         </li>
         <li class="nav-item" role="presentation">
           <button class="create-nav-link tab_a" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
             type="button" role="tab" aria-controls="contact" aria-selected="false"
-            onclick="saveTabState('contact')">我的收藏</button>
+            >我的收藏</button>
         </li>
         <li class="nav-item" role="presentation">
           <button class="create-nav-link tab_a" id="recommend-tab" data-bs-toggle="tab" data-bs-target="#recommend"
             type="button" role="tab" aria-controls="recommend" aria-selected="false"
-            onclick="saveTabState('recommend')">推薦景點</button>
+            >推薦景點</button>
         </li>
       </ul>
     </div>
@@ -87,7 +87,8 @@
                     <div class="tabD">
                       <span id="tabDL">使用者位置：</span>
                       {% comment %} <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation" value="{{local_address}}"> {% endcomment %}
-                      <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation">
+                      <label class="input_txt" id="userLocation"> {{ location_name }}</label> <p></p>
+                      {% comment %} <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation" value="{{ location_name }}"> {% endcomment %}
                       <button type="button" id="nowLocationButton">取得目前位置</button>
                       <button type="button" id="mapButton">選擇位置</button>
                       <button type="button" id="okButton">確認</button>
@@ -107,7 +108,7 @@
                 {% comment %} ct_attractions_co_list
                 ct_attractions_detail_list {% endcomment %}
                 <div id="OrderAttractions" style="color: black;">
-{% comment %} 
+                {% comment %} 
                   <div class="list" style="cursor: pointer;">
                     <div class="innerlist" draggable="true">
                         <p style="font-size: 22px;font-weight: bold;">景點名稱：</p>
@@ -461,8 +462,8 @@
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
       //if(userLocation.value==''){}
-      userLocation.value = latitude + ',' + longitude;
-      console.log(userLocation.value);
+      userLocation.textContent = latitude + ',' + longitude;
+      console.log(userLocation.textContent);
     }
 
     function error() {
