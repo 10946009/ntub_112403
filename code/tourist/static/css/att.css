@@ -1300,7 +1300,7 @@ img {
 
 #people_if_Chart {
     margin: auto;
-    margin-top: 50px;
+    margin-top: 30px;
     /* background: #f9e498; */
     display: block;
 }
@@ -1387,7 +1387,7 @@ img {
     padding-top: 150px;
 }
 
-/* .all_ask_qa {
+.all_ask_qa {
     display: none;
     position: fixed;
     z-index: 1;
@@ -1398,8 +1398,10 @@ img {
     overflow: auto;
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
-    padding-top: 150px;
-} */
+    padding-top: 30px;
+}
+
+
 
 
 /* 詢問問題框框 */
@@ -1438,13 +1440,15 @@ img {
 .tooltip2 {
     width: 40px;
     display: none;
-    right: 23%;
+    right: 20%;
     position: absolute;
     background-color: #333;
     color: #fff;
     padding: 5px;
     border-radius: 5px;
     font-size: 14px;
+    cursor: pointer;
+    top: 100%;
 }
 
 /* 取消,張貼div */
@@ -1477,7 +1481,7 @@ img {
 .all_ask_qa_container {
     background: rgb(221, 219, 219);
     border: black solid;
-    width: 70%;
+    width: 60%;
     margin: 50px auto;
     padding: 20px 40px 20px 40px;
 }
@@ -1491,7 +1495,7 @@ img {
 /* 所有問題x按鈕 */
 .all_close {
     position: absolute;
-    right: 25px;
+    right: 0;
     top: 0;
     color: #000;
     font-size: 35px;
@@ -1556,7 +1560,10 @@ img {
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
 } */
-.loader {
+
+/* 載入圈圈 */
+.loader,
+.all_loader {
     border: 8px solid #f3f3f3;
     border-radius: 50%;
     border-top: 8px solid orange;
@@ -1589,7 +1596,8 @@ img {
 }
 
 /* loader背景黑色 */
-.background-mask {
+.background-mask,
+.all_background-mask {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -1603,6 +1611,309 @@ img {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* 分享個別景點 */
+.share_an_att {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 140px;
+}
+
+/* 分享框框 */
+.share_an_att_container {
+    background: rgb(221, 219, 219);
+    border: black solid;
+    border-radius: 10px;
+    width: 25%;
+    margin: 50px auto;
+    padding-bottom: 10px;
+    /* padding: 20px; */
+}
+
+/* 分享彈跳窗 */
+.share_att_container {
+    padding-top: 10px;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-bottom: rgb(185, 182, 182) solid;
+}
+
+#comment_share:hover {
+    background-color: rgb(179, 176, 176);
+}
+
+/* 關閉分享及照片x */
+#closeShare,
+#closePhoto {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+#closeShare:hover,
+#closePhoto:hover {
+    color: red;
+    cursor: pointer;
+}
+
+/* share tips提示(copy) */
+#share_tips {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+}
+
+/* share tips提示(js裡創的class(讓tips show) */
+#share_tips.copy {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+/* 查看更多圖片（背景黑色） */
+.photo_att {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 30px;
+}
+
+/* 景點圖片框框 */
+.photo_big_att_container {
+    background: rgb(221, 219, 219);
+    border: black solid;
+    border-radius: 10px;
+    width: 90%;
+    margin: 50px auto;
+    padding-bottom: 10px;
+    /* padding: 20px; */
+}
+
+/* 景點圖片彈跳窗 */
+.photo_att_container {
+    padding: 20px 20px 10px 10px;
+    position: relative;
+    border-bottom: rgb(185, 182, 182) solid;
+}
+
+/* 相簿 */
+.photo_book {
+    padding: 20px 30px 20px 40px;
+    border-right: rgb(185, 182, 182) solid;
+}
+
+/* grid查看所有圖片的部分 */
+.detail_photo {
+    max-width: 100%;
+    /* margin: 50px auto; */
+    cursor: pointer;
+}
+
+.detail_photo__header {
+    display: grid;
+    grid-template-columns: 5fr 5fr;
+    grid-gap: 2px;
+    margin-bottom: 2px;
+}
+
+.detail_photo__headerGrid {
+    position: relative;
+    text-align: center;
+}
+
+.show_detail_photo:hover {
+    opacity: 0.7;
+}
+
+/* 相簿左下角小文字 */
+.photo-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: #fff;
+    padding: 5px;
+    font-size: 14px;
+}
+
+/* 右邊圖片集 */
+.photo_show_book {
+    padding: 10px 40px 40px 10px;
+}
+
+.show_all_detail_photo {
+    max-width: 100%;
+    /* margin: 50px auto; */
+    cursor: pointer;
+}
+
+.show_detail_photo__header {
+    display: grid;
+    grid-template-columns: 5fr 5fr 5fr;
+    grid-gap: 2px;
+    margin-bottom: 2px;
+}
+
+.show_detail_photo__headerGrid {
+    text-align: center;
+}
+
+.show_detail_photo:hover {
+    opacity: 0.7;
+}
+
+/* 所有照片（focus） */
+#detail_photo__headerGrid_all {
+    border: 1px solid black;
+}
+
+/* 左鍵 */
+.photo_btn_left {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    position: absolute;
+    top: 45%;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    border-radius: 50px;
+    width: 35px;
+}
+
+/* 右鍵 */
+.photo_btn_right {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    position: absolute;
+    top: 45%;
+    right: 0;
+    background-color: rgb(0, 0, 0);
+    border-radius: 50px;
+    width: 35px;
+}
+
+.photo_btn_right:hover,
+.photo_btn_left:hover {
+    background-color: rgb(101, 100, 100);
+}
+
+/* 圖片頁碼 */
+.phototext {
+    background-color: rgba(0, 0, 0, 0.293);
+    color: #ffffff;
+    font-size: 16px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+/* 切換幻燈片與相片集 */
+.change_sigle_photo {
+    cursor: pointer;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border-radius: 30px;
+    background-color: #000;
+    color: white;
+}
+
+.change_sigle_photo:hover {
+    background-color: rgb(101, 100, 100);
+}
+
+/* 幻燈片下方說明文字 */
+.illustrate_photo {
+    color: white;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.293);
+    height: 25%;
+    width: 100%
 }
 
 /* .Cart__product {

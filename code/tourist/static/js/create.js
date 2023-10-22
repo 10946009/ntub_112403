@@ -92,14 +92,37 @@ $(function () {
   });
 });
 
-var dialog, x;
-window.onload = function () {
-  dialog = document.getElementById("dialog");
-  x = document.getElementById("x");
-}
-function showDialog() {
-  dialog.style.display = "block";
-}
-function hideDialog() {
-  dialog.style.display = "none";
-}
+// 托拽
+var list = document.querySelector('.list')
+var currentLi
+list.addEventListener('dragstart', (e) => {
+  e.dataTransfer.effectAllowed = 'move'
+  currentLi = e.target
+  setTimeout(() => {
+    currentLi.classList.add('moving')
+  })
+})
+
+list.addEventListener('dragenter', (e) => {
+  e.preventDefault()
+  if (e.target === currentLi || e.target === list) {
+    return
+  }
+  var liArray = Array.from(list.childNodes)
+  var currentIndex = liArray.indexOf(currentLi)
+  var targetindex = liArray.indexOf(e.target)
+
+  if (currentIndex < targetindex) {
+
+    list.insertBefore(currentLi, e.target.nextElementSibling)
+  } else {
+
+    list.insertBefore(currentLi, e.target)
+  }
+})
+list.addEventListener('dragover', (e) => {
+  e.preventDefault()
+})
+list.addEventListener('dragend', (e) => {
+  currentLi.classList.remove('moving')
+})

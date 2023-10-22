@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Document</title>
+</head>
+<style>
+  html {
+    overflow-x: hidden;
+  }
+
+  body {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .mytravel {
+    margin: 0 auto;
+  }
+
+  .tab-pane {
+    display: none;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .tab-pane.active {
+    display: block;
+    height: auto;
+  }
+
+  .hidden-details {
+    display: none;
+  }
+
+  .details {
+    margin-top: 10px;
+  }
+
+
+
+  img {
+    width: 100%;
+  }
+
+
+  .classifier li {
+    list-style-type: none;
+    float: left;
+    margin-right: 10px;
+  }
+
+  .red {
+    background-color: red;
+  }
+
+  .gray {
+    background-color: gray;
+  }
+
+  .yellow {
+    background-color: yellow;
+  }
+
+  .blue {
+    background-color: blue;
+  }
+
+  .heart_icon {
+    padding: 10px;
+    background-color: rgb(155, 155, 155);
+    border-radius: 50%;
+    margin: 10px;
+    color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+  }
+
+  /*收藏動畫*/
+  /* .active{
+	color: #E1251B;
+	animation: heart 0.5s linear;
+	transform: scale(1.2);
+} */
+  #bg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, .4);
+  }
+
+  #alertbox {
+    margin: 200px auto 0;
+    text-align: center;
+    padding-top: 25px;
+    width: 300px;
+    height: 85px;
+    background: #FFF;
+    border-radius: 3px;
+    box-shadow: 2px 2px rgba(0, 0, 0, .3);
+  }
+
+
+
+  .sysname {
+    font-size: 56px;
+    font-family: Comic Sans MS;
+    text-shadow: 0.1em 0.1em rgba(0, 0, 0, 0.5);
+  }
+  .more_btn{
+    width: auto;
+    border: 1px none rgb(128, 128, 128);
+    border-radius: 10%;
+    padding: 10px 15px;
+    background-color: rgb(255, 240, 126);
+    box-shadow: 3px 2px 3px rgb(146, 146, 146);
+    text-shadow: 3px 2px 3px rgb(146, 146, 146);
+    font-weight: bold;
+    }
+</style>
+
+<body>
+
+  <!-- 歷史行程 -->
+  <div class="row mytravel">
+    <div class="row">
+      <div class="col-4" style="padding: 0;">
+        <img src="../static/images/cloud1.png" class="img-responsive" width="100%" alt=""><!-- ...行程内容... -->
+      </div>
+      <div class="col-8">
+        <p>行程名稱：</p>
+        <p>天數：</p>
+        <button class="more_btn details1btn" data-target="details1">詳細資料</button>
+      </div>
+    </div>
+  </div>
+  <div id="details1" class="hidden-details details">
+    <ul class="nav nav-tabs flex my-nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link tab_a active" id="first-tab" data-bs-toggle="tab" data-bs-target="#first" type="button"
+          role="tab" aria-controls="first" aria-selected="true">第一天</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link tab_a" id="second-tab" data-bs-toggle="tab" data-bs-target="#second" type="button"
+          role="tab" aria-controls="second" aria-selected="false">第二天</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link tab_a" id="third-tab" data-bs-toggle="tab" data-bs-target="#third" type="button"
+          role="tab" aria-controls="third" aria-selected="false">第三天</button>
+      </li>
+    </ul>
+    <!-- ...详细内容... -->
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="first" role="tabpanel" aria-labelledby="first-tab">
+        我是A1的內容<br>
+        我是A1的內容<br>
+        我是A1的內容<br>
+        我是A1的內容<br>
+      </div>
+      <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
+        我是A2的內容<br>
+        我是A2的內容<br>
+        我是A2的內容<br>
+        我是A2的內容<br>
+      </div>
+      <div class="tab-pane fade" id="third" role="tabpanel" aria-labelledby="third-tab">
+        我是A3的內容<br>
+        我是A3的內容<br>
+        我是A3的內容<br>
+        我是A3的內容<br>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mytravel">
+    <div class="row">
+      <div class="col-4" style="padding: 0;">
+        <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt=""><!-- ...行程内容... -->
+      </div>
+      <div class="col-8">
+        <p>行程名稱：</p>
+        <p>天數：</p>
+        <button class="more_btn details2btn" data-target="details2">詳細資料</button>
+      </div>
+    </div>
+  </div>
+  <div id="details2" class="hidden-details details">
+    <ul class="nav nav-tabs flex my-nav-tabs" id="myTab2" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link tab_a active" id="first2-tab" data-bs-toggle="tab" data-bs-target="#first2"
+          type="button" role="tab" aria-controls="first2" aria-selected="true">B第一天</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link tab_a" id="second2-tab" data-bs-toggle="tab" data-bs-target="#second2" type="button"
+          role="tab" aria-controls="second2" aria-selected="false">B第二天</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link tab_a" id="third2-tab" data-bs-toggle="tab" data-bs-target="#third2" type="button"
+          role="tab" aria-controls="third2" aria-selected="false">B第三天</button>
+      </li>
+    </ul>
+    <!-- ...详细内容... -->
+    <div class="tab-content" id="myTabContent2">
+      <div class="tab-pane fade show active" id="first2" role="tabpanel" aria-labelledby="first2-tab">
+        我是B1的內容<br>
+        我是B1的內容<br>
+        我是B1的內容<br>
+        我是B1的內容<br>
+      </div>
+      <div class="tab-pane fade" id="second2" role="tabpanel" aria-labelledby="second2-tab">
+        我是B2的內容<br>
+        我是B2的內容<br>
+        我是B2的內容<br>
+        我是B2的內容<br>
+      </div>
+      <div class="tab-pane fade" id="third2" role="tabpanel" aria-labelledby="third2-tab">
+        我是B3的內容<br>
+        我是B3的內容<br>
+        我是B3的內容<br>
+        我是B3的內容<br>
+      </div>
+    </div>
+  </div>
+<!-- 
+  <h1>Al</h1>
+  <button id="click">click</button>
+  <div id="bg">
+    <div id="alertbox">
+      <p>good</p>
+      <button id="ok">ok</button>
+    </div>
+  </div> -->
+
+  <div>
+    <i class="fa-solid fa-heart heart_icon"></i>
+  </div>
+  <!-- 
+    <div id="button">
+        <button value="all">ALL</button>
+        <button value="red">RED</button>
+        <button value="blue">BLUE</button>
+        <button value="yellow">YELLOW</button>
+        <button value="gray">GRAY</button>
+        <button value="cake">CAKE</button>
+        <button value="cake1">1</button>
+        <button value="cake2">2</button>
+    </div>
+    <ul class="classifier">
+        <li class="red cake1"><img src="../網頁練習/images/cupcake.jpg" alt=""  height="150"></li>
+        <li class="gray cake"><img src="../網頁練習/images/cake04.jpg" alt=""  height="150"></li>
+        <li class="yellow cake1"><img src="../網頁練習/images/cake01.jpg" alt=""  height="150"></li>
+        <li class="blue cake"><img src="../網頁練習/images/cake02.jpg" alt=""  height="150"></li>
+        <li class="red cake2"><img src="../網頁練習/images/cake03.jpg" alt=""  height="150"></li>
+    </ul> -->
+</body>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/jquery-3.7.0.min.js"></script>
+<script src="../static/js/owl.carousel.min.js"></script>
+<script>
+  $(function(){
+    $(".details1btn").click(function(){
+      $("#details1").slideToggle('slow',function(){
+        if($(this).is(":visible")){
+          $(".details1btn").text("收起資料")
+          $(".details1btn").css("background-color","rgb(255, 85, 85)")
+        }else{
+          $(".details1btn").text("詳細資料")
+          $(".details1btn").css("background-color","")
+        }
+      })
+    })
+    $(".details2btn").click(function(){
+      $("#details2").slideToggle('slow',function(){
+        if($(this).is(":visible")){
+          $(".details2btn").text("收起資料")
+          $(".details2btn").css("background-color","rgb(255, 85, 85)")
+        }else{
+          $(".details2btn").text("詳細資料")
+          $(".details2btn").css("background-color","")
+        }
+      })
+    })
+  })
+  // const detailButtons = document.querySelectorAll(".more_btn");
+
+  // // 为每个按钮添加点击事件监听
+  // detailButtons.forEach(button => {
+  //   button.addEventListener("click", function () {
+  //     const targetId = button.getAttribute("data-target");
+  //     const targetDiv = document.getElementById(targetId);
+
+  //     if (targetDiv) {
+  //       // 切换目标 div 的显示状态
+  //       targetDiv.classList.toggle("hidden-details");
+  //       if (targetDiv.classList.contains("hidden-details")) {
+  //         button.textContent = "詳細資料";
+  //         button.style.color = ""
+  //         button.style.backgroundColor = "";
+  //       } else {
+  //         button.textContent = "收起資料";
+  //         button.style.textShadow = "3px 2px 3px rgb(60, 60, 60)";
+  //         button.style.backgroundColor = "rgb(255, 85, 85)";
+  //       }
+  //     }
+  //   });
+  // });
+
+  // $(function(){
+  //     $("button").click(function(){
+  //         var target = $(this).attr("value");
+
+
+  //         $(".classifier li").each(function(){
+  //             $(this).animate({"opacity":0},300,function(){
+  //                 $(this).hide();
+
+  //                 if($(this).hasClass(target) || target == "all"){
+  //                     $(this).show();
+  //                     $(this).animate({"opacity":1},300);
+  //                 }
+  //             });
+  //         });
+
+  //     })
+
+  // })
+
+
+  // $(document).ready(function () {
+  //   $('.showmenu').on('click', function (e) {
+  //     e.preventDefault();
+  //     $('body').toggleClass('menu-show');
+  //   });
+  // });
+
+  // $(function () {
+  //   $("#bg").hide();
+
+  //   $("#click").click(function () {
+
+  //     $("#bg").fadeIn(300);
+
+  //   })
+
+  //   $("#ok").click(function () {
+
+  //     $("#bg").fadeOut(300);
+
+  //   })
+  // })
+  var heart = document.getElementsByClassName('heart_icon');
+  // var span = document.getElementsByClassName('count');
+  for (var i = 0; i < heart.length; i++) {
+    // var count;
+    (function (i) {
+      var flag = true;//點擊收藏
+      heart[i].onclick = function () {
+        if (flag) {
+          flag = false;//無收藏被點擊
+          this.className = "fa-solid fa-heart heart_icon active";
+          // ++span[i].innerHTML;
+        } else {
+          flag = true//點擊取消收藏
+          this.className = "fa-solid fa-heart heart_icon";
+          // --span[i].innerHTML;
+        }
+      }
+    })(i);
+  }
+
+</script>
+
+</html>

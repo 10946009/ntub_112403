@@ -11,15 +11,18 @@
                     <h2 style="color: rgb(172, 78, 1)" id="attractions-detail-name">{{ detail.a_name }}</h2>
                 </div>
                 <div class="detail_name__headerGrid" style="text-align: center; font-size: 24px;">
-                    <i class="fa-solid fa-arrow-up-from-bracket icon_name" title="分享"
+                    <i class="fa-solid fa-arrow-up-from-bracket icon_name" id="share_icon"
+                        onclick=" showShareLoaderAndContent()" title="分享"
                         style="border: black solid; border-radius: 60px;padding:6px 8px 6px 8px;"></i>
-                        {% if is_favorite %}
-                        <i class="fas fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}" onclick="addFavorite_index({{detail.id}})" 
+                    {% if is_favorite %}
+                    <i class="fas fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}"
+                        onclick="addFavorite_index({{detail.id}})"
                         style="border: black solid; border-radius: 50px;padding:6px;"></i>
-                        {% else %}
-                        <i class="far fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}" onclick="addFavorite_index({{detail.id}})"
+                    {% else %}
+                    <i class="far fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}"
+                        onclick="addFavorite_index({{detail.id}})"
                         style="border: black solid; border-radius: 50px;padding:6px;"></i>
-                        {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -32,23 +35,25 @@
                 <i class="fa-regular fa-star-half-stroke" style="color:yellow;"></i>
                 {% endif %}
                 {% endfor %}
-                <span id="selectedRating"></span> / 5 ({{ detail.rating_total }})
+                <span id="selectedRating">{{detail.rating}} / 5 ({{ detail.rating_total }})</span>
         </div>
         <!-- 圖片 -->
         <div class="detail_img" style="margin-top: 10px;">
             <div class="detail_img__header">
                 <div class="detail_img__headerGrid">
                     <img src="/static/images/attractions/{{detail.place_id}}_0.jpg" class="show_detail_img"
-                        style="margin-top: 1px; width:100%;max-width: 100%;" alt="">
+                        style="margin-top: 1px; width:100%;max-width: 100%;" alt="" onclick="showPhotoDetail()">
                 </div>
                 <div class="detail_img__headerGrid">
                     <div class="row">
-                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg" class="show_detail_img"
-                            style=" width:100%;" alt="">
+
+                        <img src="/static/images/attractions/{% if picture_list.1 %}{{picture_list.1}}{% else %}{{picture_list.0}}{% endif %}"
+                            class="show_detail_img" style=" width:100%;" alt="" onclick="showPhotoDetail()">
                         <div class="image-container">
-                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg" class="show_detail_img"
-                                style="width: 100%;margin-top: 2px;" alt="">
-                            <a href="#" class="see_all_btn">查看所有照片</a>
+                            <img src="/static/images/attractions/{% if picture_list.1 %}{{picture_list.2}}{% else %}{{picture_list.0}}{% endif %}"
+                                class="show_detail_img" style="width: 100%;margin-top: 2px;" alt=""
+                                onclick="showPhotoDetail()">
+                            <a id="see_all_btn" class="see_all_btn" onclick="showPhotoDetail()">查看所有照片</a>
                         </div>
                     </div>
                 </div>
@@ -66,27 +71,33 @@
                             </h6>
                             <h6>{{ detail.detail }}</h6>
                             <hr style=" border:1px solid #777777; max-width: 95%;">
-                            <!-- 地址 -->
+                            <!-- 地址(點擊連動到google導航) -->
                             <h6 style="margin-top: 20px; font-size: 20px;" id="attractions-detail-address">
                                 <i class="fa-solid fa-location-dot" style="color: rgb(201, 1, 1);"></i>
-                                地址：{{detail.address}}
+                                地址：<a href="#" style="color: blue;">{{detail.address}}</a>
                             </h6>
                             <!-- 電話 -->
                             {% if detail.phone != "" %}<h6 id="attractions-detail-phone"
                                 style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-phone" style="color: rgb(9, 145, 2);"></i>
-                                電話：{{detail.phone }}
+                                電話：<a href="#" style="color: blue;">{{detail.phone }}</a>
                             </h6>{% endif %}
                             <!-- 營業時間 -->
                             <h6 style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-clock" style="color: rgb(2, 79, 161);"></i>
-                                營業時間：
+                                營業時間：<br>
+                                <div style="margin-left: 25px; margin-top: 10px;">
+                                    {% for opentime in opentime_list %}
+                                    {{chinese_week}}
+                                    禮拜{{opentime.week}}：{% for open in opentime.opening %}{{open}}{% endfor %}<br>
+                                    {% endfor %}
+                                </div>
                                 <!-- <span style="color: red;">已打烊</span> <span style="color: rgb(21, 81, 140);">*開始營業時間：9:00</span> -->
                             </h6>
                             <!-- 建議停留時間 -->
                             <h6 style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-person-walking-luggage" style="color: rgb(174, 65, 150);"></i>
-                                建議停留時間：{{ detail.stay_time }}
+                                建議停留時間：{{ detail.stay_time }} 分鐘
                             </h6>
                             <!-- 旺季月份 -->
                             <h6 style="margin-top: 20px;font-size: 20px;">
@@ -101,13 +112,13 @@
                                 <!-- 圖表 -->
                                 <div>
                                     <!-- <canvas id="chart" width="300" height="150"></canvas> -->
-                                    <canvas id="people_if_Chart" width="700px" height="500px"></canvas>
+                                    <canvas id="people_if_Chart" width="680px" height="520px"></canvas>
                                 </div>
                             </h6>
                         </div>
                     </div>
                 </div>
-                <!-- 使用者提問及回答 -->
+                <!-- 使用者提問及回答(ok) -->
                 <div class="col-5">
                     <div class="detail_detail__headerGrid">
                         <div class="question">
@@ -118,6 +129,7 @@
                                 </h5>
                                 <div style="margin-left:20px ;color: #707070;">
                                     <div class="row">
+                                        {% for c in commentlist %}
                                         <div class="comment">
                                             <div class="avatar">
                                                 <img src="../static/images/peka.webp" alt="User Avatar">
@@ -130,11 +142,14 @@
                                                     春節有開嗎？
                                                     <br>
                                                     <span style="color:gray;font-size: 12px; font-style: italic;">3天前
-                                                        &emsp;<span class="reply">回覆</span>
+                                                        &emsp;
+                                                        <!-- <span class="reply"
+                                                            onclick="showAllLoaderAndContent()">回覆</span> -->
                                                     </span>
                                                 </p>
                                             </div>
                                         </div>
+                                        {% endfor %}
                                         <div class="comment">
                                             <div class="avatar">
                                                 <img src="../static/images/an.jpeg" alt="User Avatar">
@@ -147,7 +162,8 @@
                                                     請問這星期一有開嗎！
                                                     <br>
                                                     <span style="color:gray;font-size: 12px; font-style: italic;">4天前
-                                                        &emsp;<span class="reply">回覆</span>
+                                                        &emsp;
+                                                        <!-- <span class="reply">回覆</span> -->
                                                     </span>
                                                 </p>
                                             </div>
@@ -164,14 +180,15 @@
                                                     汪汪汪！！！有開嗎！
                                                     <br>
                                                     <span style="color:gray;font-size: 12px; font-style: italic;">6天前
-                                                        &emsp;<span class="reply">回覆</span>
+                                                        &emsp;
+                                                        <!-- <span class="reply">回覆</span> -->
                                                     </span>
                                                 </p>
                                             </div>
                                         </div>
                                         <div>
-                                            <h6 class="see_more">
-                                                查看所有問題（？）
+                                            <h6 class="see_more" id="see_more" onclick="showAllLoaderAndContent()">
+                                                查看所有問題（6）
                                             </h6>
                                         </div>
                                     </div>
@@ -298,23 +315,23 @@
                 </div>
             </div>
         </div>
-        <!-- 訊問問題點擊載入動畫loader -->
+        <!-- 訊問問題點擊載入動畫loader(ok) -->
         <div class="ask_big" id="ask_big" style="display: none;">
             <div class="background-mask" id="background-mask">
                 <div class="loader"></div>
             </div>
         </div>
-        <!-- 詢問問題彈跳框框 -->
+        <!-- 詢問問題彈跳框框(ok) -->
         <div class="out_ask_qa" id="out_ask_qa">
             <div id="ask_qa_container" class="ask_qa_container">
                 <form class="ask-content" id="ask-content" action="">
                     <div class="ask_container" id="ask_container">
-                        <h5 style="font-size: 24px;" id="attractions-detail-address">
+                        <h5 style="font-size: 24px;">
                             提出問題
                         </h5>
                         <span style="font-size: 18px; font-style: italic;color: rgb(172, 78, 1)">
                             <strong>{{ detail.a_name }}</strong></span>
-                        <span onclick="close_ask_qa()" class="close" id="close" title="關閉">&times;</span>
+                        <span class="close" id="close" title="關閉">&times;</span>
                     </div>
                     <div class="ask_qa_con" style="padding: 20px;">
                         <div class="comment">
@@ -344,27 +361,115 @@
                 </form>
             </div>
         </div>
-
+        <!-- 查看所有問題點擊載入動畫loader(ok) -->
+        <div class="all_ask_big" id="all_ask_big" style="display: none;">
+            <div class="all_background-mask" id="all_background-mask">
+                <div class="all_loader"></div>
+            </div>
+        </div>
+        <!-- 查看所有問題(ok) -->
         <div class="all_ask_qa" id="all_ask_qa">
             <div id="all_ask_qa_container" class="all_ask_qa_container" style="height: 700px; overflow-y: scroll;">
                 <form class="all_ask-content" id="all_ask-content" action="">
                     <div class="all_ask_container" id="all_ask_container">
-                        <h3 id="attractions-detail-address">
+                        <h3>
                             {{ detail.a_name }}
                         </h3>
                         <span style="color:rgb(67, 65, 65);font-size: 14px; font-style: italic;">
                             {{detail.address}}</span>
-                        <span onclick="close_ask_qa()" class="all_close" id="all_close" title="關閉">&times;</span>
+                        <span class="all_close" id="all_close" title="關閉">&times;</span>
+                    </div>
+                    <hr style=" border:1px solid #777777; max-width: 100%;">
+                    <div class="all_ask_qa_con">
+                        <div class="all_ask_qa_comment">
+                            <div class="all_ask_qa_list">
+                                <h5>春節有開嗎？</h5>
+                                <div style="position: relative;">
+                                    <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer; font-size: 16px;"
+                                        id="myIcon1"></i>
+                                    <div class="tooltip2" id="myTooltip2">
+                                        檢舉
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="font-size: 18px; margin-bottom: 20px;">
+                                <span style="margin-right: 20px;cursor: pointer;"><i class="fa-regular fa-thumbs-up"
+                                        style=" color: rgb(0, 102, 255);"></i> 8</span>
+                                <span style="cursor: pointer;"><i class="fa-regular fa-comment"
+                                        style=" color: rgb(89, 198, 53);"></i> 3</span>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="avatar">
+                                <img src="../static/images/dog.jpg" alt="User Avatar">
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username">
+                                    彭德<br>
+                                    <span style="color: gray; font-size: 12px; font-style: italic;">3天前 &ensp;</span>
+                                </h6>
+                                <h6 style="margin-bottom: 20px;">有初一早上9點開，其他時間8點半</h6>
+                                <span style="margin-right: 20px;cursor: pointer;font-size: 18px;"><i
+                                        class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i> 2</span>
+                                <h6 class="qa_text" id="qa_text">還有1個答案</h6>
+                            </div>
+                        </div>
+                        <!-- （點開還有1個答案功能） -->
+                        <div id="comment_qa" style="display: none;">
+                            <div class="comment">
+                                <div class="avatar">
+                                    <img src="../static/images/an.jpeg" alt="User Avatar">
+                                </div>
+                                <div class="comment-content">
+                                    <h6 class="username">
+                                        安妮雅<br>
+                                        <span style="color: gray; font-size: 12px; font-style: italic;">5天前
+                                            &ensp;</span>
+                                    </h6>
+                                    <h6 style="margin-bottom: 20px;">有開，初一我有去！</h6>
+                                    <span style="margin-right: 20px;cursor: pointer;font-size: 18px;"><i
+                                            class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i>
+                                        2</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="avatar">
+                                <img src="../static/images/peka.webp" alt="User Avatar">
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username">
+                                    皮卡丘<br>
+                                    <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
+                                            class="fa-solid fa-crown"></i>在地嚮導
+                                        &ensp;</span>
+                                </h6>
+                            </div>
+                        </div>
+                        <div>
+                            <textarea name="" id="" cols="100%" rows="5"
+                                style="resize:none; border-radius: 10px;max-width: 90%;margin-left: 40px; padding: 10px;"
+                                placeholder="回答問題"></textarea>
+                            <!-- 之後會補上判斷textarea是否是空值以觸發ask_btn_ok按鈕（空直不能點張貼） -->
+                            <div class="post_ask">
+                                <span class="all_ask_btn_ok" id="all_ask_btn_ok">張貼</span>
+                            </div>
+                        </div>
                     </div>
                     <hr style=" border:1px solid #777777; max-width: 100%;">
                     <div class="all_ask_qa_con">
                         <div class="all_ask_qa_comment">
                             <div class="all_ask_qa_list">
                                 <h5>有餐廳嗎？</h5>
-                                <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer; font-size: 16px;"
-                                    id="myIcon1"></i>
+                                <div style="position: relative;">
+                                    <!-- id要不同才能點開icon顯示檢舉 -->
+                                    <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer; font-size: 16px;"
+                                        id="myIcon1"></i>
+                                    <div class="tooltip2" id="myTooltip2">
+                                        檢舉
+                                    </div>
+                                </div>
                             </div>
-                            <div class="tooltip2" id="myTooltip2" style="cursor: pointer;">檢舉</div>
                             <div style="font-size: 18px; margin-bottom: 20px;">
                                 <span style="margin-right: 20px;cursor: pointer;"><i class="fa-regular fa-thumbs-up"
                                         style=" color: rgb(0, 102, 255);"></i> 12</span>
@@ -379,11 +484,13 @@
                             <div class="comment-content">
                                 <h6 class="username">
                                     彭德<br>
-                                    <span style="color: gray; font-size: 12px; font-style: italic;">3天前 &ensp;</span>
+                                    <span style="color: gray; font-size: 12px; font-style: italic;">3天前
+                                        &ensp;</span>
                                 </h6>
                                 <h6 style="margin-bottom: 20px;">有 美食廣場 又便宜又好美。</h6>
                                 <span style="margin-right: 20px;cursor: pointer;font-size: 18px;"><i
-                                        class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i> 5</span>
+                                        class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i>
+                                    5</span>
                                 <h6 class="qa_text">還有3個答案</h6>
                             </div>
                         </div>
@@ -401,79 +508,216 @@
                             </div>
                         </div>
                         <div>
-                            <textarea name="" id="" cols="80%" rows="5"
+                            <textarea name="" id="" cols="100%" rows="5"
                                 style="resize:none; border-radius: 10px;max-width: 90%;margin-left: 40px; padding: 10px;"
                                 placeholder="回答問題"></textarea>
-                        </div>
-                    </div>
-                    <!-- 之後會補上判斷textarea是否是空值以觸發ask_btn_ok按鈕（空直不能點張貼） -->
-                    <div class="post_ask">
-                        <span class="all_ask_btn_ok" id="all_ask_btn_ok">張貼</span>
-                    </div>
-                    <hr style=" border:1px solid #777777; max-width: 100%;">
-                    <div class="all_ask_qa_con">
-                        <div class="all_ask_qa_comment">
-                            <div class="all_ask_qa_list">
-                                <h5>春節有開嗎？</h5>
-                                <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer; font-size: 16px;"
-                                    id="myIcon1"></i>
-                            </div>
-                            <div class="tooltip2" id="myTooltip2" style="cursor: pointer;">檢舉</div>
-                            <div style="font-size: 18px; margin-bottom: 20px;">
-                                <span style="margin-right: 20px;cursor: pointer;"><i class="fa-regular fa-thumbs-up"
-                                        style=" color: rgb(0, 102, 255);"></i> 8</span>
-                                <span style="cursor: pointer;"><i class="fa-regular fa-comment"
-                                        style=" color: rgb(89, 198, 53);"></i> 3</span>
+                            <!-- 之後會補上判斷textarea是否是空值以觸發ask_btn_ok按鈕（空直不能點張貼） -->
+                            <div class="post_ask">
+                                <span class="all_ask_btn_ok" id="all_ask_btn_ok">張貼</span>
                             </div>
                         </div>
-                        <div class="comment">
-                            <div class="avatar">
-                                <img src="../static/images/peka.webp" alt="User Avatar">
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username">
-                                    皮卡丘<br>
-                                    <span style="color: gray; font-size: 12px; font-style: italic;">3天前 &ensp;</span>
-                                </h6>
-                                <h6 style="margin-bottom: 20px;">有初一早上9點開，其他時間8點半</h6>
-                                <span style="margin-right: 20px;cursor: pointer;font-size: 18px;"><i
-                                        class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i> 2</span>
-                                <h6 class="qa_text">還有1個答案</h6>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <div class="avatar">
-                                <img src="../static/images/dog.jpg" alt="User Avatar">
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username">
-                                    彭德<br>
-                                    <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
-                                            class="fa-solid fa-crown"></i>在地嚮導
-                                        &ensp;</span>
-                                </h6>
-                            </div>
-                        </div>
-                        <div>
-                            <textarea name="" id="" cols="80%" rows="5"
-                                style="resize:none; border-radius: 10px;max-width: 90%;margin-left: 40px; padding: 10px;"
-                                placeholder="回答問題"></textarea>
-                        </div>
-                    </div>
-                    <!-- 之後會補上判斷textarea是否是空值以觸發ask_btn_ok按鈕（空直不能點張貼） -->
-                    <div class="post_ask">
-                        <span class="all_ask_btn_ok" id="all_ask_btn_ok">張貼</span>
                     </div>
                 </form>
             </div>
         </div>
-        <!-- 分享 -->
-        <div class="row">
-            <div class="col-12">
-                <h5 style="font-size: 24px; margin-top: 20px;">
-                    <i class="fa-solid fa-share" style="color:orange;"></i>
-                    分享內容
-                </h5>
+        <!-- 分享彈跳框框(ok) -->
+        <div class="share_an_att" id="share_an_att">
+            <div id="share_an_att_container" class="share_an_att_container">
+                <form class="share_an_att-content" id="share_an_att-content" action="">
+                    <div class="share_att_container" id="share_att_container">
+                        <h5 style="font-size: 22px;">分享到...</h5>
+                        <i class="fa-solid fa-xmark" id="closeShare"></i>
+                    </div>
+                    <div class="share_att_con">
+                        <div class="comment" id="comment_share"
+                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
+                            <div class="" style="font-size: 36px;">
+                                <i class="fa-brands fa-facebook"></i>
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username" style="padding: 10px;">
+                                    分享到Facebook
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="comment" id="comment_share"
+                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
+                            <div class="" style="font-size: 36px;">
+                                <i class="fa-brands fa-facebook-messenger"></i>
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username" style="padding: 10px;">
+                                    分享到Messenger
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="comment" id="comment_share"
+                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
+                            <div class="" style="font-size: 36px;">
+                                <i class="fa-brands fa-instagram" style="margin: 0 2px 0 3px;"></i>
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username" style="padding: 10px;">
+                                    分享到Instagram
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="comment" id="comment_share"
+                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
+                            <div class="" style="font-size: 34px;">
+                                <i class="fa-solid fa-envelope" style="margin:0 2px 0 1px;"></i>
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username" style="padding: 10px;">
+                                    透過電子郵件分享
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="comment" id="comment_share"
+                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
+                            <div class="" style="font-size: 36px;">
+                                <i class="fa-solid fa-qrcode" style="margin: 0 3px 0 3px;"></i>
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username" style="padding: 10px;">
+                                    QR 碼
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="comment" id="comment_share" style="top:0; cursor: pointer; padding: 0 20px 0 20px; "
+                            onclick="Share_Copytips()">
+                            <div class="" style="font-size: 30px; padding-top: 5px;">
+                                <i class="fa-solid fa-link"></i>
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username" style="padding: 10px;">
+                                    複製連結
+                                </h6>
+                            </div>
+                        </div>
+                        <div id="share_tips">已將連結複製到剪貼簿。</div>
+                    </div>
+                    <!-- <div class="post_ask">
+                        <span class="ask_btn_cancel" id="ask_btn_cancel">取消</span>
+                        <span class="ask_btn_ok" id="ask_btn_ok">張貼</span>
+                    </div> -->
+                </form>
+            </div>
+        </div>
+        <!-- 查看所有圖片彈跳框框（ok) -->
+        <div class="photo_att" id="photo_att">
+            <div id="photo_big_att_container" class="photo_big_att_container">
+                <form class="photo_att-content" id="photo_att-content" action="">
+                    <div class="photo_att_container" id="photo_att_container">
+                        <h5 style="font-size: 24px;">關於<span style="color: rgb(172, 78, 1)">
+                                {{detail.a_name}}</span>的所有照片&emsp;</h5>
+                        <i class="fa-solid fa-xmark" id="closePhoto"></i>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 photo_book">
+                            <h6>相簿</h6>
+                            <div class="detail_photo" style="margin-top: 10px;">
+                                <div class="detail_photo__header">
+                                    <div class="detail_photo__headerGrid" id="detail_photo__headerGrid_all">
+                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                            class="show_detail_img"
+                                            style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                        <div class="photo-text">
+                                            所有照片（{{picture_list|length}}）
+                                        </div>
+                                    </div>
+                                    <div class="detail_photo__headerGrid" id="detail_photo__headerGrid_user">
+                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                            class="show_detail_img" style="width: 100%;" alt="">
+                                        <div class="photo-text">
+                                            旅客（7）
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 右邊圖片框(切換) -->
+                        <div class="col-8 photo_show_book">
+                            <div class="show_all_detail_photo" id="show_all_detail_photo"
+                                style="margin-top: 10px; height: 500px; overflow-y: scroll;">
+                                <div class="show_detail_photo__header">
+                                    {% for picture in picture_list %}
+                                    <div class="choice_slide" data-set="{{forloop.counter}}">
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{picture}}" class="show_detail_img"
+                                                id="show_detail_img"
+                                                style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <!--  -->
+
+                                {% comment %} <div class="choice_slide">
+                                    <div class="show_detail_photo__header">
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img"
+                                                style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                        </div>
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img" style="width: 100%;" alt="">
+                                        </div>
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img" style="width: 100%;" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="show_detail_photo__header">
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img"
+                                                style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                        </div>
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img" style="width: 100%;" alt="">
+                                        </div>
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img" style="width: 100%;" alt="">
+                                        </div>
+                                    </div>
+                                </div>{% endcomment %}
+                            </div>
+                            <!-- 所有照片（幻燈片） -->
+                            <div class="slide_this_photo" id="slide_this_photo" style="display: none; width: 100%;">
+                                <div class="w3-content" style="max-width:800px;position:relative">
+                                    <div class="change_sigle_photo" id="change_sigle_photo">
+                                        <i class="fa-regular fa-clone" style="margin-right:10px;"></i>照片集
+                                    </div>
+                                    <div class="illustrate_photo">
+                                        <h6><strong>管理階層</strong></h6>
+                                        <div style="position: absolute;bottom: 0;">
+                                            <p>{{ detail.a_name }}</p>
+                                        </div>
+                                    </div>
+                                    {% for picture in picture_list %}
+                                    <div class="mySlides">
+                                        <div class="phototext">第{{forloop.counter}}頁&emsp;(共{{picture_list | length}}頁)
+                                        </div>
+                                        <img class="mySlide" src="/static/images/attractions/{{picture}}"
+                                            style="width: 100%;">
+                                    </div>
+                                    {% endfor %}
+                                    <div style="text-align: center; font-size: 24px;">
+                                        <a class="w3-btn-floating photo_btn_left" onclick="plusDivs(-1)">
+                                            <i class="fa-solid fa-arrow-left"></i></a>
+                                        <a class="w3-btn-floating photo_btn_right" onclick="plusDivs(1)">
+                                            <i class="fa-solid fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         <hr style="border:2px solid #777777">
@@ -635,10 +879,6 @@
         </div>
     </div>
 </div>
-
-
-
-
 
 <!-- <div class="col-12 col-s-12">
     <form class="modal-content animate" action="/action_page.php" method="post">
@@ -961,8 +1201,111 @@
 <script src="../static/js/slideshow.js"></script>
 <!-- 圖表會用到script -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
-    // ask_tips提示點擊
+    // 點擊還有一個答案的功能
+    var comment_qa = document.getElementById("comment_qa");
+    var qa_text = document.getElementById("qa_text");
+    qa_text.addEventListener("click", function () {
+        qa_text.style.display = "none";
+        comment_qa.style.display = "block";
+    });
+
+    // 幻燈片(切換過來的)
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = x.length };
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex - 1].style.display = "block";
+    }
+
+    // focus點擊的地方（所有與旅客）
+    var detail_photo__headerGrid_all = document.getElementById("detail_photo__headerGrid_all");//所有
+    detail_photo__headerGrid_all.addEventListener("click", function () {
+        detail_photo__headerGrid_all.style.border = "1px solid black";
+        detail_photo__headerGrid_user.style.border = "none";
+    });
+    var detail_photo__headerGrid_user = document.getElementById("detail_photo__headerGrid_user");//旅客
+    detail_photo__headerGrid_user.addEventListener("click", function () {
+        detail_photo__headerGrid_user.style.border = "1px solid black";
+        detail_photo__headerGrid_all.style.border = "none";
+    });
+
+    // 切換相片和幻燈片功能
+    var detail_photo__headerGrid_all = document.getElementById("detail_photo__headerGrid_all");
+    var choice_slide = document.getElementsByClassName("choice_slide");
+    var change_sigle_photo = document.getElementById("change_sigle_photo");
+    var slide_this_photo = document.getElementById("slide_this_photo");
+    var show_all_detail_photo = document.getElementById("show_all_detail_photo");
+    var choice_slide = document.getElementsByClassName("choice_slide");
+    var isHidden = true;
+    var isChange = true;
+
+    // 幻燈片（各個照片點擊跳出）
+    for (var i = 0; i < choice_slide.length; i++) {
+        choice_slide[i].addEventListener("click", function () {
+            slideIndex = parseInt(this.dataset.set);
+            showDivs(this.dataset.set);
+
+            if (isHidden) {
+                show_all_detail_photo.style.display = "none";
+                slide_this_photo.style.display = "block";
+            }
+        });
+    }
+    // 相片集按鈕切換
+    change_sigle_photo.addEventListener("click", function () {
+        if (isChange) {
+            slide_this_photo.style.display = "none";
+            show_all_detail_photo.style.display = "block";
+        }
+    });
+    // 所有（點擊）跳到相片集 在幻燈片時
+    detail_photo__headerGrid_all.addEventListener("click", function () {
+        if (isChange) {
+            slide_this_photo.style.display = "none";
+            show_all_detail_photo.style.display = "block";
+        }
+    });
+
+    // loader動作（查看所有圖片）
+    function showPhotoDetail() {
+        var all_loader = document.getElementById("all_ask_big");
+        var photo_att = document.getElementById("photo_att");
+        all_loader.style.display = "block";
+        setTimeout(function () {
+            all_loader.style.display = "none";
+            photo_att.style.display = "block";
+        }, 500);
+    }
+
+    // 關閉查看所有圖片方塊
+    var see_all_btn = document.getElementById('see_all_btn');
+    var photo_big_att_container = document.getElementById('photo_big_att_container');
+    var photo_att = document.getElementById('photo_att');
+
+    document.addEventListener("click", function (event) {
+        if (event.target == photo_att) {
+            photo_att.style.display = "none";
+        }
+    });
+    var closePhoto = document.getElementById('closePhoto');
+    closePhoto.addEventListener("click", function () {
+        photo_att.style.display = "none";
+    });
+
+    // ask_tips提示點擊(查看)
     var icon1 = document.getElementById("myIcon1");
     var tooltip2 = document.getElementById("myTooltip2");
     var all_ask_qa_container = document.getElementById("all_ask_qa_container");
@@ -980,7 +1323,7 @@
         }
     });
 
-    // loader動作
+    // loader動作 打開詢問問題方塊
     function showLoaderAndContent() {
         var loader = document.getElementById("ask_big");
         var out_ask_qa = document.getElementById("out_ask_qa");
@@ -991,14 +1334,10 @@
         }, 500);
     }
 
-    // 打開詢問問題方塊
+    // 關閉詢問問題方塊
     var ask_qa = document.getElementById('ask_qa');
     var ask_qa_container = document.getElementById('ask_qa_container');
     var out_ask_qa = document.getElementById('out_ask_qa');
-    // ask_qa.addEventListener("click", function () {
-    //     out_ask_qa.style.display = "block";
-    //     event.stopPropagation();
-    // });
     document.addEventListener("click", function (event) {
         if (event.target == out_ask_qa) {
             out_ask_qa.style.display = "none";
@@ -1030,52 +1369,82 @@
             tooltip.style.display = "none";
         }
     });
+    // loader動作（查看更多問題）打開查看更多問提問題方塊
+    function showAllLoaderAndContent() {
+        var all_loader = document.getElementById("all_ask_big");
+        var all_ask_qa = document.getElementById("all_ask_qa");
+        all_loader.style.display = "block";
+        setTimeout(function () {
+            all_loader.style.display = "none";
+            all_ask_qa.style.display = "block";
+        }, 500);
+    }
 
+    // 關閉查看更多問提問題方塊
+    var see_more = document.getElementById('see_more');
+    var all_ask_qa_container = document.getElementById('all_ask_qa_container');
+    var all_ask_qa = document.getElementById('all_ask_qa');
 
-    // 更多問題功能
-    var qaSection = document.querySelector('.qa-section');
-    var toggleButton = document.getElementById('toggleButton');
-    //前三行内容
-    var isHidden = true;
-    toggleButton.addEventListener('click', function () {
-        if (isHidden) {
-            qaSection.style.webkitLineClamp = 'unset';
-            toggleButton.textContent = '顯示最小';
-        } else {
-            qaSection.style.webkitLineClamp = '3';
-            toggleButton.textContent = '更多...';
+    document.addEventListener("click", function (event) {
+        if (event.target == all_ask_qa) {
+            all_ask_qa.style.display = "none";
         }
-        isHidden = !isHidden;
+    });
+    var all_close = document.getElementById('all_close');
+    all_close.addEventListener("click", function () {
+        all_ask_qa.style.display = "none";
     });
 
-    //總覽評論切換
-    sessionStorage.clear();
-    var search_text_list = [];
-    $(function () {
-        $('.change_btn div').click(function () {
-            $(this).addClass('active1').siblings().removeClass('active1');
-            var index = $(this).index();
-            $(".change_content .change_content1").eq(index).show().siblings().hide();
-        })
-    })
-    //總覽評論切換
-    var change1 = document.querySelector(".change1");
-    var change2 = document.querySelector(".change2");
+    // 打開分享方塊
+    function showShareLoaderAndContent() {
+        var all_loader = document.getElementById("all_ask_big");
+        var share_an_att = document.getElementById("share_an_att");
+        all_loader.style.display = "block";
+        setTimeout(function () {
+            all_loader.style.display = "none";
+            share_an_att.style.display = "block";
+        }, 500);
+    }
+    // 關閉分享方塊
+    var share_icon = document.getElementById('share_icon');
+    var share_an_att_container = document.getElementById('share_an_att_container');
+    var share_an_att = document.getElementById('share_an_att');
 
-    change1.addEventListener("click", function () {
-        change1.style.color = "gray";
-        change1.style.borderBottom = "2px solid red";
-        change2.style.borderBottom = "none";
-        change2.style.color = "black";
+    document.addEventListener("click", function (event) {
+        if (event.target == share_an_att) {
+            share_an_att.style.display = "none";
+        }
+    });
+    var closeShare = document.getElementById('closeShare');
+    closeShare.addEventListener("click", function () {
+        share_an_att.style.display = "none";
     });
 
-    change2.addEventListener("click", function () {
-        change2.style.color = "gray";
-        change2.style.borderBottom = "2px solid red";
-        change1.style.borderBottom = "none";
-        change1.style.color = "black";
-    });
+    // 已經copy提示
+    function Share_Copytips() {
+        var x = document.getElementById("share_tips");
+        x.className = "copy";
+        setTimeout(function () {
+            x.className = x.className.replace("copy", "");
+        }, 3000);
+    }
 
+
+    // // 更多問題功能
+    // var qaSection = document.querySelector('.qa-section');
+    // var toggleButton = document.getElementById('toggleButton');
+    // //前三行内容
+    // var isHidden = true;
+    // toggleButton.addEventListener('click', function () {
+    //     if (isHidden) {
+    //         qaSection.style.webkitLineClamp = 'unset';
+    //         toggleButton.textContent = '顯示最小';
+    //     } else {
+    //         qaSection.style.webkitLineClamp = '3';
+    //         toggleButton.textContent = '更多...';
+    //     }
+    //     isHidden = !isHidden;
+    // });
 
 
     //人潮分佈圖
@@ -1111,7 +1480,24 @@
     // });
 
     //人潮分佈圖(有加時間,數量)
-    var data = [
+    var total_data = [];
+    var data_crowdlist = [];
+    var crowd = JSON.parse('{{crowd | safe}}')
+    for (var i = 0; i < crowd.length; i++) {
+        for (var j = 0; j < crowd[i].crowd.length; j++) {
+            data_crowdlist.push({
+                "Time": `2020–09–01 ${j}:00`,
+                "Volume": crowd[i].crowd[j]
+            });
+        }
+        total_data.push({
+            "week": crowd[i].week,
+            "crowd": data_crowdlist
+        });
+        data_crowdlist = [];
+    }
+    var data = total_data[0].crowd;
+    {% comment %} var data = [
         { "Time": "2020–09–01 00:00", "Volume": 1523 },
         { "Time": "2020–09–01 01:00", "Volume": 1010 },
         { "Time": "2020–09–01 02:00", "Volume": 1304 },
@@ -1135,7 +1521,7 @@
         { "Time": "2020–09–01 20:00", "Volume": 1734 },
         { "Time": "2020–09–01 21:00", "Volume": 1372 },
         { "Time": "2020–09–01 22:00", "Volume": 1270 },
-        { "Time": "2020–09–01 23:00", "Volume": 1207 }];
+        { "Time": "2020–09–01 23:00", "Volume": 1207 }]; {% endcomment %}
     var ctx = document.getElementById('people_if_Chart').getContext('2d');
     var chart = new Chart(ctx, {
         type: 'line',
@@ -1156,6 +1542,14 @@
             }]
         },
         options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true, // 从0开始
+                        max: 100, // 最大值设置为100
+                    }
+                }]
+            },
             title: {
                 display: true,
                 text: '人潮流量',
@@ -1170,6 +1564,35 @@
             responsive: false
         }
     });
+
+    //總覽評論切換
+    sessionStorage.clear();
+    var search_text_list = [];
+    $(function () {
+        $('.change_btn div').click(function () {
+            $(this).addClass('active1').siblings().removeClass('active1');
+            var index = $(this).index();
+            $(".change_content .change_content1").eq(index).show().siblings().hide();
+        })
+    })
+    //總覽評論切換
+    var change1 = document.querySelector(".change1");
+    var change2 = document.querySelector(".change2");
+
+    change1.addEventListener("click", function () {
+        change1.style.color = "gray";
+        change1.style.borderBottom = "2px solid red";
+        change2.style.borderBottom = "none";
+        change2.style.color = "black";
+    });
+
+    change2.addEventListener("click", function () {
+        change2.style.color = "gray";
+        change2.style.borderBottom = "2px solid red";
+        change1.style.borderBottom = "none";
+        change1.style.color = "black";
+    });
+
 
 
 </script>
