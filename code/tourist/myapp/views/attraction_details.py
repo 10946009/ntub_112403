@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.template.loader import render_to_string  # 頁面轉成html
 from django.forms.models import model_to_dict
 from .viewsConst import ATT_TYPE_CHINESE
-
+from .findpicture import get_picture_list
 
 def keyword_search(search_text, filter_condition_and, filter_condition_or, method):
     
@@ -92,13 +92,24 @@ def attraction_details(request,from_base_search_text=None):
     if request.GET.get("a_id") != None:
         choose_a_id = request.GET.get("a_id")  # 提取傳遞的值
         choose_attractions = Attractions.objects.get(id=choose_a_id)
+        print(choose_attractions)
         choose_attractions.hit += 1
         choose_attractions.save()
         choose_attractions_dict = model_to_dict(choose_attractions)
         is_favorite = Favorite.objects.filter(u_id=user, a_id=choose_attractions.id).exists()
+        #取得擁擠資訊
+        crowd = Crowd_Opening.objects.filter(a_id=choose_attractions.id).order_by('week').values()
+        crowd_list = list(crowd)
+        crowd_dict = [{"week":x['week'] , "crowd":x['crowd']} for x in crowd_list]
+        crowd_dict = json.dumps(crowd_dict)
+        chinese_week = ['','一','二','三','四','五','六','日']
+        opentime_list = [{"week":chinese_week[int(x['week'])] , "opening":x['opening']} for x in crowd_list]
+        
+        picture_list = get_picture_list(choose_attractions.place_id)
+        #轉HTML格式
         detail_html = render_to_string(
             template_name="attraction_details_detail.html",
-            context={"detail": choose_attractions_dict},
+            context={"detail": choose_attractions_dict,"crowd":crowd_dict,"picture_list":picture_list,"opentime_list":opentime_list},
         )
         detail_data_dict = {"attractions_detail_html": detail_html}
         return JsonResponse(data=detail_data_dict, safe=False)

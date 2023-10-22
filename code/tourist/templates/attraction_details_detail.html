@@ -35,7 +35,7 @@
                 <i class="fa-regular fa-star-half-stroke" style="color:yellow;"></i>
                 {% endif %}
                 {% endfor %}
-                <span id="selectedRating"></span> / 5 ({{ detail.rating_total }})
+                <span id="selectedRating">{{detail.rating}} / 5 ({{ detail.rating_total }})</span>
         </div>
         <!-- 圖片 -->
         <div class="detail_img" style="margin-top: 10px;">
@@ -46,11 +46,13 @@
                 </div>
                 <div class="detail_img__headerGrid">
                     <div class="row">
-                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg" class="show_detail_img"
-                            style=" width:100%;" alt="" onclick="showPhotoDetail()">
+
+                        <img src="/static/images/attractions/{% if picture_list.1 %}{{picture_list.1}}{% else %}{{picture_list.0}}{% endif %}"
+                            class="show_detail_img" style=" width:100%;" alt="" onclick="showPhotoDetail()">
                         <div class="image-container">
-                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg" class="show_detail_img"
-                                style="width: 100%;margin-top: 2px;" alt="" onclick="showPhotoDetail()">
+                            <img src="/static/images/attractions/{% if picture_list.1 %}{{picture_list.2}}{% else %}{{picture_list.0}}{% endif %}"
+                                class="show_detail_img" style="width: 100%;margin-top: 2px;" alt=""
+                                onclick="showPhotoDetail()">
                             <a id="see_all_btn" class="see_all_btn" onclick="showPhotoDetail()">查看所有照片</a>
                         </div>
                     </div>
@@ -72,24 +74,30 @@
                             <!-- 地址(點擊連動到google導航) -->
                             <h6 style="margin-top: 20px; font-size: 20px;" id="attractions-detail-address">
                                 <i class="fa-solid fa-location-dot" style="color: rgb(201, 1, 1);"></i>
-                                地址：<a href="#">{{detail.address}}</a>
+                                地址：<a href="#" style="color: blue;">{{detail.address}}</a>
                             </h6>
                             <!-- 電話 -->
                             {% if detail.phone != "" %}<h6 id="attractions-detail-phone"
                                 style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-phone" style="color: rgb(9, 145, 2);"></i>
-                                電話：{{detail.phone }}
+                                電話：<a href="#" style="color: blue;">{{detail.phone }}</a>
                             </h6>{% endif %}
                             <!-- 營業時間 -->
                             <h6 style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-clock" style="color: rgb(2, 79, 161);"></i>
-                                營業時間：
+                                營業時間：<br>
+                                <div style="margin-left: 25px; margin-top: 10px;">
+                                    {% for opentime in opentime_list %}
+                                    {{chinese_week}}
+                                    禮拜{{opentime.week}}：{% for open in opentime.opening %}{{open}}{% endfor %}<br>
+                                    {% endfor %}
+                                </div>
                                 <!-- <span style="color: red;">已打烊</span> <span style="color: rgb(21, 81, 140);">*開始營業時間：9:00</span> -->
                             </h6>
                             <!-- 建議停留時間 -->
                             <h6 style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-person-walking-luggage" style="color: rgb(174, 65, 150);"></i>
-                                建議停留時間：{{ detail.stay_time }}
+                                建議停留時間：{{ detail.stay_time }} 分鐘
                             </h6>
                             <!-- 旺季月份 -->
                             <h6 style="margin-top: 20px;font-size: 20px;">
@@ -121,6 +129,7 @@
                                 </h5>
                                 <div style="margin-left:20px ;color: #707070;">
                                     <div class="row">
+                                        {% for c in commentlist %}
                                         <div class="comment">
                                             <div class="avatar">
                                                 <img src="../static/images/peka.webp" alt="User Avatar">
@@ -140,6 +149,7 @@
                                                 </p>
                                             </div>
                                         </div>
+                                        {% endfor %}
                                         <div class="comment">
                                             <div class="avatar">
                                                 <img src="../static/images/an.jpeg" alt="User Avatar">
@@ -401,7 +411,26 @@
                                 <h6 style="margin-bottom: 20px;">有初一早上9點開，其他時間8點半</h6>
                                 <span style="margin-right: 20px;cursor: pointer;font-size: 18px;"><i
                                         class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i> 2</span>
-                                <h6 class="qa_text">還有1個答案</h6>
+                                <h6 class="qa_text" id="qa_text">還有1個答案</h6>
+                            </div>
+                        </div>
+                        <!-- （點開還有1個答案功能） -->
+                        <div id="comment_qa" style="display: none;">
+                            <div class="comment">
+                                <div class="avatar">
+                                    <img src="../static/images/an.jpeg" alt="User Avatar">
+                                </div>
+                                <div class="comment-content">
+                                    <h6 class="username">
+                                        安妮雅<br>
+                                        <span style="color: gray; font-size: 12px; font-style: italic;">5天前
+                                            &ensp;</span>
+                                    </h6>
+                                    <h6 style="margin-bottom: 20px;">有開，初一我有去！</h6>
+                                    <span style="margin-right: 20px;cursor: pointer;font-size: 18px;"><i
+                                            class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i>
+                                        2</span>
+                                </div>
                             </div>
                         </div>
                         <div class="comment">
@@ -455,11 +484,13 @@
                             <div class="comment-content">
                                 <h6 class="username">
                                     彭德<br>
-                                    <span style="color: gray; font-size: 12px; font-style: italic;">3天前 &ensp;</span>
+                                    <span style="color: gray; font-size: 12px; font-style: italic;">3天前
+                                        &ensp;</span>
                                 </h6>
                                 <h6 style="margin-bottom: 20px;">有 美食廣場 又便宜又好美。</h6>
                                 <span style="margin-right: 20px;cursor: pointer;font-size: 18px;"><i
-                                        class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i> 5</span>
+                                        class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i>
+                                    5</span>
                                 <h6 class="qa_text">還有3個答案</h6>
                             </div>
                         </div>
@@ -497,7 +528,6 @@
                         <h5 style="font-size: 22px;">分享到...</h5>
                         <i class="fa-solid fa-xmark" id="closeShare"></i>
                     </div>
-
                     <div class="share_att_con">
                         <div class="comment" id="comment_share"
                             style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
@@ -574,12 +604,13 @@
                 </form>
             </div>
         </div>
-        <!-- 查看所有圖片彈跳框框 -->
+        <!-- 查看所有圖片彈跳框框（ok) -->
         <div class="photo_att" id="photo_att">
             <div id="photo_big_att_container" class="photo_big_att_container">
                 <form class="photo_att-content" id="photo_att-content" action="">
                     <div class="photo_att_container" id="photo_att_container">
-                        <h5 style="font-size: 24px;">關於{{ detail.a_name }}的所有照片&emsp;</h5>
+                        <h5 style="font-size: 24px;">關於<span style="color: rgb(172, 78, 1)">
+                                {{detail.a_name}}</span>的所有照片&emsp;</h5>
                         <i class="fa-solid fa-xmark" id="closePhoto"></i>
                     </div>
                     <div class="row">
@@ -587,171 +618,108 @@
                             <h6>相簿</h6>
                             <div class="detail_photo" style="margin-top: 10px;">
                                 <div class="detail_photo__header">
-                                    <div class="detail_photo__headerGrid">
+                                    <div class="detail_photo__headerGrid" id="detail_photo__headerGrid_all">
                                         <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
                                             class="show_detail_img"
                                             style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
                                         <div class="photo-text">
-                                            所有照片（10)
+                                            所有照片（{{picture_list|length}}）
                                         </div>
                                     </div>
-                                    <div class="detail_photo__headerGrid">
+                                    <div class="detail_photo__headerGrid" id="detail_photo__headerGrid_user">
                                         <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
                                             class="show_detail_img" style="width: 100%;" alt="">
                                         <div class="photo-text">
-                                            旅客（7)
+                                            旅客（7）
                                         </div>
                                     </div>
-                                </div>
-                                <div class="detail_photo__header">
-                                    <div class="detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img"
-                                            style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
-                                        <div class="photo-text">
-                                            所有照片（10)
-                                        </div>
-                                    </div>
-                                    <div class="detail_photo__headerGrid"></div>
                                 </div>
                             </div>
                         </div>
+                        <!-- 右邊圖片框(切換) -->
                         <div class="col-8 photo_show_book">
-                            <div class="show_all_detail_photo"
+                            <div class="show_all_detail_photo" id="show_all_detail_photo"
                                 style="margin-top: 10px; height: 500px; overflow-y: scroll;">
                                 <div class="show_detail_photo__header">
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img"
-                                            style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                    {% for picture in picture_list %}
+                                    <div class="choice_slide" data-set="{{forloop.counter}}">
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{picture}}" class="show_detail_img"
+                                                id="show_detail_img"
+                                                style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                        </div>
                                     </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
+                                    {% endfor %}
+                                </div>
+                                <!--  -->
+
+                                {% comment %} <div class="choice_slide">
+                                    <div class="show_detail_photo__header">
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img"
+                                                style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                        </div>
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img" style="width: 100%;" alt="">
+                                        </div>
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img" style="width: 100%;" alt="">
+                                        </div>
                                     </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
+                                    <div class="show_detail_photo__header">
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img"
+                                                style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                        </div>
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img" style="width: 100%;" alt="">
+                                        </div>
+                                        <div class="show_detail_photo__headerGrid">
+                                            <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                                class="show_detail_img" style="width: 100%;" alt="">
+                                        </div>
+                                    </div>
+                                </div>{% endcomment %}
+                            </div>
+                            <!-- 所有照片（幻燈片） -->
+                            <div class="slide_this_photo" id="slide_this_photo" style="display: none; width: 100%;">
+                                <div class="w3-content" style="max-width:800px;position:relative">
+                                    <div class="change_sigle_photo" id="change_sigle_photo">
+                                        <i class="fa-regular fa-clone" style="margin-right:10px;"></i>照片集
+                                    </div>
+                                    <div class="illustrate_photo">
+                                        <h6><strong>管理階層</strong></h6>
+                                        <div style="position: absolute;bottom: 0;">
+                                            <p>{{ detail.a_name }}</p>
+                                        </div>
+                                    </div>
+                                    {% for picture in picture_list %}
+                                    <div class="mySlides">
+                                        <div class="phototext">第{{forloop.counter}}頁&emsp;(共{{picture_list | length}}頁)
+                                        </div>
+                                        <img class="mySlide" src="/static/images/attractions/{{picture}}"
+                                            style="width: 100%;">
+                                    </div>
+                                    {% endfor %}
+                                    <div style="text-align: center; font-size: 24px;">
+                                        <a class="w3-btn-floating photo_btn_left" onclick="plusDivs(-1)">
+                                            <i class="fa-solid fa-arrow-left"></i></a>
+                                        <a class="w3-btn-floating photo_btn_right" onclick="plusDivs(1)">
+                                            <i class="fa-solid fa-arrow-right"></i></a>
                                     </div>
                                 </div>
-                                <div class="show_detail_photo__header">
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img"
-                                            style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
-                                    </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
-                                    </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
-                                    </div>
-                                </div>
-                                <div class="show_detail_photo__header">
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img"
-                                            style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
-                                    </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
-                                    </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="photo_att_con">
-                        <div class="comment" id="comment_share"
-                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
-                            <div class="" style="font-size: 36px;">
-                                <i class="fa-brands fa-facebook"></i>
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username" style="padding: 10px;">
-                                    分享到Facebook
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="comment" id="comment_share"
-                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
-                            <div class="" style="font-size: 36px;">
-                                <i class="fa-brands fa-facebook-messenger"></i>
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username" style="padding: 10px;">
-                                    分享到Messenger
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="comment" id="comment_share"
-                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
-                            <div class="" style="font-size: 36px;">
-                                <i class="fa-brands fa-instagram" style="margin: 0 2px 0 3px;"></i>
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username" style="padding: 10px;">
-                                    分享到Instagram
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="comment" id="comment_share"
-                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
-                            <div class="" style="font-size: 34px;">
-                                <i class="fa-solid fa-envelope" style="margin:0 2px 0 1px;"></i>
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username" style="padding: 10px;">
-                                    透過電子郵件分享
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="comment" id="comment_share"
-                            style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
-                            <div class="" style="font-size: 36px;">
-                                <i class="fa-solid fa-qrcode" style="margin: 0 3px 0 3px;"></i>
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username" style="padding: 10px;">
-                                    QR 碼
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="comment" id="comment_share" style="top:0; cursor: pointer; padding: 0 20px 0 20px; "
-                            onclick="Share_Copytips()">
-                            <div class="" style="font-size: 30px; padding-top: 5px;">
-                                <i class="fa-solid fa-link"></i>
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username" style="padding: 10px;">
-                                    複製連結
-                                </h6>
-                            </div>
-                        </div>
-                        <div id="share_tips">已將連結複製到剪貼簿。</div>
-                    </div> -->
-                    <!-- <div class="post_ask">
-                        <span class="ask_btn_cancel" id="ask_btn_cancel">取消</span>
-                        <span class="ask_btn_ok" id="ask_btn_ok">張貼</span>
-                    </div> -->
                 </form>
             </div>
         </div>
-        <!-- 分享 -->
-        <!-- <div class="row">
-            <div class="col-12">
-                <h5 style="font-size: 24px; margin-top: 20px;">
-                    <i class="fa-solid fa-share" style="color:orange;"></i>
-                    分享內容
-                </h5>
-            </div>
-        </div> -->
         <hr style="border:2px solid #777777">
         <!-- 評論 -->
         <div class="row">
@@ -1233,7 +1201,84 @@
 <script src="../static/js/slideshow.js"></script>
 <!-- 圖表會用到script -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
+    // 點擊還有一個答案的功能
+    var comment_qa = document.getElementById("comment_qa");
+    var qa_text = document.getElementById("qa_text");
+    qa_text.addEventListener("click", function () {
+        qa_text.style.display = "none";
+        comment_qa.style.display = "block";
+    });
+
+    // 幻燈片(切換過來的)
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = x.length };
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex - 1].style.display = "block";
+    }
+
+    // focus點擊的地方（所有與旅客）
+    var detail_photo__headerGrid_all = document.getElementById("detail_photo__headerGrid_all");//所有
+    detail_photo__headerGrid_all.addEventListener("click", function () {
+        detail_photo__headerGrid_all.style.border = "1px solid black";
+        detail_photo__headerGrid_user.style.border = "none";
+    });
+    var detail_photo__headerGrid_user = document.getElementById("detail_photo__headerGrid_user");//旅客
+    detail_photo__headerGrid_user.addEventListener("click", function () {
+        detail_photo__headerGrid_user.style.border = "1px solid black";
+        detail_photo__headerGrid_all.style.border = "none";
+    });
+
+    // 切換相片和幻燈片功能
+    var detail_photo__headerGrid_all = document.getElementById("detail_photo__headerGrid_all");
+    var choice_slide = document.getElementsByClassName("choice_slide");
+    var change_sigle_photo = document.getElementById("change_sigle_photo");
+    var slide_this_photo = document.getElementById("slide_this_photo");
+    var show_all_detail_photo = document.getElementById("show_all_detail_photo");
+    var choice_slide = document.getElementsByClassName("choice_slide");
+    var isHidden = true;
+    var isChange = true;
+
+    // 幻燈片（各個照片點擊跳出）
+    for (var i = 0; i < choice_slide.length; i++) {
+        choice_slide[i].addEventListener("click", function () {
+            slideIndex = parseInt(this.dataset.set);
+            showDivs(this.dataset.set);
+
+            if (isHidden) {
+                show_all_detail_photo.style.display = "none";
+                slide_this_photo.style.display = "block";
+            }
+        });
+    }
+    // 相片集按鈕切換
+    change_sigle_photo.addEventListener("click", function () {
+        if (isChange) {
+            slide_this_photo.style.display = "none";
+            show_all_detail_photo.style.display = "block";
+        }
+    });
+    // 所有（點擊）跳到相片集 在幻燈片時
+    detail_photo__headerGrid_all.addEventListener("click", function () {
+        if (isChange) {
+            slide_this_photo.style.display = "none";
+            show_all_detail_photo.style.display = "block";
+        }
+    });
+
     // loader動作（查看所有圖片）
     function showPhotoDetail() {
         var all_loader = document.getElementById("all_ask_big");
@@ -1435,7 +1480,24 @@
     // });
 
     //人潮分佈圖(有加時間,數量)
-    var data = [
+    var total_data = [];
+    var data_crowdlist = [];
+    var crowd = JSON.parse('{{crowd | safe}}')
+    for (var i = 0; i < crowd.length; i++) {
+        for (var j = 0; j < crowd[i].crowd.length; j++) {
+            data_crowdlist.push({
+                "Time": `2020–09–01 ${j}:00`,
+                "Volume": crowd[i].crowd[j]
+            });
+        }
+        total_data.push({
+            "week": crowd[i].week,
+            "crowd": data_crowdlist
+        });
+        data_crowdlist = [];
+    }
+    var data = total_data[0].crowd;
+    {% comment %} var data = [
         { "Time": "2020–09–01 00:00", "Volume": 1523 },
         { "Time": "2020–09–01 01:00", "Volume": 1010 },
         { "Time": "2020–09–01 02:00", "Volume": 1304 },
@@ -1459,7 +1521,7 @@
         { "Time": "2020–09–01 20:00", "Volume": 1734 },
         { "Time": "2020–09–01 21:00", "Volume": 1372 },
         { "Time": "2020–09–01 22:00", "Volume": 1270 },
-        { "Time": "2020–09–01 23:00", "Volume": 1207 }];
+        { "Time": "2020–09–01 23:00", "Volume": 1207 }]; {% endcomment %}
     var ctx = document.getElementById('people_if_Chart').getContext('2d');
     var chart = new Chart(ctx, {
         type: 'line',
@@ -1480,6 +1542,14 @@
             }]
         },
         options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true, // 从0开始
+                        max: 100, // 最大值设置为100
+                    }
+                }]
+            },
             title: {
                 display: true,
                 text: '人潮流量',
