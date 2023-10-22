@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}分享行程頁面{% endblock %}
+{% block title %}所有分享行程頁面{% endblock %}
 
 {% block content %}
 <link rel="stylesheet" href="../static/css/share.css">
@@ -71,10 +71,30 @@
 <!-- Tabs navs -->
 <div class="text-center mt-5">
   <h2><i class="fas fa-heart text-danger"></i> 已分享行程</h2>
-</div>
+
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-4 d-flex justify-content-center">
+
+      {% for item in all_share_list %}
+        <div class="col-md-4 d-flex justify-content-center">
+          <div class="card">
+            <div class="location-wrap" style="position: relative;">
+              <img src="/static/images/attractions/{{ item.img }}_0.jpg" class="img-responsive custom-image">
+            </div>
+            <div class="card-body text-center">
+              <h4 class="card-title">{{item.ct_name}}</h4>
+              <h5>user:{{ item.u_id.username }}</h5>
+              {% comment %} <p class="description">20230318去平溪玩水一天</p> {% endcomment %}
+              <div class = "container">
+              <a href="/travel_detail/{{ item.id }}" class="btn btn-warning spot_data_btn">詳細資料</a>
+              {% comment %} <span class="delete-icon" style="color: black;"><i class="fas fa-trash-alt"></i></span> {% endcomment %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      <!-- 以下為範例 -->
+      <!-- <div class="col-md-4 d-flex justify-content-center">
         <div class="card">
           <div class="location-wrap" style="position: relative;">
             <img src="../static/images/pingxi.jpg" class="img-responsive custom-image">
@@ -90,6 +110,7 @@
           </div>
         </div>
       </div>
+
       <div class="col-md-4 d-flex justify-content-center">
         <div class="card">
           <div class="location-wrap" style="position: relative;">
@@ -106,6 +127,7 @@
           </div>
         </div>
       </div>
+
       <div class="col-md-4 d-flex justify-content-center">
         <div class="card">
           <div class="location-wrap" style="position: relative;">
@@ -121,7 +143,8 @@
               </div>
           </div>
         </div>
-      </div>
+      </div> -->
+
     </div>
   </div>
 </div>

@@ -3,11 +3,28 @@ from myapp.models import *
 from django.http import JsonResponse
 # 分享行程
 def share(request):
-    return render(request, "share.html")
+    user = request.user.id
+    all_share_list = []
+    # 判斷此user有沒有收藏過
+    share_list =  Create_Travel.objects.filter(status=1).values()
+    for share in share_list:
+        if TravelFavorite.objects.filter(u_id=user, ct_id=share["id"]).exists():
+            share['is_favorite']= "1"
+        else:
+            share['is_favorite']= "0"
+        share['u_id'] = User.objects.get(id=share['u_id']) 
+        # 抓place_id
+        choiceid= ChoiceDay_Ct.objects.filter(ct_id=share['id']).values().first()
+        ctaid = Attractions_Ct.objects.filter(choice_ct_id=choiceid['id']).values().first()
+        place_id = Attractions.objects.get(id=ctaid['a_id']).place_id
+        share['img']=place_id
+        all_share_list.append(share)
+    print(all_share_list)
+    return render(request, "share.html",locals())
 
 
 # 加入最愛
-def add_favorite_share(request):
+def add_share(request):
     u_id = request.user.id
     print("u_id",u_id)
     ctid = request.POST.get("ctid")
