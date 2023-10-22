@@ -31,15 +31,16 @@ function addFavorite(aid) {
     });
 }
 
-function addFavorite_index(aid) {
-    console.log("目前點擊的id為" + aid);
+function addFavorite_index(id,type) {
+    console.log("目前點擊的id為" + id);
+    console.log("目前URL為" + type);
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     $.ajax({
         headers: { 'X-CSRFToken': csrftoken },
         type: "POST",
-        url: "/add_favorite/",
+        url: type,
         data: {
-            'aid': aid,
+            'id': id,
         },
         success: function (response) {
             
