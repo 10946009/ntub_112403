@@ -1655,6 +1655,10 @@ img {
     background-color: rgb(179, 176, 176);
 }
 
+#comment_report:hover {
+    background-color: rgb(179, 176, 176);
+}
+
 /* 關閉分享及照片x */
 #closeShare,
 #closePhoto {
@@ -1935,6 +1939,81 @@ img {
 .tag-week:hover {
     background-color: rgb(71, 117, 162);
     color: #000;
+}
+
+/* 檢舉個別景點 */
+.report_an_att {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 140px;
+}
+
+/* 檢舉框框 */
+.report_an_att_container {
+    background: rgb(221, 219, 219);
+    border: black solid;
+    border-radius: 10px;
+    width: 25%;
+    margin: 50px auto;
+    padding-bottom: 10px;
+    /* padding: 20px; */
+}
+
+/* 檢舉彈跳窗 */
+.report_att_container {
+    padding-top: 10px;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-bottom: rgb(185, 182, 182) solid;
+}
+
+#closereport {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+#closereport:hover {
+    color: red;
+    cursor: pointer;
+}
+
+/* report tips提示 */
+#report_tips {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 47%;
+    bottom: 30px;
+    font-size: 17px;
+}
+
+/* report tips提示(js裡創的class(讓tips show) */
+#report_tips.report {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
 /* .Cart__product {
