@@ -471,9 +471,11 @@
                             </div>
                         </div>
                         <div>
-                            <textarea name="" id="" cols="100%" rows="5"
-                                style="resize:none; border-radius: 10px;max-width: 90%;margin-left: 40px; padding: 10px;"
-                                placeholder="回答問題"></textarea>
+                            <div>
+                                <textarea name="answer_qa" id="answer_qa" cols="100%" rows="5"
+                                    style="resize: none; border-radius: 10px; max-width: 90%; margin-left: 40px; padding: 10px;"
+                                    placeholder="回答問題"></textarea>
+                            </div>
                             <!-- 之後會補上判斷textarea是否是空值以觸發ask_btn_ok按鈕（空直不能點張貼） -->
                             <div class="post_ask">
                                 <span class="all_ask_btn_ok" id="all_ask_btn_ok">張貼</span>
@@ -1307,6 +1309,56 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
+    // 判斷提出問題時，textarea有沒有東西
+    var textarea = document.getElementById('user_ask');
+    var postButton = document.getElementById('ask_btn_ok');
+    textarea.addEventListener('input', function () {
+        if (textarea.value.trim() === '') {
+            postButton.style.color = 'grey';
+            postButton.style.border = 'none';
+            postButton.style.pointerEvents = 'none'; // 禁用點擊事件
+        } else {
+            postButton.style.color = 'black';
+            postButton.style.border = '#000 solid';
+            postButton.style.pointerEvents = 'auto'; // 啟用點擊事件
+        }
+    });
+    // 初始化時檢查textarea的內容
+    if (textarea.value.trim() === '') {
+        postButton.style.color = 'grey';
+        postButton.style.border = 'none';
+        postButton.style.pointerEvents = 'none';
+    } else {
+        postButton.style.color = 'black';
+        postButton.style.border = '#000 solid';
+        postButton.style.pointerEvents = 'auto';
+    }
+
+    // 判斷回覆問題時，textarea有沒有東西
+    var textarea = document.getElementById('answer_qa');
+    var postButton = document.getElementById('all_ask_btn_ok');
+    textarea.addEventListener('input', function () {
+        if (textarea.value.trim() === '') {
+            postButton.style.color = 'grey';
+            postButton.style.border = 'none';
+            postButton.style.pointerEvents = 'none'; // 禁用點擊事件
+        } else {
+            postButton.style.color = 'black';
+            postButton.style.border = '#000 solid';
+            postButton.style.pointerEvents = 'auto'; // 啟用點擊事件
+        }
+    });
+    // 初始化時檢查textarea的內容
+    if (textarea.value.trim() === '') {
+        postButton.style.color = 'grey';
+        postButton.style.border = 'none';
+        postButton.style.pointerEvents = 'none';
+    } else {
+        postButton.style.color = 'black';
+        postButton.style.border = '#000 solid';
+        postButton.style.pointerEvents = 'auto';
+    }
+
     // 點擊還有一個答案的功能
     var comment_qa = document.getElementById("comment_qa");
     var qa_text = document.getElementById("qa_text");
