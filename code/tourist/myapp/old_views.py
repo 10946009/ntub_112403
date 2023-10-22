@@ -64,8 +64,6 @@ def search(request):
 
 
 
-def user_edit(request):
-    return render(request, "edit.html")
 
 
 
