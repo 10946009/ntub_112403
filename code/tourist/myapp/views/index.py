@@ -29,4 +29,27 @@ def index(request):
     # hot =[57,79,100,199,216,421,450,454,713]
     # for a o in hot:
     #     aDb = Attractions.objects.get()
+
+    # 抓熱門行程
+    hot_travel = Create_Travel.objects.filter(status=1).order_by('-like').values()
+    top_hot_travel = hot_travel[:3]  # 抓前3名
+
+    #加入place_id
+    for item in top_hot_travel:
+        # 判斷此user有沒有收藏過
+        if TravelFavorite.objects.filter(u_id=user, ct_id=item["id"]).exists():
+            item['is_favorite']= "1"
+        else:
+            item['is_favorite']= "0"
+
+        #抓user資料庫
+        item['u_id'] = User.objects.get(id=item['u_id']) 
+
+        # 抓place_id
+        choiceid= ChoiceDay_Ct.objects.filter(ct_id=item['id']).values().first()
+        ctaid = Attractions_Ct.objects.filter(choice_ct_id=choiceid['id']).values().first()
+        place_id = Attractions.objects.get(id=ctaid['a_id']).place_id
+        item['img']=place_id
+
+    print(top_hot_travel)
     return render(request, "index.html", locals())
