@@ -14,9 +14,7 @@ def save_attractions_comment(requests,aid=None):
     if comment:
         unit = AttractionsComment.objects.create(u_id=user_id, a_id=aid, comment=comment)
         unit.save()
-        return redirect("/attraction_details/"+str(aid))
-    else:
-        return redirect("/attraction_details/"+str(aid))
+    return redirect(f"/attraction_details/{aid}")
 
 @login_required(login_url="/login")
 def save_travel_comment(requests,cid=None):
@@ -29,6 +27,4 @@ def save_travel_comment(requests,cid=None):
     if comment:
         unit = TravelComment.objects.create(u_id=user_id, c_id=cid, comment=comment)
         unit.save()
-        return redirect("/travel_detail/"+str(cid))
-    else:
-        return redirect("/travel_detail/"+str(cid))
+    return redirect(f"/attraction_details/{cid}")
