@@ -34,6 +34,7 @@ TEX_CALL = {
 }
 
 def get_nearby_attractions(choose_attractions):
+    near_count = 3
     for radius in range(1, 10):
             radius = radius / 1000
 
@@ -46,9 +47,9 @@ def get_nearby_attractions(choose_attractions):
                 Q(location_x__range=(min_x, max_x))
                 & Q(location_y__range=(min_y, max_y))
                 & ~Q(id=choose_attractions.id)
-            )[:2].values()
+            )[:near_count].values()
             near_attractions = list(near_attractions)
-            if len(near_attractions) == 2:
+            if len(near_attractions) == near_count:
                 break
     return near_attractions
 
@@ -154,6 +155,7 @@ def attraction_details(request, from_base_search_text=None):
                 "picture_list": picture_list,
                 "opentime_list": opentime_list,
                 "near_attractions":near_attractions,
+                "request": request,
             },
         )
         detail_data_dict = {"attractions_detail_html": detail_html}

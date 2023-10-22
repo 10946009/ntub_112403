@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}gps{% endblock %}
+{% block content %}<link rel="stylesheet" href="../static/css/testMAP.css">{% endblock %}
+{% block body %}
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <br>
+  <br>
+  <br>
+  <div id="container">
+    <div id="map"></div>
+    <div id="sidebar">
+      <p>Total Distance: <span id="total"></span></p>
+      <div id="panel"></div>
+    </div>
+  </div>
+  <script src="../static/js/testMAP.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key={{key}}&libraries=places&callback=initMap" async defer></script>
+{% endblock body %}
