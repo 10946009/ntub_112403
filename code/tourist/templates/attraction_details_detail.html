@@ -35,7 +35,7 @@
                 <i class="fa-regular fa-star-half-stroke" style="color:yellow;"></i>
                 {% endif %}
                 {% endfor %}
-                <span id="selectedRating">{{detail.rating}} / 5 ({{ detail.rating_total }})</span>
+                <span id="selectedRating">{{detail.rating}} / 5 ({{ detail.rating_total }}) </span>
         </div>
         <!-- 圖片 -->
         <div class="detail_img" style="margin-top: 10px;">
@@ -59,6 +59,7 @@
                 </div>
             </div>
         </div>
+        <!-- 景點整體介紹 -->
         <div class="detail_detail" style="margin-top: -20px;">
             <div class="row">
                 <div class="col-7">
@@ -109,10 +110,20 @@
                             <h6 style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-person-circle-exclamation" style="color: rgb(67, 1, 159);"></i>
                                 人潮資訊：
+                                <!-- 星期 -->
+                                <div class="week_number">
+                                    <span class="tag-week">星期一</span>
+                                    <span class="tag-week">星期二</span>
+                                    <span class="tag-week">星期三</span>
+                                    <span class="tag-week">星期四</span>
+                                    <span class="tag-week">星期五</span>
+                                    <span class="tag-week">星期六</span>
+                                    <span class="tag-week">星期日</span>
+                                </div>
                                 <!-- 圖表 -->
                                 <div>
                                     <!-- <canvas id="chart" width="300" height="150"></canvas> -->
-                                    <canvas id="people_if_Chart" width="680px" height="520px"></canvas>
+                                    <canvas id="people_if_Chart" width="680px" height="480px"></canvas>
                                 </div>
                             </h6>
                         </div>
@@ -221,19 +232,19 @@
 
                             <!-- 提問按鈕 -->
                             {% if request.user.is_authenticated %}
-                                <div style="text-align: center;">
-                                    <h6 class="ask_qa" id="ask_qa" onclick="showLoaderAndContent()">
-                                        提出問題
-                                    </h6>
-                                </div>
-                            {% else %}
-                            <a href="/login">
                             <div style="text-align: center;">
-                                <h6 class="ask_qa" id="ask_qa">
-                                    登入後即可提問
+                                <h6 class="ask_qa" id="ask_qa" onclick="showLoaderAndContent()">
+                                    提出問題
                                 </h6>
                             </div>
-                        </a>
+                            {% else %}
+                            <a href="/login">
+                                <div style="text-align: center;">
+                                    <h6 class="ask_qa" id="ask_qa">
+                                        登入後即可提問
+                                    </h6>
+                                </div>
+                            </a>
                             {% endif %}
                         </div>
                     </div>
@@ -253,8 +264,7 @@
                                 </div>
                                 <div class="detail_near__headerGrid">
                                     <h4 data-bottom-top="transform: translateY(-20px);opacity: 0"
-                                        data-center="transform: translateY(0px);opacity: 1" data-a-Id="{{ near.id }}"
-                                        >
+                                        data-center="transform: translateY(0px);opacity: 1" data-a-Id="{{ near.id }}">
                                         {{near.a_name }}</h3>
                                         <!-- 星星數 -->
                                         <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
@@ -399,9 +409,11 @@
                                 <div style="position: relative;">
                                     <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer; font-size: 16px;"
                                         id="myIcon1"></i>
-                                    <div class="tooltip2" id="myTooltip2">
+                                    <!-- 檢舉按鈕 -->
+                                    <div class="tooltip2" id="myTooltip2" onclick="showReportLoaderAndContent()">
                                         檢舉
                                     </div>
+
                                 </div>
                             </div>
                             <div style="font-size: 18px; margin-bottom: 20px;">
@@ -459,9 +471,11 @@
                             </div>
                         </div>
                         <div>
-                            <textarea name="" id="" cols="100%" rows="5"
-                                style="resize:none; border-radius: 10px;max-width: 90%;margin-left: 40px; padding: 10px;"
-                                placeholder="回答問題"></textarea>
+                            <div>
+                                <textarea name="answer_qa" id="answer_qa" cols="100%" rows="5"
+                                    style="resize: none; border-radius: 10px; max-width: 90%; margin-left: 40px; padding: 10px;"
+                                    placeholder="回答問題"></textarea>
+                            </div>
                             <!-- 之後會補上判斷textarea是否是空值以觸發ask_btn_ok按鈕（空直不能點張貼） -->
                             <div class="post_ask">
                                 <span class="all_ask_btn_ok" id="all_ask_btn_ok">張貼</span>
@@ -728,6 +742,86 @@
 
                             </div>
                         </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- 檢舉彈跳框框(ok) -->
+        <div class="report_an_att" id="report_an_att">
+            <div id="report_an_att_container" class="report_an_att_container">
+                <form class="report_an_att-content" id="report_an_att-content" action="">
+                    <div class="report_att_container" id="report_att_container">
+                        <h5 style="font-size: 22px;">你要檢舉何種濫用行為？</h5>
+                        <i class="fa-solid fa-xmark" id="closereport"></i>
+                    </div>
+                    <div class="report_att_con">
+                        <div class="comment" id="comment_share" style="top:0; cursor: pointer; padding: 0 20px 0 20px; "
+                            onclick="Report_Copytips()">
+                            <div class="" style="font-size: 36px;">
+                                <i class="fa-regular fa-circle-xmark" style="color: rgb(37, 152, 1);"></i>
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username" style="padding: 10px;">
+                                    離題
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="comment" id="comment_share" style="top:0; cursor: pointer; padding: 0 20px 0 20px; "
+                            onclick="Report_Copytips()">
+                            <div class="" style="font-size: 36px;">
+                                <i class="fa-solid fa-ban" style="color: rgb(199, 3, 3);"></i>
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username" style="padding: 10px;">
+                                    此內容不適用
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="comment" id="comment_share" style="top:0; cursor: pointer; padding: 0 20px 0 20px; "
+                            onclick="Report_Copytips()">
+                            <div class="" style="font-size: 36px;">
+                                <i class="fa-brands fa-adversal" style="color: rgb(3, 94, 199);"></i>
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username" style="padding: 10px;">
+                                    廣告或垃圾內容
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="comment" id="comment_share" style="top:0; cursor: pointer; padding: 0 20px 0 20px; "
+                            onclick="Report_Copytips()">
+                            <div class="" style="font-size: 34px;">
+                                <i class="fa-regular fa-face-angry" style="color: rgb(199, 127, 3);"></i>
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username" style="padding: 10px;">
+                                    仇恨、暴力或不當內容
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="comment" id="comment_share" style="top:0; cursor: pointer; padding: 0 20px 0 20px; "
+                            onclick="Report_Copytips()">
+                            <div class="" style="font-size: 36px;">
+                                <i class="fa-solid fa-circle-info" style="color: rgb(3, 72, 199);"></i>
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username" style="padding: 10px;">
+                                    資訊不正確
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="comment" id="comment_share" style="top:0; cursor: pointer; padding: 0 20px 0 20px; "
+                            onclick="Report_Copytips()">
+                            <div class="" style="font-size: 30px; padding-top: 5px;">
+                                <i class="fa-solid fa-hand" style="color: rgb(134, 3, 199);"></i>
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username" style="padding: 10px;">
+                                    其他
+                                </h6>
+                            </div>
+                        </div>
+                        <div id="report_tips">感謝您的舉報，我們將做進一步的審核！</div>
                     </div>
                 </form>
             </div>
@@ -1215,6 +1309,56 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
+    // 判斷提出問題時，textarea有沒有東西
+    var textarea = document.getElementById('user_ask');
+    var postButton = document.getElementById('ask_btn_ok');
+    textarea.addEventListener('input', function () {
+        if (textarea.value.trim() === '') {
+            postButton.style.color = 'grey';
+            postButton.style.border = 'none';
+            postButton.style.pointerEvents = 'none'; // 禁用點擊事件
+        } else {
+            postButton.style.color = 'black';
+            postButton.style.border = '#000 solid';
+            postButton.style.pointerEvents = 'auto'; // 啟用點擊事件
+        }
+    });
+    // 初始化時檢查textarea的內容
+    if (textarea.value.trim() === '') {
+        postButton.style.color = 'grey';
+        postButton.style.border = 'none';
+        postButton.style.pointerEvents = 'none';
+    } else {
+        postButton.style.color = 'black';
+        postButton.style.border = '#000 solid';
+        postButton.style.pointerEvents = 'auto';
+    }
+
+    // 判斷回覆問題時，textarea有沒有東西
+    var textarea = document.getElementById('answer_qa');
+    var postButton = document.getElementById('all_ask_btn_ok');
+    textarea.addEventListener('input', function () {
+        if (textarea.value.trim() === '') {
+            postButton.style.color = 'grey';
+            postButton.style.border = 'none';
+            postButton.style.pointerEvents = 'none'; // 禁用點擊事件
+        } else {
+            postButton.style.color = 'black';
+            postButton.style.border = '#000 solid';
+            postButton.style.pointerEvents = 'auto'; // 啟用點擊事件
+        }
+    });
+    // 初始化時檢查textarea的內容
+    if (textarea.value.trim() === '') {
+        postButton.style.color = 'grey';
+        postButton.style.border = 'none';
+        postButton.style.pointerEvents = 'none';
+    } else {
+        postButton.style.color = 'black';
+        postButton.style.border = '#000 solid';
+        postButton.style.pointerEvents = 'auto';
+    }
+
     // 點擊還有一個答案的功能
     var comment_qa = document.getElementById("comment_qa");
     var qa_text = document.getElementById("qa_text");
@@ -1438,6 +1582,35 @@
         x.className = "copy";
         setTimeout(function () {
             x.className = x.className.replace("copy", "");
+        }, 3000);
+    }
+
+    // 打開檢舉方塊
+    function showReportLoaderAndContent() {
+        var report_an_att = document.getElementById("report_an_att");
+        report_an_att.style.display = "block";
+    }
+    // 關閉檢舉方塊
+    var report_icon = document.getElementById('report_icon');
+    var report_an_att_container = document.getElementById('report_an_att_container');
+    var report_an_att = document.getElementById('report_an_att');
+
+    document.addEventListener("click", function (event) {
+        if (event.target == report_an_att) {
+            report_an_att.style.display = "none";
+        }
+    });
+    var closereport = document.getElementById('closereport');
+    closereport.addEventListener("click", function () {
+        report_an_att.style.display = "none";
+    });
+
+    // 已經檢舉提示
+    function Report_Copytips() {
+        var x = document.getElementById("report_tips");
+        x.className = "report";
+        setTimeout(function () {
+            x.className = x.className.replace("report", "");
         }, 3000);
     }
 
