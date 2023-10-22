@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // 添加 active 状态到 contact 选项卡
     document.getElementById('contact-tab').classList.add('active');
     document.getElementById('contact').classList.add('show', 'active');
+  }else if(selectedTab === 'child{{days}}'){
+
   }
 });
 
