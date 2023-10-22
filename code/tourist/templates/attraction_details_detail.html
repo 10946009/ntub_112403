@@ -1309,6 +1309,31 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
+    // 判斷提出問題時，textarea有沒有東西
+    var textarea = document.getElementById('user_ask');
+    var postButton = document.getElementById('ask_btn_ok');
+    textarea.addEventListener('input', function () {
+        if (textarea.value.trim() === '') {
+            postButton.style.color = 'grey';
+            postButton.style.border = 'none';
+            postButton.style.pointerEvents = 'none'; // 禁用點擊事件
+        } else {
+            postButton.style.color = 'black';
+            postButton.style.border = '#000 solid';
+            postButton.style.pointerEvents = 'auto'; // 啟用點擊事件
+        }
+    });
+    // 初始化時檢查textarea的內容
+    if (textarea.value.trim() === '') {
+        postButton.style.color = 'grey';
+        postButton.style.border = 'none';
+        postButton.style.pointerEvents = 'none';
+    } else {
+        postButton.style.color = 'black';
+        postButton.style.border = '#000 solid';
+        postButton.style.pointerEvents = 'auto';
+    }
+
     // 判斷回覆問題時，textarea有沒有東西
     var textarea = document.getElementById('answer_qa');
     var postButton = document.getElementById('all_ask_btn_ok');
