@@ -48,7 +48,7 @@
           <span class="create_day_save" id="saveDays">儲存</span>
         </div>
       </div>
-      <div class="" style="display: flex;justify-content: center;align-items: center;align-content: center;">
+      <div style="display: flex;justify-content: center;align-items: center;align-content: center;">
         <div class="childtabdiv" style="width: 90%;">
           <ul class="nav nav-underline flex justify-content-center my-nav-tabs" id="myTab" role="tablist">
             {% for day in travelday %}
@@ -66,13 +66,6 @@
                 第二天
               </a>
             </li>
-
-            <li class="nav-item" role="presentation">
-              <a class="create-child-nav-link createday" id="child3-tab" data-bs-toggle="tab" data-bs-target="#child3"
-                type="button" role="tab" aria-controls="child3" aria-selected="false" onclick="saveTabState('child3')">
-                第三天
-              </a>
-            </li> 
             {% endcomment %}
           </ul>
           {% for days in travelday %}
@@ -120,10 +113,6 @@
                         <p style="font-size: 18px;margin-bottom: 10px;">當下可能的人潮流量：</p>
                         <p style="font-size: 18px;margin-bottom: 10px;">建議停留時間：</p>
                     </div>
-                    <div class="innerlist" draggable="true">2</div>
-                    <div class="innerlist" draggable="true">3</div>
-                    <div class="innerlist" draggable="true">4</div>
-                    <div class="innerlist" draggable="true">5</div>
                   </div>
                    {% endcomment %}
 
