@@ -59,6 +59,7 @@
                 </div>
             </div>
         </div>
+        <!-- 景點整體介紹 -->
         <div class="detail_detail" style="margin-top: -20px;">
             <div class="row">
                 <div class="col-7">
@@ -109,10 +110,20 @@
                             <h6 style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-person-circle-exclamation" style="color: rgb(67, 1, 159);"></i>
                                 人潮資訊：
+                                <!-- 星期 -->
+                                <div class="week_number">
+                                    <span class="tag-week">星期一</span>
+                                    <span class="tag-week">星期二</span>
+                                    <span class="tag-week">星期三</span>
+                                    <span class="tag-week">星期四</span>
+                                    <span class="tag-week">星期五</span>
+                                    <span class="tag-week">星期六</span>
+                                    <span class="tag-week">星期日</span>
+                                </div>
                                 <!-- 圖表 -->
                                 <div>
                                     <!-- <canvas id="chart" width="300" height="150"></canvas> -->
-                                    <canvas id="people_if_Chart" width="680px" height="520px"></canvas>
+                                    <canvas id="people_if_Chart" width="680px" height="480px"></canvas>
                                 </div>
                             </h6>
                         </div>
@@ -221,19 +232,19 @@
 
                             <!-- 提問按鈕 -->
                             {% if request.user.is_authenticated %}
-                                <div style="text-align: center;">
-                                    <h6 class="ask_qa" id="ask_qa" onclick="showLoaderAndContent()">
-                                        提出問題
-                                    </h6>
-                                </div>
-                            {% else %}
-                            <a href="/login">
                             <div style="text-align: center;">
-                                <h6 class="ask_qa" id="ask_qa">
-                                    登入後即可提問
+                                <h6 class="ask_qa" id="ask_qa" onclick="showLoaderAndContent()">
+                                    提出問題
                                 </h6>
                             </div>
-                        </a>
+                            {% else %}
+                            <a href="/login">
+                                <div style="text-align: center;">
+                                    <h6 class="ask_qa" id="ask_qa">
+                                        登入後即可提問
+                                    </h6>
+                                </div>
+                            </a>
                             {% endif %}
                         </div>
                     </div>
@@ -253,8 +264,7 @@
                                 </div>
                                 <div class="detail_near__headerGrid">
                                     <h4 data-bottom-top="transform: translateY(-20px);opacity: 0"
-                                        data-center="transform: translateY(0px);opacity: 1" data-a-Id="{{ near.id }}"
-                                        >
+                                        data-center="transform: translateY(0px);opacity: 1" data-a-Id="{{ near.id }}">
                                         {{near.a_name }}</h3>
                                         <!-- 星星數 -->
                                         <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
