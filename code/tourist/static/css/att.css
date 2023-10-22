@@ -1916,6 +1916,26 @@ img {
     width: 100%
 }
 
+/* 人潮星期 */
+.week_number {
+    padding-left: 25px;
+}
+
+.tag-week {
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    padding: 8px 20px;
+    background-color: #628eb9;
+    margin-left: 6px;
+    margin-top: 10px;
+}
+
+.tag-week:hover {
+    background-color: rgb(71, 117, 162);
+}
+
 /* .Cart__product {
     display: grid;
     grid-template-columns: 2fr 7fr 3fr 3fr 3fr 3fr;
