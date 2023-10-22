@@ -29,7 +29,7 @@ from myapp.views import (
     travel_detail,
     share,
     comment,
-    user_edit
+    user_edit,
 )
 
 
@@ -57,10 +57,9 @@ urlpatterns = [
     path("create/<int:ct_id>", create.create),
     path("history/", history.history),
     path("history/<int:select>", history.history),
-    path("favorite/", favorite.favorite),
 
     path("share/", share.share),
-    path("add_favorite_share/", share.add_favorite_share),
+    path("add_favorite_share/", share.add_share),
 
     path("attraction_details/", attraction_details.attraction_details, name="search_results"),
     path("attraction_details/<int:aid>", attraction_details.attraction_details),
@@ -72,10 +71,15 @@ urlpatterns = [
     path("base_search/", attraction_details.attraction_details_search,name="search_results_base"),
     # path('test/',views.test_input),
     path("useredit/", user_edit.user_edit),
+
+    path("favorite/", favorite.favorite),
+    path("add_travel_favorite/", favorite.add_travel_favorite),  # 沒有頁面
     path("add_favorite/", favorite.add_favorite),  # 沒有頁面
     path("del_favorite/<int:a_id>", favorite.del_favorite),  # 沒有頁面
+    path("del_travel_favorite/<int:ct_id>", favorite.del_travel_favorite),  # 沒有頁面
     # path('attraction_details/<int:a_id>',views.attraction_details),
     # path('sayhello/<str:username>',sayhello), #新增
+    
     path('travel_detail/', travel_detail.travel_detail),
     path("travel_detail/<int:ctid>", travel_detail.travel_detail),
     path('comment/', comment.save_attractions_comment,name="attraction_comment"),
