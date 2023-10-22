@@ -42,16 +42,16 @@
             <div class="detail_img__header">
                 <div class="detail_img__headerGrid">
                     <img src="/static/images/attractions/{{detail.place_id}}_0.jpg" class="show_detail_img"
-                        style="margin-top: 1px; width:100%;max-width: 100%;" alt="">
+                        style="margin-top: 1px; width:100%;max-width: 100%;" alt="" onclick="showPhotoDetail()">
                 </div>
                 <div class="detail_img__headerGrid">
                     <div class="row">
                         <img src="/static/images/attractions/{{detail.place_id}}_0.jpg" class="show_detail_img"
-                            style=" width:100%;" alt="">
+                            style=" width:100%;" alt="" onclick="showPhotoDetail()">
                         <div class="image-container">
                             <img src="/static/images/attractions/{{detail.place_id}}_0.jpg" class="show_detail_img"
-                                style="width: 100%;margin-top: 2px;" alt="">
-                            <a href="#" class="see_all_btn">查看所有照片</a>
+                                style="width: 100%;margin-top: 2px;" alt="" onclick="showPhotoDetail()">
+                            <a id="see_all_btn" class="see_all_btn" onclick="showPhotoDetail()">查看所有照片</a>
                         </div>
                     </div>
                 </div>
@@ -574,17 +574,100 @@
                 </form>
             </div>
         </div>
-
-
+        <!-- 查看所有圖片彈跳框框 -->
         <div class="photo_att" id="photo_att">
             <div id="photo_big_att_container" class="photo_big_att_container">
                 <form class="photo_att-content" id="photo_att-content" action="">
                     <div class="photo_att_container" id="photo_att_container">
                         <h5 style="font-size: 24px;">關於{{ detail.a_name }}的所有照片&emsp;</h5>
-                        <i class="fa-solid fa-xmark" id="closeShare"></i>
+                        <i class="fa-solid fa-xmark" id="closePhoto"></i>
                     </div>
-
-                    <div class="photo_att_con">
+                    <div class="row">
+                        <div class="col-4 photo_book">
+                            <h6>相簿</h6>
+                            <div class="detail_photo" style="margin-top: 10px;">
+                                <div class="detail_photo__header">
+                                    <div class="detail_photo__headerGrid">
+                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                            class="show_detail_img"
+                                            style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                        <div class="photo-text">
+                                            所有照片（10)
+                                        </div>
+                                    </div>
+                                    <div class="detail_photo__headerGrid">
+                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                            class="show_detail_img" style="width: 100%;" alt="">
+                                        <div class="photo-text">
+                                            旅客（7)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="detail_photo__header">
+                                    <div class="detail_photo__headerGrid">
+                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                            class="show_detail_img"
+                                            style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                        <div class="photo-text">
+                                            所有照片（10)
+                                        </div>
+                                    </div>
+                                    <div class="detail_photo__headerGrid"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8 photo_show_book">
+                            <div class="show_all_detail_photo"
+                                style="margin-top: 10px; height: 500px; overflow-y: scroll;">
+                                <div class="show_detail_photo__header">
+                                    <div class="show_detail_photo__headerGrid">
+                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                            class="show_detail_img"
+                                            style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                    </div>
+                                    <div class="show_detail_photo__headerGrid">
+                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                            class="show_detail_img" style="width: 100%;" alt="">
+                                    </div>
+                                    <div class="show_detail_photo__headerGrid">
+                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                            class="show_detail_img" style="width: 100%;" alt="">
+                                    </div>
+                                </div>
+                                <div class="show_detail_photo__header">
+                                    <div class="show_detail_photo__headerGrid">
+                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                            class="show_detail_img"
+                                            style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                    </div>
+                                    <div class="show_detail_photo__headerGrid">
+                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                            class="show_detail_img" style="width: 100%;" alt="">
+                                    </div>
+                                    <div class="show_detail_photo__headerGrid">
+                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                            class="show_detail_img" style="width: 100%;" alt="">
+                                    </div>
+                                </div>
+                                <div class="show_detail_photo__header">
+                                    <div class="show_detail_photo__headerGrid">
+                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                            class="show_detail_img"
+                                            style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
+                                    </div>
+                                    <div class="show_detail_photo__headerGrid">
+                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                            class="show_detail_img" style="width: 100%;" alt="">
+                                    </div>
+                                    <div class="show_detail_photo__headerGrid">
+                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
+                                            class="show_detail_img" style="width: 100%;" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="photo_att_con">
                         <div class="comment" id="comment_share"
                             style="top:0; cursor: pointer; padding: 0 20px 0 20px; ">
                             <div class="" style="font-size: 36px;">
@@ -652,7 +735,7 @@
                             </div>
                         </div>
                         <div id="share_tips">已將連結複製到剪貼簿。</div>
-                    </div>
+                    </div> -->
                     <!-- <div class="post_ask">
                         <span class="ask_btn_cancel" id="ask_btn_cancel">取消</span>
                         <span class="ask_btn_ok" id="ask_btn_ok">張貼</span>
@@ -1151,6 +1234,32 @@
 <!-- 圖表會用到script -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
+    // loader動作（查看所有圖片）
+    function showPhotoDetail() {
+        var all_loader = document.getElementById("all_ask_big");
+        var photo_att = document.getElementById("photo_att");
+        all_loader.style.display = "block";
+        setTimeout(function () {
+            all_loader.style.display = "none";
+            photo_att.style.display = "block";
+        }, 500);
+    }
+
+    // 關閉查看所有圖片方塊
+    var see_all_btn = document.getElementById('see_all_btn');
+    var photo_big_att_container = document.getElementById('photo_big_att_container');
+    var photo_att = document.getElementById('photo_att');
+
+    document.addEventListener("click", function (event) {
+        if (event.target == photo_att) {
+            photo_att.style.display = "none";
+        }
+    });
+    var closePhoto = document.getElementById('closePhoto');
+    closePhoto.addEventListener("click", function () {
+        photo_att.style.display = "none";
+    });
+
     // ask_tips提示點擊(查看)
     var icon1 = document.getElementById("myIcon1");
     var tooltip2 = document.getElementById("myTooltip2");
