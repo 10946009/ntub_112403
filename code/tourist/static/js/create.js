@@ -8,17 +8,69 @@ document.addEventListener('DOMContentLoaded', function () {
     // 添加 active 状态到 contact 选项卡
     document.getElementById('contact-tab').classList.add('active');
     document.getElementById('contact').classList.add('show', 'active');
-  }else if(selectedTab === 'child{{days}}'){
-
   }
 });
 
+//隱藏block 點第N天的時候不會有空白 
+document.addEventListener('DOMContentLoaded', function () {
+  let selectedTab = localStorage.getItem('selectedTab');
+  if (!selectedTab) {
+    selectedTab = 'myTabchild1';
+    localStorage.setItem('selectedTab', selectedTab);
+  }
+
+  showTab(selectedTab); // 根据本地存储中的值来显示相应的选项卡
+});
+
+function showTab(tabId) {
+  const tabChildElements = document.querySelectorAll('.tab-child1, .tab-child2, .tab-child3, .tab-child4, .tab-child5');
+  tabChildElements.forEach((element) => {
+    element.style.display = 'none';
+  });
+
+  // 显示特定的tab-child元素
+  const tabChild = document.getElementById(tabId);
+  if (tabChild) {
+    tabChild.style.display = 'flex';
+  }
+}
+
+// 给各个选项卡按钮添加点击事件监听器
+document.getElementById('child1-tab').addEventListener('click', function () {
+  // 在点击child1时隐藏child2和child3，并更新本地存储
+  localStorage.setItem('selectedTab', 'myTabchild1');
+  showTab('myTabchild1');
+});
+document.getElementById('child2-tab').addEventListener('click', function () {
+  // 在点击child2时隐藏child1和child3，并更新本地存储
+  localStorage.setItem('selectedTab', 'myTabchild2');
+  showTab('myTabchild2');
+});
+document.getElementById('child3-tab').addEventListener('click', function () {
+  // 在点击child3时隐藏child1和child2，并更新本地存储
+  localStorage.setItem('selectedTab', 'myTabchild3');
+  showTab('myTabchild3');
+});
+document.getElementById('child4-tab').addEventListener('click', function () {
+  // 在点击child3时隐藏child1和child2，并更新本地存储
+  localStorage.setItem('selectedTab', 'myTabchild4');
+  showTab('myTabchild4');
+});
+document.getElementById('child5-tab').addEventListener('click', function () {
+  // 在点击child3时隐藏child1和child2，并更新本地存储
+  localStorage.setItem('selectedTab', 'myTabchild5');
+  showTab('myTabchild5');
+});
+
+
+
+
 //open篩選
-function openfiliter(){
+function openfiliter() {
   var showfiliter = document.querySelector(".show_filiter")
-  if(showfiliter.style.display === "none" || showfiliter.style.display === ""){
+  if (showfiliter.style.display === "none" || showfiliter.style.display === "") {
     showfiliter.style.display = "block";
-  }else{
+  } else {
     showfiliter.style.display = "none";
   }
 }
@@ -28,9 +80,9 @@ function pickspot(checkbox) {
   checkbox.checked = !checkbox.checked;
   var div = checkbox.parentElement.parentElement; // 取得包含checkbox的div
   if (checkbox.checked) {
-    div.classList.add("pickimg"); 
+    div.classList.add("pickimg");
   } else {
-    div.classList.remove("pickimg"); 
+    div.classList.remove("pickimg");
   }
 }
 
