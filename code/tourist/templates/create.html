@@ -78,7 +78,7 @@
           {% for days in travelday %}
             <div class="tab-child{{ days }}" id="myTabchild{{ days }}"
               style="margin: 10px auto;display: flex;align-items: center;align-content: center;">
-              <div class="tab-pane fade {% if forloop.counter == 1 %}show active{% endif %}" id="child{{days}}" role="tabpanel" aria-labelledby="child{{days}}-tab"
+              <div class="tab-pane fade {% if forloop.counter == 1 %}show active{% endif %}" id="child{{days}}" role="tabpanel" aria-labelledby="child{{days}}-tab" data-set="{{days}}"
                 style="width: 90%;background-color: #eee;padding: 10px;margin: 0 auto;">
                 <form action="#tab_c" style="color: black;">
                   <div>
@@ -89,11 +89,11 @@
                     <div class="tabD">
                       <span id="tabDL">使用者位置：</span>
                       {% comment %} <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation" value="{{local_address}}"> {% endcomment %}
-                      <label class="input_txt" id="userLocation"> {{ location_name }}</label> <p></p>
-                      {% comment %} <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation" value="{{ location_name }}"> {% endcomment %}
-                      <button type="button" id="nowLocationButton">取得目前位置</button>
-                      <button type="button" id="mapButton">選擇位置</button>
-                      <button type="button" id="okButton">確認</button>
+                      <label class="input_txt" id="userLocationName-{{ days }}"> {{ location_name }}</label> <p></p>
+                      <input type="hidden"  id="userLocation-{{ days }}">
+                      <button type="button" id="nowLocationButton-{{ days }}" onclick="get_nowLocation({{ days }})">取得目前位置</button>
+                      <button type="button" id="mapButton-{{ days }}" onclick="get_map({{ days }})">選擇位置</button>
+                      <button type="button" id="okButton-{{ days }}" onclick="clickOkButton({{ days }})">確認</button>
                       <input type="hidden" placeholder="day" class="nowday" id="nowday">
                     </div>
                   </div>
@@ -101,12 +101,13 @@
 
                 <!-- 添加地图容器 -->
                 <input
-                id="pac-input"
-                class="controls"
-                type="text"
-                placeholder="Search Box"
-              />
-                <div id="map" style="width: 100%; height: 400px; display: none;"></div>
+                  id="pac-input-{{ days }}"
+                  class="controls"
+                  type="text"
+                  placeholder="Search Box"
+                  style="display: none;"
+                />
+                <div id="map-{{ days }}" style="width: 100%; height: 400px; display: none;"></div>
                 {% comment %} ct_attractions_co_list
                 ct_attractions_detail_list {% endcomment %}
                 <div id="OrderAttractions" style="color: black;">
@@ -457,28 +458,31 @@
   /*window.addEventListener = function () {
     geoFindMe();
   };*/
-  var nowLocationButton = document.getElementById('nowLocationButton');
-  nowLocationButton.addEventListener('click', function() {
-    const userLocation = document.getElementById("userLocation");
+
+  function get_nowLocation(day){
+    const userLocationName = document.getElementById("userLocationName-"+day); //標籤為label
+    const userLocation = document.getElementById("userLocation-"+day); //標籤為input
     function success(position) {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
       //if(userLocation.value==''){}
-      userLocation.textContent = latitude + ',' + longitude;
+      userLocationName.textContent = latitude + ',' + longitude;  //之後要修改成地址或名字
+      userLocation.value = latitude + ',' + longitude;
       console.log(userLocation.textContent);
     }
 
     function error() {
-      userLocation.textContent = "Unable to retrieve your location";
+      userLocationName.textContent = "Unable to retrieve your location";
     }
 
     if (!navigator.geolocation) {
-      userLocation.textContent = "Geolocation is not supported by your browser";
+      userLocationName.textContent = "Geolocation is not supported by your browser";
     } else {
-      userLocation.textContent = "Locating…";
+      userLocationName.textContent = "Locating…";
       navigator.geolocation.getCurrentPosition(success, error);
     }
-  });
+  }
+
 
   
 
