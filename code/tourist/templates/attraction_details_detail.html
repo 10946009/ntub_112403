@@ -8,7 +8,8 @@
         <div class="detail_name">
             <div class="detail_name__header">
                 <div class="detail_name__headerGrid">
-                    <h2 style="color: rgb(172, 78, 1)" id="attractions-detail-name">{{ detail.a_name }}</h2>
+                    <h2 style="color: rgb(172, 78, 1)" id="attractions-detail-name"><strong>{{ detail.a_name }}</strong>
+                    </h2>
                 </div>
                 <div class="detail_name__headerGrid" style="text-align: center; font-size: 24px;">
                     <i class="fa-solid fa-arrow-up-from-bracket icon_name" id="share_icon"
@@ -394,8 +395,8 @@
             <div id="all_ask_qa_container" class="all_ask_qa_container" style="height: 700px; overflow-y: scroll;">
                 <form class="all_ask-content" id="all_ask-content" action="">
                     <div class="all_ask_container" id="all_ask_container">
-                        <h3>
-                            {{ detail.a_name }}
+                        <h3 style="color: rgb(172, 78, 1)">
+                            <strong>{{ detail.a_name }}</strong>
                         </h3>
                         <span style="color:rgb(67, 65, 65);font-size: 14px; font-style: italic;">
                             {{detail.address}}</span>
@@ -827,16 +828,124 @@
             </div>
         </div>
         <hr style="border:2px solid #777777">
-        <!-- 評論 -->
+        <!-- 其他資訊 -->
         <div class="row">
             <div class="col-12">
                 <!-- 使用者總評論 -->
                 <h5 style="font-size: 24px;">
-                    <i class="fa-solid fa-pen" style="color: gray;"></i>
-                    評論
+                    <i class="fa-solid fa-file" style="color: rgb(214, 149, 28);"></i>
+                    其他資訊
                 </h5>
-                <div class="row" style="margin-bottom: 20px;">
-                    <!-- <hr style="border:2px solid #f1f1f1"> -->
+                <!-- 使用者按讚、收藏、分享、觀看人數 -->
+                <div class="User_more_add_fav">
+                    <div class="User__header">
+                        <div class="User__headerGrid" style="border-right: black dashed;">
+                            <div class=" row" style="text-align:center;">
+                                <div class="total_score_star">
+                                    <h2>
+                                        <strong>按讚人數</strong>
+                                    </h2>
+                                </div>
+                                <div class="total_score_star">
+                                    <p style="font-size:60px;">
+                                        <strong><i class="fa-solid fa-thumbs-up"
+                                                style="color: rgb(42, 106, 189);"></i></strong>
+                                    </p>
+                                </div>
+                                <div class="total_score_star">
+                                    <h2>
+                                        <strong>10,000+K</strong>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="User__headerGrid" style="border-right: black dashed;">
+                            <div class=" row" style="text-align:center;">
+                                <div class="total_score_star">
+                                    <h2>
+                                        <strong>收藏人數</strong>
+                                    </h2>
+                                </div>
+                                <div class="total_score_star">
+                                    <p style="font-size:60px;">
+                                        <strong><i class="fa-solid fa-heart"
+                                                style="color:rgb(186, 51, 51);"></i></strong>
+                                    </p>
+                                </div>
+                                <div class="total_score_star">
+                                    <h2>
+                                        <strong>100K</strong>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="User__headerGrid" style="border-right: black dashed;">
+                            <div class=" row" style="text-align:center;">
+                                <div class="total_score_star">
+                                    <h2>
+                                        <strong><i class="fa-solid fa-crown"
+                                                style="color: rgb(214, 166, 54);"></i>總評分</strong>
+                                    </h2>
+                                </div>
+                                <div class="total_score_star">
+                                    <p style="font-size:60px;">
+                                        <strong>4.0</strong>
+                                    </p>
+                                </div>
+                                <div class="total_star">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                                <p>
+                                    63,261 則評論
+                                </p>
+                            </div>
+                        </div>
+                        <div class="User__headerGrid" style="border-right: black dashed;">
+                            <div class=" row" style="text-align:center;">
+                                <div class="total_score_star">
+                                    <h2>
+                                        <strong>分享人數</strong>
+                                    </h2>
+                                </div>
+                                <div class="total_score_star">
+                                    <p style="font-size:60px;">
+                                        <strong><i class="fa-solid fa-share-from-square"
+                                                style="color: rgb(29, 101, 11);"></i></strong>
+                                    </p>
+                                </div>
+                                <div class="total_score_star">
+                                    <h2>
+                                        <strong>10K</strong>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="User__headerGrid">
+                            <div class=" row" style="text-align:center;">
+                                <div class="total_score_star">
+                                    <h2>
+                                        <strong>觀看人數</strong>
+                                    </h2>
+                                </div>
+                                <div class="total_score_star">
+                                    <p style="font-size:60px;">
+                                        <strong><i class="fa-solid fa-eye" style="color: gray;"></i></strong>
+                                    </p>
+                                </div>
+                                <div class="total_score_star">
+                                    <h2>
+                                        <strong>10K</strong>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="row" style="margin-bottom: 20px;">
                     <div class="col-3">
                         <div class=" row" style="text-align:center;">
                             <div class="total_score_star">
@@ -907,24 +1016,114 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
+                <!-- <div>
+                    <div class="comment">
+                        <div class="avatar">
+                            <img src="/static/images/head.png" alt="User Avatar">
+                        </div>
+                        <div class="comment-content">
+                            <h5 class="username">
+                                李
+                            </h5>
+                            <div class="rating">
+                                <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                                <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                                <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                                <span class="rating-star">&#9733;</span>
+                                <span class="rating-star">&#9733;</span>
+                            </div>
+                            <p class="comment-text">
+                                天氣冷來到動物園，動物們顯得心情不好，跟人類一樣也會冷到不想到，看到最多的是背影跟屁股，也是一種難得的經驗。
+                                <br>
+                                <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
+                                    2033</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <div class="avatar">
+                            <img src="/static/images/head.png" alt="User Avatar">
+                        </div>
+                        <div class="comment-content">
+                            <h5 class="username">
+                                sun
+                            </h5>
+                            <div class="rating">
+                                <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                                <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                                <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                                <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                                <span class="rating-star">&#9733;</span>
+                            </div>
+                            <p class="comment-text">
+                                帶小孩來看動物很棒！可以玩一整天！廁所很多很方便,用餐座位如果能再多一些就好了!麥當勞大排長龍實在太誇張！希望能增設其他餐廳或便利商店~
+                                <br>
+                                <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
+                                    2023</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <div class="avatar">
+                            <img src="/static/images/head.png" alt="User Avatar">
+                        </div>
+                        <div class="comment-content">
+                            <h5 class="username">
+                                李+0
+                            </h5>
+                            <div class="rating">
+                                <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                                <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                                <span class="rating-star">&#9733;</span>
+                                <span class="rating-star">&#9733;</span>
+                                <span class="rating-star">&#9733;</span>
+                            </div>
+                            <p class="comment-text">
+                                我實在越來越覺得動物園越來越差，維修的東西擴建的項目越來越多，但都沒有東西完成！太誇張了
+                                <br>
+                                <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
+                                    2023</span>
+                            </p>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- 撰寫評論 -->
+                <!-- <button style="border-radius: 8px;position: relative; left: 45%;">
+                    <i class="fa-solid fa-pen" style="margin-right: 5px;"></i>我要評論
+                </button> -->
+            </div>
+        </div>
+        <hr style="border:2px solid #777777">
+        <!-- 評論 -->
+        <div class="row">
+            <h5 style="font-size: 24px;">
+                <i class="fa-solid fa-pen" style="color: gray;"></i>
+                評論
+            </h5>
+            <div class="col-3"></div>
+            <div class="col-9">
                 <div class="comment">
                     <div class="avatar">
-                        <img src="/static/images/head.png" alt="User Avatar">
+                        <img src="../static/images/an.jpeg" alt="User Avatar">
                     </div>
                     <div class="comment-content">
-                        <h5 class="username">
-                            李
-                        </h5>
-                        <div class="rating">
-                            <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
-                            <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
-                            <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
-                            <span class="rating-star">&#9733;</span>
-                            <span class="rating-star">&#9733;</span>
+                        <h6 class="username">
+                            安妮雅<br>
+                            <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
+                                    class="fa-solid fa-crown"></i>在地嚮導
+                                &ensp;</span>
+                        </h6>
+                        <div class="star_count">
+                            <span style=" color: rgb(225, 216, 41);"><i class="fa-solid fa-star"></i></span>
+                            <span style=" color: rgb(225, 216, 41);"><i class="fa-solid fa-star"></i></span>
+                            <span style=" color: rgb(225, 216, 41);"><i class="fa-solid fa-star"></i></span>
+                            <span><i class="fa-solid fa-star"></i></span>
+                            <span><i class="fa-solid fa-star"></i></span>
+                            <span></span>
                         </div>
                         <p class="comment-text">
-                            天氣冷來到動物園，動物們顯得心情不好，跟人類一樣也會冷到不想到，看到最多的是背影跟屁股，也是一種難得的經驗。
+                            天氣冷來到動物園，動物們顯得心情不好，跟人類一樣也會冷到不想到，看到最多的是背影跟屁股，也是難得的經驗。
                             <br>
                             <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
                                 2033</span>
@@ -933,18 +1132,49 @@
                 </div>
                 <div class="comment">
                     <div class="avatar">
-                        <img src="/static/images/head.png" alt="User Avatar">
+                        <img src="../static/images/dog.jpg" alt="User Avatar">
                     </div>
                     <div class="comment-content">
-                        <h5 class="username">
-                            sun
-                        </h5>
-                        <div class="rating">
-                            <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
-                            <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
-                            <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
-                            <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
-                            <span class="rating-star">&#9733;</span>
+                        <h6 class="username">
+                            彭德<br>
+                            <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
+                                    class="fa-solid fa-crown"></i>在地嚮導
+                                &ensp;</span>
+                        </h6>
+                        <div class="star_count">
+                            <span style=" color: rgb(225, 216, 41);"><i class="fa-solid fa-star"></i></span>
+                            <span style=" color: rgb(225, 216, 41);"><i class="fa-solid fa-star"></i></span>
+                            <span style=" color: rgb(225, 216, 41);"><i class="fa-solid fa-star"></i></span>
+                            <span><i class="fa-solid fa-star"></i></span>
+                            <span><i class="fa-solid fa-star"></i></span>
+                            <span></span>
+                        </div>
+                        <p class="comment-text">
+                            我實在越來越覺得動物園越來越差，維修的東西擴建的項目越來越多，但都沒有東西完成！太誇張了!!!
+                            <br>
+                            <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
+                                2023</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="comment">
+                    <div class="avatar">
+                        <img src="../static/images/peka.webp" alt="User Avatar">
+                    </div>
+                    <div class="comment-content">
+                        <h6 class="username">
+                            皮卡丘<br>
+                            <!-- <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
+                                    class="fa-solid fa-crown"></i>在地嚮導
+                                &ensp;</span> -->
+                        </h6>
+                        <div class="star_count">
+                            <span style=" color: rgb(225, 216, 41);"><i class="fa-solid fa-star"></i></span>
+                            <span style=" color: rgb(225, 216, 41);"><i class="fa-solid fa-star"></i></span>
+                            <span style=" color: rgb(225, 216, 41);"><i class="fa-solid fa-star"></i></span>
+                            <span><i class="fa-solid fa-star"></i></span>
+                            <span><i class="fa-solid fa-star"></i></span>
+                            <span></span>
                         </div>
                         <p class="comment-text">
                             帶小孩來看動物很棒！可以玩一整天！廁所很多很方便,用餐座位如果能再多一些就好了!麥當勞大排長龍實在太誇張！希望能增設其他餐廳或便利商店~
@@ -954,33 +1184,6 @@
                         </p>
                     </div>
                 </div>
-                <div class="comment">
-                    <div class="avatar">
-                        <img src="/static/images/head.png" alt="User Avatar">
-                    </div>
-                    <div class="comment-content">
-                        <h5 class="username">
-                            李+0
-                        </h5>
-                        <div class="rating">
-                            <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
-                            <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
-                            <span class="rating-star">&#9733;</span>
-                            <span class="rating-star">&#9733;</span>
-                            <span class="rating-star">&#9733;</span>
-                        </div>
-                        <p class="comment-text">
-                            我實在越來越覺得動物園越來越差，維修的東西擴建的項目越來越多，但都沒有東西完成！太誇張了
-                            <br>
-                            <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
-                                2023</span>
-                        </p>
-                    </div>
-                </div>
-                <!-- 撰寫評論 -->
-                <!-- <button style="border-radius: 8px;position: relative; left: 45%;">
-                    <i class="fa-solid fa-pen" style="margin-right: 5px;"></i>我要評論
-                </button> -->
             </div>
         </div>
     </div>
