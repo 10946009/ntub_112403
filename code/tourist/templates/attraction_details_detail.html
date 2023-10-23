@@ -1310,28 +1310,28 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
     // 判斷提出問題時，textarea有沒有東西
-    var textarea = document.getElementById('user_ask');
-    var postButton = document.getElementById('ask_btn_ok');
-    textarea.addEventListener('input', function () {
-        if (textarea.value.trim() === '') {
-            postButton.style.color = 'grey';
-            postButton.style.border = 'none';
-            postButton.style.pointerEvents = 'none'; // 禁用點擊事件
+    var user_ask = document.getElementById('user_ask');
+    var ask_btn_ok = document.getElementById('ask_btn_ok');
+    user_ask.addEventListener('input', function () {
+        if (user_ask.value.trim() === '') {
+            ask_btn_ok.style.color = 'grey';
+            ask_btn_ok.style.border = 'none';
+            ask_btn_ok.style.pointerEvents = 'none'; // 禁用點擊事件
         } else {
-            postButton.style.color = 'black';
-            postButton.style.border = '#000 solid';
-            postButton.style.pointerEvents = 'auto'; // 啟用點擊事件
+            ask_btn_ok.style.color = 'black';
+            ask_btn_ok.style.border = '#000 solid';
+            ask_btn_ok.style.pointerEvents = 'auto'; // 啟用點擊事件
         }
     });
     // 初始化時檢查textarea的內容
-    if (textarea.value.trim() === '') {
-        postButton.style.color = 'grey';
-        postButton.style.border = 'none';
-        postButton.style.pointerEvents = 'none';
+    if (user_ask.value.trim() === '') {
+        ask_btn_ok.style.color = 'grey';
+        ask_btn_ok.style.border = 'none';
+        ask_btn_ok.style.pointerEvents = 'none';
     } else {
-        postButton.style.color = 'black';
-        postButton.style.border = '#000 solid';
-        postButton.style.pointerEvents = 'auto';
+        ask_btn_ok.style.color = 'black';
+        ask_btn_ok.style.border = '#000 solid';
+        ask_btn_ok.style.pointerEvents = 'auto';
     }
 
     // 判斷回覆問題時，textarea有沒有東西
@@ -1683,8 +1683,8 @@
     }
     var tagWeek = document.getElementsByClassName("tag-week");
 
-    for(var i = 0; i < tagWeek.length; i++){
-        tagWeek[i].addEventListener("click", function(){
+    for (var i = 0; i < tagWeek.length; i++) {
+        tagWeek[i].addEventListener("click", function () {
             var data = total_data[this.dataset.set].crowd;
             console.log(data);
             var ctx = document.getElementById('people_if_Chart').getContext('2d');
@@ -1732,7 +1732,7 @@
         });
     }
     var currentDate = new Date();
-    var currentWeek = (currentDate.getDay() + 6) % 7 ;
+    var currentWeek = (currentDate.getDay() + 6) % 7;
     tagWeek[currentWeek].click(); //今天
 
     //總覽評論切換
