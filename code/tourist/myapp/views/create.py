@@ -68,13 +68,13 @@ def create(request, ct_id):
     all_ct_data = []
     crowd_index_list=[]
     crowd_list=[]
-    local_address = ""
+    local_xy = ""
     user_nowtime=""
     try:
         # 抓出這是哪一筆行程且天數為第1天(後續要改成抓全部
         ct_attractions_data = ChoiceDay_Ct.objects.get(ct_id=ct_id, day=choiceday) 
         # 抓目前位置
-        # local_address = local_to_address(ct_attractions_data.start_location_x ,ct_attractions_data.start_location_y)
+        local_xy = [ct_attractions_data.start_location_x,ct_attractions_data.start_location_y]
         # 抓出發時間
         user_nowtime = format_minutes_as_time(ct_attractions_data.start_time)
         location_name = ct_attractions_data.name
