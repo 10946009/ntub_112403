@@ -44,12 +44,15 @@ def index(request):
 
         #抓user資料庫
         item['u_id'] = User.objects.get(id=item['u_id']) 
-
+        try:
         # 抓place_id
-        choiceid= ChoiceDay_Ct.objects.filter(ct_id=item['id']).values().first()
-        ctaid = Attractions_Ct.objects.filter(choice_ct_id=choiceid['id']).values().first()
-        place_id = Attractions.objects.get(id=ctaid['a_id']).place_id
-        item['img']=place_id
+            choiceid= ChoiceDay_Ct.objects.filter(ct_id=item['id']).values().first()
+            ctaid = Attractions_Ct.objects.filter(choice_ct_id=choiceid['id']).values().first()
+            print('ctaid',ctaid)
+            place_id = Attractions.objects.get(id=ctaid['a_id']).place_id
+            item['img']=place_id
+        except:
+            item['img']="default"
 
     print(top_hot_travel)
     return render(request, "index.html", locals())

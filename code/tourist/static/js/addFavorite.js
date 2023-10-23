@@ -1,11 +1,12 @@
 function addFavorite(aid) {
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    console.log("目前點擊的id為" + aid);
     $.ajax({
         headers: { 'X-CSRFToken': csrftoken },
         type: "POST",
         url: "/add_favorite/",
         data: {
-            'aid': aid,
+            'id': aid,
         },
         success: function (response) {
             favorite_result = response.response_data["message"];

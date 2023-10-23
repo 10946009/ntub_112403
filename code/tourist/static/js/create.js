@@ -23,48 +23,34 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function showTab(tabId) {
-  const tabChildElements = document.querySelectorAll('.tab-child1, .tab-child2, .tab-child3, .tab-child4, .tab-child5');
+  const tabChildElements = document.querySelectorAll('.tab-child');
   tabChildElements.forEach((element) => {
     element.style.display = 'none';
+    
   });
 
   // 显示特定的tab-child元素
   const tabChild = document.getElementById(tabId);
+  console.log(tabChild);
   if (tabChild) {
     tabChild.style.display = 'flex';
   }
 }
 
 // 给各个选项卡按钮添加点击事件监听器
-document.getElementById('child1-tab').addEventListener('click', function () {
-  // 在点击child1时隐藏child2和child3，并更新本地存储
-  localStorage.setItem('selectedTab', 'myTabchild1');
-  showTab('myTabchild1');
-});
-document.getElementById('child2-tab').addEventListener('click', function () {
-  // 在点击child2时隐藏child1和child3，并更新本地存储
-  localStorage.setItem('selectedTab', 'myTabchild2');
-  showTab('myTabchild2');
-});
-document.getElementById('child3-tab').addEventListener('click', function () {
-  // 在点击child3时隐藏child1和child2，并更新本地存储
-  localStorage.setItem('selectedTab', 'myTabchild3');
-  showTab('myTabchild3');
-});
-document.getElementById('child4-tab').addEventListener('click', function () {
-  // 在点击child3时隐藏child1和child2，并更新本地存储
-  localStorage.setItem('selectedTab', 'myTabchild4');
-  showTab('myTabchild4');
-});
-document.getElementById('child5-tab').addEventListener('click', function () {
-  // 在点击child3时隐藏child1和child2，并更新本地存储
-  localStorage.setItem('selectedTab', 'myTabchild5');
-  showTab('myTabchild5');
-});
+const allChildtab = document.getElementsByClassName('create-child-nav-link');
 
-
-
-
+console.log(allChildtab);
+for (let i = 0; i < allChildtab.length; i++) {
+  allChildtab[i].addEventListener('click', function () {
+    // 在点击选项卡时隐藏其他选项卡，并更新本地存储
+    localStorage.setItem('selectedTab', this.id);
+    console.log('selectedTab', this.id)
+    showTab('myTabchild'+(i+1));
+  });
+}
+console.log(myTabchild1);
+showTab('myTabchild1'); // 默認顯示第一個選項卡
 //open篩選
 function openfiliter() {
   var showfiliter = document.querySelector(".show_filiter")
