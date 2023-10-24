@@ -55,18 +55,18 @@ for(var i = 0;i < heart.length; i++){
 } 
 
 //熱門行程詳細資訊
-$(function(){
-  $("#hot_spot_show").hide();
+// $(function(){
+//   $("#hot_spot_show").hide();
 
-  $(".more_data").click(function(){
+//   $(".more_data").click(function(){
 
-    $("#hot_spot_show").fadeIn(200);
-  })
+//     $("#hot_spot_show").fadeIn(200);
+//   })
 
-  $(".close").click(function(){
-    $("#hot_spot_show").fadeOut(200);
-  })
-})
+//   $(".close").click(function(){
+//     $("#hot_spot_show").fadeOut(200);
+//   })
+// })
 
 //add選單
 function toggleDropdownMenu(addIcon) {
