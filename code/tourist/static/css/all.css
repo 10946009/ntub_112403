@@ -16,12 +16,6 @@ html{
 	top: 0;
 	background-color: rgba(193, 193, 193, 0.504);
 }
-/* .nav-link{
-	color: white;
-	font-size: 18px;
-	font-weight: bold;
-	text-shadow: 2px 2px 2px #333;
-} */
 .dropdown-menu{
 	/* position: absolute;
 	right: 80px; */
@@ -45,6 +39,14 @@ html{
 	background-color: rgb(248, 219, 30);
 }
 
+@media (max-width:1022px) {
+	.logo_square1{
+	  width: 100px;
+	}
+	.search{
+	  width: 300px;
+	}
+}
 @media (max-width:768px) {
 	.logo_square1{
 	  width: 100px;
