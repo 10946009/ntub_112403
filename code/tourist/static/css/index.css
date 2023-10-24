@@ -166,7 +166,7 @@ html{
 	height: 20px; /* 定义容器高度 */
 	z-index: -100;
 	position: relative; /* 设置相对定位，以便伪元素参考容器 */
-	background-color: rgb(139, 139, 139); /* 设置容器的背景颜色 */
+	background-color: rgb(255, 242, 204); /* 设置容器的背景颜色 */
 }
 .triangle::before {
 	content: ''; /* 必须有内容，可以为空字符串 */
@@ -174,7 +174,7 @@ html{
 	top: 0; /* 伪元素的上边缘与容器上边缘对齐 */
 	left: 0; /* 伪元素的左边缘与容器左边缘对齐 */
 	border-right: 650px solid transparent; /* 右边的边框透明 */
-	border-top: 650px solid rgb(222, 222, 222); /* 底边的边框形成三角形，可以设置背景颜色为你想要的颜色 */
+	border-top: 650px solid rgb(255, 242, 204); /* 底边的边框形成三角形，可以设置背景颜色为你想要的颜色 */
 }
 .hot_spot_title{
 	font-size: 48px;
@@ -304,6 +304,25 @@ html{
     opacity:0;
 }
 
+.hidemehot{
+	position: relative;
+}
+.more_span{
+	position: absolute;
+	right: 0;
+	/* background-color: #ff0000; */
+	border-radius: 30px;
+	padding: 10px;
+}
+.more_a{
+	padding: 10px 5px;
+	/* text-decoration: none; */
+	/* color: #000; */
+	font-weight: bold;
+	font-size: 24px;
+	/* text-shadow: 2px 2px 3px #333; */
+}
+
 .hot_txt{
 	text-align: left;
 }
@@ -403,7 +422,7 @@ html{
 	}
 	.triangle::before {
 		border-right: 500px solid transparent; 
-		border-top: 500px solid rgb(222, 222, 222); 
+		border-top: 500px solid rgb(255, 242, 204); 
 	}
 }
 @media( max-width: 768px ) {
@@ -542,7 +561,7 @@ html{
 	}
 	.triangle::before {
 		border-right: 400px solid transparent; 
-		border-top: 450px solid rgb(222, 222, 222); 
+		border-top: 450px solid rgb(255, 242, 204); 
 	}
 }
 @media (max-width: 488px) {
@@ -573,7 +592,7 @@ html{
 	}
 	.triangle::before {
 		border-right: 300px solid transparent; 
-		border-top: 450px solid rgb(222, 222, 222); 
+		border-top: 450px solid rgb(255, 242, 204); 
 	}
 }
 @media(max-width: 376px){
@@ -635,6 +654,6 @@ html{
 	}
 	.triangle::before {
 		border-right: 250px solid transparent; 
-		border-top: 400px solid rgb(222, 222, 222); 
+		border-top: 400px solid rgb(255, 242, 204); 
 	}
 }

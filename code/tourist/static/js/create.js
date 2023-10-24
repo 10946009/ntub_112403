@@ -11,16 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-//隱藏block 點第N天的時候不會有空白 
-// document.addEventListener('DOMContentLoaded', function () {
-//   let selectedTab = localStorage.getItem('selectedTab');
-//   if (!selectedTab) {
-//     selectedTab = 'myTabchild1';
-//     localStorage.setItem('selectedTab', selectedTab);
-//   }
-//   showTab(selectedTab); // 根据本地存储中的值来显示相应的选项卡
-// });
-
 function showTab(tabId) {
   const tabChildElements = document.querySelectorAll('.tab-child');
   tabChildElements.forEach((element) => {
@@ -35,7 +25,6 @@ function showTab(tabId) {
     tabChild.style.display = 'flex';
   }
 }
-
 // 给各个选项卡按钮添加点击事件监听器
 const allChildtab = document.getElementsByClassName('create-child-nav-link');
 
@@ -48,6 +37,7 @@ for (let i = 0; i < allChildtab.length; i++) {
     showTab('myTabchild'+(i+1));
   });
 }
+
 allChildtab[0].click();//預設點擊第一個
 //open篩選
 function openfiliter() {
