@@ -178,7 +178,7 @@
       currentFocus = -1; // 輸入框值變動時重置焦點索引為-1
       a = document.createElement("DIV"); // 建立一個新的DIV元素來放置選項
       a.setAttribute("id", this.id + "autocomplete-list"); // 設定DIV元素的id屬性
-      a.setAttribute("class", "autocomplete-items"); // 設定DIV元素的class屬性
+      a.setAttribute("class", "base_searchContent"); // 設定DIV元素的class屬性
       this.parentNode.appendChild(a); // 將DIV元素加入輸入框的父元素中
 
       // 字跟著打在下面框框的部分
@@ -213,6 +213,8 @@
         }
       }
     });
+
+
 
     inp.addEventListener("keydown", function (e) {
       var x = document.getElementById(this.id + "autocomplete-list");
@@ -250,7 +252,7 @@
     }
 
     function closeAllLists(elmnt) { // 關閉所有項目清單
-      var x = document.getElementsByClassName("autocomplete-items");
+      var x = document.getElementsByClassName("base_searchContent");
       for (var i = 0; i < x.length; i++) {
         if (elmnt != x[i] && elmnt != inp) { // 排除目前選擇的項目清單和輸入框本身
           x[i].parentNode.removeChild(x[i]); // 移除該項目清單
@@ -262,6 +264,7 @@
       closeAllLists(e.target);
     });
   }
+
     //歷史紀錄（點一下input跳出來）
     const base_searchInput = document.getElementById("base_myInput");
     const base_searchBox = document.getElementById("base_searchBox");
@@ -276,7 +279,7 @@
 
     // 如果input裡有東西的話就關起來，沒有就打開歷史紀錄畫面
     base_searchInput.addEventListener("input", function () {
-        const inputValue = myInput.value;
+        const inputValue = base_myInput.value;
         if (inputValue.trim() !== "") {
             base_searchBox.style.display = "none";
         } else {
@@ -297,7 +300,9 @@
             historyElement.remove(); //連同父元素删除
         }
     }
-
+    // 放入景點名稱
+attractions = JSON.parse('{{ attractions_search_json|safe }}');
+autocomplete(base_searchInput,attractions);
 
 </script>
 
