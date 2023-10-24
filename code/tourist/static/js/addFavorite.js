@@ -57,3 +57,28 @@ function addFavorite_index(id,type) {
         }
     });
 }
+
+
+function addFavorite_attractions(id) {
+    console.log("目前點擊的id為" + id);
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    $.ajax({
+        headers: { 'X-CSRFToken': csrftoken },
+        type: "POST",
+        url: "/add_favorite/",
+        data: {
+            'id': id,
+        },
+        success: function (response) {
+            favorite_result = response.response_data["message"];
+            if(favorite_result==="尚未登入"){
+                alert("請先登入!")
+                window.location.href = "/login";
+            }
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.error("Error:", textStatus, errorThrown);
+
+        }
+    });
+}

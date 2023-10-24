@@ -1,144 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-      {% block title %}{% endblock %}
-    </title>
-    <link rel="stylesheet" href="../static/css/bootstrap2023.css">
-    <link rel="stylesheet" href="../static/css/all.css">
-    {% block content %}{% endblock %}
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-          crossorigin="anonymous"
-          referrerpolicy="no-referrer" />
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <style>
-      .nav-link{
-        color: rgb(224, 224, 224);
-        font-size: 18px;
-        font-weight: bold;
-        text-shadow: 2px 2px 2px #000000;
-      }
-      </style>
-  </head>
-  <body>
-    {% block toolbar %}
-      <div class="banner">
-        <nav class="navbar navbar-expand-lg toolbar" style="z-index: 100;">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="/" style="padding: 0;">
-              <img src="../static/images/logo_square1.png" class="logo_square1" id="logo_icon" alt="">
-            </a>
-            <form class="d-flex" role="search" action="{% url 'search_results_base' %}"  method="post" autocomplete="off">
-              {% csrf_token %}
-              <input class="form-control me-auto search" type="search" placeholder="想去哪玩.." aria-label="Search" name="search_text">
-              <input type="hidden" name="data_type" value="keyword_search">
-              <button class="btn btn-outline-success search_icon" type="submit" id="searchClick">
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </button>
-            </form>
-            <button class="navbar-toggler ms-auto rwd_icon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/">首頁</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/createindex">建立行程</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/attraction_details">詳細景點</a>
-                </li>
-                {% if request.user.is_authenticated %}
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="/login" role="button" data-bs-toggle="dropdown" aria-expanded="false">我的資訊</a>
-                    <ul class="dropdown-menu" style="z-index: 999;">
-                      <li>
-                        <a class="dropdown-item" href="/history">我的行程</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="/favorite">我的收藏</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="/share">我的分享</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="/useredit">我的設定</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="/logout">登出</a>
-                      </li>
-                    </ul>
-                  {% else %}
-                    <li class="nav-item">
-                      <a class="nav-link" href="/login">登入</a>
-                    </li>
-                  {% endif %}
-                </li>
-              </ul>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    {% block title %}{% endblock %}
+  </title>
+  <link rel="stylesheet" href="../static/css/bootstrap2023.css">
+  <link rel="stylesheet" href="../static/css/all.css">
+  {% block content %}{% endblock %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <style>
+    .nav-link {
+      color: rgb(224, 224, 224);
+      font-size: 18px;
+      font-weight: bold;
+      text-shadow: 2px 2px 2px #000000;
+    }
+  </style>
+</head>
+
+<body>
+  {% block toolbar %}
+  <div class="banner">
+    <nav class="navbar navbar-expand-lg toolbar" style="z-index: 100;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/" style="padding: 0;">
+          <img src="../static/images/logo_square1.png" class="logo_square1" id="logo_icon" alt="">
+        </a>
+        <form autocomplete="off" class="d-flex" role="search" action="{% url 'search_results_base' %}" method="post"
+          autocomplete="off">
+          {% csrf_token %}
+
+          <div class="base_search">
+            <div class="base_searchInput">
+              <input class="form-control me-auto search" id="base_myInput" type="search" placeholder="想去哪玩.."
+                aria-label="Search" name="search_text">
+              <!-- <input type="hidden" name="data_type" value="keyword_search"> -->
+              <button class="search_icon" type="submit" id="base_searchClick"><i class="fas fa-search"></i></button>
+              <!-- 歷史紀錄 -->
+              <div id="base_searchBox">
+                <div class="base_enter"></div>
+                <div class="base_searchContent">
+                  <!-- history（目前放假資料） -->
+                  <div class="history_1" id="history_1">
+                    <i class="fa-solid fa-clock-rotate-left"></i><strong>123</strong>
+                    <div class="close_history" onclick="deleteFunction(this)">
+                      <i class="fa-solid fa-xmark" style="color: rgb(171, 5, 5);"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </nav>
-        <div class="systemname" id="systemname">
-          <div class="sysnamediv">
-            <span class="tfc">Trip Fun Chill
-              <br>
-            </span>
-            <span class="systxt">來一趟chill的旅程吧</span>
-            <a href="/createindex" class="createbtn">建立行程</a>
-          </div>
+
+
+          <!-- <input class="form-control me-auto search" type="search" placeholder="想去哪玩.." aria-label="Search"
+            name="search_text">
+          <input type="hidden" name="data_type" value="keyword_search">
+          <button class="btn btn-outline-success search_icon" type="submit" id="searchClick">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button> -->
+        </form>
+        <button class="navbar-toggler ms-auto rwd_icon" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">首頁</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/createindex">建立行程</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/attraction_details">詳細景點</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/share">分享空間</a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="/login" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">我的資訊</a>
+              <ul class="dropdown-menu" style="z-index: 999;">
+                <li>
+                  <a class="dropdown-item" href="/history">我的行程</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/favorite">我的收藏</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/useredit">我的設定</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/logout">登出</a>
+                </li>
+              </ul>
+              {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="/login">登入</a>
+            </li>
+            {% endif %}
+            </li>
+          </ul>
         </div>
-        <a href="#main" class="scroll-down-button  downa" id="downicon">
-          <i class="fa-solid fa-chevron-right fa-rotate-90 down"></i>
-        </a>
       </div>
-    {% endblock %}
-    {% block body %}
-    {% endblock body %}
-  </body>
-  <script src="../static/js/jquery-3.7.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
-  <script src="../static/js/bootstrap.min.js"></script>
-  {% block content_script %}{% endblock %}
-  <script>
-    function changebgimg(){
-      const logo_icon = document.getElementById('logo_icon');
-    
-      if (document.documentElement.clientWidth < 488) {//把scroll的寬度也算進去
-        logo_icon.src = "../static/images/logo_icon.png"; // 替换成你想要的小屏图片路径
-      } else {
-        logo_icon.src = "../static/images/logo_square1.png"; // 替换成默认图片路径
+    </nav>
+    <div class="systemname" id="systemname">
+      <div class="sysnamediv">
+        <span class="tfc">Trip Fun Chill
+          <br>
+        </span>
+        <span class="systxt">來一趟chill的旅程吧</span>
+        <a href="/createindex" class="createbtn">建立行程</a>
+      </div>
+    </div>
+    <a href="#main" class="scroll-down-button  downa" id="downicon">
+      <i class="fa-solid fa-chevron-right fa-rotate-90 down"></i>
+    </a>
+  </div>
+  {% endblock %}
+  {% block body %}
+  {% endblock body %}
+</body>
+<script src="../static/js/jquery-3.7.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+{% block content_script %}{% endblock %}
+<script>
+  function changebgimg() {
+    const logo_icon = document.getElementById('logo_icon');
+
+    if (document.documentElement.clientWidth < 488) {//把scroll的寬度也算進去
+      logo_icon.src = "../static/images/logo_icon.png"; // 替换成你想要的小屏图片路径
+    } else {
+      logo_icon.src = "../static/images/logo_square1.png"; // 替换成默认图片路径
+    }
+  }
+  // 首次加载和窗口大小变化时调用更新函数
+  window.addEventListener('load', changebgimg);
+  window.addEventListener('resize', changebgimg);
+
+
+  //不在index.html的時候隱藏systemname
+  window.onload = function () {
+    var isIndexPage = window.location.pathname === "/"; // 假设首页的路径是 "/"
+    var systemNameElement = document.getElementById("systemname");
+    // var navbgcolor = document.querySelector(".toolbar");
+    var downicon = document.getElementById("downicon");
+
+    if (!isIndexPage) {
+      if (systemNameElement) {
+        systemNameElement.style.display = "none";
+        downicon.style.display = "none";
+      }
+      // if(navbgcolor){
+      //   navbgcolor.classList.add("navchange");
+      // }
+    }
+  };
+
+  //搜尋景點的部分
+  function autocomplete(inp, arr) {
+    var currentFocus; // 紀錄目前焦點所在的索引值
+    inp.addEventListener("input", function (e) {
+      var a, b, i, val = this.value;
+      closeAllLists();
+      if (!val) { return false; }
+      currentFocus = -1; // 輸入框值變動時重置焦點索引為-1
+      a = document.createElement("DIV"); // 建立一個新的DIV元素來放置選項
+      a.setAttribute("id", this.id + "autocomplete-list"); // 設定DIV元素的id屬性
+      a.setAttribute("class", "base_searchContent"); // 設定DIV元素的class屬性
+      this.parentNode.appendChild(a); // 將DIV元素加入輸入框的父元素中
+
+      // 字跟著打在下面框框的部分
+      base_searchClick = document.getElementById("base_searchClick");
+      b = document.createElement("DIV");
+      b.textContent = val; // 輸入的值開頭
+      b.innerHTML = `<i class="fas fa-search"></i><strong>${val}</strong>&emsp;<span style="color:#a1a1a1">-Trip搜尋</span>`;
+      b.addEventListener("click", function (e) {
+        inp.value = val;
+        sessionStorage.setItem(val, 'keyword_search');
+        searchText(val, 'keyword_search');
+        closeAllLists();
+        // searchClick.click();
+      });
+      a.appendChild(b);
+
+      //隨著元素尋找陣列裡輸入符合的元素
+      for (i = 0; i < arr.length; i++) {
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          b = document.createElement("DIV"); // 建立新的DIV元素來放置該項目
+          b.innerHTML = `<i class="fas fa-search"></i><strong>${arr[i].substr(0, val.length)}${arr[i].substr(val.length)}</strong>`;
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>"; // 加入一個隱藏的input元素，用來存放選擇的值
+          b.addEventListener("click", function (e) {
+            inp.value = this.getElementsByTagName("input")[0].value; // 設定輸入框的值為選擇的值
+            sessionStorage.setItem(this.getElementsByTagName("input")[0].value, 'keyword_search');
+            searchText(this.getElementsByTagName("input")[0].value, 'keyword_search');
+            closeAllLists(); // 關閉所有項目清單
+            // searchClick.click();
+          });
+          a.appendChild(b); // 將該項目加入清單中
+
+        }
+      }
+    });
+
+
+
+    inp.addEventListener("keydown", function (e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) { // 向下箭頭鍵
+        currentFocus++;
+        addActive(x);
+      } else if (e.keyCode == 38) { // 向上箭頭鍵
+        currentFocus--;
+        addActive(x);
+      } else if (e.keyCode == 13) { // Enter鍵
+        e.preventDefault();
+        if (currentFocus > -1) { // 如果有選擇項目則觸發點擊事件
+          if (x) x[currentFocus].click();
+        }
+      }
+      if (e.key === 'Enter') {//用enter傳送
+        e.preventDefault(); // 阻止 Enter本來換行行為
+        document.getElementById('d-flex').submit(); // 提交
+      }
+    });
+
+    function addActive(x) { // 添加選擇時的樣式
+      if (!x) return false;
+      removeActive(x);
+      if (currentFocus >= x.length) currentFocus = 0;
+      if (currentFocus < 0) currentFocus = (x.length - 1);
+      x[currentFocus].classList.add("autocomplete-active");
+    }
+
+    function removeActive(x) { // 移除選擇時的樣式
+      for (var i = 0; i < x.length; i++) {
+        x[i].classList.remove("autocomplete-active");
       }
     }
-    // 首次加载和窗口大小变化时调用更新函数
-    window.addEventListener('load', changebgimg);
-    window.addEventListener('resize', changebgimg);
-    
 
-    //不在index.html的時候隱藏systemname
-    window.onload = function() {
-      var isIndexPage = window.location.pathname === "/"; // 假设首页的路径是 "/"
-      var systemNameElement = document.getElementById("systemname");
-      // var navbgcolor = document.querySelector(".toolbar");
-      var downicon = document.getElementById("downicon");
-  
-      if(!isIndexPage){
-        if(systemNameElement){
-          systemNameElement.style.display = "none";
-          downicon.style.display = "none";
-        }  
-        // if(navbgcolor){
-        //   navbgcolor.classList.add("navchange");
-        // }
+    function closeAllLists(elmnt) { // 關閉所有項目清單
+      var x = document.getElementsByClassName("base_searchContent");
+      for (var i = 0; i < x.length; i++) {
+        if (elmnt != x[i] && elmnt != inp) { // 排除目前選擇的項目清單和輸入框本身
+          x[i].parentNode.removeChild(x[i]); // 移除該項目清單
+        }
       }
-    };
+    }
 
-    
-  </script>
+    document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+    });
+  }
+
+    //歷史紀錄（點一下input跳出來）
+    const base_searchInput = document.getElementById("base_myInput");
+    const base_searchBox = document.getElementById("base_searchBox");
+    const base_enter = document.getElementById("base_enter");
+
+    //點不是input裡的元素就關起來
+    document.addEventListener("click", function (event) {
+        if (!base_searchBox.contains(event.target)) {
+            base_searchBox.style.display = "none";
+        }
+    });
+
+    // 如果input裡有東西的話就關起來，沒有就打開歷史紀錄畫面
+    base_searchInput.addEventListener("input", function () {
+        const inputValue = base_myInput.value;
+        if (inputValue.trim() !== "") {
+            base_searchBox.style.display = "none";
+        } else {
+            base_searchBox.style.display = "block";
+        }
+    });
+
+    // 點一下input內框跳出來歷史紀錄畫面
+    base_searchInput.addEventListener("click", function (event) {
+        event.stopPropagation();// 防止觸發 document 上的點擊事件
+        base_searchBox.style.display = "block";
+    });
+
+    //delete歷史紀錄
+    function deleteFunction(element) {
+        var historyElement = element.closest('.history_1');
+        if (historyElement) {
+            historyElement.remove(); //連同父元素删除
+        }
+    }
+    // 放入景點名稱
+attractions = JSON.parse('{{ attractions_search_json|safe }}');
+autocomplete(base_searchInput,attractions);
+
+</script>
+
 </html>
