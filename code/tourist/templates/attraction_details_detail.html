@@ -418,8 +418,10 @@
                                 </div>
                             </div>
                             <div style="font-size: 18px; margin-bottom: 20px;">
-                                <span style="margin-right: 20px;cursor: pointer;"><i class="fa-regular fa-thumbs-up"
-                                        style=" color: rgb(0, 102, 255);"></i> 8</span>
+                                <!-- 只有他有點讚功能 -->
+                                <span style="margin-right: 20px;cursor: pointer;" id="likeButton"><i
+                                        class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i>
+                                    <span id="likeCount">8</span></span>
                                 <span style="cursor: pointer;"><i class="fa-regular fa-comment"
                                         style=" color: rgb(89, 198, 53);"></i> 3</span>
                             </div>
@@ -436,8 +438,9 @@
                                     <span style="color: gray; font-size: 12px; font-style: italic;">3天前 &ensp;</span>
                                 </h6>
                                 <h6 style="margin-bottom: 20px;">有初一早上9點開，其他時間8點半</h6>
-                                <span style="margin-right: 20px;cursor: pointer;font-size: 18px;"><i
-                                        class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i> 2</span>
+                                <span style="margin-right: 20px; cursor: pointer; font-size: 18px;">
+                                    <i class="fa-regular fa-thumbs-up" style="color: rgb(0, 102, 255);"></i>2
+                                </span>
                                 <h6 class="qa_text" id="qa_text">還有1個答案</h6>
                             </div>
                         </div>
@@ -1513,6 +1516,24 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
+    // 點讚會變讚（點回去會沒有）只有第一個大標有這個功能
+    var likeButton = document.getElementById("likeButton");
+    var likeIcon = document.querySelector(".fa-regular.fa-thumbs-up");
+    var likeCountElement = document.getElementById("likeCount");
+    var likeCount = 8;
+    likeButton.addEventListener("click", function () {
+        if (likeIcon.classList.contains("fa-regular")) {
+            likeIcon.classList.remove("fa-regular");
+            likeIcon.classList.add("fa-solid");
+            likeCount++;
+        } else {
+            likeIcon.classList.remove("fa-solid");
+            likeIcon.classList.add("fa-regular");
+            likeCount--;
+        }
+        likeCountElement.textContent = likeCount;
+    });
+
     // 回覆問題時，可以將結果呈現在上面
     document.getElementById("all_ask_btn_ok").addEventListener("click", function () {
         var answerContent = document.getElementById("answer_qa").value;
