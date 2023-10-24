@@ -43,9 +43,7 @@
   display: block;
   height: auto;
 }
-.location-heart.active {
-  color: red;
-}
+
 /* .favorite-nav-link{
   background-color: rgba(255, 255, 255, 0);
   border: 0px solid rgba(255, 255, 255, 0);
@@ -60,6 +58,30 @@
   animation: zoomIn 0.3s ease-in-out;
 }
 
+/*CC的收藏*/
+.heart_icon{
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 10px;
+	margin: 10px;
+	background-color: rgba(255, 255, 255);
+	border-radius: 50%;
+	border:none;
+	color: rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+}
+.active_heart{/*收藏動畫*/
+	color: #E1251B;
+	animation: heart 0.5s linear;
+	/* transform: scale(1.1); */
+}
+/*UC原本的收藏*/
+/* .location-heart.active {
+  color: red;
+} */
+
+/* 
 .location-heart {
   position: absolute;
   top: 10px;
@@ -70,7 +92,7 @@
   color: red;
   font-size: large;
   cursor: pointer;
-}
+} */
 
 .description {
   max-width: 100%;

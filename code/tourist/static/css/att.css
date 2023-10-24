@@ -2016,6 +2016,25 @@ img {
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
+/* 使用者按讚、收藏、分享、觀看人數 */
+.User_more_add_fav {
+    border-radius: 10px;
+    background-color: rgb(214, 208, 201);
+    max-width: 100%;
+    margin: 20px auto;
+}
+
+.User__header {
+    display: grid;
+    grid-template-columns: 5fr 5fr 5fr 5fr 5fr;
+    grid-gap: 2px;
+    margin-bottom: 2px;
+}
+
+.User__headerGrid {
+    text-align: center;
+}
+
 /* .Cart__product {
     display: grid;
     grid-template-columns: 2fr 7fr 3fr 3fr 3fr 3fr;
