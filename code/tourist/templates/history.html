@@ -73,7 +73,7 @@
           {% endif %}
         </div>
         <button class="more_btn details{{ item.my_history.id }}btn"
-                data-target="details{{ item.my_history.id }}">詳細資料</button>
+                data-target="details{{ item.my_history.id }}">預覽</button>
       </div>
 
       <!--開啟詳細資料顯示的內容-->
@@ -169,7 +169,7 @@
               {% endwith %}
             {% endfor %}
           </div>
-
+          <a href="/travel_detail/{{ item.my_history.id }}">詳細資料</a>
         </div>
       </div>
     {% endfor %}
@@ -631,36 +631,37 @@
 
 
   <script>
-  function add_favorite_share(ctid) {
-    // var sharediv = document.getElementById("ct_share");
-    var favoriteButton = document.getElementById("submitfavorite_share" + ctid);
-    var text = document.getElementById("icontxt" + ctid);
-    var isFavoriteValue = favoriteButton.getAttribute("data-isfavorite");
-    if (isFavoriteValue === "1") {
-      //favoriteButton.setAttribute("class", "fa-regular fa-heart");
-      favoriteButton.setAttribute("data-isfavorite", "0");
-      text.textContent = "分享";
-    } else {
-      //favoriteButton.setAttribute("class", "fa-regular fa-heart");
-      favoriteButton.setAttribute("data-isfavorite", "1");
-      text.textContent = "已分享";
-    }
-    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-    $.ajax({
-      headers: { 'X-CSRFToken': csrftoken },
-      type: "POST",
-      url: "/add_favorite_share/",
-      data: {
-        'ctid': ctid,
-      },
-      success: function (data) {
-        console.log(data);
-      },
-      error: function (xhr, textStatus, errorThrown) {
-        console.error("Error:", textStatus, errorThrown);
+
+    function add_favorite_share(ctid) {
+      // var sharediv = document.getElementById("ct_share");
+      var favoriteButton = document.getElementById("submitfavorite_share" + ctid);
+      var text = document.getElementById("icontxt" + ctid);
+      var isFavoriteValue = favoriteButton.getAttribute("data-isfavorite");
+      if (isFavoriteValue === "1") {
+        //favoriteButton.setAttribute("class", "fa-regular fa-heart");
+        favoriteButton.setAttribute("data-isfavorite", "0");
+        text.textContent = "分享";
+      } else {
+        //favoriteButton.setAttribute("class", "fa-regular fa-heart");
+        favoriteButton.setAttribute("data-isfavorite", "1");
+        text.textContent = "已分享";
       }
-    });
-  };
+      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+      $.ajax({
+        headers: { 'X-CSRFToken': csrftoken },
+        type: "POST",
+        url: "/add_favorite_share/",
+        data: {
+          'ctid': ctid,
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+          console.error("Error:", textStatus, errorThrown);
+        }
+      });
+    };
   </script>
 {% endblock body %}
 {% block content_script %}<script src="/static/js/history.js"></script>{% endblock %}

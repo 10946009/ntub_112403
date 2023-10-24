@@ -15,11 +15,11 @@
 <ul class="nav nav-tabs flex justify-content-center my-nav-tabs" id="myTab" role="tablist" style="margin-top: 100px;">
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab"
-      aria-controls="home" aria-selected="true" onclick="saveTabState('home')">最愛景點</button>
+      aria-controls="home" aria-selected="true" >最愛景點</button><!-- onclick="saveTabState('home')" -->
   </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab"
-      aria-controls="contact" aria-selected="false" onclick="saveTabState('contact')">最愛行程</button>
+      aria-controls="contact" aria-selected="false" >最愛行程</button> <!-- onclick="saveTabState('contact')" -->
   </li>
 </ul>
 
@@ -64,34 +64,24 @@
   <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
     <div class="container">
       <div class="row" style="width: 90%;">
-        <div class="col-md-4 col-sm-6">
-          <div class="card">
-            <div class="location-wrap text-center">
-              <img src="../static/images/pingxi.jpg" class="img-responsive custom-image" width="100%">
-              <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
-            </div>
-            <div class="card-body text-center">
-              <h4 class="card-title">阿亮</h4>
-              <h5>0318台北平溪</h5>
-              <p class="description">20230318去平溪玩水一天</p>
-              <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6">
-          <div class="card">
-            <div class="location-wrap text-center">
-              <img src="../static/images/Daan.jpeg" class="img-responsive custom-image" width="100%">
-              <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
-            </div>
-            <div class="card-body text-center">
-              <h4 class="card-title">小灣</h4>
-              <h5>0528台北大安</h5>
-              <p class="description">20230528大安自駕自由行</p>
-              <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
+        {% for item in travel_favorite_list %}
+          <div class="col-md-4 col-sm-6">
+            <div class="card">
+              <div class="location-wrap text-center">
+                <img src="/static/images/attractions/{{ item.img }}_0.jpg" class="img-responsive custom-image" width="100%"> <!--放照片-->
+                <i class="fa-solid fa-heart location-heart" onclick="delTravelFavorite(this,{{ item.id }})" id="heart-icon"></i>
+              </div>
+              <div class="card-body text-center">
+                <h4 class="card-title">{{ item.ct_name }}</h4>
+                <h5>user:{{ item.u_id.username }}</h5>
+                {% comment %} <p class="description">20230318去平溪玩水一天</p> {% endcomment %}
+                <a href="/travel_detail/{{ item.id }}" class="btn btn-warning spot_data_btn">詳細資料</a>
+              </div>
             </div>
           </div>
-        </div>
+        {% endfor %}
+        
+
         <!-- <div class="col-md-4 col-sm-6">
           <div class="card">
             <div class="location-wrap text-center">
@@ -105,7 +95,21 @@
               <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
             </div>
           </div>
-        </div> -->
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="card">
+            <div class="location-wrap text-center">
+              <img src="../static/images/Daan.jpeg" class="img-responsive custom-image" width="100%">
+              <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this)" id="heart-icon"></i>
+            </div>
+            <div class="card-body text-center">
+              <h4 class="card-title">小灣</h4>
+              <h5>0528台北大安</h5>
+              <p class="description">20230528大安自駕自由行</p>
+              <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
+            </div>
+          </div>
+        </div> 
         <div class="col-md-4 col-sm-6">
           <div class="card">
             <div class="location-wrap text-center">
@@ -119,7 +123,8 @@
               <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
             </div>
           </div>
-        </div>
+        </div>-->
+
       </div>
     </div>
   </div>
@@ -135,6 +140,22 @@
       if (ans == true) {
         console.log("成功");
         window.location.href = `/del_favorite/${a_id}`;
+      } else {
+        console.log("取消");
+      }
+
+    }
+    function delTravelFavorite(heartIcon, ct_id) {
+      /*if (heartIcon.style.color === "red") {
+        heartIcon.style.color = "gray";
+      } else {
+        heartIcon.style.color = "red";
+      }*/
+      var csrftoken = "{{ csrf_token }}";
+      ans = window.confirm('您確定要移除此行程嗎?');
+      if (ans == true) {
+        console.log("成功");
+        window.location.href = `/del_travel_favorite/${ct_id}`;
       } else {
         console.log("取消");
       }

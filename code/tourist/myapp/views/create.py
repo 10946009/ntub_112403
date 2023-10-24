@@ -52,7 +52,7 @@ def create(request, ct_id):
     user_favorite = [4, 6, 9, 10, 15, 16, 18] #需修改新增的部分
     ct_data = Create_Travel.objects.get(id=ct_id)
     choiceday = 1
-    # apikey = GOOGLE_PLACES_API_KEY
+    # apikey = GOOGLE_PLACES_API_KEY   #記得一定要打開!!!!!!!!!!!!!!!!!!!!!!!!!(API在這!)
     travelday = range(1, ct_data.travel_day + 1)
     name = ct_data.ct_name
     start_day = ct_data.start_day
@@ -77,7 +77,7 @@ def create(request, ct_id):
         # local_address = local_to_address(ct_attractions_data.start_location_x ,ct_attractions_data.start_location_y)
         # 抓出發時間
         user_nowtime = format_minutes_as_time(ct_attractions_data.start_time)
-        
+        location_name = ct_attractions_data.name
         # 抓出這筆行程中的所有景點
         ct_attractions_list = Attractions_Ct.objects.filter(
             choice_ct_id=ct_attractions_data.id

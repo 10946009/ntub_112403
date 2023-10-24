@@ -715,6 +715,7 @@ endcomment %}
     function showInfo(aId) {
         var content1 = document.getElementById("replaceable-content");
         var content2 = document.getElementById("id01");
+        var pointBack = document.getElementById("pointItem"+aId);
         if(aId){
             // 發起 AJAX 請求
         $.ajax({
@@ -730,6 +731,8 @@ endcomment %}
                 console.log(attractions_detail_div)
                 content1.style.display = "none";
                 content2.style.display = "block";
+                const attractionsDetailName = document.getElementById('attractions-detail-name');
+                attractionsDetailName.scrollIntoView({ behavior: 'smooth' , block: 'center'}); // 使用 "smooth" 选项创建平滑的滚动效果
                 // 取得模態框元素
                 // var showInfo = document.getElementById("id01");
                 // // 將模態框的顯示樣式設定為 "block"，顯示模態框
@@ -744,6 +747,8 @@ endcomment %}
         }else{
             content1.style.display = "block";
             content2.style.display = "none";
+            console.log(pointBack);
+            pointBack.scrollIntoView({ behavior: 'smooth' , block: 'center'}); // 使用 "smooth" 选项创建平滑的滚动效果
         }
         
     }
