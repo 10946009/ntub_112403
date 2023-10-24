@@ -14,10 +14,13 @@ def share(request):
             share['is_favorite']= "0"
         share['u_id'] = User.objects.get(id=share['u_id']) 
         # 抓place_id
-        choiceid= ChoiceDay_Ct.objects.filter(ct_id=share['id']).values().first()
-        ctaid = Attractions_Ct.objects.filter(choice_ct_id=choiceid['id']).values().first()
-        place_id = Attractions.objects.get(id=ctaid['a_id']).place_id
-        share['img']=place_id
+        try:
+            choiceid= ChoiceDay_Ct.objects.filter(ct_id=share['id']).values().first()
+            ctaid = Attractions_Ct.objects.filter(choice_ct_id=choiceid['id']).values().first()
+            place_id = Attractions.objects.get(id=ctaid['a_id']).place_id
+            share['img']=place_id
+        except:
+            share['img']="default"
         all_share_list.append(share)
     print(all_share_list)
     return render(request, "share.html",locals())
