@@ -424,6 +424,8 @@
                                         style=" color: rgb(89, 198, 53);"></i> 3</span>
                             </div>
                         </div>
+                        <!-- 放user新增回覆的框框 -->
+                        <div class="comment_new" id="comment_new"></div>
                         <div class="comment">
                             <div class="avatar">
                                 <img src="../static/images/dog.jpg" alt="User Avatar">
@@ -465,9 +467,9 @@
                             <div class="comment-content">
                                 <h6 class="username">
                                     皮卡丘<br>
-                                    <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
-                                            class="fa-solid fa-crown"></i>在地嚮導
-                                        &ensp;</span>
+                                    <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;">
+                                        <i class="fa-solid fa-crown"></i>在地嚮導&ensp;
+                                    </span>
                                 </h6>
                             </div>
                         </div>
@@ -477,7 +479,6 @@
                                     style="resize: none; border-radius: 10px; max-width: 90%; margin-left: 40px; padding: 10px;"
                                     placeholder="回答問題"></textarea>
                             </div>
-                            <!-- 之後會補上判斷textarea是否是空值以觸發ask_btn_ok按鈕（空直不能點張貼） -->
                             <div class="post_ask">
                                 <span class="all_ask_btn_ok" id="all_ask_btn_ok">張貼</span>
                             </div>
@@ -1512,6 +1513,31 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
+    // 回覆問題時，可以將結果呈現在上面
+    document.getElementById("all_ask_btn_ok").addEventListener("click", function () {
+        var answerContent = document.getElementById("answer_qa").value;
+        var newComment = document.createElement("div");
+        newComment.className = "comment";
+        newComment.innerHTML = `
+        <div class="avatar">
+            <img src="../static/images/peka.webp" alt="User Avatar">
+        </div>
+        <div class="comment-content">
+            <h6 class="username">
+                皮卡丘<br>
+                <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;">
+                    <i class="fa-solid fa-crown"></i>在地嚮導&ensp;
+                </span>
+            </h6>
+            <h6 style="margin-bottom: 20px;"> <div>${answerContent}</div></h6>
+        </div>
+    `;
+        var commentQa = document.getElementById("comment_new");
+        commentQa.appendChild(newComment);
+        document.getElementById("answer_qa").value = "";
+        commentQa.style.display = "block";
+    });
+
     // 判斷提出問題時，textarea有沒有東西
     var user_ask = document.getElementById('user_ask');
     var ask_btn_ok = document.getElementById('ask_btn_ok');
