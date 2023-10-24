@@ -47,7 +47,15 @@
             </span>
           </a>
         </div>
-        <div class="share" id="ct_share">
+        <div class="share">
+          <a href="/create/{{ item.my_history.id }}" class="sharea">
+            <span class="fa-solid fa-share share_icon">
+              <br>
+              <span class="icontxt">已分享</span>
+            </span>
+          </a>
+        </div>
+        <!-- <div class="share" id="ct_share">
           {% if item.my_history.status == True %}
             <i class="fa-solid fa-share share_icon"
                title="已分享"
@@ -55,10 +63,7 @@
                data-isfavorite="1"
                onclick="add_favorite_share({{ item.my_history.id }})"></i>
             <span class="icontxt" id="icontxt{{ item.my_history.id }}">已分享</span>
-            {% comment %}
-              <span class="fa-solid fa-share share_icon"><br>
-              <span class="icontxt">已分享</span>
-            {% endcomment %}
+            
           {% else %}
             <i class="fa-solid fa-share share_icon"
                title="收藏"
@@ -66,12 +71,9 @@
                data-isfavorite="0"
                onclick="add_favorite_share({{ item.my_history.id }})"></i>
             <span class="icontxt" id="icontxt{{ item.my_history.id }}">分享</span>
-            {% comment %}
-              <span class="fa-solid fa-share share_icon"><br>
-              <span class="icontxt">分享</span>
-            {% endcomment %}
+            
           {% endif %}
-        </div>
+        </div> -->
         <button class="more_btn details{{ item.my_history.id }}btn"
                 data-target="details{{ item.my_history.id }}">預覽</button>
       </div>
