@@ -1,4 +1,3 @@
-
 // $(function(){
 //     $(".details{{ item.my_history.id }}btn").click(function(){
 //       $("#details{{ item.my_history.id }}").slideToggle('slow',function(){
@@ -24,21 +23,54 @@ document.addEventListener('DOMContentLoaded', function () {
       const targetDiv = document.getElementById(targetId);
 
       if (targetDiv) {
-        // 切换目标 div 的显示状态
-        targetDiv.classList.toggle("hidden-details");
+        // 获取目标 div 的当前高度
+        const currentHeight = targetDiv.clientHeight;
+        const targetHeight = targetDiv.scrollHeight;
+
+        // 切换目标 div 的显示状态和动画
         if (targetDiv.classList.contains("hidden-details")) {
-          button.textContent = "預覽行程";
-          button.style.color = ""
-          button.style.backgroundColor = "";
-        } else {
+          targetDiv.classList.remove("hidden-details");
+          animateExpand(targetDiv, currentHeight, targetHeight);
+
           button.textContent = "收起資料";
           button.style.textShadow = "3px 2px 3px rgb(60, 60, 60)";
           button.style.backgroundColor = "rgb(255, 85, 85)";
+        } else {
+          animateCollapse(targetDiv, currentHeight);
+          button.textContent = "預覽行程";
+          button.style.color = "";
+          button.style.backgroundColor = "";
         }
       }
     });
   });
-})
+});
+
+function animateExpand(element, startHeight, endHeight) {
+  element.style.maxHeight = startHeight + "px";
+  element.style.overflow = "hidden";
+
+  requestAnimationFrame(function () {
+    element.style.transition = "max-height 0.3s ease-in-out";
+    element.style.maxHeight = endHeight + "px";
+  });
+}
+
+function animateCollapse(element, startHeight) {
+  element.style.maxHeight = startHeight + "px";
+
+  requestAnimationFrame(function () {
+    element.style.transition = "max-height 0.3s ease-in-out";
+    element.style.maxHeight = "0";
+    element.style.overflow = "hidden";
+  });
+
+  element.addEventListener("transitionend", function () {
+    element.style.transition = "";
+    element.style.maxHeight = "";
+    element.classList.add("hidden-details");
+  }, { once: true });
+}
 
 $(document).ready(function () {
 
