@@ -39,3 +39,14 @@ document.addEventListener('DOMContentLoaded',function(){
     });
   });
 })
+
+$(document).ready(function(){
+  // 给每个链接添加点击事件处理程序
+  $(".shareFilter_btn").click(function(e) {
+    // 阻止链接的默认行为
+    e.preventDefault();
+    
+    $(".shareFilter_btn").removeClass("shareFilter_btn_click");
+    $(this).addClass("shareFilter_btn_click");
+  });
+})

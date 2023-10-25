@@ -3,6 +3,36 @@
     margin: 0 auto;
     margin-top: 80px;
 }
+.shareFilter_div{
+    margin: 0 auto;
+    float: right;
+    text-align: center;
+    margin-bottom: 10px;
+    display: block;
+}
+.shareFilter_btn{
+    display: block;
+    float: left;
+    text-decoration: none;
+    width: 100px;
+    padding: 5px 10px;
+    margin-left: 10px;
+    border-radius: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgb(255, 233, 31);
+    color: #fff;
+    text-shadow: 2px 2px 3px #333;
+    box-shadow: 4px 4px 4px #ccc;
+	transition: background-color 0.3s ,color 0.3s;
+}
+.shareFilter_btn:hover{
+    background-color: #ff473d;
+}
+.shareFilter_btn_click{
+    background-color: #ff473d;
+}
+
 .mytravel{
     width: 100%;
     border: 1px solid black;

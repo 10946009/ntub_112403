@@ -7,10 +7,10 @@
 {% block body %}
 
   <div class="main">
-    <div>
-      <a href="/history" class="all_travel">All</a>
-      <a href="/history/1" class="already_share">已分享</a>
-      <a href="/history/0" class="not_share">未分享</a>
+    <div class="row shareFilter_div">
+      <a href="/history" class="shareFilter_btn all_travel">All</a>
+      <a href="/history/1" class="shareFilter_btn already_share">已分享</a>
+      <a href="/history/0" class="shareFilter_btn not_share">未分享</a>
     </div>
     <!--資料庫有東西就會顯示-->
     {% for item in all_data %}
