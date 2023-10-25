@@ -58,14 +58,6 @@
               </div>
             </div>
           </div>
-
-
-          <!-- <input class="form-control me-auto search" type="search" placeholder="想去哪玩.." aria-label="Search"
-            name="search_text">
-          <input type="hidden" name="data_type" value="keyword_search">
-          <button class="btn btn-outline-success search_icon" type="submit" id="searchClick">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button> -->
         </form>
         <button class="navbar-toggler ms-auto rwd_icon" type="button" data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -185,7 +177,7 @@
       base_searchClick = document.getElementById("base_searchClick");
       b = document.createElement("DIV");
       b.textContent = val; // 輸入的值開頭
-      b.innerHTML = `<i class="fas fa-search"></i><strong>${val}</strong>&emsp;<span style="color:#a1a1a1">-Trip搜尋</span>`;
+      b.innerHTML = `<i class="fas fa-search" style="padding: 10px;"></i><strong>${val}</strong>&emsp;<span style="color:#a1a1a1">-Trip搜尋</span>`;
       b.addEventListener("click", function (e) {
         inp.value = val;
         sessionStorage.setItem(val, 'keyword_search');
@@ -199,7 +191,7 @@
       for (i = 0; i < arr.length; i++) {
         if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
           b = document.createElement("DIV"); // 建立新的DIV元素來放置該項目
-          b.innerHTML = `<i class="fas fa-search"></i><strong>${arr[i].substr(0, val.length)}${arr[i].substr(val.length)}</strong>`;
+          b.innerHTML = `<i class="fas fa-search" style="padding: 10px;cursor: default;"></i><strong>${arr[i].substr(0, val.length)}${arr[i].substr(val.length)}</strong>`;
           b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>"; // 加入一個隱藏的input元素，用來存放選擇的值
           b.addEventListener("click", function (e) {
             inp.value = this.getElementsByTagName("input")[0].value; // 設定輸入框的值為選擇的值

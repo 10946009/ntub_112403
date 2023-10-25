@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded',function(){
         // 切换目标 div 的显示状态
         targetDiv.classList.toggle("hidden-details");
         if (targetDiv.classList.contains("hidden-details")) {
-          button.textContent = "詳細資料";
+          button.textContent = "預覽行程";
           button.style.color = ""
           button.style.backgroundColor = "";
         } else {
@@ -37,5 +37,16 @@ document.addEventListener('DOMContentLoaded',function(){
         }
       }
     });
+  });
+})
+
+$(document).ready(function(){
+  // 给每个链接添加点击事件处理程序
+  $(".shareFilter_btn").click(function(e) {
+    // 阻止链接的默认行为
+    e.preventDefault();
+    
+    $(".shareFilter_btn").removeClass("shareFilter_btn_click");
+    $(this).addClass("shareFilter_btn_click");
   });
 })

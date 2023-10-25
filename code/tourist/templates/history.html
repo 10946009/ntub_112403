@@ -7,10 +7,10 @@
 {% block body %}
 
   <div class="main">
-    <div>
-      <a href="/history">All</a>
-      <a href="/history/1">已分享</a>
-      <a href="/history/0">未分享</a>
+    <div class="row shareFilter_div">
+      <a href="/history" class="shareFilter_btn all_travel">All</a>
+      <a href="/history/1" class="shareFilter_btn already_share">已分享</a>
+      <a href="/history/0" class="shareFilter_btn not_share">未分享</a>
     </div>
     <!--資料庫有東西就會顯示-->
     {% for item in all_data %}
@@ -47,35 +47,31 @@
             </span>
           </a>
         </div>
-        <div class="share">
-          <a href="/create/{{ item.my_history.id }}" class="sharea">
-            <span class="fa-solid fa-share share_icon">
-              <br>
-              <span class="icontxt">已分享</span>
-            </span>
-          </a>
-        </div>
-        <!-- <div class="share" id="ct_share">
+        <div class="share" id="ct_share">
           {% if item.my_history.status == True %}
-            <i class="fa-solid fa-share share_icon"
+            <span class="fa-solid fa-share share_icon"
                title="已分享"
                id="submitfavorite_share{{ item.my_history.id }}"
                data-isfavorite="1"
-               onclick="add_favorite_share({{ item.my_history.id }})"></i>
-            <span class="icontxt" id="icontxt{{ item.my_history.id }}">已分享</span>
+               onclick="add_favorite_share({{ item.my_history.id }})">
+               <br>
+               <span class="icontxt" id="icontxt{{ item.my_history.id }}">已分享</span>
+            </span>
             
           {% else %}
-            <i class="fa-solid fa-share share_icon"
+            <span class="fa-solid fa-share share_icon"
                title="收藏"
                id="submitfavorite_share{{ item.my_history.id }}"
                data-isfavorite="0"
-               onclick="add_favorite_share({{ item.my_history.id }})"></i>
-            <span class="icontxt" id="icontxt{{ item.my_history.id }}">分享</span>
+               onclick="add_favorite_share({{ item.my_history.id }})">
+              <br>
+              <span class="icontxt" id="icontxt{{ item.my_history.id }}">分享</span>
+            </span>
             
           {% endif %}
-        </div> -->
+        </div>
         <button class="more_btn details{{ item.my_history.id }}btn"
-                data-target="details{{ item.my_history.id }}">預覽</button>
+                data-target="details{{ item.my_history.id }}">預覽行程</button>
       </div>
 
       <!--開啟詳細資料顯示的內容-->
@@ -124,7 +120,7 @@
                      role="tabpanel"
                      aria-labelledby="ct{{ item.my_history.id }}-{{ forloop.counter }}-tab">
                   <!-- 行程的景點資訊 -->
-                  <div class="content_align">
+                  <div class="content_align" >
                     {% for detail in details %}
                       {% if forloop.counter0 == 0 %}
                           <!--顯示使用者設定的起始位置到第一個景點的導航-->
@@ -175,9 +171,32 @@
         </div>
       </div>
     {% endfor %}
-
+<!-- 重新排版範例 未完成 -->
+    <!-- <div class="row" style="width: 100%;margin: 0 auto;">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-6 div_img">
+            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+          </div>
+          <div class="div_txt">
+            我是文字
+          </div>
+        </div>                    
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-6 div_img">
+            <img src="../static/images/cloud1.png" class="img-responsive" width="100%" alt="">
+          </div>
+          <div class="col-md-6 div_txt">
+            我是文字2
+          </div>
+        </div>                    
+      </div>
+    </div> -->
     <!-- 以下為原本寫死的資料  可以註解或刪掉~-->
-    {% comment %} <div class="row mytravel">
+    {% comment %} 
+    <div class="row mytravel">
       <div class="col-md-4 mytravel_img">
         <img src="../static/images/cake01.jpg"
              class="img-responsive"
@@ -625,7 +644,8 @@
           </div>
         </div>
       </div>
-    </div> {% endcomment %}
+    </div> 
+    {% endcomment %}
 
   </div>
 

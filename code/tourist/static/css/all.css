@@ -5,14 +5,14 @@
 }
 /* 整個搜尋引擎那條 */
 .base_search {
-    width: 90%;
+    width: 100%;
     /* padding: 0 20px; */
 }
 
 .base_search .base_searchInput {
     display: inline-block;
     background: #fff;
-    width: 90%;
+    width: 100%;
     border-radius: 30px;
     position: relative;
     display: flex;
