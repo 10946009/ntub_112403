@@ -2035,6 +2035,22 @@ img {
     text-align: center;
 }
 
+/* 評論（景點上傳、撰寫） */
+.comment_topic {
+    border: #000 solid;
+    cursor: pointer;
+    display: inline-block;
+    color: rgb(104, 72, 10);
+    padding: 8px 10px;
+    /* border-radius: 25px; */
+    background-color: rgb(206, 140, 61);
+    margin-top: 8px;
+}
+
+.comment_topic:hover {
+    background-color: rgb(165, 128, 75);
+}
+
 /* .Cart__product {
     display: grid;
     grid-template-columns: 2fr 7fr 3fr 3fr 3fr 3fr;

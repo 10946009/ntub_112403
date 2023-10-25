@@ -47,7 +47,6 @@
                 </div>
                 <div class="detail_img__headerGrid">
                     <div class="row">
-
                         <img src="/static/images/attractions/{% if picture_list.1 %}{{picture_list.1}}{% else %}{{picture_list.0}}{% endif %}"
                             class="show_detail_img" style=" width:100%;" alt="" onclick="showPhotoDetail()">
                         <div class="image-container">
@@ -414,7 +413,6 @@
                                     <div class="tooltip2" id="myTooltip2" onclick="showReportLoaderAndContent()">
                                         檢舉
                                     </div>
-
                                 </div>
                             </div>
                             <div style="font-size: 18px; margin-bottom: 20px;">
@@ -1108,7 +1106,16 @@
                 <i class="fa-solid fa-pen" style="color: gray;"></i>
                 評論
             </h5>
-            <div class="col-3"></div>
+            <div class="col-3">
+                <div style="margin-left: 30px; margin-top: 10px;">
+                    <div>
+                        <h5 class="comment_topic">我要發表評論</h5>
+                    </div>
+                    <div>
+                        <h5 class="comment_topic">我要上傳景點照片</h5>
+                    </div>
+                </div>
+            </div>
             <div class="col-9">
                 <div class="comment">
                     <div class="avatar">
@@ -1522,7 +1529,7 @@
     // 一點擊張貼則評論數＋1
     var postButton = document.getElementById("all_ask_btn_ok");
     var commentCountElement = document.getElementById("commentCountElement");
-    var commentCount = 3; // 初始的评论数
+    var commentCount = 3;
 
     postButton.addEventListener("click", function () {
         commentCount++;
