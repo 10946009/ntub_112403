@@ -36,8 +36,8 @@
     bottom: 5px;
     width: auto;
     border: 1px none rgb(128, 128, 128);
-    border-radius: 10%;
-    padding: 10px 15px;
+    border-radius: 20px;
+    padding: 10px 20px;
     background-color: rgb(255, 240, 126);
     box-shadow: 3px 2px 3px rgb(146, 146, 146);
     text-shadow: 3px 2px 3px rgb(146, 146, 146);
@@ -58,6 +58,7 @@
     color: black;
     text-shadow: 2px 2px 1px #FFF;
     cursor: pointer;
+    user-select: none;
 }
 .share_icon:hover{
     color: rgb(255, 179, 0);
@@ -67,6 +68,7 @@
     font-size: 16px;
     text-shadow: 2px 2px 1px #FFF;
     font-weight: bolder;
+    user-select: none;
 }
 .edit{
     display: block;
@@ -84,6 +86,7 @@
     color: black;
     font-weight: bold;
     text-shadow: 2px 2px 1px #FFF;
+    user-select: none;
 }
 .edita:hover{
     color: gray;
@@ -107,15 +110,16 @@
     display: flex;
     align-items: center;
     align-content: center;
+    overflow-x: scroll;
 }
 .content_detail{
     height: 200px;
-    width: 250px;
-    display: inline-block;
+    width: 350px;
+    display: block;
     margin: 5px;
     padding: 10px;
     border: 1px solid black;
-    border-radius: 10%;
+    border-radius: 30px;
 }
 .content_detail p{
     margin-bottom: 10px;
@@ -131,12 +135,26 @@
     margin: 5px;
     padding: 5px;
     text-align: center;
-    display: inline-block;
+    display: block;
     cursor: pointer;
 }
 .gonexta{
     text-decoration: none;
     color: black;
+}
+.div_img{
+    position: relative;
+    padding: 0;
+    border: 1px solid black;
+    z-index: -1;
+}
+.div_txt{
+    padding: 0;
+    border: 1px solid black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 @media (max-width:1024px) {
     .content{
