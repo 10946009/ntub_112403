@@ -123,7 +123,7 @@
                                 <!-- 圖表 -->
                                 <div>
                                     <!-- <canvas id="chart" width="300" height="150"></canvas> -->
-                                    <canvas id="people_if_Chart" width="680px" height="480px"></canvas>
+                                    <canvas id="people_if_Chart" width="700%;" height="500%;"></canvas>
                                 </div>
                             </h6>
                         </div>
@@ -1200,6 +1200,52 @@
                 </div>
             </div>
         </div>
+        <div class="out_share_comment" id="out_share_comment">
+            <div id="share_comment_container" class="share_comment_container">
+                <form class="share_comment-content" id="share_comment-content" action="">
+                    <div class="comment_container" id="comment_container">
+                        <h5 style="font-size: 24px;">
+                            {{ detail.a_name }}
+                        </h5>
+                        <!-- <span class="close" id="close" title="關閉">&times;</span> -->
+                    </div>
+                    <div class="share_comment_con" style="padding: 20px;">
+                        <div class="comment">
+                            <div class="avatar">
+                                <img src="../static/images/an.jpeg" alt="User Avatar">
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username">
+                                    {{user.username}}<br>
+                                    <span style="color: gray; font-size: 12px; font-style: italic;">公開發佈 &ensp;</span>
+                                    <i class="icon fa-solid fa-circle-exclamation" id="comment_Icon"></i>
+                                    <div class="tooltip_comment" id="tooltip_comment">
+                                        您的貼文會與個人資料名稱及相片一併公開顯示。您的貼文必須遵循政策的規定。閱讀完整內容你針對 Beta
+                                        版問題的回答，在實驗期間可能不會公開顯示，只有你自己和/或其他參與實驗的人看得到。我們可能會在實驗結束後刪除答案。</div>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="comment_rating" id="rating">
+                            <div class="comment_star" data-value="1"><i class="fas fa-star"></i></div>
+                            <div class="comment_star" data-value="2"><i class="fas fa-star"></i></div>
+                            <div class="comment_star" data-value="3"><i class="fas fa-star"></i></div>
+                            <div class="comment_star" data-value="4"><i class="fas fa-star"></i></div>
+                            <div class="comment_star" data-value="5"><i class="fas fa-star"></i></div>
+                        </div>
+                        <div>
+                            <textarea name="user_share_comment" id="user_share_comment" cols="100%" rows="7"
+                                style="resize:none; border-radius: 10px;max-width: 100%; "
+                                placeholder="向使用者社群提出詢或尋求建議。"></textarea>
+                        </div>
+                    </div>
+                    <div class="post_share_comment">
+                        <span class="share_comment_btn_cancel" id="share_comment_btn_cancel">取消</span>
+                        <span class="share_comment_btn_ok" id="share_comment_btn_ok">張貼</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -1526,6 +1572,67 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
+
+    var rating = document.getElementById("rating");
+    var stars = rating.querySelectorAll(".comment_star");
+    var selectedRating = document.getElementById("selectedRating");
+    var currentRating = 0;
+
+    stars.forEach(function (star) {
+        star.addEventListener("click", function () {
+            var value = star.getAttribute("data-value");
+            currentRating = value;
+            updateRatingDisplay();
+            updateStarColors(value);
+        });
+
+        star.addEventListener("click", function () {
+            updateStarColors(currentRating);
+        });
+
+        star.addEventListener("click", function () {
+            var value = star.getAttribute("data-value");
+            currentRating = value;
+            updateRatingDisplay();
+        });
+    });
+
+    function updateRatingDisplay() {
+        selectedRating.textContent = "選擇的星星數：" + currentRating;
+    }
+
+    function updateStarColors(value) {
+        stars.forEach(function (star) {
+            var starValue = star.getAttribute("data-value");
+            var starIcon = star.querySelector("i");
+
+            if (starValue <= value) {
+                starIcon.style.color = "gold"; // 亮起的星星颜色
+            } else {
+                starIcon.style.color = "gray"; // 未亮起的星星颜色
+            }
+        });
+    }
+
+    // ask_tips提示點擊(查看)
+    var comment_Icon = document.getElementById("comment_Icon");
+    var tooltip_comment = document.getElementById("tooltip_comment");
+    var share_comment_container = document.getElementById("share_comment_container");
+
+    comment_Icon.addEventListener("click", function () {
+        if (tooltip_comment.style.display === "block") {
+            tooltip_comment.style.display = "none";
+        } else {
+            tooltip_comment.style.display = "block";
+        }
+    });
+    document.addEventListener("click", function (event) {
+        if (event.target == share_comment_container) {
+            tooltip_comment.style.display = "none";
+        }
+    });
+
+
     // 一點擊張貼則評論數＋1
     var postButton = document.getElementById("all_ask_btn_ok");
     var commentCountElement = document.getElementById("commentCountElement");
@@ -1887,56 +1994,6 @@
         }, 3000);
     }
 
-
-    // // 更多問題功能
-    // var qaSection = document.querySelector('.qa-section');
-    // var toggleButton = document.getElementById('toggleButton');
-    // //前三行内容
-    // var isHidden = true;
-    // toggleButton.addEventListener('click', function () {
-    //     if (isHidden) {
-    //         qaSection.style.webkitLineClamp = 'unset';
-    //         toggleButton.textContent = '顯示最小';
-    //     } else {
-    //         qaSection.style.webkitLineClamp = '3';
-    //         toggleButton.textContent = '更多...';
-    //     }
-    //     isHidden = !isHidden;
-    // });
-
-
-    //人潮分佈圖
-    // var ctx = document.getElementById('chart').getContext('2d');
-    // var chart = new Chart(ctx, {
-    //     type: 'bar',
-    //     data: {
-    //         labels: ["週一", "週二", "週三", "週四", "週五", "週六", "週日"],
-    //         datasets: [{
-    //             label: '人潮分佈狀況',
-    //             data: [12, 19, 3, 5, 18, 3, 20],
-    //             backgroundColor: [
-    //                 'rgba(255, 99, 132, 0.8)',
-    //                 'rgba(54, 162, 235, 0.8)',
-    //                 'rgba(255, 206, 86, 0.8)',
-    //                 'rgba(75, 192, 192, 0.8)',
-    //                 'rgba(153, 102, 255, 0.8)',
-    //                 'rgba(255, 159, 64, 0.8)',
-    //                 'rgba(0, 0, 0, 0.8)'
-    //             ],
-    //             borderColor: [
-    //                 'rgba(255,99,132,1)',
-    //                 'rgba(54, 162, 235, 1)',
-    //                 'rgba(255, 206, 86, 1)',
-    //                 'rgba(75, 192, 192, 1)',
-    //                 'rgba(153, 102, 255, 1)',
-    //                 'rgba(255, 159, 64, 1)',
-    //                 ' rgba(0, 0, 0, 1)'
-    //             ],
-    //             borderWidth: 1
-    //         }]
-    //     }
-    // });
-
     //人潮分佈圖(有加時間,數量)
     var total_data = [];
     var data_crowdlist = [];
@@ -2007,35 +2064,4 @@
     var currentDate = new Date();
     var currentWeek = (currentDate.getDay() + 6) % 7;
     tagWeek[currentWeek].click(); //今天
-
-    //總覽評論切換
-    sessionStorage.clear();
-    var search_text_list = [];
-    $(function () {
-        $('.change_btn div').click(function () {
-            $(this).addClass('active1').siblings().removeClass('active1');
-            var index = $(this).index();
-            $(".change_content .change_content1").eq(index).show().siblings().hide();
-        })
-    })
-    //總覽評論切換
-    var change1 = document.querySelector(".change1");
-    var change2 = document.querySelector(".change2");
-
-    change1.addEventListener("click", function () {
-        change1.style.color = "gray";
-        change1.style.borderBottom = "2px solid red";
-        change2.style.borderBottom = "none";
-        change2.style.color = "black";
-    });
-
-    change2.addEventListener("click", function () {
-        change2.style.color = "gray";
-        change2.style.borderBottom = "2px solid red";
-        change1.style.borderBottom = "none";
-        change1.style.color = "black";
-    });
-
-
-
 </script>
