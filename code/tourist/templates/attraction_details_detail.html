@@ -346,7 +346,7 @@
         <!-- 詢問問題彈跳框框(ok) -->
         <div class="out_ask_qa" id="out_ask_qa">
             <div id="ask_qa_container" class="ask_qa_container">
-                <form class="ask-content" id="ask-content" action="">
+                <form class="ask-content" id="ask-content" action="" method="POST">
                     <div class="ask_container" id="ask_container">
                         <h5 style="font-size: 24px;">
                             提出問題
@@ -362,7 +362,7 @@
                             </div>
                             <div class="comment-content">
                                 <h6 class="username">
-                                    {{user.username}}<br>
+                                    {{request.user.username}}<br>
                                     <span style="color: gray; font-size: 12px; font-style: italic;">公開發佈 &ensp;</span>
                                     <i class="icon fa-solid fa-circle-exclamation" id="myIcon"></i>
                                     <div class="tooltip1" id="myTooltip1">
@@ -370,6 +370,7 @@
                                 </h6>
                             </div>
                         </div>
+                    
                         <div>
                             <textarea name="user_ask" id="user_ask" cols="100%" rows="7"
                                 style="resize:none; border-radius: 10px;max-width: 100%; "
@@ -378,7 +379,7 @@
                     </div>
                     <div class="post_ask">
                         <span class="ask_btn_cancel" id="ask_btn_cancel">取消</span>
-                        <span class="ask_btn_ok" id="ask_btn_ok">張貼</span>
+                        <span class="ask_btn_ok" id="ask_btn_ok" type="submit" onclick="sendComment()">張貼</span>
                     </div>
                 </form>
             </div>
@@ -2056,7 +2057,15 @@
                     legend: {
                         display: false
                     },
-                    responsive: false
+                    responsive: false,
+                    interaction: {
+                        mode: 'point' // 设置交互模式为'point'以禁用点击和悬停
+                    },
+                    elements: {
+                        line: {
+                            tension: 0, // 设置线条的曲线张力为0，使线条更直接
+                        }
+                    },
                 }
             });
         });
