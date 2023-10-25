@@ -12,8 +12,8 @@
 //       })
 //     })
 //   })
-document.addEventListener('DOMContentLoaded',function(){
-    
+document.addEventListener('DOMContentLoaded', function () {
+
   // 获取所有的 "詳細資料" 按钮
   const detailButtons = document.querySelectorAll(".more_btn");
 
@@ -40,13 +40,20 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 })
 
-$(document).ready(function(){
+$(document).ready(function () {
+
+  var currentwin = window.location.pathname;
+
   // 给每个链接添加点击事件处理程序
-  $(".shareFilter_btn").click(function(e) {
-    // 阻止链接的默认行为
-    e.preventDefault();
-    
+  $(".shareFilter_btn").click(function (e) {
     $(".shareFilter_btn").removeClass("shareFilter_btn_click");
     $(this).addClass("shareFilter_btn_click");
+  });
+
+  // 设置初始选中链接的样式
+  $(".shareFilter_btn").each(function() {
+    if ($(this).attr("href") === currentwin) {
+      $(this).addClass("shareFilter_btn_click");
+    }
   });
 })
