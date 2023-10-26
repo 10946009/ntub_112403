@@ -2040,15 +2040,15 @@ img {
     border: #000 solid;
     cursor: pointer;
     display: inline-block;
-    color: rgb(104, 72, 10);
     padding: 8px 10px;
-    /* border-radius: 25px; */
-    background-color: rgb(206, 140, 61);
+    border-radius: 25px;
+    background-color: rgb(203, 202, 201);
     margin-top: 8px;
+
 }
 
 .comment_topic:hover {
-    background-color: rgb(165, 128, 75);
+    background-color: rgb(141, 140, 140);
 }
 
 /* 後面黑色那塊(comment) */
