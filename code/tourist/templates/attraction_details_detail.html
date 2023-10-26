@@ -30,15 +30,15 @@
         <!-- 星星數 -->
         <div class="rating" style="margin-bottom: 10px;">
             {% for i in "12345" %}
-            {% if i|add:0 <= detail.rating %} <i class="fa-solid fa-star" style="color:yellow;"></i>
+            {% if i|add:0 <= detail.rating %} <i class="fa-solid fa-star" style="color:rgb(226, 185, 2);"></i>
                 {% else %}
                 <!-- <i class="fa-regular fa-star"></i> -->
-                <i class="fa-regular fa-star-half-stroke" style="color:yellow;"></i>
+                <i class="fa-regular fa-star-half-stroke" style="color:rgb(226, 185, 2);"></i>
                 {% endif %}
                 {% endfor %}
                 <span id="selectedRating">{{detail.rating}} / 5 ({{ detail.rating_total }}) </span>
         </div>
-        <!-- 圖片 -->
+        <!-- 圖片(ok) -->
         <div class="detail_img" style="margin-top: 10px;">
             <div class="detail_img__header">
                 <div class="detail_img__headerGrid">
@@ -59,7 +59,7 @@
                 </div>
             </div>
         </div>
-        <!-- 景點整體介紹 -->
+        <!-- 景點整體介紹(ok) -->
         <div class="detail_detail" style="margin-top: -20px;">
             <div class="row">
                 <div class="col-7">
@@ -834,7 +834,7 @@
             </div>
         </div>
         <hr style="border:2px solid #777777">
-        <!-- 其他資訊 -->
+        <!-- 其他資訊(ok) -->
         <div class="row">
             <div class="col-12">
                 <!-- 使用者總評論 -->
@@ -1126,8 +1126,9 @@
                         <h6 class="username">
                             安妮雅<br>
                             <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
-                                    class="fa-solid fa-crown"></i>在地嚮導
-                                &ensp;</span>
+                                    class="fa-solid fa-crown"></i>在地嚮導</span>
+                            <span style="color:gray;font-size: 12px; font-style: italic;">·4則評論
+                                ·3張照片</span>
                         </h6>
                         <div class="star_count">
                             <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
@@ -1143,6 +1144,12 @@
                             <!-- <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
                                 2033</span> -->
                         </p>
+                        <div class="comment_user_ph" style="max-width: 100%;">
+                            <img src="../static/images/att_picture.png" alt="" style="width: 150px;">
+                            <img src="../static/images/att_picture.png" alt="" style="width: 150px;">
+                            <img src="../static/images/att_picture.png" alt="" style="width: 150px;">
+                            <img src="../static/images/att_picture.png" alt="" style="width: 150px;">
+                        </div>
                     </div>
                 </div>
                 <div class="comment">
@@ -1153,8 +1160,9 @@
                         <h6 class="username">
                             彭德<br>
                             <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
-                                    class="fa-solid fa-crown"></i>在地嚮導
-                                &ensp;</span>
+                                    class="fa-solid fa-crown"></i>在地嚮導</span>
+                            <span style="color:gray;font-size: 12px; font-style: italic;">·7則評論
+                                ·1張照片</span>
                         </h6>
                         <div class="star_count">
                             <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
@@ -1170,6 +1178,10 @@
                             <!-- <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
                                 2023</span> -->
                         </p>
+                        <div class="comment_user_ph" style="max-width: 100%;">
+                            <img src="../static/images/att_picture.png" alt="" style="width: 150px;">
+                            <img src="../static/images/att_picture.png" alt="" style="width: 150px;">
+                        </div>
                     </div>
                 </div>
                 <div class="comment">
@@ -1182,6 +1194,7 @@
                             <!-- <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
                                     class="fa-solid fa-crown"></i>在地嚮導
                                 &ensp;</span> -->
+                            <span style="color:gray;font-size: 12px; font-style: italic;">·5則評論</span>
                         </h6>
                         <div class="star_count">
                             <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
@@ -1201,7 +1214,7 @@
                 </div>
             </div>
         </div>
-        <!-- 評論彈跳框框 -->
+        <!-- 評論彈跳框框(ok) -->
         <div class="out_share_comment" id="out_share_comment">
             <div id="share_comment_container" class="share_comment_container">
                 <form class="share_comment-content" id="share_comment-content" action="">
