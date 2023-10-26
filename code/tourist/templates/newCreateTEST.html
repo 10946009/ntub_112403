@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/bootstrap2023.css">
+    <style>
+        .showserachBlock {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <main style="width: 90%;margin: 0 auto;">
+        <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+                    role="tab" aria-controls="home" aria-selected="true" onclick="saveTabState('home')">第一天</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="second-tab" data-bs-toggle="tab" data-bs-target="#second" type="button"
+                    role="tab" aria-controls="second" aria-selected="false"
+                    onclick="saveTabState('second')">第二天</button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent" style="width: 100%;margin: 0 auto;">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"
+                style="display: flex;justify-content: center;align-items: center;align-content: center;">
+                <div class="row" style="width: 100%;">
+                    <div class="col-6" style="border: 1px solid black;overflow-y: scroll;height: 800px;">
+                        <button id="changeToSearch" onclick="clickChange()">切換搜尋</button>
+                        <div class="searchBlock" style="display: none;" id="searchBlock">搜尋欄
+                            <form action="">
+                                <input type="text" value="請輸入景點名稱">
+                            </form>
+                        </div>
+                        <div class="likeAndRec" id="likeAndRec">
+                            <div>顯示我的收藏
+                                <div class="row">
+                                    <div class="col-md-6" style="margin-bottom: 10px;">
+                                        <div style="border: 1px solid black;">
+                                            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%"
+                                                alt="">
+                                        </div>
+                                        <div style="border: 1px solid black;">
+                                            我是介紹圖片的文字
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="margin-bottom: 10px;">
+                                        <div style="border: 1px solid black;">
+                                            <img src="../static/images/Datong.jpeg" class="img-responsive" width="100%"
+                                                alt="">
+                                        </div>
+                                        <div style="border: 1px solid black;">
+                                            我是介紹圖片的文字
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="margin-bottom: 10px;">
+                                        <div style="border: 1px solid black;">
+                                            <img src="../static/images/cloud1.png" class="img-responsive" width="100%"
+                                                alt="">
+                                        </div>
+                                        <div style="border: 1px solid black;">
+                                            我是介紹圖片的文字
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div>根據已選景點顯示相似景點推薦
+                                <div class="row">
+                                    <div class="col-md-6" style="margin-bottom: 10px;">
+                                        <div style="border: 1px solid black;">
+                                            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%"
+                                                alt="">
+                                        </div>
+                                        <div style="border: 1px solid black;">
+                                            我是介紹圖片的文字
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="margin-bottom: 10px;">
+                                        <div style="border: 1px solid black;">
+                                            <img src="../static/images/cloud1.png" class="img-responsive" width="100%"
+                                                alt="">
+                                        </div>
+                                        <div style="border: 1px solid black;">
+                                            我是介紹圖片的文字
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="margin-bottom: 10px;">
+                                        <div style="border: 1px solid black;">
+                                            <img src="../static/images/101.jpg" class="img-responsive" width="100%"
+                                                alt="">
+                                        </div>
+                                        <div style="border: 1px solid black;">
+                                            我是介紹圖片的文字
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6" style="border: 1px solid black;">
+                        我是右邊
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
+                <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="child1-tab" data-bs-toggle="tab" data-bs-target="#child1"
+                            type="button" role="tab" aria-controls="child1" aria-selected="true"
+                            onclick="saveTabState('child1')">第一天</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="child2-tab" data-bs-toggle="tab" data-bs-target="#child2"
+                            type="button" role="tab" aria-controls="child2" aria-selected="false"
+                            onclick="saveTabState('child2')">第二天</button>
+                    </li>
+                </ul>
+                <div class="tab-child1" id="myTabchild1" style="width: 80%;margin: 0 auto;">
+                    <div class="tab-pane fade show active" id="child1" role="tabpanel" aria-labelledby="child1-tab"
+                        style="display: flex;justify-content: center;align-items: center;align-content: center;">
+                        <div class="row" style="width: 100%;">
+                            <div class="col-md-4 col-sm-6">
+                                <div class="img">
+                                    <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                                </div>
+                                <div class="txt">
+                                    <span>testtest</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="img">
+                                    <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                                </div>
+                                <div class="txt">
+                                    <span>testtest</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="img">
+                                    <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                                </div>
+                                <div class="txt">
+                                    <span>testtest</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab">
+                        我是內容<br>我是內容<br>我是內容<br>我是內容<br>我是內容<br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script src="../static/js/jquery-3.7.0.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script>
+        var isSearchVisible = false;
+
+        function clickChange() {
+            var likeAndRec = $(".likeAndRec");
+            var searchBlock = $(".searchBlock");
+
+            isSearchVisible = !isSearchVisible;
+
+
+            if (isSearchVisible) {
+                likeAndRec.fadeOut(200);
+                searchBlock.fadeIn(200);
+                $("#changeToSearch").text("收藏與推薦");
+            } else {
+                searchBlock.fadeOut(200);
+                likeAndRec.fadeIn(200);
+                $("#changeToSearch").text("切換搜尋");
+            }
+        }
+
+    </script>
+</body>
+
+</html>
