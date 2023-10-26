@@ -7,8 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="../static/css/bootstrap2023.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .showserachBlock {
             display: block;
@@ -34,21 +34,21 @@
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"
                 style="display: flex;justify-content: center;align-items: center;align-content: center;">
                 <div class="row" style="width: 100%;">
-                    <div class="col-6" style="border: 1px solid black;overflow-y: scroll;height: 800px;">
-                        <button id="changeToSearch" onclick="clickChange()">切換搜尋</button>
+                    <div class="col-6" style="position: relative;border: 1px solid black;overflow-y: scroll;height: 800px;">
+                        <button class="changeToSearch" style="position: absolute;right: 5px; top: 5px;" id="changeToSearch" onclick="clickChange()">切換搜尋</button>
                         <div class="searchBlock" style="display: none;" id="searchBlock">搜尋欄
                             <form action="">
-                                <input type="text" value="請輸入景點名稱">
+                                <input type="text" placeholder="請輸入景點名稱">
                             </form>
                         </div>
                         <div class="likeAndRec" id="likeAndRec">
                             <div>
-                                <div style="display: flex;align-items: center;align-content: center;">
+                                <div onclick="openLikeBtn()" style="display: flex;cursor: pointer;align-items: center;align-content: center;">
                                     <i class="fa-solid fa-heart" style="color: white;background-color: rgb(255, 41, 101); border-radius: 50%;padding: 10px;margin-right: 5px;"></i>
                                     <span style="font-size: 28px;font-weight: bold;">我的收藏</span>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6" style="margin-bottom: 10px;">
+                                <div class="row openlike" style="display: none;">
+                                    <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
                                         <div style="border: 1px solid black;">
                                             <img src="../static/images/cake01.jpg" class="img-responsive" width="100%"
                                                 alt="">
@@ -57,7 +57,7 @@
                                             我是介紹圖片的文字
                                         </div>
                                     </div>
-                                    <div class="col-md-6" style="margin-bottom: 10px;">
+                                    <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
                                         <div style="border: 1px solid black;">
                                             <img src="../static/images/Datong.jpeg" class="img-responsive" width="100%"
                                                 alt="">
@@ -66,7 +66,7 @@
                                             我是介紹圖片的文字
                                         </div>
                                     </div>
-                                    <div class="col-md-6" style="margin-bottom: 10px;">
+                                    <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
                                         <div style="border: 1px solid black;">
                                             <img src="../static/images/cloud1.png" class="img-responsive" width="100%"
                                                 alt="">
@@ -78,9 +78,13 @@
                                 </div>
                             </div>
                             <hr>
-                            <div>根據已選景點顯示相似景點推薦
-                                <div class="row">
-                                    <div class="col-md-6" style="margin-bottom: 10px;">
+                            <div>
+                                <div onclick="openRecBtn()" style="display: flex;cursor: pointer;align-items: center;align-content: center;">
+                                    <i class="fa-solid fa-thumbs-up" style="color: white;background-color: rgb(255, 41, 101); border-radius: 50%;padding: 10px;margin-right: 5px;"></i>
+                                    <span style="font-size: 28px;font-weight: bold;">相似景點</span>
+                                </div>
+                                <div class="row openRec" style="display: none;">
+                                    <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
                                         <div style="border: 1px solid black;">
                                             <img src="../static/images/cake01.jpg" class="img-responsive" width="100%"
                                                 alt="">
@@ -89,7 +93,7 @@
                                             我是介紹圖片的文字
                                         </div>
                                     </div>
-                                    <div class="col-md-6" style="margin-bottom: 10px;">
+                                    <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
                                         <div style="border: 1px solid black;">
                                             <img src="../static/images/cloud1.png" class="img-responsive" width="100%"
                                                 alt="">
@@ -98,7 +102,7 @@
                                             我是介紹圖片的文字
                                         </div>
                                     </div>
-                                    <div class="col-md-6" style="margin-bottom: 10px;">
+                                    <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
                                         <div style="border: 1px solid black;">
                                             <img src="../static/images/101.jpg" class="img-responsive" width="100%"
                                                 alt="">
@@ -112,7 +116,32 @@
                         </div>
                     </div>
                     <div class="col-6" style="border: 1px solid black;">
-                        我是右邊
+                        我是右邊 顯示已排完序的景點
+                        <div>
+                            <div class="tabD">
+                                <span id="tabDT">請輸入出發時間：</span>
+                                <input type="time" name="nowtime" id="nowtime" {% if user_nowtime
+                                    %}value="{{user_nowtime}}" {% else %}value="09:00" {% endif %}>
+                            </div>
+                            <div class="tabD">
+                                <span id="tabDL">使用者位置：</span>
+                                <label class="input_txt" id="userLocationName-{{ days }}"> 位置</label>
+                                <p></p>
+                                <input type="hidden" id="userLocation-{{ days }}" value="{{local_xy.0}},{{local_xy.1}}">
+                                <button type="button" id="nowLocationButton-{{ days }}"
+                                    onclick="get_nowLocation({{ days }})">取得目前位置</button>
+                                <button type="button" id="mapButton-{{ days }}"
+                                    onclick="get_map({{ days }})">選擇位置</button>
+                                <button type="button" id="okButton-{{ days }}"
+                                    onclick="clickOkButton({{ days }})">確認</button>
+                                <input type="hidden" placeholder="day" class="nowday" id="nowday">
+                            </div>
+                        </div>
+                        <div>
+                            推薦景點<br>
+                            左邊區塊點的景點加入右邊 這樣如果他附近沒有想去的地方可以從最愛或搜尋抓<br>
+                            顯示已排完序的景點
+                        </div>
                     </div>
                 </div>
             </div>
@@ -173,7 +202,6 @@
     <script src="../static/js/bootstrap.min.js"></script>
     <script>
         var isSearchVisible = false;
-
         function clickChange() {
             var likeAndRec = $(".likeAndRec");
             var searchBlock = $(".searchBlock");
@@ -192,6 +220,42 @@
             }
         }
 
+        var isLikeVisible = false;
+
+        function openLikeBtn() {
+
+            var openlike = $('.openlike');
+
+            isLikeVisible = !isLikeVisible
+
+            if (isLikeVisible) {
+                openlike.animate({
+                    height:"show"
+                },500);
+            } else {
+                openlike.animate({
+                    height:"hide"
+                },300);
+            }
+        }
+
+        var isRecVisible = false;
+        function openRecBtn() {
+
+            var openRec = $('.openRec');
+
+            isRecVisible = !isRecVisible
+
+            if (isRecVisible) {
+                openRec.animate({
+                    height:"show"
+                },500);
+            } else {
+                openRec.animate({
+                    height:"hide"
+                },300);
+            }
+        }
     </script>
 </body>
 
