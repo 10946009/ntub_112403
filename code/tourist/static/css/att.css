@@ -2068,16 +2068,16 @@ img {
 
 /* 評論框框 */
 .share_comment_container {
-    background: rgb(221, 219, 219);
+    background: rgb(236, 221, 184);
     border: black solid;
-    width: 42%;
+    width: 45%;
     margin: 50px auto;
 }
 
 /* 評論彈跳窗(name) */
 .comment_container {
-    background-color: rgb(170, 171, 171);
-    color: rgb(100, 100, 100);
+    background-color: rgb(209, 177, 74);
+    color: rgb(90, 70, 25);
     position: relative;
     padding: 10px;
     text-align: center;
@@ -2090,8 +2090,7 @@ img {
 }
 
 /* 取消,張貼按鈕 */
-.share_comment_btn_cancel,
-.share_comment_btn_ok {
+.share_comment_btn_cancel {
     cursor: pointer;
     display: inline-block;
     color: rgb(0, 0, 0);
@@ -2103,57 +2102,90 @@ img {
     margin-right: 20px;
 }
 
-.share_comment_btn_cancel:hover,
-.share_comment_btn_ok:hover {
+.share_comment_btn_ok {
+    cursor: pointer;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    padding: 2px 20px 2px 20px;
+    font-family: Arial;
+    border: #000 solid;
+    background-color: #d2892f;
+    font-size: 14px;
+    margin-right: 20px;
+}
+
+.share_comment_btn_cancel:hover {
     color: white;
     background-color: #727474;
 }
 
-/* 提示icon */
-.icon {
-    font-size: 14px;
-    cursor: pointer;
-}
-
-/* 提示內容 */
-/* .tooltip1 {
-    width: 250px;
-    display: none;
-    position: absolute;
-    background-color: #333;
-    color: #fff;
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 14px;
-} */
-
-.tooltip_comment {
-    width: 40px;
-    display: none;
-    right: 20%;
-    position: absolute;
-    background-color: #333;
-    color: #fff;
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    top: 100%;
+.share_comment_btn_ok:hover {
+    color: white;
+    background-color: #e2a941;
 }
 
 .comment_rating {
-    display: inline-block;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+
 }
 
 .comment_star {
-    width: 30px;
-    height: 30px;
+    margin: 0 10px;
 }
 
 .comment_star i {
     color: gray;
 }
+
+.add_comment_photo {
+    font-size: 18px;
+}
+
+.add_ph {
+    margin-top: 10px;
+    justify-content: center;
+    display: flex;
+    border: black solid;
+    border-radius: 50px;
+    padding: 2px 0 2px 0;
+    background-color: #af8722;
+    color: white;
+}
+
+.add_ph:hover {
+    background-color: #c4a85c;
+    color: black;
+}
+
+/* 新增關閉圖片*/
+.preview-container {
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+}
+
+.close-button {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    padding: 0 5px 0 5px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(2, 2, 2);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+/* 新增預覽圖片的樣式 */
+.preview-image {
+    max-width: 100px;
+    display: block;
+}
+
+
 
 /* .Cart__product {
     display: grid;

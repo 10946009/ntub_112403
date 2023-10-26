@@ -370,7 +370,7 @@
                                 </h6>
                             </div>
                         </div>
-                    
+
                         <div>
                             <textarea name="user_ask" id="user_ask" cols="100%" rows="7"
                                 style="resize:none; border-radius: 10px;max-width: 100%; "
@@ -1217,12 +1217,8 @@
                             </div>
                             <div class="comment-content">
                                 <h6 class="username">
-                                    {{user.username}}<br>
-                                    <span style="color: gray; font-size: 12px; font-style: italic;">公開發佈 &ensp;</span>
-                                    <i class="icon fa-solid fa-circle-exclamation" id="comment_Icon"></i>
-                                    <div class="tooltip_comment" id="tooltip_comment">
-                                        您的貼文會與個人資料名稱及相片一併公開顯示。您的貼文必須遵循政策的規定。閱讀完整內容你針對 Beta
-                                        版問題的回答，在實驗期間可能不會公開顯示，只有你自己和/或其他參與實驗的人看得到。我們可能會在實驗結束後刪除答案。</div>
+                                    {{user.username}}11<br>
+                                    <span style="color: gray; font-size: 14px; font-style: italic;">公開發佈 &ensp;</span>
                                 </h6>
                             </div>
                         </div>
@@ -1234,10 +1230,25 @@
                             <div class="comment_star" data-value="5"><i class="fas fa-star"></i></div>
                         </div>
                         <div>
-                            <textarea name="user_share_comment" id="user_share_comment" cols="100%" rows="7"
-                                style="resize:none; border-radius: 10px;max-width: 100%; "
-                                placeholder="向使用者社群提出詢或尋求建議。"></textarea>
+                            <textarea name="user_share_comment" id="user_share_comment" cols="100%" rows="4"
+                                style="resize:none; border-radius: 10px;max-width: 100%;padding: 10px; "
+                                placeholder="詳細說明你在這個地點的親身體驗。"></textarea>
                         </div>
+                        <div class="image-container_ph">
+                            <!-- 預覽圖片 -->
+                            <div id="imagePreview"></div>
+                        </div>
+                        <!-- 上傳評論圖片 -->
+                        <form action="upload.php" method="post" enctype="multipart/form-data">
+                            <div class="add_comment_photo">
+                                <label for="photoInput" class="add_ph">
+                                    <i class="fa-solid fa-camera-retro"
+                                        style="margin-right: 5px; margin-top: 5px;"></i><span>新增相片</span>
+                                </label>
+                                <input type="file" id="photoInput" accept="image/*" style="display: none;" multiple
+                                    onchange="previewphoto(event)">
+                            </div>
+                        </form>
                     </div>
                     <div class="post_share_comment">
                         <span class="share_comment_btn_cancel" id="share_comment_btn_cancel">取消</span>
@@ -1573,7 +1584,37 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
+    // 新增照片（評論）
+    function previewphoto(event) {
+        const imagePreview = document.getElementById("imagePreview");
+        imagePreview.innerHTML = "";
 
+        const files = event.target.files;
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            if (file.type.startsWith("image/")) {
+                const previewContainer = document.createElement("div");
+                previewContainer.classList.add("preview-container");
+                // 刪除不要上傳的圖片(已經上傳但是不要)
+                const closeButton = document.createElement("span");
+                closeButton.innerHTML = "&times;";
+                closeButton.classList.add("close-button");
+                closeButton.onclick = function () {
+                    imagePreview.removeChild(previewContainer);
+                };
+
+                const imgElement = document.createElement("img");
+                imgElement.src = URL.createObjectURL(file);
+                imgElement.classList.add("preview-image");
+
+                previewContainer.appendChild(closeButton);
+                previewContainer.appendChild(imgElement);
+                imagePreview.appendChild(previewContainer);
+            }
+        }
+    }
+
+    // 星星數：
     var rating = document.getElementById("rating");
     var stars = rating.querySelectorAll(".comment_star");
     var selectedRating = document.getElementById("selectedRating");
@@ -1598,41 +1639,18 @@
         });
     });
 
-    function updateRatingDisplay() {
-        selectedRating.textContent = "選擇的星星數：" + currentRating;
-    }
-
     function updateStarColors(value) {
         stars.forEach(function (star) {
             var starValue = star.getAttribute("data-value");
             var starIcon = star.querySelector("i");
 
             if (starValue <= value) {
-                starIcon.style.color = "gold"; // 亮起的星星颜色
+                starIcon.style.color = "rgb(226, 185, 2)"; // 亮起的星星颜色
             } else {
                 starIcon.style.color = "gray"; // 未亮起的星星颜色
             }
         });
     }
-
-    // ask_tips提示點擊(查看)
-    var comment_Icon = document.getElementById("comment_Icon");
-    var tooltip_comment = document.getElementById("tooltip_comment");
-    var share_comment_container = document.getElementById("share_comment_container");
-
-    comment_Icon.addEventListener("click", function () {
-        if (tooltip_comment.style.display === "block") {
-            tooltip_comment.style.display = "none";
-        } else {
-            tooltip_comment.style.display = "block";
-        }
-    });
-    document.addEventListener("click", function (event) {
-        if (event.target == share_comment_container) {
-            tooltip_comment.style.display = "none";
-        }
-    });
-
 
     // 一點擊張貼則評論數＋1
     var postButton = document.getElementById("all_ask_btn_ok");
