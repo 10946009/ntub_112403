@@ -62,7 +62,44 @@ function clickChange() {
 
 }
 
+// 展開收藏跟收藏跟相似景點
 
+var isLikeVisible = false;
+
+function openLikeBtn() {
+
+    var openlike = $('.openlike');
+
+    isLikeVisible = !isLikeVisible
+
+    if (isLikeVisible) {
+        openlike.animate({
+            height: "show"
+        }, 500);
+    } else {
+        openlike.animate({
+            height: "hide"
+        }, 500);
+    }
+}
+
+var isRecVisible = false;
+function openRecBtn() {
+
+    var openRec = $('.openRec');
+
+    isRecVisible = !isRecVisible
+
+    if (isRecVisible) {
+        openRec.animate({
+            height: "show"
+        }, 500);
+    } else {
+        openRec.animate({
+            height: "hide"
+        }, 300);
+    }
+}
 //open篩選
 function openfiliter() {
   var showfiliter = document.querySelector(".show_filiter")

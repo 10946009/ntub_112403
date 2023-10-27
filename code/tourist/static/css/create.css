@@ -80,8 +80,9 @@
 }
 
 main {
-    /* position: relative; */
+    z-index: 1;
     margin: 0 auto;
+    margin-top: 100px;
     width: 95%;
     justify-content: center;
     z-index: 100;
@@ -90,7 +91,6 @@ main {
 .pageedit {
     /* position: relative; */
     text-align: center;
-    width: 50%;
     margin: 0 auto;
 }
 
@@ -580,9 +580,6 @@ main {
 }
 
 @media(max-width: 768px) {
-    main {
-        margin-top: 5%;
-    }
 
     .tabtitle {
         margin-top: 10px;
