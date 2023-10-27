@@ -30,15 +30,15 @@
         <!-- 星星數 -->
         <div class="rating" style="margin-bottom: 10px;">
             {% for i in "12345" %}
-            {% if i|add:0 <= detail.rating %} <i class="fa-solid fa-star" style="color:yellow;"></i>
+            {% if i|add:0 <= detail.rating %} <i class="fa-solid fa-star" style="color:rgb(226, 185, 2);"></i>
                 {% else %}
                 <!-- <i class="fa-regular fa-star"></i> -->
-                <i class="fa-regular fa-star-half-stroke" style="color:yellow;"></i>
+                <i class="fa-regular fa-star-half-stroke" style="color:rgb(226, 185, 2);"></i>
                 {% endif %}
                 {% endfor %}
                 <span id="selectedRating">{{detail.rating}} / 5 ({{ detail.rating_total }}) </span>
         </div>
-        <!-- 圖片 -->
+        <!-- 圖片(ok) -->
         <div class="detail_img" style="margin-top: 10px;">
             <div class="detail_img__header">
                 <div class="detail_img__headerGrid">
@@ -59,7 +59,7 @@
                 </div>
             </div>
         </div>
-        <!-- 景點整體介紹 -->
+        <!-- 景點整體介紹(ok) -->
         <div class="detail_detail" style="margin-top: -20px;">
             <div class="row">
                 <div class="col-7">
@@ -834,7 +834,7 @@
             </div>
         </div>
         <hr style="border:2px solid #777777">
-        <!-- 其他資訊 -->
+        <!-- 其他資訊(ok) -->
         <div class="row">
             <div class="col-12">
                 <!-- 使用者總評論 -->
@@ -1033,9 +1033,9 @@
                                 李
                             </h5>
                             <div class="rating">
-                                <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
-                                <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
-                                <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                                <span class="rating-star" style="color: rgb(226, 185, 2);">&#9733;</span>
+                                <span class="rating-star" style="color: rgb(226, 185, 2);">&#9733;</span>
+                                <span class="rating-star" style="color: rgb(226, 185, 2);">&#9733;</span>
                                 <span class="rating-star">&#9733;</span>
                                 <span class="rating-star">&#9733;</span>
                             </div>
@@ -1056,10 +1056,10 @@
                                 sun
                             </h5>
                             <div class="rating">
-                                <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
-                                <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
-                                <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
-                                <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                                <span class="rating-star" style="color: rgb(226, 185, 2);">&#9733;</span>
+                                <span class="rating-star" style="color: rgb(226, 185, 2);">&#9733;</span>
+                                <span class="rating-star" style="color: rgb(226, 185, 2);">&#9733;</span>
+                                <span class="rating-star" style="color: rgb(226, 185, 2);">&#9733;</span>
                                 <span class="rating-star">&#9733;</span>
                             </div>
                             <p class="comment-text">
@@ -1079,8 +1079,8 @@
                                 李+0
                             </h5>
                             <div class="rating">
-                                <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
-                                <span class="rating-star" style="color: rgb(225, 216, 41);">&#9733;</span>
+                                <span class="rating-star" style="color: rgb(226, 185, 2);">&#9733;</span>
+                                <span class="rating-star" style="color: rgb(226, 185, 2);">&#9733;</span>
                                 <span class="rating-star">&#9733;</span>
                                 <span class="rating-star">&#9733;</span>
                                 <span class="rating-star">&#9733;</span>
@@ -1110,10 +1110,11 @@
             <div class="col-3">
                 <div style="margin-left: 30px; margin-top: 10px;">
                     <div>
-                        <h5 class="comment_topic">我要發表評論</h5>
+                        <h5 class="comment_topic" id="write_comment" onclick="showCommentLoaderAndContent()">我要發表評論</h5>
                     </div>
                     <div>
-                        <h5 class="comment_topic">我要上傳景點照片</h5>
+                        <h5 class="comment_topic" id="update_att_photo" onclick="showupdateLoaderAndContent()">我要上傳景點照片
+                        </h5>
                     </div>
                 </div>
             </div>
@@ -1126,23 +1127,34 @@
                         <h6 class="username">
                             安妮雅<br>
                             <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
-                                    class="fa-solid fa-crown"></i>在地嚮導
-                                &ensp;</span>
+                                    class="fa-solid fa-crown"></i>在地嚮導</span>
+                            <span style="color:gray;font-size: 12px; font-style: italic;">·4則評論
+                                ·3張照片</span>
                         </h6>
                         <div class="star_count">
-                            <span style=" color: rgb(225, 216, 41);"><i class="fa-solid fa-star"></i></span>
-                            <span style=" color: rgb(225, 216, 41);"><i class="fa-solid fa-star"></i></span>
-                            <span style=" color: rgb(225, 216, 41);"><i class="fa-solid fa-star"></i></span>
+                            <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
+                            <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
+                            <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
                             <span><i class="fa-solid fa-star"></i></span>
                             <span><i class="fa-solid fa-star"></i></span>
-                            <span></span>
+                            <span style="color:gray;font-size: 12px; font-style: italic;">2週前</span>
                         </div>
                         <p class="comment-text">
                             天氣冷來到動物園，動物們顯得心情不好，跟人類一樣也會冷到不想到，看到最多的是背影跟屁股，也是難得的經驗。
                             <br>
-                            <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
-                                2033</span>
+                            <!-- <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
+                                2033</span> -->
                         </p>
+                        <div class="comment_user_ph" style="max-width: 100%;">
+                            <img src="../static/images/att_picture.png" alt="" style="width: 150px; cursor: pointer;"
+                                onclick="showPhotoDetail()">
+                            <img src="../static/images/att_picture.png" alt="" style="width: 150px; cursor: pointer;"
+                                onclick="showPhotoDetail()">
+                            <img src="../static/images/att_picture.png" alt="" style="width: 150px; cursor: pointer;"
+                                onclick="showPhotoDetail()">
+                            <img src="../static/images/att_picture.png" alt="" style="width: 150px; cursor: pointer;"
+                                onclick="showPhotoDetail()">
+                        </div>
                     </div>
                 </div>
                 <div class="comment">
@@ -1153,23 +1165,30 @@
                         <h6 class="username">
                             彭德<br>
                             <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
-                                    class="fa-solid fa-crown"></i>在地嚮導
-                                &ensp;</span>
+                                    class="fa-solid fa-crown"></i>在地嚮導</span>
+                            <span style="color:gray;font-size: 12px; font-style: italic;">·7則評論
+                                ·1張照片</span>
                         </h6>
                         <div class="star_count">
-                            <span style=" color: rgb(225, 216, 41);"><i class="fa-solid fa-star"></i></span>
-                            <span style=" color: rgb(225, 216, 41);"><i class="fa-solid fa-star"></i></span>
-                            <span style=" color: rgb(225, 216, 41);"><i class="fa-solid fa-star"></i></span>
+                            <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
+                            <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
+                            <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
                             <span><i class="fa-solid fa-star"></i></span>
                             <span><i class="fa-solid fa-star"></i></span>
-                            <span></span>
+                            <span style="color:gray;font-size: 12px; font-style: italic;">3個月前</span>
                         </div>
                         <p class="comment-text">
                             我實在越來越覺得動物園越來越差，維修的東西擴建的項目越來越多，但都沒有東西完成！太誇張了!!!
                             <br>
-                            <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
-                                2023</span>
+                            <!-- <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
+                                2023</span> -->
                         </p>
+                        <div class="comment_user_ph" style="max-width: 100%;">
+                            <img src="../static/images/att_picture.png" alt="" style="width: 150px; cursor: pointer;"
+                                onclick="showPhotoDetail()">
+                            <img src="../static/images/att_picture.png" alt="" style="width: 150px; cursor: pointer;"
+                                onclick="showPhotoDetail()">
+                        </div>
                     </div>
                 </div>
                 <div class="comment">
@@ -1182,25 +1201,47 @@
                             <!-- <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
                                     class="fa-solid fa-crown"></i>在地嚮導
                                 &ensp;</span> -->
+                            <span style="color:gray;font-size: 12px; font-style: italic;">·5則評論</span>
                         </h6>
                         <div class="star_count">
-                            <span style=" color: rgb(225, 216, 41);"><i class="fa-solid fa-star"></i></span>
-                            <span style=" color: rgb(225, 216, 41);"><i class="fa-solid fa-star"></i></span>
-                            <span style=" color: rgb(225, 216, 41);"><i class="fa-solid fa-star"></i></span>
+                            <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
+                            <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
+                            <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
                             <span><i class="fa-solid fa-star"></i></span>
                             <span><i class="fa-solid fa-star"></i></span>
-                            <span></span>
+                            <span style="color:gray;font-size: 12px; font-style: italic;">5天前</span>
                         </div>
                         <p class="comment-text">
                             帶小孩來看動物很棒！可以玩一整天！廁所很多很方便,用餐座位如果能再多一些就好了!麥當勞大排長龍實在太誇張！希望能增設其他餐廳或便利商店~
                             <br>
-                            <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
-                                2023</span>
+                            <!-- <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
+                                2023</span> -->
                         </p>
                     </div>
                 </div>
+                <!-- 分頁  -->
+                <div class="page-container" style="display: flex ; justify-content: center;">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination" id="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#" data-page="1">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#" data-page="2">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#" data-page="3">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
+        <!-- 評論彈跳框框(ok) -->
         <div class="out_share_comment" id="out_share_comment">
             <div id="share_comment_container" class="share_comment_container">
                 <form class="share_comment-content" id="share_comment-content" action="">
@@ -1219,6 +1260,10 @@
                                 <h6 class="username">
                                     {{user.username}}<br>
                                     <span style="color: gray; font-size: 14px; font-style: italic;">公開發佈 &ensp;</span>
+                                    <span class="show_com_info"><i class="comment_info fa-solid fa-circle-info"
+                                            id="comment_info"></i></span>
+                                    <div class="show_comment_info" id="show_comment_info">
+                                        您的貼文會與個人資料名稱及相片一併公開顯示。您的貼文必須遵循政策的規定。</div>
                                 </h6>
                             </div>
                         </div>
@@ -1257,7 +1302,58 @@
                 </form>
             </div>
         </div>
-
+        <!-- <hr style="border:2px solid #777777"> -->
+        <!-- 上傳景點圖片彈跳框框(ok) -->
+        <div class="out_update_att_ph" id="out_update_att_ph">
+            <div id="update_att_ph_container" class="update_att_ph_container">
+                <form class="update_att_ph-content" id="update_att_ph-content" action="">
+                    <div class="update_ph_container" id="update_ph_container">
+                        <h5 style="font-size: 24px;">
+                            {{ detail.a_name }}
+                        </h5>
+                        <!-- <span class="close" id="close" title="關閉">&times;</span> -->
+                    </div>
+                    <div class="update_att_ph_con" style="padding: 20px;">
+                        <div class="comment">
+                            <div class="avatar">
+                                <img src="../static/images/an.jpeg" alt="User Avatar">
+                            </div>
+                            <div class="update_att_ph-content">
+                                <h6 class="username">
+                                    {{user.username}}<br>
+                                    <span style="color: gray; font-size: 14px; font-style: italic;">公開發佈 &ensp;</span>
+                                    <span class="show_update_info"><i class="comment_info fa-solid fa-circle-info"
+                                            id="update_info"></i></span>
+                                    <div class="show_up_info" id="show_up_info">
+                                        您上傳的景點照片會經過管理員審核後一併公開顯示。您必須遵循政策的規定。</div>
+                                </h6>
+                            </div>
+                        </div>
+                        <!-- 上傳評論圖片 -->
+                        <div style="padding: 100px; border: black dashed; background-color: #f9edd2;">
+                            <form action="" method="post" enctype="multipart/form-data">
+                                <div class="up_date_photo">
+                                    <label for="updateInput" class="update_ph">
+                                        <i class="fa-solid fa-camera-retro"
+                                            style="margin-right: 5px; margin-top: 5px;"></i><span>新增相片</span>
+                                    </label>
+                                    <input type="file" id="updateInput" accept="image/*" style="display: none;" multiple
+                                        onchange="update_previewphoto(event)">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="update-container_ph">
+                            <!-- 預覽圖片 -->
+                            <div id="updatePreview"></div>
+                        </div>
+                    </div>
+                    <div class="post_update_att_ph">
+                        <span class="update_att_ph_btn_cancel" id="update_att_ph_btn_cancel">取消</span>
+                        <span class="update_att_ph_btn_ok" id="update_att_ph_btn_ok">張貼</span>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -1584,6 +1680,118 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
+    // 上傳景點圖片公開顯示tips
+    var update_info = document.getElementById("update_info");
+    var show_up_info = document.getElementById("show_up_info");
+    update_info.addEventListener("click", function () {
+        if (show_up_info.style.display === "block") {
+            show_up_info.style.display = "none";
+        } else {
+            show_up_info.style.display = "block";
+        }
+    });
+    // 如果用戶點其他地方，關閉提示
+    document.addEventListener("click", function (event) {
+        if (event.target !== update_info && event.target !== show_up_info) {
+            show_up_info.style.display = "none";
+        }
+    });
+
+    // 新增照片（上傳景點圖片）
+    function update_previewphoto(event) {
+        const updatePreview = document.getElementById("updatePreview");
+        updatePreview.innerHTML = "";
+
+        const files = event.target.files;
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            if (file.type.startsWith("image/")) {
+                const updateContainer = document.createElement("div");
+                updateContainer.classList.add("update-container");
+                // 刪除不要上傳的圖片(已經上傳但是不要)
+                const update_closeButton = document.createElement("span");
+                update_closeButton.innerHTML = "&times;";
+                update_closeButton.classList.add("close-button");
+                update_closeButton.onclick = function () {
+                    updatePreview.removeChild(updateContainer);
+                };
+
+                const imgElement = document.createElement("img");
+                imgElement.src = URL.createObjectURL(file);
+                imgElement.classList.add("update-image");
+
+                updateContainer.appendChild(update_closeButton);
+                updateContainer.appendChild(imgElement);
+                updatePreview.appendChild(updateContainer);
+            }
+        }
+    }
+
+    // 打開上傳景點圖片框框
+    function showupdateLoaderAndContent() {
+        var all_loader = document.getElementById("all_ask_big");
+        var out_update_att_ph = document.getElementById("out_update_att_ph");
+        all_loader.style.display = "block";
+        setTimeout(function () {
+            all_loader.style.display = "none";
+            out_update_att_ph.style.display = "block";
+        }, 500);
+    }
+    // 關閉上傳景點圖片方塊
+    var update_att_photo = document.getElementById('update_att_photo');
+    var update_att_ph_container = document.getElementById('update_att_ph_container');
+    var out_update_att_ph = document.getElementById('out_update_att_ph');
+    document.addEventListener("click", function (event) {
+        if (event.target == out_update_att_ph) {
+            out_update_att_ph.style.display = "none";
+        }
+    });
+    var update_att_ph_btn_cancel = document.getElementById('update_att_ph_btn_cancel');
+    update_att_ph_btn_cancel.addEventListener("click", function () {
+        out_update_att_ph.style.display = "none";
+    });
+
+    // 打開評論框框
+    function showCommentLoaderAndContent() {
+        var all_loader = document.getElementById("all_ask_big");
+        var out_share_comment = document.getElementById("out_share_comment");
+        all_loader.style.display = "block";
+        setTimeout(function () {
+            all_loader.style.display = "none";
+            out_share_comment.style.display = "block";
+        }, 500);
+    }
+    // 關閉評論方塊
+    var write_comment = document.getElementById('write_comment');
+    var share_comment_container = document.getElementById('share_comment_container');
+    var out_share_comment = document.getElementById('out_share_comment');
+    document.addEventListener("click", function (event) {
+        if (event.target == out_share_comment) {
+            out_share_comment.style.display = "none";
+        }
+    });
+    var share_comment_btn_cancel = document.getElementById('share_comment_btn_cancel');
+    share_comment_btn_cancel.addEventListener("click", function () {
+        out_share_comment.style.display = "none";
+    });
+
+    // 評論公開顯示tips
+    var comment_info = document.getElementById("comment_info");
+    var show_comment_info = document.getElementById("show_comment_info");
+    comment_info.addEventListener("click", function () {
+        if (show_comment_info.style.display === "block") {
+            show_comment_info.style.display = "none";
+        } else {
+            show_comment_info.style.display = "block";
+        }
+    });
+    // 如果用戶點其他地方，關閉提示
+    document.addEventListener("click", function (event) {
+        if (event.target !== comment_info && event.target !== show_comment_info) {
+            show_comment_info.style.display = "none";
+        }
+    });
+
     // 新增照片（評論）
     function previewphoto(event) {
         const imagePreview = document.getElementById("imagePreview");
@@ -1918,7 +2126,7 @@
             tooltip.style.display = "block";
         }
     });
-    // 如果用户点击其他地方，隐藏提示框
+    // 如果用戶點其他地方，關閉提示
     document.addEventListener("click", function (event) {
         if (event.target !== icon && event.target !== tooltip) {
             tooltip.style.display = "none";
@@ -2042,7 +2250,7 @@
                 data: {
                     labels: data.map(x => x.Time.slice(11, 16)),
                     datasets: [{
-                        label: '人潮流量',
+                        // label: '人潮流量',
                         data: data.map(x => x.Volume),
                         // Line
                         lineTension: 0,
@@ -2066,7 +2274,7 @@
                     },
                     title: {
                         display: true,
-                        text: '人潮流量',
+                        // text: '人潮流量',
                         position: 'bottom',
                         fontSize: 24,
                         fontStyle: 'normal',
