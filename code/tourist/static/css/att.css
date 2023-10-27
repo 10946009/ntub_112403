@@ -2364,6 +2364,36 @@ img {
     background-color: #1e87dd;
 }
 
+@media screen and (max-width:768px) {
+
+    /* 汽車動動圖 */
+    .car_trip {
+        display: none;
+    }
+
+    /* 馬路圖 */
+    .road {
+        display: none;
+    }
+
+    .active_tit {
+        text-align: 26px;
+        background-color: rgba(113, 113, 113, 0.2);
+        width: 100%;
+        height: 320px;
+        position: absolute;
+        top: 400px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .container_search {
+        width: 100%;
+        padding: 0 0 0 0;
+    }
+
+}
+
 
 
 /* .Cart__product {
