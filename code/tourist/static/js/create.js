@@ -63,7 +63,6 @@ function clickChange() {
 }
 
 // 展開收藏跟收藏跟相似景點
-
 var isLikeVisible = false;
 
 function openLikeBtn() {

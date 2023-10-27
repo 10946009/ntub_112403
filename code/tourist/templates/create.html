@@ -61,10 +61,8 @@
             顯示已排完序的景點
           </div>
         </div>
-        <div class="col-6 searchAndlikeAndrec"
-          style="position: relative;border: 1px solid black;overflow-y: scroll;height: 800px;">
-          <button class="changeToSearch" style="position: absolute;right: 5px; top: 5px;z-index: 100;"
-            id="changeToSearch" onclick="clickChange()">切換搜尋</button>
+        <div class="col-6 searchAndlikeAndrec">
+          <button class="changeToSearch" id="changeToSearch" onclick="clickChange()">切換搜尋</button>
           <div class="change searchBlock" id="searchBlock">搜尋欄
             <form action="">
               <input type="text" placeholder="請輸入景點名稱">
@@ -72,11 +70,9 @@
           </div>
           <div class="change likeAndRec" id="likeAndRec">
             <div>
-              <div onclick="openLikeBtn()"
-                style="display: flex;cursor: pointer;align-items: center;align-content: center;padding: 10px 0;">
-                <i class="fa-solid fa-heart"
-                  style="color: white;background-color: rgb(255, 41, 101); border-radius: 50%;padding: 10px;margin-right: 5px;"></i>
-                <span style="font-size: 28px;font-weight: bold;">我的收藏</span>
+              <div onclick="openLikeBtn()" class="likeDiv">
+                <i class="fa-solid fa-heart like_icon"></i>
+                <span class="like_txt">我的收藏</span>
               </div>
               <div class="row openlike" style="display: none;">
                 <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
@@ -107,11 +103,9 @@
             </div>
             <hr>
             <div>
-              <div onclick="openRecBtn()"
-                style="display: flex;cursor: pointer;align-items: center;align-content: center;">
-                <i class="fa-solid fa-thumbs-up"
-                  style="color: white;background-color: rgb(255, 41, 101); border-radius: 50%;padding: 10px;margin-right: 5px;"></i>
-                <span style="font-size: 28px;font-weight: bold;">相似景點</span>
+              <div onclick="openRecBtn()" class="recDiv">
+                <i class="fa-solid fa-thumbs-up rec_icon"></i>
+                <span class="rec_txt">相似景點</span>
               </div>
               <div class="row openRec" style="display: none;">
                 <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
