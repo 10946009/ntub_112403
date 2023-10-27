@@ -88,7 +88,10 @@ main {
 }
 
 .pageedit {
-    position: relative;
+    /* position: relative; */
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
 }
 
 .save_div {
@@ -204,11 +207,6 @@ main {
     color: black;
 }
 
-/* .tab_day:hover{
-    color: #525252;
-    font-weight: bolder;
-    font-size: larger;
-} */
 .save {
     display: inline-block;
     padding: 5px 10px;
@@ -255,8 +253,34 @@ main {
     height: 20px;
 }
 
+/* 翻轉右邊區塊(搜尋&收藏與推薦相似 */
+.showserachBlock {
+    display: block;
+}
 
+.searchAndlikeAndrec {
+    position: relative;
+    margin: 0 auto;
+}
 
+.change {
+    width: 95%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    /* 隐藏背面 */
+    transform-style: preserve-3d;
+    /* 保持3D效果 */
+    transition: transform 0.5s;
+    font-size: 24px;
+    transform: rotateY(0deg);
+    /* 初始状态：不翻转 */
+}
+
+#searchBlock {
+    transform: rotateY(180deg);
+    /* 初始状态：翻转180度 */
+}
 
 
 /* 我的範例 */

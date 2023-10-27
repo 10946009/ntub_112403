@@ -8,450 +8,195 @@
 
 {% endblock %}
 {% block body %}
-<main style="z-index: 1;">
-  <div class="container tab_div">
-    <div class="tabtitle">
-      <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="create-nav-link tab_a active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
-            type="button" role="tab" aria-controls="home" aria-selected="true"
-            >建立行程</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="create-nav-link tab_a" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
-            type="button" role="tab" aria-controls="contact" aria-selected="false"
-            >我的收藏</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="create-nav-link tab_a" id="recommend-tab" data-bs-toggle="tab" data-bs-target="#recommend"
-            type="button" role="tab" aria-controls="recommend" aria-selected="false"
-            >推薦景點</button>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <!-- 建立行程 -->
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-      <div class="pageedit">
-        <form action="" class="createdataform">
-          <div class="row createdata" style="width: 80%;">
-            <div class="col-md-6 tabc_txt">
-              行程名稱：{{ name }}
-            </div>
-            <div class="col-md-6 tabc_txt">
-              出發日期：{{ start_day }}
-            </div>
-          </div>
-        </form>
-        <div class="save_div">
-          <span class="create_day_save" id="saveDays">儲存</span>
+<main style="width: 90%;margin: 0 auto;z-index: 1;">
+  <div class="row pageedit" style="text-align: center;width: 50%; margin: 0 auto;">
+    <form action="" class="createdataform">
+      <div class="row createdata" style="width: 80%;">
+        <div class="col-md-6 tabc_txt">
+          行程名稱：{{ name }}
+        </div>
+        <div class="col-md-6 tabc_txt">
+          出發日期：{{ start_day }}
         </div>
       </div>
-      <div class="" style="display: flex;justify-content: center;align-items: center;align-content: center;">
-        <div class="childtabdiv" style="width: 90%;">
-          <ul class="nav nav-underline flex justify-content-center my-nav-tabs" id="myTab" role="tablist">
-            {% for day in travelday %}
+    </form>
+  </div>
+  <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab"
+        aria-controls="home" aria-selected="true" onclick="saveTabState('home')">第一天</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="second-tab" data-bs-toggle="tab" data-bs-target="#second" type="button" role="tab"
+        aria-controls="second" aria-selected="false" onclick="saveTabState('second')">第二天</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent" style="width: 100%;margin: 0 auto;">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"
+      style="display: flex;justify-content: center;align-items: center;align-content: center;">
+      <div class="row" style="width: 100%;">
+        <div class="col-6" style="border: 1px solid black;">
+          我是左邊 顯示已排完序的景點
+          <div>
+            <div class="tabD">
+              <span id="tabDT">請輸入出發時間：</span>
+              <input type="time" name="nowtime" id="nowtime" {% if user_nowtime %}value="{{user_nowtime}}" {% else
+                %}value="09:00" {% endif %}>
+            </div>
+            <div class="tabD">
+              <span id="tabDL">使用者位置：</span>
+              <label class="input_txt" id="userLocationName-{{ days }}"> 位置</label>
+              <p></p>
+              <input type="hidden" id="userLocation-{{ days }}" value="{{local_xy.0}},{{local_xy.1}}">
+              <button type="button" id="nowLocationButton-{{ days }}"
+                onclick="get_nowLocation({{ days }})">取得目前位置</button>
+              <button type="button" id="mapButton-{{ days }}" onclick="get_map({{ days }})">選擇位置</button>
+              <button type="button" id="okButton-{{ days }}" onclick="clickOkButton({{ days }})">確認</button>
+              <input type="hidden" placeholder="day" class="nowday" id="nowday">
+            </div>
+          </div>
+          <div>
+            推薦景點<br>
+            左邊區塊點的景點加入右邊 這樣如果他附近沒有想去的地方可以從最愛或搜尋抓<br>
+            顯示已排完序的景點
+          </div>
+        </div>
+        <div class="col-6 searchAndlikeAndrec"
+          style="position: relative;border: 1px solid black;overflow-y: scroll;height: 800px;">
+          <button class="changeToSearch" style="position: absolute;right: 5px; top: 5px;z-index: 100;"
+            id="changeToSearch" onclick="clickChange()">切換搜尋</button>
+          <div class="change searchBlock" id="searchBlock">搜尋欄
+            <form action="">
+              <input type="text" placeholder="請輸入景點名稱">
+            </form>
+          </div>
+          <div class="change likeAndRec" id="likeAndRec">
+            <div>
+              <div onclick="openLikeBtn()"
+                style="display: flex;cursor: pointer;align-items: center;align-content: center;padding: 10px 0;">
+                <i class="fa-solid fa-heart"
+                  style="color: white;background-color: rgb(255, 41, 101); border-radius: 50%;padding: 10px;margin-right: 5px;"></i>
+                <span style="font-size: 28px;font-weight: bold;">我的收藏</span>
+              </div>
+              <div class="row openlike" style="display: none;">
+                <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
+                  <div style="border: 1px solid black;">
+                    <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                  </div>
+                  <div style="border: 1px solid black;">
+                    我是介紹圖片的文字
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
+                  <div style="border: 1px solid black;">
+                    <img src="../static/images/Datong.jpeg" class="img-responsive" width="100%" alt="">
+                  </div>
+                  <div style="border: 1px solid black;">
+                    我是介紹圖片的文字
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
+                  <div style="border: 1px solid black;">
+                    <img src="../static/images/cloud1.png" class="img-responsive" width="100%" alt="">
+                  </div>
+                  <div style="border: 1px solid black;">
+                    我是介紹圖片的文字
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div>
+              <div onclick="openRecBtn()"
+                style="display: flex;cursor: pointer;align-items: center;align-content: center;">
+                <i class="fa-solid fa-thumbs-up"
+                  style="color: white;background-color: rgb(255, 41, 101); border-radius: 50%;padding: 10px;margin-right: 5px;"></i>
+                <span style="font-size: 28px;font-weight: bold;">相似景點</span>
+              </div>
+              <div class="row openRec" style="display: none;">
+                <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
+                  <div style="border: 1px solid black;">
+                    <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                  </div>
+                  <div style="border: 1px solid black;">
+                    我是介紹圖片的文字
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
+                  <div style="border: 1px solid black;">
+                    <img src="../static/images/cloud1.png" class="img-responsive" width="100%" alt="">
+                  </div>
+                  <div style="border: 1px solid black;">
+                    我是介紹圖片的文字
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
+                  <div style="border: 1px solid black;">
+                    <img src="../static/images/101.jpg" class="img-responsive" width="100%" alt="">
+                  </div>
+                  <div style="border: 1px solid black;">
+                    我是介紹圖片的文字
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
+      我是第二天
+      <!-- <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
-                <a class="create-child-nav-link createday{% if forloop.counter == 1 %} active{% endif %}" aria-current="page" id="child{{day}}-tab" data-bs-toggle="tab"
-                  data-bs-target="#child{{day}}" type="button" role="tab" aria-controls="child{{day}}" aria-selected="{% if forloop.counter == 1 %}true{% else %}false{% endif %}" >
-                  第{{day}}天
-                </a>
+                  <button class="nav-link active" id="child1-tab" data-bs-toggle="tab" data-bs-target="#child1"
+                      type="button" role="tab" aria-controls="child1" aria-selected="true"
+                      onclick="saveTabState('child1')">第一天</button>
               </li>
-            {% endfor %}
-            {% comment %} 
-            <li class="nav-item" role="presentation">
-              <a class="create-child-nav-link createday" id="child2-tab" data-bs-toggle="tab" data-bs-target="#child2"
-                type="button" role="tab" aria-controls="child2" aria-selected="false" onclick="saveTabState('child2')">
-                第二天
-              </a>
-            </li>
-
-            <li class="nav-item" role="presentation">
-              <a class="create-child-nav-link createday" id="child3-tab" data-bs-toggle="tab" data-bs-target="#child3"
-                type="button" role="tab" aria-controls="child3" aria-selected="false" onclick="saveTabState('child3')">
-                第三天
-              </a>
-            </li> 
-            {% endcomment %}
-          </ul>
-          {% for days in travelday %}
-            <div class="tab-child" id="myTabchild{{ days }}"
-              style="margin: 10px auto;display: flex;align-items: center;align-content: center;">
-              <div class="tab-pane fade {% if forloop.counter == 1 %}show active{% endif %}" id="child{{days}}" role="tabpanel" aria-labelledby="child{{days}}-tab" data-set="{{days}}"
-                style="width: 90%;background-color: #eee;padding: 10px;margin: 0 auto;">
-                <form action="#tab_c" style="color: black;">
-                  <div>
-                    <div class="tabD">
-                      <span id="tabDT">請輸入出發時間：</span>
-                      <input type="time" name="nowtime" id="nowtime" {% if user_nowtime %}value="{{user_nowtime}}"{% else %}value="09:00"{% endif %}>
-                    </div>
-                    <div class="tabD">
-                      <span id="tabDL">使用者位置：</span>
-                      {% comment %} <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation" value="{{local_address}}"> {% endcomment %}
-                      <label class="input_txt" id="userLocationName-{{ days }}"> {{ location_name }}</label> <p></p>
-                      <input type="hidden"  id="userLocation-{{ days }}" value="{{local_xy.0}},{{local_xy.1}}">
-                      <button type="button" id="nowLocationButton-{{ days }}" onclick="get_nowLocation({{ days }})">取得目前位置</button>
-                      <button type="button" id="mapButton-{{ days }}" onclick="get_map({{ days }})">選擇位置</button>
-                      <button type="button" id="okButton-{{ days }}" onclick="clickOkButton({{ days }})">確認</button>
-                      <input type="hidden" placeholder="day" class="nowday" id="nowday">
-                    </div>
+              <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="child2-tab" data-bs-toggle="tab" data-bs-target="#child2"
+                      type="button" role="tab" aria-controls="child2" aria-selected="false"
+                      onclick="saveTabState('child2')">第二天</button>
+              </li>
+          </ul> -->
+      <!-- <div class="tab-child1" id="myTabchild1" style="width: 80%;margin: 0 auto;">
+              <div class="tab-pane fade show active" id="child1" role="tabpanel" aria-labelledby="child1-tab"
+                  style="display: flex;justify-content: center;align-items: center;align-content: center;">
+                  <div class="row" style="width: 100%;">
+                      <div class="col-md-4 col-sm-6">
+                          <div class="img">
+                              <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                          </div>
+                          <div class="txt">
+                              <span>testtest</span>
+                          </div>
+                      </div>
+                      <div class="col-md-4 col-sm-6">
+                          <div class="img">
+                              <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                          </div>
+                          <div class="txt">
+                              <span>testtest</span>
+                          </div>
+                      </div>
+                      <div class="col-md-4 col-sm-6">
+                          <div class="img">
+                              <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                          </div>
+                          <div class="txt">
+                              <span>testtest</span>
+                          </div>
+                      </div>
                   </div>
-                </form>
-
-                <!-- 添加地图容器 -->
-                <input
-                  id="pac-input-{{ days }}"
-                  class="controls"
-                  type="text"
-                  placeholder="Search Box"
-                  style="display: none;"
-                />
-                <div id="map-{{ days }}" style="width: 100%; height: 400px; display: none;"></div>
-                {% comment %} ct_attractions_co_list
-                ct_attractions_detail_list {% endcomment %}
-                <div id="OrderAttractions" style="color: black;">
-                {% comment %} 
-                  <div class="list" style="cursor: pointer;">
-                    <div class="innerlist" draggable="true">
-                        <p style="font-size: 22px;font-weight: bold;">景點名稱：</p>
-                        <p style="font-size: 18px;margin-bottom: 10px;">地址：</p>
-                        <p style="font-size: 18px;margin-bottom: 10px;">營業時間：</p>
-                        <p style="font-size: 18px;margin-bottom: 10px;">當下可能的人潮流量：</p>
-                        <p style="font-size: 18px;margin-bottom: 10px;">建議停留時間：</p>
-                    </div>
-                    <div class="innerlist" draggable="true">2</div>
-                    <div class="innerlist" draggable="true">3</div>
-                    <div class="innerlist" draggable="true">4</div>
-                    <div class="innerlist" draggable="true">5</div>
-                  </div>
-                   {% endcomment %}
-
-                  
-                  <div class="list" style="cursor: pointer;">
-                    {% for key,datalist in all_ct_data.items %}
-                    {% if key == days %}
-                    {%for data in datalist%}
-                    <div class="spot innerlist" draggable="true" id="spot{{data.attraction.order}}" style="color: black;margin-bottom:10px" >
-                      {{data.detail.a_name}}
-                      <p id="hiddenId" style="display: none;">景點名稱：{{data.detail.id}}</p>
-                      <p>地址：{{data.detail.address}} <br>
-                      <p>當下可能的人潮流量：{{data.crowd_list}}%<br>
-                      <p>營業時間： {% for time in data.co.opening %} {% if forloop.counter != 1 %},{% endif %} {{time}} {% endfor %}<br>
-                      <p>建議停留時間： {% if data.detail.stay_time == 0 %}150{% else %}{{data.detail.stay_time}}{% endif %} 分鐘<br>
-                    </div>
-                    {%endfor%}
-                    {% endif%}
-                    {% endfor %}
-                  </div>
-                    
-                  
-                </div>
-                <div id="RemainderAttractions"></div>
               </div>
-            </div>
-          {% endfor %}
-
-          {% comment %} 
-          <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab"
-            style="width: 90%;background-color: #333;padding: 10px;margin: 0 auto;">
-            <!-- 測試測試測試測試測試測試測試測試 -->
-            <form action="#tab_c" style="color: black;">
-              <div>
-                <div class="tabD">
-                  <span id="tabDT">請輸入出發時間：</span>
-                  <input type="time" name="nowtime" id="nowtime" value="09:00">
-                </div>
-                <div class="tabD">
-                  <span id="tabDL">使用者位置：</span>
-                  <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation">
-                  <input type="hidden" placeholder="day" class="nowday" id="nowday">
-                </div>
+              <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab">
+                  我是內容<br>我是內容<br>我是內容<br>我是內容<br>我是內容<br>
               </div>
-            </form>
-            <div id="OrderAttractions">
-              {% for attractions in ct_attractions_list %}
-
-              {% endfor %}
-              <!-- <span class="create_txt" >第</span>
-                <button style="border: none;">+</button> -->
-              <!--我在JS~~~~~~~~~~~
-                <div class="spot" id="spot1">
-                  國父紀念館
-                  <p>位在台北市XX區</p>
-                  <p>
-                    目前人潮流量：適中
-                    <br>
-                    營業時間：09:00-18:00
-                    <br>
-                    建議停留時間：1小時
-                  </p>
-                </div>
-              -->
-            </div>
-            <div id="RemainderAttractions"></div>
-          </div>
-          <div class="tab-pane fade" id="child3" role="tabpanel" aria-labelledby="child3-tab"
-            style="width: 90%;background-color: #ccc;padding: 10px;margin: 0 auto;">
-            <!-- 測試測試測試測試測試測試測試測試 -->
-            <form action="#tab_c" style="color: black;">
-              <div>
-                <div class="tabD">
-                  <span id="tabDT">請輸入出發時間：</span>
-                  <input type="time" name="nowtime" id="nowtime" value="09:00">
-                </div>
-                <div class="tabD">
-                  <span id="tabDL">使用者位置：</span>
-                  <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation">
-                  <input type="hidden" placeholder="day" class="nowday" id="nowday">
-                </div>
-              </div>
-            </form>
-            <div id="OrderAttractions">
-              {% for attractions in ct_attractions_list %}
-
-              {% endfor %}
-            </div>
-            <div id="RemainderAttractions"></div>
-          </div> 
-          {% endcomment %}
-        </div>
-      </div>
-    </div>
-
-    <!-- 我的收藏 -->
-    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab" style="width: 90%;margin: 0 auto;">
-      <div class="row favoritedata">
-
-        <div class="col-lg-4 col-md-6">
-          <div style="text-align: center;">
-            <div class="heart_icon_box">
-              <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
-              <i class="fa-solid fa-heart heart_icon"></i>
-            </div>
-            <div class="spot_like_txt">
-              <h3 class="spot_title">平溪老街</h3>
-              <p>123456</p>
-              <div class="group">
-                <i class="fa-solid fa-plus add_icon"></i>
-                <div class="dropdown_menu">
-                  <div>
-                    <a class="dropdown_item" href="#tab_c">新增行程</a>
-                  </div>
-                  <div>
-                    <a class="dropdown_item" href="#">捷運一日遊</a>
-                  </div>
-                  <div>
-                    <a class="dropdown_item" href="#">開車一日遊</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6">
-          <div style="text-align: center;">
-            <div class="heart_icon_box">
-              <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
-              <i class="fa-solid fa-heart heart_icon"></i>
-            </div>
-            <div class="spot_like_txt">
-              <h3 class="spot_title">平溪老街</h3>
-              <p>123456</p>
-              <div class="group">
-                <i class="fa-solid fa-plus add_icon"></i>
-                <div class="dropdown_menu">
-                  <div>
-                    <a class="dropdown_item" href="#tab_c">新增行程</a>
-                  </div>
-                  <div>
-                    <a class="dropdown_item" href="#">捷運一日遊</a>
-                  </div>
-                  <div>
-                    <a class="dropdown_item" href="#">開車一日遊</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6">
-          <div style="text-align: center;">
-            <div class="heart_icon_box">
-              <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
-              <i class="fa-solid fa-heart heart_icon"></i>
-            </div>
-            <div class="spot_like_txt">
-              <h3 class="spot_title">平溪老街</h3>
-              <p>123456</p>
-              <div class="group">
-                <i class="fa-solid fa-plus add_icon"></i>
-                <div class="dropdown_menu">
-                  <div>
-                    <a class="dropdown_item" href="#tab_c">新增行程</a>
-                  </div>
-                  <div>
-                    <a class="dropdown_item" href="#">捷運一日遊</a>
-                  </div>
-                  <div>
-                    <a class="dropdown_item" href="#">開車一日遊</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-
-    <!-- 推薦景點 -->
-    <div class="tab-pane fade" id="recommend" role="tabpanel" aria-labelledby="recommend-tab"
-      style="margin: 0 auto;width: 90%;position: relative;">
-      <!-- <div style="display: flex; justify-content: center; margin:5px auto;">
-        <form class="d-flex" role="search" style="width:80%">
-          <input class="form-control me-2" type="search" placeholder="查詢景點" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div> -->
-      <form action="" style="color: black;display: flex;align-items: center;align-content: center;justify-content: center;" class="form_rec">
-        <!-- <span style="font-size: 18px;">選擇推薦第幾天</span>
-        <select name="s_day" id="s_day" style="font-size: 18px;">
-          <option value="1">
-            第一天
-          </option>
-          <option value="2">
-            第二天
-          </option>
-        </select> -->
-      </form>
-      <div class="filter row">
-        <form action="">
-          <!-- <div class="filiter" style="padding: 12px;">
-            <div class="filiter_tagtxt" onclick="openfiliter()">
-              <span class="filiter_txt"><i class="fa-solid fa-filter"></i>篩選標籤</span>
-            </div>
-            <div class="show_filiter">
-              <div id="checkbox">
-                <label>
-                  <input type="checkbox" name="variety" value="公園 親子" />
-                  <span class="round button">公園</span>
-                </label>
-                <label><input type="checkbox" name="variety" value="遊樂園 親子 旅遊" />
-                  <span class="round button">遊樂園</span>
-                </label>
-                <label><input type="checkbox" name="variety" value="博物館" />
-                  <span class="round button">博物館</span>
-                </label>
-                <label><input type="checkbox" name="variety" value="水族館" />
-                  <span class="round button">水族館</span>
-                </label>
-                <label><input type="checkbox" name="variety" value="夜市" />
-                  <span class="round button">夜市</span>
-                </label>
-              </div>
-            </div>
           </div> -->
-
-          <div id="checkbox">
-            <div class="row" style="padding: 12px;" id="AttractionsContainer">
-              {% comment %} 
-              <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
-                <div class="checkimg_div">
-                  <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
-                    onclick="pickspot(this)">
-                    <span class="checkspot" style="display: block;cursor: pointer;">
-                      <img src="../static/images/101.jpg" class="img-responsive" width="100%" alt="">
-                    </span>
-                  </label>
-                </div>
-                <div class="spottxtdiv">
-                  <div class="checkspottxt">
-                    <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
-                    <span>地址：</span><br>
-                    <span>評價：</span><br>
-                    <span>營業時間：</span>
-                  </div>
-                </div>
-              </div> 
-              {% endcomment %}
-            </div>
-            <div class="row" style="padding: 12px;" id="AttractionsContainer_o">
-              {% comment %} 
-              <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
-                <div class="checkimg_div">
-                  <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
-                    onclick="pickspot(this)">
-                    <span class="checkspot" style="display: block;cursor: pointer;">
-                      <img src="../static/images/101.jpg" class="img-responsive" width="100%" alt="">
-                    </span>
-                  </label>
-                </div>
-                <div class="spottxtdiv">
-                  <div class="checkspottxt">
-                    <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
-                    <span class="spottxt spottxtaddress">地址：</span><br>
-                    <span class="spottxt spottxtstar">評價：</span><br>
-                    <span class="spottxt spottxttime">營業時間：</span>
-                  </div>
-                </div>
-              </div> 
-              {% endcomment %}
-            </div>
-          </div>
-          
-          <div class="shingyi col-md-6" name="AttractionsContainer" id="AttractionsContainer" style="display:block ;">
-            <!--我在JS QQ-->
-          </div>
-
-          <div class="shingyi col-md-6" name="AttractionsContainer" id="AttractionsContainer_o"  style="display:none ;">
-            <!--我在JS QQ-->
-          </div>
-          <a href="#recommend-tab" class="tab_a submit1" id="clickLikeAttractions" style="position: fixed;bottom: 0;right: 0;display: block;">
-            <button class="recommend_submit1" value="下一步">下一步</button>
-          </a>
-          <a href="#home-tab" class="tab_a submit1" id="clickLikeAttractions_o" style="position: fixed;bottom: 0;right: 0;display: none;">
-            <button class="recommend_submit1" value="送出">送出</button>
-          </a>
-        </form>
-        {% comment %}
-        <div class="beitou col-md-6">
-          <div class="col-5">
-            <img src="/static/images/beitou.jpeg" alt="" height="250">
-          </div>
-          <div class="col-7">
-            <div style="text-align: left;">
-              <p>景點名稱</p>
-              <p>地址</p>
-            </div>
-          </div>
-        </div>
-        <div class="datong col-md-6">
-          <div class="col-5">
-            <img src="/static/images/Datong.jpeg" alt="" height="250">
-          </div>
-          <div class="col-7">
-            <div style="text-align: left;">
-              <p>景點名稱</p>
-              <p>地址</p>
-            </div>
-          </div>
-        </div>
-        <div class="shilin"><img src="/static/images/Shilin.jpeg" alt="" height="250"></div>
-        <div class="zhongshan"><img src="/static/images/Zhongshan.jpeg" alt="" height="250"></div> {% endcomment %}
-      </div>
-      
-      {% comment %} 
-      <div class="row">
-        <a href="#tab_c" class="tab_a submit2" id="clickLikeAttractions_o">
-          <button value="提交">提交1</button>
-        </a>
-      </div>
-    </div> 
-    {% endcomment %}
+    </div>
   </div>
+
+  <!-- 建立行程 -->
 </main>
 {% endblock body %}
 {% block content_script %}
@@ -462,9 +207,9 @@
     geoFindMe();
   };*/
 
-  function get_nowLocation(day){
-    const userLocationName = document.getElementById("userLocationName-"+day); //標籤為label
-    const userLocation = document.getElementById("userLocation-"+day); //標籤為input
+  function get_nowLocation(day) {
+    const userLocationName = document.getElementById("userLocationName-" + day); //標籤為label
+    const userLocation = document.getElementById("userLocation-" + day); //標籤為input
     function success(position) {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
@@ -487,7 +232,7 @@
   }
 
 
-  
+
 
   {% comment %} var nowday = 1
   var nowDayValues = document.getElementById('nowday');
@@ -496,7 +241,7 @@
     nowday = day
     nowDayValues.value = nowday;
   } {% endcomment %}
-  
+
   //第1步驟 推薦附近景點~~~~
   var clickRecommend = document.getElementById('recommend-tab');
   clickRecommend.addEventListener("click", function (e) {
@@ -529,19 +274,19 @@
         var clickLikeAttractions_o = document.getElementById('clickLikeAttractions_o');
         // 將畫面1打開
         mListContainer.style.display = '';
-        clickLikeAttractions.style.display='';
+        clickLikeAttractions.style.display = '';
         // 將畫面2隱藏
         mListContainer_o.style.display = 'none';
         clickLikeAttractions_o.style.display = 'none';
-        
-        mListContainer.innerHTML='';
+
+        mListContainer.innerHTML = '';
         for (var i = 0; i < m_list.length; i++) {
-          mListContainer.innerHTML+=`<div class="col-md-4 col-sm-6" style="margin-bottom: 5px;" value="${m_list[i].place_id}">
+          mListContainer.innerHTML += `<div class="col-md-4 col-sm-6" style="margin-bottom: 5px;" value="${m_list[i].place_id}">
             <div class="checkimg_div">
               <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
                 onclick="pickspot(this)">
                 <span class="checkspot" style="display: block;cursor: pointer;">
-                  <img src="/static/images/attractions/${m_list[i].place_id+'_0'}.jpg" class="img-responsive" width="100%" alt="">
+                  <img src="/static/images/attractions/${m_list[i].place_id + '_0'}.jpg" class="img-responsive" width="100%" alt="">
                 </span>
               </label>
             </div>
@@ -608,8 +353,8 @@
         var clickLikeAttractions_o = document.getElementById('clickLikeAttractions_o');
         // 將畫面1隱藏
         select_aid.style.display = 'none';
-        clickLikeAttractions.style.display='none';
-        
+        clickLikeAttractions.style.display = 'none';
+
         mListContainer_o.style.display = '';
         clickLikeAttractions_o.style.display = '';
         /* 修改提交為送出的ID與文字
@@ -625,14 +370,14 @@
           buttonElement.value = '送出';
           buttonElement.textContent = '送出';
         }*/
-        mListContainer_o.innerHTML=''
-        for (var i = 0; i < o_list.length; i++)  {
-          mListContainer_o.innerHTML+=`<div class="col-md-4 col-sm-6" style="margin-bottom: 5px;" value="${o_list[i].place_id}">
+        mListContainer_o.innerHTML = ''
+        for (var i = 0; i < o_list.length; i++) {
+          mListContainer_o.innerHTML += `<div class="col-md-4 col-sm-6" style="margin-bottom: 5px;" value="${o_list[i].place_id}">
             <div class="checkimg_div">
               <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
                 onclick="pickspot(this)">
                 <span class="checkspot" style="display: block;cursor: pointer;">
-                  <img src="/static/images/attractions/${o_list[i].place_id+'_0'}.jpg" class="img-responsive" width="100%" alt="">
+                  <img src="/static/images/attractions/${o_list[i].place_id + '_0'}.jpg" class="img-responsive" width="100%" alt="">
                 </span>
               </label>
             </div>
@@ -654,7 +399,7 @@
           //mListContainer.innerHTML += "<p>" + item.place_id + "<p>";
           //mListContainer.innerHTML += "<p>" + item.a_name + "<p>";
           //mListContainer.innerHTML += "<p>" + item.address + "<p></div></div>";
-            
+
         }
 
       },
@@ -677,7 +422,7 @@
     Array.from(o_selectedCheckboxes).forEach(function (checkbox) {
       o_select_aid_list.push(checkbox.getAttribute('value'));
       all_select.push(checkbox.getAttribute('value'))
-      
+
     });
     console.log('选中的复选框值(相似):', o_select_aid_list);
     console.log('目前所選的所有值', all_select)
@@ -692,7 +437,7 @@
         csrfmiddlewaretoken: '{{ csrf_token }}',
       },
       success: function (response) {
-        
+
         // 在這裡處理伺服器回傳的 JSON 數據
         console.log(response);  // 查看回傳的值
 
@@ -712,10 +457,10 @@
         var count = 0
         var length_f = final_result_list.length;
         var all_a = []
-        OrderAttractions.innerHTML='';
+        OrderAttractions.innerHTML = '';
         for (let i = 0; i < length_f; i++) {
           var stay_time = final_result_list[i].stay_time;
-          if (stay_time == 0){
+          if (stay_time == 0) {
             stay_time = 150;
           }
           final_result = final_result_list[i];
@@ -729,9 +474,9 @@
           count++;
           all_a.push(final_result.id)
           var temp = '<div class="spot innerlist" id="spot' + count + '">';
-          temp += '<p style="font-size: 22px;font-weight: bold;">'+final_result.a_name;
-          temp += '<p>'+final_result.address;
-          temp += '<p>當下可能的人潮流量：'+final_crow_opening.crowd[parseInt(final_now_time_list[i]/60,10)]+'%<br>';  //抓取當下時間點的人潮
+          temp += '<p style="font-size: 22px;font-weight: bold;">' + final_result.a_name;
+          temp += '<p>' + final_result.address;
+          temp += '<p>當下可能的人潮流量：' + final_crow_opening.crowd[parseInt(final_now_time_list[i] / 60, 10)] + '%<br>';  //抓取當下時間點的人潮
           temp += '<p>營業時間：' + final_crow_opening.opening + '<br>';
           temp += '<p>建議停留時間：' + stay_time + '分鐘<br>';
           temp += '</div>';
@@ -755,8 +500,8 @@
             var temp_r = '<div style="color: black" class="spot" id="spot' + count + '" style="margin-bottom:10px">';
             temp_r += final_remainder_result.a_name;
             temp_r += '<div id="hiddenId" style="display: none;">' + final_remainder_result.id + '</div>';;
-            temp_r += '<p>'+final_remainder_result.address+'<br>';
-            temp_r += '<p>當下可能的人潮流量：'+final_remainder_crow_opening.crowd[parseInt(final_now_time_list[i]/60,10)]+'%<br>';
+            temp_r += '<p>' + final_remainder_result.address + '<br>';
+            temp_r += '<p>當下可能的人潮流量：' + final_remainder_crow_opening.crowd[parseInt(final_now_time_list[i] / 60, 10)] + '%<br>';
             temp_r += '<p>營業時間：' + final_remainder_crow_opening.opening + '<br>';
             temp_r += '<p>建議停留時間：' + final_remainder_result.stay_time + '<br>';
             temp_r += '</div>';
