@@ -39,6 +39,30 @@ for (let i = 0; i < allChildtab.length; i++) {
 }
 
 allChildtab[0].click();//預設點擊第一個
+
+// 翻轉右邊區塊
+var islikeAndRecVisible = false;
+
+function clickChange() {
+    const likeAndRec = document.getElementById('likeAndRec');
+    const searchBlock = document.getElementById('searchBlock');
+    const button = document.getElementById("changeToSearch");
+
+    islikeAndRecVisible = !islikeAndRecVisible
+
+    if (islikeAndRecVisible) {
+        likeAndRec.style.transform = 'rotateY(180deg)';
+        searchBlock.style.transform = 'rotateY(0deg)';
+        button.textContent = "收藏與推薦";
+    } else {
+        likeAndRec.style.transform = 'rotateY(0deg)';
+        searchBlock.style.transform = 'rotateY(180deg)';
+        button.textContent = "切換搜尋";
+    }
+
+}
+
+
 //open篩選
 function openfiliter() {
   var showfiliter = document.querySelector(".show_filiter")
