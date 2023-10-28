@@ -1,0 +1,41 @@
+function sendComment(aid){
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    if (confirm("確認要送出嗎?")) {
+        $.ajax({
+            headers: { 'X-CSRFToken': csrftoken },
+            url:`/comment/${aid}/`,
+            type: 'POST',
+            data:
+            {aid:aid,
+            comment:$('#user_ask').val(),
+            },
+            success: function (data) {
+                alert('成功提交!');
+            },
+            error: function (xhr, errmsg, err) {
+                alert(xhr.status + ": " + xhr.responseText);
+            }
+        });
+    }
+}
+
+// document.getElementById("ask-content").addEventListener("submit", function(event) {
+//     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+//     event.preventDefault(); // 阻止表单的默认提交行为
+//     if (confirm("確認要送出嗎?")) {
+//         var formData = new FormData(this);
+//         console.log(formData);
+//         $.ajax({
+//             headers: { 'X-CSRFToken': csrftoken },
+//             url: $(this).attr('action'),
+//             type: 'POST',
+//             data:formData,
+//             success: function (data) {
+//                 alert('成功提交!');
+//             },
+//             error: function (xhr, errmsg, err) {
+//                 alert(xhr.status + ": " + xhr.responseText);
+//             }
+//         });
+//     }}
+// );

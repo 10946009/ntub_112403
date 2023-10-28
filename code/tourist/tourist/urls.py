@@ -63,12 +63,13 @@ urlpatterns = [
 
     path("attraction_details/", attraction_details.attraction_details, name="search_results"),
     path("attraction_details/<int:aid>", attraction_details.attraction_details),
+    # path("attraction_details/", attraction_details.attraction_details,name="search_results_base"),
     path(
         "serach_results_att_type",
         attraction_details.attraction_details_att_type,
         name="serach_results_att_type",
     ),
-    path("base_search/", attraction_details.attraction_details_search,name="search_results_base"),
+    # path("base/", attraction_details.attraction_details_search,name="search_results_base"),
     # path('test/',views.test_input),
     path("useredit/", user_edit.user_edit),
 

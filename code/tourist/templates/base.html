@@ -33,14 +33,14 @@
         <a class="navbar-brand" href="/" style="padding: 0;">
           <img src="../static/images/logo_square1.png" class="logo_square1" id="logo_icon" alt="">
         </a>
-        <form autocomplete="off" class="d-flex" role="search" action="{% url 'search_results_base' %}" method="post"
+        <form autocomplete="off" class="d-flex" role="search" action="{% url 'search_results' %}" method="post"
           autocomplete="off">
           {% csrf_token %}
 
           <div class="base_search">
             <div class="base_searchInput">
               <input class="form-control me-auto search" id="base_myInput" type="search" placeholder="想去哪玩.."
-                aria-label="Search" name="search_text">
+                aria-label="Search" name="base_search_text">
               <!-- <input type="hidden" name="data_type" value="keyword_search"> -->
               <button class="search_icon" type="submit" id="base_searchClick"><i class="fas fa-search"></i></button>
               <!-- 歷史紀錄 -->
@@ -174,16 +174,13 @@
       this.parentNode.appendChild(a); // 將DIV元素加入輸入框的父元素中
 
       // 字跟著打在下面框框的部分
-      base_searchClick = document.getElementById("base_searchClick");
+      const base_searchClick = document.getElementById("base_searchClick");
       b = document.createElement("DIV");
       b.textContent = val; // 輸入的值開頭
       b.innerHTML = `<i class="fas fa-search" style="padding: 10px;"></i><strong>${val}</strong>&emsp;<span style="color:#a1a1a1">-Trip搜尋</span>`;
       b.addEventListener("click", function (e) {
-        inp.value = val;
-        sessionStorage.setItem(val, 'keyword_search');
-        searchText(val, 'keyword_search');
         closeAllLists();
-        // searchClick.click();
+        base_searchClick.click(); // 提交
       });
       a.appendChild(b);
 
@@ -195,10 +192,8 @@
           b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>"; // 加入一個隱藏的input元素，用來存放選擇的值
           b.addEventListener("click", function (e) {
             inp.value = this.getElementsByTagName("input")[0].value; // 設定輸入框的值為選擇的值
-            sessionStorage.setItem(this.getElementsByTagName("input")[0].value, 'keyword_search');
-            searchText(this.getElementsByTagName("input")[0].value, 'keyword_search');
             closeAllLists(); // 關閉所有項目清單
-            // searchClick.click();
+            base_searchClick.click(); // 提交
           });
           a.appendChild(b); // 將該項目加入清單中
 
@@ -225,7 +220,7 @@
       }
       if (e.key === 'Enter') {//用enter傳送
         e.preventDefault(); // 阻止 Enter本來換行行為
-        document.getElementById('d-flex').submit(); // 提交
+        base_searchClick.click(); // 提交
       }
     });
 
