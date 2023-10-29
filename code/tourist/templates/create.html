@@ -2,7 +2,7 @@
 {% block title %}建立行程{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="/static/css/create.css">
-
+<link rel="stylesheet" href="/static/css/create_search.css">
 <script src="https://maps.googleapis.com/maps/api/js?key={{apikey}}&libraries=places"></script>
 
 
@@ -78,9 +78,34 @@
           <div class="col-6 searchAndlikeAndrec">
             <button class="changeToSearch" id="changeToSearch" onclick="clickChange()">切換搜尋</button>
             <div class="change searchBlock" id="searchBlock">搜尋欄
-              <form action="">
-                <input type="text" placeholder="請輸入景點名稱">
-              </form>
+              <form autocomplete="off" class="d-flex" role="search">
+          {% csrf_token %}
+
+          <div class="create_search">
+            <div class="create_searchInput">
+              <input class="form-control me-auto search" id="create_myInput" type="search" placeholder="想去哪玩.."
+                aria-label="Search" name="create_search_text">
+              <!-- <input type="hidden" name="data_type" value="keyword_search"> -->
+              <button class="search_icon" id="create_searchClick"><i class="fas fa-search"></i></button>
+              <!-- 歷史紀錄 -->
+              <div id="create_searchBox">
+                <div class="create_enter"></div>
+                <div class="create_searchContent">
+                  <!-- history（目前放假資料） -->
+                  <div class="history_1" id="history_1">
+                    <i class="fa-solid fa-clock-rotate-left"></i><strong>123</strong>
+                    <div class="close_history" onclick="deleteFunction(this)">
+                      <i class="fa-solid fa-xmark" style="color: rgb(171, 5, 5);"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div id="replaceable-content">
+              {% include "create_search.html" %}
+        </div>
             </div>
             <div class="change likeAndRec" id="likeAndRec">
               <div>
@@ -90,7 +115,7 @@
                 </div>
                 <div class="row openlike" style="display: none;">
                   {% for item in user_favorite_list %}
-                    <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;" id = {{ item.a_id.id }}>
+                    <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;" id = "{{ item.a_id.id }}">
                       <div style="border: 1px solid black;">
                         <img src="../static/images/attractions/{{ item.a_id.place_id }}_0.jpg" class="img-responsive" width="100%" alt="">
                       </div>
@@ -225,8 +250,13 @@
 {% endblock body %}
 {% block content_script %}
 
+<script src="../static/js/createSearchTool.js"></script>
 <script src="/static/js/create.js"></script>
 <script>
+  
+// 放入景點名稱
+autocomplete(create_searchInput,JSON.parse('{{ attractions_search_json|safe }}'));
+console.log('hi'+JSON.parse('{{ attractions_search_json|safe }}'))
   /*window.addEventListener = function () {
     geoFindMe();
   };*/
@@ -595,6 +625,7 @@
       },
     });
   });
+
 
 </script>
 {% endblock %}

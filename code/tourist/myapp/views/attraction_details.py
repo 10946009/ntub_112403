@@ -67,7 +67,7 @@ def attraction_details(request):
         user = None
 
 
-    # print(request.GET)
+    # 搜尋引擎
     if request.method == "GET" and request.GET.get("search_text") != None:
         # 初始化一个Q对象，表示没有过滤条件
         filter_condition_and = Q()

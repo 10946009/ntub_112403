@@ -30,6 +30,7 @@ from myapp.views import (
     share,
     comment,
     user_edit,
+    search,
 )
 
 
@@ -55,6 +56,7 @@ urlpatterns = [
     path("createindex/", create_index.create_index),
     # path('create/<int:ct_id>/<int:choiceday>',views.create),
     path("create/<int:ct_id>", create.create),
+    path("search/get", search.search),
     path("history/", history.history),
     path("history/<int:select>", history.history),
 
