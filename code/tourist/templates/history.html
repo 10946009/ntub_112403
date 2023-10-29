@@ -9,8 +9,8 @@
   <div class="main">
     <div class="row shareFilter_div">
       <a href="/history" class="shareFilter_btn all_travel">All</a>
-      <a href="/history/1" class="shareFilter_btn already_share">已分享</a>
-      <a href="/history/0" class="shareFilter_btn not_share">未分享</a>
+      <a href="/history/1" class="shareFilter_btn already_share">已公開</a>
+      <a href="/history/0" class="shareFilter_btn not_share">未公開</a>
     </div>
     <!--資料庫有東西就會顯示-->
     {% for item in all_data %}
@@ -52,22 +52,22 @@
           <div class="share" id="ct_share">
             {% if item.my_history.status == True %}
               <span class="fa-solid fa-share share_icon"
-                 title="已分享"
+                 title="已公開"
                  id="submitfavorite_share{{ item.my_history.id }}"
                  data-isfavorite="1"
-                 onclick="add_favorite_share({{ item.my_history.id }})">
+                 onclick="add_favorite_share({{ item.my_history.id }})"> <!--圖案改這裡的class-->
                  <br>
-                 <span class="icontxt" id="icontxt{{ item.my_history.id }}">已分享</span>
+                 <span class="icontxt" id="icontxt{{ item.my_history.id }}">已公開</span> <!--文字放這-->
               </span>
               
             {% else %}
-              <span class="fa-solid fa-share share_icon"
-                 title="收藏"
+              <span class="fa-solid fa-share share_icon"  
+                 title="公開"
                  id="submitfavorite_share{{ item.my_history.id }}"
                  data-isfavorite="0"
-                 onclick="add_favorite_share({{ item.my_history.id }})">
+                 onclick="add_favorite_share({{ item.my_history.id }})">   <!--圖案改這裡的class-->
                 <br>
-                <span class="icontxt" id="icontxt{{ item.my_history.id }}">分享</span>
+                <span class="icontxt" id="icontxt{{ item.my_history.id }}">公開</span>   <!--文字放這-->
               </span>
               
             {% endif %}
@@ -680,13 +680,13 @@
       var text = document.getElementById("icontxt" + ctid);
       var isFavoriteValue = favoriteButton.getAttribute("data-isfavorite");
       if (isFavoriteValue === "1") {
-        //favoriteButton.setAttribute("class", "fa-regular fa-heart");
+        //favoriteButton.setAttribute("class", "fa-regular fa-heart");  //將來修改icon放這
         favoriteButton.setAttribute("data-isfavorite", "0");
-        text.textContent = "分享";
+        text.textContent = "公開";
       } else {
-        //favoriteButton.setAttribute("class", "fa-regular fa-heart");
+        //favoriteButton.setAttribute("class", "fa-regular fa-heart");  //將來修改icon放這
         favoriteButton.setAttribute("data-isfavorite", "1");
-        text.textContent = "已分享";
+        text.textContent = "已公開";
       }
       const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
       $.ajax({
