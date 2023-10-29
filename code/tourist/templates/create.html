@@ -21,129 +21,141 @@
       </div>
     </form>
   </div>
+  
   <ul class="nav nav-tabs flex justify-content-center my-nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab"
-        aria-controls="home" aria-selected="true" onclick="saveTabState('home')">第一天</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="second-tab" data-bs-toggle="tab" data-bs-target="#second" type="button" role="tab"
-        aria-controls="second" aria-selected="false" onclick="saveTabState('second')">第二天</button>
-    </li>
+    {% for day in travelday %}
+      <li class="nav-item" role="presentation">
+        <button class="nav-link {% if forloop.counter == 1 %}active{% endif %}" id="{{ day }}-tab" data-bs-toggle="tab" data-bs-target="#child-{{ day }}" type="button" role="tab"
+          aria-controls="child-{{ day }}" aria-selected="true">第{{ day }}天</button>
+      </li>
+    {% endfor %}
   </ul>
+  
+  
+
   <div class="tab-content" id="myTabContent" style="width: 100%;margin: 0 auto;">
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"
-      style="display: flex;justify-content: center;align-items: center;align-content: center;">
-      <div class="row" style="width: 100%;">
-        <div class="col-6" style="border: 1px solid black;">
-          我是左邊 顯示已排完序的景點
-          <div>
-            <div class="tabD">
-              <span id="tabDT">請輸入出發時間：</span>
-              <input type="time" name="nowtime" id="nowtime" {% if user_nowtime %}value="{{user_nowtime}}" {% else
-                %}value="09:00" {% endif %}>
-            </div>
-            <div class="tabD">
-              <span id="tabDL">使用者位置：</span>
-              <label class="input_txt" id="userLocationName-{{ days }}"> 位置</label>
-              <p></p>
-              <input type="hidden" id="userLocation-{{ days }}" value="{{local_xy.0}},{{local_xy.1}}">
-              <button type="button" id="nowLocationButton-{{ days }}"
-                onclick="get_nowLocation({{ days }})">取得目前位置</button>
-              <button type="button" id="mapButton-{{ days }}" onclick="get_map({{ days }})">選擇位置</button>
-              <button type="button" id="okButton-{{ days }}" onclick="clickOkButton({{ days }})">確認</button>
-              <input type="hidden" placeholder="day" class="nowday" id="nowday">
-            </div>
-          </div>
-          <div>
-            推薦景點<br>
-            左邊區塊點的景點加入右邊 這樣如果他附近沒有想去的地方可以從最愛或搜尋抓<br>
-            顯示已排完序的景點
-          </div>
-        </div>
-        <div class="col-6 searchAndlikeAndrec">
-          <button class="changeToSearch" id="changeToSearch" onclick="clickChange()">切換搜尋</button>
-          <div class="change searchBlock" id="searchBlock">搜尋欄
-            <form action="">
-              <input type="text" placeholder="請輸入景點名稱">
-            </form>
-          </div>
-          <div class="change likeAndRec" id="likeAndRec">
+    {% for day in travelday %}
+      <div class="tab-pane fade{% if forloop.counter == 1 %}show active{% endif %}" id="child-{{ day }}" role="tabpanel" aria-labelledby="{{ day }}-tab"
+        style="display: flex;justify-content: center;align-items: center;align-content: center;">
+        <div class="row" style="width: 100%;">
+          <div class="col-6" style="border: 1px solid black;">
+            我是左邊 顯示已排完序的景點
             <div>
-              <div onclick="openLikeBtn()" class="likeDiv">
-                <i class="fa-solid fa-heart like_icon"></i>
-                <span class="like_txt">我的收藏</span>
+              <div class="tabD">
+                <span id="tabDT">請輸入出發時間：</span>
+                <input type="time" name="nowtime" id="nowtime" {% if user_nowtime %}value="{{user_nowtime}}" {% else
+                  %}value="09:00" {% endif %}>
               </div>
-              <div class="row openlike" style="display: none;">
-                {% for item in user_favorite_list %}
-                  <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;" id = {{ item.a_id.id }}>
+              <div class="tabD">
+                <span id="tabDL">使用者位置：</span>
+                <label class="input_txt" id="userLocationName-{{ day }}"> 位置</label>
+                <p></p>
+                <input type="hidden" id="userLocation-{{ day }}" value="{{local_xy.0}},{{local_xy.1}}">
+                <button type="button" id="nowLocationButton-{{ day }}"
+                  onclick="get_nowLocation({{ day }})">取得目前位置</button>
+                <button type="button" id="mapButton-{{ day }}" onclick="get_map({{ day }})">選擇位置</button>
+                <button type="button" id="okButton-{{ day }}" onclick="clickOkButton({{ day }})">確認</button>
+                <input type="hidden" placeholder="day" class="nowday" id="nowday">
+              </div>
+            </div>
+            <div>
+              <button id ="recommend-tab">推薦景點</button> <br>
+              <!-- 添加地图容器 -->
+              <input
+              id="pac-input-{{ day }}"
+              class="controls"
+              type="text"
+              placeholder="Search Box"
+              style="display: none;"
+              />
+              左邊區塊點的景點加入右邊 這樣如果他附近沒有想去的地方可以從最愛或搜尋抓<br>
+              顯示已排完序的景點
+            </div>
+          </div>
+          <div class="col-6 searchAndlikeAndrec">
+            <button class="changeToSearch" id="changeToSearch" onclick="clickChange()">切換搜尋</button>
+            <div class="change searchBlock" id="searchBlock">搜尋欄
+              <form action="">
+                <input type="text" placeholder="請輸入景點名稱">
+              </form>
+            </div>
+            <div class="change likeAndRec" id="likeAndRec">
+              <div>
+                <div onclick="openLikeBtn()" class="likeDiv">
+                  <i class="fa-solid fa-heart like_icon"></i>
+                  <span class="like_txt">我的收藏</span>
+                </div>
+                <div class="row openlike" style="display: none;">
+                  {% for item in user_favorite_list %}
+                    <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;" id = {{ item.a_id.id }}>
+                      <div style="border: 1px solid black;">
+                        <img src="../static/images/attractions/{{ item.a_id.place_id }}_0.jpg" class="img-responsive" width="100%" alt="">
+                      </div>
+                      <div style="border: 1px solid black;">
+                        {{ item.a_id.a_name }}
+                      </div>
+                    </div>
+                  {% endfor %}
+                  {% comment %} <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
                     <div style="border: 1px solid black;">
-                      <img src="../static/images/attractions/{{ item.a_id.place_id }}_0.jpg" class="img-responsive" width="100%" alt="">
+                      <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
                     </div>
                     <div style="border: 1px solid black;">
-                      {{ item.a_id.a_name }}
+                      我是介紹圖片的文字
                     </div>
                   </div>
-                {% endfor %}
-                {% comment %} <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                  <div style="border: 1px solid black;">
-                    <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+
+                  <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
+                    <div style="border: 1px solid black;">
+                      <img src="../static/images/Datong.jpeg" class="img-responsive" width="100%" alt="">
+                    </div>
+                    <div style="border: 1px solid black;">
+                      我是介紹圖片的文字
+                    </div>
                   </div>
-                  <div style="border: 1px solid black;">
-                    我是介紹圖片的文字
-                  </div>
+
+
+                  <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
+                    <div style="border: 1px solid black;">
+                      <img src="../static/images/cloud1.png" class="img-responsive" width="100%" alt="">
+                    </div>
+                    <div style="border: 1px solid black;">
+                      我是介紹圖片的文字
+                    </div>
+                  </div> {% endcomment %}
+
                 </div>
-
-                <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                  <div style="border: 1px solid black;">
-                    <img src="../static/images/Datong.jpeg" class="img-responsive" width="100%" alt="">
-                  </div>
-                  <div style="border: 1px solid black;">
-                    我是介紹圖片的文字
-                  </div>
-                </div>
-
-
-                <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                  <div style="border: 1px solid black;">
-                    <img src="../static/images/cloud1.png" class="img-responsive" width="100%" alt="">
-                  </div>
-                  <div style="border: 1px solid black;">
-                    我是介紹圖片的文字
-                  </div>
-                </div> {% endcomment %}
-
               </div>
-            </div>
-            <hr>
-            <div>
-              <div onclick="openRecBtn()" class="recDiv">
-                <i class="fa-solid fa-thumbs-up rec_icon"></i>
-                <span class="rec_txt">相似景點</span>
-              </div>
-              <div class="row openRec" style="display: none;">
-                <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                  <div style="border: 1px solid black;">
-                    <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                  </div>
-                  <div style="border: 1px solid black;">
-                    我是介紹圖片的文字
-                  </div>
+              <hr>
+              <div>
+                <div onclick="openRecBtn()" class="recDiv">
+                  <i class="fa-solid fa-thumbs-up rec_icon"></i>
+                  <span class="rec_txt">相似景點</span>
                 </div>
-                <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                  <div style="border: 1px solid black;">
-                    <img src="../static/images/cloud1.png" class="img-responsive" width="100%" alt="">
+                <div class="row openRec" style="display: none;">
+                  <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
+                    <div style="border: 1px solid black;">
+                      <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                    </div>
+                    <div style="border: 1px solid black;">
+                      我是介紹圖片的文字
+                    </div>
                   </div>
-                  <div style="border: 1px solid black;">
-                    我是介紹圖片的文字
+                  <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
+                    <div style="border: 1px solid black;">
+                      <img src="../static/images/cloud1.png" class="img-responsive" width="100%" alt="">
+                    </div>
+                    <div style="border: 1px solid black;">
+                      我是介紹圖片的文字
+                    </div>
                   </div>
-                </div>
-                <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                  <div style="border: 1px solid black;">
-                    <img src="../static/images/101.jpg" class="img-responsive" width="100%" alt="">
-                  </div>
-                  <div style="border: 1px solid black;">
-                    我是介紹圖片的文字
+                  <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
+                    <div style="border: 1px solid black;">
+                      <img src="../static/images/101.jpg" class="img-responsive" width="100%" alt="">
+                    </div>
+                    <div style="border: 1px solid black;">
+                      我是介紹圖片的文字
+                    </div>
                   </div>
                 </div>
               </div>
@@ -151,58 +163,59 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
-      我是第二天
-      <!-- <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
-              <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="child1-tab" data-bs-toggle="tab" data-bs-target="#child1"
-                      type="button" role="tab" aria-controls="child1" aria-selected="true"
-                      onclick="saveTabState('child1')">第一天</button>
-              </li>
-              <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="child2-tab" data-bs-toggle="tab" data-bs-target="#child2"
-                      type="button" role="tab" aria-controls="child2" aria-selected="false"
-                      onclick="saveTabState('child2')">第二天</button>
-              </li>
-          </ul> -->
-      <!-- <div class="tab-child1" id="myTabchild1" style="width: 80%;margin: 0 auto;">
-              <div class="tab-pane fade show active" id="child1" role="tabpanel" aria-labelledby="child1-tab"
-                  style="display: flex;justify-content: center;align-items: center;align-content: center;">
-                  <div class="row" style="width: 100%;">
-                      <div class="col-md-4 col-sm-6">
-                          <div class="img">
-                              <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                          </div>
-                          <div class="txt">
-                              <span>testtest</span>
-                          </div>
-                      </div>
-                      <div class="col-md-4 col-sm-6">
-                          <div class="img">
-                              <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                          </div>
-                          <div class="txt">
-                              <span>testtest</span>
-                          </div>
-                      </div>
-                      <div class="col-md-4 col-sm-6">
-                          <div class="img">
-                              <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                          </div>
-                          <div class="txt">
-                              <span>testtest</span>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab">
-                  我是內容<br>我是內容<br>我是內容<br>我是內容<br>我是內容<br>
-              </div>
-          </div> -->
-    </div>
+    {% endfor %}
   </div>
+      <!--<div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="{{ day }}-tab">
+        我是第二天
+         <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="child1-tab" data-bs-toggle="tab" data-bs-target="#child1"
+                        type="button" role="tab" aria-controls="child1" aria-selected="true"
+                        onclick="saveTabState('child1')">第一天</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="child2-tab" data-bs-toggle="tab" data-bs-target="#child2"
+                        type="button" role="tab" aria-controls="child2" aria-selected="false"
+                        onclick="saveTabState('child2')">第二天</button>
+                </li>
+            </ul> -->
+        <!-- <div class="tab-child1" id="myTabchild1" style="width: 80%;margin: 0 auto;">
+                <div class="tab-pane fade show active" id="child1" role="tabpanel" aria-labelledby="child1-tab"
+                    style="display: flex;justify-content: center;align-items: center;align-content: center;">
+                    <div class="row" style="width: 100%;">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="img">
+                                <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                            </div>
+                            <div class="txt">
+                                <span>testtest</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="img">
+                                <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                            </div>
+                            <div class="txt">
+                                <span>testtest</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="img">
+                                <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                            </div>
+                            <div class="txt">
+                                <span>testtest</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab">
+                    我是內容<br>我是內容<br>我是內容<br>我是內容<br>我是內容<br>
+                </div>
+            </div> 
+      </div>-->
+  
+  
 
   <!-- 建立行程 -->
 </main>
@@ -450,8 +463,8 @@
         console.log(response);  // 查看回傳的值
 
         //切回建立行程
-        document.getElementById('home-tab').classList.add('active');
-        document.getElementById('home').classList.add('show', 'active');
+        document.getElementById('1-tab').classList.add('active');
+        document.getElementById('child-1').classList.add('show', 'active');
         document.getElementById('recommend-tab').classList.remove('active');
         document.getElementById('recommend').classList.remove('show', 'active');
         // 進一步處理回傳的值，例如顯示在頁面上
@@ -555,7 +568,7 @@
       type: "POST",
       url: "/create/{{ct_id}}", // 替换为您的 views.py 文件的 URL
       data: {
-        days: '{{choiceday}}',
+        day: '{{choiceday}}',
         location: userLocation.value,
         nowtime: nowtime.value,
         all_id: all_id,
