@@ -8,17 +8,53 @@ document.addEventListener('DOMContentLoaded', function () {
     // 添加 active 状态到 contact 选项卡
     document.getElementById('contact-tab').classList.add('active');
     document.getElementById('contact').classList.add('show', 'active');
-  }else if(selectedTab === 'child{{days}}'){
-
   }
 });
 
+//隱藏block 點第N天的時候不會有空白 
+// document.addEventListener('DOMContentLoaded', function () {
+//   let selectedTab = localStorage.getItem('selectedTab');
+//   if (!selectedTab) {
+//     selectedTab = 'myTabchild1';
+//     localStorage.setItem('selectedTab', selectedTab);
+//   }
+//   showTab(selectedTab); // 根据本地存储中的值来显示相应的选项卡
+// });
+
+function showTab(tabId) {
+  const tabChildElements = document.querySelectorAll('.tab-child');
+  tabChildElements.forEach((element) => {
+    element.style.display = 'none';
+    
+  });
+
+  // 显示特定的tab-child元素
+  const tabChild = document.getElementById(tabId);
+  console.log(tabChild);
+  if (tabChild) {
+    tabChild.style.display = 'flex';
+  }
+}
+
+// 给各个选项卡按钮添加点击事件监听器
+const allChildtab = document.getElementsByClassName('create-child-nav-link');
+
+console.log(allChildtab);
+for (let i = 0; i < allChildtab.length; i++) {
+  allChildtab[i].addEventListener('click', function () {
+    // 在点击选项卡时隐藏其他选项卡，并更新本地存储
+    localStorage.setItem('selectedTab', this.id);
+    console.log('selectedTab', this.id)
+    showTab('myTabchild'+(i+1));
+  });
+}
+allChildtab[0].click();//預設點擊第一個
 //open篩選
-function openfiliter(){
+function openfiliter() {
   var showfiliter = document.querySelector(".show_filiter")
-  if(showfiliter.style.display === "none" || showfiliter.style.display === ""){
+  if (showfiliter.style.display === "none" || showfiliter.style.display === "") {
     showfiliter.style.display = "block";
-  }else{
+  } else {
     showfiliter.style.display = "none";
   }
 }
@@ -28,9 +64,9 @@ function pickspot(checkbox) {
   checkbox.checked = !checkbox.checked;
   var div = checkbox.parentElement.parentElement; // 取得包含checkbox的div
   if (checkbox.checked) {
-    div.classList.add("pickimg"); 
+    div.classList.add("pickimg");
   } else {
-    div.classList.remove("pickimg"); 
+    div.classList.remove("pickimg");
   }
 }
 

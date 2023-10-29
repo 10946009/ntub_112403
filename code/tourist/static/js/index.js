@@ -47,7 +47,9 @@ for(var i = 0;i < heart.length; i++){
             this.className = "fa-solid fa-heart heart_icon";
             // --span[i].innerHTML;
           }
-          addFavorite_index(this.getAttribute("data-aid"));
+          id = this.getAttribute("data-id")
+          type = this.getAttribute("data-type")
+          addFavorite_index(id,type);
         }  
     })(i);
 } 

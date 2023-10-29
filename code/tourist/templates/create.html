@@ -54,7 +54,7 @@
             {% for day in travelday %}
               <li class="nav-item" role="presentation">
                 <a class="create-child-nav-link createday{% if forloop.counter == 1 %} active{% endif %}" aria-current="page" id="child{{day}}-tab" data-bs-toggle="tab"
-                  data-bs-target="#child{{day}}" type="button" role="tab" aria-controls="child{{day}}" aria-selected="{% if forloop.counter == 1 %}true{% else %}false{% endif %}">
+                  data-bs-target="#child{{day}}" type="button" role="tab" aria-controls="child{{day}}" aria-selected="{% if forloop.counter == 1 %}true{% else %}false{% endif %}" >
                   第{{day}}天
                 </a>
               </li>
@@ -76,7 +76,7 @@
             {% endcomment %}
           </ul>
           {% for days in travelday %}
-            <div class="tab-child{{ days }}" id="myTabchild{{ days }}"
+            <div class="tab-child" id="myTabchild{{ days }}"
               style="margin: 10px auto;display: flex;align-items: center;align-content: center;">
               <div class="tab-pane fade {% if forloop.counter == 1 %}show active{% endif %}" id="child{{days}}" role="tabpanel" aria-labelledby="child{{days}}-tab" data-set="{{days}}"
                 style="width: 90%;background-color: #eee;padding: 10px;margin: 0 auto;">
@@ -90,7 +90,7 @@
                       <span id="tabDL">使用者位置：</span>
                       {% comment %} <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation" value="{{local_address}}"> {% endcomment %}
                       <label class="input_txt" id="userLocationName-{{ days }}"> {{ location_name }}</label> <p></p>
-                      <input type="hidden"  id="userLocation-{{ days }}">
+                      <input type="hidden"  id="userLocation-{{ days }}" value="{{local_xy.0}},{{local_xy.1}}">
                       <button type="button" id="nowLocationButton-{{ days }}" onclick="get_nowLocation({{ days }})">取得目前位置</button>
                       <button type="button" id="mapButton-{{ days }}" onclick="get_map({{ days }})">選擇位置</button>
                       <button type="button" id="okButton-{{ days }}" onclick="clickOkButton({{ days }})">確認</button>
@@ -486,20 +486,20 @@
 
   
 
-  var nowday = 1
+  {% comment %} var nowday = 1
   var nowDayValues = document.getElementById('nowday');
   nowDayValues.value = nowday;
   function clickDay(day) {
     nowday = day
     nowDayValues.value = nowday;
-  }
-
+  } {% endcomment %}
+  
   //第1步驟 推薦附近景點~~~~
   var clickRecommend = document.getElementById('recommend-tab');
   clickRecommend.addEventListener("click", function (e) {
     var nowtime = document.getElementById("nowtime");
     //var ct_status = 0;
-    const userLocation = document.getElementById("userLocation");
+    const userLocation = document.getElementById("userLocation-1");
     $.ajax({
       type: "POST",
       url: "/create/{{ct_id}}", // 替换为您的 views.py 文件的 URL
@@ -574,7 +574,7 @@
     //var selectedCheckboxes = select_aid.querySelectorAll('input[type="checkbox"]:checked');
     var selectedCheckboxes = select_aid.getElementsByClassName('pickimg');
     console.log(selectedCheckboxes);
-    
+    all_select = [] //清空先前的值
     var select_aid_list = [];
     var nowtime = document.getElementById("nowtime");
     Array.from(selectedCheckboxes).forEach(function (checkbox) {
@@ -740,7 +740,7 @@
         var RemainderAttractions = document.getElementById("RemainderAttractions")
         var count_remainder = 0
         var length_fr = final_remainder_result_list.length;
-
+        RemainderAttractions.innerHTML = '';
         if (length_fr != 0) {
           RemainderAttractions.innerHTML = '<div class="hr_container"><hr></div>';
           for (let r = 0; r < length_fr; r++) {
@@ -786,7 +786,7 @@
   saveDays.addEventListener("click", function (e) {
     alert('儲存' + '{{choiceday}}');
     var nowtime = document.getElementById("nowtime");
-    var userLocation = document.getElementById("userLocation");
+    var userLocation = document.getElementById("userLocation-1");
     var all_id = document.getElementById("hiddenId");
     if (all_id) {
       all_id = all_id.textContent;

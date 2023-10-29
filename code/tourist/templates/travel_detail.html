@@ -1,13 +1,9 @@
 {% extends 'base.html' %}
 
 {% block title %}行程詳細頁面{% endblock %}
-
 {% block content %}
 {% comment %} CSS放這~~ {% endcomment %}
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>行程詳細頁面</title>
-<link rel="stylesheet" href="travel_detail.css">
+{% comment %} <link rel="stylesheet" href="travel_detail.css"> {% endcomment %}
 <style>
     <style>
         body {
@@ -150,15 +146,7 @@
 
 {% block body %}
 {% comment %} 內容在這~~~ {% endcomment %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>行程詳細頁面</title>
-    <link rel="stylesheet" href="travel_detail.css">
-</head>
-<body>
+    
     <div class="container">
         <header>
             <h1 class="page-title">來自台北的千島湖和坪林茶園</h1>
@@ -182,6 +170,7 @@
                     <h3>關於</h3>
                     <p>在京都隱藏的寶石的自行車探索中，您將擊敗人群並參觀更加寧靜的城市。從禪宗花園到被聯合國教科文組織列為金閣寺的寺廟，這裡是您在戶外活動中度過美好時光的完美方式。您還將從導遊那裡了解日本的歷史和文化。而且你可以打包燈，因為提供了可折疊的自行車和頭盔。</p>
                 </div>
+                
                 <section class="itinerary">
                     <div class="day-box">
                         <span>Day 1</span>
@@ -233,6 +222,9 @@
             </div>
         </section>
     </div>
-</body>
-</html>
+    {{u_id}}
+    <p>{{ ct_id }}</p>
+    <p>{{ ct_detail }}</p>
+    <p>{{ ct_choiceday }}</p>
+    <p>{{ ct_attraction }}</p>
 {% endblock body %}
