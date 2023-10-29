@@ -346,7 +346,8 @@
         <!-- 詢問問題彈跳框框(ok) -->
         <div class="out_ask_qa" id="out_ask_qa">
             <div id="ask_qa_container" class="ask_qa_container">
-                <form class="ask-content" id="ask-content" action="" method="POST">
+                <form class="ask-content" id="ask-content" action="/comment/{{detail.id}}/" method="POST">
+                    {% csrf_token %}
                     <div class="ask_container" id="ask_container">
                         <h5 style="font-size: 24px;">
                             提出問題
@@ -379,7 +380,7 @@
                     </div>
                     <div class="post_ask">
                         <span class="ask_btn_cancel" id="ask_btn_cancel">取消</span>
-                        <span class="ask_btn_ok" id="ask_btn_ok" type="submit" onclick="sendComment()">張貼</span>
+                        <span class="ask_btn_ok" id="ask_btn_ok"  onclick="sendComment({{detail.id}})">張貼<span>
                     </div>
                 </form>
             </div>
@@ -403,6 +404,7 @@
                         <span class="all_close" id="all_close" title="關閉">&times;</span>
                     </div>
                     <hr style=" border:1px solid #777777; max-width: 100%;">
+                    
                     <div class="all_ask_qa_con">
                         <div class="all_ask_qa_comment">
                             <div class="all_ask_qa_list">
@@ -1676,6 +1678,7 @@
     </form>
 </div> -->
 <script src="../static/js/slideshow.js"></script>
+<script src="../static/js/sendcomment.js"></script>
 <!-- 圖表會用到script -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">

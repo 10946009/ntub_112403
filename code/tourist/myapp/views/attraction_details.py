@@ -53,18 +53,19 @@ def get_nearby_attractions(choose_attractions):
                 break
     return near_attractions
 
-def attraction_details(request, from_base_search_text=None):
+def attraction_details(request):
     # # 取得景點名稱
     # all_type_name = list(ATT_TYPE_CHINESE.keys())
     all_type_name_json = json.dumps(ATT_TYPE_CHINESE)
-
-    
+    if request.POST.get("base_search_text"):
+        base_search_text = request.POST.get("base_search_text")
     # 取得搜尋到的結果
     search_list = []
     if request.user.id:
         user = User.objects.get(id=request.user.id)
     else:
         user = None
+
 
     # print(request.GET)
     if request.method == "GET" and request.GET.get("search_text") != None:
@@ -184,8 +185,3 @@ def is_favorite_list(userobject, search_list):
         else:
             search_list[index].setdefault("is_favorite", "0")
     return search_list
-
-
-def attraction_details_search(request):
-    from_base_search_text = request.POST.get("search_text")
-    return attraction_details(request, from_base_search_text)

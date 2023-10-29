@@ -393,8 +393,9 @@ endcomment %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script>
     sessionStorage.clear();
-    if ("{{from_base_search_text | safe}}" != null) {
-        searchText("{{from_base_search_text | safe}}", 'keyword_search');
+    if ("{{base_search_text | safe}}" != "") {
+        sessionStorage.setItem("{{base_search_text | safe}}", 'keyword_search');
+        searchText("{{base_search_text | safe}}", 'keyword_search');
     }
 
     // skrollr滑鼠滾動
@@ -551,7 +552,7 @@ endcomment %}
     // 用來刷新搜尋結果的function
     function searchText(search_text, data_type) {
         // data_type= keyword_search,tag_search,popular_search
-        console.log(search_text, data_type)
+        console.log(search_text, data_type);
         var search_type_key_word = document.getElementById('type_key_word');
 
         $.ajax({
