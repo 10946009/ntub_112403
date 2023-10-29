@@ -3,9 +3,39 @@
     margin: 0 auto;
     margin-top: 80px;
 }
+.shareFilter_div{
+    margin: 0 auto;
+    float: right;
+    text-align: center;
+    margin-bottom: 10px;
+    display: block;
+}
+.shareFilter_btn{
+    display: block;
+    float: left;
+    text-decoration: none;
+    width: 100px;
+    padding: 5px 10px;
+    margin-left: 10px;
+    border-radius: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgb(255, 233, 31);
+    color: #fff;
+    text-shadow: 2px 2px 3px #333;
+    box-shadow: 4px 4px 4px #ccc;
+	transition: background-color 0.3s ,color 0.3s;
+}
+.shareFilter_btn:hover{
+    background-color: #ff473d;
+}
+.shareFilter_btn_click{
+    background-color: #ff473d;
+}
+
 .mytravel{
     width: 100%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin: 10px 0 0 0;
     position: relative;
     /* border-radius: 20%; */
@@ -15,14 +45,26 @@
     border-top: 0px;
 } */
 .mytravel_img{
-    height: 250px;
+    height: 200px;
     overflow: hidden;
     padding: 0;
+    border: 1px solid black;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 .mytravel_img img{
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.mytravel_txt{
+    padding: 0;
+    position: relative;
+    border: 1px solid black;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 .mytravel_txt_title{
     margin: 10px auto;
@@ -36,8 +78,8 @@
     bottom: 5px;
     width: auto;
     border: 1px none rgb(128, 128, 128);
-    border-radius: 10%;
-    padding: 10px 15px;
+    border-radius: 20px;
+    padding: 10px 20px;
     background-color: rgb(255, 240, 126);
     box-shadow: 3px 2px 3px rgb(146, 146, 146);
     text-shadow: 3px 2px 3px rgb(146, 146, 146);
@@ -50,13 +92,15 @@
     text-align: center;
     position: absolute;
     top: 5px;
-    right: 20px;
+    right: 35px;
 }
 .share_icon{
     font-size: 28px;
-    width: 35px;
+    width: 50px;
     color: black;
+    text-shadow: 2px 2px 1px #FFF;
     cursor: pointer;
+    user-select: none;
 }
 .share_icon:hover{
     color: rgb(255, 179, 0);
@@ -64,6 +108,9 @@
 }
 .icontxt{
     font-size: 16px;
+    text-shadow: 2px 2px 1px #FFF;
+    font-weight: bolder;
+    user-select: none;
 }
 .edit{
     display: block;
@@ -72,7 +119,7 @@
     text-align: center;
     position: absolute;
     top: 5px;
-    right: 60px;
+    right: 75px;
     padding: 0;
 }
 .edita{
@@ -80,6 +127,8 @@
     text-decoration: none;
     color: black;
     font-weight: bold;
+    text-shadow: 2px 2px 1px #FFF;
+    user-select: none;
 }
 .edita:hover{
     color: gray;
@@ -87,7 +136,10 @@
 }
 /*展開詳細行程*/
 .hidden-details {
-    display: none;
+    /* display: none; */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
 }
 .details {
   margin-top: 10px;
@@ -103,15 +155,16 @@
     display: flex;
     align-items: center;
     align-content: center;
+    overflow-x: scroll;
 }
 .content_detail{
     height: 200px;
-    width: 250px;
-    display: inline-block;
+    width: 350px;
+    display: block;
     margin: 5px;
     padding: 10px;
     border: 1px solid black;
-    border-radius: 10%;
+    border-radius: 30px;
 }
 .content_detail p{
     margin-bottom: 10px;
@@ -127,19 +180,41 @@
     margin: 5px;
     padding: 5px;
     text-align: center;
-    display: inline-block;
+    display: block;
     cursor: pointer;
 }
 .gonexta{
     text-decoration: none;
     color: black;
 }
+.div_img{
+    height: 200px;
+    overflow: hidden;
+    padding: 0;
+    border: 1px solid black;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.div_img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.div_txt{
+    padding: 0;
+    position: relative;
+    border: 1px solid black;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
 @media (max-width:1024px) {
     .content{
         margin: 5px auto;
     }
     .content_align{
-        display: block;
+        /* display: block; */
     }
     .content_detail{
         height: 180px;
@@ -154,5 +229,37 @@
     }
     .gonextbtn{
         margin: 0;
+    }
+}
+@media (max-width: 768px){
+    .share{
+        top: 0;
+    }
+    .edit{
+        top: 0;
+        right: 80px;
+    }
+    .edit_icon{
+        color: white;
+        text-shadow: 2px 2px 1px #000;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+        height: 80px;
+        background-color: rgba(253, 251, 255, 0.5);
+        box-shadow: 3px 3px 5px #333;
+        width: 50px;
+    }
+    .share_icon{
+        color: white;
+        text-shadow: 2px 2px 1px #000;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+        height: 80px;
+        background-color: rgba(253, 251, 255, 0.5);
+        box-shadow: 3px 3px 5px #333;
+    }
+    .icontxt{
+        color: white;
+        text-shadow: 2px 2px 1px #000;
     }
 }

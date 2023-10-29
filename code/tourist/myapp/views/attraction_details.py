@@ -66,8 +66,6 @@ def attraction_details(request, from_base_search_text=None):
     else:
         user = None
 
-    attractions_search = list(Attractions.objects.values_list("a_name", flat=True))
-    attractions_search_json = json.dumps(attractions_search)
     # print(request.GET)
     if request.method == "GET" and request.GET.get("search_text") != None:
         # 初始化一个Q对象，表示没有过滤条件
@@ -156,6 +154,7 @@ def attraction_details(request, from_base_search_text=None):
                 "opentime_list": opentime_list,
                 "near_attractions":near_attractions,
                 "request": request,
+                "is_favorite":is_favorite,
             },
         )
         detail_data_dict = {"attractions_detail_html": detail_html}

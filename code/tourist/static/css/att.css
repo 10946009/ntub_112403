@@ -706,7 +706,7 @@ img {
 
 /* 星星icon */
 .checked {
-    color: rgb(225, 216, 41);
+    color: rgb(226, 185, 2);
 }
 
 /* 所有評價*/
@@ -2015,6 +2015,386 @@ img {
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
+
+/* 使用者按讚、收藏、分享、觀看人數 */
+.User_more_add_fav {
+    border-radius: 10px;
+    background-color: rgb(214, 208, 201);
+    max-width: 100%;
+    margin: 20px auto;
+}
+
+.User__header {
+    display: grid;
+    grid-template-columns: 5fr 5fr 5fr 5fr 5fr;
+    grid-gap: 2px;
+    margin-bottom: 2px;
+}
+
+.User__headerGrid {
+    text-align: center;
+}
+
+/* 評論（景點上傳、撰寫） */
+.comment_topic {
+    border: #000 solid;
+    cursor: pointer;
+    display: inline-block;
+    padding: 8px 10px;
+    border-radius: 25px;
+    background-color: rgb(203, 202, 201);
+    margin-top: 8px;
+
+}
+
+.comment_topic:hover {
+    background-color: rgb(141, 140, 140);
+}
+
+/* 後面黑色那塊(comment) */
+.out_share_comment {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 120px;
+}
+
+/* 評論框框 */
+.share_comment_container {
+    background: rgb(236, 221, 184);
+    border: black solid;
+    width: 40%;
+    margin: 50px auto;
+}
+
+/* 評論彈跳窗(name) */
+.comment_container {
+    background-color: rgb(209, 177, 74);
+    color: rgb(90, 70, 25);
+    position: relative;
+    padding: 10px;
+    text-align: center;
+}
+
+/* 取消,張貼div */
+.post_share_comment {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+/* 取消,張貼按鈕 */
+.share_comment_btn_cancel {
+    cursor: pointer;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    padding: 2px 20px 2px 20px;
+    font-family: Arial;
+    border: #000 solid;
+    background-color: #a5a6a7;
+    font-size: 14px;
+    margin-right: 20px;
+}
+
+.share_comment_btn_ok {
+    cursor: pointer;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    padding: 2px 20px 2px 20px;
+    font-family: Arial;
+    border: #000 solid;
+    background-color: #d2892f;
+    font-size: 14px;
+    margin-right: 20px;
+}
+
+.share_comment_btn_cancel:hover {
+    color: white;
+    background-color: #727474;
+}
+
+.share_comment_btn_ok:hover {
+    color: white;
+    background-color: #e2a941;
+}
+
+.comment_rating {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+
+}
+
+.comment_star {
+    margin: 0 10px;
+}
+
+.comment_star i {
+    color: gray;
+}
+
+.add_comment_photo {
+    font-size: 18px;
+}
+
+.add_ph {
+    margin-top: 10px;
+    justify-content: center;
+    display: flex;
+    border: black solid;
+    border-radius: 50px;
+    padding: 2px 0 2px 0;
+    background-color: #af8722;
+    color: white;
+}
+
+.add_ph:hover {
+    background-color: #c4a85c;
+    color: black;
+}
+
+/* 新增關閉圖片div*/
+.preview-container {
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+}
+
+.close-button {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    padding: 0 5px 0 5px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(2, 2, 2);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+/* 新增預覽圖片的樣式 */
+.preview-image {
+    max-width: 100px;
+    display: block;
+}
+
+/* comment_tips */
+.comment_info {
+    cursor: pointer;
+}
+
+.show_comment_info {
+    width: 300px;
+    display: none;
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* 後面黑色那塊(update) */
+.out_update_att_ph {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 80px;
+}
+
+/* 上傳景點圖片框框 */
+.update_att_ph_container {
+    background: rgb(236, 221, 184);
+    border: black solid;
+    width: 40%;
+    margin: 50px auto;
+}
+
+/* 上傳景點圖片彈跳窗(name) */
+.update_ph_container {
+    background-color: rgb(209, 177, 74);
+    color: rgb(90, 70, 25);
+    position: relative;
+    padding: 10px;
+    text-align: center;
+}
+
+/* 取消,張貼div */
+.post_update_att_ph {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+/* 取消,張貼按鈕 */
+.update_att_ph_btn_cancel {
+    cursor: pointer;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    padding: 2px 20px 2px 20px;
+    font-family: Arial;
+    border: #000 solid;
+    background-color: #a5a6a7;
+    font-size: 14px;
+    margin-right: 20px;
+}
+
+.update_att_ph_btn_ok {
+    cursor: pointer;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    padding: 2px 20px 2px 20px;
+    font-family: Arial;
+    border: #000 solid;
+    background-color: #d2892f;
+    font-size: 14px;
+    margin-right: 20px;
+}
+
+.update_att_ph_btn_cancel:hover {
+    color: white;
+    background-color: #727474;
+}
+
+.update_att_ph_btn_ok:hover {
+    color: white;
+    background-color: #e2a941;
+}
+
+/* update_tips */
+.update_info {
+    cursor: pointer;
+}
+
+.show_up_info {
+    width: 300px;
+    display: none;
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.up_date_photo {
+    font-size: 18px;
+}
+
+.update_ph {
+    margin-top: 10px;
+    justify-content: center;
+    display: flex;
+    border: black solid;
+    border-radius: 50px;
+    padding: 2px 0 2px 0;
+    background-color: #af8722;
+    color: white;
+}
+
+.update_ph:hover {
+    background-color: #c4a85c;
+    color: black;
+}
+
+/* 新增關閉圖片div(update)*/
+.update-container {
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+}
+
+.update_close-button {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    padding: 0 5px 0 5px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(2, 2, 2);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+/* 新增預覽圖片的樣式(update)*/
+.update-image {
+    max-width: 100px;
+    display: block;
+}
+
+/* 分頁 */
+.page-container {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin: 20px 0;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    text-decoration: none;
+    background-color: #3498db;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.page-link:hover {
+    background-color: #1e87dd;
+}
+
+@media screen and (max-width:768px) {
+
+    /* 汽車動動圖 */
+    .car_trip {
+        display: none;
+    }
+
+    /* 馬路圖 */
+    .road {
+        display: none;
+    }
+
+    .active_tit {
+        text-align: 26px;
+        background-color: rgba(113, 113, 113, 0.2);
+        width: 100%;
+        height: 320px;
+        position: absolute;
+        top: 400px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .container_search {
+        width: 100%;
+        padding: 0 0 0 0;
+    }
+
+}
+
+
 
 /* .Cart__product {
     display: grid;

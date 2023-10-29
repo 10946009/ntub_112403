@@ -154,14 +154,14 @@
         <span class="hidemehot" style="display: flex;align-items: center;margin-bottom: 10px;">
           <img src="../static/images/hot_icon.png" class="hot_icon">
           <span class="hot_spot_title">熱門行程</span>
-          <span><a href="/share/">更多</a></span>
+          <span class="more_span"><a href="/share/" class="more_a">MORE</a></span>
         </span>
       </div>
       
       <div class="row">
 
         {% for ct in top_hot_travel %}
-          <div class="col-md-4 hot_spot_block hidemespot" style="padding: 5px;">
+          <div class="col-lg-4 col-md-6 hot_spot_block hidemespot" style="padding: 5px;">
             <div class="heart_icon_img">
               
               <div class="imgcontainer">
@@ -190,7 +190,7 @@
               </h5>
               <p>收藏人數：{{ ct.like }}</p>
               {% comment %} <button class="btn btn-warning spot_data_btn more_data" id="more_data">詳細資料</button> {% endcomment %}
-              <a href="/travel_detail/{{ ct.id }}">詳細資料</a>
+              <a href="/travel_detail/{{ ct.id }}" class="btn btn-warning spot_data_btn more_data" id="more_data">詳細資料</a>
             </div>
           </div>
         {% endfor %}
@@ -260,7 +260,8 @@
 
     </div>
 
-    <div class="hot_spot_show" id="hot_spot_show">
+    <!-- 原本是跳出詳細景點 -->
+    <!-- <div class="hot_spot_show" id="hot_spot_show">
       <div class="hot_spot_show_txt">
         <div class="hot_spot_show_title">捷運一日遊
           <div class="close">X</div>
@@ -269,7 +270,7 @@
         <div class="hot_spot_show_author">使用者</div>
 
       </div>
-    </div>
+    </div> -->
 
     {% endblock body %}
 

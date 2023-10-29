@@ -65,15 +65,59 @@ def create(request, ct_id):
     stay_time = 150
     ct_attractions_detail_list=[]
     ct_attractions_co_list=[]
-    all_ct_data = []
-    crowd_index_list=[]
-    crowd_list=[]
-    local_xy = ""
-    user_nowtime=""
-    try:
-        # 抓出這是哪一筆行程且天數為第1天(後續要改成抓全部
-        ct_attractions_data = ChoiceDay_Ct.objects.get(ct_id=ct_id, day=choiceday) 
-        # 抓目前位置
+    all_ct_data = {} #days從1開始
+
+    # 原始
+    # try:
+    #     # 抓出這是哪一筆行程且天數為第1天(後續要改成抓全部
+    #     ct_attractions_data = ChoiceDay_Ct.objects.get(ct_id=ct_id, day=choiceday) 
+    #     # 抓目前位置
+    #     local_xy = [ct_attractions_data.start_location_x,ct_attractions_data.start_location_y]
+    #     # 抓出發時間
+    #     user_nowtime = format_minutes_as_time(ct_attractions_data.start_time)
+    #     location_name = ct_attractions_data.name
+    #     # 抓出這筆行程中的所有景點
+    #     ct_attractions_list = Attractions_Ct.objects.filter(
+    #         choice_ct_id=ct_attractions_data.id
+    #     ).values()
+       
+    #     # 抓出所有景點的詳細資料
+    #     for a in ct_attractions_list:
+    #         crowd_index_list.append(int(a['a_start_time']%1400//60)) #人潮流量索引
+    #         ct_attractions_detail_list.append(Attractions.objects.get(id=a['a_id']))
+    #     print('ct_attractions_detail_list',ct_attractions_detail_list)
+    #     print('crowd_index_list',crowd_index_list)
+    #     # 抓出景點的人潮與營業時間(第1天)
+    #     for co in ct_attractions_detail_list:
+    #         ct_attractions_co_list.append(Crowd_Opening.objects.get(a_id=co.id,week=week))
+    #     #抓人潮流量
+    #     for i in range(len(ct_attractions_list)):
+    #         crowd_list.append(ct_attractions_co_list[i].crowd[crowd_index_list[i]]) 
+    #     print('ct_attractions_co_list',ct_attractions_co_list)
+    #     print('crowd_list',crowd_list)
+        
+        
+    #     # 合併上面四個資料
+    #     for attraction, detail, co, crowd_list in zip(ct_attractions_list, ct_attractions_detail_list, ct_attractions_co_list,crowd_list):
+    #         all_ct_data.append({
+    #             'attraction': attraction,
+    #             'detail': detail,
+    #             'co': co,
+    #             'crowd_list' : crowd_list
+    #         })
+    # except:
+    #     ct_attractions_list = []
+    # print(ct_attractions_list)
+    # try:
+    # 抓出這是哪一筆行程
+    ct_attractions_data_total = ChoiceDay_Ct.objects.filter(ct_id=ct_id).order_by('day')
+    # 抓目前位置
+    for index,ct_attractions_data in enumerate(ct_attractions_data_total):
+        crowd_index_list=[]
+        crowd_list=[]
+        local_xy = ""
+        user_nowtime=""
+        ct_data = []
         local_xy = [ct_attractions_data.start_location_x,ct_attractions_data.start_location_y]
         # 抓出發時間
         user_nowtime = format_minutes_as_time(ct_attractions_data.start_time)
@@ -82,34 +126,34 @@ def create(request, ct_id):
         ct_attractions_list = Attractions_Ct.objects.filter(
             choice_ct_id=ct_attractions_data.id
         ).values()
-       
+    
         # 抓出所有景點的詳細資料
         for a in ct_attractions_list:
             crowd_index_list.append(int(a['a_start_time']%1400//60)) #人潮流量索引
             ct_attractions_detail_list.append(Attractions.objects.get(id=a['a_id']))
         print('ct_attractions_detail_list',ct_attractions_detail_list)
         print('crowd_index_list',crowd_index_list)
-        # 抓出景點的人潮與營業時間(第1天)
+        # 抓出景點的人潮與營業時間
         for co in ct_attractions_detail_list:
             ct_attractions_co_list.append(Crowd_Opening.objects.get(a_id=co.id,week=week))
-        #抓人潮流量
+            #抓人潮流量
+        print('crowd_listcrowd_listcrowd_listcrowd_listcrowd_listcrowd_listcrowd_list',crowd_list)
         for i in range(len(ct_attractions_list)):
             crowd_list.append(ct_attractions_co_list[i].crowd[crowd_index_list[i]]) 
         print('ct_attractions_co_list',ct_attractions_co_list)
         print('crowd_list',crowd_list)
-        
-        
         # 合併上面四個資料
         for attraction, detail, co, crowd_list in zip(ct_attractions_list, ct_attractions_detail_list, ct_attractions_co_list,crowd_list):
-            all_ct_data.append({
+            ct_data.append({
                 'attraction': attraction,
                 'detail': detail,
                 'co': co,
                 'crowd_list' : crowd_list
             })
-    except:
-        ct_attractions_list = []
-    print(ct_attractions_list)
+        all_ct_data[index+1]=ct_data
+        print('all_ct_data',all_ct_data)
+    # except:
+    #     all_ct_data=[]  
 
     if request.method == "POST":
         ct_status = request.POST["ct_status"]
