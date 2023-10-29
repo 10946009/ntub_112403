@@ -13,11 +13,43 @@
         .showserachBlock {
             display: block;
         }
+
+        .searchAndlikeAndrec {
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .change {
+            width: 95%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            /* 隐藏背面 */
+            transform-style: preserve-3d;
+            /* 保持3D效果 */
+            transition: transform 0.5s;
+            font-size: 24px;
+            transform: rotateY(0deg);
+            /* 初始状态：不翻转 */
+        }
+
+        #searchBlock {
+            transform: rotateY(180deg);
+            /* 初始状态：翻转180度 */
+        }
     </style>
 </head>
 
 <body>
     <main style="width: 90%;margin: 0 auto;">
+        <div class="row" style="text-align: center;width: 50%; margin: 0 auto;">
+            <div class="col-md-6">
+                行程名稱：
+            </div>
+            <div class="col-md-6">
+                行程時間：
+            </div>
+        </div>
         <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
@@ -34,17 +66,49 @@
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"
                 style="display: flex;justify-content: center;align-items: center;align-content: center;">
                 <div class="row" style="width: 100%;">
-                    <div class="col-6" style="position: relative;border: 1px solid black;overflow-y: scroll;height: 800px;">
-                        <button class="changeToSearch" style="position: absolute;right: 5px; top: 5px;" id="changeToSearch" onclick="clickChange()">切換搜尋</button>
-                        <div class="searchBlock" style="display: none;" id="searchBlock">搜尋欄
+                    <div class="col-6" style="border: 1px solid black;">
+                        我是左邊 顯示已排完序的景點
+                        <div>
+                            <div class="tabD">
+                                <span id="tabDT">請輸入出發時間：</span>
+                                <input type="time" name="nowtime" id="nowtime" {% if user_nowtime
+                                    %}value="{{user_nowtime}}" {% else %}value="09:00" {% endif %}>
+                            </div>
+                            <div class="tabD">
+                                <span id="tabDL">使用者位置：</span>
+                                <label class="input_txt" id="userLocationName-{{ days }}"> 位置</label>
+                                <p></p>
+                                <input type="hidden" id="userLocation-{{ days }}" value="{{local_xy.0}},{{local_xy.1}}">
+                                <button type="button" id="nowLocationButton-{{ days }}"
+                                    onclick="get_nowLocation({{ days }})">取得目前位置</button>
+                                <button type="button" id="mapButton-{{ days }}"
+                                    onclick="get_map({{ days }})">選擇位置</button>
+                                <button type="button" id="okButton-{{ days }}"
+                                    onclick="clickOkButton({{ days }})">確認</button>
+                                <input type="hidden" placeholder="day" class="nowday" id="nowday">
+                            </div>
+                        </div>
+                        <div>
+                            推薦景點<br>
+                            左邊區塊點的景點加入右邊 這樣如果他附近沒有想去的地方可以從最愛或搜尋抓<br>
+                            顯示已排完序的景點
+                        </div>
+                    </div>
+                    <div class="col-6 searchAndlikeAndrec"
+                        style="position: relative;border: 1px solid black;overflow-y: scroll;height: 800px;">
+                        <button class="changeToSearch" style="position: absolute;right: 5px; top: 5px;z-index: 100;"
+                            id="changeToSearch" onclick="clickChange()">切換搜尋</button>
+                        <div class="change searchBlock" id="searchBlock">搜尋欄
                             <form action="">
                                 <input type="text" placeholder="請輸入景點名稱">
                             </form>
                         </div>
-                        <div class="likeAndRec" id="likeAndRec">
+                        <div class="change likeAndRec" id="likeAndRec">
                             <div>
-                                <div onclick="openLikeBtn()" style="display: flex;cursor: pointer;align-items: center;align-content: center;">
-                                    <i class="fa-solid fa-heart" style="color: white;background-color: rgb(255, 41, 101); border-radius: 50%;padding: 10px;margin-right: 5px;"></i>
+                                <div onclick="openLikeBtn()"
+                                    style="display: flex;cursor: pointer;align-items: center;align-content: center;padding: 10px 0;">
+                                    <i class="fa-solid fa-heart"
+                                        style="color: white;background-color: rgb(255, 41, 101); border-radius: 50%;padding: 10px;margin-right: 5px;"></i>
                                     <span style="font-size: 28px;font-weight: bold;">我的收藏</span>
                                 </div>
                                 <div class="row openlike" style="display: none;">
@@ -79,8 +143,10 @@
                             </div>
                             <hr>
                             <div>
-                                <div onclick="openRecBtn()" style="display: flex;cursor: pointer;align-items: center;align-content: center;">
-                                    <i class="fa-solid fa-thumbs-up" style="color: white;background-color: rgb(255, 41, 101); border-radius: 50%;padding: 10px;margin-right: 5px;"></i>
+                                <div onclick="openRecBtn()"
+                                    style="display: flex;cursor: pointer;align-items: center;align-content: center;">
+                                    <i class="fa-solid fa-thumbs-up"
+                                        style="color: white;background-color: rgb(255, 41, 101); border-radius: 50%;padding: 10px;margin-right: 5px;"></i>
                                     <span style="font-size: 28px;font-weight: bold;">相似景點</span>
                                 </div>
                                 <div class="row openRec" style="display: none;">
@@ -115,39 +181,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6" style="border: 1px solid black;">
-                        我是右邊 顯示已排完序的景點
-                        <div>
-                            <div class="tabD">
-                                <span id="tabDT">請輸入出發時間：</span>
-                                <input type="time" name="nowtime" id="nowtime" {% if user_nowtime
-                                    %}value="{{user_nowtime}}" {% else %}value="09:00" {% endif %}>
-                            </div>
-                            <div class="tabD">
-                                <span id="tabDL">使用者位置：</span>
-                                <label class="input_txt" id="userLocationName-{{ days }}"> 位置</label>
-                                <p></p>
-                                <input type="hidden" id="userLocation-{{ days }}" value="{{local_xy.0}},{{local_xy.1}}">
-                                <button type="button" id="nowLocationButton-{{ days }}"
-                                    onclick="get_nowLocation({{ days }})">取得目前位置</button>
-                                <button type="button" id="mapButton-{{ days }}"
-                                    onclick="get_map({{ days }})">選擇位置</button>
-                                <button type="button" id="okButton-{{ days }}"
-                                    onclick="clickOkButton({{ days }})">確認</button>
-                                <input type="hidden" placeholder="day" class="nowday" id="nowday">
-                            </div>
-                        </div>
-                        <div>
-                            推薦景點<br>
-                            左邊區塊點的景點加入右邊 這樣如果他附近沒有想去的地方可以從最愛或搜尋抓<br>
-                            顯示已排完序的景點
-                        </div>
-                    </div>
                 </div>
             </div>
 
             <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
-                <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
+                我是第二天
+                <!-- <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="child1-tab" data-bs-toggle="tab" data-bs-target="#child1"
                             type="button" role="tab" aria-controls="child1" aria-selected="true"
@@ -158,8 +197,8 @@
                             type="button" role="tab" aria-controls="child2" aria-selected="false"
                             onclick="saveTabState('child2')">第二天</button>
                     </li>
-                </ul>
-                <div class="tab-child1" id="myTabchild1" style="width: 80%;margin: 0 auto;">
+                </ul> -->
+                <!-- <div class="tab-child1" id="myTabchild1" style="width: 80%;margin: 0 auto;">
                     <div class="tab-pane fade show active" id="child1" role="tabpanel" aria-labelledby="child1-tab"
                         style="display: flex;justify-content: center;align-items: center;align-content: center;">
                         <div class="row" style="width: 100%;">
@@ -192,7 +231,7 @@
                     <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab">
                         我是內容<br>我是內容<br>我是內容<br>我是內容<br>我是內容<br>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </main>
@@ -201,24 +240,54 @@
     <script src="../static/js/jquery-3.7.0.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
     <script>
-        var isSearchVisible = false;
+        var islikeAndRecVisible = false;
+
         function clickChange() {
-            var likeAndRec = $(".likeAndRec");
-            var searchBlock = $(".searchBlock");
+            const likeAndRec = document.getElementById('likeAndRec');
+            const searchBlock = document.getElementById('searchBlock');
+            const button = document.getElementById("changeToSearch");
 
-            isSearchVisible = !isSearchVisible;
+            islikeAndRecVisible = !islikeAndRecVisible
 
-
-            if (isSearchVisible) {
-                likeAndRec.fadeOut(200);
-                searchBlock.fadeIn(200);
-                $("#changeToSearch").text("收藏與推薦");
+            if (islikeAndRecVisible) {
+                likeAndRec.style.transform = 'rotateY(180deg)';
+                searchBlock.style.transform = 'rotateY(0deg)';
+                button.textContent = "收藏與推薦";
             } else {
-                searchBlock.fadeOut(200);
-                likeAndRec.fadeIn(200);
-                $("#changeToSearch").text("切換搜尋");
+                likeAndRec.style.transform = 'rotateY(0deg)';
+                searchBlock.style.transform = 'rotateY(180deg)';
+                button.textContent = "切換搜尋";
             }
+
         }
+        function saveTabState(tabId) {
+            var tabs = document.getElementsByClassName('tab-pane');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].style.display = 'none';
+            }
+
+            var tab = document.getElementById(tabId);
+            tab.style.display = 'block';
+        }
+
+        // var isSearchVisible = false;
+        // function clickChange() {
+        //     var likeAndRec = $(".likeAndRec");
+        //     var searchBlock = $(".searchBlock");
+
+        //     isSearchVisible = !isSearchVisible;
+
+
+        //     if (isSearchVisible) {
+        //         likeAndRec.fadeOut(200);
+        //         searchBlock.fadeIn(200);
+        //         $("#changeToSearch").text("收藏與推薦");
+        //     } else {
+        //         searchBlock.fadeOut(200);
+        //         likeAndRec.fadeIn(200);
+        //         $("#changeToSearch").text("切換搜尋");
+        //     }
+        // }
 
         var isLikeVisible = false;
 
@@ -230,12 +299,12 @@
 
             if (isLikeVisible) {
                 openlike.animate({
-                    height:"show"
-                },500);
+                    height: "show"
+                }, 500);
             } else {
                 openlike.animate({
-                    height:"hide"
-                },300);
+                    height: "hide"
+                }, 500);
             }
         }
 
@@ -248,12 +317,12 @@
 
             if (isRecVisible) {
                 openRec.animate({
-                    height:"show"
-                },500);
+                    height: "show"
+                }, 500);
             } else {
                 openRec.animate({
-                    height:"hide"
-                },300);
+                    height: "hide"
+                }, 300);
             }
         }
     </script>
