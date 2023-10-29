@@ -25,9 +25,9 @@
   <ul class="nav nav-tabs flex justify-content-center my-nav-tabs" id="myTab" role="tablist">
     {% for day in travelday %}
       <li class="nav-item" role="presentation">
-        <button class="nav-link {% if forloop.counter == 1 %}active{% endif %}" id="{{ day }}-tab" data-bs-toggle="tab" data-bs-target="#child-{{ day }}" type="button" role="tab"
-          aria-controls="child-{{ day }}" aria-selected="true">第{{ day }}天</button>
-      </li>
+        <button class="nav-link {% if forloop.counter == 1 %}active{% endif %}" id="{{ day }}-tab" data-bs-toggle="tab" data-bs-target="#ch-{{ day }}" type="button" role="tab"
+          aria-controls="ch-{{ day }}" aria-selected="true">第{{ day }}天</button>
+      </li>  <!--aria-controls="ch-{{ day }}"變數名稱要改一下-->
     {% endfor %}
   </ul>
   
@@ -35,7 +35,7 @@
 
   <div class="tab-content" id="myTabContent" style="width: 100%;margin: 0 auto;">
     {% for day in travelday %}
-      <div class="tab-pane fade{% if forloop.counter == 1 %}show active{% endif %}" id="child-{{ day }}" role="tabpanel" aria-labelledby="{{ day }}-tab"
+      <div class="tab-pane fade{% if forloop.counter == 1 %}show active{% endif %}" id="ch-{{ day }}" role="tabpanel" aria-labelledby="{{ day }}-tab"
         style="display: flex;justify-content: center;align-items: center;align-content: center;">
         <div class="row" style="width: 100%;">
           <div class="col-6" style="border: 1px solid black;">
@@ -59,15 +59,18 @@
               </div>
             </div>
             <div>
-              <button id ="recommend-tab">推薦景點</button> <br>
+              {% comment %} <button id="recommend-tab{{day}}" onclick="recommend({{ day }})">推薦景點</button> <br> {% endcomment %}
+              推薦景點 <br>
               <!-- 添加地图容器 -->
               <input
-              id="pac-input-{{ day }}"
-              class="controls"
-              type="text"
-              placeholder="Search Box"
-              style="display: none;"
+                id="pac-input-{{ day }}"
+                class="controls"
+                type="text"
+                placeholder="Search Box"
+                style="display: none;"
               />
+              <div id="map-{{ day }}" style="width: 100%; height: 400px; display: none;"></div>
+
               左邊區塊點的景點加入右邊 這樣如果他附近沒有想去的地方可以從最愛或搜尋抓<br>
               顯示已排完序的景點
             </div>
@@ -165,63 +168,63 @@
       </div>
     {% endfor %}
   </div>
-      <!--<div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="{{ day }}-tab">
-        我是第二天
-         <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="child1-tab" data-bs-toggle="tab" data-bs-target="#child1"
-                        type="button" role="tab" aria-controls="child1" aria-selected="true"
-                        onclick="saveTabState('child1')">第一天</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="child2-tab" data-bs-toggle="tab" data-bs-target="#child2"
-                        type="button" role="tab" aria-controls="child2" aria-selected="false"
-                        onclick="saveTabState('child2')">第二天</button>
-                </li>
-            </ul> -->
-        <!-- <div class="tab-child1" id="myTabchild1" style="width: 80%;margin: 0 auto;">
-                <div class="tab-pane fade show active" id="child1" role="tabpanel" aria-labelledby="child1-tab"
-                    style="display: flex;justify-content: center;align-items: center;align-content: center;">
-                    <div class="row" style="width: 100%;">
-                        <div class="col-md-4 col-sm-6">
-                            <div class="img">
-                                <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                            </div>
-                            <div class="txt">
-                                <span>testtest</span>
-                            </div>
+
+  <!--<div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="{{ day }}-tab">
+    我是第二天
+      <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="child1-tab" data-bs-toggle="tab" data-bs-target="#child1"
+                    type="button" role="tab" aria-controls="child1" aria-selected="true"
+                    onclick="saveTabState('child1')">第一天</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="child2-tab" data-bs-toggle="tab" data-bs-target="#child2"
+                    type="button" role="tab" aria-controls="child2" aria-selected="false"
+                    onclick="saveTabState('child2')">第二天</button>
+            </li>
+        </ul> -->
+    <!-- <div class="tab-child1" id="myTabchild1" style="width: 80%;margin: 0 auto;">
+            <div class="tab-pane fade show active" id="child1" role="tabpanel" aria-labelledby="child1-tab"
+                style="display: flex;justify-content: center;align-items: center;align-content: center;">
+                <div class="row" style="width: 100%;">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="img">
+                            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
                         </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="img">
-                                <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                            </div>
-                            <div class="txt">
-                                <span>testtest</span>
-                            </div>
+                        <div class="txt">
+                            <span>testtest</span>
                         </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="img">
-                                <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                            </div>
-                            <div class="txt">
-                                <span>testtest</span>
-                            </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="img">
+                            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                        </div>
+                        <div class="txt">
+                            <span>testtest</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="img">
+                            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                        </div>
+                        <div class="txt">
+                            <span>testtest</span>
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab">
-                    我是內容<br>我是內容<br>我是內容<br>我是內容<br>我是內容<br>
-                </div>
-            </div> 
-      </div>-->
-  
-  
+            </div>
+            <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab">
+                我是內容<br>我是內容<br>我是內容<br>我是內容<br>我是內容<br>
+            </div>
+        </div> 
+  </div>-->
 
   <!-- 建立行程 -->
 </main>
+<script src="../static/js/testGPS.js"></script>
 {% endblock body %}
 {% block content_script %}
-<script src="../static/js/testGPS.js"></script>
+
 <script src="/static/js/create.js"></script>
 <script>
   /*window.addEventListener = function () {
@@ -264,8 +267,7 @@
   } {% endcomment %}
 
   //第1步驟 推薦附近景點~~~~
-  var clickRecommend = document.getElementById('recommend-tab');
-  clickRecommend.addEventListener("click", function (e) {
+  function recommend(day){
     var nowtime = document.getElementById("nowtime");
     //var ct_status = 0;
     const userLocation = document.getElementById("userLocation-1");
@@ -333,7 +335,12 @@
       error: function () {
       }
     });
-  });
+  }
+  
+  /*var clickRecommend = document.getElementById('recommend-tab');
+  clickRecommend.addEventListener("click", function (e) {
+    
+  });*/
 
   var all_select = [];
   //第2步驟 推薦相似景點~~~
@@ -540,6 +547,7 @@
     event.preventDefault();
   });
 
+  //---------------------------------------------------------------------------------------------------------------------------------------------
 
   {% comment %} var addDay = document.getElementById('addDay');
   var num = 1;
@@ -551,6 +559,7 @@
 
   addDay.click() //初始加 {% endcomment %}
 
+  //我是儲存~~~
   var saveDays = document.getElementById('saveDays');
   saveDays.addEventListener("click", function (e) {
     alert('儲存' + '{{choiceday}}');
