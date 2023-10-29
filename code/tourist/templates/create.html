@@ -75,7 +75,17 @@
                 <span class="like_txt">我的收藏</span>
               </div>
               <div class="row openlike" style="display: none;">
-                <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
+                {% for item in user_favorite_list %}
+                  <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;" id = {{ item.a_id.id }}>
+                    <div style="border: 1px solid black;">
+                      <img src="../static/images/attractions/{{ item.a_id.place_id }}_0.jpg" class="img-responsive" width="100%" alt="">
+                    </div>
+                    <div style="border: 1px solid black;">
+                      {{ item.a_id.a_name }}
+                    </div>
+                  </div>
+                {% endfor %}
+                {% comment %} <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
                   <div style="border: 1px solid black;">
                     <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
                   </div>
@@ -83,6 +93,7 @@
                     我是介紹圖片的文字
                   </div>
                 </div>
+
                 <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
                   <div style="border: 1px solid black;">
                     <img src="../static/images/Datong.jpeg" class="img-responsive" width="100%" alt="">
@@ -91,6 +102,8 @@
                     我是介紹圖片的文字
                   </div>
                 </div>
+
+
                 <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
                   <div style="border: 1px solid black;">
                     <img src="../static/images/cloud1.png" class="img-responsive" width="100%" alt="">
@@ -98,7 +111,8 @@
                   <div style="border: 1px solid black;">
                     我是介紹圖片的文字
                   </div>
-                </div>
+                </div> {% endcomment %}
+
               </div>
             </div>
             <hr>

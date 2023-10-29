@@ -49,7 +49,13 @@ def local_to_address(lat,lng):
 # 建立行程
 @login_required(login_url="/login")
 def create(request, ct_id):
-    user_favorite = [4, 6, 9, 10, 15, 16, 18] #需修改新增的部分
+    # 抓使用者收藏的景點
+    uid = request.user.id
+    user_favorite_list = Favorite.objects.filter(u_id = uid).values()
+    for i in user_favorite_list:
+        i['a_id'] = Attractions.objects.get(id = i['a_id'])
+        
+    user_favorite_type = [4, 6, 9, 10, 15, 16, 18] #需修改新增的部分
     ct_data = Create_Travel.objects.get(id=ct_id)
     choiceday = 1
     # apikey = GOOGLE_PLACES_API_KEY   #記得一定要打開!!!!!!!!!!!!!!!!!!!!!!!!!(API在這!)
@@ -167,7 +173,7 @@ def create(request, ct_id):
             print(new_nowtime)
 
             m = recommend(
-                user_favorite, new_nowtime, get_user_address, start_day, stay_time
+                user_favorite_type, new_nowtime, get_user_address, start_day, stay_time
             )
             m_list = Attractions.objects.filter(place_id__in=m)
             crow_opening_list = []
@@ -213,7 +219,7 @@ def create(request, ct_id):
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
             final = final_order(
-                o_attractions_list, new_nowtime, week, stay_time, user_favorite
+                o_attractions_list, new_nowtime, week, stay_time, user_favorite_type
             )
             # print('final,我在這!!!!!!!!!!!!!!!!',final)
             # ------主要的
