@@ -114,6 +114,28 @@ class Attractions_Ct(models.Model):
 #     status = models.BooleanField()
 #     like = models.IntegerField(default=0, null=True, blank=True)
 
+# 景點問問題和回答問題的資料庫
+class AttractionsQuestion(models.Model):
+    u = models.ForeignKey(
+        to=User, on_delete=models.SET_DEFAULT, default=-1
+    )  # user沒了問題u_id會被設為null
+    a = models.ForeignKey(
+        to=Attractions, on_delete=models.SET_DEFAULT, default=-1
+    )  # 景點沒了留言a_id會被設為null
+    content = models.TextField(max_length=255,default="")
+    comment_date = models.DateField(auto_now_add=True, null=False, blank=False)
+
+class AttractionsAnswer(models.Model):
+    u = models.ForeignKey(
+        to=User, on_delete=models.SET_DEFAULT, default=-1
+    )  # user沒了留言u_id會被設為null
+    aq = models.ForeignKey(
+        to=AttractionsQuestion, on_delete=models.SET_DEFAULT, default=-1
+    )  # 問題沒了aq_id會被設為null
+    content = models.TextField(max_length=255,default="")
+    comment_date = models.DateField(auto_now_add=True, null=False, blank=False)
+
+
 
 class AttractionsComment(models.Model):
     u = models.ForeignKey(
@@ -124,6 +146,8 @@ class AttractionsComment(models.Model):
     )  # 景點沒了留言a_id會被設為null
     content = models.TextField(max_length=255,default="")
     comment_date = models.DateField(auto_now_add=True, null=False, blank=False)
+
+
 
 class AttractionsCommentFavorite(models.Model):
     ac = models.ForeignKey(
