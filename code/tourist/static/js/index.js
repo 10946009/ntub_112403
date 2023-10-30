@@ -19,7 +19,8 @@ document.addEventListener("DOMContentLoaded",function(){
     '../static/images/bg5.png',
     '../static/images/bg6.jpeg',
     '../static/images/bg7.png',
-    '../static/images/bg8.jpg'
+    '../static/images/bg8.jpg',
+    '../static/images/jp_img.jpg',
   ]
 
   var randomIndex = Math.floor(Math.random()*images.length);
