@@ -347,7 +347,6 @@
         <div class="out_ask_qa" id="out_ask_qa">
             <div id="ask_qa_container" class="ask_qa_container">
                 <form class="ask-content" id="ask-content" action="/comment/{{detail.id}}/" method="POST">
-                    {% csrf_token %}
                     <div class="ask_container" id="ask_container">
                         <h5 style="font-size: 24px;">
                             提出問題
@@ -1121,28 +1120,22 @@
                 </div>
             </div>
             <div class="col-9">
+                {% for comment in comment_list %}
+                
                 <div class="comment">
                     <div class="avatar">
                         <img src="../static/images/an.jpeg" alt="User Avatar">
                     </div>
                     <div class="comment-content">
                         <h6 class="username">
-                            安妮雅<br>
+                            {{comment.get_name}}<br>
                             <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
                                     class="fa-solid fa-crown"></i>在地嚮導</span>
                             <span style="color:gray;font-size: 12px; font-style: italic;">·4則評論
                                 ·3張照片</span>
                         </h6>
-                        <div class="star_count">
-                            <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
-                            <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
-                            <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
-                            <span><i class="fa-solid fa-star"></i></span>
-                            <span><i class="fa-solid fa-star"></i></span>
-                            <span style="color:gray;font-size: 12px; font-style: italic;">2週前</span>
-                        </div>
                         <p class="comment-text">
-                            天氣冷來到動物園，動物們顯得心情不好，跟人類一樣也會冷到不想到，看到最多的是背影跟屁股，也是難得的經驗。
+                            {{comment.content}}
                             <br>
                             <!-- <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
                                 2033</span> -->
@@ -1159,6 +1152,7 @@
                         </div>
                     </div>
                 </div>
+                {% endfor %}
                 <div class="comment">
                     <div class="avatar">
                         <img src="../static/images/dog.jpg" alt="User Avatar">
@@ -1244,118 +1238,122 @@
             </div>
         </div>
         <!-- 評論彈跳框框(ok) -->
-        <div class="out_share_comment" id="out_share_comment">
-            <div id="share_comment_container" class="share_comment_container">
-                <form class="share_comment-content" id="share_comment-content" action="">
-                    <div class="comment_container" id="comment_container">
-                        <h5 style="font-size: 24px;">
-                            {{ detail.a_name }}
-                        </h5>
-                        <!-- <span class="close" id="close" title="關閉">&times;</span> -->
-                    </div>
-                    <div class="share_comment_con" style="padding: 20px;">
-                        <div class="comment">
-                            <div class="avatar">
-                                <img src="../static/images/an.jpeg" alt="User Avatar">
-                            </div>
-                            <div class="comment-content">
-                                <h6 class="username">
-                                    {{user.username}}<br>
-                                    <span style="color: gray; font-size: 14px; font-style: italic;">公開發佈 &ensp;</span>
-                                    <span class="show_com_info"><i class="comment_info fa-solid fa-circle-info"
-                                            id="comment_info"></i></span>
-                                    <div class="show_comment_info" id="show_comment_info">
-                                        您的貼文會與個人資料名稱及相片一併公開顯示。您的貼文必須遵循政策的規定。</div>
-                                </h6>
-                            </div>
+        <form class="ask-content" id="ask-content" action="/comment/{{detail.id}}/" method="POST">
+            
+            <div class="out_share_comment" id="out_share_comment">
+                <div id="share_comment_container" class="share_comment_container">
+                    <form class="share_comment-content" id="share_comment-content" action="">
+                        <div class="comment_container" id="comment_container">
+                            <h5 style="font-size: 24px;">
+                                {{ detail.a_name }}
+                            </h5>
+                            <!-- <span class="close" id="close" title="關閉">&times;</span> -->
                         </div>
-                        <div class="comment_rating" id="rating">
-                            <div class="comment_star" data-value="1"><i class="fas fa-star"></i></div>
-                            <div class="comment_star" data-value="2"><i class="fas fa-star"></i></div>
-                            <div class="comment_star" data-value="3"><i class="fas fa-star"></i></div>
-                            <div class="comment_star" data-value="4"><i class="fas fa-star"></i></div>
-                            <div class="comment_star" data-value="5"><i class="fas fa-star"></i></div>
-                        </div>
-                        <div>
-                            <textarea name="user_share_comment" id="user_share_comment" cols="100%" rows="4"
-                                style="resize:none; border-radius: 10px;max-width: 100%;padding: 10px; "
-                                placeholder="詳細說明你在這個地點的親身體驗。"></textarea>
-                        </div>
-                        <div class="image-container_ph">
-                            <!-- 預覽圖片 -->
-                            <div id="imagePreview"></div>
-                        </div>
-                        <!-- 上傳評論圖片 -->
-                        <form action="" method="post" enctype="multipart/form-data">
-                            <div class="add_comment_photo">
-                                <label for="photoInput" class="add_ph">
-                                    <i class="fa-solid fa-camera-retro"
-                                        style="margin-right: 5px; margin-top: 5px;"></i><span>新增相片</span>
-                                </label>
-                                <input type="file" id="photoInput" accept="image/*" style="display: none;" multiple
-                                    onchange="previewphoto(event)">
+                        <div class="share_comment_con" style="padding: 20px;">
+                            <div class="comment">
+                                <div class="avatar">
+                                    <img src="../static/images/an.jpeg" alt="User Avatar">
+                                </div>
+                                <div class="comment-content">
+                                    <h6 class="username">
+                                        {{request.user.username}}<br>
+                                        <span style="color: gray; font-size: 14px; font-style: italic;">公開發佈 &ensp;</span>
+                                        <span class="show_com_info"><i class="comment_info fa-solid fa-circle-info"
+                                                id="comment_info"></i></span>
+                                        <div class="show_comment_info" id="show_comment_info">
+                                            您的貼文會與個人資料名稱及相片一併公開顯示。您的貼文必須遵循政策的規定。</div>
+                                    </h6>
+                                </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="post_share_comment">
-                        <span class="share_comment_btn_cancel" id="share_comment_btn_cancel">取消</span>
-                        <span class="share_comment_btn_ok" id="share_comment_btn_ok">張貼</span>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- <hr style="border:2px solid #777777"> -->
-        <!-- 上傳景點圖片彈跳框框(ok) -->
-        <div class="out_update_att_ph" id="out_update_att_ph">
-            <div id="update_att_ph_container" class="update_att_ph_container">
-                <form class="update_att_ph-content" id="update_att_ph-content" action="">
-                    <div class="update_ph_container" id="update_ph_container">
-                        <h5 style="font-size: 24px;">
-                            {{ detail.a_name }}
-                        </h5>
-                        <!-- <span class="close" id="close" title="關閉">&times;</span> -->
-                    </div>
-                    <div class="update_att_ph_con" style="padding: 20px;">
-                        <div class="comment">
-                            <div class="avatar">
-                                <img src="../static/images/an.jpeg" alt="User Avatar">
+                            <div class="comment_rating" id="rating">
+                                <div class="comment_star" data-value="1"><i class="fas fa-star"></i></div>
+                                <div class="comment_star" data-value="2"><i class="fas fa-star"></i></div>
+                                <div class="comment_star" data-value="3"><i class="fas fa-star"></i></div>
+                                <div class="comment_star" data-value="4"><i class="fas fa-star"></i></div>
+                                <div class="comment_star" data-value="5"><i class="fas fa-star"></i></div>
                             </div>
-                            <div class="update_att_ph-content">
-                                <h6 class="username">
-                                    {{user.username}}<br>
-                                    <span style="color: gray; font-size: 14px; font-style: italic;">公開發佈 &ensp;</span>
-                                    <span class="show_update_info"><i class="comment_info fa-solid fa-circle-info"
-                                            id="update_info"></i></span>
-                                    <div class="show_up_info" id="show_up_info">
-                                        您上傳的景點照片會經過管理員審核後一併公開顯示。您必須遵循政策的規定。</div>
-                                </h6>
+                            <div>
+                                <textarea name="user_share_comment" id="user_share_comment" cols="100%" rows="4"
+                                    style="resize:none; border-radius: 10px;max-width: 100%;padding: 10px; "
+                                    placeholder="詳細說明你在這個地點的親身體驗。"></textarea>
                             </div>
-                        </div>
-                        <!-- 上傳評論圖片 -->
-                        <div style="padding: 100px; border: black dashed; background-color: #f9edd2;">
+                            <div class="image-container_ph">
+                                <!-- 預覽圖片 -->
+                                <div id="imagePreview"></div>
+                            </div>
+                            <!-- 上傳評論圖片 -->
                             <form action="" method="post" enctype="multipart/form-data">
-                                <div class="up_date_photo">
-                                    <label for="updateInput" class="update_ph">
+                                <div class="add_comment_photo">
+                                    <label for="photoInput" class="add_ph">
                                         <i class="fa-solid fa-camera-retro"
                                             style="margin-right: 5px; margin-top: 5px;"></i><span>新增相片</span>
                                     </label>
-                                    <input type="file" id="updateInput" accept="image/*" style="display: none;" multiple
-                                        onchange="update_previewphoto(event)">
+                                    <input type="file" id="photoInput" accept="image/*" style="display: none;" multiple
+                                        onchange="previewphoto(event)">
                                 </div>
                             </form>
                         </div>
-                        <div class="update-container_ph">
-                            <!-- 預覽圖片 -->
-                            <div id="updatePreview"></div>
+                        <div class="post_share_comment">
+                            <span class="share_comment_btn_cancel" id="share_comment_btn_cancel">取消</span>
+                            <span class="share_comment_btn_ok" id="share_comment_btn_ok" onclick="sendComment({{detail.id}})">張貼</span>
                         </div>
-                    </div>
-                    <div class="post_update_att_ph">
-                        <span class="update_att_ph_btn_cancel" id="update_att_ph_btn_cancel">取消</span>
-                        <span class="update_att_ph_btn_ok" id="update_att_ph_btn_ok">張貼</span>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
+        </form>
+        <!-- <hr style="border:2px solid #777777"> -->
+        <!-- 上傳景點圖片彈跳框框(ok) -->
+            <div class="out_update_att_ph" id="out_update_att_ph">
+                <div id="update_att_ph_container" class="update_att_ph_container">
+                    <form class="update_att_ph-content" id="update_att_ph-content" action="">
+                        <div class="update_ph_container" id="update_ph_container">
+                            <h5 style="font-size: 24px;">
+                                {{ detail.a_name }}
+                            </h5>
+                            <!-- <span class="close" id="close" title="關閉">&times;</span> -->
+                        </div>
+                        <div class="update_att_ph_con" style="padding: 20px;">
+                            <div class="comment">
+                                <div class="avatar">
+                                    <img src="../static/images/an.jpeg" alt="User Avatar">
+                                </div>
+                                <div class="update_att_ph-content">
+                                    <h6 class="username">
+                                        {{user.username}}<br>
+                                        <span style="color: gray; font-size: 14px; font-style: italic;">公開發佈 &ensp;</span>
+                                        <span class="show_update_info"><i class="comment_info fa-solid fa-circle-info"
+                                                id="update_info"></i></span>
+                                        <div class="show_up_info" id="show_up_info">
+                                            您上傳的景點照片會經過管理員審核後一併公開顯示。您必須遵循政策的規定。</div>
+                                    </h6>
+                                </div>
+                            </div>
+                            <!-- 上傳評論圖片 -->
+                            <div style="padding: 100px; border: black dashed; background-color: #f9edd2;">
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    <div class="up_date_photo">
+                                        <label for="updateInput" class="update_ph">
+                                            <i class="fa-solid fa-camera-retro"
+                                                style="margin-right: 5px; margin-top: 5px;"></i><span>新增相片</span>
+                                        </label>
+                                        <input type="file" id="updateInput" accept="image/*" style="display: none;" multiple
+                                            onchange="update_previewphoto(event)">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="update-container_ph">
+                                <!-- 預覽圖片 -->
+                                <div id="updatePreview"></div>
+                            </div>
+                        </div>
+                        <div class="post_update_att_ph">
+                            <span class="update_att_ph_btn_cancel" id="update_att_ph_btn_cancel">取消</span>
+                            <span class="update_att_ph_btn_ok" id="update_att_ph_btn_ok">張貼</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
     </div>
 </div>
 
@@ -2242,61 +2240,69 @@
         data_crowdlist = [];
     }
     var tagWeek = document.getElementsByClassName("tag-week");
+    var crowdCanvas = document.getElementById('people_if_Chart')
+    var ctx = crowdCanvas.getContext('2d');
 
     for (var i = 0; i < tagWeek.length; i++) {
         tagWeek[i].addEventListener("click", function () {
             var data = total_data[this.dataset.set].crowd;
-            console.log(data);
-            var ctx = document.getElementById('people_if_Chart').getContext('2d');
-            var chart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: data.map(x => x.Time.slice(11, 16)),
-                    datasets: [{
-                        // label: '人潮流量',
-                        data: data.map(x => x.Volume),
-                        // Line
-                        lineTension: 0,
-                        backgroundColor: '#FF5376',
-                        borderColor: '#FF5376',
-                        fill: false,
-                        borderWidth: 2,
-                        // Point
-                        pointRadius: 5,
-                        pointHoverRadius: 7,
-                    }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true, // 从0开始
-                                max: 100, // 最大值设置为100
-                            }
+            if (data.map(x => x.Volume).reduce((a,b)=>a+b) == 0) { //判斷加總是否為0
+                ctx.clearRect(0, 0, crowdCanvas.width, crowdCanvas.height);
+                ctx.font = "72px Arial";
+                ctx.fillStyle = "black";
+                ctx.fillText("休息", 200, 200);
+            }else{
+                var chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: data.map(x => x.Time.slice(11, 16)),
+                        datasets: [{
+                            // label: '人潮流量',
+                            data: data.map(x => x.Volume),
+                            // Line
+                            lineTension: 0,
+                            backgroundColor: '#FF5376',
+                            borderColor: '#FF5376',
+                            fill: false,
+                            borderWidth: 2,
+                            // Point
+                            pointRadius: 5,
+                            pointHoverRadius: 7,
                         }]
                     },
-                    title: {
-                        display: true,
-                        // text: '人潮流量',
-                        position: 'bottom',
-                        fontSize: 24,
-                        fontStyle: 'normal',
-                        fontFamily: 'Century Gothic'
-                    },
-                    legend: {
-                        display: false
-                    },
-                    responsive: false,
-                    interaction: {
-                        mode: 'point' // 设置交互模式为'point'以禁用点击和悬停
-                    },
-                    elements: {
-                        line: {
-                            tension: 0, // 设置线条的曲线张力为0，使线条更直接
-                        }
-                    },
-                }
-            });
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true, // 从0开始
+                                    max: 100, // 最大值设置为100
+                                }
+                            }]
+                        },
+                        title: {
+                            display: true,
+                            // text: '人潮流量',
+                            position: 'bottom',
+                            fontSize: 24,
+                            fontStyle: 'normal',
+                            fontFamily: 'Century Gothic'
+                        },
+                        legend: {
+                            display: false
+                        },
+                        responsive: false,
+                        interaction: {
+                            mode: 'point' // 设置交互模式为'point'以禁用点击和悬停
+                        },
+                        elements: {
+                            line: {
+                                tension: 0, // 设置线条的曲线张力为0，使线条更直接
+                            }
+                        },
+                    }
+                });
+            }
+            
         });
     }
     var currentDate = new Date();
