@@ -144,7 +144,9 @@ def attraction_details(request):
         # 取得附近景點
         near_attractions = get_nearby_attractions(choose_attractions)
         
-
+        # 取得留言
+        comment_list = AttractionsComment.objects.filter(a_id=choose_a_id)
+        print('comment_list',comment_list)
         # 轉HTML格式
         detail_html = render_to_string(
             template_name="attraction_details_detail.html",
@@ -156,6 +158,7 @@ def attraction_details(request):
                 "near_attractions":near_attractions,
                 "request": request,
                 "is_favorite":is_favorite,
+                "comment_list":comment_list,
             },
         )
         detail_data_dict = {"attractions_detail_html": detail_html}

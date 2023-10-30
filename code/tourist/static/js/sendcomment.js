@@ -1,4 +1,4 @@
-function sendComment(aid){
+function sendAsk(aid){
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     if (confirm("確認要送出嗎?")) {
         $.ajax({
@@ -8,6 +8,28 @@ function sendComment(aid){
             data:
             {aid:aid,
             comment:$('#user_ask').val(),
+            },
+            success: function (data) {
+                alert('成功提交!');
+            },
+            error: function (xhr, errmsg, err) {
+                alert(xhr.status + ": " + xhr.responseText);
+            }
+        });
+    }
+}
+
+function sendComment(aid){
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    console.log($('#user_share_comment').val());
+    if (confirm("確認要送出嗎?")) {
+        $.ajax({
+            headers: { 'X-CSRFToken': csrftoken },
+            url:`/comment/${aid}/`,
+            type: 'POST',
+            data:
+            {aid:aid,
+            comment:$('#user_share_comment').val(),
             },
             success: function (data) {
                 alert('成功提交!');
