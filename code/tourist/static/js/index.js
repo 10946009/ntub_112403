@@ -37,6 +37,28 @@ document.addEventListener("DOMContentLoaded",function(){
   banner.style.zIndex = '100';
 })
 
+// change img when mouser hover
+const imageMouse = document.getElementById("hover").getElementsByTagName('img');
+const initialImg = imageMouse[0].src;
+
+const imageMouseSource = [
+  '../static/images/attractions/{{item.place_id}}_0.jpg',
+  '../static/images/attractions/{{item.place_id}}_1.jpg',
+  '../static/images/attractions/{{item.place_id}}_2.jpg',
+]
+
+function changeImg(){
+  for (let i = 0; i < imageMouse.length; i++){
+    imageMouse[i].src = imageMouseSource[i] || initialImg;
+  }
+}
+function resetImg(){
+  for (let i = 0; i < imageMouse.length; i++){
+    imageMouse[i].src = initialImg;
+  }
+}
+
+
 //向下滑動
 // document.querySelector('.scroll-down-button').addEventListener('click', function (e) {
 //   e.preventDefault();
