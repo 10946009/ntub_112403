@@ -61,6 +61,26 @@
         .imgcontainer img.top:hover {
             opacity: 0;
         }
+
+
+
+        .hoverTest {
+            position: relative;
+        }
+
+        .hoverTest img {
+            position: absolute;
+            /* CSS3淡出淡入效果,1秒 */
+            -webkit-transition: opacity 1s ease-in-out;
+            -moz-transition: opacity 1s ease-in-out;
+            -o-transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .hoverTest img:nth-of-type(2):hover {
+            opacity: 0;
+            /* 滑鼠滑入時，透明度變0 */
+        }
     </style>
 </head>
 
@@ -265,48 +285,55 @@
             </div>
         </div>
     </main>
-
+    <div class="row" style="width: 90%;">
+        <div class="hoverTest div1" style="width: 500px;margin: 0 auto;">
+            <img src="../static/images/bg1.jpg" class="img-responsive" width="100%" />
+            <img src="../static/images/bg2.jpg" class="img-responsive" width="100%" />
+            <img src="../static/images/bg5.png" class="img-responsive" width="100%" />
+        </div>
+        <div class="hoverTest div2" style="width: 500px;margin: 0 auto;">
+            <img src="../static/images/bg6.jpeg" class="img-responsive" width="100%" />
+            <img src="../static/images/bg7.png" class="img-responsive" width="100%" />
+            <img src="../static/images/bg8.jpg" class="img-responsive" width="100%" />
+        </div>
+    </div>
 
     <script src="../static/js/jquery-3.7.0.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
     <script>
+        $(document).ready(function () {
+            $('.hoverTest').each(function () {
+                var $images = $(this).find('img');
+                var imageCount = $images.length;
+                var currentIndex = 0;
+                var timer; // 定时器变量
 
-        // 获取图片元素
-        const images = document.getElementById('hover').getElementsByTagName('img');
-        const initialSrc = images[0].src; // 保存初始图片的src
+                function showImage(index) {
+                    $images.css('opacity', '0'); // 隐藏所有图片
+                    $images.eq(index).css('opacity', '1'); // 显示特定索引的图片
+                }
 
-        // 存储多张图像的 src
-        const imageSources = [
-            "../static/images/101.jpg",
-            "../static/images/an.jpeg",
-            "../static/images/dog.jpg",
-            // 添加更多图片路径...
-        ];
-
-        let currentIndex = 0;
-
-        // 悬停时切换图片
-        function changeImage() {
-            for (let i = 0; i < images.length; i++) {
-                images[i].src = imageSources[currentIndex] || initialSrc; // 显示下一张图片
-
-                // 切换至下一张图片
-                currentIndex = (currentIndex + 1) % imageSources.length;
-            }
-
-            // 3秒后再次调用 changeImage()
-            setTimeout(changeImage, 3000); // 3000毫秒 = 3秒
-        }
-
-        changeImage(); // 最初调用
+                function nextImage() {
+                    currentIndex = (currentIndex + 1) % imageCount;
+                    showImage(currentIndex);
+                }
 
 
-        // 当鼠标离开时重置图片
-        function resetImage() {
-            for (let i = 0; i < images.length; i++) {
-                images[i].src = initialSrc; // 恢复初始图片
-            }
-        }
+                $(this).on('mouseenter', function () {
+                    // 当鼠标进入 .hoverTest 区域时
+                    showImage(1); // 显示第二张图片
+                    timer = setTimeout(function () {
+                        nextImage(); // 三秒后显示下一张图片
+                        timer = setInterval(nextImage, 3000); // 每三秒切换一次图片
+                    }, 2000);
+                }).on('mouseleave', function () {
+                    // 当鼠标离开 .hoverTest 区域时
+                    clearTimeout(timer); // 清除定时器
+                    $images.css('opacity', '1'); 
+                });
+            })
+
+        });
 
 
 

@@ -38,25 +38,25 @@ document.addEventListener("DOMContentLoaded",function(){
 })
 
 // change img when mouser hover
-const imageMouse = document.getElementById("hover").getElementsByTagName('img');
-const initialImg = imageMouse[0].src;
+// const imageMouse = document.getElementById("hover").getElementsByTagName('img');
+// const initialImg = imageMouse[0].src;
 
-const imageMouseSource = [
-  '../static/images/attractions/{{item.place_id}}_0.jpg',
-  '../static/images/attractions/{{item.place_id}}_1.jpg',
-  '../static/images/attractions/{{item.place_id}}_2.jpg',
-]
+// const imageMouseSource = [
+//   '../static/images/attractions/{{item.place_id}}_0.jpg',
+//   '../static/images/attractions/{{item.place_id}}_1.jpg',
+//   '../static/images/attractions/{{item.place_id}}_2.jpg',
+// ]
 
-function changeImg(){
-  for (let i = 0; i < imageMouse.length; i++){
-    imageMouse[i].src = imageMouseSource[i] || initialImg;
-  }
-}
-function resetImg(){
-  for (let i = 0; i < imageMouse.length; i++){
-    imageMouse[i].src = initialImg;
-  }
-}
+// function changeImg(){
+//   for (let i = 0; i < imageMouse.length; i++){
+//     imageMouse[i].src = imageMouseSource[i] || initialImg;
+//   }
+// }
+// function resetImg(){
+//   for (let i = 0; i < imageMouse.length; i++){
+//     imageMouse[i].src = initialImg;
+//   }
+// }
 
 
 //向下滑動
