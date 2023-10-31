@@ -38,6 +38,40 @@ document.addEventListener("DOMContentLoaded",function(){
 })
 
 // change img when mouser hover
+        $(document).ready(function () {
+          $('.hoverTest').each(function () {
+              var $images = $(this).find('img');
+              var imageCount = $images.length;
+              var currentIndex = 0;
+              var timer; // 定时器变量
+
+              function showImage(index) {
+                  $images.css('opacity', '0'); // 隐藏所有图片
+                  $images.eq(index).css('opacity', '1'); // 显示特定索引的图片
+              }
+
+              function nextImage() {
+                  currentIndex = (currentIndex + 1) % imageCount;
+                  showImage(currentIndex);
+              }
+
+
+              $(this).on('mouseenter', function () {
+                  // 当鼠标进入 .hoverTest 区域时
+                  showImage(1); // 显示第二张图片
+                  timer = setTimeout(function () {
+                      nextImage(); // 三秒后显示下一张图片
+                      timer = setInterval(nextImage, 3000); // 每三秒切换一次图片
+                  }, 2000);
+              }).on('mouseleave', function () {
+                  // 当鼠标离开 .hoverTest 区域时
+                  clearTimeout(timer); // 清除定时器
+                  $images.css('opacity', '1'); 
+              });
+          })
+
+      });
+
 // const imageMouse = document.getElementById("hover").getElementsByTagName('img');
 // const initialImg = imageMouse[0].src;
 
