@@ -146,6 +146,7 @@ def attraction_details(request):
         
         # 取得留言
         comment_list = AttractionsComment.objects.filter(a_id=choose_a_id)
+        question_list = AttractionsQuestion.objects.filter(a_id=choose_a_id)
         print('comment_list',comment_list)
         # 轉HTML格式
         detail_html = render_to_string(
@@ -159,6 +160,7 @@ def attraction_details(request):
                 "request": request,
                 "is_favorite":is_favorite,
                 "comment_list":comment_list,
+                "question_list":question_list,
             },
         )
         detail_data_dict = {"attractions_detail_html": detail_html}

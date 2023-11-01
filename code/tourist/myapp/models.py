@@ -124,7 +124,11 @@ class AttractionsQuestion(models.Model):
     )  # 景點沒了留言a_id會被設為null
     content = models.TextField(max_length=255,default="")
     comment_date = models.DateField(auto_now_add=True, null=False, blank=False)
-
+    def get_answer(self):
+        return AttractionsAnswer.objects.filter(aq_id=self.id)
+    # @property
+    # def name(self):
+    #     return self.get_name()
     
 class AttractionsAnswer(models.Model):
     u = models.ForeignKey(
@@ -148,11 +152,11 @@ class AttractionsComment(models.Model):
     content = models.TextField(max_length=255,default="")
     comment_date = models.DateField(auto_now_add=True, null=False, blank=False)
 
-    def get_name(self):
-        return self.u.username
-    @property
-    def name(self):
-        return self.get_name()
+    # def get_name(self):
+    #     return self.u.username
+    # @property
+    # def name(self):
+    #     return self.get_name()
 
 class AttractionsCommentFavorite(models.Model):
     ac = models.ForeignKey(
