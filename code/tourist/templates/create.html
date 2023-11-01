@@ -59,7 +59,6 @@
               </div>
             </div>
             <div>
-              {% comment %} <button id="recommend-tab{{day}}" onclick="recommend({{ day }})">推薦景點</button> <br> {% endcomment %}
               <div class="recDiv">
                 <button class="changeToRec" id="changeToSearch" onclick="clickChangeMy()">切換我的行程</button>
                 <i class="fa-solid fa-thumbs-up rec_icon"></i>
@@ -74,6 +73,22 @@
               />
               <div id="map-{{ day }}" style="width: 100%; height: 400px; display: none;"></div>
 
+              <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <img src="/static/images/beitou.jpeg" class="img-responsive" width="100%">
+                    <div style="text-align: left;">
+                        <p>景點名稱</p>
+                        <p>地址</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <img src="/static/images/Datong.jpeg" class="img-responsive" width="100%">
+                    <div style="text-align: left;">
+                        <p>景點名稱</p>
+                        <p>地址</p>
+                    </div>
+                </div>
+              </div>
               左邊區塊點的景點加入右邊 這樣如果他附近沒有想去的地方可以從最愛或搜尋抓<br>
               顯示已排完序的景點
             </div>
