@@ -123,7 +123,7 @@ class AttractionsQuestion(models.Model):
         to=Attractions, on_delete=models.SET_DEFAULT, default=-1
     )  # 景點沒了留言a_id會被設為null
     content = models.TextField(max_length=255,default="")
-    comment_date = models.DateField(auto_now_add=True, null=False, blank=False)
+    question_date = models.DateField(auto_now_add=True, null=False, blank=False)
     def get_answer(self):
         return AttractionsAnswer.objects.filter(aq_id=self.id)
     # @property
@@ -138,7 +138,7 @@ class AttractionsAnswer(models.Model):
         to=AttractionsQuestion, on_delete=models.SET_DEFAULT, default=-1
     )  # 問題沒了aq_id會被設為null
     content = models.TextField(max_length=255,default="")
-    comment_date = models.DateField(auto_now_add=True, null=False, blank=False)
+    answer_date = models.DateField(auto_now_add=True, null=False, blank=False)
 
 
 
