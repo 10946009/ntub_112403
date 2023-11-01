@@ -84,19 +84,19 @@ function openLikeBtn() {
     }
 }
 
-var isRecVisible = false;
-function openRecBtn() {
+var isSimilarVisible = false;
+function openSimilarBtn() {
 
-    var openRec = $('.openRec');
+    var openSimilar = $('.openSimilar');
 
-    isRecVisible = !isRecVisible
+    isSimilarVisible = !isSimilarVisible
 
-    if (isRecVisible) {
-        openRec.animate({
+    if (isSimilarVisible) {
+      openSimilar.animate({
             height: "show"
         }, 500);
     } else {
-        openRec.animate({
+      openSimilar.animate({
             height: "hide"
         }, 300);
     }

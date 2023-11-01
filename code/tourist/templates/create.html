@@ -46,21 +46,25 @@
                   %}value="09:00" {% endif %}>
               </div>
               <div class="tabD">
-                <span id="tabDL">使用者位置：</span>
-                <label class="input_txt" id="userLocationName-{{ day }}"> 位置</label>
-                <p></p>
+                <span id="tabDL" style="margin-bottom: 5px;">使用者位置：
+                  <label class="input_txt" id="userLocationName-{{ day }}"> 位置</label>
+                </span>
+                <br>
                 <input type="hidden" id="userLocation-{{ day }}" value="{{local_xy.0}},{{local_xy.1}}">
-                <button type="button" id="nowLocationButton-{{ day }}"
+                <button class="placeBtn btn_now" type="button" id="nowLocationButton-{{ day }}"
                   onclick="get_nowLocation({{ day }})">取得目前位置</button>
-                <button type="button" id="mapButton-{{ day }}" onclick="get_map({{ day }})">選擇位置</button>
-                <button type="button" id="okButton-{{ day }}" onclick="clickOkButton({{ day }})">確認</button>
+                <button class="placeBtn btn_choose" type="button" id="mapButton-{{ day }}" onclick="get_map({{ day }})">選擇位置</button>
+                <button class="placeBtn btn_ok" type="button" id="okButton-{{ day }}" onclick="clickOkButton({{ day }})">確認</button>
                 <input type="hidden" placeholder="day" class="nowday" id="nowday">
               </div>
             </div>
             <div>
               {% comment %} <button id="recommend-tab{{day}}" onclick="recommend({{ day }})">推薦景點</button> <br> {% endcomment %}
-              推薦景點 <br>
-              <!-- 添加地图容器 -->
+              <div class="recDiv">
+                <button class="changeToRec" id="changeToSearch" onclick="clickChangeMy()">切換我的行程</button>
+                <i class="fa-solid fa-thumbs-up rec_icon"></i>
+                <span class="rec_txt">推薦景點</span>
+              </div><!-- 添加地图容器 -->
               <input
                 id="pac-input-{{ day }}"
                 class="controls"
@@ -156,13 +160,13 @@
 
                 </div>
               </div>
-              <hr>
+              <hr style="margin: 10px 0;">
               <div>
-                <div onclick="openRecBtn()" class="recDiv">
-                  <i class="fa-solid fa-thumbs-up rec_icon"></i>
-                  <span class="rec_txt">相似景點</span>
+                <div onclick="openSimilarBtn()" class="similarDiv">
+                  <span class="similar_icon">&asymp;</span>
+                  <span class="similar_txt">相似景點</span>
                 </div>
-                <div class="row openRec" style="display: none;">
+                <div class="row openSimilar" style="display: none;">
                   <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
                     <div style="border: 1px solid black;">
                       <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
