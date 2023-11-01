@@ -2392,6 +2392,12 @@ img {
         padding: 0 0 0 0;
     }
 
+    .detail_detail__header {
+        display: grid;
+        grid-template-columns: 12fr;
+        grid-gap: 2px;
+    }
+
 }
 
 
