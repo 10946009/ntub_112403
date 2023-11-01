@@ -45,27 +45,34 @@
             margin-right: auto;
         }
     
-        .main-content {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            width: 100%;
-        }
+        .main-wrap {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+      }
+      
+      .image-container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
     
-        .image-container {
-            display: flex;
-            align-items: flex-start;
-            flex-direction: column;
-        }
+    .main-image img {
+        width: 720px;
+        height: 480px;
+        margin-right: 5px;
+    }
     
-        .main-image, .small-image {
-            width: 100%;
-            max-height: 100%;
-        }
-    
-        .small-image + .small-image {
-            margin-top: 6px;
-        }
+    .small-images {
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .small-image img {
+      width: 720px;
+      height: 238px;
+      margin: 1px;
+  }
         .title-info-container {
             display: flex;
             justify-content: space-between;
@@ -213,20 +220,22 @@
             </div>
         </div>
         <section class="main-content">
-            <div class="image-container">
-                <div class="main-wrap">
-                    <div class="main-image">
+          <div class="image-container">
+            <div class="main-wrap">
+                <div class="main-image">
+                    <img src="https://via.placeholder.com/720x480" class="img-responsive custom-image">
+                </div>
+                <div class="small-images">
+                    <div class="small-image">
                         <img src="https://via.placeholder.com/720x480" class="img-responsive custom-image">
                     </div>
-                    <div class="small-images">
-                        <div class="small-image">
-                            <img src="https://via.placeholder.com/440x237" class="img-responsive custom-image">
-                        </div>
-                        <div class="small-image">
-                            <img src="https://via.placeholder.com/440x237" class="img-responsive custom-image">
-                        </div>
+                    <div class="small-image">
+                        <img src="https://via.placeholder.com/720x480" class="img-responsive custom-image">
                     </div>
                 </div>
+            </div>
+        </div>
+</section>
                 <div class="image-description">
                     <h3>關於</h3>
                     <p>在京都隱藏的寶石的自行車探索中，您將擊敗人群並參觀更加寧靜的城市。從禪宗花園到被聯合國教科文組織列為金閣寺的寺廟，這裡是您在戶外活動中度過美好時光的完美方式。您還將從導遊那裡了解日本的歷史和文化。而且你可以打包燈，因為提供了可折疊的自行車和頭盔。</p>
