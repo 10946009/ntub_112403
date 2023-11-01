@@ -432,12 +432,30 @@ main {
     color: rgba(0, 0, 0, 0.3);
     cursor: pointer;
 }
+.search_heart_icon{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    background-color: rgba(255, 255, 255);
+    border-radius: 50%;
+    font-size: 18px;
+    margin: 10px;
+    color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
 
 .heart_active {
     /*收藏動畫*/
     color: #E1251B;
-    animation: heart 0.5s linear;
+    animation: heart_pulse 0.5s linear;
 }
+/* 放大效果 */
+/* @keyframes heart_pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+} */
 
 .spot_like_txt {
     position: relative;
