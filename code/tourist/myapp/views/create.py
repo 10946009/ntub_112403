@@ -127,7 +127,7 @@ def create(request, ct_id):
         local_xy = [ct_attractions_data.start_location_x,ct_attractions_data.start_location_y]
         # 抓出發時間
         user_nowtime = format_minutes_as_time(ct_attractions_data.start_time)
-        location_name = ct_attractions_data.name
+        location_name = ct_attractions_data.location_name
         # 抓出這筆行程中的所有景點
         ct_attractions_list = Attractions_Ct.objects.filter(
             choice_ct_id=ct_attractions_data.id
