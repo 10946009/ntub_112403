@@ -10,6 +10,55 @@ window.onresize = function(){
   bannerbgimg.style.height = window.innerHeight + "px";
 }
 
+// randomBanner
+document.addEventListener("DOMContentLoaded",function(){
+  var images = [
+    '../static/images/IMG20220125115200.jpg',
+    '../static/images/bg1.jpg',
+    '../static/images/bg2.jpg',
+    '../static/images/bg5.png',
+    '../static/images/bg6.jpeg',
+    '../static/images/bg7.png',
+    '../static/images/bg8.jpg',
+    '../static/images/jp_img.jpg',
+  ]
+
+  var randomIndex = Math.floor(Math.random()*images.length);
+  var randomImg = images[randomIndex];
+
+  var banner = document.getElementById("randomBanner");
+
+  banner.style.background = 'url(' + randomImg + ')';
+  banner.style.backgroundRepeat = 'no-repeat';
+  banner.style.backgroundSize = 'cover';
+  banner.style.backgroundPosition = 'center';
+  banner.style.opacity = '0.65';
+  banner.style.position = 'relative';
+  banner.style.zIndex = '100';
+})
+
+// change img when mouser hover
+const imageMouse = document.getElementById("hover").getElementsByTagName('img');
+const initialImg = imageMouse[0].src;
+
+const imageMouseSource = [
+  '../static/images/attractions/{{item.place_id}}_0.jpg',
+  '../static/images/attractions/{{item.place_id}}_1.jpg',
+  '../static/images/attractions/{{item.place_id}}_2.jpg',
+]
+
+function changeImg(){
+  for (let i = 0; i < imageMouse.length; i++){
+    imageMouse[i].src = imageMouseSource[i] || initialImg;
+  }
+}
+function resetImg(){
+  for (let i = 0; i < imageMouse.length; i++){
+    imageMouse[i].src = initialImg;
+  }
+}
+
+
 //向下滑動
 // document.querySelector('.scroll-down-button').addEventListener('click', function (e) {
 //   e.preventDefault();

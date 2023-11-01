@@ -85,6 +85,22 @@
     text-shadow: 3px 2px 3px rgb(146, 146, 146);
     font-weight: bold;
 }
+.showAll_btn{
+    position: absolute;
+    right: calc(20% + 0px);
+    bottom: 5px;
+    width: auto;
+    border: 1px none rgb(128, 128, 128);
+    border-radius: 20px;
+    padding: 10px 20px;
+    background-color: rgb(255, 240, 126);
+    box-shadow: 3px 2px 3px rgb(146, 146, 146);
+    text-shadow: 3px 2px 3px rgb(146, 146, 146);
+    font-weight: bold;
+}
+.more_btn:hover ,.showAll_btn:hover{
+    background-color: #F55;
+}
 .share{
     display: block;
     width: 35px;

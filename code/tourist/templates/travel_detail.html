@@ -17,15 +17,14 @@
         .container {
             width: 80%;
             margin: 80px auto;
-            display: flex;
+            display:flex;
             flex-direction: column;
-            align-items: center;
         }
     
         header {
             display: flex;
             justify-content: space-between;
-            width: 90%;
+            width: 100%;
             align-items: center;
             padding: 10px;
         }
@@ -50,7 +49,7 @@
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
-            width: 90%;
+            width: 100%;
         }
     
         .image-container {
@@ -70,7 +69,7 @@
         .title-info-container {
             display: flex;
             justify-content: space-between;
-            width: 90%;
+            width: 100%;
             align-items: center;
             padding: 10px;
         }       
@@ -80,29 +79,6 @@
             flex-direction: column;
             align-items: flex-start;
             margin-right: auto;
-        }
-
-        .provider, .reviews-count {
-            margin: 0;
-        }
-        .review {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            width: 100%;
-        }
-        
-        .user-info {
-            display: flex;
-            align-items: left;
-        }
-        
-        .user-info img {
-            margin-right: 10px;
-        }
-        
-        .rating, .comment {
-            flex-grow: 1;
         }
         
         .comment {
@@ -139,6 +115,81 @@
             font-weight: bold;
             font-size: 18px;
         }
+        .review-container .btn-style-1 {
+            background-color: #fff;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            border: 2px solid #000;
+            font-weight: bold;
+          }
+          
+          .review-container .btn-style-2 {
+            background-color: #fff;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            border: 2px solid #e6e6e6;
+            font-weight: bold;
+          }
+          
+          .review-container .review {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+          }
+          
+          .review-container .review-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+          
+          .review-container .tag {
+            border: 1px solid #5a9bd5;
+            padding: 5px 10px;
+            border-radius: 50px;
+          }
+          
+          .review-container .tag.active {
+            border: 1px solid rgba(90, 155, 213, 0.2);
+            background-color: rgba(90, 155, 213, 0.2);
+          }
+          
+          .review-container .review-content {
+            margin: 2rem 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+          }
+          
+          .review-container .head {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+          }
+          
+          .review-container .user-name {
+            font-weight: bold;
+          }
+          
+          .review-container .user-img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+          }
+          
+          .review-container .review-img {
+            width: 200px;
+            height: auto;
+          }
+          
+          .review-container .title {
+            padding: 0;
+            margin: 0;
+          }
+          .main-wrap {
+            
+          }
+
+
 </style>
 {% endblock %}
 
@@ -151,8 +202,8 @@
         <header>
             <h1 class="page-title">來自台北的千島湖和坪林茶園</h1>
             <div class="title-buttons">
-                <div class="share-button">分享</div>
-                <div class="like-button">❤️</div>
+                <div class="share-button"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+                <div class="like-button"><i class="fa-solid fa-heart"></i></div>
             </div>
         </header>
         <div class="title-info-container">
@@ -163,8 +214,18 @@
         </div>
         <section class="main-content">
             <div class="image-container">
-                <div class="main-image">
-                    <img src="https://via.placeholder.com/720x480" class="img-responsive custom-image">
+                <div class="main-wrap">
+                    <div class="main-image">
+                        <img src="https://via.placeholder.com/720x480" class="img-responsive custom-image">
+                    </div>
+                    <div class="small-images">
+                        <div class="small-image">
+                            <img src="https://via.placeholder.com/440x237" class="img-responsive custom-image">
+                        </div>
+                        <div class="small-image">
+                            <img src="https://via.placeholder.com/440x237" class="img-responsive custom-image">
+                        </div>
+                    </div>
                 </div>
                 <div class="image-description">
                     <h3>關於</h3>
@@ -185,42 +246,59 @@
                     <p>高鐵左營站 > 欣興租車 > 左營高鐟站前店 > 汽機車出租推薦 > 佳適旅舍 > 站前館 > くら寿司 > 藏壽司 > 高雄時代大道店(全球旗艦店) > 鈴鹿賽道樂園 > 瑞豐夜市 > 愛河愛之船 > 佳適旅舍 > 站前館</p>
                 </section>
             </div>
-            <div class="small-images">
-                <div class="small-image">
-                    <img src="https://via.placeholder.com/440x237" class="img-responsive custom-image">
-                </div>
-                <div class="small-image">
-                    <img src="https://via.placeholder.com/440x237" class="img-responsive custom-image">
-                </div>
-            </div>
         </section>
-        <section class="reviews">
-            <h2>評論</h2>
-            <div class="review">
-                <div class="user-info">
-                    <img src="user-avatar.jpg" alt="cle727">
-                    <p>用戶名稱</p>
-                </div>
-                <div class="rating">
-                    <span>評分：5/5</span>
-                </div>
-                <div class="comment">
-                    <p>這個行程太棒了！我喜歡每一刻。</p>
-                </div>
+        <section class="review-container">
+            <section>
+            <h2>分享內容</h2>
+            <div>
+              <button class="btn-style-1">完成您的評論</button>
+              <button class="btn-style-1">上傳一張照片</button>
             </div>
-            <div class="review">
-                <div class="user-info">
-                    <img src="user-avatar.jpg" alt="John F">
-                    <p>另一位用戶</p>
-                </div>
-                <div class="rating">
-                    <span>評分：4/5</span>
-                </div>
-                <div class="comment">
-                    <p>我在這次旅行中度過了美好的時光。強烈推薦！</p>
-                </div>
+          </section>
+          <section class="review">
+            <div class="review-wrap">
+              <h2>評論</h2>
+              <div>
+              <button class="btn-style-2">篩選條件</button>
+              <button class="btn-style-2">最新</button>
+              </div>
             </div>
-        </section>
+            <div>
+              <span class="tag active">全部</span>
+              <span class="tag">停車場</span>
+              <span class="tag">用餐</span>
+              <span class="tag">早餐</span>
+            </div>
+          </section>
+          <hr />
+          <section>
+            <div class="review-content">
+              <div class="head">
+                <img class="user-img"src="https://media.karousell.com/media/photos/products/2023/6/14/aera___1686711619_e0898264_progressive.jpg" alt="">
+                <p class="user-name">羽生</p>
+              </div>
+              <div class="body">
+                <h4 class="title">景點</h4>
+                <date>2023 / 10 / 30</date>
+                <p>羽生偷ㄍㄟˋ婚</p>
+              </div>
+              <img class="review-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1rTCrPUZlPomZjkXjcOlkNIB5Qo9_jSp6O2vtGXMg2o0WJe2SIdG_7Ihr8T9N3D67aDc&usqp=CAU" alt="">
+            </div>
+            
+             <div class="review-content">
+              <div class="head">
+                <img class="user-img"src="https://i.pinimg.com/564x/2b/b6/80/2bb680878c04c55c8ea11062de431834.jpg" alt="">
+                <p class="user-name">大谷</p>
+              </div>
+              <div class="body">
+                <h4 class="title">景點</h4>
+                <date>2023 / 10 / 31</date>
+                <p>珮珮的寶</p>
+              </div>
+              <img class="review-img" src="https://i.pinimg.com/564x/7e/d1/ea/7ed1eafcb808b4b5765a59501e3d3574.jpg" alt="">
+            </div>
+          </section>
+            </section>
     </div>
     {{u_id}}
     <p>{{ ct_id }}</p>
