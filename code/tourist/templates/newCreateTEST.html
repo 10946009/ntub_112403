@@ -61,6 +61,26 @@
         .imgcontainer img.top:hover {
             opacity: 0;
         }
+
+
+
+        .hoverTest {
+            position: relative;
+        }
+
+        .hoverTest img {
+            position: absolute;
+            /* CSS3淡出淡入效果,1秒 */
+            -webkit-transition: opacity 1s ease-in-out;
+            -moz-transition: opacity 1s ease-in-out;
+            -o-transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .hoverTest img:nth-of-type(2):hover {
+            opacity: 0;
+            /* 滑鼠滑入時，透明度變0 */
+        }
     </style>
 </head>
 
@@ -216,97 +236,113 @@
 
             <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
                 我是第二天
-                <!-- <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="child1-tab" data-bs-toggle="tab" data-bs-target="#child1"
-                            type="button" role="tab" aria-controls="child1" aria-selected="true"
-                            onclick="saveTabState('child1')">第一天</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="child2-tab" data-bs-toggle="tab" data-bs-target="#child2"
-                            type="button" role="tab" aria-controls="child2" aria-selected="false"
-                            onclick="saveTabState('child2')">第二天</button>
-                    </li>
-                </ul> -->
-                <!-- <div class="tab-child1" id="myTabchild1" style="width: 80%;margin: 0 auto;">
-                    <div class="tab-pane fade show active" id="child1" role="tabpanel" aria-labelledby="child1-tab"
-                        style="display: flex;justify-content: center;align-items: center;align-content: center;">
-                        <div class="row" style="width: 100%;">
-                            <div class="col-md-4 col-sm-6">
-                                <div class="img">
-                                    <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                                </div>
-                                <div class="txt">
-                                    <span>testtest</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6">
-                                <div class="img">
-                                    <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                                </div>
-                                <div class="txt">
-                                    <span>testtest</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6">
-                                <div class="img">
-                                    <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                                </div>
-                                <div class="txt">
-                                    <span>testtest</span>
-                                </div>
-                            </div>
-                        </div>
+                <div class="align" style="width:90%;margin: 0 auto;display: flex;overflow-x: scroll;align-items: center;align-content: center;">
+                    <div  style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
+                        123
                     </div>
-                    <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab">
-                        我是內容<br>我是內容<br>我是內容<br>我是內容<br>我是內容<br>
+                    <div
+                        style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
+                        123
+                    </div>
+                    <div
+                        style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
+                        123
+                    </div>
+                    <div
+                        style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
+                        123
+                    </div>
+                    <div
+                        style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
+                        123
+                    </div>
+                    <div
+                        style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
+                        123
+                    </div>
+                    <div
+                        style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
+                        123
+                    </div>
+                    <div
+                        style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
+                        123
+                    </div>
+                </div>
+
+
+                <!-- <div class="row" style="height: 200px;border: 1px solid black;overflow-x: auto;display: flex;">
+                    <div style="min-width: 300px;border: 1px solid black;">
+                        block1
+                    </div>
+                    <div style="min-width: 300px;border: 1px solid black;">
+                        block2
+                    </div>
+                    <div style="min-width: 300px;border: 1px solid black;">
+                        block3
+                    </div>
+                    <div style="min-width: 300px;border: 1px solid black;">
+                        block3
+                    </div>
+                    <div style="min-width: 300px;border: 1px solid black;">
+                        block4
+                    </div>
+                    <div style="min-width: 300px;border: 1px solid black;">
+                        block5
                     </div>
                 </div> -->
             </div>
         </div>
     </main>
-
+    <div class="row" style="width: 90%;">
+        <div class="hoverTest" style="width: 500px;margin: 0 auto;">
+            <img src="../static/images/bg1.jpg" class="img-responsive" width="100%" />
+            <img src="../static/images/bg2.jpg" class="img-responsive" width="100%" />
+            <img src="../static/images/bg5.png" class="img-responsive" width="100%" />
+        </div>
+        <div class="hoverTest" style="width: 500px;margin: 0 auto;">
+            <img src="../static/images/bg6.jpeg" class="img-responsive" width="100%" />
+            <img src="../static/images/bg7.png" class="img-responsive" width="100%" />
+            <img src="../static/images/bg8.jpg" class="img-responsive" width="100%" />
+        </div>
+    </div>
 
     <script src="../static/js/jquery-3.7.0.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
     <script>
+        $(document).ready(function () {
+            $('.hoverTest').each(function () {
+                var $images = $(this).find('img');
+                var imageCount = $images.length;
+                var currentIndex = 0;
+                var timer; // 定时器变量
 
-        // 获取图片元素
-        const images = document.getElementById('hover').getElementsByTagName('img');
-        const initialSrc = images[0].src; // 保存初始图片的src
+                function showImage(index) {
+                    $images.css('opacity', '0'); // 隐藏所有图片
+                    $images.eq(index).css('opacity', '1'); // 显示特定索引的图片
+                }
 
-        // 存储多张图像的 src
-        const imageSources = [
-            "../static/images/101.jpg",
-            "../static/images/an.jpeg",
-            "../static/images/dog.jpg",
-            // 添加更多图片路径...
-        ];
-
-        let currentIndex = 0;
-
-        // 悬停时切换图片
-        function changeImage() {
-            for (let i = 0; i < images.length; i++) {
-                images[i].src = imageSources[currentIndex] || initialSrc; // 显示下一张图片
-
-                // 切换至下一张图片
-                currentIndex = (currentIndex + 1) % imageSources.length;
-            }
-
-            // 3秒后再次调用 changeImage()
-            setTimeout(changeImage, 3000); // 3000毫秒 = 3秒
-        }
-
-        changeImage(); // 最初调用
+                function nextImage() {
+                    currentIndex = (currentIndex + 1) % imageCount;
+                    showImage(currentIndex);
+                }
 
 
-        // 当鼠标离开时重置图片
-        function resetImage() {
-            for (let i = 0; i < images.length; i++) {
-                images[i].src = initialSrc; // 恢复初始图片
-            }
-        }
+                $(this).on('mouseenter', function () {
+                    // 当鼠标进入 .hoverTest 区域时
+                    showImage(1); // 显示第二张图片
+                    timer = setTimeout(function () {
+                        nextImage(); // 三秒后显示下一张图片
+                        timer = setInterval(nextImage, 3000); // 每三秒切换一次图片
+                    }, 2000);
+                }).on('mouseleave', function () {
+                    // 当鼠标离开 .hoverTest 区域时
+                    clearTimeout(timer); // 清除定时器
+                    $images.css('opacity', '1');
+                });
+            })
+
+        });
 
 
 

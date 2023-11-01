@@ -110,14 +110,18 @@
                         role="tabpanel"
                         aria-labelledby="ct{{ item.my_history.id }}-{{ forloop.counter }}-tab">
                         
-                      <div class="content_align" >
+                      <div class="content_align">
                         {% for detail in details %}
                           {% if forloop.counter0 == 0 %}
                           
                               {% for location in item.choiceday_ct %}
                                 {% if forloop.counter0 == counter %}
                                 
-                                  <div class="content_detail">起始位置</div>
+                                  <div class="content_detail_start">
+                                    <span class="content_detail_startTXT">
+                                      <i class="fa-solid fa-house"></i><br>起始位置
+                                    </span>
+                                  </div>
                                   <div class="gonext">  
                                     
                                     <a href="https://www.google.com/maps/dir/?api=1&origin={{ location.start_location_x }},{{ location.start_location_y }}&destination={{ detail.a_id.location_x }},{{ detail.a_id.location_y }}&travelmode=driving"
@@ -157,7 +161,7 @@
                   {% endwith %}
                 {% endfor %}
               </div>
-              <a href="/travel_detail/{{ item.my_history.id }}">詳細資料</a>
+              <!-- <a href="/travel_detail/{{ item.my_history.id }}">詳細資料</a> -->
             </div>
           </div>
       {% endfor %}
