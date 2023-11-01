@@ -35,8 +35,7 @@
 
   <div class="tab-content" id="myTabContent" style="width: 100%;margin: 0 auto;">
     {% for day in travelday %}
-      <div class="tab-pane fade{% if forloop.counter == 1 %}show active{% endif %}" id="ch-{{ day }}" role="tabpanel" aria-labelledby="{{ day }}-tab"
-        style="display: flex;justify-content: center;align-items: center;align-content: center;">
+      <div class="tab-pane fade{% if forloop.counter == 1 %}show active{% endif %}" id="ch-{{ day }}" role="tabpanel" aria-labelledby="{{ day }}-tab" style="display: flex;justify-content: center;align-items: center;align-content: center;">
         <div class="row" style="width: 100%;">
           <div class="col-6" style="border: 1px solid black;">
             我是左邊 顯示已排完序的景點
@@ -77,35 +76,39 @@
           </div>
           <div class="col-6 searchAndlikeAndrec">
             <button class="changeToSearch" id="changeToSearch" onclick="clickChange()">切換搜尋</button>
-            <div class="change searchBlock" id="searchBlock">搜尋欄
+            <div class="change searchBlock" id="searchBlock">
+              <div class="searchBarDiv">
+                <i class="fa-solid fa-magnifying-glass-location find_icon"></i>
+                <span class="search_txt">搜尋景點</span>
+              </div>
               <form autocomplete="off" class="d-flex" role="search">
-          {% csrf_token %}
-
-          <div class="create_search">
-            <div class="create_searchInput">
-              <input class="form-control me-auto search" id="create_myInput" type="search" placeholder="想去哪玩.."
-                aria-label="Search" name="create_search_text">
-              <!-- <input type="hidden" name="data_type" value="keyword_search"> -->
-              <button class="search_icon" id="create_searchClick"><i class="fas fa-search"></i></button>
-              <!-- 歷史紀錄 -->
-              <div id="create_searchBox">
-                <div class="create_enter"></div>
-                <div class="create_searchContent">
-                  <!-- history（目前放假資料） -->
-                  <div class="history_1" id="history_1">
-                    <i class="fa-solid fa-clock-rotate-left"></i><strong>123</strong>
-                    <div class="close_history" onclick="deleteFunction(this)">
-                      <i class="fa-solid fa-xmark" style="color: rgb(171, 5, 5);"></i>
+                {% csrf_token %}
+      
+                <div class="create_search">
+                  <div class="create_searchInput">
+                    <input class="form-control me-auto search" id="create_myInput" type="search" placeholder="想去哪玩.."
+                      aria-label="Search" name="create_search_text">
+                    <!-- <input type="hidden" name="data_type" value="keyword_search"> -->
+                    <button class="search_icon" id="create_searchClick"><i class="fas fa-search"></i></button>
+                    <!-- 歷史紀錄 -->
+                    <div id="create_searchBox">
+                      <div class="create_enter"></div>
+                      <div class="create_searchContent">
+                        <!-- history（目前放假資料） -->
+                        <div class="history_1" id="history_1">
+                          <i class="fa-solid fa-clock-rotate-left"></i><strong>123</strong>
+                          <div class="close_history" onclick="deleteFunction(this)">
+                            <i class="fa-solid fa-xmark" style="color: rgb(171, 5, 5);"></i>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
+              </form>
+              <div id="replaceable-content" class="row searchResult">
+                {% include "create_search.html" %}
               </div>
-            </div>
-          </div>
-        </form>
-        <div id="replaceable-content">
-              {% include "create_search.html" %}
-        </div>
             </div>
             <div class="change likeAndRec" id="likeAndRec">
               <div>
@@ -124,7 +127,8 @@
                       </div>
                     </div>
                   {% endfor %}
-                  {% comment %} <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
+                  {% comment %}
+                  <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
                     <div style="border: 1px solid black;">
                       <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
                     </div>
@@ -132,7 +136,6 @@
                       我是介紹圖片的文字
                     </div>
                   </div>
-
                   <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
                     <div style="border: 1px solid black;">
                       <img src="../static/images/Datong.jpeg" class="img-responsive" width="100%" alt="">
@@ -141,8 +144,6 @@
                       我是介紹圖片的文字
                     </div>
                   </div>
-
-
                   <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
                     <div style="border: 1px solid black;">
                       <img src="../static/images/cloud1.png" class="img-responsive" width="100%" alt="">
@@ -150,7 +151,8 @@
                     <div style="border: 1px solid black;">
                       我是介紹圖片的文字
                     </div>
-                  </div> {% endcomment %}
+                  </div> 
+                  {% endcomment %}
 
                 </div>
               </div>

@@ -54,15 +54,17 @@ function clickChange() {
         likeAndRec.style.transform = 'rotateY(180deg)';
         searchBlock.style.transform = 'rotateY(0deg)';
         button.textContent = "收藏與推薦";
+        button.style.backgroundColor = "rgb(255, 41, 101)";
     } else {
         likeAndRec.style.transform = 'rotateY(0deg)';
         searchBlock.style.transform = 'rotateY(180deg)';
         button.textContent = "切換搜尋";
+        button.style.backgroundColor = "#0066DB";
     }
 
 }
 
-// 展開收藏跟收藏跟相似景點
+// 展開收藏跟相似景點
 var isLikeVisible = false;
 
 function openLikeBtn() {

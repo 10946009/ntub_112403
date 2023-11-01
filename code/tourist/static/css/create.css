@@ -183,10 +183,21 @@ main {
     height: 800px;
 }
 .changeToSearch{
+    padding: 10px 15px;
+    border: 0;
+    background-color: rgb(0, 102, 219);
+    box-shadow: inset 1px 1px 3px #333;
+    color: white;
+    font-weight: bold;
+    text-shadow: 2px 2px 3px #333;
+    border-radius: 30px;
     position: absolute;
     right: 5px;
     top: 5px;
     z-index: 5;
+}
+.searchResult{
+    margin-top: 10px;
 }
 .likeDiv ,.recDiv{
     display: flex;
@@ -198,6 +209,19 @@ main {
 .like_icon ,.rec_icon{
     color: white;
     background-color: rgb(255, 41, 101);
+    border-radius: 50%;
+    padding: 10px;
+    margin-right: 5px;
+}
+.searchBarDiv{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    padding: 10px 0;
+}
+.find_icon{
+    color: white;
+    background-color: #0066DB;
     border-radius: 50%;
     padding: 10px;
     margin-right: 5px;
@@ -286,19 +310,15 @@ main {
     width: 95%;
     height: 100%;
     position: absolute;
-    backface-visibility: hidden;
-    /* 隐藏背面 */
-    transform-style: preserve-3d;
-    /* 保持3D效果 */
+    backface-visibility: hidden;/* 隐藏背面 */
+    transform-style: preserve-3d;/* 保持3D效果 */
     transition: transform 0.5s;
     font-size: 24px;
-    transform: rotateY(0deg);
-    /* 初始状态：不翻转 */
+    transform: rotateY(0deg);/* 初始状态：不翻转 */
 }
 
 #searchBlock {
-    transform: rotateY(180deg);
-    /* 初始状态：翻转180度 */
+    transform: rotateY(180deg);/* 初始状态：翻转180度 */
 }
 
 
