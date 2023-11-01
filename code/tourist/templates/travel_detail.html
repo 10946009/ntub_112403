@@ -195,7 +195,18 @@
           .main-wrap {
             
           }
-
+          .title-buttons .share-button,
+          .title-buttons .like-button {
+              display: inline-flex;
+              align-items: center;
+              cursor: pointer;
+              transition: transform 0.3s ease;
+          }
+          
+          .title-buttons .share-button:hover,
+          .title-buttons .like-button:hover {
+              transform: scale(1.2);
+          }
 
 </style>
 {% endblock %}
@@ -209,9 +220,9 @@
         <header>
             <h1 class="page-title">來自台北的千島湖和坪林茶園</h1>
             <div class="title-buttons">
-                <div class="share-button"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
-                <div class="like-button"><i class="fa-solid fa-heart"></i></div>
-            </div>
+              <div class="share-button" id="share-button"><i class="fa-solid fa-arrow-up-from-bracket"></i> 分享</div>
+              <div class="like-button" id="like-button"><i class="fa-solid fa-heart"></i> 喜歡</div>
+          </div>
         </header>
         <div class="title-info-container">
             <div class="title-info">
@@ -309,6 +320,7 @@
           </section>
             </section>
     </div>
+    <script src="/static/js/travel_detail.js"></script>
     {{u_id}}
     <p>{{ ct_id }}</p>
     <p>{{ ct_detail }}</p>
