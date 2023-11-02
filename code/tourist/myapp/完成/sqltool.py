@@ -1,5 +1,6 @@
 import psycopg2
 
+
 class Postgres:
     def __init__(self):
         self.conn = None
@@ -10,17 +11,17 @@ class Postgres:
                 host="localhost",
                 dbname="trip",
                 user="postgres",
-                password="10946009"
+                password="10946029"
             )
         except (Exception, psycopg2.DatabaseError) as error:
-            print('有錯誤',error)
+            print('有錯誤', error)
 
     def __del__(self):
         if self.conn is not None:
             self.conn.close()
             print("Database connection closed.")
 
-    def create_multi(self,query,values) -> int :
+    def create_multi(self, query, values) -> int:
         try:
             cur = self.conn.cursor()
             cur.executemany(query, values)
@@ -28,7 +29,7 @@ class Postgres:
             cur.close()
             return cur.rowcount
         except (Exception, psycopg2.DatabaseError) as error:
-            print('有錯誤',error)
+            print('有錯誤', error)
 
     def read(self, query) -> list:
         try:
