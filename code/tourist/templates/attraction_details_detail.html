@@ -2106,9 +2106,12 @@
     var tagWeek = document.getElementsByClassName("tag-week");
     var crowdCanvas = document.getElementById('people_if_Chart')
     var ctx = crowdCanvas.getContext('2d');
-
+    var chart;
     for (var i = 0; i < tagWeek.length; i++) {
         tagWeek[i].addEventListener("click", function () {
+            if (chart) {
+                chart.destroy();
+            }
             var data = total_data[this.dataset.set].crowd;
             if (data.map(x => x.Volume).reduce((a, b) => a + b) == 0) { //判斷加總是否為0
                 ctx.clearRect(0, 0, crowdCanvas.width, crowdCanvas.height);
@@ -2116,7 +2119,7 @@
                 ctx.fillStyle = "black";
                 ctx.fillText("休息", 200, 200);
             } else {
-                var chart = new Chart(ctx, {
+                chart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: data.map(x => x.Time.slice(11, 16)),
