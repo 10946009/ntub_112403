@@ -64,6 +64,30 @@ function clickChange() {
 
 }
 
+// 翻轉左邊區塊
+var isdoneJourneyVisible = false;
+
+function clickChangeDone() {
+    const checkRec = document.getElementById('checkRec');
+    const done = document.getElementById('done');
+    const button = document.getElementById("changeToRec");
+
+    isdoneJourneyVisible = !isdoneJourneyVisible
+
+    if (isdoneJourneyVisible) {
+        checkRec.style.transform = 'rotateY(180deg)';
+        done.style.transform = 'rotateY(0deg)';
+        button.textContent = "切換推薦";
+        button.style.backgroundColor = "rgb(255, 41, 101)";
+    } else {
+        checkRec.style.transform = 'rotateY(0deg)';
+        done.style.transform = 'rotateY(180deg)';
+        button.textContent = "切換我的行程";
+        button.style.backgroundColor = "#0066DB";
+    }
+
+}
+
 // 展開收藏跟相似景點
 var isLikeVisible = false;
 
