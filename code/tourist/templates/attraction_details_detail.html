@@ -1885,6 +1885,11 @@
         }
         x[slideIndex - 1].style.display = "block";
     }
+    
+    var closePhoto = document.getElementById('closePhoto');
+    closePhoto.addEventListener("click", function () {
+        photo_att.style.display = "none";
+    });
 
     // focus點擊的地方（所有與旅客）
     var detail_photo__headerGrid_all = document.getElementById("detail_photo__headerGrid_all");//所有

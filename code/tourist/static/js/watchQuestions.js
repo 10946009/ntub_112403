@@ -123,10 +123,6 @@ function watchQuestions() {
             photo_att.style.display = "none";
         }
     });
-    var closePhoto = document.getElementById('closePhoto');
-    closePhoto.addEventListener("click", function () {
-        photo_att.style.display = "none";
-    });
 
     // ask_tips提示點擊(查看)
     var icon1 = document.getElementById("myIcon1");
