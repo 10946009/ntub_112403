@@ -142,68 +142,41 @@
                                 </h5>
                                 <div style="margin-left:20px ;color: #707070;">
                                     <div class="row">
-                                        {% for c in commentlist %}
-                                        <div class="comment">
-                                            <div class="avatar">
-                                                <img src="../static/images/peka.webp" alt="User Avatar">
+                                        {% for question in question_list %}
+                                        {% if forloop.counter <= 2 %}
+                                            <div class="comment">
+                                                <div class="avatar">
+                                                    <img src="../static/images/peka.webp" alt="User Avatar">
+                                                </div>
+                                                <div class="comment-content">
+                                                    <h5 class="username">
+                                                        {{question.u.username}}
+                                                    </h5>
+                                                    <p class="comment-text">
+                                                        {{question.content}}
+                                                        <br>
+                                                        <span style="color:gray;font-size: 12px; font-style: italic;">{{question.question_date}}
+                                                            &emsp;
+                                                            <!-- <span class="reply"
+                                                                onclick="showAllLoaderAndContent()">回覆</span> -->
+                                                        </span>
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div class="comment-content">
-                                                <h5 class="username">
-                                                    皮卡丘
-                                                </h5>
-                                                <p class="comment-text">
-                                                    春節有開嗎？
-                                                    <br>
-                                                    <span style="color:gray;font-size: 12px; font-style: italic;">3天前
-                                                        &emsp;
-                                                        <!-- <span class="reply"
-                                                            onclick="showAllLoaderAndContent()">回覆</span> -->
-                                                    </span>
-                                                </p>
-                                            </div>
-                                        </div>
+
+                                            {% endif %}
+                                            
+                                            {%empty%}
+                                            <div id="emptyQuestion">尚未有人發問</div>
                                         {% endfor %}
-                                        <div class="comment">
-                                            <div class="avatar">
-                                                <img src="../static/images/an.jpeg" alt="User Avatar">
-                                            </div>
-                                            <div class="comment-content">
-                                                <h5 class="username">
-                                                    安妮雅
-                                                </h5>
-                                                <p class="comment-text">
-                                                    請問這星期一有開嗎！
-                                                    <br>
-                                                    <span style="color:gray;font-size: 12px; font-style: italic;">4天前
-                                                        &emsp;
-                                                        <!-- <span class="reply">回覆</span> -->
-                                                    </span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="comment">
-                                            <div class="avatar">
-                                                <img src="../static/images/dog.jpg" alt="User Avatar">
-                                            </div>
-                                            <div class="comment-content">
-                                                <h5 class="username">
-                                                    彭德
-                                                </h5>
-                                                <p class="comment-text">
-                                                    汪汪汪！！！有開嗎！
-                                                    <br>
-                                                    <span style="color:gray;font-size: 12px; font-style: italic;">6天前
-                                                        &emsp;
-                                                        <!-- <span class="reply">回覆</span> -->
-                                                    </span>
-                                                </p>
-                                            </div>
-                                        </div>
+                                        {% if question_list|length  %}
                                         <div>
                                             <h6 class="see_more" id="see_more" onclick="showAllLoaderAndContent()">
                                                 查看所有問題（{{question_list | length }}）
                                             </h6>
                                         </div>
+                                        {% endif %}
+                                       
                                     </div>
                                     <!-- <h6>問：春節有開嗎？</h6>
                                     <h6>答：有初一早上9點開，其他時間8點半。</h6>
@@ -452,8 +425,8 @@
                                         2</span> {% endcomment %}
                                 </div>
                             </div>
-                            <!-- （點開還有1個答案功能） 
-                            <h6 class="qa_text">還有{{question.get_answer | length |add:"-1"}}個答案</h6>-->
+                            {% comment %} （點開還有1個答案功能）  {% endcomment %}
+                            {% comment %} <h6 class="qa_text" id="qa_text">還有{{question.get_answer | length |add:"-1"}}個答案</h6> {% endcomment %}
 
                             {% endfor %}
                         </div>
@@ -881,7 +854,7 @@
                                 </div>
                                 <div class="total_score_star">
                                     <h2>
-                                        <strong>100K</strong>
+                                        <strong>{{detail.get_favorite_count}}</strong>
                                     </h2>
                                 </div>
                             </div>
@@ -896,18 +869,19 @@
                                 </div>
                                 <div class="total_score_star">
                                     <p style="font-size:60px;">
-                                        <strong>4.0</strong>
+                                        <strong>{{detail.rating}}</strong>
                                     </p>
                                 </div>
                                 <div class="total_star">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
+                                    {% for i in "12345" %}
+                                    {% if i|add:0 <= detail.rating %}<span class="fa fa-star checked"></span>
+                                        {% else %}
+                                        <span class="fa fa-star"></span>
+                                        {% endif %}
+                                        {% endfor %}
                                 </div>
                                 <p>
-                                    63,261 則評論
+                                    {{detail.rating_total}}則評論
                                 </p>
                             </div>
                         </div>
@@ -945,7 +919,7 @@
                                 </div>
                                 <div class="total_score_star">
                                     <h2>
-                                        <strong>10K</strong>
+                                        <strong>{{detail.hit}}</strong>
                                     </h2>
                                 </div>
                             </div>
@@ -1856,6 +1830,7 @@
     });
     // loader動作（查看更多問題）打開查看更多問提問題方塊
     function showAllLoaderAndContent() {
+        watchQuestions();
         var all_loader = document.getElementById("all_ask_big");
         var all_ask_qa = document.getElementById("all_ask_qa");
         all_loader.style.display = "block";
@@ -2032,4 +2007,19 @@
     var currentDate = new Date();
     var currentWeek = (currentDate.getDay() + 6) % 7;
     tagWeek[currentWeek].click(); //今天
+        // 判斷提出問題時，textarea有沒有東西
+        var user_ask = document.querySelector("#user_ask");
+        var ask_btn_ok = document.querySelector("#ask_btn_ok");
+    
+        user_ask.addEventListener("input", function () {
+          if (user_ask.value.trim() === "") {
+            ask_btn_ok.style.color = "grey";
+            ask_btn_ok.style.border = "none";
+            ask_btn_ok.style.pointerEvents = "none"; // 禁用點擊事件
+          } else {
+            ask_btn_ok.style.color = "black";
+            ask_btn_ok.style.border = "#000 solid";
+            ask_btn_ok.style.pointerEvents = "auto"; // 啟用點擊事件
+          }
+        });
 </script>

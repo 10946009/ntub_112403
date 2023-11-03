@@ -63,8 +63,8 @@ class Attractions(models.Model):
     detail = models.TextField(max_length=255, null=False, blank=False, default="")
     # def __str__(self):
     #     return f'{self.id} {self.a_name}'
-
-
+    def get_favorite_count(self):
+        return Favorite.objects.filter(a_id=self.id).count()
 class Crowd_Opening(models.Model):
     a = models.ForeignKey(
         to=Attractions, on_delete=models.SET_DEFAULT, default=-1
