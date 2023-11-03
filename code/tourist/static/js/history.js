@@ -1,17 +1,3 @@
-// $(function(){
-//     $(".details{{ item.my_history.id }}btn").click(function(){
-//       $("#details{{ item.my_history.id }}").slideToggle('slow',function(){
-//         if($(this).is(":visible")){
-//           $(".details{{ item.my_history.id }}btn").text("收起資料")
-//           $(".details{{ item.my_history.id }}btn").css("background-color","rgb(255, 85, 85)")
-//         }else{
-//           $(".details{{ item.my_history.id }}btn").text("詳細資料")
-//           $(".details{{ item.my_history.id }}btn").css("background-color","")
-//         }
-//       })
-//     })
-//   })
-
 // 按鈕變文字
 function clickOpen(button) {
   const isDetails = button.dataset.isDetails === 'true' || false;
@@ -26,23 +12,6 @@ function clickOpen(button) {
     button.dataset.isDetails = 'false';
   }
 }
-
-// var isDetails = false;
-
-// function clickOpen() {
-//   const button = document.querySelectorAll('.more_btn');
-
-//     isDetails = !isDetails
-
-//     if (isDetails) {
-//         button.textContent = "關閉行程";
-//         button.style.backgroundColor = "#F55";
-//     } else {
-//         button.textContent = "詳細行程";
-//         button.style.backgroundColor = "rgb(255, 240, 126)";
-//     }
-
-// }
 
 $(document).ready(function () {
 
