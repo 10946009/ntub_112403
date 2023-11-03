@@ -1210,9 +1210,17 @@ img {
 
 } */
 
-.fa-circle-left:hover {
+.return_1 {
+    color: rgb(110, 79, 34);
+}
+
+.return_1:hover {
     transform: translateX(-10px);
-    color: #c82c2c;
+    color: #2c63c8;
+}
+
+.return_2 {
+    display: none;
 }
 
 /* grid景點名稱 */
@@ -1223,7 +1231,7 @@ img {
 
 .detail_name__header {
     display: grid;
-    grid-template-columns: 11fr 1fr;
+    grid-template-columns: 11fr 2fr;
     grid-gap: 2px;
     margin-bottom: 2px;
 }
@@ -1285,11 +1293,11 @@ img {
     max-width: 100%;
 }
 
-.detail_detail__header {
+/* .detail_detail__header {
     display: grid;
     grid-template-columns: 9fr 6fr;
     grid-gap: 2px;
-}
+} */
 
 /* grid景點問題 */
 .question {
@@ -2364,6 +2372,10 @@ img {
     background-color: #1e87dd;
 }
 
+.others2 {
+    display: none;
+}
+
 @media screen and (max-width:768px) {
 
     /* 汽車動動圖 */
@@ -2396,6 +2408,38 @@ img {
         display: grid;
         grid-template-columns: 12fr;
         grid-gap: 2px;
+    }
+
+    .others1 {
+        display: none;
+    }
+
+    .others2 {
+        display: block;
+    }
+
+    .total_att {
+        margin-left: 15px;
+    }
+
+    .return_pre {
+        text-align: center;
+        width: 100%;
+    }
+
+    .return_1 {
+        display: none;
+    }
+
+    .return_2 {
+        display: block;
+        background-color: #a5a6a7;
+        padding: 10px;
+    }
+
+    .return_2:hover {
+        color: #2c63c8;
+        background-color: rgb(156, 156, 156);
     }
 
 }
@@ -2490,3 +2534,5 @@ img {
         background: #ffc0cb26;
     }
 } */
+
+/* 768大小RWD ok */
