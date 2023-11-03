@@ -2376,6 +2376,10 @@ img {
     display: none;
 }
 
+.att_slide {
+    display: none;
+}
+
 @media screen and (max-width:768px) {
 
     /* 汽車動動圖 */
@@ -2451,6 +2455,16 @@ img {
 
     .total_att {
         margin-left: 15px;
+    }
+
+    .detail_img {
+        display: none;
+    }
+
+    .att_slide {
+        display: block;
+        max-height: 100%;
+        margin-bottom: 20px;
     }
 
 }

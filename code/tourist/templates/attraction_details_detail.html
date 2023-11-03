@@ -64,6 +64,32 @@
                 </div>
             </div>
         </div>
+        <!-- 768px(RWD呈現) -->
+        <div class="att_slide">
+            <div class="w3-content w3-display-container">
+                <div class="w3-display-container mytotalSlides">
+                    <img src="../static/images/bg7.png" style="width:100%">
+                </div>
+
+                <div class="w3-display-container mytotalSlides">
+                    <img src="../static/images/bg8.jpg" style="width:100%">
+                </div>
+
+                <div class="w3-display-container mytotalSlides">
+                    <img src="../static/images/bg1.jpg" style="width:100%">
+                </div>
+
+                <div class="w3-display-container mytotalSlides">
+                    <img src="../static/images/bg2.jpg" style="width:100%">
+                </div>
+
+                <div class="w3-display-container mytotalSlides">
+                    <img src="../static/images/bg6.jpeg" style="width:100%">
+                </div>
+                <button class="w3-button w3-display-left w3-black" onclick="plustotalDivs(-1)">&#10094;</button>
+                <button class="w3-button w3-display-right w3-black" onclick="plustotalDivs(1)">&#10095;</button>
+            </div>
+        </div>
         <!-- 景點整體介紹(ok) -->
         <div class="detail_detail" style="margin-top: -20px;">
             <div class="row">
@@ -1584,6 +1610,24 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
+    var slideIndextotal = 1;
+    showtotalDivs(slideIndextotal);
+
+    function plustotalDivs(n) {
+        showtotalDivs(slideIndextotal += n);
+    }
+
+    function showtotalDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mytotalSlides");
+        if (n > x.length) { slideIndextotal = 1 }
+        if (n < 1) { slideIndextotal = x.length }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndextotal - 1].style.display = "block";
+    }
+
     // 上傳景點圖片公開顯示tips
     var update_info = document.getElementById("update_info");
     var show_up_info = document.getElementById("show_up_info");
