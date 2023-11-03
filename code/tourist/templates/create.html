@@ -26,7 +26,7 @@
     {% for day in travelday %}
       <li class="nav-item" role="presentation">
         <button class="nav-link {% if forloop.counter == 1 %}active{% endif %}" id="{{ day }}-tab" data-bs-toggle="tab" data-bs-target="#ch-{{ day }}" type="button" role="tab"
-          aria-controls="ch-{{ day }}" aria-selected="true">第{{ day }}天</button>
+          aria-controls="ch-{{ day }}" onclick="saveTabState('ch-{{ day }}')" aria-selected="true">第{{ day }}天</button>
       </li>  <!--aria-controls="ch-{{ day }}"變數名稱要改一下-->
     {% endfor %}
   </ul>
