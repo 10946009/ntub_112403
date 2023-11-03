@@ -220,8 +220,9 @@
                 <div class="row openlike" style="display: none;">
                   {% for item in user_favorite_list %}
                     <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;" id = "{{ item.a_id.id }}">
-                      <div style="border: 1px solid black;">
+                      <div class="ct_heart_icon_box" style="border: 1px solid black;">
                         <img src="../static/images/attractions/{{ item.a_id.place_id }}_0.jpg" class="img-responsive" width="100%" alt="">
+                        <i class="fa-solid fa-heart ct_heart_icon active_heart" data-isfavorite="1" data-type="/add_favorite/" onclick="addCtFavorite('{{ item.a_id.id }}')"></i>
                       </div>
                       <div style="border: 1px solid black;">
                         {{ item.a_id.a_name }}
@@ -237,22 +238,6 @@
                       我是介紹圖片的文字
                     </div>
                   </div>
-                  <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                    <div style="border: 1px solid black;">
-                      <img src="../static/images/Datong.jpeg" class="img-responsive" width="100%" alt="">
-                    </div>
-                    <div style="border: 1px solid black;">
-                      我是介紹圖片的文字
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                    <div style="border: 1px solid black;">
-                      <img src="../static/images/cloud1.png" class="img-responsive" width="100%" alt="">
-                    </div>
-                    <div style="border: 1px solid black;">
-                      我是介紹圖片的文字
-                    </div>
-                  </div> 
                   {% endcomment %}
 
                 </div>
@@ -265,24 +250,18 @@
                 </div>
                 <div class="row openSimilar" style="display: none;">
                   <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                    <div style="border: 1px solid black;">
+                    <div class="ct_heart_icon_box" style="border: 1px solid black;">
                       <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                      <i class="fa-solid fa-heart ss_heart_icon active_heart" data-type="/add_favorite/" onclick="addFavorite('')"></i>
                     </div>
                     <div style="border: 1px solid black;">
                       我是介紹圖片的文字
                     </div>
                   </div>
                   <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                    <div style="border: 1px solid black;">
+                    <div class="ct_heart_icon_box" style="border: 1px solid black;">
                       <img src="../static/images/cloud1.png" class="img-responsive" width="100%" alt="">
-                    </div>
-                    <div style="border: 1px solid black;">
-                      我是介紹圖片的文字
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                    <div style="border: 1px solid black;">
-                      <img src="../static/images/101.jpg" class="img-responsive" width="100%" alt="">
+                      <i class="fa-solid fa-heart ss_heart_icon active_heart" data-type="/add_favorite/" onclick="addFavorite('')"></i>
                     </div>
                     <div style="border: 1px solid black;">
                       我是介紹圖片的文字

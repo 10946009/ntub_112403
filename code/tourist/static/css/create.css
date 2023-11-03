@@ -188,7 +188,7 @@ main {
 .searchAndlikeAndrec{
     position: relative;
     border-right: 2px solid rgb(152, 152, 152);
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 800px;
     margin: 0 auto;
 }
@@ -488,7 +488,10 @@ main {
     color: rgba(0, 0, 0, 0.3);
     cursor: pointer;
 }
-.search_heart_icon{
+.ct_heart_icon_box{
+    position: relative;
+}
+.ct_heart_icon ,.ss_heart_icon{
     position: absolute;
     top: 0;
     right: 0;

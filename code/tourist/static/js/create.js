@@ -183,12 +183,23 @@ for (var i = 0; i < heart.length; i++) {
 
 // 加入收藏
 function addFavorite(itemId) {
-  var search_heart_icon = $("#" + itemId).find(".search_heart_icon");
+  var ss_heart_icon = $("#" + itemId).find(".ss_heart_icon");
 
-  if (!search_heart_icon.hasClass("heart_active")) {
-      search_heart_icon.addClass("heart_active");
+  if (!ss_heart_icon.hasClass("heart_active")) {
+      ss_heart_icon.addClass("heart_active");
   } else {
-      search_heart_icon.removeClass("heart_active");
+      ss_heart_icon.removeClass("heart_active");
+  }
+}
+
+// 建立行程裡面的收藏
+function addCtFavorite(itemId) {
+  var ct_heart_icon = $("#" + itemId).find(".ct_heart_icon");
+
+  if (!ct_heart_icon.hasClass("heart_active")) {
+      ct_heart_icon.addClass("heart_active");
+  } else {
+      ct_heart_icon.removeClass("heart_active");
   }
 }
 
