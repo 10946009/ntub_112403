@@ -77,16 +77,31 @@ function clickChangeDone() {
     if (isdoneJourneyVisible) {
         checkRec.style.transform = 'rotateY(180deg)';
         done.style.transform = 'rotateY(0deg)';
-        button.textContent = "切換推薦";
+        button.textContent = "重新推薦";
         button.style.backgroundColor = "rgb(255, 41, 101)";
     } else {
         checkRec.style.transform = 'rotateY(0deg)';
         done.style.transform = 'rotateY(180deg)';
-        button.textContent = "切換我的行程";
+        button.textContent = "景點排序";
         button.style.backgroundColor = "#0066DB";
     }
 
 }
+
+// 送出功能整合到clickChangeDone函数中
+// 點擊送出會切換到景點排序頁面
+function submitAction() {
+  const checkRec = document.getElementById('checkRec');
+  const done = document.getElementById('done');
+  const button = document.getElementById("changeToRec");
+
+  checkRec.style.transform = 'rotateY(180deg)';
+  done.style.transform = 'rotateY(0deg)';
+  button.textContent = "重新推薦";
+  button.style.backgroundColor = "rgb(255, 41, 101)";
+  isdoneJourneyVisible = true;
+}
+
 
 // 展開收藏跟相似景點
 var isLikeVisible = false;

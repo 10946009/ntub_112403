@@ -38,15 +38,15 @@
       <div class="tab-pane fade{% if forloop.counter == 1 %}show active{% endif %}" id="ch-{{ day }}" role="tabpanel" aria-labelledby="{{ day }}-tab" style="display: flex;justify-content: center;align-items: center;align-content: center;padding: 10px 0;">
         <div class="row" style="width: 100%;">
           <div class="col-6 recAndDone" style="border-right: 2px solid rgb(152, 152, 152);">
-            我是左邊 顯示已排完序的景點
+            <!-- 我是左邊 顯示已排完序的景點 -->
             <div>
               <div class="tabD">
-                <span id="tabDT">請輸入出發時間：</span>
+                <span id="tabDT" class="tabDT">請輸入出發時間：</span>
                 <input type="time" name="nowtime" id="nowtime" {% if user_nowtime %}value="{{user_nowtime}}" {% else
                   %}value="09:00" {% endif %}>
               </div>
               <div class="tabD">
-                <span id="tabDL" style="margin-bottom: 5px;">使用者位置：
+                <span id="tabDL" class="tabDL">使用者位置：
                   <label class="input_txt" id="userLocationName-{{ day }}">{{ location_name }}</label>
                 </span>
                 <br>
@@ -69,7 +69,7 @@
               />
               <div id="map-{{ day }}" style="width: 100%; height: 400px; display: none;"></div>
 
-              <button class="changeToRec" id="changeToRec" onclick="clickChangeDone()">切換我的行程</button>
+              <button class="changeToRec" id="changeToRec" onclick="clickChangeDone()">景點排序</button>
                   
               <div class="changeRec checkRec" id="checkRec">
                 <div class="recDiv">
@@ -157,7 +157,15 @@
                     </div>
                   </div>
                 </div>
-                <button class="recommend_submit1" value="下一步">下一步</button>
+                <a href="#recommend-tab" class="tab_a submit1" id="clickLikeAttractions">
+                    <button class="recommend_submit1" value="下一步">下一步</button>
+                </a>
+                <a href="#home-tab" class="tab_a submit1" id="clickLikeAttractions_o"
+                    style="display: none;">
+                    <button class="recommend_submit1" onclick="submitAction()" value="送出">送出</button>
+                </a>
+                <!-- 點擊送出會切換到景點排序頁面 但目前下一步有問題 已經有用下一步做過測試 是可以的 -->
+                <!-- <button class="recommend_submit1" id="next" onclick="nextAction()" value="下一步">下一步</button> -->
               </div>
               <div class="changeRec done" id="done">
                 <div class="doneDiv">
