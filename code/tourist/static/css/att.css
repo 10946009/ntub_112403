@@ -2372,10 +2372,12 @@ img {
     background-color: #1e87dd;
 }
 
+/* RWD其他資訊 */
 .others2 {
     display: none;
 }
 
+/* RWD圖片 */
 .att_slide {
     display: none;
 }
@@ -2418,6 +2420,7 @@ img {
         display: none;
     }
 
+    /* RWD其他資訊 */
     .others2 {
         display: block;
     }
@@ -2435,6 +2438,7 @@ img {
         display: none;
     }
 
+    /* RWD返回上一頁 */
     .return_2 {
         display: block;
         background-color: #a5a6a7;
@@ -2453,14 +2457,11 @@ img {
         border-radius: 0;
     }
 
-    .total_att {
-        margin-left: 15px;
-    }
-
     .detail_img {
         display: none;
     }
 
+    /* RWD圖片 */
     .att_slide {
         display: block;
         max-height: 100%;
