@@ -35,7 +35,7 @@
 
   <div class="tab-content" id="myTabContent" style="width: 100%;margin: 0 auto;">
     {% for day in travelday %}
-      <div class="tab-pane fade{% if forloop.counter == 1 %}show active{% endif %}" id="ch-{{ day }}" role="tabpanel" aria-labelledby="{{ day }}-tab" style="display: flex;justify-content: center;align-items: center;align-content: center;padding: 10px 0;">
+      <div class="tab-pane fade{% if forloop.counter == 1 %} show active{% endif %}" id="ch-{{ day }}" role="tabpanel" aria-labelledby="{{ day }}-tab" style="display: flex;justify-content: center;align-items: center;align-content: center;padding: 10px 0;">
         <div class="row" style="width: 100%;">
           <div class="col-6 recAndDone" style="border-right: 2px solid rgb(152, 152, 152);">
             <!-- 我是左邊 顯示已排完序的景點 -->

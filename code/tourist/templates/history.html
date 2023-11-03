@@ -63,11 +63,10 @@
 
           {% endif %}
         </div>
-        <button class="more_btn details{{ item.my_history.id }}btn" data-target="details{{ item.my_history.id }}">預覽行程</button>
-        <!-- <button class="showAll_btn details{{ item.my_history.id }}btn" data-target="details{{ item.my_history.id }}" >詳細行程</button> -->
-        <a href="/travel_detail/{{ item.my_history.id }}">
-          <button class="showAll_btn details{{ item.my_history.id }}btn" data-target="details{{ item.my_history.id }}" >詳細行程</button>
-        </a>
+        <!-- <button class="more_btn details{{ item.my_history.id }}btn" data-target="details{{ item.my_history.id }}">預覽行程</button> -->
+        <!-- <a href="/travel_detail/{{ item.my_history.id }}"> -->
+          <button class="more_btn details{{ item.my_history.id }}btn" data-target="details{{ item.my_history.id }}" onclick="clickOpen(this)" >詳細行程</button>
+        <!-- </a> -->
       </div>
 
 

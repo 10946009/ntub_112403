@@ -20,34 +20,6 @@ function saveTabState(tabId) {
   var tab = document.getElementById(tabId);
   tab.style.display = 'block';
 }
-// function showTab(tabId) {
-//   const tabChildElements = document.querySelectorAll('.tab-child');
-//   tabChildElements.forEach((element) => {
-//     element.style.display = 'none';
-    
-//   });
-
-//   // 显示特定的tab-child元素
-//   const tabChild = document.getElementById(tabId);
-//   console.log(tabChild);
-//   if (tabChild) {
-//     tabChild.style.display = 'flex';
-//   }
-// }
-// // 给各个选项卡按钮添加点击事件监听器
-// const allChildtab = document.getElementsByClassName('create-child-nav-link');
-
-// console.log(allChildtab);
-// for (let i = 0; i < allChildtab.length; i++) {
-//   allChildtab[i].addEventListener('click', function () {
-//     // 在点击选项卡时隐藏其他选项卡，并更新本地存储
-//     localStorage.setItem('selectedTab', this.id);
-//     console.log('selectedTab', this.id)
-//     showTab('myTabchild'+(i+1));
-//   });
-// }
-
-// allChildtab[0].click();//預設點擊第一個
 
 // 翻轉右邊區塊
 var islikeAndRecVisible = false;
