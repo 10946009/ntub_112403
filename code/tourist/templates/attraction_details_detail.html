@@ -425,8 +425,8 @@
                                         2</span> {% endcomment %}
                                 </div>
                             </div>
-                            <!-- （點開還有1個答案功能） 
-                            <h6 class="qa_text">還有{{question.get_answer | length |add:"-1"}}個答案</h6>-->
+                            {% comment %} （點開還有1個答案功能）  {% endcomment %}
+                            {% comment %} <h6 class="qa_text" id="qa_text">還有{{question.get_answer | length |add:"-1"}}個答案</h6> {% endcomment %}
 
                             {% endfor %}
                         </div>
@@ -1830,6 +1830,7 @@
     });
     // loader動作（查看更多問題）打開查看更多問提問題方塊
     function showAllLoaderAndContent() {
+        watchQuestions();
         var all_loader = document.getElementById("all_ask_big");
         var all_ask_qa = document.getElementById("all_ask_qa");
         all_loader.style.display = "block";
@@ -2006,4 +2007,19 @@
     var currentDate = new Date();
     var currentWeek = (currentDate.getDay() + 6) % 7;
     tagWeek[currentWeek].click(); //今天
+        // 判斷提出問題時，textarea有沒有東西
+        var user_ask = document.querySelector("#user_ask");
+        var ask_btn_ok = document.querySelector("#ask_btn_ok");
+    
+        user_ask.addEventListener("input", function () {
+          if (user_ask.value.trim() === "") {
+            ask_btn_ok.style.color = "grey";
+            ask_btn_ok.style.border = "none";
+            ask_btn_ok.style.pointerEvents = "none"; // 禁用點擊事件
+          } else {
+            ask_btn_ok.style.color = "black";
+            ask_btn_ok.style.border = "#000 solid";
+            ask_btn_ok.style.pointerEvents = "auto"; // 啟用點擊事件
+          }
+        });
 </script>
