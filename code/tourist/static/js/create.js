@@ -11,6 +11,15 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+// function saveTabState(tabId) {
+//   var tabs = document.getElementsByClassName('tab-pane');
+//   for (var i = 0; i < tabs.length; i++) {
+//       tabs[i].style.display = 'none';
+//   }
+
+//   var tab = document.getElementById(tabId);
+//   tab.style.display = 'block';
+// }
 function showTab(tabId) {
   const tabChildElements = document.querySelectorAll('.tab-child');
   tabChildElements.forEach((element) => {
