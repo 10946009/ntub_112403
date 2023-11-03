@@ -2439,7 +2439,18 @@ img {
 
     .return_2:hover {
         color: #2c63c8;
-        background-color: rgb(156, 156, 156);
+        background-color: #8f8f90;
+    }
+
+    .comment_topic {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        border-radius: 0;
+    }
+
+    .total_att {
+        margin-left: 15px;
     }
 
 }
