@@ -2468,6 +2468,39 @@ img {
         margin-bottom: 20px;
     }
 
+    /* 評論框框 */
+    .share_comment_container {
+        background: rgb(236, 221, 184);
+        border: black solid;
+        width: 100%;
+        margin: 80px auto;
+    }
+
+    /* 評論彈跳窗(name) */
+    .comment_container {
+        background-color: rgb(209, 177, 74);
+        color: rgb(90, 70, 25);
+        position: relative;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .update_att_ph_container {
+        background: rgb(236, 221, 184);
+        border: black solid;
+        width: 100%;
+        margin: 80px auto;
+    }
+
+    /* 上傳景點圖片彈跳窗(name) */
+    .update_ph_container {
+        background-color: rgb(209, 177, 74);
+        color: rgb(90, 70, 25);
+        position: relative;
+        padding: 10px;
+        text-align: center;
+    }
+
 }
 
 
