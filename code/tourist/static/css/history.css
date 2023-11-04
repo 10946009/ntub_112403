@@ -1,16 +1,18 @@
-.main{
+.main {
     width: 90%;
     margin: 0 auto;
     margin-top: 80px;
 }
-.shareFilter_div{
+
+.shareFilter_div {
     margin: 0 auto;
     float: right;
     text-align: center;
     margin-bottom: 10px;
     display: block;
 }
-.shareFilter_btn{
+
+.shareFilter_btn {
     display: block;
     float: left;
     text-decoration: none;
@@ -24,27 +26,30 @@
     color: #fff;
     text-shadow: 2px 2px 3px #333;
     box-shadow: 4px 4px 4px #ccc;
-	transition: background-color 0.3s ,color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
 }
-.shareFilter_btn:hover{
-    background-color: #ff473d;
-}
-.shareFilter_btn_click{
+
+.shareFilter_btn:hover {
     background-color: #ff473d;
 }
 
-.mytravel{
+.shareFilter_btn_click {
+    background-color: #ff473d;
+}
+
+.mytravel {
     width: 100%;
     /* border: 1px solid black; */
     margin: 10px 0 0 0;
     position: relative;
     /* border-radius: 20%; */
 }
+
 /* .more{
     border: 1px solid gray;
     border-top: 0px;
 } */
-.mytravel_img{
+.mytravel_img {
     height: 200px;
     overflow: hidden;
     padding: 0;
@@ -52,27 +57,32 @@
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 }
-.mytravel_img img{
+
+.mytravel_img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 }
-.mytravel_txt{
+
+.mytravel_txt {
     padding: 0;
     position: relative;
     border: 1px solid black;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
-.mytravel_txt_title{
+
+.mytravel_txt_title {
     margin: 10px auto;
 }
-.mytravel_txt_detail{
+
+.mytravel_txt_detail {
     font-size: 20px;
 }
-.more_btn{
+
+.more_btn {
     position: absolute;
     right: 5px;
     bottom: 5px;
@@ -85,7 +95,27 @@
     text-shadow: 3px 2px 3px rgb(146, 146, 146);
     font-weight: bold;
 }
-.share{
+
+.showAll_btn {
+    position: absolute;
+    right: calc(20% + 0px);
+    bottom: 5px;
+    width: auto;
+    border: 1px none rgb(128, 128, 128);
+    border-radius: 20px;
+    padding: 10px 20px;
+    background-color: rgb(255, 240, 126);
+    box-shadow: 3px 2px 3px rgb(146, 146, 146);
+    text-shadow: 3px 2px 3px rgb(146, 146, 146);
+    font-weight: bold;
+}
+
+.more_btn:hover,
+.showAll_btn:hover {
+    background-color: #F55;
+}
+
+.share {
     display: block;
     width: 35px;
     height: 30px;
@@ -94,7 +124,8 @@
     top: 5px;
     right: 35px;
 }
-.share_icon{
+
+.share_icon {
     font-size: 28px;
     width: 50px;
     color: black;
@@ -102,17 +133,20 @@
     cursor: pointer;
     user-select: none;
 }
-.share_icon:hover{
+
+.share_icon:hover {
     color: rgb(255, 179, 0);
     text-shadow: 2px 2px 2px rgb(162, 162, 162);
 }
-.icontxt{
+
+.icontxt {
     font-size: 16px;
     text-shadow: 2px 2px 1px #FFF;
     font-weight: bolder;
     user-select: none;
 }
-.edit{
+
+.edit {
     display: block;
     width: 35px;
     height: 30px;
@@ -122,7 +156,8 @@
     right: 75px;
     padding: 0;
 }
-.edita{
+
+.edita {
     font-size: 28px;
     text-decoration: none;
     color: black;
@@ -130,10 +165,12 @@
     text-shadow: 2px 2px 1px #FFF;
     user-select: none;
 }
-.edita:hover{
+
+.edita:hover {
     color: gray;
     text-shadow: 2px 2px 2px rgb(162, 162, 162);
 }
+
 /*展開詳細行程*/
 .hidden-details {
     /* display: none; */
@@ -141,53 +178,89 @@
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
 }
+
 .details {
-  margin-top: 10px;
+    margin-top: 10px;
 }
-.nav{
+
+.nav {
     padding: 5px;
 }
-.history-nav-link{
+
+.history-nav-link {
     color: black;
     font-weight: bold;
 }
-.content_align{
+.more{
+    border-radius: 30px;
+    box-shadow: 3px 3px 3px #ccc;
+}
+.content_align {
+    /* width: 90%;
+    margin: 0 auto; */
     display: flex;
     align-items: center;
     align-content: center;
     overflow-x: scroll;
 }
-.content_detail{
+.content_detail_start{
     height: 200px;
-    width: 350px;
+    width: 80px;
+    min-width: 80px;
     display: block;
     margin: 5px;
     padding: 10px;
+    margin-right: 10px;
+    border: 1px solid black;
+    border-radius: 30px;
+    font-size: 20px;
+    text-align: center;
+    user-select: none;
+}
+.content_detail_startTXT{
+    position: relative;
+    top: 20%;
+    transform: translateY(-60%);
+}
+.content_detail {
+    height: 200px;
+    width: 350px;
+    min-width: 300px;
+    display: block;
+    margin: 5px;
+    padding: 10px;
+    margin-right: 10px;
     border: 1px solid black;
     border-radius: 30px;
 }
-.content_detail p{
+
+.content_detail p {
     margin-bottom: 10px;
 }
-.spotnum{
+
+.spotnum {
     font-size: 18px;
 }
-.spot{
+
+.spot {
     font-size: 20px;
     font-weight: bold;
 }
-.gonext{
+
+.gonext {
     margin: 5px;
     padding: 5px;
     text-align: center;
     display: block;
     cursor: pointer;
 }
-.gonexta{
+
+.gonexta {
     text-decoration: none;
     color: black;
 }
-.div_img{
+
+.div_img {
     height: 200px;
     overflow: hidden;
     padding: 0;
@@ -195,51 +268,61 @@
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 }
-.div_img img{
+
+.div_img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 }
-.div_txt{
+
+.div_txt {
     padding: 0;
     position: relative;
     border: 1px solid black;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
+
 @media (max-width:1024px) {
-    .content{
+    .content {
         margin: 5px auto;
     }
-    .content_align{
+
+    .content_align {
         /* display: block; */
     }
-    .content_detail{
+
+    .content_detail {
         height: 180px;
         width: 250px;
         display: block;
         margin: 0 auto;
         padding: 15px 10px;
     }
-    .gonext{
+
+    .gonext {
         display: block;
         margin: 0 auto;
     }
-    .gonextbtn{
+
+    .gonextbtn {
         margin: 0;
     }
 }
-@media (max-width: 768px){
-    .share{
+
+@media (max-width: 768px) {
+    .share {
         top: 0;
     }
-    .edit{
+
+    .edit {
         top: 0;
         right: 80px;
     }
-    .edit_icon{
+
+    .edit_icon {
         color: white;
         text-shadow: 2px 2px 1px #000;
         border-bottom-left-radius: 30px;
@@ -249,7 +332,8 @@
         box-shadow: 3px 3px 5px #333;
         width: 50px;
     }
-    .share_icon{
+
+    .share_icon {
         color: white;
         text-shadow: 2px 2px 1px #000;
         border-bottom-left-radius: 30px;
@@ -258,7 +342,8 @@
         background-color: rgba(253, 251, 255, 0.5);
         box-shadow: 3px 3px 5px #333;
     }
-    .icontxt{
+
+    .icontxt {
         color: white;
         text-shadow: 2px 2px 1px #000;
     }

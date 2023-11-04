@@ -10,9 +10,9 @@ def save_attractions_comment(request,aid=None):
         aid = aid
     else:
         aid = request.POST.get("aid")
-    
     user_id = request.user.id
     comment = request.POST.get("comment")
+    print(request.POST)
     if comment:
         unit = AttractionsComment.objects.create(u_id=user_id, a_id=aid, content=comment)
         unit.save()
@@ -26,6 +26,7 @@ def save_travel_comment(request,cid=None):
         cid = request.POST.get("cid")
     user_id = request.user.id
     comment = request.POST.get("comment")
+
     if comment:
         unit = TravelComment.objects.create(u_id=user_id, c_id=cid, comment=comment)
         unit.save()

@@ -30,6 +30,8 @@ from myapp.views import (
     share,
     comment,
     user_edit,
+    search,
+    question
 )
 
 
@@ -55,6 +57,7 @@ urlpatterns = [
     path("createindex/", create_index.create_index),
     # path('create/<int:ct_id>/<int:choiceday>',views.create),
     path("create/<int:ct_id>", create.create),
+    path("search/get", search.search),
     path("history/", history.history),
     path("history/<int:select>", history.history),
 
@@ -85,4 +88,6 @@ urlpatterns = [
     path("travel_detail/<int:ctid>", travel_detail.travel_detail),
     path('comment/<int:aid>/', comment.save_attractions_comment,name="attraction_comment"),
     path('comment/', comment.save_travel_comment,name="travel_comment"),
+    path('question/<int:aid>/', question.save_question,name="attraction_question"),
+    path('question_answer/<int:aqid>/', question.save_question_answer,name="attraction_answer"),
 ]

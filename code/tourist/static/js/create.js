@@ -54,15 +54,17 @@ function clickChange() {
         likeAndRec.style.transform = 'rotateY(180deg)';
         searchBlock.style.transform = 'rotateY(0deg)';
         button.textContent = "收藏與推薦";
+        button.style.backgroundColor = "rgb(255, 41, 101)";
     } else {
         likeAndRec.style.transform = 'rotateY(0deg)';
         searchBlock.style.transform = 'rotateY(180deg)';
         button.textContent = "切換搜尋";
+        button.style.backgroundColor = "#0066DB";
     }
 
 }
 
-// 展開收藏跟收藏跟相似景點
+// 展開收藏跟相似景點
 var isLikeVisible = false;
 
 function openLikeBtn() {
@@ -82,19 +84,19 @@ function openLikeBtn() {
     }
 }
 
-var isRecVisible = false;
-function openRecBtn() {
+var isSimilarVisible = false;
+function openSimilarBtn() {
 
-    var openRec = $('.openRec');
+    var openSimilar = $('.openSimilar');
 
-    isRecVisible = !isRecVisible
+    isSimilarVisible = !isSimilarVisible
 
-    if (isRecVisible) {
-        openRec.animate({
+    if (isSimilarVisible) {
+      openSimilar.animate({
             height: "show"
         }, 500);
     } else {
-        openRec.animate({
+      openSimilar.animate({
             height: "hide"
         }, 300);
     }
@@ -122,7 +124,6 @@ function pickspot(checkbox) {
 
 
 var heart = document.getElementsByClassName('heart_icon');
-// var span = document.getElementsByClassName('count');
 for (var i = 0; i < heart.length; i++) {
   // var count;
   (function (i) {
@@ -139,6 +140,15 @@ for (var i = 0; i < heart.length; i++) {
       }
     }
   })(i);
+}
+function addFavorite(itemId) {
+  var search_heart_icon = $("#" + itemId).find(".search_heart_icon");
+
+  if (!search_heart_icon.hasClass("heart_active")) {
+      search_heart_icon.addClass("heart_active");
+  } else {
+      search_heart_icon.removeClass("heart_active");
+  }
 }
 
 

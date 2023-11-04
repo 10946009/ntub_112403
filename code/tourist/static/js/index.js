@@ -10,6 +10,89 @@ window.onresize = function(){
   bannerbgimg.style.height = window.innerHeight + "px";
 }
 
+// randomBanner
+document.addEventListener("DOMContentLoaded",function(){
+  var images = [
+    '../static/images/IMG20220125115200.jpg',
+    '../static/images/bg1.jpg',
+    '../static/images/bg2.jpg',
+    '../static/images/bg5.png',
+    '../static/images/bg6.jpeg',
+    '../static/images/bg7.png',
+    '../static/images/bg8.jpg',
+    '../static/images/jp_img.jpg',
+  ]
+
+  var randomIndex = Math.floor(Math.random()*images.length);
+  var randomImg = images[randomIndex];
+
+  var banner = document.getElementById("randomBanner");
+
+  banner.style.background = 'url(' + randomImg + ')';
+  banner.style.backgroundRepeat = 'no-repeat';
+  banner.style.backgroundSize = 'cover';
+  banner.style.backgroundPosition = 'center';
+  banner.style.opacity = '0.65';
+  banner.style.position = 'relative';
+  banner.style.zIndex = '100';
+})
+
+// change img when mouser hover
+        $(document).ready(function () {
+          $('.hoverTest').each(function () {
+              var $images = $(this).find('img');
+              var imageCount = $images.length;
+              var currentIndex = 0;
+              var timer; // 定时器变量
+
+              function showImage(index) {
+                  $images.css('opacity', '0'); // 隐藏所有图片
+                  $images.eq(index).css('opacity', '1'); // 显示特定索引的图片
+              }
+
+              function nextImage() {
+                  currentIndex = (currentIndex + 1) % imageCount;
+                  showImage(currentIndex);
+              }
+
+
+              $(this).on('mouseenter', function () {
+                  // 当鼠标进入 .hoverTest 区域时
+                  showImage(1); // 显示第二张图片
+                  timer = setTimeout(function () {
+                      nextImage(); // 三秒后显示下一张图片
+                      timer = setInterval(nextImage, 3000); // 每三秒切换一次图片
+                  }, 2000);
+              }).on('mouseleave', function () {
+                  // 当鼠标离开 .hoverTest 区域时
+                  clearTimeout(timer); // 清除定时器
+                  $images.css('opacity', '1'); 
+              });
+          })
+
+      });
+
+// const imageMouse = document.getElementById("hover").getElementsByTagName('img');
+// const initialImg = imageMouse[0].src;
+
+// const imageMouseSource = [
+//   '../static/images/attractions/{{item.place_id}}_0.jpg',
+//   '../static/images/attractions/{{item.place_id}}_1.jpg',
+//   '../static/images/attractions/{{item.place_id}}_2.jpg',
+// ]
+
+// function changeImg(){
+//   for (let i = 0; i < imageMouse.length; i++){
+//     imageMouse[i].src = imageMouseSource[i] || initialImg;
+//   }
+// }
+// function resetImg(){
+//   for (let i = 0; i < imageMouse.length; i++){
+//     imageMouse[i].src = initialImg;
+//   }
+// }
+
+
 //向下滑動
 // document.querySelector('.scroll-down-button').addEventListener('click', function (e) {
 //   e.preventDefault();
