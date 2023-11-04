@@ -10,8 +10,6 @@ function currentSlide(n) {
 function showSlides(n) {
   let i;
   let slides = document.getElementsByClassName("mySlides"); // 取得所有幻燈片元素
-  let dots = document.getElementsByClassName("demo"); // 取得所有圓點元素
-  let captionText = document.getElementById("caption"); // 取得說明文字元素
   if (n > slides.length) {
     slideIndex1 = 1;
   } // 當索引超出最大值時，將索引設為第一張幻燈片
@@ -21,12 +19,8 @@ function showSlides(n) {
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none"; // 隱藏所有幻燈片
   }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", ""); // 移除所有圓點的active樣式
-  }
+
   slides[slideIndex1 - 1].style.display = "block"; // 顯示目前索引對應的幻燈片
-  dots[slideIndex1 - 1].className += " active"; // 將目前索引對應的圓點加上active樣式
-  captionText.innerHTML = dots[slideIndex1 - 1].alt; // 更新說明文字為目前索引對應的圓點的alt屬性值
 }
 
 //簡單景點介紹js幻燈片

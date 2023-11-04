@@ -35,9 +35,9 @@
 
   <div class="tab-content" id="myTabContent" style="width: 100%;margin: 0 auto;">
     {% for day in travelday %}
-      <div class="tab-pane fade{% if forloop.counter == 1 %}show active{% endif %}" id="ch-{{ day }}" role="tabpanel" aria-labelledby="{{ day }}-tab" style="display: flex;justify-content: center;align-items: center;align-content: center;">
+      <div class="tab-pane fade{% if forloop.counter == 1 %}show active{% endif %}" id="ch-{{ day }}" role="tabpanel" aria-labelledby="{{ day }}-tab" style="display: flex;justify-content: center;align-items: center;align-content: center;padding: 10px 0;">
         <div class="row" style="width: 100%;">
-          <div class="col-6" style="border: 1px solid black;">
+          <div class="col-6 recAndDone" style="border-right: 2px solid rgb(152, 152, 152);">
             我是左邊 顯示已排完序的景點
             <div>
               <div class="tabD">
@@ -58,13 +58,8 @@
                 <input type="hidden" placeholder="day" class="nowday" id="nowday">
               </div>
             </div>
-            <div>
-              {% comment %} <button id="recommend-tab{{day}}" onclick="recommend({{ day }})">推薦景點</button> <br> {% endcomment %}
-              <div class="recDiv">
-                <button class="changeToRec" id="changeToSearch" onclick="clickChangeMy()">切換我的行程</button>
-                <i class="fa-solid fa-thumbs-up rec_icon"></i>
-                <span class="rec_txt">推薦景點</span>
-              </div><!-- 添加地图容器 -->
+            <div style="position: relative;">
+              <!-- 添加地图容器 -->
               <input
                 id="pac-input-{{ day }}"
                 class="controls"
@@ -74,8 +69,102 @@
               />
               <div id="map-{{ day }}" style="width: 100%; height: 400px; display: none;"></div>
 
-              左邊區塊點的景點加入右邊 這樣如果他附近沒有想去的地方可以從最愛或搜尋抓<br>
-              顯示已排完序的景點
+              <button class="changeToRec" id="changeToRec" onclick="clickChangeDone()">切換我的行程</button>
+                  
+              <div class="changeRec checkRec" id="checkRec">
+                <div class="recDiv">
+                  <i class="fa-solid fa-thumbs-up rec_icon"></i>
+                  <span class="rec_txt">推薦景點</span>
+                </div>
+                <div id="checkbox" class="checkboxDiv">
+                  <div class="row" style="padding: 10px 5px;" id="AttractionsContainer">
+                    <div class=" col-md-6" style="margin-bottom: 5px;">
+                      <div class="checkimg_div">
+                        <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;" onclick="pickspot(this)">
+                          <span class="checkspot">
+                            <img src="../static/images/attractions/ChIJ-0tljYCpQjQRTyksupgnERQ_0.jpg" class="img-responsive" width="100%" alt="">
+                            <button class="fa-solid fa-heart rec_heart_icon" id="rec_heart_icon" onclick="addRecFavorite(event,'itemId')"> <!-- 這裡這裡的itemId要用你們的編號 --></button>
+                          </span>
+                          <div class="spottxtdiv">
+                            <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
+                            <span>評價：</span><br>
+                            <span>營業時間：</span>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                    <div class=" col-md-6" style="margin-bottom: 5px;">
+                      <div class="checkimg_div">
+                        <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;" onclick="pickspot(this)">
+                          <span class="checkspot">
+                            <img src="../static/images/attractions/ChIJ-0tljYCpQjQRTyksupgnERQ_0.jpg" class="img-responsive" width="100%" alt="">
+                            <button class="fa-solid fa-heart rec_heart_icon" id="rec_heart_icon" onclick="addRecFavorite(event,'itemId')"> <!-- 這裡這裡的itemId要用你們的編號 --></button>
+                          </span>
+                          <div class="spottxtdiv">
+                            <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
+                            <span>評價：</span><br>
+                            <span>營業時間：</span>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                    <div class=" col-md-6" style="margin-bottom: 5px;">
+                      <div class="checkimg_div">
+                        <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;" onclick="pickspot(this)">
+                          <span class="checkspot">
+                            <img src="../static/images/attractions/ChIJ-0tljYCpQjQRTyksupgnERQ_0.jpg" class="img-responsive" width="100%" alt="">
+                            <button class="fa-solid fa-heart rec_heart_icon" id="rec_heart_icon" onclick="addRecFavorite(event,'itemId')"> <!-- 這裡這裡的itemId要用你們的編號 --></button>
+                          </span>
+                          <div class="spottxtdiv">
+                            <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
+                            <span>評價：</span><br>
+                            <span>營業時間：</span>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                    <div class=" col-md-6" style="margin-bottom: 5px;">
+                      <div class="checkimg_div">
+                        <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;" onclick="pickspot(this)">
+                          <span class="checkspot">
+                            <img src="../static/images/attractions/ChIJ-0tljYCpQjQRTyksupgnERQ_0.jpg" class="img-responsive" width="100%" alt="">
+                            <button class="fa-solid fa-heart rec_heart_icon" id="rec_heart_icon" onclick="addRecFavorite(event,'itemId')"> <!-- 這裡這裡的itemId要用你們的編號 --></button>
+                          </span>
+                          <div class="spottxtdiv">
+                            <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
+                            <span>評價：</span><br>
+                            <span>營業時間：</span>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" style="padding: 12px;" id="AttractionsContainer_o">
+                    <div class="col-lg-4 col-md-6" style="margin-bottom: 5px;">
+                      <div class="checkimg_div">
+                        <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;" onclick="pickspot(this)">
+                          <span class="checkspot">
+                            <img src="../static/images/attractions/ChIJ-0tljYCpQjQRTyksupgnERQ_0.jpg" class="img-responsive" width="100%" alt="">
+                            <button class="fa-solid fa-heart rec_heart_icon" id="rec_heart_icon" onclick="addRecFavorite(event,'itemId')"> <!-- 這裡這裡的itemId要用你們的編號 --></button>
+                          </span>
+                          <div class="spottxtdiv">
+                            <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
+                            <span>評價：</span><br>
+                            <span>營業時間：</span>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button class="recommend_submit1" value="下一步">下一步</button>
+              </div>
+              <div class="changeRec done" id="done">
+                <div class="doneDiv">
+                  <i class="fa-solid fa-route done_icon"></i>
+                  <span class="done_txt">景點排序</span>
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-6 searchAndlikeAndrec">
