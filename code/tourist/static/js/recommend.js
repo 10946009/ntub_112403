@@ -51,3 +51,29 @@ function similarRecommend(aid_list){
     });
 
 }
+
+function submitRecommend(){
+  nowtime = document.getElementById('nowtime-' + globalDay);
+  const total_aid_list = Array.from(now_click_attractions[globalDay]);
+
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  $.ajax({
+      type: "POST",
+      headers: { 'X-CSRFToken': csrftoken },
+      data: {
+          total_aid_list: total_aid_list,
+          nowtime: nowtime.value,
+          ct_status: 2,
+      },
+      success: function (response) {
+        console.log(response);
+        const order_attractions_detail_div = $('#orderAttractions-'+ globalDay );
+        order_attractions_detail_div.html(response['order_attractions']);
+      },
+
+      error: function () {
+          console.log('送出推薦回傳有錯誤!!!');
+      },
+    });
+
+}

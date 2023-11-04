@@ -171,7 +171,7 @@ function clickChangeDone() {
 
 // 送出功能整合到clickChangeDone函数中
 // 點擊送出會切換到景點排序頁面
-function submitAction() {
+function submitAction(day) {
   // var day_label = document.getElementsByClassName("tab-pane fade active show");
   // var day = day_label[0].getAttribute('dataset');
 
@@ -184,6 +184,8 @@ function submitAction() {
   button.textContent = "重新推薦";
   button.style.backgroundColor = "rgb(255, 41, 101)";
   isdoneJourneyVisible = true;
+
+  submitRecommend();
 }
 
 

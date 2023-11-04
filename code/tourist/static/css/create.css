@@ -315,8 +315,8 @@ main {
 /* 我的範例 */
 
 .list {
-    margin: 200px auto;
-    width: 200px;
+    /* margin: 5px,5px; */
+    width: 100%;
 }
 
 .innerlist {
