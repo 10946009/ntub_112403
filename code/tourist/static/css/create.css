@@ -689,7 +689,12 @@ main {
     top: 0; */
 }
 
-
+.spotName{
+    text-align: center;
+    font-size: 18px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
 .spottxt {
     font-size: 16px;
 }

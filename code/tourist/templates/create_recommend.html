@@ -8,14 +8,11 @@
             {% comment %} <button class="fa-solid fa-heart rec_heart_icon" id="rec_heart_icon" onclick="addRecFavorite(event,{{r.m_list.id}})"> <!-- 這裡這裡的itemId要用你們的編號 --></button> {% endcomment %}
           </span>
           <div class="spottxtdiv">
-            <p style="text-align: center;padding: 5px;margin-bottom: 5px;">{{r.m_list.a_name}}</p>
-            <span>評價：{{r.m_list.rating}}</span><br>
-            <span>營業時間：{{r.crow_opening_list.opening.0}}</span>
-
-            
+            <p class="spotName">{{r.m_list.a_name}}</p>
+            <span class="spottxt spottxtstar">評價：{{r.m_list.rating}}</span><br>
+            <span class="spottxt spottxttime">營業時間：{{r.crow_opening_list.opening.0}}</span>
           </div>
         </label>
       </div>
   </div>
-
-  {% endfor %}
+{% endfor %}

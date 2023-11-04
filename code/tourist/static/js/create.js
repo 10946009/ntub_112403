@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+//點了不會有空白 
 function saveTabState(tabId) {
   var tabs = document.getElementsByClassName('tab-pane');
   for (var i = 0; i < tabs.length; i++) {
@@ -46,6 +47,37 @@ function clickChange() {
     }
 
 }
+
+// 高度一致
+$(document).ready(function() {
+  // 在文件載入時和視窗尺寸改變時調整高度
+  adjustTextHeightOnResize('.checkimg_div .spottxtdiv');
+});
+
+function adjustTextHeightOnResize(selector) {
+  // 初始化高度
+  adjustTextHeight(selector);
+
+  // 監聽視窗大小改變事件
+  $(window).on('resize', function() {
+      adjustTextHeight(selector);
+  });
+}
+function adjustTextHeight(selector) {
+  $(selector).height('auto'); // 先重置高度以便重新計算
+  var maxHeight = 0;
+
+  // 找出最大高度
+  $(selector).each(function() {
+      var textHeight = $(this).outerHeight();
+      if (textHeight > maxHeight) {
+          maxHeight = textHeight;
+      }
+  });
+  // 將所有文字區塊設置為最大高度
+  $(selector).height(maxHeight);
+}
+
 
 // 翻轉左邊區塊
 var isdoneJourneyVisible = false;
@@ -107,12 +139,10 @@ function openLikeBtn() {
     }
 }
 
-var isSimilarVisible = false;
+var isSimilarVisible = true;
 function openSimilarBtn() {
 
     var openSimilar = $('.openSimilar');
-
-    isSimilarVisible = !isSimilarVisible
 
     if (isSimilarVisible) {
       openSimilar.animate({
@@ -123,7 +153,15 @@ function openSimilarBtn() {
             height: "hide"
         }, 300);
     }
+
+    isSimilarVisible = !isSimilarVisible
 }
+// 當頁面載入後，呼叫一次以顯示相似元素
+$(document).ready(function() {
+  openSimilarBtn();
+});
+
+
 //open篩選
 function openfiliter() {
   var showfiliter = document.querySelector(".show_filiter")
