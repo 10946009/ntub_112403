@@ -234,19 +234,19 @@ def create(request, ct_id):
 
 
         if ct_status == "2":
-            o_attractions_list = request.POST.getlist("all_select[]")
+            o_attractions_list = request.POST.getlist("total_aid_list[]")
             print('o_attractions_list我在這!!!!!!!!!!!!!!!!!!',o_attractions_list)
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
             final = final_order(
-                o_attractions_list, new_nowtime, week, stay_time, user_favorite_type
+                list(map(int,o_attractions_list)), new_nowtime, week, stay_time, user_favorite_type
             )
             # print('final,我在這!!!!!!!!!!!!!!!!',final)
             # ------主要的
             final_result_list = []
             final_crow_opening_list = []
             for f in final[0]:
-                temp = Attractions.objects.filter(place_id=f).values().first()
+                temp = Attractions.objects.filter(id=f).values().first()
                 final_result_list.append(temp)
             for i in final_result_list:
                 f_db = (
@@ -284,15 +284,38 @@ def create(request, ct_id):
                 "final_remainder_crow_opening_list", final_remainder_crow_opening_list
             )
             print('final_now_time_list',final_now_time_list)
-            return JsonResponse(
-                {
-                    "final_result_list": final_result_list,
-                    "final_crow_opening_list": final_crow_opening_list,
-                    "final_remainder_result_list": final_remainder_result_list,
-                    "final_remainder_crow_opening_list": final_remainder_crow_opening_list,
-                    'final_now_time_list':final_now_time_list,
-                }
+            # return JsonResponse(
+            #     {
+            #         "final_result_list": final_result_list,
+            #         "final_crow_opening_list": final_crow_opening_list,
+            #         "final_remainder_result_list": final_remainder_result_list,
+            #         "final_remainder_crow_opening_list": final_remainder_crow_opening_list,
+            #         'final_now_time_list':final_now_time_list,
+            #     }
+            # )
+            # 將資料組在一起
+            order_attractions_data= []
+            remainder_attractions_data = []
+            for fr, fc, fnowtime in zip(final_result_list, final_crow_opening_list,final_now_time_list):
+                order_attractions_data.append({
+                    'final_result_list': fr,
+                    'final_crow_opening_list': fc,
+                    'final_crowd_list' : f"{min(fc['crowd'][fnowtime//60],fc['crowd'][fnowtime//60+1])} ~ {max(fc['crowd'][fnowtime//60],fc['crowd'][fnowtime//60+1])}"  
+                })
+            for frr,frc in zip(final_remainder_result_list,final_remainder_crow_opening_list):
+                remainder_attractions_data.append({
+                'final_remainder_result_list':frr,
+                'final_remainder_crow_opening_list':frc,
+            })
+            #轉成html
+            html = render_to_string(
+                template_name="create_order_attractions.html",
+                context={"order_attractions_data": order_attractions_data,'remainder_attractions_data':remainder_attractions_data,'final_now_time_list':final_now_time_list},
             )
+            data_dict = {"order_attractions": html}
+            
+            return JsonResponse(data=data_dict, safe=False)
+
         choice_ct_id = -1
         if ct_status == "3":
             print("我進來了")

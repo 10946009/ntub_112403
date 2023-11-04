@@ -12,12 +12,12 @@ def order_check_attractions(
     ok_a_list = []
     # now_time+=stay_time
     for o in o_attractions_list:
-        o_db = Attractions.objects.get(place_id=o)
+        o_db = Attractions.objects.get(id=o)
         o_crowd_opening = o_db.crowd_opening_set.filter(week=week).values()
         opening = o_crowd_opening[0]["opening"]
         for op in opening:
             if op == "24小時營業":
-                ok_a_list.append(o_db.place_id)
+                ok_a_list.append(o_db.id)
             elif op == "休息":
                 continue
             else:
@@ -26,7 +26,7 @@ def order_check_attractions(
                 if now_time >= int(op[0:2]) * 60 + int(
                     op[3:5]
                 ) and now_time + stay_time <= int(op[6:8]) * 60 + int(op[9:]):
-                    ok_a_list.append(o_db.place_id)
+                    ok_a_list.append(o_db.id)
                     break
     if ok_a_list == []:
         return ""
@@ -39,7 +39,7 @@ def order_check_attractions(
 
     for o in ok_a_list:
         score = 0
-        o_db = Attractions.objects.get(place_id=o)
+        o_db = Attractions.objects.get(id=o)
         for tag in o_db.att_type:  # 抓出周遭n的tag(需要修改景點標籤)
             if tag in user_favorite:  #
                 score += 1
@@ -49,7 +49,7 @@ def order_check_attractions(
     time = now_time // 60
     # stay_time = 150
     for o in ok_a_list:
-        o_db = Attractions.objects.get(place_id=o)
+        o_db = Attractions.objects.get(id=o)
         o_crowd_opening = o_db.crowd_opening_set.filter(week=week).values()
         crowd = o_crowd_opening[0]["crowd"]
         opening = o_crowd_opening[0]["opening"]
@@ -103,13 +103,13 @@ def order_check_attractions(
     total_list = df_x[3].values.tolist()  # 將df_x[3]的值轉成list
     final = [
         [ok_a_list[x], total_list[x]] for x in range(len(total_list))
-    ]  # 將place_id和分數合併
+    ]  # 將id和分數合併
     f_final_list = sorted(final, key=lambda x: x[1], reverse=True)  # 排序
     print("f_final_list", f_final_list)
     f_final_list_name = [
         [
-            Attractions.objects.get(place_id=x[0]).a_name,
-            Attractions.objects.get(place_id=x[0])
+            Attractions.objects.get(id=x[0]).id,
+            Attractions.objects.get(id=x[0])
             .crowd_opening_set.filter(week=week)
             .values()[0]["opening"],
         ]
