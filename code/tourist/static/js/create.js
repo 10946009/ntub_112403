@@ -11,34 +11,15 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-function showTab(tabId) {
-  const tabChildElements = document.querySelectorAll('.tab-child');
-  tabChildElements.forEach((element) => {
-    element.style.display = 'none';
-    
-  });
-
-  // 显示特定的tab-child元素
-  const tabChild = document.getElementById(tabId);
-  console.log(tabChild);
-  if (tabChild) {
-    tabChild.style.display = 'flex';
+function saveTabState(tabId) {
+  var tabs = document.getElementsByClassName('tab-pane');
+  for (var i = 0; i < tabs.length; i++) {
+      tabs[i].style.display = 'none';
   }
-}
-// 给各个选项卡按钮添加点击事件监听器
-const allChildtab = document.getElementsByClassName('create-child-nav-link');
 
-console.log(allChildtab);
-for (let i = 0; i < allChildtab.length; i++) {
-  allChildtab[i].addEventListener('click', function () {
-    // 在点击选项卡时隐藏其他选项卡，并更新本地存储
-    localStorage.setItem('selectedTab', this.id);
-    console.log('selectedTab', this.id)
-    showTab('myTabchild'+(i+1));
-  });
+  var tab = document.getElementById(tabId);
+  tab.style.display = 'block';
 }
-
-allChildtab[0].click();//預設點擊第一個
 
 // 翻轉右邊區塊
 var islikeAndRecVisible = false;
@@ -77,16 +58,31 @@ function clickChangeDone() {
     if (isdoneJourneyVisible) {
         checkRec.style.transform = 'rotateY(180deg)';
         done.style.transform = 'rotateY(0deg)';
-        button.textContent = "切換推薦";
+        button.textContent = "重新推薦";
         button.style.backgroundColor = "rgb(255, 41, 101)";
     } else {
         checkRec.style.transform = 'rotateY(0deg)';
         done.style.transform = 'rotateY(180deg)';
-        button.textContent = "切換我的行程";
+        button.textContent = "景點排序";
         button.style.backgroundColor = "#0066DB";
     }
 
 }
+
+// 送出功能整合到clickChangeDone函数中
+// 點擊送出會切換到景點排序頁面
+function submitAction() {
+  const checkRec = document.getElementById('checkRec');
+  const done = document.getElementById('done');
+  const button = document.getElementById("changeToRec");
+
+  checkRec.style.transform = 'rotateY(180deg)';
+  done.style.transform = 'rotateY(0deg)';
+  button.textContent = "重新推薦";
+  button.style.backgroundColor = "rgb(255, 41, 101)";
+  isdoneJourneyVisible = true;
+}
+
 
 // 展開收藏跟相似景點
 var isLikeVisible = false;
@@ -168,12 +164,23 @@ for (var i = 0; i < heart.length; i++) {
 
 // 加入收藏
 function addFavorite(itemId) {
-  var search_heart_icon = $("#" + itemId).find(".search_heart_icon");
+  var ss_heart_icon = $("#" + itemId).find(".ss_heart_icon");
 
-  if (!search_heart_icon.hasClass("heart_active")) {
-      search_heart_icon.addClass("heart_active");
+  if (!ss_heart_icon.hasClass("heart_active")) {
+      ss_heart_icon.addClass("heart_active");
   } else {
-      search_heart_icon.removeClass("heart_active");
+      ss_heart_icon.removeClass("heart_active");
+  }
+}
+
+// 建立行程裡面的收藏
+function addCtFavorite(itemId) {
+  var ct_heart_icon = $("#" + itemId).find(".ct_heart_icon");
+
+  if (!ct_heart_icon.hasClass("heart_active")) {
+      ct_heart_icon.addClass("heart_active");
+  } else {
+      ct_heart_icon.removeClass("heart_active");
   }
 }
 

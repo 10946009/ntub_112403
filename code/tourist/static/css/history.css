@@ -96,7 +96,7 @@
     font-weight: bold;
 }
 
-.showAll_btn {
+/* .showAll_btn {
     position: absolute;
     right: calc(20% + 0px);
     bottom: 5px;
@@ -108,10 +108,9 @@
     box-shadow: 3px 2px 3px rgb(146, 146, 146);
     text-shadow: 3px 2px 3px rgb(146, 146, 146);
     font-weight: bold;
-}
+} */
 
-.more_btn:hover,
-.showAll_btn:hover {
+.more_btn:hover {
     background-color: #F55;
 }
 
