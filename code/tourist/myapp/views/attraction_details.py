@@ -118,7 +118,6 @@ def attraction_details(request):
         print(choose_attractions)
         choose_attractions.hit += 1
         choose_attractions.save()
-        choose_attractions_dict = model_to_dict(choose_attractions)
         # 判斷是否已收藏
         
         is_favorite = Favorite.objects.filter(
@@ -152,7 +151,7 @@ def attraction_details(request):
         detail_html = render_to_string(
             template_name="attraction_details_detail.html",
             context={
-                "detail": choose_attractions_dict,
+                "detail": choose_attractions,
                 "crowd": crowd_dict,
                 "picture_list": picture_list,
                 "opentime_list": opentime_list,
