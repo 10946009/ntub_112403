@@ -139,8 +139,8 @@ function searchText(search_text, data_type) {
       },
       success: function (response) {
         console.log(response);
-          const search_detail_div = $('#replaceable-content');
-          search_detail_div.html(response['search_list']);
+        const search_detail_div = $('#replaceable-content');
+        search_detail_div.html(response['search_list']);
       },
       error: function (xhr, status, error) {
           // 請求失敗時的處理

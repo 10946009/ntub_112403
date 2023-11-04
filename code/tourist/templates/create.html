@@ -42,8 +42,7 @@
             <div>
               <div class="tabD">
                 <span id="tabDT" class="tabDT">請輸入出發時間：</span>
-                <input type="time" name="nowtime" id="nowtime" {% if user_nowtime %}value="{{user_nowtime}}" {% else
-                  %}value="09:00" {% endif %}>
+                <input type="time" name="nowtime" id="nowtime-{{ day }}" {% if user_nowtime %} value="{{user_nowtime}}" {% else %} value="09:00" {% endif %}>
               </div>
               <div class="tabD">
                 <span id="tabDL" class="tabDL">使用者位置：
@@ -69,15 +68,19 @@
               />
               <div id="map-{{ day }}" style="width: 100%; height: 400px; display: none;"></div>
 
+              <!--切換底下兩個div-->
               <button class="changeToRec" id="changeToRec" onclick="clickChangeDone()">景點排序</button>
                   
+              <!--景點推薦div-->
               <div class="changeRec checkRec" id="checkRec">
                 <div class="recDiv">
                   <i class="fa-solid fa-thumbs-up rec_icon"></i>
                   <span class="rec_txt">推薦景點</span>
                 </div>
                 <div id="checkbox" class="checkboxDiv">
+
                   <div class="row" style="padding: 10px 5px;" id="AttractionsContainer">
+                    
                     <div class=" col-md-6" style="margin-bottom: 5px;">
                       <div class="checkimg_div">
                         <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;" onclick="pickspot(this)">
@@ -93,6 +96,7 @@
                         </label>
                       </div>
                     </div>
+
                     <div class=" col-md-6" style="margin-bottom: 5px;">
                       <div class="checkimg_div">
                         <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;" onclick="pickspot(this)">
@@ -108,6 +112,7 @@
                         </label>
                       </div>
                     </div>
+
                     <div class=" col-md-6" style="margin-bottom: 5px;">
                       <div class="checkimg_div">
                         <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;" onclick="pickspot(this)">
@@ -123,6 +128,7 @@
                         </label>
                       </div>
                     </div>
+
                     <div class=" col-md-6" style="margin-bottom: 5px;">
                       <div class="checkimg_div">
                         <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;" onclick="pickspot(this)">
@@ -138,7 +144,9 @@
                         </label>
                       </div>
                     </div>
+
                   </div>
+
                   <div class="row" style="padding: 12px;" id="AttractionsContainer_o">
                     <div class="col-lg-4 col-md-6" style="margin-bottom: 5px;">
                       <div class="checkimg_div">
@@ -156,6 +164,7 @@
                       </div>
                     </div>
                   </div>
+
                 </div>
                 <a href="#recommend-tab" class="tab_a submit1" id="clickLikeAttractions">
                     <button class="recommend_submit1" value="下一步">下一步</button>
@@ -167,12 +176,20 @@
                 <!-- 點擊送出會切換到景點排序頁面 但目前下一步有問題 已經有用下一步做過測試 是可以的 -->
                 <!-- <button class="recommend_submit1" id="next" onclick="nextAction()" value="下一步">下一步</button> -->
               </div>
+
+              <!--景點排序div-->
               <div class="changeRec done" id="done">
                 <div class="doneDiv">
                   <i class="fa-solid fa-route done_icon"></i>
                   <span class="done_txt">景點排序</span>
                 </div>
+
+                <div>
+                  123456
+                </div>
               </div>
+
+
             </div>
           </div>
           <div class="col-6 searchAndlikeAndrec">
@@ -334,11 +351,12 @@
 
 <script src="../static/js/createSearchTool.js"></script>
 <script src="/static/js/create.js"></script>
+<script src="/static/js/recommand.js"></script>
 <script>
   
 // 放入景點名稱
 autocomplete(create_searchInput,JSON.parse('{{ attractions_search_json|safe }}'));
-console.log('hi'+JSON.parse('{{ attractions_search_json|safe }}'))
+//console.log('hi'+JSON.parse('{{ attractions_search_json|safe }}')) 顯示景點搜尋列
   /*window.addEventListener = function () {
     geoFindMe();
   };*/
@@ -351,7 +369,8 @@ console.log('hi'+JSON.parse('{{ attractions_search_json|safe }}'))
       const longitude = position.coords.longitude;
       //if(userLocation.value==''){}
       userLocationName.textContent = latitude + ',' + longitude;  //之後要修改成地址或名字
-      userLocation.value = latitude + ',' + longitude;
+      userLocation.value = latitude + ',' + longitude; // 將經緯度寫進html
+      startRecommand(userLocation.value,day)
       console.log(userLocation.textContent);
     }
 
@@ -379,7 +398,7 @@ console.log('hi'+JSON.parse('{{ attractions_search_json|safe }}'))
   } {% endcomment %}
 
   //第1步驟 推薦附近景點~~~~
-  function recommend(day){
+  /*function recommend(day){
     var nowtime = document.getElementById("nowtime");
     //var ct_status = 0;
     const userLocation = document.getElementById("userLocation-1");
@@ -447,7 +466,7 @@ console.log('hi'+JSON.parse('{{ attractions_search_json|safe }}'))
       error: function () {
       }
     });
-  }
+  }*/
   
   /*var clickRecommend = document.getElementById('recommend-tab');
   clickRecommend.addEventListener("click", function (e) {
@@ -456,7 +475,7 @@ console.log('hi'+JSON.parse('{{ attractions_search_json|safe }}'))
 
   var all_select = [];
   //第2步驟 推薦相似景點~~~
-  var clickLikeAttractions = document.getElementById('clickLikeAttractions');
+  {% comment %} var clickLikeAttractions = document.getElementById('clickLikeAttractions');
   clickLikeAttractions.addEventListener("click", function (e) {
     var select_aid = document.getElementById('AttractionsContainer');
     //var selectedCheckboxes = select_aid.querySelectorAll('input[type="checkbox"]:checked');
@@ -549,10 +568,10 @@ console.log('hi'+JSON.parse('{{ attractions_search_json|safe }}'))
       },
     });
     event.preventDefault();
-  });
+  }); {% endcomment %}
 
   //我是第3步驟   排序~~~
-  var clickLikeAttractions_o = document.getElementById('clickLikeAttractions_o');
+  {% comment %} var clickLikeAttractions_o = document.getElementById('clickLikeAttractions_o');
   clickLikeAttractions_o.addEventListener("click", function (e) {
     var o_select_aid = document.getElementById('AttractionsContainer_o');
     //var o_selectedCheckboxes = o_select_aid.querySelectorAll('input[type="checkbox"]:checked');
@@ -657,7 +676,7 @@ console.log('hi'+JSON.parse('{{ attractions_search_json|safe }}'))
       },
     });
     event.preventDefault();
-  });
+  }); {% endcomment %}
 
   //---------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -672,7 +691,7 @@ console.log('hi'+JSON.parse('{{ attractions_search_json|safe }}'))
   addDay.click() //初始加 {% endcomment %}
 
   //我是儲存~~~
-  var saveDays = document.getElementById('saveDays');
+  {% comment %} var saveDays = document.getElementById('saveDays');
   saveDays.addEventListener("click", function (e) {
     alert('儲存' + '{{choiceday}}');
     var nowtime = document.getElementById("nowtime");
@@ -706,7 +725,7 @@ console.log('hi'+JSON.parse('{{ attractions_search_json|safe }}'))
         alert('有錯誤!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
       },
     });
-  });
+  }); {% endcomment %}
 
 
 </script>
