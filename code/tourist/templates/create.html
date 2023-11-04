@@ -1,91 +1,152 @@
 {% extends 'base.html' %}
 {% block title %}建立行程{% endblock %}
 {% block content %}
-<link rel="stylesheet" href="/static/css/create.css">
-<link rel="stylesheet" href="/static/css/create_search.css">
-<script src="https://maps.googleapis.com/maps/api/js?key={{apikey}}&libraries=places"></script>
+  <link rel="stylesheet" href="/static/css/create.css">
+  <link rel="stylesheet" href="/static/css/create_search.css">
+  <script src="https://maps.googleapis.com/maps/api/js?key={{apikey}}&libraries=places"></script>
 
 
 {% endblock %}
 {% block body %}
-<main>
-  <div class="row pageedit">
-    <form action="" class="createdataform">
-      <div class="row createdata" style="width: 80%;">
-        <div class="col-md-6 tabc_txt">
-          行程名稱：{{ name }}
+  <main>
+    <div class="row pageedit">
+      <form action="" class="createdataform">
+        <div class="row createdata" style="width: 80%;">
+          <div class="col-md-6 tabc_txt">行程名稱：{{ name }}</div>
+          <div class="col-md-6 tabc_txt">出發日期：{{ start_day }}</div>
         </div>
-        <div class="col-md-6 tabc_txt">
-          出發日期：{{ start_day }}
-        </div>
-      </div>
-    </form>
-  </div>
-  
-  <ul class="nav nav-tabs flex justify-content-center my-nav-tabs" id="myTab" role="tablist">
-    {% for day in travelday %}
-      <li class="nav-item" role="presentation">
-        <button class="nav-link {% if forloop.counter == 1 %}active{% endif %}" id="{{ day }}-tab" data-bs-toggle="tab" data-bs-target="#ch-{{ day }}" type="button" role="tab"
-          aria-controls="ch-{{ day }}" onclick="saveTabState('ch-{{ day }}')" aria-selected="true">第{{ day }}天</button>
-      </li>  <!--aria-controls="ch-{{ day }}"變數名稱要改一下-->
-    {% endfor %}
-  </ul>
-  
-  
+      </form>
+    </div>
+ 
+    <ul class="nav nav-tabs flex justify-content-center my-nav-tabs"
+        id="myTab"
+        role="tablist">
+      {% for day in travelday %}
+        <li class="nav-item" role="presentation">
+          <button class="nav-link {% if forloop.counter == 1 %}active{% endif %}"
+                  id="{{ day }}-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#ch-{{ day }}"
+                  type="button"
+                  role="tab"
+                  aria-controls="ch-{{ day }}"
+                  onclick="saveTabState('ch-{{ day }}')"
+                  aria-selected="true">第{{ day }}天</button>
+        </li>
+        <!--aria-controls="ch-{{ day }}"變數名稱要改一下-->
+      {% endfor %}
+    </ul>
+ 
+ 
 
-  <div class="tab-content" id="myTabContent" style="width: 100%;margin: 0 auto;">
-    {% for day in travelday %}
-      <div class="tab-pane fade{% if forloop.counter == 1 %} show active{% endif %}" id="ch-{{ day }}" role="tabpanel" aria-labelledby="{{ day }}-tab" style="display: flex;justify-content: center;align-items: center;align-content: center;padding: 10px 0;">
-        <div class="row" style="width: 100%;">
-          <div class="col-6 recAndDone" style="border-right: 2px solid rgb(152, 152, 152);">
-            <!-- 我是左邊 顯示已排完序的景點 -->
-            <div>
-              <div class="tabD">
-                <span id="tabDT" class="tabDT">請輸入出發時間：</span>
-                <input type="time" name="nowtime" id="nowtime-{{ day }}" {% if user_nowtime %} value="{{user_nowtime}}" {% else %} value="09:00" {% endif %}>
-              </div>
-              <div class="tabD">
-                <span id="tabDL" class="tabDL">使用者位置：
-                  <label class="input_txt" id="userLocationName-{{ day }}">{{ location_name }}</label>
-                </span>
-                <br>
-                <input type="hidden" id="userLocation-{{ day }}" value="{{local_xy.0}},{{local_xy.1}}">
-                <button class="placeBtn btn_now" type="button" id="nowLocationButton-{{ day }}"
-                  onclick="get_nowLocation({{ day }})">取得目前位置</button>
-                <button class="placeBtn btn_choose" type="button" id="mapButton-{{ day }}" onclick="get_map({{ day }})">選擇位置</button>
-                <button class="placeBtn btn_ok" type="button" id="okButton-{{ day }}" onclick="clickOkButton({{ day }})">確認</button>
-                <input type="hidden" placeholder="day" class="nowday" id="nowday">
-              </div>
-            </div>
-            <div style="position: relative;">
-              <!-- 添加地图容器 -->
-              <input
-                id="pac-input-{{ day }}"
-                class="controls"
-                type="text"
-                placeholder="Search Box"
-                style="display: none;"
-              />
-              <div id="map-{{ day }}" style="width: 100%; height: 400px; display: none;"></div>
-
-              <!--切換底下兩個div-->
-              <button class="changeToRec" id="changeToRec" onclick="clickChangeDone()">景點排序</button>
-                  
-              <!--景點推薦div-->
-              <div class="changeRec checkRec" id="checkRec">
-                <div class="recDiv">
-                  <i class="fa-solid fa-thumbs-up rec_icon"></i>
-                  <span class="rec_txt">推薦景點</span>
+    <div class="tab-content"
+         id="myTabContent"
+         style="width: 100%;
+                margin: 0 auto">
+      {% for day in travelday %}
+        <div class="tab-pane fade{% if forloop.counter == 1 %} show active{% endif %}"
+             id="ch-{{ day }}"
+             role="tabpanel"
+             aria-labelledby="{{ day }}-tab"
+             dataset="{{ day }}"
+             style="display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
+                    padding: 10px 0">
+          <div class="row" style="width: 100%;">
+            <div class="col-6 recAndDone"
+                 style="border-right: 2px solid rgb(152, 152, 152)">
+              <!-- 我是左邊 顯示已排完序的景點 -->
+              <div>
+                <div class="tabD">
+                  <span id="tabDT" class="tabDT">請輸入出發時間：</span>
+                  <input type="time"
+                         name="nowtime"
+                         id="nowtime-{{ day }}"
+                         {% if user_nowtime %} value="{{ user_nowtime }}" {% else %} value="09:00" {% endif %}>
                 </div>
-                <div id="checkbox" class="checkboxDiv">
+                <div class="tabD">
+                  <span id="tabDL" class="tabDL">使用者位置：
+                    <label class="input_txt" id="userLocationName-{{ day }}">{{ location_name }}</label>
+                  </span>
+                  <br>
+                  <input type="hidden"
+                         id="userLocation-{{ day }}"
+                         value="{{ local_xy.0 }},{{ local_xy.1 }}">
+                  <button class="placeBtn btn_now"
+                          type="button"
+                          id="nowLocationButton-{{ day }}"
+                          onclick="get_nowLocation({{ day }})">取得目前位置</button>
+                  <button class="placeBtn btn_choose"
+                          type="button"
+                          id="mapButton-{{ day }}"
+                          onclick="get_map({{ day }})">選擇位置</button>
+                  <button class="placeBtn btn_ok"
+                          type="button"
+                          id="okButton-{{ day }}"
+                          onclick="clickOkButton({{ day }})">確認</button>
+                  <input type="hidden" placeholder="day" class="nowday" id="nowday">
+                </div>
+              </div>
+              <div style="position: relative;">
+                <!-- 添加地图容器 -->
+                <input id="pac-input-{{ day }}"
+                       class="controls"
+                       type="text"
+                       placeholder="Search Box"
+                       style="display: none" />
+                <div id="map-{{ day }}" style="width: 100%; height: 400px; display: none;"></div>
 
-                  <div class="row" style="padding: 10px 5px;" id="AttractionsContainer">
-                    
-                    {% include 'create_recommend.html' %}
+                <!--切換底下兩個div-->
+                <button class="changeToRec" id="changeToRec" onclick="clickChangeDone()">景點排序</button>
+ 
+                <!--景點推薦div-->
+                <div class="changeRec checkRec" id="checkRec">
+                  <div class="recDiv">
+                    <i class="fa-solid fa-thumbs-up rec_icon"></i>
+                    <span class="rec_txt">推薦景點</span>
+                  </div>
+                  <div id="checkbox" class="checkboxDiv">
+
+                    <div class="row"
+                         style="padding: 10px 5px"
+                         id="AttractionsContainer-{{ day }}">
+                      <h4>請先選擇使用者位置和時間</h4>
+                      {% include 'create_recommend.html' %}
+
+                    </div>
+
+ 
 
                   </div>
+                  <a href="#recommend-tab"
+                     class="tab_a submit1"
+                     id="clickLikeAttractions-{{ day }}">
+                    <button class="recommend_submit1" value="下一步">下一步</button>
+                  </a>
+                  {% comment %} <a href="#home-tab" class="tab_a submit1" id="clickLikeAttractions_o"
+                    style="display: none;">
+                    <button class="recommend_submit1" onclick="submitAction()" value="送出">送出</button>
+                  </a> {% endcomment %}
 
-                  <div class="row" style="padding: 12px;" id="AttractionsContainer_o">
+                  <!-- 點擊送出會切換到景點排序頁面 但目前下一步有問題 已經有用下一步做過測試 是可以的 -->
+                  <!-- <button class="recommend_submit1"
+         id="next"
+         onclick="nextAction()"
+         value="下一步">下一步</button> -->
+                </div>
+
+                <!--景點排序div-->
+                <div class="changeRec done" id="done">
+                  <div class="doneDiv">
+                    <i class="fa-solid fa-route done_icon"></i>
+                    <span class="done_txt">景點排序</span>
+                  </div>
+
+                  <div>
+                    123456
+                    {% comment %} <div class="row" style="padding: 12px;" id="AttractionsContainer_o">
                     <div class="col-lg-4 col-md-6" style="margin-bottom: 5px;">
                       <div class="checkimg_div">
                         <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;" onclick="pickspot(this)">
@@ -101,80 +162,94 @@
                         </label>
                       </div>
                     </div>
+                    </div> {% endcomment %}
                   </div>
-
                 </div>
-                <a href="#recommend-tab" class="tab_a submit1" id="clickLikeAttractions">
-                    <button class="recommend_submit1" value="下一步">下一步</button>
-                </a>
-                <a href="#home-tab" class="tab_a submit1" id="clickLikeAttractions_o"
-                    style="display: none;">
-                    <button class="recommend_submit1" onclick="submitAction()" value="送出">送出</button>
-                </a>
-                <!-- 點擊送出會切換到景點排序頁面 但目前下一步有問題 已經有用下一步做過測試 是可以的 -->
-                <!-- <button class="recommend_submit1" id="next" onclick="nextAction()" value="下一步">下一步</button> -->
+
+
               </div>
-
-              <!--景點排序div-->
-              <div class="changeRec done" id="done">
-                <div class="doneDiv">
-                  <i class="fa-solid fa-route done_icon"></i>
-                  <span class="done_txt">景點排序</span>
-                </div>
-
-                <div>
-                  123456
-                </div>
-              </div>
-
-
             </div>
-          </div>
-          <div class="col-6 searchAndlikeAndrec">
-            <button class="changeToSearch" id="changeToSearch" onclick="clickChange()">切換搜尋</button>
-            <div class="change searchBlock" id="searchBlock">
-              <div class="searchBarDiv">
-                <i class="fa-solid fa-magnifying-glass-location find_icon"></i>
-                <span class="search_txt">搜尋景點</span>
-              </div>
-              <form autocomplete="off" class="d-flex" role="search">
-                {% csrf_token %}
-      
-                <div class="create_search">
-                  <div class="create_searchInput">
-                    <input class="form-control me-auto search" id="create_myInput" type="search" placeholder="想去哪玩.."
-                      aria-label="Search" name="create_search_text">
-                    <!-- <input type="hidden" name="data_type" value="keyword_search"> -->
-                    <button class="search_icon" id="create_searchClick"><i class="fas fa-search"></i></button>
-                    <!-- 歷史紀錄 -->
-                    <div id="create_searchBox">
-                      <div class="create_enter"></div>
-                      <div class="create_searchContent">
-                        <!-- history（目前放假資料） -->
-                        <div class="history_1" id="history_1">
-                          <i class="fa-solid fa-clock-rotate-left"></i><strong>123</strong>
-                          <div class="close_history" onclick="deleteFunction(this)">
-                            <i class="fa-solid fa-xmark" style="color: rgb(171, 5, 5);"></i>
+            <div class="col-6 searchAndlikeAndrec">
+              <button class="changeToSearch" id="changeToSearch" onclick="clickChange()">切換搜尋</button>
+              <div class="change searchBlock" id="searchBlock">
+                <div class="searchBarDiv">
+                  <i class="fa-solid fa-magnifying-glass-location find_icon"></i>
+                  <span class="search_txt">搜尋景點</span>
+                </div>
+                <form autocomplete="off" class="d-flex" role="search">
+                  {% csrf_token %}
+ 
+                  <div class="create_search">
+                    <div class="create_searchInput">
+                      <input class="form-control me-auto search"
+                             id="create_myInput"
+                             type="search"
+                             placeholder="想去哪玩.."
+                             aria-label="Search"
+                             name="create_search_text">
+                      <!-- <input type="hidden" name="data_type" value="keyword_search"> -->
+                      <button class="search_icon" id="create_searchClick">
+                        <i class="fas fa-search"></i>
+                      </button>
+                      <!-- 歷史紀錄 -->
+                      <div id="create_searchBox">
+                        <div class="create_enter"></div>
+                        <div class="create_searchContent">
+                          <!-- history（目前放假資料） -->
+                          <div class="history_1" id="history_1">
+                            <i class="fa-solid fa-clock-rotate-left"></i><strong>123</strong>
+                            <div class="close_history" onclick="deleteFunction(this)">
+                              <i class="fa-solid fa-xmark" style="color: rgb(171, 5, 5);"></i>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </form>
-              <div id="replaceable-content" class="row searchResult">
-                {% include "create_search.html" %}
+                </form>
+                <div id="replaceable-content-{{ day }}" class="row searchResult">{% include "create_search.html" %}</div>
               </div>
-            </div>
-            <div class="change likeAndRec" id="likeAndRec">
-              <div>
-                <div onclick="openLikeBtn()" class="likeDiv">
-                  <i class="fa-solid fa-heart like_icon"></i>
-                  <span class="like_txt">我的收藏</span>
-                </div>
-                <div class="row openlike" style="display: none;">
-                  {% for item in user_favorite_list %}
-                    <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;" id = "{{ item.a_id.id }}">
+              <div class="change likeAndRec" id="likeAndRec">
+                <div>
+                  <div onclick="openLikeBtn()" class="likeDiv">
+                    <i class="fa-solid fa-heart like_icon"></i>
+                    <span class="like_txt">我的收藏</span>
+                  </div>
+                  <div class="row openlike" style="display: none;">
+                    {% for item in user_favorite_list %}
+                      <div class=" col-md-4" style="margin-bottom: 5px;">
+                        <div class="checkimg_div">
+                          <label type="checkbox"
+                                 name="variety"
+                                 value="{{ item.a_id.id }}"
+                                 class="imgcheck"
+                                 style="margin: 0;
+                                        padding: 0;
+                                        border: 0"
+                                 onclick="pickspot(this,{{ item.a_id.id }})">
+ 
+                            <span class="checkspot">
+                              <img src="../static/images/attractions/{{ item.a_id.place_id }}_0.jpg"
+                                   class="img-responsive"
+                                   width="100%"
+                                   alt="">
+                              {% comment %} <button class="fa-solid fa-heart rec_heart_icon" id="rec_heart_icon" onclick="addRecFavorite(event,{{ item.a_id.id }})"> <!-- 這裡這裡的itemId要用你們的編號 --></button> {% endcomment %}
+                            </span>
+
+                            <div class="spottxtdiv">
+                              <p style="text-align: center;padding: 5px;margin-bottom: 5px;">
+                                {{ item.a_id.a_name }}
+                              </p>
+                              <span>評價：{{ item.a_id.rating }}</span>
+                              <br>
+                              {% comment %} <span>營業時間：{{r.crow_opening_list.opening.0}}</span> {% endcomment %}
+                            </div>
+
+                          </label>
+                        </div>
+                      </div>
+                      {% comment %} 下面為舊的收藏景點 {% endcomment %}
+                      {% comment %} <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;" id = "{{ item.a_id.id }}">
                       <div class="ct_heart_icon_box" style="border: 1px solid black;">
                         <img src="../static/images/attractions/{{ item.a_id.place_id }}_0.jpg" class="img-responsive" width="100%" alt="">
                         <i class="fa-solid fa-heart ct_heart_icon active_heart" data-isfavorite="1" data-type="/add_favorite/" onclick="addCtFavorite('{{ item.a_id.id }}')"></i>
@@ -182,56 +257,43 @@
                       <div style="border: 1px solid black;">
                         {{ item.a_id.a_name }}
                       </div>
-                    </div>
-                  {% endfor %}
-                  {% comment %}
-                  <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                    <div style="border: 1px solid black;">
-                      <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                    </div>
-                    <div style="border: 1px solid black;">
-                      我是介紹圖片的文字
-                    </div>
-                  </div>
-                  {% endcomment %}
+                      </div> {% endcomment %}
 
-                </div>
-              </div>
-              <hr style="margin: 10px 0;">
-              <div>
-                <div onclick="openSimilarBtn()" class="similarDiv">
-                  <span class="similar_icon">&asymp;</span>
-                  <span class="similar_txt">相似景點</span>
-                </div>
-                <div class="row openSimilar" style="display: none;">
+                    {% endfor %}
+                    {% comment %}
                   <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                    <div class="ct_heart_icon_box" style="border: 1px solid black;">
+                    <div style="border: 1px solid black;">
                       <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                      <i class="fa-solid fa-heart ss_heart_icon active_heart" data-type="/add_favorite/" onclick="addFavorite('')"></i>
                     </div>
                     <div style="border: 1px solid black;">
                       我是介紹圖片的文字
                     </div>
                   </div>
-                  <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                    <div class="ct_heart_icon_box" style="border: 1px solid black;">
-                      <img src="../static/images/cloud1.png" class="img-responsive" width="100%" alt="">
-                      <i class="fa-solid fa-heart ss_heart_icon active_heart" data-type="/add_favorite/" onclick="addFavorite('')"></i>
-                    </div>
-                    <div style="border: 1px solid black;">
-                      我是介紹圖片的文字
-                    </div>
+                    {% endcomment %}
+
+                  </div>
+                </div>
+                <hr style="margin: 10px 0;">
+                <div>
+                  <div onclick="openSimilarBtn()" class="similarDiv">
+                    <span class="similar_icon">&asymp;</span>
+                    <span class="similar_txt">相似景點</span>
+                  </div>
+
+                  <div class="row openSimilar" style="display: none;" id="SimilarRecommend-{{ day }}">
+
+                    {% include "create_similar_recommend.html" %}
+
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    {% endfor %}
-  </div>
+      {% endfor %}
+    </div>
 
-  <!--<div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="{{ day }}-tab">
+    <!--<div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="{{ day }}-tab">
     我是第二天
       <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -281,17 +343,17 @@
         </div> 
   </div>-->
 
-  <!-- 建立行程 -->
-</main>
-<script src="../static/js/testGPS.js"></script>
+    <!-- 建立行程 -->
+  </main>
+  <script src="../static/js/testGPS.js"></script>
 {% endblock body %}
 {% block content_script %}
 
-<script src="../static/js/createSearchTool.js"></script>
-<script src="/static/js/create.js"></script>
-<script src="/static/js/recommend.js"></script>
-<script>
-  
+  <script src="../static/js/createSearchTool.js"></script>
+  <script src="/static/js/create.js"></script>
+  <script src="/static/js/recommend.js"></script>
+  <script>
+
 // 放入景點名稱
 autocomplete(create_searchInput,JSON.parse('{{ attractions_search_json|safe }}'));
 //console.log('hi'+JSON.parse('{{ attractions_search_json|safe }}')) 顯示景點搜尋列
@@ -666,7 +728,7 @@ autocomplete(create_searchInput,JSON.parse('{{ attractions_search_json|safe }}')
   }); {% endcomment %}
 
 
-</script>
+  </script>
 {% endblock %}
 
 </html>
