@@ -23,29 +23,30 @@ def format_minutes_as_time(minutes):
     hours, remainder_minutes = divmod(minutes, 60)
     return f"{hours:02d}:{remainder_minutes:02d}"
 
+# 之後沒用到可以刪掉
+# def local_to_address(lat,lng):
+#     print("lat",lat)
+#     print("lng",lng)
+#     base_url = 'https://maps.googleapis.com/maps/api/geocode/json'
+#     params = {
+#         'latlng': f'{lat},{lng}',
+#         'key': apikey,
+#         'language': 'zh-TW'  # 设置语言为繁体中文
+#     }
 
-def local_to_address(lat,lng):
-    print("lat",lat)
-    print("lng",lng)
-    base_url = 'https://maps.googleapis.com/maps/api/geocode/json'
-    params = {
-        'latlng': f'{lat},{lng}',
-        'key': apikey,
-        'language': 'zh-TW'  # 设置语言为繁体中文
-    }
+#     # 发送请求
+#     response = requests.get(base_url, params=params)
+#     data = response.json()
 
-    # 发送请求
-    response = requests.get(base_url, params=params)
-    data = response.json()
+#     # 解析结果
+#     if data['status'] == 'OK' and len(data['results']) > 0:
+#         formatted_address = data['results'][0]['formatted_address']
+#         print('地址：', formatted_address)
+#     else:
+#         formatted_address = "無法獲取地址"
+#         print('无法获取地址')
+#     return formatted_address
 
-    # 解析结果
-    if data['status'] == 'OK' and len(data['results']) > 0:
-        formatted_address = data['results'][0]['formatted_address']
-        print('地址：', formatted_address)
-    else:
-        formatted_address = "無法獲取地址"
-        print('无法获取地址')
-    return formatted_address
 # 建立行程
 @login_required(login_url="/login")
 def create(request, ct_id):
@@ -131,7 +132,7 @@ def create(request, ct_id):
         # 抓出這筆行程中的所有景點
         ct_attractions_list = Attractions_Ct.objects.filter(
             choice_ct_id=ct_attractions_data.id
-        ).values()
+        ).order_by('order').values()
     
         # 抓出所有景點的詳細資料
         for a in ct_attractions_list:
@@ -165,10 +166,9 @@ def create(request, ct_id):
         ct_status = request.POST["ct_status"]
         print(ct_status)
         if ct_status == "0":
-            get_user_address = list(map(float, request.POST["location"].split(",")))
+            get_user_address = list(map(float, request.POST["user_location"].split(",")))
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
-            # nowtime = int(nowtime[:1])*60 + int(nowtime[3:])
             print(get_user_address)
             print(new_nowtime)
 
@@ -185,8 +185,8 @@ def create(request, ct_id):
                 )
                 crow_opening_list.append(m_db)
             m_list = list(m_list.values())
-            print(m_list)
-            print(crow_opening_list[0])
+            print('m_list',m_list)
+            print('crow_opening_list',crow_opening_list[0])
             return JsonResponse(
                 {"m_list": m_list, "crow_opening_list": crow_opening_list}
             )

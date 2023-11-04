@@ -5,6 +5,7 @@ from myapp.models import *
 from .viewsConst import GOOGLE_PLACES_API_KEY
 from .check_opening import check_opening
 from .check_distance import check_distance
+
 # ------------------------------------第1步驟(推薦周遭景點)
 def recommend(user_favorite, now_time, get_user_address, day, stay_time):
     # client = googlemaps.Client(key=GOOGLE_PLACES_API_KEY)
