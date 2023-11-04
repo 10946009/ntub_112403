@@ -52,6 +52,7 @@ function clickChange() {
 $(document).ready(function() {
   // 在文件載入時和視窗尺寸改變時調整高度
   adjustTextHeightOnResize('.checkimg_div .spottxtdiv');
+  adjustTextHeightOnResize('.S_checkimg_div .spottxtdiv');
 });
 
 function adjustTextHeightOnResize(selector) {
@@ -63,6 +64,7 @@ function adjustTextHeightOnResize(selector) {
       adjustTextHeight(selector);
   });
 }
+
 function adjustTextHeight(selector) {
   $(selector).height('auto'); // 先重置高度以便重新計算
   var maxHeight = 0;
@@ -74,9 +76,69 @@ function adjustTextHeight(selector) {
           maxHeight = textHeight;
       }
   });
+
   // 將所有文字區塊設置為最大高度
   $(selector).height(maxHeight);
 }
+
+// $(document).ready(function() {
+//   // 在文件載入時和視窗尺寸改變時調整高度
+//   adjustTextHeightOnResize('.checkimg_div .spottxtdiv');
+// });
+
+// function adjustTextHeightOnResize(selector) {
+//   // 初始化高度
+//   adjustTextHeight(selector);
+
+//   // 監聽視窗大小改變事件
+//   $(window).on('resize', function() {
+//       adjustTextHeight(selector);
+//   });
+// }
+// function adjustTextHeight(selector) {
+//   $(selector).height('auto'); // 先重置高度以便重新計算
+//   var maxHeight = 0;
+
+//   // 找出最大高度
+//   $(selector).each(function() {
+//       var textHeight = $(this).outerHeight();
+//       if (textHeight > maxHeight) {
+//           maxHeight = textHeight;
+//       }
+//   });
+//   // 將所有文字區塊設置為最大高度
+//   $(selector).height(maxHeight);
+// }
+
+// // 相似的高度
+// $(document).ready(function() {
+//   // 在文件載入時和視窗尺寸改變時調整高度
+//   adjustTextHeightOnResize('.S_checkimg_div .spottxtdiv');
+// });
+
+// function adjustTextHeightOnResize(selector) {
+//   // 初始化高度
+//   adjustTextHeight(selector);
+
+//   // 監聽視窗大小改變事件
+//   $(window).on('resize', function() {
+//       adjustTextHeight(selector);
+//   });
+// }
+// function adjustTextHeight(selector) {
+//   $(selector).height('auto'); // 先重置高度以便重新計算
+//   var maxHeight = 0;
+
+//   // 找出最大高度
+//   $(selector).each(function() {
+//       var textHeight = $(this).outerHeight();
+//       if (textHeight > maxHeight) {
+//           maxHeight = textHeight;
+//       }
+//   });
+//   // 將所有文字區塊設置為最大高度
+//   $(selector).height(maxHeight);
+// }
 
 
 // 翻轉左邊區塊

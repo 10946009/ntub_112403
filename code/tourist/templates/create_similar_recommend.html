@@ -2,7 +2,7 @@
 {% for n in near_recommend_data %}
 
   <div class=" col-lg-4 col-md-6 " style="margin-bottom: 5px;">
-    <div class="checkimg_div">
+    <div class="S_checkimg_div">
       <label type="checkbox" name="variety" value="{{n.o_list.id}}" class="imgcheck" style="margin: 0;padding: 0;border: 0;" onclick="pickspot(this,{{ n.o_list.id }})">
         <span class="checkspot">
           <img src="../static/images/attractions/{{n.o_list.place_id}}_0.jpg" class="img-responsive" width="100%" alt="">
