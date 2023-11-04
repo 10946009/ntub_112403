@@ -121,7 +121,7 @@ function get_map(day){
     // 在控制台紀錄點擊位置的經緯度
     console.log("点击位置的经度：" + clickedLng);
     console.log("点击位置的纬度：" + clickedLat);
-    userLocation.value = clickedLng + "," + clickedLat;// 將經緯度寫進html 
+    userLocation.value = clickedLat + "," + clickedLng;// 將經緯度寫進html 
     startRecommand(userLocation.value,day)
     
 
