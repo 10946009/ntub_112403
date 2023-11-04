@@ -1,4 +1,3 @@
-var now_click_attractions = new Set();
 
 document.addEventListener('DOMContentLoaded', function () {
   const selectedTab = localStorage.getItem('selectedTab');
@@ -14,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 //點了不會有空白 
-function saveTabState(tabId) {
+function saveTabState(tabId,day) {
   var tabs = document.getElementsByClassName('tab-pane');
   for (var i = 0; i < tabs.length; i++) {
       tabs[i].style.display = 'none';
@@ -22,6 +21,10 @@ function saveTabState(tabId) {
 
   var tab = document.getElementById(tabId);
   tab.style.display = 'block';
+  
+  globalDay = day;
+  console.log(globalDay);
+  console.log(now_click_attractions);
 }
 
 // 翻轉右邊區塊
@@ -145,33 +148,36 @@ function adjustTextHeight(selector) {
 var isdoneJourneyVisible = false;
 
 function clickChangeDone() {
-    const checkRec = document.getElementById('checkRec');
-    const done = document.getElementById('done');
-    const button = document.getElementById("changeToRec");
+  console.log(globalDay)
+  const checkRec = document.getElementById('checkRec-' + globalDay);
+  const done = document.getElementById('done-' + globalDay);
+  const button = document.getElementById("changeToRec-" + globalDay);
 
-    isdoneJourneyVisible = !isdoneJourneyVisible
+  isdoneJourneyVisible = !isdoneJourneyVisible
 
-    if (isdoneJourneyVisible) {
-        checkRec.style.transform = 'rotateY(180deg)';
-        done.style.transform = 'rotateY(0deg)';
-        button.textContent = "重新推薦";
-        button.style.backgroundColor = "rgb(255, 41, 101)";
-    } else {
-        checkRec.style.transform = 'rotateY(0deg)';
-        done.style.transform = 'rotateY(180deg)';
-        button.textContent = "景點排序";
-        button.style.backgroundColor = "#0066DB";
-    }
+  if (isdoneJourneyVisible) {
+      checkRec.style.transform = 'rotateY(180deg)';
+      done.style.transform = 'rotateY(0deg)';
+      button.textContent = "重新推薦";
+      button.style.backgroundColor = "rgb(255, 41, 101)";
+  } else {
+      checkRec.style.transform = 'rotateY(0deg)';
+      done.style.transform = 'rotateY(180deg)';
+      button.textContent = "景點排序";
+      button.style.backgroundColor = "#0066DB";
+  }
 
 }
 
 // 送出功能整合到clickChangeDone函数中
 // 點擊送出會切換到景點排序頁面
 function submitAction() {
+  // var day_label = document.getElementsByClassName("tab-pane fade active show");
+  // var day = day_label[0].getAttribute('dataset');
 
-  const checkRec = document.getElementById('checkRec');
-  const done = document.getElementById('done');
-  const button = document.getElementById("changeToRec");
+  const checkRec = document.getElementById('checkRec-' + globalDay);
+  const done = document.getElementById('done-' + globalDay);
+  const button = document.getElementById("changeToRec-" + globalDay);
 
   checkRec.style.transform = 'rotateY(180deg)';
   done.style.transform = 'rotateY(0deg)';
@@ -241,12 +247,12 @@ function pickspot(checkbox,aid) {
   var div = checkbox.parentElement.parentElement; // 取得包含checkbox的div
   if (checkbox.checked) {
     div.classList.add("pickimg");
-    now_click_attractions.add(aid);
+    now_click_attractions[globalDay].add(aid);
     similarRecommend(now_click_attractions);
 
   } else {
     div.classList.remove("pickimg");
-    now_click_attractions.delete(aid);
+    now_click_attractions[globalDay].delete(aid);
     similarRecommend(now_click_attractions);
   }
 

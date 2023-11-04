@@ -373,10 +373,12 @@ main {
     transform: rotateY(0deg);/* 初始状态：不翻转 */
 }
 
-#searchBlock, #done {
+#searchBlock{
     transform: rotateY(180deg);/* 初始状态：翻转180度 */
 }
-
+.changeRec.done{
+    transform: rotateY(180deg);
+}
 
 /* 我的範例 */
 
