@@ -1,3 +1,5 @@
+var now_click_attractions = new Set();
+
 document.addEventListener('DOMContentLoaded', function () {
   const selectedTab = localStorage.getItem('selectedTab');
   if (selectedTab === 'contact') {
@@ -72,6 +74,7 @@ function clickChangeDone() {
 // 送出功能整合到clickChangeDone函数中
 // 點擊送出會切換到景點排序頁面
 function submitAction() {
+
   const checkRec = document.getElementById('checkRec');
   const done = document.getElementById('done');
   const button = document.getElementById("changeToRec");
@@ -132,14 +135,21 @@ function openfiliter() {
 }
 
 // pick spot css
-function pickspot(checkbox) {
+function pickspot(checkbox,aid) {
   checkbox.checked = !checkbox.checked;
+
   var div = checkbox.parentElement.parentElement; // 取得包含checkbox的div
   if (checkbox.checked) {
     div.classList.add("pickimg");
+    now_click_attractions.add(aid);
+    similarRecommend(now_click_attractions);
+
   } else {
     div.classList.remove("pickimg");
+    now_click_attractions.delete(aid);
+    similarRecommend(now_click_attractions);
   }
+
 }
 
 

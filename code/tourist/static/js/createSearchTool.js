@@ -127,6 +127,8 @@ function autocomplete(inp, arr) {
 
 // 用來刷新搜尋結果的function
 function searchText(search_text, data_type) {
+  const day_label = document.getElementsByClassName("tab-pane fade active show");
+  const day = day_label[0].getAttribute('dataset');
   // data_type= keyword_search,tag_search,popular_search
   console.log(search_text, data_type);
 
@@ -139,7 +141,7 @@ function searchText(search_text, data_type) {
       },
       success: function (response) {
         console.log(response);
-        const search_detail_div = $('#replaceable-content');
+        const search_detail_div = $('#replaceable-content-'+day);
         search_detail_div.html(response['search_list']);
       },
       error: function (xhr, status, error) {
