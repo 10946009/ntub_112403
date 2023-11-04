@@ -201,12 +201,11 @@ def create(request, ct_id):
             return JsonResponse(data=data_dict, safe=False)
 
         if ct_status == "1":
-            o_attractions_list = request.POST.getlist("select_aid_list[]")
-            print(o_attractions_list)
+            o_attractions_list = request.POST.getlist("aid_list[]")
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
-            o = recommend_near(o_attractions_list, new_nowtime, week, stay_time)
-            o_list = Attractions.objects.filter(place_id__in=o)
+            o = recommend_near(list(map(int,o_attractions_list)), new_nowtime, week, stay_time)
+            o_list = Attractions.objects.filter(id__in=o)
             o_crow_opening_list = []
             for i in o_list:
                 o_db = (
@@ -216,12 +215,23 @@ def create(request, ct_id):
                 )
                 o_crow_opening_list.append(o_db)
             o_list = list(o_list.values())
-            print(o_list)
-            print(o_crow_opening_list[0])
+            # print(o_list)
+            # print(o_crow_opening_list[0])
             
-            return JsonResponse(
-                {"o_list": o_list, "o_crow_opening_list": o_crow_opening_list}
+            near_recommend_data= []
+            for o, oc in zip(o_list, o_crow_opening_list):
+                near_recommend_data.append({
+                    'o_list': o,
+                    'o_crow_opening_list': oc,
+                })
+            html = render_to_string(
+                template_name="create_similar_recommend.html",
+                context={"near_recommend_data": near_recommend_data,"nowchoice":o_attractions_list},
             )
+            data_dict = {"recommend_attractions_list": html}
+            
+            return JsonResponse(data=data_dict, safe=False)
+
 
         if ct_status == "2":
             o_attractions_list = request.POST.getlist("all_select[]")
