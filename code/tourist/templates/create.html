@@ -129,12 +129,6 @@
                     style="display: none;">
                     <button class="recommend_submit1" onclick="submitAction()" value="送出">送出</button>
                   </a> {% endcomment %}
-
-                  <!-- 點擊送出會切換到景點排序頁面 但目前下一步有問題 已經有用下一步做過測試 是可以的 -->
-                  <!-- <button class="recommend_submit1"
-         id="next"
-         onclick="nextAction()"
-         value="下一步">下一步</button> -->
                 </div>
 
                 <!--景點排序div-->
@@ -146,6 +140,39 @@
 
                   <div>
                     123456
+                    <!-- 範例 -->
+                    <!-- <div class="list" style="cursor: pointer;">
+                      <div class="innerlist" draggable="true">
+                          <p style="font-size: 22px;font-weight: bold;">景點名稱：</p>
+                          <p style="font-size: 18px;margin-bottom: 10px;">地址：</p>
+                          <p style="font-size: 18px;margin-bottom: 10px;">營業時間：</p>
+                          <p style="font-size: 18px;margin-bottom: 10px;">當下可能的人潮流量：</p>
+                          <p style="font-size: 18px;margin-bottom: 10px;">建議停留時間：</p>
+                      </div>
+                      <div class="innerlist" draggable="true">2</div>
+                      <div class="innerlist" draggable="true">3</div>
+                      <div class="innerlist" draggable="true">4</div>
+                      <div class="innerlist" draggable="true">5</div>
+                    </div> -->
+                    <!-- 你們原本的 -->
+                    <div class="list" style="cursor: pointer;">
+                      {% for key,datalist in all_ct_data.items %}
+                      {% if key == days %}
+                      {%for data in datalist%}
+                      <div class="spot innerlist" draggable="true" id="spot{{data.attraction.order}}" style="color: black;margin-bottom:10px">
+                        {{data.detail.a_name}}
+                        <p id="hiddenId" style="display: none;">景點名稱：{{data.detail.id}}</p>
+                        <p>地址：{{data.detail.address}} <br>
+                        <p>當下可能的人潮流量：{{data.crowd_list}}%<br>
+                        <p>營業時間： {% for time in data.co.opening %} {% if forloop.counter != 1 %},{% endif %} {{time}} {% endfor %}
+                        <br>
+                        <p>建議停留時間： {% if data.detail.stay_time == 0 %}150{% else %}{{data.detail.stay_time}}{% endif %} 分鐘
+                        <br>
+                      </div>
+                      {%endfor%}
+                      {% endif%}
+                      {% endfor %}
+                    </div>
                     {% comment %} 
                       <div class="row" style="padding: 12px;" id="AttractionsContainer_o">
                         <div class="col-lg-4 col-md-6" style="margin-bottom: 5px;">
