@@ -10,7 +10,7 @@ from .recommend_near import recommend_near
 from .final_order import final_order
 import requests
 from geopy.geocoders import Nominatim
-
+from django.template.loader import render_to_string  # 頁面轉成html
 import os
 from os.path import join, dirname
 from dotenv import load_dotenv, find_dotenv
@@ -184,12 +184,21 @@ def create(request, ct_id):
                     .first()
                 )
                 crow_opening_list.append(m_db)
-            m_list = list(m_list.values())
             print('m_list',m_list)
             print('crow_opening_list',crow_opening_list[0])
-            return JsonResponse(
-                {"m_list": m_list, "crow_opening_list": crow_opening_list}
+            recommend_data= []
+            for m, c in zip(m_list, crow_opening_list):
+                recommend_data.append({
+                    'm_list': m,
+                    'crow_opening_list': c,
+                })
+            html = render_to_string(
+                template_name="create_recommend.html",
+                context={"recommend_data": recommend_data},
             )
+            data_dict = {"recommend_attractions_list": html}
+            
+            return JsonResponse(data=data_dict, safe=False)
 
         if ct_status == "1":
             o_attractions_list = request.POST.getlist("select_aid_list[]")
@@ -209,6 +218,7 @@ def create(request, ct_id):
             o_list = list(o_list.values())
             print(o_list)
             print(o_crow_opening_list[0])
+            
             return JsonResponse(
                 {"o_list": o_list, "o_crow_opening_list": o_crow_opening_list}
             )

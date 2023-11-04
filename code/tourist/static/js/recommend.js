@@ -1,5 +1,6 @@
 
-function startRecommand(user_location,day){
+function startRecommend(user_location,day){
+  console.log(user_location);
     nowtime = document.getElementById('nowtime-' + day);
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     $.ajax({
@@ -11,8 +12,9 @@ function startRecommand(user_location,day){
             ct_status: 0,
         },
         success: function (response) {
-          console.log("推薦回傳成功" + response.m_list);
-          console.log("response.crow_opening_list" + response.crow_opening_list);
+          console.log( response);
+          const attractions_detail_div = $('#AttractionsContainer');
+          attractions_detail_div.html(response['recommend_attractions_list']);
         },
   
         error: function () {

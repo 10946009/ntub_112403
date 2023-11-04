@@ -1,0 +1,21 @@
+
+{% for r in recommend_data %}
+<div class=" col-md-6" style="margin-bottom: 5px;">
+    <div class="checkimg_div">
+      <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;" onclick="pickspot(this)">
+        <span class="checkspot">
+          <img src="../static/images/attractions/{{r.m_list.place_id}}_0.jpg" class="img-responsive" width="100%" alt="">
+          <button class="fa-solid fa-heart rec_heart_icon" id="rec_heart_icon" onclick="addRecFavorite(event,'itemId')"> <!-- 這裡這裡的itemId要用你們的編號 --></button>
+        </span>
+        <div class="spottxtdiv">
+          <p style="text-align: center;padding: 5px;margin-bottom: 5px;">{{r.m_list.a_name}}</p>
+          <span>評價：{{r.m_list.rating}}</span><br>
+          <span>營業時間：{{r.crow_opening_list.opening.0}}</span>
+
+          
+        </div>
+      </label>
+    </div>
+  </div>
+
+  {% endfor %}

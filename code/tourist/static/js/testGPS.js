@@ -61,7 +61,7 @@ function get_map(day){
       const placeLng = place.geometry.location.lng();
       userLocationName.textContent = searchInput.value ;
       userLocation.value = placeLat + ',' + placeLng; // 將經緯度寫進html
-      startRecommand(userLocation.value,day)
+      startRecommend(userLocation.value,day)
       console.log("地点名称：" + placeName);
       console.log("地点坐标：" + placeLat + ", " + placeLng);
 
@@ -122,7 +122,7 @@ function get_map(day){
     console.log("点击位置的经度：" + clickedLng);
     console.log("点击位置的纬度：" + clickedLat);
     userLocation.value = clickedLat + "," + clickedLng;// 將經緯度寫進html 
-    startRecommand(userLocation.value,day)
+    startRecommend(userLocation.value,day)
     
 
   });
