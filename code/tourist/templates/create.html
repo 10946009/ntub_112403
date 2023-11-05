@@ -324,88 +324,63 @@
       {% endfor %}
     </div>
     <div class="bottom" style="z-index: 99;width: 80%;margin: 0 auto;position: fixed;bottom: 0;left: 0;right: 0;">
-        <div id="controller" style="display:block;cursor: pointer;margin: 0;">
-            <span style="border:1px solid black;border-bottom: 0;">控制器</span>
-        </div>
-        <div class="row bottomTempdiv" id="hiddenContent" style="border: 1px solid black;display: none;">
-            <div class="col-md-4">
-                <div class="image-container">
-                    <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                    <div class="overlay">
-                        <div class="text">Your Text Here</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="image-container">
-                    <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                    <div class="overlay">
-                        <div class="text">Your Text Here</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="image-container">
-                    <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                    <div class="overlay">
-                        <div class="text">Your Text Here</div>
-                    </div>
+      <div id="controller" style="display:block;cursor: pointer;margin: 0;">
+        <span style="border:1px solid black;border-bottom: 0;">控制器</span>
+      </div>
+      <div class="row bottomTempdiv" id="hiddenContent">
+        <!-- <div class="col-md-4">
+            <div class="image-container">
+                <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                <div class="overlay">
+                    <div class="text">Your Text Here</div>
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="image-container">
+                <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                <div class="overlay">
+                    <div class="text">Your Text Here</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="image-container">
+                <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                <div class="overlay">
+                    <div class="text">Your Text Here</div>
+                </div>
+            </div>
+        </div> -->
+        <div class="align">
+          <div class="image-container" >
+            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+            <div class="overlay">
+                <div class="text">Your Text Here</div>
+            </div>
+          </div>
+          <div class="image-container" >
+            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+            <div class="overlay">
+                <div class="text">Your Text Here</div>
+            </div>
+          </div>
+          <div class="image-container" >
+            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+            <div class="overlay">
+                <div class="text">Your Text Here</div>
+            </div>
+          </div>
+          <div class="image-container" >
+            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+            <div class="overlay">
+                <div class="text">Your Text Here</div>
+            </div>
+          </div>
+        </div>
+      </div>
+            
     </div>
-
-    <!--<div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="{{ day }}-tab">
-    我是第二天
-      <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="child1-tab" data-bs-toggle="tab" data-bs-target="#child1"
-                    type="button" role="tab" aria-controls="child1" aria-selected="true"
-                    onclick="saveTabState('child1')">第一天</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="child2-tab" data-bs-toggle="tab" data-bs-target="#child2"
-                    type="button" role="tab" aria-controls="child2" aria-selected="false"
-                    onclick="saveTabState('child2')">第二天</button>
-            </li>
-        </ul> -->
-    <!-- <div class="tab-child1" id="myTabchild1" style="width: 80%;margin: 0 auto;">
-            <div class="tab-pane fade show active" id="child1" role="tabpanel" aria-labelledby="child1-tab"
-                style="display: flex;justify-content: center;align-items: center;align-content: center;">
-                <div class="row" style="width: 100%;">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="img">
-                            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                        </div>
-                        <div class="txt">
-                            <span>testtest</span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="img">
-                            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                        </div>
-                        <div class="txt">
-                            <span>testtest</span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="img">
-                            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                        </div>
-                        <div class="txt">
-                            <span>testtest</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab">
-                我是內容<br>我是內容<br>我是內容<br>我是內容<br>我是內容<br>
-            </div>
-        </div> 
-  </div>-->
-
-    <!-- 建立行程 -->
   </main>
   <script src="../static/js/testGPS.js"></script>
 {% endblock body %}

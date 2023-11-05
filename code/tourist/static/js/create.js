@@ -332,35 +332,34 @@ $(document).ready(function () {
   var isContentHidden = true;
   var originalHeight = $(document).height();
   var bottomHeight = $('.bottom').height();
+  var contentHeight = $("#hiddenContent").height(); // 计算内容高度
+
+  var originalScrollPos = 0;
 
   $("#controller").click(function () {
-      if (isContentHidden) {
-          var contentHeight = $("#hiddenContent").height();
-          $("#hiddenContent").slideDown();
+    if (isContentHidden) {
+      $("#hiddenContent").slideDown(function () {
+        // 显示内容后滚动页面到底部
+        var newHeight = originalHeight + contentHeight / 2;
+        $('body').css('height', newHeight);
+        window.scrollTo({
+          top: newHeight,
+          behavior: 'smooth'
+        });
+      });
+    } else {
+      // 计算原始高度底部位置
+      var originalBottomPos = originalHeight - $(window).height();
 
-          // 暂存原始滚动位置
-          var originalScrollPos = $(window).scrollTop();
-
-          // 设置页面高度为原始高度加上内容高度的一半
-          $('body').css('height', originalHeight + contentHeight / 2);
-
-          // 滚动页面到底部
-          window.scrollTo({
-              top: originalScrollPos + contentHeight / 2,
-              behavior: 'smooth'
-          });
-      } else {
-          // 恢复原始网页高度
-          $('body').css('height', originalHeight);
-
-          // 滚动页面到顶部，同时隐藏内容
-          window.scrollTo({
-              top: 0,
-              behavior: 'smooth'
-          });
-
-          $("#hiddenContent").slideUp();
-      }
-      isContentHidden = !isContentHidden;
+      $("#hiddenContent").slideUp(function () {
+        // 隐藏内容后恢复原始网页高度，并滚动到原始高度的底部
+        $('body').css('height', originalHeight);
+        window.scrollTo({
+          top: originalBottomPos,
+          behavior: 'smooth'
+        });
+      });
+    }
+    isContentHidden = !isContentHidden;
   });
 });
