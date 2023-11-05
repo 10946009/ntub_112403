@@ -297,10 +297,11 @@ def create(request, ct_id):
             order_attractions_data= []
             remainder_attractions_data = []
             for fr, fc, fnowtime in zip(final_result_list, final_crow_opening_list,final_now_time_list):
+                f_nt = (fnowtime//60)%24
                 order_attractions_data.append({
                     'final_result_list': fr,
                     'final_crow_opening_list': fc,
-                    'final_crowd_list' : f"{min(fc['crowd'][fnowtime//60],fc['crowd'][fnowtime//60+1])} ~ {max(fc['crowd'][fnowtime//60],fc['crowd'][fnowtime//60+1])}"  
+                    'final_crowd_list' : f"{min(fc['crowd'][f_nt],fc['crowd'][f_nt+1])} ~ {max(fc['crowd'][f_nt],fc['crowd'][f_nt+1])}"  
                 })
             for frr,frc in zip(final_remainder_result_list,final_remainder_crow_opening_list):
                 remainder_attractions_data.append({
