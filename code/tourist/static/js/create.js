@@ -84,66 +84,6 @@ function adjustTextHeight(selector) {
   $(selector).height(maxHeight);
 }
 
-// $(document).ready(function() {
-//   // 在文件載入時和視窗尺寸改變時調整高度
-//   adjustTextHeightOnResize('.checkimg_div .spottxtdiv');
-// });
-
-// function adjustTextHeightOnResize(selector) {
-//   // 初始化高度
-//   adjustTextHeight(selector);
-
-//   // 監聽視窗大小改變事件
-//   $(window).on('resize', function() {
-//       adjustTextHeight(selector);
-//   });
-// }
-// function adjustTextHeight(selector) {
-//   $(selector).height('auto'); // 先重置高度以便重新計算
-//   var maxHeight = 0;
-
-//   // 找出最大高度
-//   $(selector).each(function() {
-//       var textHeight = $(this).outerHeight();
-//       if (textHeight > maxHeight) {
-//           maxHeight = textHeight;
-//       }
-//   });
-//   // 將所有文字區塊設置為最大高度
-//   $(selector).height(maxHeight);
-// }
-
-// // 相似的高度
-// $(document).ready(function() {
-//   // 在文件載入時和視窗尺寸改變時調整高度
-//   adjustTextHeightOnResize('.S_checkimg_div .spottxtdiv');
-// });
-
-// function adjustTextHeightOnResize(selector) {
-//   // 初始化高度
-//   adjustTextHeight(selector);
-
-//   // 監聽視窗大小改變事件
-//   $(window).on('resize', function() {
-//       adjustTextHeight(selector);
-//   });
-// }
-// function adjustTextHeight(selector) {
-//   $(selector).height('auto'); // 先重置高度以便重新計算
-//   var maxHeight = 0;
-
-//   // 找出最大高度
-//   $(selector).each(function() {
-//       var textHeight = $(this).outerHeight();
-//       if (textHeight > maxHeight) {
-//           maxHeight = textHeight;
-//       }
-//   });
-//   // 將所有文字區塊設置為最大高度
-//   $(selector).height(maxHeight);
-// }
-
-
 // 翻轉左邊區塊
 var isdoneJourneyVisible = false;
 
@@ -386,3 +326,41 @@ list.addEventListener('dragover', (e) => {
 list.addEventListener('dragend', (e) => {
   currentLi.classList.remove('moving')
 })
+
+// 底部暫存區塊
+$(document).ready(function () {
+  var isContentHidden = true;
+  var originalHeight = $(document).height();
+  var bottomHeight = $('.bottom').height();
+
+  $("#controller").click(function () {
+      if (isContentHidden) {
+          var contentHeight = $("#hiddenContent").height();
+          $("#hiddenContent").slideDown();
+
+          // 暂存原始滚动位置
+          var originalScrollPos = $(window).scrollTop();
+
+          // 设置页面高度为原始高度加上内容高度的一半
+          $('body').css('height', originalHeight + contentHeight / 2);
+
+          // 滚动页面到底部
+          window.scrollTo({
+              top: originalScrollPos + contentHeight / 2,
+              behavior: 'smooth'
+          });
+      } else {
+          // 恢复原始网页高度
+          $('body').css('height', originalHeight);
+
+          // 滚动页面到顶部，同时隐藏内容
+          window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+          });
+
+          $("#hiddenContent").slideUp();
+      }
+      isContentHidden = !isContentHidden;
+  });
+});
