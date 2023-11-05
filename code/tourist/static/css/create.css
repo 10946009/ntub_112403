@@ -44,12 +44,6 @@
     text-shadow: 3px 3px 3px rgb(91, 91, 91);
 }
 
-.inputspace {
-    width: 250px;
-    height: 32px;
-    font-weight: bolder;
-}
-
 .enterbtn {
     display: block;
     margin: 10px auto;
@@ -190,7 +184,6 @@ main {
 /* 右半邊 */
 .searchAndlikeAndrec {
     position: relative;
-    border-right: 2px solid rgb(152, 152, 152);
     overflow-y: auto;
     height: 800px;
     margin: 0 auto;
@@ -262,6 +255,7 @@ main {
     border-radius: 50%;
     color: white;
     font-size: 28px;
+    margin-right: 5px;
 }
 
 .searchBarDiv,
@@ -310,9 +304,6 @@ main {
     background-color: #198754;
 }
 
-.input_txt {
-    width: 200px;
-}
 
 /* 收藏CSS */
 .favoritedata {
@@ -378,6 +369,9 @@ main {
     margin-top: 5px;
     text-align: center;
     font-size: 20px;
+}
+.spotOk{
+    margin-bottom: 5px;
 }
 
 /* 翻轉右邊區塊(搜尋&收藏與推薦相似 */
@@ -460,10 +454,6 @@ main {
 .col-md-4 {
     margin: 5px 0;
     font-size: 20px;
-}
-
-.tabD {
-    padding: 5px;
 }
 
 .div_day {
@@ -605,13 +595,20 @@ main {
     height: 800px;
 }
 
+.tabD {
+    padding: 5px;
+}
 .tabDT {
-    font-size: 24px;
+    font-size: 22px;
 }
 
 .tabDL {
-    font-size: 24px;
+    font-size: 22px;
     margin-bottom: 5px;
+}
+.input_txt {
+    width: 200px;
+    font-size: 20px;
 }
 
 .checkboxDiv {
@@ -717,6 +714,30 @@ main {
     font-size: 16px;
 }
 
+#controller {
+    display: inline-block;
+    cursor: pointer;
+    margin: 0;
+}
+
+.upDiv {
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    border: 1px solid rgba(128, 128, 128, 0.568);
+    border-bottom: 0;
+    padding: 5px 15px 2px 15px;
+}
+
+.up_icon {
+    display: block;
+    font-size: 20px;
+    color: gray;
+}
+
+.upDiv:hover .up_icon {
+    color: red;
+}
+
 .bottomTempdiv {
     border: 1px solid black;
     display: none;
@@ -759,6 +780,26 @@ main {
     text-align: center;
 }
 
+.tempXdiv {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    display: block;
+}
+
+.tempX_icon {
+    font-size: 18px;
+    color: red;
+    text-shadow: 1px 1px 1px wheat;
+    font-weight: bold;
+}
+
+.tempX_icon:hover {
+    color: white;
+}
+
+
 .overlay .text {
     /* 根据需要调整文字样式 */
     font-size: 24px;
@@ -778,6 +819,9 @@ main {
     .innerlist {
         width: 320px;
     }
+    .checkboxDiv{
+        height: 480px;
+    }
 }
 
 @media(max-width: 768px) {
@@ -795,13 +839,28 @@ main {
     }
 
     .recommend_submit1 {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     .innerlist {
-        width: 300px;
+        width: 90%;
     }
 
+}
+@media (max-width:690px) {
+    .checkboxDiv{
+        height: 450px;
+    }
+    .recommend_submit1{
+        width: 65px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 18px;
+    }
+    .placeBtn {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
 }
 
 @media(max-width: 576px) {
@@ -814,16 +873,32 @@ main {
         font-size: 18px;
     }
 
+    .recAndDone ,.searchAndlikeAndrec{
+        padding: 0 5px;
+    }
+    .rec_icon ,.like_icon{
+        padding: 8px;
+        font-size: 16px;
+    }
+    .changeToRec ,.changeToSearch{
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+    .similar_icon{
+        padding: 3px 10px 5px 10px;
+        font-size: 18px;
+    }
+    .like_txt, .rec_txt, .similar_txt, .done_txt{
+        font-size: 22px;
+    }
     .submit1 {
         padding: 0;
     }
 
-    .recommend_submit1 {
-        font-size: 16px;
-    }
-
-    .checkimg_div {
-        /* height: 300px; */
+    .placeBtn {
+        padding: 8px 10px;
+        font-size: 14px;
+        margin-bottom: 5px;
     }
 }
 
@@ -831,9 +906,17 @@ main {
     .block {
         width: 300px;
     }
-
-    .inputspace {
-        width: 200px;
+    .tabDT{
+        font-size: 16px;
+    }
+    .tabDL{
+        font-size: 16px;
+    }
+    .input_txt {
+        font-size: 16px;
+    }
+    .checkboxDiv{
+        /* height: 420px; */
     }
 }
 
