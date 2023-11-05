@@ -77,7 +77,7 @@
                   <button class="placeBtn btn_now"
                           type="button"
                           id="nowLocationButton-{{ day }}"
-                          onclick="get_nowLocation({{ day }})">取得目前位置</button>
+                          onclick="get_nowLocation({{ day }})">目前位置</button>
                   <button class="placeBtn btn_choose"
                           type="button"
                           id="mapButton-{{ day }}"
@@ -324,7 +324,7 @@
       {% endfor %}
     </div>
     <div class="bottom" style="z-index: 99;width: 80%;margin: 0 auto;position: fixed;bottom: 0;left: 0;right: 0;">
-      <div id="controller" style="display:block;cursor: pointer;margin: 0;">
+      <div id="controller">
         <span class="upDiv"><i id="upDown_icon" class="fa-solid fa-caret-up up_icon"></i></span>
       </div>
       <div class="row bottomTempdiv" id="hiddenContent">
