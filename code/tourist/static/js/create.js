@@ -332,14 +332,15 @@ $(document).ready(function () {
   var isContentHidden = true;
   var originalHeight = $(document).height();
   var bottomHeight = $('.bottom').height();
-  var contentHeight = $("#hiddenContent").height(); // 计算内容高度
+  var contentHeight = $("#hiddenContent").height(); // 計算高度
+  var upDown_icon = $('#upDown_icon');
 
   var originalScrollPos = 0;
 
   $("#controller").click(function () {
     if (isContentHidden) {
       $("#hiddenContent").slideDown(function () {
-        // 显示内容后滚动页面到底部
+        // 展開內容並滑道也面底部
         var newHeight = originalHeight + contentHeight / 2;
         $('body').css('height', newHeight);
         window.scrollTo({
@@ -347,18 +348,21 @@ $(document).ready(function () {
           behavior: 'smooth'
         });
       });
+      upDown_icon.toggleClass('fa-rotate-180')
     } else {
-      // 计算原始高度底部位置
+      // 計算原始高度底部位置
       var originalBottomPos = originalHeight - $(window).height();
 
       $("#hiddenContent").slideUp(function () {
-        // 隐藏内容后恢复原始网页高度，并滚动到原始高度的底部
+        // 收起後恢復原網頁高度
         $('body').css('height', originalHeight);
         window.scrollTo({
           top: originalBottomPos,
           behavior: 'smooth'
         });
       });
+      
+      upDown_icon.toggleClass('fa-rotate-180')
     }
     isContentHidden = !isContentHidden;
   });

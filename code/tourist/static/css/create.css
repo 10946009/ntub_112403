@@ -717,6 +717,22 @@ main {
     font-size: 16px;
 }
 
+.upDiv{
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    border: 1px solid rgba(128, 128, 128, 0.568);
+    border-bottom: 0;
+    padding: 5px 15px 2px 15px;
+}
+.up_icon {
+    display: block;
+    font-size: 20px;
+    color: gray;
+}
+.upDiv:hover .up_icon{
+    color: red;
+}
+
 .bottomTempdiv {
     border: 1px solid black;
     display: none;
@@ -758,6 +774,26 @@ main {
     color: white;
     text-align: center;
 }
+
+.tempXdiv {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    display: block;
+}
+
+.tempX_icon {
+    font-size: 18px;
+    color: red;
+    text-shadow: 1px 1px 1px wheat;
+    font-weight: bold;
+}
+
+.tempX_icon:hover {
+    color: white;
+}
+
 
 .overlay .text {
     /* 根据需要调整文字样式 */
