@@ -100,12 +100,46 @@ function clickChangeDone() {
       done.style.transform = 'rotateY(0deg)';
       button.textContent = "重新推薦";
       button.style.backgroundColor = "rgb(255, 41, 101)";
+      // RWD縮小之後"重新推薦"變圖案
+      const repeatBtn = document.querySelector('.changeToRec');
+      
+      function changeRepeatBtnTxt() {
+        
+        if(repeatBtn.textContent === '重新推薦' || '\f363'){
+          if (window.innerWidth <= 690) {
+            repeatBtn.classList.add('repeatIcon_btn');
+            repeatBtn.innerHTML = '';
+          } else {
+            repeatBtn.classList.remove('repeatIcon_btn');
+            repeatBtn.innerHTML = '重新推薦';
+          }
+        }
+      }
+      window.onload = changeRepeatBtnTxt;
+      window.addEventListener('resize', changeRepeatBtnTxt);
 
   } else {
       checkRec.style.transform = 'rotateY(0deg)';
       done.style.transform = 'rotateY(180deg)';
       button.textContent = "景點排序";
       button.style.backgroundColor = "#0066DB";
+
+      // RWD縮小之後"景點排序"變圖案
+      const spotBtn = document.querySelector('.changeToRec');
+      
+      function changespotBtnTxt() {
+        if(spotBtn.textContent === '景點排序' || '\f4d7'){
+          if (window.innerWidth <= 690) {
+            spotBtn.classList.add('doneIcon_btn');
+            spotBtn.innerHTML = '';
+          } else {
+            spotBtn.classList.remove('doneIcon_btn');
+            spotBtn.innerHTML = '景點排序';
+          }
+        }
+      }
+      window.onload = changespotBtnTxt;
+      window.addEventListener('resize', changespotBtnTxt);
   }
 
 }
@@ -385,21 +419,4 @@ function changeBtnTxt(){
 }
 window.onload = changeBtnTxt;
 window.addEventListener('resize',changeBtnTxt);
-
-// RWD縮小之後"重新推薦"變圖案
-const repeatBtn = document.querySelector('.changeToRec');
-
-function changeRepeatBtnTxt() {
-  if(repeatBtn.textContent === '重新推薦'){
-    if (window.innerWidth <= 690) {
-      repeatBtn.classList.add('repeatIcon_btn');
-      repeatBtn.innerHTML = '';
-    } else {
-      repeatBtn.classList.remove('repeatIcon_btn');
-      repeatBtn.innerHTML = '重新推薦';
-    }
-  }
-}
-window.onload = changeRepeatBtnTxt;
-window.addEventListener('resize', changeRepeatBtnTxt);
 
