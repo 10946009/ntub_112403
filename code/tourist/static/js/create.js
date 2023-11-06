@@ -100,6 +100,7 @@ function clickChangeDone() {
       done.style.transform = 'rotateY(0deg)';
       button.textContent = "重新推薦";
       button.style.backgroundColor = "rgb(255, 41, 101)";
+
   } else {
       checkRec.style.transform = 'rotateY(0deg)';
       done.style.transform = 'rotateY(180deg)';
@@ -108,6 +109,7 @@ function clickChangeDone() {
   }
 
 }
+
 
 // 送出功能整合到clickChangeDone函数中
 // 點擊送出會切換到景點排序頁面
@@ -327,6 +329,7 @@ list.addEventListener('dragend', (e) => {
   currentLi.classList.remove('moving')
 })
 
+
 // 底部暫存區塊
 $(document).ready(function () {
   var isContentHidden = true;
@@ -367,3 +370,36 @@ $(document).ready(function () {
     isContentHidden = !isContentHidden;
   });
 });
+
+// RWD縮小之後"儲存"變圖案
+const saveBtn = document.querySelector('.recommend_save');
+
+function changeBtnTxt(){
+  if( window.innerWidth <= 690 ){
+    saveBtn.classList.add('saveIcon_btn');
+    saveBtn.innerHTML = '';
+  }else{
+    saveBtn.classList.remove('saveIcon_btn');
+    saveBtn.innerHTML = '儲存';
+  }
+}
+window.onload = changeBtnTxt;
+window.addEventListener('resize',changeBtnTxt);
+
+// RWD縮小之後"重新推薦"變圖案
+const repeatBtn = document.querySelector('.changeToRec');
+
+function changeRepeatBtnTxt() {
+  if(repeatBtn.textContent === '重新推薦'){
+    if (window.innerWidth <= 690) {
+      repeatBtn.classList.add('repeatIcon_btn');
+      repeatBtn.innerHTML = '';
+    } else {
+      repeatBtn.classList.remove('repeatIcon_btn');
+      repeatBtn.innerHTML = '重新推薦';
+    }
+  }
+}
+window.onload = changeRepeatBtnTxt;
+window.addEventListener('resize', changeRepeatBtnTxt);
+
