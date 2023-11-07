@@ -21,18 +21,21 @@ function clickShow(button) {
   if (showDiv.style.display === 'block') {
       showDiv.style.display = 'none';
       button.textContent = '詳細行程';
+      button.style.backgroundColor = "rgb(255, 240, 126)";
   } else {
       document.querySelectorAll("[id^='show']").forEach(div => {
           div.style.display = "none";
       })
       showDiv.style.display = 'block';
       button.textContent = '關閉閱覽';
+      button.style.backgroundColor = "#F55";
   }
   // 获取所有左侧按钮并更改非当前点击按钮的文本为 "点我出现"
   const allButtons = document.querySelectorAll("[id^='clickme']");
   allButtons.forEach(btn => {
       if (btn !== button) {
           btn.textContent = '詳細行程';
+          btn.style.backgroundColor = "rgb(255, 240, 126)";
       }
   });
 }
