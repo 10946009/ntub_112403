@@ -24,9 +24,6 @@ function createSave() {
   // } else {
   //   all_id = "";
   // }
-  alert(all_id);
-  console.log(nowtime, userLocation, all_id);
-
   const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
   $.ajax({
     headers: { 'X-CSRFToken': csrftoken },
