@@ -94,54 +94,18 @@ function clickChangeDone() {
   const button = document.getElementById("changeToRec-" + globalDay);
 
   isdoneJourneyVisible = !isdoneJourneyVisible
-
   if (isdoneJourneyVisible) {
     checkRec.style.transform = 'rotateY(180deg)';
     done.style.transform = 'rotateY(0deg)';
     button.textContent = "重新推薦";
     button.style.backgroundColor = "rgb(255, 41, 101)";
-    // RWD縮小之後"重新推薦"變圖案
-    const repeatBtn = document.querySelector('.changeToRec');
-
-    function changeRepeatBtnTxt() {
-
-      if (repeatBtn.textContent === '重新推薦' || '\f363') {
-        if (window.innerWidth <= 690) {
-          repeatBtn.classList.add('repeatIcon_btn');
-          repeatBtn.innerHTML = '';
-        } else {
-          repeatBtn.classList.remove('repeatIcon_btn');
-          repeatBtn.innerHTML = '重新推薦';
-        }
-      }
-    }
-    window.onload = changeRepeatBtnTxt;
-    window.addEventListener('resize', changeRepeatBtnTxt);
 
   } else {
     checkRec.style.transform = 'rotateY(0deg)';
     done.style.transform = 'rotateY(180deg)';
     button.textContent = "景點排序";
     button.style.backgroundColor = "#0066DB";
-
-    // RWD縮小之後"景點排序"變圖案
-    const spotBtn = document.querySelector('.changeToRec');
-
-    function changespotBtnTxt() {
-      if (spotBtn.textContent === '景點排序' || '\f4d7') {
-        if (window.innerWidth <= 690) {
-          spotBtn.classList.add('doneIcon_btn');
-          spotBtn.innerHTML = '';
-        } else {
-          spotBtn.classList.remove('doneIcon_btn');
-          spotBtn.innerHTML = '景點排序';
-        }
-      }
-    }
-    window.onload = changespotBtnTxt;
-    window.addEventListener('resize', changespotBtnTxt);
   }
-
 }
 
 
@@ -420,23 +384,6 @@ function changeBtnTxt() {
 window.onload = changeBtnTxt;
 window.addEventListener('resize', changeBtnTxt);
 
-// RWD縮小之後"重新推薦"變圖案
-const repeatBtn = document.querySelector('.changeToRec');
-
-function changeRepeatBtnTxt() {
-  if (repeatBtn.textContent === '重新推薦') {
-    if (window.innerWidth <= 690) {
-      repeatBtn.classList.add('repeatIcon_btn');
-      repeatBtn.innerHTML = '';
-    } else {
-      repeatBtn.classList.remove('repeatIcon_btn');
-      repeatBtn.innerHTML = '重新推薦';
-    }
-  }
-}
-window.onload = changeRepeatBtnTxt;
-window.addEventListener('resize', changeRepeatBtnTxt);
-
 
 // 定义一个函数来检查全局变量并更新CSS类
 function checkAndAddClass() {
@@ -451,3 +398,57 @@ function checkAndAddClass() {
     }
   });
 }
+
+
+
+// // RWD縮小之後"重新推薦"變圖案
+// const repeatBtn = document.querySelector('.changeToRec');
+
+// function changeRepeatBtnTxt() {
+//   if (window.innerWidth <= 690) {
+//     if (repeatBtn.textContent === '重新推薦') {
+//       repeatBtn.classList.add('repeatIcon_btn');
+//       repeatBtn.innerHTML = '';
+//     } else if (repeatBtn.textContent === '景點排序') {
+//       repeatBtn.classList.add('doneIcon_btn');
+//       repeatBtn.innerHTML = '';
+//     }
+//   } else if (window.innerWidth > 690) {
+//     if (repeatBtn.textContent === '\f363') {
+//       repeatBtn.classList.remove('repeatIcon_btn');
+//       repeatBtn.innerHTML = '重新推薦';
+//     } else if (repeatBtn.textContent === '\f4d7') {
+//       repeatBtn.classList.remove('doneIcon_btn');
+//       repeatBtn.innerHTML = '景點排序';
+//     }
+//   }
+//   if(window.innerWidth > 690){
+
+//   }
+// }
+// window.onload = changeRepeatBtnTxt;
+// window.addEventListener('resize', changeRepeatBtnTxt);
+const repeatBtn = document.querySelector('.changeToRec');
+
+function changeRepeatBtnTxt() {
+  if (window.innerWidth <= 690) {
+    if (repeatBtn.textContent === '重新推薦') {
+      // repeatBtn.classList.add('repeatIcon_btn');
+      repeatBtn.innerHTML = '<i class="fa-solid fa-repeat"></i>';
+    } else if (repeatBtn.textContent === '景點排序') {
+      // repeatBtn.classList.add('doneIcon_btn');
+      repeatBtn.innerHTML = '<i class="fa-solid fa-route"></i>';
+    }
+  }
+  if(window.innerWidth > 690){
+    if(repeatBtn.innerHTML === '<i class="fa-solid fa-repeat"></i>'){
+      repeatBtn.innerHTML = '重新推薦';
+    }else if(repeatBtn.innerHTML === '<i class="fa-solid fa-route"></i>'){
+      repeatBtn.innerHTML = '景點排序';
+    }
+  }
+}
+
+window.onload = changeRepeatBtnTxt;
+window.addEventListener('resize', changeRepeatBtnTxt);
+

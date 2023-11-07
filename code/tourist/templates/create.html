@@ -94,42 +94,37 @@
                 <input id="pac-input-{{ day }}"
                        class="controls"
                        type="text"
-                       placeholder="請輸入地址"
+                       placeholder="輸入地址或選取地圖"
                        style="display: none" />
                 <div id="map-{{ day }}" style="width: 100%;height: 300px;display: none;"></div>
 
                 <!--景點推薦div-->
-                <div class="changeRec checkRec" id="checkRec-{{ day }}">
-
-                <!--切換底下兩個div-->
-                <button class="changeToRec" id="changeToRec-{{ day }}" onclick="clickChangeDone()">景點排序</button>
- 
-                  <div class="recDiv">
-                    <i class="fa-solid fa-thumbs-up rec_icon"></i>
-                    <span class="rec_txt">推薦景點</span>
-                  </div>
-                  <div id="checkbox-{{ day }}" class="checkboxDiv">
-
-                    <div class="row"
-                         style="padding: 10px 5px"
-                         id="AttractionsContainer-{{ day }}">
-                      <h4>請先選擇使用者位置和時間</h4>
-                      {% include 'create_recommend.html' %}
-
+                <div style="position: relative;">
+                  <!--切換底下兩個div-->
+                  <button class="changeToRec" id="changeToRec-{{ day }}" onclick="clickChangeDone()">景點排序</button>
+                  <div class="changeRec checkRec" id="checkRec-{{ day }}">
+                    <div class="recDiv">
+                      <i class="fa-solid fa-thumbs-up rec_icon"></i>
+                      <span class="rec_txt">推薦景點</span>
                     </div>
-
- 
-
+                    <div id="checkbox-{{ day }}" class="checkboxDiv">
+                      <div class="row"
+                          style="padding: 10px 5px"
+                          id="AttractionsContainer-{{ day }}">
+                        <h4>請先選擇使用者位置和時間</h4>
+                        {% include 'create_recommend.html' %}
+                      </div>
+                    </div>
+                    <a href="#recommend-tab"
+                      class="tab_a submit1"
+                      id="clickLikeAttractions-{{ day }}">
+                      <button class="recommend_submit1" onclick="submitAction({{ day }})" value="送出">送出</button>
+                    </a>
+                    {% comment %} <a href="#home-tab" class="tab_a submit1" id="clickLikeAttractions_o"
+                      style="display: none;">
+                      <button class="recommend_submit1" onclick="submitAction()" value="送出">送出</button>
+                    </a> {% endcomment %}
                   </div>
-                  <a href="#recommend-tab"
-                     class="tab_a submit1"
-                     id="clickLikeAttractions-{{ day }}">
-                    <button class="recommend_submit1" onclick="submitAction({{ day }})" value="送出">送出</button>
-                  </a>
-                  {% comment %} <a href="#home-tab" class="tab_a submit1" id="clickLikeAttractions_o"
-                    style="display: none;">
-                    <button class="recommend_submit1" onclick="submitAction()" value="送出">送出</button>
-                  </a> {% endcomment %}
                 </div>
 
                 <!--景點排序div-->
