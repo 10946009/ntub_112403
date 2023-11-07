@@ -13,15 +13,15 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 //點了不會有空白 
-function saveTabState(tabId,day) {
+function saveTabState(tabId, day) {
   var tabs = document.getElementsByClassName('tab-pane');
   for (var i = 0; i < tabs.length; i++) {
-      tabs[i].style.display = 'none';
+    tabs[i].style.display = 'none';
   }
 
   var tab = document.getElementById(tabId);
   tab.style.display = 'block';
-  
+
   globalDay = day;
   console.log(globalDay);
   console.log(now_click_attractions);
@@ -31,28 +31,28 @@ function saveTabState(tabId,day) {
 var islikeAndRecVisible = false;
 
 function clickChange() {
-    const likeAndRec = document.getElementById('likeAndRec');
-    const searchBlock = document.getElementById('searchBlock');
-    const button = document.getElementById("changeToSearch");
+  const likeAndRec = document.getElementById('likeAndRec');
+  const searchBlock = document.getElementById('searchBlock');
+  const button = document.getElementById("changeToSearch");
 
-    islikeAndRecVisible = !islikeAndRecVisible
+  islikeAndRecVisible = !islikeAndRecVisible
 
-    if (islikeAndRecVisible) {
-        likeAndRec.style.transform = 'rotateY(180deg)';
-        searchBlock.style.transform = 'rotateY(0deg)';
-        button.textContent = "收藏與推薦";
-        button.style.backgroundColor = "rgb(255, 41, 101)";
-    } else {
-        likeAndRec.style.transform = 'rotateY(0deg)';
-        searchBlock.style.transform = 'rotateY(180deg)';
-        button.textContent = "切換搜尋";
-        button.style.backgroundColor = "#0066DB";
-    }
+  if (islikeAndRecVisible) {
+    likeAndRec.style.transform = 'rotateY(180deg)';
+    searchBlock.style.transform = 'rotateY(0deg)';
+    button.textContent = "收藏與推薦";
+    button.style.backgroundColor = "rgb(255, 41, 101)";
+  } else {
+    likeAndRec.style.transform = 'rotateY(0deg)';
+    searchBlock.style.transform = 'rotateY(180deg)';
+    button.textContent = "切換搜尋";
+    button.style.backgroundColor = "#0066DB";
+  }
 
 }
 
 // 高度一致
-$(document).ready(function() {
+$(document).ready(function () {
   // 在文件載入時和視窗尺寸改變時調整高度
   adjustTextHeightOnResize('.checkimg_div .spottxtdiv');
   adjustTextHeightOnResize('.S_checkimg_div .spottxtdiv');
@@ -63,8 +63,8 @@ function adjustTextHeightOnResize(selector) {
   adjustTextHeight(selector);
 
   // 監聽視窗大小改變事件
-  $(window).on('resize', function() {
-      adjustTextHeight(selector);
+  $(window).on('resize', function () {
+    adjustTextHeight(selector);
   });
 }
 
@@ -73,11 +73,11 @@ function adjustTextHeight(selector) {
   var maxHeight = 0;
 
   // 找出最大高度
-  $(selector).each(function() {
-      var textHeight = $(this).outerHeight();
-      if (textHeight > maxHeight) {
-          maxHeight = textHeight;
-      }
+  $(selector).each(function () {
+    var textHeight = $(this).outerHeight();
+    if (textHeight > maxHeight) {
+      maxHeight = textHeight;
+    }
   });
 
   // 將所有文字區塊設置為最大高度
@@ -96,50 +96,50 @@ function clickChangeDone() {
   isdoneJourneyVisible = !isdoneJourneyVisible
 
   if (isdoneJourneyVisible) {
-      checkRec.style.transform = 'rotateY(180deg)';
-      done.style.transform = 'rotateY(0deg)';
-      button.textContent = "重新推薦";
-      button.style.backgroundColor = "rgb(255, 41, 101)";
-      // RWD縮小之後"重新推薦"變圖案
-      const repeatBtn = document.querySelector('.changeToRec');
-      
-      function changeRepeatBtnTxt() {
-        
-        if(repeatBtn.textContent === '重新推薦' || '\f363'){
-          if (window.innerWidth <= 690) {
-            repeatBtn.classList.add('repeatIcon_btn');
-            repeatBtn.innerHTML = '';
-          } else {
-            repeatBtn.classList.remove('repeatIcon_btn');
-            repeatBtn.innerHTML = '重新推薦';
-          }
+    checkRec.style.transform = 'rotateY(180deg)';
+    done.style.transform = 'rotateY(0deg)';
+    button.textContent = "重新推薦";
+    button.style.backgroundColor = "rgb(255, 41, 101)";
+    // RWD縮小之後"重新推薦"變圖案
+    const repeatBtn = document.querySelector('.changeToRec');
+
+    function changeRepeatBtnTxt() {
+
+      if (repeatBtn.textContent === '重新推薦' || '\f363') {
+        if (window.innerWidth <= 690) {
+          repeatBtn.classList.add('repeatIcon_btn');
+          repeatBtn.innerHTML = '';
+        } else {
+          repeatBtn.classList.remove('repeatIcon_btn');
+          repeatBtn.innerHTML = '重新推薦';
         }
       }
-      window.onload = changeRepeatBtnTxt;
-      window.addEventListener('resize', changeRepeatBtnTxt);
+    }
+    window.onload = changeRepeatBtnTxt;
+    window.addEventListener('resize', changeRepeatBtnTxt);
 
   } else {
-      checkRec.style.transform = 'rotateY(0deg)';
-      done.style.transform = 'rotateY(180deg)';
-      button.textContent = "景點排序";
-      button.style.backgroundColor = "#0066DB";
+    checkRec.style.transform = 'rotateY(0deg)';
+    done.style.transform = 'rotateY(180deg)';
+    button.textContent = "景點排序";
+    button.style.backgroundColor = "#0066DB";
 
-      // RWD縮小之後"景點排序"變圖案
-      const spotBtn = document.querySelector('.changeToRec');
-      
-      function changespotBtnTxt() {
-        if(spotBtn.textContent === '景點排序' || '\f4d7'){
-          if (window.innerWidth <= 690) {
-            spotBtn.classList.add('doneIcon_btn');
-            spotBtn.innerHTML = '';
-          } else {
-            spotBtn.classList.remove('doneIcon_btn');
-            spotBtn.innerHTML = '景點排序';
-          }
+    // RWD縮小之後"景點排序"變圖案
+    const spotBtn = document.querySelector('.changeToRec');
+
+    function changespotBtnTxt() {
+      if (spotBtn.textContent === '景點排序' || '\f4d7') {
+        if (window.innerWidth <= 690) {
+          spotBtn.classList.add('doneIcon_btn');
+          spotBtn.innerHTML = '';
+        } else {
+          spotBtn.classList.remove('doneIcon_btn');
+          spotBtn.innerHTML = '景點排序';
         }
       }
-      window.onload = changespotBtnTxt;
-      window.addEventListener('resize', changespotBtnTxt);
+    }
+    window.onload = changespotBtnTxt;
+    window.addEventListener('resize', changespotBtnTxt);
   }
 
 }
@@ -170,40 +170,40 @@ var isLikeVisible = false;
 
 function openLikeBtn() {
 
-    var openlike = $('.openlike');
+  var openlike = $('.openlike');
 
-    isLikeVisible = !isLikeVisible
+  isLikeVisible = !isLikeVisible
 
-    if (isLikeVisible) {
-        openlike.animate({
-            height: "show"
-        }, 500);
-    } else {
-        openlike.animate({
-            height: "hide"
-        }, 500);
-    }
+  if (isLikeVisible) {
+    openlike.animate({
+      height: "show"
+    }, 500);
+  } else {
+    openlike.animate({
+      height: "hide"
+    }, 500);
+  }
 }
 
 var isSimilarVisible = true;
 function openSimilarBtn() {
 
-    var openSimilar = $('.openSimilar');
+  var openSimilar = $('.openSimilar');
 
-    if (isSimilarVisible) {
-      openSimilar.animate({
-            height: "show"
-        }, 500);
-    } else {
-      openSimilar.animate({
-            height: "hide"
-        }, 300);
-    }
+  if (isSimilarVisible) {
+    openSimilar.animate({
+      height: "show"
+    }, 500);
+  } else {
+    openSimilar.animate({
+      height: "hide"
+    }, 300);
+  }
 
-    isSimilarVisible = !isSimilarVisible
+  isSimilarVisible = !isSimilarVisible
 }
 // 當頁面載入後，呼叫一次以顯示相似元素
-$(document).ready(function() {
+$(document).ready(function () {
   openSimilarBtn();
 });
 
@@ -219,7 +219,7 @@ function openfiliter() {
 }
 
 // pick spot css
-function pickspot(checkbox,aid) {
+function pickspot(checkbox, aid) {
   checkbox.checked = !checkbox.checked;
 
   var div = checkbox.parentElement.parentElement; // 取得包含checkbox的div
@@ -261,9 +261,9 @@ function addFavorite(itemId) {
   var ss_heart_icon = $("#" + itemId).find(".ss_heart_icon");
 
   if (!ss_heart_icon.hasClass("heart_active")) {
-      ss_heart_icon.addClass("heart_active");
+    ss_heart_icon.addClass("heart_active");
   } else {
-      ss_heart_icon.removeClass("heart_active");
+    ss_heart_icon.removeClass("heart_active");
   }
 }
 
@@ -272,13 +272,13 @@ function addCtFavorite(itemId) {
   var ct_heart_icon = $("#" + itemId).find(".ct_heart_icon");
 
   if (!ct_heart_icon.hasClass("heart_active")) {
-      ct_heart_icon.addClass("heart_active");
+    ct_heart_icon.addClass("heart_active");
   } else {
-      ct_heart_icon.removeClass("heart_active");
+    ct_heart_icon.removeClass("heart_active");
   }
 }
 
-function addRecFavorite(event,itemId) {
+function addRecFavorite(event, itemId) {
   event.stopPropagation();
   // 這裡這裡的itemId要用你們的編號
   var rec_heart_icon = $("#" + itemId).find(".rec_heart_icon"); // 获取点击的爱心按钮
@@ -398,7 +398,7 @@ $(document).ready(function () {
           behavior: 'smooth'
         });
       });
-      
+
       upDown_icon.toggleClass('fa-rotate-180')
     }
     isContentHidden = !isContentHidden;
@@ -408,23 +408,23 @@ $(document).ready(function () {
 // RWD縮小之後"儲存"變圖案
 const saveBtn = document.querySelector('.recommend_save');
 
-function changeBtnTxt(){
-  if( window.innerWidth <= 690 ){
+function changeBtnTxt() {
+  if (window.innerWidth <= 690) {
     saveBtn.classList.add('saveIcon_btn');
     saveBtn.innerHTML = '';
-  }else{
+  } else {
     saveBtn.classList.remove('saveIcon_btn');
     saveBtn.innerHTML = '儲存';
   }
 }
 window.onload = changeBtnTxt;
-window.addEventListener('resize',changeBtnTxt);
+window.addEventListener('resize', changeBtnTxt);
 
 // RWD縮小之後"重新推薦"變圖案
 const repeatBtn = document.querySelector('.changeToRec');
 
 function changeRepeatBtnTxt() {
-  if(repeatBtn.textContent === '重新推薦'){
+  if (repeatBtn.textContent === '重新推薦') {
     if (window.innerWidth <= 690) {
       repeatBtn.classList.add('repeatIcon_btn');
       repeatBtn.innerHTML = '';
@@ -441,14 +441,13 @@ window.addEventListener('resize', changeRepeatBtnTxt);
 // 定义一个函数来检查全局变量并更新CSS类
 function checkAndAddClass() {
   var checkboxes = document.querySelectorAll('label[type="checkbox"]');
-  checkboxes.forEach(function(checkbox) {
-      var id = parseInt(checkbox.getAttribute('value'));
-      console.log(globalDay);
-      // 如果全局变量中包含 id，添加CSS类
-      if (now_click_attractions[globalDay].has(id)) {
-        console.log(checkbox.closest('.col-md-6'));
-          checkbox.closest('.col-md-6').classList.add('pickimg');
-      }
+  checkboxes.forEach(function (checkbox) {
+    var id = parseInt(checkbox.getAttribute('value'));
+    console.log(globalDay);
+    // 如果全局变量中包含 id，添加CSS类
+    if (now_click_attractions[globalDay].has(id)) {
+      console.log(checkbox.closest('.col-md-6'));
+      checkbox.closest('.col-md-6').classList.add('pickimg');
+    }
   });
 }
-
