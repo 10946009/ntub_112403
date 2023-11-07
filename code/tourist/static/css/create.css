@@ -89,8 +89,9 @@ main {
 }
 
 .controls{
+    /* display: none; */
     width: 100%;
-    height: 40px;
+    height: 30px;
 }
 
 .save_div {
@@ -245,6 +246,7 @@ main {
     align-content: center;
     padding: 10px 0;
     cursor: pointer;
+    user-select: none;
 }
 
 .recDiv {
@@ -253,6 +255,7 @@ main {
     align-content: center;
     padding: 10px 0;
     position: relative;
+    user-select: none;
 }
 
 .changeToRec {
@@ -715,8 +718,8 @@ main {
 
 .pickimg {
     padding: 0;
-    border: 1px solid blue;
-    transform: scale(0.95);
+    border: 2px solid red;
+    transform: scale(0.9);
 }
 
 .spottxtdiv {
@@ -801,7 +804,7 @@ main {
 }
 
 .bottomTempdiv {
-    border: 1px solid black;
+    border-left: 1px solid rgba(128, 128, 128, 0.568);
     display: none;
     width: 100%;
     margin: 0 auto;
@@ -809,10 +812,12 @@ main {
 
 .align {
     margin: 0 auto;
+    padding: 0;
     display: flex;
     overflow-x: scroll;
     align-items: center;
     align-content: center;
+    background-color: white;
 }
 
 .image-container {
@@ -822,7 +827,7 @@ main {
     min-width: 300px;
     height: 200px;
     margin-right: 10px;
-    border: 1px solid black;
+    border: 1px solid rgba(255, 255, 255, 0.57);
     display: block;
 }
 
@@ -878,6 +883,12 @@ main {
 }
 
 @media (max-width: 850px) {
+    .spotName{
+        font-size: 16px;
+    }
+    .spottxt{
+        font-size: 14px;
+    }
     .innerlist {
         width: 320px;
     }
@@ -954,7 +965,7 @@ main {
         font-size: 18px;
     }
 
-    .recAndDone,
+    /* .recAndDone, */
     .searchAndlikeAndrec {
         padding: 0 5px;
     }
