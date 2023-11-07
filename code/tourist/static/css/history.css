@@ -45,10 +45,6 @@
     /* border-radius: 20%; */
 }
 
-/* .more{
-    border: 1px solid gray;
-    border-top: 0px;
-} */
 .mytravel_img {
     height: 200px;
     overflow: hidden;
@@ -169,7 +165,11 @@
     color: gray;
     text-shadow: 2px 2px 2px rgb(162, 162, 162);
 }
-
+/* 打開右半邊詳細行程 */
+.openDetailDiv{
+    /* display: none; */
+    border: 1px solid black;
+}
 /*展開詳細行程*/
 .hidden-details {
     /* display: none; */
