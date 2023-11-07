@@ -160,7 +160,7 @@
     </div>
     <!-- 這邊好像抓不到id名稱所以JS不會動 -->
     <div class="col-lg-6">
-      <div class="openDetailDiv" id="details{{ item.my_history.id }}" style="display: none;">
+      <div class="openDetailDiv" id="details{{ item.my_history.id }}">
         <div style="height: 40px;">
           <span style="font-size: 18px;line-height: 40px;font-weight: bold;">行程名稱</span>
         </div>
@@ -170,12 +170,37 @@
         </div>
         <div>
           <span>相關標籤</span>
+          <span class="filter">動物園</span>
         </div>
-        <div>放圖片的地方
+        <div>放圖片的地方(輪播)
           <img src="../static/images/101.jpg" class="img-responsive" width="100%" alt="">
         </div>
-        <div>評論的地方
-          <span></span>
+        <div>
+          <span>評論區</span>
+          <div>
+            <div class="addCommentDiv">
+              <button class="addCommentBtn" id="addCommentBtn" onclick="addComment()">新增評論</button>          
+              <div class="addCommentSpace" id="addCommentSpace">
+                <form action="">
+                  <input type="text" class="addCTXT" placeholder="留下你的印記吧">
+                  <input type="submit" class="commentSubmit" value="送出">
+                </form>
+              </div>
+            </div>
+            <div class="row alreadyComment">
+              <div class="col-auto otherCommentAvatar">
+                <img src="../static/images/cloud1.png" class="img-responsive" style="width: 100%;"  alt=""><br>
+              </div>
+              <div class="col otherCommentTxtDiv">
+                <span class="otherCommentTxt">
+                  隨邊說說這裡是評論文字的地方<br>
+                  隨邊說說這裡是評論文字的地方<br>
+                  隨邊說說這裡是評論文字的地方<br>
+                  隨邊說說這裡是評論文字的地方
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

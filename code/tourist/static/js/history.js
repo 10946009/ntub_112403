@@ -40,7 +40,22 @@ function clickShow(button) {
   });
 }
 
+// 點新增評論按鈕
+const addCommentBtn = document.getElementById('addCommentBtn');
+const addCommentSpace = document.getElementById('addCommentSpace');
 
+let isaddCommentSpaceVisible = false;
+
+function addComment(){
+  if(!isaddCommentSpaceVisible){
+    addCommentSpace.style.display = "block";
+    addCommentBtn.textContent = "取消評論";
+  }else{
+    addCommentSpace.style.display = 'none';
+    addCommentBtn.textContent = '新增評論';
+  }
+  isaddCommentSpaceVisible = !isaddCommentSpaceVisible;
+}
 
 $(document).ready(function () {
 
