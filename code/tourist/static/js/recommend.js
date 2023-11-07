@@ -43,6 +43,7 @@ function similarRecommend(aid_list){
         console.log( response);
         const similar_attractions_detail_div = $('#SimilarRecommend-'+ globalDay );
         similar_attractions_detail_div.html(response['recommend_attractions_list']);
+        // checkAndAddClass();
       },
 
       error: function () {

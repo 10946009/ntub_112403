@@ -403,3 +403,18 @@ function changeRepeatBtnTxt() {
 window.onload = changeRepeatBtnTxt;
 window.addEventListener('resize', changeRepeatBtnTxt);
 
+
+// 定义一个函数来检查全局变量并更新CSS类
+function checkAndAddClass() {
+  var checkboxes = document.querySelectorAll('label[type="checkbox"]');
+  checkboxes.forEach(function(checkbox) {
+      var id = parseInt(checkbox.getAttribute('value'));
+      console.log(globalDay);
+      // 如果全局变量中包含 id，添加CSS类
+      if (now_click_attractions[globalDay].has(id)) {
+        console.log(checkbox.closest('.col-md-6'));
+          checkbox.closest('.col-md-6').classList.add('pickimg');
+      }
+  });
+}
+
