@@ -420,3 +420,35 @@ function changeBtnTxt(){
 window.onload = changeBtnTxt;
 window.addEventListener('resize',changeBtnTxt);
 
+// RWD縮小之後"重新推薦"變圖案
+const repeatBtn = document.querySelector('.changeToRec');
+
+function changeRepeatBtnTxt() {
+  if(repeatBtn.textContent === '重新推薦'){
+    if (window.innerWidth <= 690) {
+      repeatBtn.classList.add('repeatIcon_btn');
+      repeatBtn.innerHTML = '';
+    } else {
+      repeatBtn.classList.remove('repeatIcon_btn');
+      repeatBtn.innerHTML = '重新推薦';
+    }
+  }
+}
+window.onload = changeRepeatBtnTxt;
+window.addEventListener('resize', changeRepeatBtnTxt);
+
+
+// 定义一个函数来检查全局变量并更新CSS类
+function checkAndAddClass() {
+  var checkboxes = document.querySelectorAll('label[type="checkbox"]');
+  checkboxes.forEach(function(checkbox) {
+      var id = parseInt(checkbox.getAttribute('value'));
+      console.log(globalDay);
+      // 如果全局变量中包含 id，添加CSS类
+      if (now_click_attractions[globalDay].has(id)) {
+        console.log(checkbox.closest('.col-md-6'));
+          checkbox.closest('.col-md-6').classList.add('pickimg');
+      }
+  });
+}
+

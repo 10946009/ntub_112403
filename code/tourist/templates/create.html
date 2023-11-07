@@ -137,12 +137,12 @@
                     <i class="fa-solid fa-route done_icon"></i>
                     <span class="done_txt">景點排序</span>
                   </div>
-
-                  <div class="list" id="orderAttractions-{{ day }}" style="cursor: pointer;height: 500px;overflow-y: auto;">
-
-                    {% include 'create_order_attractions.html' %}
-                  </div>
-                  <button class="recommend_save" id="saveDays" value="儲存">儲存</button>
+                  <form>
+                    <div class="list" id="orderAttractions-{{ day }}" style="cursor: pointer;height: 500px;overflow-y: auto;">
+                      {% include 'create_order_attractions.html' %}
+                    </div>
+                    <button class="recommend_save" id="saveDays" value="儲存" onclick="createSave()">儲存</button>
+                  </form>
                     <!-- 範例 -->
                     <!-- <div class="list" style="cursor: pointer;">
                       <div class="innerlist" draggable="true">
@@ -369,6 +369,7 @@
   <script src="../static/js/createSearchTool.js"></script>
   <script src="/static/js/create.js"></script>
   <script src="/static/js/recommend.js"></script>
+  <script src="/static/js/createSave.js"></script>
 <script>
 var total_day = document.getElementsByClassName('tab-pane')
 var now_click_attractions = {};
@@ -713,44 +714,6 @@ autocomplete(create_searchInput,JSON.parse('{{ attractions_search_json|safe }}')
   });
 
   addDay.click() //初始加 {% endcomment %}
-
-  //我是儲存~~~
-  {% comment %} var saveDays = document.getElementById('saveDays');
-  saveDays.addEventListener("click", function (e) {
-    alert('儲存' + '{{choiceday}}');
-    var nowtime = document.getElementById("nowtime");
-    var userLocation = document.getElementById("userLocation-1");
-    var all_id = document.getElementById("hiddenId");
-    if (all_id) {
-      all_id = all_id.textContent;
-    } else {
-      all_id = '';
-    }
-    alert(all_id)
-    console.log(nowtime, userLocation, all_id);
-    $.ajax({
-      type: "POST",
-      url: "/create/{{ct_id}}", // 替换为您的 views.py 文件的 URL
-      data: {
-        day: '{{choiceday}}',
-        location: userLocation.value,
-        nowtime: nowtime.value,
-        all_id: all_id,
-        csrfmiddlewaretoken: '{{ csrf_token }}',
-        ct_status: 3,
-      },
-      success: function (response) {
-        // 在這裡處理伺服器回傳的 JSON 數據
-        console.log(response);  // 查看回傳的值  
-        alert('儲存成功');
-      },
-
-      error: function () {
-        alert('有錯誤!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-      },
-    });
-  }); {% endcomment %}
-
 
   </script>
 {% endblock %}

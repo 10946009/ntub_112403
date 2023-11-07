@@ -1,5 +1,5 @@
 {% for o in order_attractions_data %}
-  <div class="spot innerlist" draggable="true" id="spot{{forloop.counter}}" style="color: black;margin-bottom:10px">
+  <div class="spot innerlist" draggable="true" id="spot{{forloop.counter}}" style="color: black;margin-bottom:10px" data-id="{{o.final_result_list.id}}" data-stay = "{% if o.final_result_list.stay_time == 0 %}150{% else %}{{o.final_result_list.stay_time}}{% endif %}">
     <p class="spotOkName">{{o.final_result_list.a_name}}</p>
     <p id="hiddenId" style="display: none;">景點名稱：{{o.final_result_list.id}}</p>
     <!-- <p>地址：{{o.final_result_list.address}} <br> -->
