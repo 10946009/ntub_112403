@@ -22,15 +22,11 @@ function startRecommend(user_location,day){
     });
 }
 
-function similarRecommend(aid_list){
-
-  // const dataSetValue = button.dataset.set;
-  console.log(globalDay)
-  console.log(aid_list);
-  
-  aid_list = Array.from(aid_list[globalDay]);
+function similarRecommend(){
+  aid_list = Array.from(now_click_attractions[globalDay]);
   nowtime = document.getElementById('nowtime-' + globalDay);
   const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  const similar_attractions_detail_div = $('#SimilarRecommend-'+ globalDay );
   $.ajax({
       type: "POST",
       headers: { 'X-CSRFToken': csrftoken },
@@ -39,9 +35,13 @@ function similarRecommend(aid_list){
           nowtime: nowtime.value,
           ct_status: 1,
       },
+      beforeSend: function () {
+        console.log("请求发送中...");
+        similar_attractions_detail_div.html("<div>正在為您推薦相似景點…</div>");
+    },
       success: function (response) {
         console.log( response);
-        const similar_attractions_detail_div = $('#SimilarRecommend-'+ globalDay );
+        
         similar_attractions_detail_div.html(response['recommend_attractions_list']);
         // checkAndAddClass();
       },

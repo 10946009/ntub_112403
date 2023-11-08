@@ -25,6 +25,8 @@ function saveTabState(tabId, day) {
   globalDay = day;
   console.log(globalDay);
   console.log(now_click_attractions);
+  //使下面暫存的景點跟著換
+  inputBottom();
 }
 
 // 翻轉右邊區塊
@@ -182,25 +184,36 @@ function openfiliter() {
   }
 }
 
-// pick spot css
+// pick spot css 點擊景點時
 function pickspot(checkbox, aid) {
   checkbox.checked = !checkbox.checked;
-
+  console.log(checkbox);
   var div = checkbox.parentElement.parentElement; // 取得包含checkbox的div
   if (checkbox.checked) {
     div.classList.add("pickimg");
     now_click_attractions[globalDay].add(aid);
-    similarRecommend(now_click_attractions);
+    inputBottom();
 
   } else {
     div.classList.remove("pickimg");
     now_click_attractions[globalDay].delete(aid);
-    similarRecommend(now_click_attractions);
+    inputBottom();
   }
 
 }
 
-
+// pick spot 刪除下面戰存的景點時
+function pickspotBottom(aid) {
+  try{
+    const container = document.getElementById('ch-'+globalDay);
+    const elements = container.querySelector('.imgcheck[value="' + aid + '"]');
+    console.log(elements);
+    pickspot(elements, aid);
+  }catch(e){
+    now_click_attractions[globalDay].delete(aid);
+    inputBottom();
+  }
+}
 var heart = document.getElementsByClassName('heart_icon');
 for (var i = 0; i < heart.length; i++) {
   // var count;
@@ -448,7 +461,22 @@ function changeRepeatBtnTxt() {
     }
   }
 }
+function inputBottom(){
+  $.ajax({
+    url:"/attractions",
+    type: "GET",
+    data: {
+      aidlist:Array.from(now_click_attractions[globalDay]).join(','),
+    },
+    success: function (response) {
+      document.getElementById('bottomAttraction').innerHTML = response;
+    },
 
+    error: function () {
+        console.log('推薦回傳有錯誤!!!');
+    },
+  });
+}
 window.onload = changeRepeatBtnTxt;
 window.addEventListener('resize', changeRepeatBtnTxt);
 
