@@ -5,6 +5,7 @@ from dotenv import load_dotenv, find_dotenv
 dotenv_path = join(dirname(__file__), ".env")
 load_dotenv(dotenv_path, override=True)  # 設定 override 才會更新變數哦！
 GOOGLE_PLACES_API_KEY = os.environ.get("GOOGLE_PLACES_API_KEY")
+WEATHER_API_KEY = os.environ.get("WEATHER_API_KEY")
 ATT_TYPE = {
     'tourist_attraction':1, #旅遊景點
     'point_of_interest':2, #興趣點

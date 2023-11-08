@@ -84,66 +84,6 @@ function adjustTextHeight(selector) {
   $(selector).height(maxHeight);
 }
 
-// $(document).ready(function() {
-//   // 在文件載入時和視窗尺寸改變時調整高度
-//   adjustTextHeightOnResize('.checkimg_div .spottxtdiv');
-// });
-
-// function adjustTextHeightOnResize(selector) {
-//   // 初始化高度
-//   adjustTextHeight(selector);
-
-//   // 監聽視窗大小改變事件
-//   $(window).on('resize', function() {
-//       adjustTextHeight(selector);
-//   });
-// }
-// function adjustTextHeight(selector) {
-//   $(selector).height('auto'); // 先重置高度以便重新計算
-//   var maxHeight = 0;
-
-//   // 找出最大高度
-//   $(selector).each(function() {
-//       var textHeight = $(this).outerHeight();
-//       if (textHeight > maxHeight) {
-//           maxHeight = textHeight;
-//       }
-//   });
-//   // 將所有文字區塊設置為最大高度
-//   $(selector).height(maxHeight);
-// }
-
-// // 相似的高度
-// $(document).ready(function() {
-//   // 在文件載入時和視窗尺寸改變時調整高度
-//   adjustTextHeightOnResize('.S_checkimg_div .spottxtdiv');
-// });
-
-// function adjustTextHeightOnResize(selector) {
-//   // 初始化高度
-//   adjustTextHeight(selector);
-
-//   // 監聽視窗大小改變事件
-//   $(window).on('resize', function() {
-//       adjustTextHeight(selector);
-//   });
-// }
-// function adjustTextHeight(selector) {
-//   $(selector).height('auto'); // 先重置高度以便重新計算
-//   var maxHeight = 0;
-
-//   // 找出最大高度
-//   $(selector).each(function() {
-//       var textHeight = $(this).outerHeight();
-//       if (textHeight > maxHeight) {
-//           maxHeight = textHeight;
-//       }
-//   });
-//   // 將所有文字區塊設置為最大高度
-//   $(selector).height(maxHeight);
-// }
-
-
 // 翻轉左邊區塊
 var isdoneJourneyVisible = false;
 
@@ -160,6 +100,7 @@ function clickChangeDone() {
       done.style.transform = 'rotateY(0deg)';
       button.textContent = "重新推薦";
       button.style.backgroundColor = "rgb(255, 41, 101)";
+
   } else {
       checkRec.style.transform = 'rotateY(0deg)';
       done.style.transform = 'rotateY(180deg)';
@@ -168,6 +109,7 @@ function clickChangeDone() {
   }
 
 }
+
 
 // 送出功能整合到clickChangeDone函数中
 // 點擊送出會切換到景點排序頁面
@@ -386,3 +328,93 @@ list.addEventListener('dragover', (e) => {
 list.addEventListener('dragend', (e) => {
   currentLi.classList.remove('moving')
 })
+
+
+// 底部暫存區塊
+$(document).ready(function () {
+  var isContentHidden = true;
+  var originalHeight = $(document).height();
+  var bottomHeight = $('.bottom').height();
+  var contentHeight = $("#hiddenContent").height(); // 計算高度
+  var upDown_icon = $('#upDown_icon');
+
+  var originalScrollPos = 0;
+
+  $("#controller").click(function () {
+    if (isContentHidden) {
+      $("#hiddenContent").slideDown(function () {
+        // 展開內容並滑道也面底部
+        var newHeight = originalHeight + contentHeight / 2;
+        $('body').css('height', newHeight);
+        window.scrollTo({
+          top: newHeight,
+          behavior: 'smooth'
+        });
+      });
+      upDown_icon.toggleClass('fa-rotate-180')
+    } else {
+      // 計算原始高度底部位置
+      var originalBottomPos = originalHeight - $(window).height();
+
+      $("#hiddenContent").slideUp(function () {
+        // 收起後恢復原網頁高度
+        $('body').css('height', originalHeight);
+        window.scrollTo({
+          top: originalBottomPos,
+          behavior: 'smooth'
+        });
+      });
+      
+      upDown_icon.toggleClass('fa-rotate-180')
+    }
+    isContentHidden = !isContentHidden;
+  });
+});
+
+// RWD縮小之後"儲存"變圖案
+const saveBtn = document.querySelector('.recommend_save');
+
+function changeBtnTxt(){
+  if( window.innerWidth <= 690 ){
+    saveBtn.classList.add('saveIcon_btn');
+    saveBtn.innerHTML = '';
+  }else{
+    saveBtn.classList.remove('saveIcon_btn');
+    saveBtn.innerHTML = '儲存';
+  }
+}
+window.onload = changeBtnTxt;
+window.addEventListener('resize',changeBtnTxt);
+
+// RWD縮小之後"重新推薦"變圖案
+const repeatBtn = document.querySelector('.changeToRec');
+
+function changeRepeatBtnTxt() {
+  if(repeatBtn.textContent === '重新推薦'){
+    if (window.innerWidth <= 690) {
+      repeatBtn.classList.add('repeatIcon_btn');
+      repeatBtn.innerHTML = '';
+    } else {
+      repeatBtn.classList.remove('repeatIcon_btn');
+      repeatBtn.innerHTML = '重新推薦';
+    }
+  }
+}
+window.onload = changeRepeatBtnTxt;
+window.addEventListener('resize', changeRepeatBtnTxt);
+
+
+// 定义一个函数来检查全局变量并更新CSS类
+function checkAndAddClass() {
+  var checkboxes = document.querySelectorAll('label[type="checkbox"]');
+  checkboxes.forEach(function(checkbox) {
+      var id = parseInt(checkbox.getAttribute('value'));
+      console.log(globalDay);
+      // 如果全局变量中包含 id，添加CSS类
+      if (now_click_attractions[globalDay].has(id)) {
+        console.log(checkbox.closest('.col-md-6'));
+          checkbox.closest('.col-md-6').classList.add('pickimg');
+      }
+  });
+}
+

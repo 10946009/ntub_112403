@@ -77,7 +77,7 @@
                   <button class="placeBtn btn_now"
                           type="button"
                           id="nowLocationButton-{{ day }}"
-                          onclick="get_nowLocation({{ day }})">取得目前位置</button>
+                          onclick="get_nowLocation({{ day }})">目前位置</button>
                   <button class="placeBtn btn_choose"
                           type="button"
                           id="mapButton-{{ day }}"
@@ -137,11 +137,12 @@
                     <i class="fa-solid fa-route done_icon"></i>
                     <span class="done_txt">景點排序</span>
                   </div>
-
-                  <div class="list" id="orderAttractions-{{ day }}" style="cursor: pointer;">
-
-                    {% include 'create_order_attractions.html' %}
-                  </div>
+                  <form>
+                    <div class="list" id="orderAttractions-{{ day }}" style="cursor: pointer;height: 500px;overflow-y: auto;">
+                      {% include 'create_order_attractions.html' %}
+                    </div>
+                    <button class="recommend_save" id="saveDays" value="儲存" onclick="createSave()">儲存</button>
+                  </form>
                     <!-- 範例 -->
                     <!-- <div class="list" style="cursor: pointer;">
                       <div class="innerlist" draggable="true">
@@ -322,58 +323,41 @@
         </div>
       {% endfor %}
     </div>
-
-    <!--<div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="{{ day }}-tab">
-    我是第二天
-      <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="child1-tab" data-bs-toggle="tab" data-bs-target="#child1"
-                    type="button" role="tab" aria-controls="child1" aria-selected="true"
-                    onclick="saveTabState('child1')">第一天</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="child2-tab" data-bs-toggle="tab" data-bs-target="#child2"
-                    type="button" role="tab" aria-controls="child2" aria-selected="false"
-                    onclick="saveTabState('child2')">第二天</button>
-            </li>
-        </ul> -->
-    <!-- <div class="tab-child1" id="myTabchild1" style="width: 80%;margin: 0 auto;">
-            <div class="tab-pane fade show active" id="child1" role="tabpanel" aria-labelledby="child1-tab"
-                style="display: flex;justify-content: center;align-items: center;align-content: center;">
-                <div class="row" style="width: 100%;">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="img">
-                            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                        </div>
-                        <div class="txt">
-                            <span>testtest</span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="img">
-                            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                        </div>
-                        <div class="txt">
-                            <span>testtest</span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="img">
-                            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                        </div>
-                        <div class="txt">
-                            <span>testtest</span>
-                        </div>
-                    </div>
-                </div>
+    <div class="bottom" style="z-index: 99;width: 80%;margin: 0 auto;position: fixed;bottom: 0;left: 0;right: 0;">
+      <div id="controller">
+        <span class="upDiv"><i id="upDown_icon" class="fa-solid fa-caret-up up_icon"></i></span>
+      </div>
+      <div class="row bottomTempdiv" id="hiddenContent">
+        <div class="align">
+          <div class="image-container" >
+            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+            <div class="overlay">
+              <div class="tempXdiv"><i class="fa-solid fa-xmark tempX_icon"></i></div>
+              <div class="text">景點名稱</div><!-- 只抓點過的景點名稱跟營業時間 -->
             </div>
-            <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab">
-                我是內容<br>我是內容<br>我是內容<br>我是內容<br>我是內容<br>
+          </div>
+          <div class="image-container" >
+            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+            <div class="overlay">
+                <div class="text">景點名稱</div>
             </div>
-        </div> 
-  </div>-->
-
-    <!-- 建立行程 -->
+          </div>
+          <div class="image-container" >
+            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+            <div class="overlay">
+                <div class="text">景點名稱</div>
+            </div>
+          </div>
+          <div class="image-container" >
+            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+            <div class="overlay">
+                <div class="text">景點名稱</div>
+            </div>
+          </div>
+        </div>
+      </div>
+            
+    </div>
   </main>
   <script src="../static/js/testGPS.js"></script>
 {% endblock body %}
@@ -382,6 +366,7 @@
   <script src="../static/js/createSearchTool.js"></script>
   <script src="/static/js/create.js"></script>
   <script src="/static/js/recommend.js"></script>
+  <script src="/static/js/createSave.js"></script>
 <script>
 var total_day = document.getElementsByClassName('tab-pane')
 var now_click_attractions = {};
@@ -726,44 +711,6 @@ autocomplete(create_searchInput,JSON.parse('{{ attractions_search_json|safe }}')
   });
 
   addDay.click() //初始加 {% endcomment %}
-
-  //我是儲存~~~
-  {% comment %} var saveDays = document.getElementById('saveDays');
-  saveDays.addEventListener("click", function (e) {
-    alert('儲存' + '{{choiceday}}');
-    var nowtime = document.getElementById("nowtime");
-    var userLocation = document.getElementById("userLocation-1");
-    var all_id = document.getElementById("hiddenId");
-    if (all_id) {
-      all_id = all_id.textContent;
-    } else {
-      all_id = '';
-    }
-    alert(all_id)
-    console.log(nowtime, userLocation, all_id);
-    $.ajax({
-      type: "POST",
-      url: "/create/{{ct_id}}", // 替换为您的 views.py 文件的 URL
-      data: {
-        day: '{{choiceday}}',
-        location: userLocation.value,
-        nowtime: nowtime.value,
-        all_id: all_id,
-        csrfmiddlewaretoken: '{{ csrf_token }}',
-        ct_status: 3,
-      },
-      success: function (response) {
-        // 在這裡處理伺服器回傳的 JSON 數據
-        console.log(response);  // 查看回傳的值  
-        alert('儲存成功');
-      },
-
-      error: function () {
-        alert('有錯誤!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-      },
-    });
-  }); {% endcomment %}
-
 
   </script>
 {% endblock %}

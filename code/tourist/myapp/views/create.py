@@ -58,7 +58,6 @@ def create(request, ct_id):
         
     user_favorite_type = [4, 6, 9, 10, 15, 16, 18] #需修改新增的部分
     ct_data = Create_Travel.objects.get(id=ct_id)
-    choiceday = 1
     # apikey = GOOGLE_PLACES_API_KEY   #記得一定要打開!!!!!!!!!!!!!!!!!!!!!!!!!(API在這!)
     travelday = range(1, ct_data.travel_day + 1)
     name = ct_data.ct_name
@@ -297,10 +296,11 @@ def create(request, ct_id):
             order_attractions_data= []
             remainder_attractions_data = []
             for fr, fc, fnowtime in zip(final_result_list, final_crow_opening_list,final_now_time_list):
+                f_nt = (fnowtime//60)%24
                 order_attractions_data.append({
                     'final_result_list': fr,
                     'final_crow_opening_list': fc,
-                    'final_crowd_list' : f"{min(fc['crowd'][fnowtime//60],fc['crowd'][fnowtime//60+1])} ~ {max(fc['crowd'][fnowtime//60],fc['crowd'][fnowtime//60+1])}"  
+                    'final_crowd_list' : f"{min(fc['crowd'][f_nt],fc['crowd'][f_nt+1])} ~ {max(fc['crowd'][f_nt],fc['crowd'][f_nt+1])}"  
                 })
             for frr,frc in zip(final_remainder_result_list,final_remainder_crow_opening_list):
                 remainder_attractions_data.append({
@@ -319,6 +319,8 @@ def create(request, ct_id):
         choice_ct_id = -1
         if ct_status == "3":
             print("我進來了")
+            print(request.POST)
+            choiceday = int(request.POST["day"])
             get_user_address = list(map(float, request.POST["location"].split(",")))
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
@@ -340,6 +342,8 @@ def create(request, ct_id):
             choice_ct_id = unit.id
             if request.POST["all_id"] != "":
                 all_id = list(map(int, request.POST["all_id"].split(",")))
+                print("all_id",all_id)
+                Attractions_Ct.objects.filter(choice_ct_id=choice_ct_id).delete() #刪除舊資料
                 for index, id in enumerate(all_id):
                     if index == len(all_id) - 1:
                         distance = 0
@@ -372,8 +376,7 @@ def create(request, ct_id):
                     )
                     ct.save()
                     new_nowtime += 150
-
-            print("hello")
-
+            else:
+                Attractions_Ct.objects.filter(choice_ct_id=choice_ct_id).delete() #為空就刪除資料
 
     return render(request, "create.html", locals())
