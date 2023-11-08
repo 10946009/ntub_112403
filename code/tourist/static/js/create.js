@@ -1,5 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', function () {
+  
   const selectedTab = localStorage.getItem('selectedTab');
   if (selectedTab === 'contact') {
     // 先移除之前的 active 状态
@@ -105,7 +106,7 @@ function clickChangeDone() {
   } else {
     checkRec.style.transform = 'rotateY(0deg)';
     done.style.transform = 'rotateY(180deg)';
-    button.textContent = "景點排序";
+    button.textContent = "切換景點排序";
     button.style.backgroundColor = "#0066DB";
   }
 }
