@@ -43,6 +43,7 @@ function similarRecommend(aid_list){
         console.log( response);
         const similar_attractions_detail_div = $('#SimilarRecommend-'+ globalDay );
         similar_attractions_detail_div.html(response['recommend_attractions_list']);
+        // checkAndAddClass();
       },
 
       error: function () {
@@ -57,6 +58,7 @@ function submitRecommend(){
   const total_aid_list = Array.from(now_click_attractions[globalDay]);
 
   const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  const order_attractions_detail_div = $('#orderAttractions-'+ globalDay );
   $.ajax({
       type: "POST",
       headers: { 'X-CSRFToken': csrftoken },
@@ -65,9 +67,13 @@ function submitRecommend(){
           nowtime: nowtime.value,
           ct_status: 2,
       },
+      beforeSend: function () {
+        console.log("请求发送中...");
+        order_attractions_detail_div.html("<div>正在排序中...</div>");
+    },
       success: function (response) {
         console.log(response);
-        const order_attractions_detail_div = $('#orderAttractions-'+ globalDay );
+        
         order_attractions_detail_div.html(response['order_attractions']);
       },
 

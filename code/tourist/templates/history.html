@@ -63,10 +63,7 @@
 
           {% endif %}
         </div>
-        <!-- <button class="more_btn details{{ item.my_history.id }}btn" data-target="details{{ item.my_history.id }}">預覽行程</button> -->
-        <!-- <a href="/travel_detail/{{ item.my_history.id }}"> -->
-          <button class="more_btn details{{ item.my_history.id }}btn" data-target="details{{ item.my_history.id }}" onclick="clickOpen(this)" >詳細行程</button>
-        <!-- </a> -->
+        <button class="more_btn details{{ item.my_history.id }}btn" id="details{{ item.my_history.id }}btn" data-target="details{{ item.my_history.id }}" onclick="clickShow(this)" >詳細行程</button>
       </div>
       <!--開啟詳細資料顯示的內容(要拿掉 看UC有沒有需要)-->
       <div class="openmore more-content">
@@ -161,76 +158,80 @@
           </div>
       {% endfor %}
     </div>
-
-    <div class="col-lg-6" style="border: 1px solid black;">
-      <div style="height: 40px;">
-        <span style="font-size: 18px;line-height: 40px;font-weight: bold;">行程名稱</span>
-      </div>
-      <hr style="margin-top: 0;">
-      <div style="float: right;">
-        <span>分享人：</span>
-      </div>
-      <div>
-        <span>相關標籤</span>
-      </div>
-      <div>放圖片的地方
-        <img src="../static/images/101.jpg" class="img-responsive" width="100%" alt="">
-      </div>
-      <div>評論的地方
-        <span></span>
+    <!-- 這邊好像抓不到id名稱所以JS不會動 -->
+    <div class="col-lg-6">
+      <div class="openDetailDiv" id="details{{ item.my_history.id }}">
+        <div style="height: 40px;">
+          <span style="font-size: 18px;line-height: 40px;font-weight: bold;">行程名稱</span>
+        </div>
+        <hr style="margin-top: 0;">
+        <div style="float: right;">
+          <span>分享人：</span>
+        </div>
+        <div>
+          <span>相關標籤</span>
+          <span class="filter">動物園</span>
+        </div>
+        <div>放圖片的地方(輪播)
+          <img src="../static/images/101.jpg" class="img-responsive" width="100%" alt="">
+        </div>
+        <div>
+          <span>評論區</span>
+          <div>
+            <div class="addCommentDiv">
+              <button class="addCommentBtn" id="addCommentBtn" onclick="addComment()">新增評論</button>          
+              <div class="addCommentSpace" id="addCommentSpace">
+                <form action="">
+                  <input type="text" class="addCTXT" placeholder="留下你的印記吧">
+                  <input type="submit" class="commentSubmit" value="送出">
+                </form>
+              </div>
+            </div>
+            <div class="row alreadyComment">
+              <div class="col-auto otherCommentAvatar">
+                <img src="../static/images/cloud1.png" class="img-responsive" style="width: 100%;"  alt=""><br>
+              </div>
+              <div class="col otherCommentTxtDiv">
+                <span class="otherCommentTxt">
+                  隨邊說說這裡是評論文字的地方<br>
+                  隨邊說說這裡是評論文字的地方<br>
+                  隨邊說說這裡是評論文字的地方<br>
+                  隨邊說說這裡是評論文字的地方
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
   </div>
+  
 
 
-  <!-- 重新排版範例 未完成 -->
-  {% comment %} 
-    <div class="row" style="width: 100%;margin: 0 auto;">
-
-      <div class="col-lg-6" style="padding: 0 5px;">
-
-        <div class="row" style="margin: 10px 0;">
-          <div class="col-md-5 div_img">
-            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-          </div>
-          <div class="col-md-7 div_txt">
-            我是文字1
-          </div>
+  <!-- 這個是範例是可以打開右邊的 -->
+  <div class="row" style="width: 60%;text-align: center;margin: 0 auto;height: 200px;align-content: center;">
+    <div class="col-6">
+        <div>
+            我是左邊1
+            <button id="clickme1" data-target="show1" onclick="clickShow(this)">點我出現</button>
         </div>
-
-        <div class="row" style="margin: 10px 0;">
-          <div class="col-md-5 div_img">
-            <img src="../static/images/cloud1.png" class="img-responsive" width="100%" alt="">
-          </div>
-          <div class="col-md-7 div_txt">
-            我是文字2
-          </div>
+        <div>
+            我是左邊2
+            <button id="clickme2" data-target="show2" onclick="clickShow(this)">點我出現</button>
         </div>
-
-      </div>
-
-      <div class="col-lg-6" style="padding: 0 5px;">
-        <div class="row" style="margin: 10px 0;">
-          <div class="col-md-5 div_img">
-            <img src="../static/images/cloud1.png" class="img-responsive" width="100%" alt="">
-          </div>
-          <div class="col-md-7 div_txt">
-            我是文字3
-          </div>
+    </div>
+    <div class="col-6" style="border: 1px solid black;">
+        <div id="show1" style="display: none;">
+            我是右邊1
         </div>
-        <div class="row" style="margin: 10px 0;">
-          <div class="col-md-5 div_img">
-            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-          </div>
-          <div class="col-md-7 div_txt">
-            我是文字4
-          </div>
+        <div id="show2" style="display: none;">
+            我是右邊2 <br>
+            我是右邊2 <br>
+            我是右邊2
         </div>
-      </div>
-
-    </div> 
-  {% endcomment %}
+    </div>
+  </div>
 
 </div>
 
@@ -238,6 +239,7 @@
 
 
 <script>
+  
 
   function add_favorite_share(ctid) {
     // var sharediv = document.getElementById("ct_share");

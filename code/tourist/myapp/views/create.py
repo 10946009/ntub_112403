@@ -58,7 +58,6 @@ def create(request, ct_id):
         
     user_favorite_type = [4, 6, 9, 10, 15, 16, 18] #需修改新增的部分
     ct_data = Create_Travel.objects.get(id=ct_id)
-    choiceday = 1
     # apikey = GOOGLE_PLACES_API_KEY   #記得一定要打開!!!!!!!!!!!!!!!!!!!!!!!!!(API在這!)
     travelday = range(1, ct_data.travel_day + 1)
     name = ct_data.ct_name
@@ -320,6 +319,8 @@ def create(request, ct_id):
         choice_ct_id = -1
         if ct_status == "3":
             print("我進來了")
+            print(request.POST)
+            choiceday = int(request.POST["day"])
             get_user_address = list(map(float, request.POST["location"].split(",")))
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
@@ -341,6 +342,8 @@ def create(request, ct_id):
             choice_ct_id = unit.id
             if request.POST["all_id"] != "":
                 all_id = list(map(int, request.POST["all_id"].split(",")))
+                print("all_id",all_id)
+                Attractions_Ct.objects.filter(choice_ct_id=choice_ct_id).delete() #刪除舊資料
                 for index, id in enumerate(all_id):
                     if index == len(all_id) - 1:
                         distance = 0
@@ -373,8 +376,7 @@ def create(request, ct_id):
                     )
                     ct.save()
                     new_nowtime += 150
-
-            print("hello")
-
+            else:
+                Attractions_Ct.objects.filter(choice_ct_id=choice_ct_id).delete() #為空就刪除資料
 
     return render(request, "create.html", locals())
