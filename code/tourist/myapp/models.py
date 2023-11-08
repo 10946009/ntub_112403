@@ -65,6 +65,8 @@ class Attractions(models.Model):
     #     return f'{self.id} {self.a_name}'
     def get_favorite_count(self):
         return Favorite.objects.filter(a_id=self.id).count()
+    def get_crowd_opening(self):
+        return Crowd_Opening.objects.filter(a_id=self.id).order_by('week')
 class Crowd_Opening(models.Model):
     a = models.ForeignKey(
         to=Attractions, on_delete=models.SET_DEFAULT, default=-1

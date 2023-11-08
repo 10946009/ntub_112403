@@ -10,7 +10,7 @@ from .recommend_near import recommend_near
 from .final_order import final_order
 import requests
 from geopy.geocoders import Nominatim
-
+from django.template.loader import render_to_string  # 頁面轉成html
 import os
 from os.path import join, dirname
 from dotenv import load_dotenv, find_dotenv
@@ -23,29 +23,30 @@ def format_minutes_as_time(minutes):
     hours, remainder_minutes = divmod(minutes, 60)
     return f"{hours:02d}:{remainder_minutes:02d}"
 
+# 之後沒用到可以刪掉
+# def local_to_address(lat,lng):
+#     print("lat",lat)
+#     print("lng",lng)
+#     base_url = 'https://maps.googleapis.com/maps/api/geocode/json'
+#     params = {
+#         'latlng': f'{lat},{lng}',
+#         'key': apikey,
+#         'language': 'zh-TW'  # 设置语言为繁体中文
+#     }
 
-def local_to_address(lat,lng):
-    print("lat",lat)
-    print("lng",lng)
-    base_url = 'https://maps.googleapis.com/maps/api/geocode/json'
-    params = {
-        'latlng': f'{lat},{lng}',
-        'key': apikey,
-        'language': 'zh-TW'  # 设置语言为繁体中文
-    }
+#     # 发送请求
+#     response = requests.get(base_url, params=params)
+#     data = response.json()
 
-    # 发送请求
-    response = requests.get(base_url, params=params)
-    data = response.json()
+#     # 解析结果
+#     if data['status'] == 'OK' and len(data['results']) > 0:
+#         formatted_address = data['results'][0]['formatted_address']
+#         print('地址：', formatted_address)
+#     else:
+#         formatted_address = "無法獲取地址"
+#         print('无法获取地址')
+#     return formatted_address
 
-    # 解析结果
-    if data['status'] == 'OK' and len(data['results']) > 0:
-        formatted_address = data['results'][0]['formatted_address']
-        print('地址：', formatted_address)
-    else:
-        formatted_address = "無法獲取地址"
-        print('无法获取地址')
-    return formatted_address
 # 建立行程
 @login_required(login_url="/login")
 def create(request, ct_id):
@@ -131,7 +132,7 @@ def create(request, ct_id):
         # 抓出這筆行程中的所有景點
         ct_attractions_list = Attractions_Ct.objects.filter(
             choice_ct_id=ct_attractions_data.id
-        ).values()
+        ).order_by('order').values()
     
         # 抓出所有景點的詳細資料
         for a in ct_attractions_list:
@@ -165,10 +166,9 @@ def create(request, ct_id):
         ct_status = request.POST["ct_status"]
         print(ct_status)
         if ct_status == "0":
-            get_user_address = list(map(float, request.POST["location"].split(",")))
+            get_user_address = list(map(float, request.POST["user_location"].split(",")))
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
-            # nowtime = int(nowtime[:1])*60 + int(nowtime[3:])
             print(get_user_address)
             print(new_nowtime)
 
@@ -184,20 +184,28 @@ def create(request, ct_id):
                     .first()
                 )
                 crow_opening_list.append(m_db)
-            m_list = list(m_list.values())
-            print(m_list)
-            print(crow_opening_list[0])
-            return JsonResponse(
-                {"m_list": m_list, "crow_opening_list": crow_opening_list}
+            print('m_list',m_list)
+            print('crow_opening_list',crow_opening_list[0])
+            recommend_data= []
+            for m, c in zip(m_list, crow_opening_list):
+                recommend_data.append({
+                    'm_list': m,
+                    'crow_opening_list': c,
+                })
+            html = render_to_string(
+                template_name="create_recommend.html",
+                context={"recommend_data": recommend_data},
             )
+            data_dict = {"recommend_attractions_list": html}
+            
+            return JsonResponse(data=data_dict, safe=False)
 
         if ct_status == "1":
-            o_attractions_list = request.POST.getlist("select_aid_list[]")
-            print(o_attractions_list)
+            o_attractions_list = request.POST.getlist("aid_list[]")
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
-            o = recommend_near(o_attractions_list, new_nowtime, week, stay_time)
-            o_list = Attractions.objects.filter(place_id__in=o)
+            o = recommend_near(list(map(int,o_attractions_list)), new_nowtime, week, stay_time)
+            o_list = Attractions.objects.filter(id__in=o)
             o_crow_opening_list = []
             for i in o_list:
                 o_db = (
@@ -207,26 +215,38 @@ def create(request, ct_id):
                 )
                 o_crow_opening_list.append(o_db)
             o_list = list(o_list.values())
-            print(o_list)
-            print(o_crow_opening_list[0])
-            return JsonResponse(
-                {"o_list": o_list, "o_crow_opening_list": o_crow_opening_list}
+            # print(o_list)
+            # print(o_crow_opening_list[0])
+            
+            near_recommend_data= []
+            for o, oc in zip(o_list, o_crow_opening_list):
+                near_recommend_data.append({
+                    'o_list': o,
+                    'o_crow_opening_list': oc,
+                })
+            html = render_to_string(
+                template_name="create_similar_recommend.html",
+                context={"near_recommend_data": near_recommend_data,"nowchoice":o_attractions_list},
             )
+            data_dict = {"recommend_attractions_list": html}
+            
+            return JsonResponse(data=data_dict, safe=False)
+
 
         if ct_status == "2":
-            o_attractions_list = request.POST.getlist("all_select[]")
+            o_attractions_list = request.POST.getlist("total_aid_list[]")
             print('o_attractions_list我在這!!!!!!!!!!!!!!!!!!',o_attractions_list)
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
             final = final_order(
-                o_attractions_list, new_nowtime, week, stay_time, user_favorite_type
+                list(map(int,o_attractions_list)), new_nowtime, week, stay_time, user_favorite_type
             )
             # print('final,我在這!!!!!!!!!!!!!!!!',final)
             # ------主要的
             final_result_list = []
             final_crow_opening_list = []
             for f in final[0]:
-                temp = Attractions.objects.filter(place_id=f).values().first()
+                temp = Attractions.objects.filter(id=f).values().first()
                 final_result_list.append(temp)
             for i in final_result_list:
                 f_db = (
@@ -264,15 +284,38 @@ def create(request, ct_id):
                 "final_remainder_crow_opening_list", final_remainder_crow_opening_list
             )
             print('final_now_time_list',final_now_time_list)
-            return JsonResponse(
-                {
-                    "final_result_list": final_result_list,
-                    "final_crow_opening_list": final_crow_opening_list,
-                    "final_remainder_result_list": final_remainder_result_list,
-                    "final_remainder_crow_opening_list": final_remainder_crow_opening_list,
-                    'final_now_time_list':final_now_time_list,
-                }
+            # return JsonResponse(
+            #     {
+            #         "final_result_list": final_result_list,
+            #         "final_crow_opening_list": final_crow_opening_list,
+            #         "final_remainder_result_list": final_remainder_result_list,
+            #         "final_remainder_crow_opening_list": final_remainder_crow_opening_list,
+            #         'final_now_time_list':final_now_time_list,
+            #     }
+            # )
+            # 將資料組在一起
+            order_attractions_data= []
+            remainder_attractions_data = []
+            for fr, fc, fnowtime in zip(final_result_list, final_crow_opening_list,final_now_time_list):
+                order_attractions_data.append({
+                    'final_result_list': fr,
+                    'final_crow_opening_list': fc,
+                    'final_crowd_list' : f"{min(fc['crowd'][fnowtime//60],fc['crowd'][fnowtime//60+1])} ~ {max(fc['crowd'][fnowtime//60],fc['crowd'][fnowtime//60+1])}"  
+                })
+            for frr,frc in zip(final_remainder_result_list,final_remainder_crow_opening_list):
+                remainder_attractions_data.append({
+                'final_remainder_result_list':frr,
+                'final_remainder_crow_opening_list':frc,
+            })
+            #轉成html
+            html = render_to_string(
+                template_name="create_order_attractions.html",
+                context={"order_attractions_data": order_attractions_data,'remainder_attractions_data':remainder_attractions_data,'final_now_time_list':final_now_time_list},
             )
+            data_dict = {"order_attractions": html}
+            
+            return JsonResponse(data=data_dict, safe=False)
+
         choice_ct_id = -1
         if ct_status == "3":
             print("我進來了")

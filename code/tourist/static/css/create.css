@@ -315,8 +315,8 @@ main {
 /* 我的範例 */
 
 .list {
-    margin: 200px auto;
-    width: 200px;
+    /* margin: 5px,5px; */
+    width: 100%;
 }
 
 .innerlist {
@@ -373,10 +373,12 @@ main {
     transform: rotateY(0deg);/* 初始状态：不翻转 */
 }
 
-#searchBlock, #done {
+#searchBlock{
     transform: rotateY(180deg);/* 初始状态：翻转180度 */
 }
-
+.changeRec.done{
+    transform: rotateY(180deg);
+}
 
 /* 我的範例 */
 
@@ -679,7 +681,9 @@ main {
     height: 200px;
     overflow: hidden; */
 }
-
+.S_checkimg_div img{
+    width: 100%;
+}
 .checkimg_div img {
     width: 100%;
     /* height: 100%;
@@ -689,7 +693,12 @@ main {
     top: 0; */
 }
 
-
+.spotName{
+    text-align: center;
+    font-size: 18px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
 .spottxt {
     font-size: 16px;
 }

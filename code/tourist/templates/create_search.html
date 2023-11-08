@@ -1,12 +1,30 @@
 
 {% for item in search_list %}
-<div class="col-lg-4 col-md-6" style="margin-bottom: 10px;" id = "{{ item.id }}">
+{% comment %} <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;" id = "{{ item.id }}">
   <div style="position: relative;">
     <img src="../static/images/attractions/{{ item.place_id }}_0.jpg" class="img-responsive" width="100%">
     <button class="fa-solid fa-heart ss_heart_icon" style="border: 0;" onclick="addFavorite('{{ item.id }}')"></button>
   </div>
   <div style="border: 1px solid rgb(190, 190, 190);">
     {{ item.a_name }}
+  </div>
+</div> {% endcomment %}
+<div class=" col-md-4  " style="margin-bottom: 5px;" id="{{ item.id }}">
+  <div class="checkimg_div">
+    <label type="checkbox" name="variety" value="{{ item.id }}" class="imgcheck" style="margin: 0;padding: 0;border: 0;" onclick="pickspot(this,{{ item.id }})">
+      
+      <span class="checkspot">
+        <img src="../static/images/attractions/{{ item.place_id }}_0.jpg" class="img-responsive" width="100%" alt="">
+        {% comment %} <button class="fa-solid fa-heart rec_heart_icon" id="rec_heart_icon" onclick="addRecFavorite(event,{{ item.a_id.id }})"> <!-- 這裡這裡的itemId要用你們的編號 --></button> {% endcomment %}
+      </span>
+
+      <div class="spottxtdiv">
+        <p style="text-align: center;padding: 5px;margin-bottom: 5px;">{{ item.a_name }}</p>
+        <span>評價：{{ item.rating}}</span><br>
+        {% comment %} <span>營業時間：{{r.crow_opening_list.opening.0}}</span> {% endcomment %}
+      </div>
+
+    </label>
   </div>
 </div>
 {% endfor %}

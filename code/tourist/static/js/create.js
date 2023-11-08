@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
   const selectedTab = localStorage.getItem('selectedTab');
   if (selectedTab === 'contact') {
@@ -11,7 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-function saveTabState(tabId) {
+//點了不會有空白 
+function saveTabState(tabId,day) {
   var tabs = document.getElementsByClassName('tab-pane');
   for (var i = 0; i < tabs.length; i++) {
       tabs[i].style.display = 'none';
@@ -19,6 +21,10 @@ function saveTabState(tabId) {
 
   var tab = document.getElementById(tabId);
   tab.style.display = 'block';
+  
+  globalDay = day;
+  console.log(globalDay);
+  console.log(now_click_attractions);
 }
 
 // 翻轉右邊區塊
@@ -45,42 +51,141 @@ function clickChange() {
 
 }
 
+// 高度一致
+$(document).ready(function() {
+  // 在文件載入時和視窗尺寸改變時調整高度
+  adjustTextHeightOnResize('.checkimg_div .spottxtdiv');
+  adjustTextHeightOnResize('.S_checkimg_div .spottxtdiv');
+});
+
+function adjustTextHeightOnResize(selector) {
+  // 初始化高度
+  adjustTextHeight(selector);
+
+  // 監聽視窗大小改變事件
+  $(window).on('resize', function() {
+      adjustTextHeight(selector);
+  });
+}
+
+function adjustTextHeight(selector) {
+  $(selector).height('auto'); // 先重置高度以便重新計算
+  var maxHeight = 0;
+
+  // 找出最大高度
+  $(selector).each(function() {
+      var textHeight = $(this).outerHeight();
+      if (textHeight > maxHeight) {
+          maxHeight = textHeight;
+      }
+  });
+
+  // 將所有文字區塊設置為最大高度
+  $(selector).height(maxHeight);
+}
+
+// $(document).ready(function() {
+//   // 在文件載入時和視窗尺寸改變時調整高度
+//   adjustTextHeightOnResize('.checkimg_div .spottxtdiv');
+// });
+
+// function adjustTextHeightOnResize(selector) {
+//   // 初始化高度
+//   adjustTextHeight(selector);
+
+//   // 監聽視窗大小改變事件
+//   $(window).on('resize', function() {
+//       adjustTextHeight(selector);
+//   });
+// }
+// function adjustTextHeight(selector) {
+//   $(selector).height('auto'); // 先重置高度以便重新計算
+//   var maxHeight = 0;
+
+//   // 找出最大高度
+//   $(selector).each(function() {
+//       var textHeight = $(this).outerHeight();
+//       if (textHeight > maxHeight) {
+//           maxHeight = textHeight;
+//       }
+//   });
+//   // 將所有文字區塊設置為最大高度
+//   $(selector).height(maxHeight);
+// }
+
+// // 相似的高度
+// $(document).ready(function() {
+//   // 在文件載入時和視窗尺寸改變時調整高度
+//   adjustTextHeightOnResize('.S_checkimg_div .spottxtdiv');
+// });
+
+// function adjustTextHeightOnResize(selector) {
+//   // 初始化高度
+//   adjustTextHeight(selector);
+
+//   // 監聽視窗大小改變事件
+//   $(window).on('resize', function() {
+//       adjustTextHeight(selector);
+//   });
+// }
+// function adjustTextHeight(selector) {
+//   $(selector).height('auto'); // 先重置高度以便重新計算
+//   var maxHeight = 0;
+
+//   // 找出最大高度
+//   $(selector).each(function() {
+//       var textHeight = $(this).outerHeight();
+//       if (textHeight > maxHeight) {
+//           maxHeight = textHeight;
+//       }
+//   });
+//   // 將所有文字區塊設置為最大高度
+//   $(selector).height(maxHeight);
+// }
+
+
 // 翻轉左邊區塊
 var isdoneJourneyVisible = false;
 
 function clickChangeDone() {
-    const checkRec = document.getElementById('checkRec');
-    const done = document.getElementById('done');
-    const button = document.getElementById("changeToRec");
+  console.log(globalDay)
+  const checkRec = document.getElementById('checkRec-' + globalDay);
+  const done = document.getElementById('done-' + globalDay);
+  const button = document.getElementById("changeToRec-" + globalDay);
 
-    isdoneJourneyVisible = !isdoneJourneyVisible
+  isdoneJourneyVisible = !isdoneJourneyVisible
 
-    if (isdoneJourneyVisible) {
-        checkRec.style.transform = 'rotateY(180deg)';
-        done.style.transform = 'rotateY(0deg)';
-        button.textContent = "重新推薦";
-        button.style.backgroundColor = "rgb(255, 41, 101)";
-    } else {
-        checkRec.style.transform = 'rotateY(0deg)';
-        done.style.transform = 'rotateY(180deg)';
-        button.textContent = "景點排序";
-        button.style.backgroundColor = "#0066DB";
-    }
+  if (isdoneJourneyVisible) {
+      checkRec.style.transform = 'rotateY(180deg)';
+      done.style.transform = 'rotateY(0deg)';
+      button.textContent = "重新推薦";
+      button.style.backgroundColor = "rgb(255, 41, 101)";
+  } else {
+      checkRec.style.transform = 'rotateY(0deg)';
+      done.style.transform = 'rotateY(180deg)';
+      button.textContent = "景點排序";
+      button.style.backgroundColor = "#0066DB";
+  }
 
 }
 
 // 送出功能整合到clickChangeDone函数中
 // 點擊送出會切換到景點排序頁面
-function submitAction() {
-  const checkRec = document.getElementById('checkRec');
-  const done = document.getElementById('done');
-  const button = document.getElementById("changeToRec");
+function submitAction(day) {
+  // var day_label = document.getElementsByClassName("tab-pane fade active show");
+  // var day = day_label[0].getAttribute('dataset');
+
+  const checkRec = document.getElementById('checkRec-' + globalDay);
+  const done = document.getElementById('done-' + globalDay);
+  const button = document.getElementById("changeToRec-" + globalDay);
 
   checkRec.style.transform = 'rotateY(180deg)';
   done.style.transform = 'rotateY(0deg)';
   button.textContent = "重新推薦";
   button.style.backgroundColor = "rgb(255, 41, 101)";
   isdoneJourneyVisible = true;
+
+  submitRecommend();
 }
 
 
@@ -104,12 +209,10 @@ function openLikeBtn() {
     }
 }
 
-var isSimilarVisible = false;
+var isSimilarVisible = true;
 function openSimilarBtn() {
 
     var openSimilar = $('.openSimilar');
-
-    isSimilarVisible = !isSimilarVisible
 
     if (isSimilarVisible) {
       openSimilar.animate({
@@ -120,7 +223,15 @@ function openSimilarBtn() {
             height: "hide"
         }, 300);
     }
+
+    isSimilarVisible = !isSimilarVisible
 }
+// 當頁面載入後，呼叫一次以顯示相似元素
+$(document).ready(function() {
+  openSimilarBtn();
+});
+
+
 //open篩選
 function openfiliter() {
   var showfiliter = document.querySelector(".show_filiter")
@@ -132,14 +243,21 @@ function openfiliter() {
 }
 
 // pick spot css
-function pickspot(checkbox) {
+function pickspot(checkbox,aid) {
   checkbox.checked = !checkbox.checked;
+
   var div = checkbox.parentElement.parentElement; // 取得包含checkbox的div
   if (checkbox.checked) {
     div.classList.add("pickimg");
+    now_click_attractions[globalDay].add(aid);
+    similarRecommend(now_click_attractions);
+
   } else {
     div.classList.remove("pickimg");
+    now_click_attractions[globalDay].delete(aid);
+    similarRecommend(now_click_attractions);
   }
+
 }
 
 

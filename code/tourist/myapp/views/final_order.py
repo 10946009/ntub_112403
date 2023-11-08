@@ -17,7 +17,7 @@ def final_order(o_attractions_list, now_time, week, stay_time, user_favorite):
         now_time_list.append(now_time)
         o_attractions_list = list(set(o_attractions_list) - set(final_list))
     remainder_list = [
-        Attractions.objects.get(place_id=x).place_id
+        Attractions.objects.get(id=x).id
         # Attractions.objects.get(place_id=x).crowd_opening_set.filter(week=week).values()[0]["opening"],
         for x in o_attractions_list
     ]
