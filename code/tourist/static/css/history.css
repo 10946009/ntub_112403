@@ -45,10 +45,6 @@
     /* border-radius: 20%; */
 }
 
-/* .more{
-    border: 1px solid gray;
-    border-top: 0px;
-} */
 .mytravel_img {
     height: 200px;
     overflow: hidden;
@@ -170,6 +166,68 @@
     text-shadow: 2px 2px 2px rgb(162, 162, 162);
 }
 
+/* 打開右半邊詳細行程 */
+.openDetailDiv {
+    /* display: none; */
+    border: 1px solid black;
+}
+
+.filter {
+    color: white;
+    padding: 5px 10px;
+    background-color: rgb(51, 125, 254);
+    border-radius: 30px;
+}
+
+.addCommentBtn {
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 1px solid orange;
+    background-color: #f3f3f3;
+}
+
+.addCommentSpace {
+    display: none;
+    margin: 0 auto;
+    position: relative;
+}
+
+.addCTXT {
+    width: 90%;
+    height: 150px;
+}
+
+.addCTXT::placeholder {
+    text-align: left;
+    vertical-align: top;
+    line-height: normal;
+}
+
+.commentSubmit {
+    padding: 10px 15px;
+    border-radius: 30px;
+    border: 0;
+    background-color: rgb(1, 154, 21);
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.alreadyComment{
+    margin: 0;
+}
+.otherCommentAvatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
 /*展開詳細行程*/
 .hidden-details {
     /* display: none; */
@@ -190,10 +248,12 @@
     color: black;
     font-weight: bold;
 }
-.more{
+
+.more {
     border-radius: 30px;
     box-shadow: 3px 3px 3px #ccc;
 }
+
 .content_align {
     /* width: 90%;
     margin: 0 auto; */
@@ -202,7 +262,8 @@
     align-content: center;
     overflow-x: scroll;
 }
-.content_detail_start{
+
+.content_detail_start {
     height: 200px;
     width: 80px;
     min-width: 80px;
@@ -216,11 +277,13 @@
     text-align: center;
     user-select: none;
 }
-.content_detail_startTXT{
+
+.content_detail_startTXT {
     position: relative;
     top: 20%;
     transform: translateY(-60%);
 }
+
 .content_detail {
     height: 200px;
     width: 350px;

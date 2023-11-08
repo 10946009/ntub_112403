@@ -81,6 +81,7 @@
             opacity: 0;
             /* 滑鼠滑入時，透明度變0 */
         }
+
         .image-container {
             position: relative;
             height: 200px;
@@ -266,8 +267,10 @@
 
             <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
                 我是第二天
-                <div class="align" style="width:90%;margin: 0 auto;display: flex;overflow-x: scroll;align-items: center;align-content: center;">
-                    <div  style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
+                <div class="align"
+                    style="width:90%;margin: 0 auto;display: flex;overflow-x: scroll;align-items: center;align-content: center;">
+                    <div
+                        style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
                         123
                     </div>
                     <div
@@ -300,7 +303,8 @@
                     </div>
                 </div>
             </div>
-            <div class="bottom" style="z-index: 99;width: 80%;margin: 0 auto;position: fixed;bottom: 0;left: 0;right: 0;">
+            <div class="bottom"
+                style="z-index: 99;width: 80%;margin: 0 auto;position: fixed;bottom: 0;left: 0;right: 0;">
                 <div id="controller" style="display:block;cursor: pointer;margin: 0;">
                     <span style="border:1px solid black;border-bottom: 0;">控制器</span>
                 </div>
@@ -336,7 +340,7 @@
             </div>
         </div>
     </main>
-    <div class="row" style="width: 90%;">
+    <!-- <div class="row" style="width: 90%;">
         <div class="hoverTest" style="width: 500px;margin: 0 auto;">
             <img src="../static/images/bg1.jpg" class="img-responsive" width="100%" />
             <img src="../static/images/bg2.jpg" class="img-responsive" width="100%" />
@@ -347,12 +351,62 @@
             <img src="../static/images/bg7.png" class="img-responsive" width="100%" />
             <img src="../static/images/bg8.jpg" class="img-responsive" width="100%" />
         </div>
+    </div> -->
+    <div class="row" style="width: 60%;text-align: center;margin: 0 auto;height: 200px;align-content: center;">
+        <div class="col-6">
+            <div>
+                我是左邊1
+                <button id="clickme1" data-target="show1" onclick="clickShow(this)">點我出現</button>
+            </div>
+            <div>
+                我是左邊2
+                <button id="clickme2" data-target="show2" onclick="clickShow(this)">點我出現</button>
+            </div>
+        </div>
+        <div class="col-6" style="border: 1px solid black;">
+            <div id="show1" style="display: none;">
+                我是右邊1
+            </div>
+            <div id="show2" style="display: none;">
+                我是右邊2 <br>
+                我是右邊2 <br>
+                我是右邊2
+            </div>
+        </div>
     </div>
+
 
     <script src="../static/js/jquery-3.7.0.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
     <script>
-        
+
+
+        function clickShow(button) {
+            const targetBtn = button.getAttribute('data-target');
+            const showDiv = document.getElementById(targetBtn);
+
+            if (showDiv.style.display === 'block') {
+                showDiv.style.display = 'none';
+                button.textContent = '點我出現';
+            } else {
+                document.querySelectorAll("[id^='show']").forEach(div => {
+                    div.style.display = "none";
+                })
+                showDiv.style.display = 'block';
+                button.textContent = 'close';
+            }
+            // 获取所有左侧按钮并更改非当前点击按钮的文本为 "点我出现"
+            const allButtons = document.querySelectorAll("[id^='clickme']");
+            allButtons.forEach(btn => {
+                if (btn !== button) {
+                    btn.textContent = '点我出现';
+                }
+            });
+        }
+
+
+
+
         $(document).ready(function () {
             var isContentHidden = true;
             var originalHeight = $(document).height();
