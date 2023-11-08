@@ -24,7 +24,7 @@ body {
 .scroll-text1 {
     width: 100%;
     position: absolute;
-    margin-top: 100px;
+    margin-top: 50px;
     left: 50%;
     transform: translateX(-50%);
     opacity: 0.8;
@@ -38,25 +38,29 @@ body {
 
 /* 景點資訊 */
 .scroll-text h1 {
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     font-family: system-ui;
-    font-size: 60px;
+    font-size: 80px;
+    font-weight: bold;
+    text-shadow: 4px 4px 2px rgba(65, 65, 65, 0.5);
+    font-family: 'HanyiSentyTea', sans-serif;
     /* font-family: "Noto Serif TC", serif; */
-    font-weight: 400;
+    font-weight: bold;
 }
 
 /* Tripfunchill */
-.scroll-text h5 {
-    font-size: 24px;
-    color: rgb(0, 0, 0);
-    font-family: system-ui;
+.text_trip {
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    font-family: 'HanyiSentyTea', sans-serif;
+    text-shadow: 4px 4px 2px rgba(65, 65, 65, 0.5);
     /* font-family: "Noto Serif TC", serif; */
-    font-weight: 200;
+    font-weight: bold;
 }
 
 /* 那條線 */
 .tit_hr {
-    width: 300px;
+    width: 60%;
     border: 2px solid rgb(0, 0, 0);
     margin-bottom: 30px;
 }
@@ -65,7 +69,7 @@ body {
 .jumbotron {
     height: 100vh;
     text-align: center;
-    background-image: url(../images/att_picture.png);
+    background-image: url(../images/flooter_img.jpeg);
     background-size: cover;
     background-attachment: fixed;
     margin: 0;
@@ -74,19 +78,34 @@ body {
 /* Parallax Scrolling背景size */
 .container_info {
     color: #fff;
-    margin: 280px 0;
+    margin: 250px 0;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
 }
 
 /* 內部白色景點資訊大四字(白色透明bgc) */
 .active_tit {
+    padding-top: 60px;
+    border: 2px solid white;
+    box-shadow: inset 3px 3px 5px #747474;
     background-color: rgba(113, 113, 113, 0.2);
-    width: 40%;
-    height: 320px;
+    height: 400px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.active_tit1 {
     position: absolute;
-    top: 400px;
+    padding: 10px;
+    border: 5px solid white;
+    box-shadow: inset 3px 3px 5px #747474;
+    background-color: rgba(113, 113, 113, 0.365);
+    width: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /*搜尋引擎*/
@@ -137,14 +156,14 @@ body {
 }
 
 /* 歷史紀錄那一條 */
-.history_1 {
+.history_12 {
     z-index: 1;
     position: relative;
     cursor: pointer;
     padding: 10px;
 }
 
-.history_1:hover {
+.history_12:hover {
     background-color: #d9d8d8;
 }
 
@@ -171,8 +190,8 @@ body {
 
 /* 整個搜尋引擎的位置 */
 .search_body {
-    margin-top: 20px;
-    margin-bottom: 40px;
+    margin-top: 100px;
+    margin-bottom: 20px;
 }
 
 /* 整個搜尋引擎那條 */
@@ -778,7 +797,7 @@ img {
 .jumbotron1 {
     height: 40vh;
     text-align: center;
-    background-image: url(../images/att_picture.png);
+    background-image: url(../images/Datong.jpeg);
     background-size: cover;
     background-attachment: fixed;
     margin: 0;
@@ -2382,6 +2401,18 @@ img {
     display: none;
 }
 
+/* 景點資訊(大標ＲＷＤ） */
+.active_tit3 {
+    display: none;
+    padding-top: 60px;
+    border: 2px solid white;
+    box-shadow: inset 3px 3px 5px #747474;
+    background-color: rgba(113, 113, 113, 0.2);
+    height: 400px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 @media screen and (max-width:768px) {
 
     /* 汽車動動圖 */
@@ -2499,6 +2530,57 @@ img {
         position: relative;
         padding: 10px;
         text-align: center;
+    }
+
+    /* 景點資訊(沒有ＲＷＤ） */
+    .active_tit1 {
+        display: none;
+    }
+
+    /* 景點資訊(大標ＲＷＤ） */
+    .active_tit3 {
+        display: block;
+        padding-top: 60px;
+        border: 2px solid white;
+        box-shadow: inset 3px 3px 5px #747474;
+        background-color: rgba(113, 113, 113, 0.2);
+        height: 350px;
+        width: 100%;
+    }
+
+    /* 景點資訊 */
+    .scroll-text h1 {
+        color: rgb(255, 255, 255);
+        font-family: system-ui;
+        font-size: 50px;
+        font-weight: bold;
+        text-shadow: 4px 4px 2px rgba(65, 65, 65, 0.5);
+        font-family: 'HanyiSentyTea', sans-serif;
+        /* font-family: "Noto Serif TC", serif; */
+        font-weight: bold;
+    }
+
+    /* Tripfunchill */
+    .text_trip {
+        font-size: 30px;
+        color: rgb(255, 255, 255);
+        font-family: 'HanyiSentyTea', sans-serif;
+        text-shadow: 4px 4px 2px rgba(65, 65, 65, 0.5);
+        /* font-family: "Noto Serif TC", serif; */
+        font-weight: bold;
+    }
+
+    /* search bar位子 */
+    .search_body {
+        margin-top: -120px;
+        margin-bottom: 0;
+    }
+
+    /* Parallax Scrolling背景size */
+    .container_info {
+        color: #fff;
+        margin: 150px 0;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
     }
 
 }
