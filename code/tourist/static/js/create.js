@@ -207,7 +207,8 @@ function pickspot(checkbox, aid) {
 // pick spot 刪除下面戰存的景點時
 function pickspotBottom(aid) {
   try{
-    const elements = document.querySelector('.imgcheck[value="' + aid + '"]');
+    const container = document.getElementById('ch-'+globalDay);
+    const elements = container.querySelector('.imgcheck[value="' + aid + '"]');
     console.log(elements);
     pickspot(elements, aid);
   }catch(e){
