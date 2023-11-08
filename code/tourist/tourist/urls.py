@@ -31,7 +31,8 @@ from myapp.views import (
     comment,
     user_edit,
     search,
-    question
+    question,
+    get_attractions,
 )
 
 
@@ -57,6 +58,7 @@ urlpatterns = [
     path("createindex/", create_index.create_index),
     # path('create/<int:ct_id>/<int:choiceday>',views.create),
     path("create/<int:ct_id>", create.create),
+    path("attractions/", get_attractions.get_attractions_data),
     path("search/get", search.search),
     path("history/", history.history),
     path("history/<int:select>", history.history),
