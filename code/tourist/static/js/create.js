@@ -193,13 +193,11 @@ function pickspot(checkbox, aid) {
     div.classList.add("pickimg");
     now_click_attractions[globalDay].add(aid);
     inputBottom();
-    similarRecommend(now_click_attractions);
 
   } else {
     div.classList.remove("pickimg");
     now_click_attractions[globalDay].delete(aid);
     inputBottom();
-    similarRecommend(now_click_attractions);
   }
 
 }

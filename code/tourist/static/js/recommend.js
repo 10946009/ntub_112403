@@ -22,13 +22,8 @@ function startRecommend(user_location,day){
     });
 }
 
-function similarRecommend(aid_list){
-
-  // const dataSetValue = button.dataset.set;
-  console.log(globalDay)
-  console.log(aid_list);
-  
-  aid_list = Array.from(aid_list[globalDay]);
+function similarRecommend(){
+  aid_list = Array.from(now_click_attractions[globalDay]);
   nowtime = document.getElementById('nowtime-' + globalDay);
   const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
   const similar_attractions_detail_div = $('#SimilarRecommend-'+ globalDay );
