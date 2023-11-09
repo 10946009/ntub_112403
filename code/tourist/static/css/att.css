@@ -410,7 +410,7 @@ body {
 /* 圖片裡learn more方塊 */
 .learn_more {
     position: absolute;
-    top: 40%;
+    top: 35%;
     left: 40%;
     transform: translate(-20%, -20%);
     color: #fff;
@@ -443,7 +443,7 @@ body {
 }
 
 /* 景點名稱 */
-#attractions_introduction h4 {
+#attractions_introduction .item_name {
     margin: 0 0 10px 0;
     padding: 0 0 10px 0;
     display: inline-block;
@@ -453,7 +453,7 @@ body {
 }
 
 /* 景點名稱(碰到動畫） */
-#attractions_introduction h4:hover {
+#attractions_introduction .item_name:hover {
     color: #DCB879;
     padding-right: 10px;
 }
@@ -1378,17 +1378,41 @@ img {
 }
 
 .detail_near__header {
-    border-radius: 10px;
-    border: #000 solid;
+    /* border-radius: 15px;
+    border: #000 solid; */
     display: grid;
     grid-template-columns: 7fr 8fr;
     grid-gap: 2px;
-    margin-bottom: 2px;
+    margin-bottom: 10px;
+    /* background: rgb(255, 255, 255); */
 }
 
 .detail_near__headerGrid {
-    padding: 10px;
+    margin-right: 5px;
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 5px;
     /* text-align: center; */
+}
+
+/* 景點名稱 */
+.near_name {
+    color: rgb(172, 78, 1);
+    cursor: pointer;
+    margin: 0 0 10px 0;
+    padding: 0 0 10px 0;
+    display: inline-block;
+    border-bottom: 5px solid #DCB879;
+    transition: 0.3s;
+}
+
+/* 景點名稱(碰到動畫） */
+.near_name:hover {
+    color: #DCB879;
+    padding-right: 10px;
 }
 
 /* .detail_detail__headerGrid {
@@ -2436,6 +2460,14 @@ img {
     border: 1px solid rgb(0, 0, 0);
     margin-bottom: 30px;
     margin-top: -10px;
+}
+
+.near_hr {
+    width: 80%;
+    border: 1px solid rgb(0, 0, 0);
+    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 @media screen and (max-width:768px) {
