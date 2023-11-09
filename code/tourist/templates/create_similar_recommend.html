@@ -5,7 +5,7 @@
       <label type="checkbox" name="variety" value="{{n.o_list.id}}" class="imgcheck" style="margin: 0;padding: 0;border: 0;" onclick="pickspot(this,{{ n.o_list.id }})">
         <span class="checkspot">
           <img src="../static/images/attractions/{{n.o_list.place_id}}_0.jpg" class="img-responsive" width="100%" alt="">
-          {% comment %} <button class="fa-solid fa-heart rec_heart_icon" id="rec_heart_icon" onclick="addRecFavorite(event,{{n.o_list.id}})"> <!-- 這裡這裡的itemId要用你們的編號 --></button> {% endcomment %}
+          <a href="#" class="fa-solid fa-circle-info info_icon" id="info_icon"> <!-- 這裡這裡的itemId要用你們的編號 --></a>
         </span>
         <div class="spottxtdiv">
           <p class="spotName">{{n.o_list.a_name}}</p>
@@ -16,5 +16,6 @@
     </div>
   </div>
   {%empty%}
-  選擇景點後點擊右上方的更新來取得相似景點哦~
+  <h4 style="margin: 0 auto;display: block;">選擇景點後點擊右上方的更新來取得相似景點哦~</h4>
+
 {% endfor %}

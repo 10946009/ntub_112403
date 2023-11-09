@@ -735,17 +735,20 @@ main {
     cursor: pointer;
 }
 
-.rec_heart_icon {
+.info_icon {
     position: absolute;
     right: 5px;
     top: 5px;
     border: 0;
-    border-radius: 50%;
-    padding: 10px;
-    background-color: rgba(255, 255, 255);
-    font-size: 18px;
-    color: rgba(0, 0, 0, 0.3);
+    /* border-radius: 50%; */
+    /* padding: 10px; */
+    /* background-color: rgba(255, 255, 255); */
+    font-size: 24px;
+    color: white;
+    text-shadow: 2px 2px 3px #333;
+    /* color: rgba(0, 0, 0, 0.3); */
     cursor: pointer;
+    text-decoration: none;
 }
 
 .checkimg_div {

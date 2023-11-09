@@ -106,7 +106,7 @@ function clickChangeDone() {
   } else {
     checkRec.style.transform = 'rotateY(0deg)';
     done.style.transform = 'rotateY(180deg)';
-    button.textContent = "切換景點排序";
+    button.textContent = "景點排序";
     button.style.backgroundColor = "#0066DB";
   }
 }
@@ -414,34 +414,6 @@ function checkAndAddClass() {
 }
 
 
-
-// // RWD縮小之後"重新推薦"變圖案
-// const repeatBtn = document.querySelector('.changeToRec');
-
-// function changeRepeatBtnTxt() {
-//   if (window.innerWidth <= 690) {
-//     if (repeatBtn.textContent === '重新推薦') {
-//       repeatBtn.classList.add('repeatIcon_btn');
-//       repeatBtn.innerHTML = '';
-//     } else if (repeatBtn.textContent === '景點排序') {
-//       repeatBtn.classList.add('doneIcon_btn');
-//       repeatBtn.innerHTML = '';
-//     }
-//   } else if (window.innerWidth > 690) {
-//     if (repeatBtn.textContent === '\f363') {
-//       repeatBtn.classList.remove('repeatIcon_btn');
-//       repeatBtn.innerHTML = '重新推薦';
-//     } else if (repeatBtn.textContent === '\f4d7') {
-//       repeatBtn.classList.remove('doneIcon_btn');
-//       repeatBtn.innerHTML = '景點排序';
-//     }
-//   }
-//   if(window.innerWidth > 690){
-
-//   }
-// }
-// window.onload = changeRepeatBtnTxt;
-// window.addEventListener('resize', changeRepeatBtnTxt);
 const repeatBtn = document.querySelector('.changeToRec');
 
 function changeRepeatBtnTxt() {
