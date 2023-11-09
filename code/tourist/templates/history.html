@@ -63,99 +63,87 @@
 
           {% endif %}
         </div>
-        <button class="more_btn details{{ item.my_history.id }}btn" id="details{{ item.my_history.id }}btn" data-target="details{{ item.my_history.id }}" onclick="clickShow(this)" >詳細行程</button>
+        <button class="more_btn details{{ item.my_history.id }}btn" id="details{{ item.my_history.id }}btn"
+          data-target="details{{ item.my_history.id }}" onclick="clickShow(this)">詳細行程</button>
       </div>
       <!--開啟詳細資料顯示的內容(要拿掉 看UC有沒有需要)-->
       <div class="openmore more-content">
-            <div id="details{{ item.my_history.id }}" class="col-lg-12 col-md-12 more hidden-details">
-              <ul class="nav nav-tabs flex my-nav-tabs"
-                  id="myTab{{ item.my_history.id }}"
-                  role="tablist">
-                {% for i in "x"|rjust:item.my_history.travel_day %}
-                  <li class="nav-item" role="presentation">
-                    {% if forloop.counter == 1 %}
-                      <button class="nav-link tab_a active"
-                              id="ct{{ item.my_history.id }}-{{ forloop.counter }}-tab"
-                              data-bs-toggle="tab"
-                              data-bs-target="#ct{{ item.my_history.id }}-{{ forloop.counter }}"
-                              type="button"
-                              role="tab"
-                              aria-controls="ct{{ item.my_history.id }}-{{ forloop.counter }}"
-                              aria-selected="true">Day {{ forloop.counter }}</button>
-                    {% else %}
-                      <button class="nav-link tab_a"
-                              id="ct{{ item.my_history.id }}-{{ forloop.counter }}-tab"
-                              data-bs-toggle="tab"
-                              data-bs-target="#ct{{ item.my_history.id }}-{{ forloop.counter }}"
-                              type="button"
-                              role="tab"
-                              aria-controls="ct{{ item.my_history.id }}-{{ forloop.counter }}"
-                              aria-selected="false">Day {{ forloop.counter }}</button>
-                    {% endif %}
-                  </li>
-                {% endfor %}
-              </ul>
-              <div class="tab-content" id="myTabContent{{ item.my_history.id }}">
-                {% for details in item.allAttractions %}
-                  {% with counter=forloop.counter0 %}
-                    <div class="tab-pane fade{% if forloop.counter == 1 %} show active {% endif %} "
-                        id="ct{{ item.my_history.id }}-{{ forloop.counter }}"
-                        role="tabpanel"
-                        aria-labelledby="ct{{ item.my_history.id }}-{{ forloop.counter }}-tab">
-                        
-                      <div class="content_align">
-                        {% for detail in details %}
-                          {% if forloop.counter0 == 0 %}
-                          
-                              {% for location in item.choiceday_ct %}
-                                {% if forloop.counter0 == counter %}
-                                
-                                  <div class="content_detail_start">
-                                    <span class="content_detail_startTXT">
-                                      <i class="fa-solid fa-house"></i><br>起始位置
-                                    </span>
-                                  </div>
-                                  <div class="gonext">  
-                                    
-                                    <a href="https://www.google.com/maps/dir/?api=1&origin={{ location.start_location_x }},{{ location.start_location_y }}&destination={{ detail.a_id.location_x }},{{ detail.a_id.location_y }}&travelmode=driving"
-                                      class="gonexta"
-                                      target="_blank">
-                                      <i class="fa-solid fa-car-side"></i>
-                                      <p class="gonextbtn">導航</p>
-                                    </a>
-                                </div>
-                                {% endif %}
-                              {% endfor %}
-                            
-                          {% else %}
-                          
-                            {% with previous_detail=details|get_previous_item:forloop.counter0 %}
-                              <div class="gonext">
-                                <a href="https://www.google.com/maps/dir/?api=1&origin={{ previous_detail.a_id.a_name }}&destination={{ detail.a_id.a_name }}&travelmode=driving"
-                                  class="gonexta"
-                                  target="_blank">
-                                  <i class="fa-solid fa-car-side"></i>
-                                  <p class="gonextbtn">導航</p>
-                                </a>
-                              </div>
-                            {% endwith %}
-                          {% endif %}
-                          
-                          <div class="content_detail">
-                            <span class="spotnum"><span class="spot">{{ detail.a_id.a_name }}</span></span>
-                            <p>日期：yyyy/mm/dd</p>
-                            <p>抵達時間：早上</p>
-                            <p>停留時間：{{ detail.a_id.stay_time }}</p>
-                          </div>
-                        {% endfor %}
-                      </div>
+        <div id="details{{ item.my_history.id }}" class="col-lg-12 col-md-12 more hidden-details">
+          <ul class="nav nav-tabs flex my-nav-tabs" id="myTab{{ item.my_history.id }}" role="tablist">
+            {% for i in "x"|rjust:item.my_history.travel_day %}
+            <li class="nav-item" role="presentation">
+              {% if forloop.counter == 1 %}
+              <button class="nav-link tab_a active" id="ct{{ item.my_history.id }}-{{ forloop.counter }}-tab"
+                data-bs-toggle="tab" data-bs-target="#ct{{ item.my_history.id }}-{{ forloop.counter }}" type="button"
+                role="tab" aria-controls="ct{{ item.my_history.id }}-{{ forloop.counter }}" aria-selected="true">Day {{
+                forloop.counter }}</button>
+              {% else %}
+              <button class="nav-link tab_a" id="ct{{ item.my_history.id }}-{{ forloop.counter }}-tab"
+                data-bs-toggle="tab" data-bs-target="#ct{{ item.my_history.id }}-{{ forloop.counter }}" type="button"
+                role="tab" aria-controls="ct{{ item.my_history.id }}-{{ forloop.counter }}" aria-selected="false">Day {{
+                forloop.counter }}</button>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+          <div class="tab-content" id="myTabContent{{ item.my_history.id }}">
+            {% for details in item.allAttractions %}
+            {% with counter=forloop.counter0 %}
+            <div class="tab-pane fade{% if forloop.counter == 1 %} show active {% endif %} "
+              id="ct{{ item.my_history.id }}-{{ forloop.counter }}" role="tabpanel"
+              aria-labelledby="ct{{ item.my_history.id }}-{{ forloop.counter }}-tab">
 
-                    </div>
-                  {% endwith %}
+              <div class="content_align">
+                {% for detail in details %}
+                {% if forloop.counter0 == 0 %}
+
+                {% for location in item.choiceday_ct %}
+                {% if forloop.counter0 == counter %}
+
+                <div class="content_detail_start">
+                  <span class="content_detail_startTXT">
+                    <i class="fa-solid fa-house"></i><br>起始位置
+                  </span>
+                </div>
+                <div class="gonext">
+
+                  <a href="https://www.google.com/maps/dir/?api=1&origin={{ location.start_location_x }},{{ location.start_location_y }}&destination={{ detail.a_id.location_x }},{{ detail.a_id.location_y }}&travelmode=driving"
+                    class="gonexta" target="_blank">
+                    <i class="fa-solid fa-car-side"></i>
+                    <p class="gonextbtn">導航</p>
+                  </a>
+                </div>
+                {% endif %}
+                {% endfor %}
+
+                {% else %}
+
+                {% with previous_detail=details|get_previous_item:forloop.counter0 %}
+                <div class="gonext">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin={{ previous_detail.a_id.a_name }}&destination={{ detail.a_id.a_name }}&travelmode=driving"
+                    class="gonexta" target="_blank">
+                    <i class="fa-solid fa-car-side"></i>
+                    <p class="gonextbtn">導航</p>
+                  </a>
+                </div>
+                {% endwith %}
+                {% endif %}
+
+                <div class="content_detail">
+                  <span class="spotnum"><span class="spot">{{ detail.a_id.a_name }}</span></span>
+                  <p>日期：yyyy/mm/dd</p>
+                  <p>抵達時間：早上</p>
+                  <p>停留時間：{{ detail.a_id.stay_time }}</p>
+                </div>
                 {% endfor %}
               </div>
+
             </div>
+            {% endwith %}
+            {% endfor %}
           </div>
+        </div>
+      </div>
       {% endfor %}
     </div>
     <!-- 這邊好像抓不到id名稱所以JS不會動 -->
@@ -173,7 +161,29 @@
           <span class="filter">動物園</span>
         </div>
         <div>放圖片的地方(輪播)
-          <img src="../static/images/101.jpg" class="img-responsive" width="100%" alt="">
+          <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
+            <div class="carousel-inner">
+              <div class="carousel-item active" style="position: relative;overflow: hidden;height: 400px;width: 100%;">
+                <img src="../static/images/101.jpg" class="img-responsive" style="height: 100%;width: 100%;object-fit: cover;position: absolute;left: 0;" width="100%" alt="">
+              </div>
+              <div class="carousel-item" style="position: relative;overflow: hidden;height: 400px;width: 100%;">
+                <img src="../static/images/beitou.jpeg" class="img-responsive" style="height: 100%;width: 100%;object-fit: cover;position: absolute;left: 0;" width="100%" alt="">
+              </div>
+              <div class="carousel-item" style="position: relative;overflow: hidden;height: 400px;width: 100%;">
+                <img src="../static/images/bg5.png" class="img-responsive" style="height: 100%;width: 100%;object-fit: cover;position: absolute;left: 0;" width="100%" alt="">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide"
+              data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide"
+              data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
         </div>
         <div>
           <span>評論區</span>
@@ -187,7 +197,7 @@
             </div>
             <div class="row alreadyComment" id="alreadyComment">
               <div class="col-auto otherCommentAvatar">
-                <img src="../static/images/cloud1.png" class="img-responsive" style="width: 100%;"  alt=""><br>
+                <img src="../static/images/cloud1.png" class="img-responsive" style="width: 100%;" alt=""><br>
               </div>
               <div class="col otherCommentTxtDiv">
                 <span class="otherCommentTxt" id="otherCommentTxt">
@@ -204,30 +214,30 @@
     </div>
 
   </div>
-  
+
 
 
   <!-- 這個是範例是可以打開右邊的 -->
   <div class="row" style="width: 60%;text-align: center;margin: 0 auto;height: 200px;align-content: center;">
     <div class="col-6">
-        <div>
-            我是左邊1
-            <button id="clickme1" data-target="show1" onclick="clickShow(this)">點我出現</button>
-        </div>
-        <div>
-            我是左邊2
-            <button id="clickme2" data-target="show2" onclick="clickShow(this)">點我出現</button>
-        </div>
+      <div>
+        我是左邊1
+        <button id="clickme1" data-target="show1" onclick="clickShow(this)">點我出現</button>
+      </div>
+      <div>
+        我是左邊2
+        <button id="clickme2" data-target="show2" onclick="clickShow(this)">點我出現</button>
+      </div>
     </div>
     <div class="col-6" style="border: 1px solid black;">
-        <div id="show1" style="display: none;">
-            我是右邊1
-        </div>
-        <div id="show2" style="display: none;">
-            我是右邊2 <br>
-            我是右邊2 <br>
-            我是右邊2
-        </div>
+      <div id="show1" style="display: none;">
+        我是右邊1
+      </div>
+      <div id="show2" style="display: none;">
+        我是右邊2 <br>
+        我是右邊2 <br>
+        我是右邊2
+      </div>
     </div>
   </div>
 
@@ -237,7 +247,7 @@
 
 
 <script>
-  
+
 
   function add_favorite_share(ctid) {
     // var sharediv = document.getElementById("ct_share");

@@ -1,19 +1,3 @@
-// // 按鈕變文字
-// function clickOpen(button) {
-//   const isDetails = button.dataset.isDetails === 'true' || false;
-
-//   if (!isDetails) {
-//     button.textContent = "關閉行程";
-//     button.style.backgroundColor = "#F55";
-//     button.dataset.isDetails = 'true';
-//   } else {
-//     button.textContent = "詳細行程";
-//     button.style.backgroundColor = "rgb(255, 240, 126)";
-//     button.dataset.isDetails = 'false';
-//   }
-// }
-
-
 function clickShow(button) {
   const targetBtn = button.getAttribute('data-target');
   const showDiv = document.getElementById(targetBtn);
@@ -56,23 +40,55 @@ function addComment() {
       addCommentBtn.textContent = '取消評論';
     }
   } else {
-    addCommentSpace.style.display = 'none';
-    addCommentBtn.textContent = '新增評論';
+    if (addCommentBtn.textContent === '編輯評論') {
+      addCommentBtn.textContent = '取消評論';
+      editedComment();
+    } else {
+      addCommentSpace.style.display = 'none';
+      addCommentBtn.textContent = '新增評論';
+    }
   }
   isaddCommentSpaceVisible = !isaddCommentSpaceVisible;
 }
-// 發送評論
+// Move the event listener outside of editedComment function
+document.getElementById('commentSubmit').addEventListener('click', function () {
+  if (isEdit) {
+    var commentText = document.getElementById('addCTXT').value;
+    var editedComment = document.querySelector('.row.editing');
 
+    editedComment.querySelector('.otherCommentTxt').innerText = commentText;
+
+    addCommentSpace.style.display = 'none';
+    addCommentBtn.textContent = '編輯評論';
+    isEdit = false;
+  }
+});
+
+// Change editedComment function to only handle edit initiation
+function editedComment() {
+  var commentTxt = document.querySelector('.row.editing .otherCommentTxt').innerText;
+  var editedComment = document.querySelector('.row.editing');
+
+  document.getElementById('addCTXT').value = commentTxt;
+  addCommentSpace.style.display = 'block';
+  addCommentBtn.textContent = '取消評論';
+
+  editedComment.classList.add('editing');
+  isEdit = true;
+}
+
+// 發送評論
 function submitComment() {
   var commentText = document.getElementById('addCTXT').value;
 
   if (!isEdit) {
+    // Create a new comment when not in edit mode
     var newCreateComment = createCommentElement(commentText);
     insertComment(newCreateComment);
     addCommentSpace.style.display = 'none';
     addCommentBtn.textContent = '編輯評論';
-    isCommenting = false;
   } else {
+    // Logic for editing an existing comment
     var editedComment = document.querySelector('.row.editing');
     editedComment.querySelector('.otherCommentTxt').innerText = commentText;
     editedComment.classList.remove('editing');
@@ -117,31 +133,31 @@ function submitComment() {
     document.getElementById('addCommentSpace').style.display = 'none';
     document.getElementById('addCommentBtn').textContent = '編輯評論'
   }
-  // 編輯評論
-  function editedComment() {
-    var commentTxt = document.querySelector('.row.editing .otherCommentTxt').innerText;
-    var editedComment = document.querySelector('.row.editing');
-  
-    document.getElementById('addCTXT').value = commentTxt;
-    addCommentSpace.style.display = 'block';
-    addCommentBtn.textContent = '取消評論';
-    
-    editedComment.classList.add('editing');
-    isEdit = true;
-  
-    // 下面是你的提交评论的逻辑示例，应该在确认编辑后执行。
-    document.getElementById('commentSubmit').addEventListener('click', function() {
-      var commentText = document.getElementById('addCTXT').value;
-      
-      // Update the existing comment with the edited text
-      editedComment.querySelector('.otherCommentTxt').innerText = commentText;
-  
-      addCommentSpace.style.display = 'none';
-      addCommentBtn.textContent = '新增評論';
-      isEdit = false;
-    });
-  }
-  
+  // // 編輯評論
+  // function editedComment() {
+  //   var commentTxt = document.querySelector('.row.editing .otherCommentTxt').innerText;
+  //   var editedComment = document.querySelector('.row.editing');
+
+  //   document.getElementById('addCTXT').value = commentTxt;
+  //   addCommentSpace.style.display = 'block';
+  //   addCommentBtn.textContent = '取消評論';
+
+  //   editedComment.classList.add('editing');
+  //   isEdit = true;
+
+  //   // 下面是你的提交评论的逻辑示例，应该在确认编辑后执行。
+  //   document.getElementById('commentSubmit').addEventListener('click', function () {
+  //     var commentText = document.getElementById('addCTXT').value;
+
+  //     // Update the existing comment with the edited text
+  //     editedComment.querySelector('.otherCommentTxt').innerText = commentText;
+
+  //     addCommentSpace.style.display = 'none';
+  //     addCommentBtn.textContent = '編輯評論';
+  //     isEdit = false;
+  //   });
+  // }
+
 }
 
 

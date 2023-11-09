@@ -177,6 +177,51 @@
                 transform: scale(1);
             }
         }
+
+        .addCommentBtn {
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 1px solid orange;
+            background-color: #f3f3f3;
+        }
+
+        .addCommentSpace {
+            display: none;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .addCTXT {
+            width: 90%;
+            height: 150px;
+        }
+
+        .commentSubmit {
+            padding: 10px 15px;
+            border-radius: 30px;
+            border: 0;
+            background-color: rgb(1, 154, 21);
+            color: white;
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+
+        .alreadyComment {
+            margin: 0;
+        }
+
+        .otherCommentAvatar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 1px solid black;
+        }
     </style>
 </head>
 
@@ -449,11 +494,104 @@
             <iframe src="your_embedded_page_url" frameborder="0"></iframe>
         </div>
     </div>
+    <main>
+        <div>
+            <div class="addCommentDiv">
+                <button class="addCommentBtn" id="addCommentBtn" onclick="addComment()">新增評論</button>
+                <div class="addCommentSpace" id="addCommentSpace" style="display: none;">
+                    <textarea class="addCTXT" id="addCTXT" placeholder="留下你的印記吧"></textarea>
+                    <button class="commentSubmit" id="commentSubmit" onclick="submitComment()">送出</button>
+                </div>
+            </div>
+            <div class="row alreadyComment" id="alreadyComment">
+                <div class="col-auto otherCommentAvatar">
+                    <img src="../static/images/cloud1.png" class="img-responsive" style="width: 100%;" alt=""><br>
+                </div>
+                <div class="col otherCommentTxtDiv">
+                    <span class="otherCommentTxt" id="otherCommentTxt">
+                        隨邊說說這裡是評論文字的地方<br>
+                        隨邊說說這裡是評論文字的地方<br>
+                        隨邊說說這裡是評論文字的地方<br>
+                        隨邊說說這裡是評論文字的地方
+                    </span>
+                </div>
+            </div>
+        </div>
+    </main>
 
 
     <script src="../static/js/jquery-3.7.0.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
     <script>
+
+        let isEditing = false; // To track if the user is editing a comment
+
+        function addComment() {
+            const commentBtn = document.getElementById("addCommentBtn");
+            const commentSpace = document.getElementById("addCommentSpace");
+
+            if (isEditing) {
+                // If in edit mode, do nothing on toggle
+                return;
+            }
+
+            if (commentSpace.style.display === "none") {
+                commentBtn.textContent = "取消評論";
+                commentSpace.style.display = "block";
+            } else {
+                commentBtn.textContent = "新增評論";
+                commentSpace.style.display = "none";
+            }
+        }
+
+        function submitComment() {
+            const commentText = document.getElementById("addCTXT").value;
+            const commentDiv = document.createElement("div");
+            commentDiv.classList.add("row");
+            commentDiv.innerHTML = `
+    <div class="col-auto otherCommentAvatar">
+      <img src="../static/images/cloud1.png" class="img-responsive" style="width: 100%;" alt=""><br>
+    </div>
+    <div class="col otherCommentTxtDiv">
+      <span class="otherCommentTxt">
+        ${commentText}
+      </span>
+      <button onclick="editComment(this)">編輯評論</button>
+    </div>
+  `;
+
+            const alreadyComment = document.getElementById("alreadyComment");
+            alreadyComment.appendChild(commentDiv);
+
+            document.getElementById("addCTXT").value = "";
+            document.getElementById("addCommentBtn").textContent = "新增評論";
+            document.getElementById("addCommentSpace").style.display = "none";
+        }
+
+        function editComment(button) {
+            isEditing = true;
+            const commentText = button.parentNode.querySelector(".otherCommentTxt").innerText;
+            document.getElementById("addCTXT").value = commentText;
+
+            // Change submit button text to indicate editing
+            document.getElementById("commentSubmit").textContent = "重新送出";
+
+            // Remove the existing comment while editing
+            button.parentNode.parentNode.remove();
+        }
+
+        // Functionality to handle re-submitting an edited comment
+        document.getElementById("commentSubmit").onclick = function () {
+            if (isEditing) {
+                const commentText = document.getElementById("addCTXT").value;
+                submitComment();
+                isEditing = false;
+            }
+        };
+
+
+
+
         var infoIcon = document.getElementById("info_icon");
         var modal = document.getElementById("myModal");
         var closeBtn = document.querySelector(".close");
