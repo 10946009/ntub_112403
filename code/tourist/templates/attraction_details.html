@@ -295,7 +295,7 @@ endcomment %}
             <div style="text-align: center;">
                 <h5 class="ask_qa" id="new_fifliter_topic"
                     onclick="document.getElementById('show_filiter').style.display='block'">
-                    景點<i class="fa-solid fa-chevron-down" style="margin-left: 6px;"></i>
+                    <i class="fa-solid fa-list" style="margin-right: 6px;"></i>主題
                 </h5>
                 <h5 class="ask_qa" id="new_filiter_user">
                     排序<i class="fa-solid fa-chevron-down" style="margin-left: 6px;"></i>
@@ -430,6 +430,19 @@ endcomment %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script>
+    // 排序icon(click)
+    var chevronIcon = document.querySelector('#new_filiter_user i');
+    var h5Element = document.getElementById('new_filiter_user');
+    h5Element.addEventListener('click', function () {
+        if (chevronIcon.classList.contains('fa-chevron-down')) {
+            chevronIcon.classList.remove('fa-chevron-down');
+            chevronIcon.classList.add('fa-chevron-up');
+        } else {
+            chevronIcon.classList.remove('fa-chevron-up');
+            chevronIcon.classList.add('fa-chevron-down');
+        }
+    });
+
     sessionStorage.clear();
     if ("{{base_search_text | safe}}" != "") {
         sessionStorage.setItem("{{base_search_text | safe}}", 'keyword_search');
