@@ -94,26 +94,28 @@ def create(request, ct_id):
     
         # 抓出所有景點的詳細資料
         for a in ct_attractions_list:
-            crowd_index_list.append(int(a['a_start_time']%1400//60)) #人潮流量索引
+            crowd_index_list.append((int(a['a_start_time']//60)%24)) #人潮流量索引
             ct_attractions_detail_list.append(Attractions.objects.get(id=a['a_id']))
         # print('ct_attractions_detail_list',ct_attractions_detail_list)
         # print('crowd_index_list',crowd_index_list)
         # 抓出景點的人潮與營業時間
         for co in ct_attractions_detail_list:
             ct_attractions_co_list.append(Crowd_Opening.objects.get(a_id=co.id,week=week))
-            #抓人潮流量
+            print(ct_attractions_co_list)
+        #抓人潮流量
         # print('crowd_listcrowd_listcrowd_listcrowd_listcrowd_listcrowd_listcrowd_list',crowd_list)
-        for i in range(len(ct_attractions_list)):
-            crowd_list.append(ct_attractions_co_list[i].crowd[crowd_index_list[i]]) 
+        # for i in range(len(ct_attractions_list)):
+        #     crowd_list.append(ct_attractions_co_list[i].crowd[crowd_index_list[i]]) 
         # print('ct_attractions_co_list',ct_attractions_co_list)
         # print('crowd_list',crowd_list)
         # 合併上面四個資料
-        for attraction, detail, co, crowd_list in zip(ct_attractions_list, ct_attractions_detail_list, ct_attractions_co_list,crowd_list):
+        for attraction, detail, co ,cl in zip(ct_attractions_list, ct_attractions_detail_list, ct_attractions_co_list,crowd_index_list):
+            print(f"{min(co.crowd[cl],co.crowd[cl+1])} ~ {max(co.crowd[cl],co.crowd[cl+1])}")
             ct_data.append({
                 'attraction': attraction,
                 'detail': detail,
                 'co': co,
-                'crowd_list' : crowd_list
+                'crowd_list' : f"{min(co.crowd[cl],co.crowd[cl+1])} ~ {max(co.crowd[cl],co.crowd[cl+1])}"
             })
         all_ct_data[index+1]=ct_data
         # print('all_ct_data',all_ct_data)
@@ -145,10 +147,10 @@ def create(request, ct_id):
             print('m_list',m_list)
             print('crow_opening_list',crow_opening_list[0])
             recommend_data= []
-            for m, c in zip(m_list, crow_opening_list):
+            for m, fc in zip(m_list, crow_opening_list):
                 recommend_data.append({
                     'm_list': m,
-                    'crow_opening_list': c,
+                    'crow_opening_list': fc, 
                 })
 
             html = render_to_string(
@@ -236,13 +238,13 @@ def create(request, ct_id):
 
             final_now_time_list = final[2]
             # ------------
-            print("final_result_list", final_result_list)
-            print("final_crow_opening_list", final_crow_opening_list)
-            print("final_remainder_result_list", final_remainder_result_list)
-            print(
-                "final_remainder_crow_opening_list", final_remainder_crow_opening_list
-            )
-            print('final_now_time_list',final_now_time_list)
+            # print("final_result_list", final_result_list)
+            # print("final_crow_opening_list", final_crow_opening_list)
+            # print("final_remainder_result_list", final_remainder_result_list)
+            # print(
+            #     "final_remainder_crow_opening_list", final_remainder_crow_opening_list
+            # )
+            # print('final_now_time_list',final_now_time_list)
             # return JsonResponse(
             #     {
             #         "final_result_list": final_result_list,
