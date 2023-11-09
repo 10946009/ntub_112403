@@ -955,6 +955,13 @@ main {
         padding: 0;
     }
 
+    .changeToSearch{
+        width: 50px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 18px;
+        padding: 0;
+    }
     .recommend_save {
         width: 50px;
         height: 40px;
@@ -984,10 +991,10 @@ main {
         font-size: 16px;
     }
 
-    .changeToSearch {
+    /* .changeToSearch {
         padding: 8px 10px;
         font-size: 14px;
-    }
+    } */
 
     .similar_icon {
         padding: 3px 10px 5px 10px;
