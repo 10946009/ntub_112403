@@ -256,15 +256,15 @@ function addCtFavorite(itemId) {
   }
 }
 
-function addRecFavorite(event, itemId) {
+function clickeInfo(event, itemId) {
   event.stopPropagation();
   // 這裡這裡的itemId要用你們的編號
-  var rec_heart_icon = $("#" + itemId).find(".rec_heart_icon"); // 获取点击的爱心按钮
+  var S_info_icon = $("#" + itemId).find(".info_icon"); // 取得Info_icon按鈕
 
-  if (!rec_heart_icon.hasClass("heart_active")) {
-    rec_heart_icon.addClass("heart_active");
+  if (!S_info_icon.hasClass("info_active")) {
+    S_info_icon.addClass("info_active");
   } else {
-    rec_heart_icon.removeClass("heart_active");
+    S_info_icon.removeClass("info_active");
   }
 }
 

@@ -750,7 +750,12 @@ main {
     cursor: pointer;
     text-decoration: none;
 }
-
+.info_icon:hover{
+    color: orange;
+}
+.info_active{
+    color: orange;
+}
 .checkimg_div {
     /* position: relative;
     height: 200px;
