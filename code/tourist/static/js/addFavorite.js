@@ -10,17 +10,17 @@ function addFavorite(aid) {
         },
         success: function (response) {
             favorite_result = response.response_data["message"];
-            if(favorite_result==="尚未登入"){
+            if (favorite_result === "尚未登入") {
                 alert("請先登入!")
                 window.location.href = "/login";
-            }else{
+            } else {
                 var favoriteButton = document.getElementById("submitfavorite" + aid);
                 var isFavoriteValue = favoriteButton.getAttribute("data-isfavorite");
                 if (isFavoriteValue === "1") {
-                    favoriteButton.innerHTML = '<i class="fa-regular fa-heart"></i>&ensp;收藏';
+                    favoriteButton.innerHTML = '<i class="fas fa-heart" style="color: rgb(111, 110, 110); font-size: 16px;"></i>';
                     favoriteButton.setAttribute("data-isfavorite", "0");
                 } else {
-                    favoriteButton.innerHTML = '<i class="fa-solid fa-heart"></i>&ensp;已收藏';
+                    favoriteButton.innerHTML = '  <i class="fas fa-heart" style="color: rgb(202, 13, 13); font-size: 16px;"></i>';
                     favoriteButton.setAttribute("data-isfavorite", "1");
                 }
             }
@@ -32,7 +32,7 @@ function addFavorite(aid) {
     });
 }
 
-function addFavorite_index(id,type) {
+function addFavorite_index(id, type) {
     console.log("目前點擊的id為" + id);
     console.log("目前URL為" + type);
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
@@ -44,9 +44,9 @@ function addFavorite_index(id,type) {
             'id': id,
         },
         success: function (response) {
-            
+
             favorite_result = response.response_data["message"];
-            if(favorite_result==="尚未登入"){
+            if (favorite_result === "尚未登入") {
                 alert("請先登入!")
                 window.location.href = "/login";
             }
@@ -71,7 +71,7 @@ function addFavorite_attractions(id) {
         },
         success: function (response) {
             favorite_result = response.response_data["message"];
-            if(favorite_result==="尚未登入"){
+            if (favorite_result === "尚未登入") {
                 alert("請先登入!")
                 window.location.href = "/login";
             }
