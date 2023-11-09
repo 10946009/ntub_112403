@@ -67,7 +67,7 @@ def create(request, ct_id):
         + 1
     )
     # ct_id = ct_data.id
-
+    
     stay_time = 150
     ct_attractions_detail_list=[]
     ct_attractions_co_list=[]
@@ -96,17 +96,17 @@ def create(request, ct_id):
         for a in ct_attractions_list:
             crowd_index_list.append(int(a['a_start_time']%1400//60)) #人潮流量索引
             ct_attractions_detail_list.append(Attractions.objects.get(id=a['a_id']))
-        print('ct_attractions_detail_list',ct_attractions_detail_list)
-        print('crowd_index_list',crowd_index_list)
+        # print('ct_attractions_detail_list',ct_attractions_detail_list)
+        # print('crowd_index_list',crowd_index_list)
         # 抓出景點的人潮與營業時間
         for co in ct_attractions_detail_list:
             ct_attractions_co_list.append(Crowd_Opening.objects.get(a_id=co.id,week=week))
             #抓人潮流量
-        print('crowd_listcrowd_listcrowd_listcrowd_listcrowd_listcrowd_listcrowd_list',crowd_list)
+        # print('crowd_listcrowd_listcrowd_listcrowd_listcrowd_listcrowd_listcrowd_list',crowd_list)
         for i in range(len(ct_attractions_list)):
             crowd_list.append(ct_attractions_co_list[i].crowd[crowd_index_list[i]]) 
-        print('ct_attractions_co_list',ct_attractions_co_list)
-        print('crowd_list',crowd_list)
+        # print('ct_attractions_co_list',ct_attractions_co_list)
+        # print('crowd_list',crowd_list)
         # 合併上面四個資料
         for attraction, detail, co, crowd_list in zip(ct_attractions_list, ct_attractions_detail_list, ct_attractions_co_list,crowd_list):
             ct_data.append({
@@ -116,7 +116,7 @@ def create(request, ct_id):
                 'crowd_list' : crowd_list
             })
         all_ct_data[index+1]=ct_data
-        print('all_ct_data',all_ct_data)
+        # print('all_ct_data',all_ct_data)
     # except:
     #     all_ct_data=[]  
 
@@ -127,9 +127,9 @@ def create(request, ct_id):
             get_user_address = list(map(float, request.POST["user_location"].split(",")))
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
-            print(get_user_address)
+            print("user目前位置",get_user_address)
+            print("user目前位置",type(get_user_address))
             print(new_nowtime)
-
             m = recommend(
                 user_favorite_type, new_nowtime, get_user_address, start_day, stay_time
             )
