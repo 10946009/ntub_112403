@@ -2418,6 +2418,7 @@ img {
     width: 98%;
     border: 1px solid rgb(0, 0, 0);
     margin-bottom: 30px;
+    margin-top: -10px;
 }
 
 @media screen and (max-width:768px) {
