@@ -101,7 +101,7 @@
                 <!--景點推薦div-->
                 <div style="position: relative;">
                   <!--切換底下兩個div-->
-                  <button class="changeToRec" id="changeToRec-{{ day }}" onclick="clickChangeDone()">切換景點排序</button>
+                  <button class="changeToRec" id="changeToRec-{{ day }}" onclick="clickChangeDone()">景點排序</button>
                   <div class="changeRec checkRec" id="checkRec-{{ day }}">
                     <div class="recDiv">
                       <i class="fa-solid fa-thumbs-up rec_icon"></i>
@@ -197,7 +197,7 @@
               </div>
             </div>
             <div class="col-6 searchAndlikeAndrec">
-              <button class="changeToSearch" id="changeToSearch" onclick="clickChange()">切換搜尋</button>
+              <button class="changeToSearch" id="changeToSearch">切換搜尋</button>
               <div class="change searchBlock" id="searchBlock">
                 <div class="searchBarDiv">
                   <i class="fa-solid fa-magnifying-glass-location find_icon"></i>
@@ -260,7 +260,8 @@
                                    class="img-responsive"
                                    width="100%"
                                    alt="">
-                              {% comment %} <button class="fa-solid fa-heart rec_heart_icon" id="rec_heart_icon" onclick="addRecFavorite(event,{{ item.a_id.id }})"> <!-- 這裡這裡的itemId要用你們的編號 --></button> {% endcomment %}
+                                   
+                              <a href="#" class="fa-solid fa-circle-info info_icon" id="info_icon" onclick="clickeInfo(event,{{ item.a_id.id }})"> <!-- 這裡這裡的itemId要用你們的編號 --></a>
                             </span>
 
                             <div class="spottxtdiv">

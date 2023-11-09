@@ -197,12 +197,6 @@
     height: 150px;
 }
 
-.addCTXT::placeholder {
-    text-align: left;
-    vertical-align: top;
-    line-height: normal;
-}
-
 .commentSubmit {
     padding: 10px 15px;
     border-radius: 30px;
@@ -214,9 +208,11 @@
     right: 0;
     bottom: 0;
 }
-.alreadyComment{
+
+.alreadyComment {
     margin: 0;
 }
+
 .otherCommentAvatar {
     display: flex;
     justify-content: center;
@@ -226,6 +222,28 @@
     height: 60px;
     border-radius: 50%;
     border: 1px solid black;
+}
+.imgCounter{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+.historyCarousel {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+    width: 100%;
+}
+
+.historyCarouselImg {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
 }
 
 /*展開詳細行程*/

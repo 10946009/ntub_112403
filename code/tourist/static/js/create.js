@@ -30,29 +30,57 @@ function saveTabState(tabId, day) {
   inputBottom();
 }
 
-// 翻轉右邊區塊
+// 翻轉右邊區塊&按鈕RWD變換
 var islikeAndRecVisible = false;
+var isIconSet = false;
 
-function clickChange() {
+function checkWindowSize() {
+  const button = document.getElementById('changeToSearch');
+  if (window.innerWidth <= 690) {
+    if (!isIconSet) {
+      setIconContent(button);
+      isIconSet = true;
+    }
+  } else {
+    button.textContent = islikeAndRecVisible ? '收藏與推薦' : '切換搜尋';
+    isIconSet = false;
+  }
+}
+function setIconContent(button) {
+  if (islikeAndRecVisible) {
+    button.innerHTML = '<i class="fa-regular fa-face-grin-hearts"></i>';
+  } else {
+    button.innerHTML = '<i class="fa-solid fa-magnifying-glass-location"></i>';
+  }
+}
+function rotateAndToggleContent() {
   const likeAndRec = document.getElementById('likeAndRec');
   const searchBlock = document.getElementById('searchBlock');
-  const button = document.getElementById("changeToSearch");
+  const button = document.getElementById('changeToSearch');
 
-  islikeAndRecVisible = !islikeAndRecVisible
+  islikeAndRecVisible = !islikeAndRecVisible;
 
   if (islikeAndRecVisible) {
     likeAndRec.style.transform = 'rotateY(180deg)';
     searchBlock.style.transform = 'rotateY(0deg)';
-    button.textContent = "收藏與推薦";
-    button.style.backgroundColor = "rgb(255, 41, 101)";
+    button.style.backgroundColor = 'rgb(255, 41, 101)';
+    setIconContent(button);
+    isIconSet = true;
   } else {
     likeAndRec.style.transform = 'rotateY(0deg)';
     searchBlock.style.transform = 'rotateY(180deg)';
-    button.textContent = "切換搜尋";
-    button.style.backgroundColor = "#0066DB";
+    button.style.backgroundColor = '#0066DB';
+    setIconContent(button);
+    isIconSet = true;
   }
-
 }
+
+// Call checkWindowSize when the window loads and when it's resized
+window.addEventListener('load', checkWindowSize);
+window.addEventListener('resize', checkWindowSize);
+// 被點的時候呼叫rotateAndToggleContent
+document.getElementById('changeToSearch').addEventListener('click', rotateAndToggleContent);
+
 
 // 高度一致
 $(document).ready(function () {
@@ -87,7 +115,61 @@ function adjustTextHeight(selector) {
   $(selector).height(maxHeight);
 }
 
-// 翻轉左邊區塊
+// 翻轉左邊區塊W&按鈕RWD變換
+// var isdoneJourneyVisible = false;
+// var isLeftIconSet = false;
+
+// function checkLeftWindowSize() {
+//   const button = document.getElementsByClassName('changeToRec');
+//   if (window.innerWidth <= 690) {
+//     if (!isLeftIconSet) {
+//       setLeftIconContent(button[0]); // Since getElementsByClassName returns a collection, select the first element
+//       isLeftIconSet = true;
+//     }
+//   } else {
+//     button[0].textContent = isdoneJourneyVisible ? '重新推薦' : '景點排序';
+//     isLeftIconSet = false;
+//   }
+// }
+
+// function setLeftIconContent(button) {
+//   if (isdoneJourneyVisible) {
+//     button.innerHTML = '<i class="fa-solid fa-repeat"></i>';
+//   } else {
+//     button.innerHTML = '<i class="fa-solid fa-route"></i>';
+//   }
+// }
+
+// function rotateLeftAndToggleContent(globalDay) {
+//   console.log(globalDay);
+//   const checkRec = document.getElementById('checkRec-' + globalDay);
+//   const done = document.getElementById('done-' + globalDay);
+//   const button = document.getElementById("changeToRec-" + globalDay);
+
+//   isdoneJourneyVisible = !isdoneJourneyVisible;
+
+//   if (isdoneJourneyVisible) {
+//     checkRec.style.transform = 'rotateY(180deg)';
+//     done.style.transform = 'rotateY(0deg)';
+//     button.style.backgroundColor = 'rgb(255, 41, 101)';
+//     setLeftIconContent(button);
+//     isLeftIconSet = true;
+//   } else {
+//     checkRec.style.transform = 'rotateY(0deg)';
+//     done.style.transform = 'rotateY(180deg)';
+//     button.style.backgroundColor = '#0066DB';
+//     setLeftIconContent(button);
+//     isLeftIconSet = true;
+//   }
+// }
+
+// // Call checkLeftWindowSize when the window loads and when it's resized
+// window.addEventListener('load', checkLeftWindowSize);
+// window.addEventListener('resize', checkLeftWindowSize);
+
+// // Call rotateLeftAndToggleContent when the button is clicked
+// document.getElementById('changeToRec-{{ day }}').addEventListener('click', rotateLeftAndToggleContent);
+
 var isdoneJourneyVisible = false;
 
 function clickChangeDone() {
@@ -106,8 +188,29 @@ function clickChangeDone() {
   } else {
     checkRec.style.transform = 'rotateY(0deg)';
     done.style.transform = 'rotateY(180deg)';
-    button.textContent = "切換景點排序";
+    button.textContent = "景點排序";
     button.style.backgroundColor = "#0066DB";
+  }
+}
+// RWD文字切圖示按鈕
+const repeatBtn = document.querySelector('.changeToRec');
+
+function changeRepeatBtnTxt() {
+  if (window.innerWidth <= 690) {
+    if (repeatBtn.textContent === '重新推薦') {
+      // repeatBtn.classList.add('repeatIcon_btn');
+      repeatBtn.innerHTML = '<i class="fa-solid fa-repeat"></i>';
+    } else if (repeatBtn.textContent === '景點排序') {
+      // repeatBtn.classList.add('doneIcon_btn');
+      repeatBtn.innerHTML = '<i class="fa-solid fa-route"></i>';
+    }
+  }
+  if(window.innerWidth > 690){
+    if(repeatBtn.innerHTML === '<i class="fa-solid fa-repeat"></i>'){
+      repeatBtn.innerHTML = '重新推薦';
+    }else if(repeatBtn.innerHTML === '<i class="fa-solid fa-route"></i>'){
+      repeatBtn.innerHTML = '景點排序';
+    }
   }
 }
 
@@ -115,8 +218,6 @@ function clickChangeDone() {
 // 送出功能整合到clickChangeDone函数中
 // 點擊送出會切換到景點排序頁面
 function submitAction(day) {
-  // var day_label = document.getElementsByClassName("tab-pane fade active show");
-  // var day = day_label[0].getAttribute('dataset');
 
   const checkRec = document.getElementById('checkRec-' + globalDay);
   const done = document.getElementById('done-' + globalDay);
@@ -130,6 +231,7 @@ function submitAction(day) {
 
   submitRecommend();
 }
+
 
 
 // 展開收藏跟相似景點
@@ -256,15 +358,15 @@ function addCtFavorite(itemId) {
   }
 }
 
-function addRecFavorite(event, itemId) {
+function clickeInfo(event, itemId) {
   event.stopPropagation();
   // 這裡這裡的itemId要用你們的編號
-  var rec_heart_icon = $("#" + itemId).find(".rec_heart_icon"); // 获取点击的爱心按钮
+  var S_info_icon = $("#" + itemId).find(".info_icon"); // 取得Info_icon按鈕
 
-  if (!rec_heart_icon.hasClass("heart_active")) {
-    rec_heart_icon.addClass("heart_active");
+  if (!S_info_icon.hasClass("info_active")) {
+    S_info_icon.addClass("info_active");
   } else {
-    rec_heart_icon.removeClass("heart_active");
+    S_info_icon.removeClass("info_active");
   }
 }
 
@@ -414,54 +516,6 @@ function checkAndAddClass() {
 }
 
 
-
-// // RWD縮小之後"重新推薦"變圖案
-// const repeatBtn = document.querySelector('.changeToRec');
-
-// function changeRepeatBtnTxt() {
-//   if (window.innerWidth <= 690) {
-//     if (repeatBtn.textContent === '重新推薦') {
-//       repeatBtn.classList.add('repeatIcon_btn');
-//       repeatBtn.innerHTML = '';
-//     } else if (repeatBtn.textContent === '景點排序') {
-//       repeatBtn.classList.add('doneIcon_btn');
-//       repeatBtn.innerHTML = '';
-//     }
-//   } else if (window.innerWidth > 690) {
-//     if (repeatBtn.textContent === '\f363') {
-//       repeatBtn.classList.remove('repeatIcon_btn');
-//       repeatBtn.innerHTML = '重新推薦';
-//     } else if (repeatBtn.textContent === '\f4d7') {
-//       repeatBtn.classList.remove('doneIcon_btn');
-//       repeatBtn.innerHTML = '景點排序';
-//     }
-//   }
-//   if(window.innerWidth > 690){
-
-//   }
-// }
-// window.onload = changeRepeatBtnTxt;
-// window.addEventListener('resize', changeRepeatBtnTxt);
-const repeatBtn = document.querySelector('.changeToRec');
-
-function changeRepeatBtnTxt() {
-  if (window.innerWidth <= 690) {
-    if (repeatBtn.textContent === '重新推薦') {
-      // repeatBtn.classList.add('repeatIcon_btn');
-      repeatBtn.innerHTML = '<i class="fa-solid fa-repeat"></i>';
-    } else if (repeatBtn.textContent === '景點排序') {
-      // repeatBtn.classList.add('doneIcon_btn');
-      repeatBtn.innerHTML = '<i class="fa-solid fa-route"></i>';
-    }
-  }
-  if(window.innerWidth > 690){
-    if(repeatBtn.innerHTML === '<i class="fa-solid fa-repeat"></i>'){
-      repeatBtn.innerHTML = '重新推薦';
-    }else if(repeatBtn.innerHTML === '<i class="fa-solid fa-route"></i>'){
-      repeatBtn.innerHTML = '景點排序';
-    }
-  }
-}
 function inputBottom(){
   $.ajax({
     url:"/attractions",
