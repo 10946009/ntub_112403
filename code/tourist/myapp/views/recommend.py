@@ -1,5 +1,6 @@
 
 from datetime import datetime
+from django.shortcuts import render
 import googlemaps
 from myapp.models import *
 from .viewsConst import GOOGLE_PLACES_API_KEY
@@ -88,3 +89,34 @@ def recommend(user_favorite, now_time, get_user_address, day, stay_time):
         "ChIJTeIZgaCvQjQRlMvYvVAE6WE",
     ]
     return m_attractions_list
+
+
+# ------------------------------------第1.5步驟(推薦使用者可能喜歡的景點)
+def recommend_maybe(userid): #會回傳可能喜歡的使用者id和該使用者點擊過的景點object
+    #找出user和其他user的交集景點
+    other_user = UserClick.objects.values('u_id').distinct()
+    user_click = UserClick.objects.filter(u_id=userid).values_list('a_id', flat=True)
+    if user_click: #如果使用者有資料
+        other_user_click={}
+        for uid in other_user:
+            uid = uid['u_id']
+            aid_list = list(UserClick.objects.filter(u_id=uid).values_list('a_id', flat=True))
+            other_user_click[uid] = aid_list
+        
+        other_user_intersection={} 
+        for key,other_click in other_user_click.items(): #取交集數量
+            if key == userid:   continue
+            other_user_intersection[key] = len(set(user_click).intersection(set(other_click)))
+        
+        #轉為list並排序 [0]為uid [1]為交集數量
+        other_user_intersection = sorted(other_user_intersection.items(), key=lambda x: x[1], reverse=True) 
+        
+        if other_user_intersection[0][1] != 0: #假設有交集
+            maybe_user_id = other_user_intersection[0][0]
+            maybe_aid_list = UserClick.objects.filter(u_id=maybe_user_id).values_list('a_id', flat=True)
+            return Attractions.objects.filter(id__in=maybe_aid_list)
+        
+        return Attractions.objects.filter(id__in=user_click)
+    else:
+        return Attractions.objects.all().order_by("hit")[:10]
+    #找出和其他使用者瀏覽相似的景點
