@@ -178,7 +178,7 @@ $(document).ready(function () {
   });
 })
 
-// 顯示目前市第幾張圖
+// 顯示目前市第幾張圖(好像沒辦法放在圖片的右下角)
 document.addEventListener("DOMContentLoaded", function() {
   var carousel = document.getElementById('carouselExampleRide');
   var counter = document.getElementById('imgCounter');

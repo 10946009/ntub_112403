@@ -208,9 +208,11 @@
     right: 0;
     bottom: 0;
 }
-.alreadyComment{
+
+.alreadyComment {
     margin: 0;
 }
+
 .otherCommentAvatar {
     display: flex;
     justify-content: center;
@@ -223,11 +225,27 @@
 }
 .imgCounter{
     position: absolute;
-    bottom: 10px; /* 距離底部的距離 */
-    right: 10px; /* 距離右邊的距離 */
-    background: rgba(255, 255, 255, 0.7); /* 背景顏色，可選 */
-    padding: 5px; /* 內邊距，可選 */
+    right: 0;
+    top: 0;
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
 }
+.historyCarousel {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+    width: 100%;
+}
+
+.historyCarouselImg {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+}
+
 /*展開詳細行程*/
 .hidden-details {
     /* display: none; */

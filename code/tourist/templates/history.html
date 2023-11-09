@@ -163,17 +163,17 @@
         <div>放圖片的地方(輪播)
           <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
             <div class="carousel-inner">
-              <div class="carousel-item active" style="position: relative;overflow: hidden;height: 400px;width: 100%;">
-                <img src="../static/images/101.jpg" class="img-responsive"
-                  style="height: 100%;width: 100%;object-fit: cover;position: absolute;left: 0;" width="100%" alt="">
+              <div class="carousel-item active historyCarousel">
+                <img src="../static/images/101.jpg" class="img-responsive historyCarouselImg" width="100%" alt="">
+                <!-- <div class="counterImgTxt"> 1 / 3 </div> -->
               </div>
-              <div class="carousel-item" style="position: relative;overflow: hidden;height: 400px;width: 100%;">
-                <img src="../static/images/beitou.jpeg" class="img-responsive"
-                  style="height: 100%;width: 100%;object-fit: cover;position: absolute;left: 0;" width="100%" alt="">
+              <div class="carousel-item historyCarousel">
+                <img src="../static/images/beitou.jpeg" class="img-responsive historyCarouselImg" width="100%" alt="">
+                <!-- <div class="counterImgTxt"> 2 / 3 </div> -->
               </div>
-              <div class="carousel-item" style="position: relative;overflow: hidden;height: 400px;width: 100%;">
-                <img src="../static/images/bg5.png" class="img-responsive"
-                  style="height: 100%;width: 100%;object-fit: cover;position: absolute;left: 0;" width="100%" alt="">
+              <div class="carousel-item historyCarousel">
+                <img src="../static/images/bg5.png" class="img-responsive historyCarouselImg" width="100%" alt="">
+                <!-- <div class="counterImgTxt"> 3 / 3 </div> -->
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide"
@@ -186,9 +186,9 @@
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Next</span>
             </button>
-          </div>
-          <div class="imgCounter" id="imgCounter">
-            <!-- JS裡面顯示目前是第幾張 -->
+            <div class="imgCounter" id="imgCounter">
+              <!-- JS裡面顯示目前是第幾張 -->
+            </div>
           </div>
         </div>
         <div>
