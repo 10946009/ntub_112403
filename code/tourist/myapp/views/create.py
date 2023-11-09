@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .viewsConst import ATT_TYPE_CHINESE
-from .recommend import recommend
+from .recommend import recommend,recommend_maybe
 from .recommend_near import recommend_near
 from .final_order import final_order
 import requests
@@ -73,48 +73,7 @@ def create(request, ct_id):
     ct_attractions_co_list=[]
     all_ct_data = {} #days從1開始
 
-    # 原始
-    # try:
-    #     # 抓出這是哪一筆行程且天數為第1天(後續要改成抓全部
-    #     ct_attractions_data = ChoiceDay_Ct.objects.get(ct_id=ct_id, day=choiceday) 
-    #     # 抓目前位置
-    #     local_xy = [ct_attractions_data.start_location_x,ct_attractions_data.start_location_y]
-    #     # 抓出發時間
-    #     user_nowtime = format_minutes_as_time(ct_attractions_data.start_time)
-    #     location_name = ct_attractions_data.name
-    #     # 抓出這筆行程中的所有景點
-    #     ct_attractions_list = Attractions_Ct.objects.filter(
-    #         choice_ct_id=ct_attractions_data.id
-    #     ).values()
-       
-    #     # 抓出所有景點的詳細資料
-    #     for a in ct_attractions_list:
-    #         crowd_index_list.append(int(a['a_start_time']%1400//60)) #人潮流量索引
-    #         ct_attractions_detail_list.append(Attractions.objects.get(id=a['a_id']))
-    #     print('ct_attractions_detail_list',ct_attractions_detail_list)
-    #     print('crowd_index_list',crowd_index_list)
-    #     # 抓出景點的人潮與營業時間(第1天)
-    #     for co in ct_attractions_detail_list:
-    #         ct_attractions_co_list.append(Crowd_Opening.objects.get(a_id=co.id,week=week))
-    #     #抓人潮流量
-    #     for i in range(len(ct_attractions_list)):
-    #         crowd_list.append(ct_attractions_co_list[i].crowd[crowd_index_list[i]]) 
-    #     print('ct_attractions_co_list',ct_attractions_co_list)
-    #     print('crowd_list',crowd_list)
-        
-        
-    #     # 合併上面四個資料
-    #     for attraction, detail, co, crowd_list in zip(ct_attractions_list, ct_attractions_detail_list, ct_attractions_co_list,crowd_list):
-    #         all_ct_data.append({
-    #             'attraction': attraction,
-    #             'detail': detail,
-    #             'co': co,
-    #             'crowd_list' : crowd_list
-    #         })
-    # except:
-    #     ct_attractions_list = []
-    # print(ct_attractions_list)
-    # try:
+    
     # 抓出這是哪一筆行程
     ct_attractions_data_total = ChoiceDay_Ct.objects.filter(ct_id=ct_id).order_by('day')
     # 抓目前位置
@@ -163,7 +122,7 @@ def create(request, ct_id):
 
     if request.method == "POST":
         ct_status = request.POST["ct_status"]
-        print(ct_status)
+        #這是推薦景點~
         if ct_status == "0":
             get_user_address = list(map(float, request.POST["user_location"].split(",")))
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
@@ -174,7 +133,7 @@ def create(request, ct_id):
             m = recommend(
                 user_favorite_type, new_nowtime, get_user_address, start_day, stay_time
             )
-            m_list = Attractions.objects.filter(place_id__in=m)
+            m_list = (Attractions.objects.filter(place_id__in=m) | recommend_maybe(uid)).distinct()
             crow_opening_list = []
             for i in m_list:
                 m_db = (
@@ -191,6 +150,7 @@ def create(request, ct_id):
                     'm_list': m,
                     'crow_opening_list': c,
                 })
+
             html = render_to_string(
                 template_name="create_recommend.html",
                 context={"recommend_data": recommend_data},

@@ -118,6 +118,15 @@ def attraction_details(request):
         print(choose_attractions)
         choose_attractions.hit += 1
         choose_attractions.save()
+
+        # 記錄使用者點擊
+        if UserClick.objects.filter(u_id=user.id, a_id=choose_attractions.id).exists():
+            user_click = UserClick.objects.get(u_id=user.id, a_id=choose_attractions.id)
+            user_click.click_count += 1
+            user_click.save()
+        else:
+            UserClick.objects.create(u_id=user.id, a_id=choose_attractions.id)
+
         # 判斷是否已收藏
         
         is_favorite = Favorite.objects.filter(

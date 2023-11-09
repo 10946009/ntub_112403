@@ -33,7 +33,10 @@ class User(AbstractUser):
         verbose_name = "user"
         verbose_name_plural = verbose_name
 
-
+class UserClick(models.Model):
+    u = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    a = models.ForeignKey(to='Attractions', on_delete=models.CASCADE)
+    click_count = models.IntegerField(default=1, null=False, blank=False)
 # class User(models.Model):
 #     account = models.TextField(max_length=255,null=False, blank=False)
 #     passwd = models.TextField(max_length=255,null=False, blank=False)
