@@ -1,10 +1,15 @@
 <div class="row">
-    <div class="return_pre" style="margin-top: -70px; margin-left: 20px;">
-        <h3 onclick="showInfo()" style="cursor: pointer;" title="上一頁">
-            <div class="return_1"><i class="fa-regular fa-circle-left"></i><strong>返回上一頁</strong></div>
-            <div class="return_2"><strong>返回上一頁</strong></div>
-        </h3>
+    <div class="col-1"></div>
+    <div class="col-10">
+        <div class="return_pre" style="margin-top: -90px; margin-left: -40px;">
+            <h3 onclick="showInfo()" title="上一頁">
+                <div class="return_1"><i class="fa-regular fa-circle-left"></i><strong>&thinsp;返回</strong>
+                </div>
+                <div class="return_2"><strong>返回上一頁</strong></div>
+            </h3>
+        </div>
     </div>
+    <div class="col-1"></div>
 </div>
 <div class="row">
     <div class="col-1"></div>
@@ -16,7 +21,7 @@
                     <h2 style="color: rgb(172, 78, 1)" id="attractions-detail-name"><strong>{{ detail.a_name }}</strong>
                     </h2>
                 </div>
-                <div class="detail_name__headerGrid" style="text-align: center; font-size: 24px;">
+                <div class="detail_name__headerGrid icon_add" style="">
                     <i class="fa-solid fa-arrow-up-from-bracket icon_name" id="share_icon"
                         onclick=" showShareLoaderAndContent()" title="分享"
                         style="border: black solid; border-radius: 60px;padding:6px 8px 6px 8px;"></i>
