@@ -116,103 +116,103 @@ function adjustTextHeight(selector) {
 }
 
 // 翻轉左邊區塊W&按鈕RWD變換
-var isdoneJourneyVisible = false;
-var isLeftIconSet = false;
-
-function checkLeftWindowSize() {
-  const button = document.getElementsByClassName('changeToRec');
-  if (window.innerWidth <= 690) {
-    if (!isLeftIconSet) {
-      setLeftIconContent(button[0]); // Since getElementsByClassName returns a collection, select the first element
-      isLeftIconSet = true;
-    }
-  } else {
-    button[0].textContent = isdoneJourneyVisible ? '重新推薦' : '景點排序';
-    isLeftIconSet = false;
-  }
-}
-
-function setLeftIconContent(button) {
-  if (isdoneJourneyVisible) {
-    button.innerHTML = '<i class="fa-solid fa-repeat"></i>';
-  } else {
-    button.innerHTML = '<i class="fa-solid fa-route"></i>';
-  }
-}
-
-function rotateLeftAndToggleContent(globalDay) {
-  console.log(globalDay);
-  const checkRec = document.getElementById('checkRec-' + globalDay);
-  const done = document.getElementById('done-' + globalDay);
-  const button = document.getElementById("changeToRec-" + globalDay);
-
-  isdoneJourneyVisible = !isdoneJourneyVisible;
-
-  if (isdoneJourneyVisible) {
-    checkRec.style.transform = 'rotateY(180deg)';
-    done.style.transform = 'rotateY(0deg)';
-    button.style.backgroundColor = 'rgb(255, 41, 101)';
-    setLeftIconContent(button);
-    isLeftIconSet = true;
-  } else {
-    checkRec.style.transform = 'rotateY(0deg)';
-    done.style.transform = 'rotateY(180deg)';
-    button.style.backgroundColor = '#0066DB';
-    setLeftIconContent(button);
-    isLeftIconSet = true;
-  }
-}
-
-// Call checkLeftWindowSize when the window loads and when it's resized
-window.addEventListener('load', checkLeftWindowSize);
-window.addEventListener('resize', checkLeftWindowSize);
-
-// Call rotateLeftAndToggleContent when the button is clicked
-document.getElementById('changeToRec-{{ day }}').addEventListener('click', rotateLeftAndToggleContent);
-
 // var isdoneJourneyVisible = false;
+// var isLeftIconSet = false;
 
-// function clickChangeDone() {
-//   console.log(globalDay)
+// function checkLeftWindowSize() {
+//   const button = document.getElementsByClassName('changeToRec');
+//   if (window.innerWidth <= 690) {
+//     if (!isLeftIconSet) {
+//       setLeftIconContent(button[0]); // Since getElementsByClassName returns a collection, select the first element
+//       isLeftIconSet = true;
+//     }
+//   } else {
+//     button[0].textContent = isdoneJourneyVisible ? '重新推薦' : '景點排序';
+//     isLeftIconSet = false;
+//   }
+// }
+
+// function setLeftIconContent(button) {
+//   if (isdoneJourneyVisible) {
+//     button.innerHTML = '<i class="fa-solid fa-repeat"></i>';
+//   } else {
+//     button.innerHTML = '<i class="fa-solid fa-route"></i>';
+//   }
+// }
+
+// function rotateLeftAndToggleContent(globalDay) {
+//   console.log(globalDay);
 //   const checkRec = document.getElementById('checkRec-' + globalDay);
 //   const done = document.getElementById('done-' + globalDay);
 //   const button = document.getElementById("changeToRec-" + globalDay);
 
-//   isdoneJourneyVisible = !isdoneJourneyVisible
+//   isdoneJourneyVisible = !isdoneJourneyVisible;
+
 //   if (isdoneJourneyVisible) {
 //     checkRec.style.transform = 'rotateY(180deg)';
 //     done.style.transform = 'rotateY(0deg)';
-//     button.textContent = "重新推薦";
-//     button.style.backgroundColor = "rgb(255, 41, 101)";
-
+//     button.style.backgroundColor = 'rgb(255, 41, 101)';
+//     setLeftIconContent(button);
+//     isLeftIconSet = true;
 //   } else {
 //     checkRec.style.transform = 'rotateY(0deg)';
 //     done.style.transform = 'rotateY(180deg)';
-//     button.textContent = "景點排序";
-//     button.style.backgroundColor = "#0066DB";
+//     button.style.backgroundColor = '#0066DB';
+//     setLeftIconContent(button);
+//     isLeftIconSet = true;
 //   }
 // }
-// // RWD文字切圖示按鈕
-// const repeatBtn = document.querySelector('.changeToRec');
 
-// function changeRepeatBtnTxt() {
-//   if (window.innerWidth <= 690) {
-//     if (repeatBtn.textContent === '重新推薦') {
-//       // repeatBtn.classList.add('repeatIcon_btn');
-//       repeatBtn.innerHTML = '<i class="fa-solid fa-repeat"></i>';
-//     } else if (repeatBtn.textContent === '景點排序') {
-//       // repeatBtn.classList.add('doneIcon_btn');
-//       repeatBtn.innerHTML = '<i class="fa-solid fa-route"></i>';
-//     }
-//   }
-//   if(window.innerWidth > 690){
-//     if(repeatBtn.innerHTML === '<i class="fa-solid fa-repeat"></i>'){
-//       repeatBtn.innerHTML = '重新推薦';
-//     }else if(repeatBtn.innerHTML === '<i class="fa-solid fa-route"></i>'){
-//       repeatBtn.innerHTML = '景點排序';
-//     }
-//   }
-// }
+// // Call checkLeftWindowSize when the window loads and when it's resized
+// window.addEventListener('load', checkLeftWindowSize);
+// window.addEventListener('resize', checkLeftWindowSize);
+
+// // Call rotateLeftAndToggleContent when the button is clicked
+// document.getElementById('changeToRec-{{ day }}').addEventListener('click', rotateLeftAndToggleContent);
+
+var isdoneJourneyVisible = false;
+
+function clickChangeDone() {
+  console.log(globalDay)
+  const checkRec = document.getElementById('checkRec-' + globalDay);
+  const done = document.getElementById('done-' + globalDay);
+  const button = document.getElementById("changeToRec-" + globalDay);
+
+  isdoneJourneyVisible = !isdoneJourneyVisible
+  if (isdoneJourneyVisible) {
+    checkRec.style.transform = 'rotateY(180deg)';
+    done.style.transform = 'rotateY(0deg)';
+    button.textContent = "重新推薦";
+    button.style.backgroundColor = "rgb(255, 41, 101)";
+
+  } else {
+    checkRec.style.transform = 'rotateY(0deg)';
+    done.style.transform = 'rotateY(180deg)';
+    button.textContent = "景點排序";
+    button.style.backgroundColor = "#0066DB";
+  }
+}
+// RWD文字切圖示按鈕
+const repeatBtn = document.querySelector('.changeToRec');
+
+function changeRepeatBtnTxt() {
+  if (window.innerWidth <= 690) {
+    if (repeatBtn.textContent === '重新推薦') {
+      // repeatBtn.classList.add('repeatIcon_btn');
+      repeatBtn.innerHTML = '<i class="fa-solid fa-repeat"></i>';
+    } else if (repeatBtn.textContent === '景點排序') {
+      // repeatBtn.classList.add('doneIcon_btn');
+      repeatBtn.innerHTML = '<i class="fa-solid fa-route"></i>';
+    }
+  }
+  if(window.innerWidth > 690){
+    if(repeatBtn.innerHTML === '<i class="fa-solid fa-repeat"></i>'){
+      repeatBtn.innerHTML = '重新推薦';
+    }else if(repeatBtn.innerHTML === '<i class="fa-solid fa-route"></i>'){
+      repeatBtn.innerHTML = '景點排序';
+    }
+  }
+}
 
 
 // 送出功能整合到clickChangeDone函数中
