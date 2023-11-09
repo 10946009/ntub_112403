@@ -177,3 +177,25 @@ $(document).ready(function () {
     }
   });
 })
+
+// 顯示目前市第幾張圖
+document.addEventListener("DOMContentLoaded", function() {
+  var carousel = document.getElementById('carouselExampleRide');
+  var counter = document.getElementById('imgCounter');
+  var totalItems = carousel.querySelectorAll('.carousel-item').length; // 定義 totalItems 變數，表示總共有幾張圖片
+  
+  var carouselInstance = new bootstrap.Carousel(carousel, {
+    interval: 3000
+  });
+
+  carouselInstance.update = function () {
+    var activeIndex = Array.from(carousel.querySelectorAll('.carousel-item')).indexOf(carousel.querySelector('.carousel-item.active')) + 1;
+    counter.innerHTML = activeIndex + '  /  ' + totalItems;
+  };
+
+  carousel.addEventListener('slid.bs.carousel', function () {
+    carouselInstance.update();
+  });
+
+  carouselInstance.update();
+});

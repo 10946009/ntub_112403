@@ -221,7 +221,13 @@
     border-radius: 50%;
     border: 1px solid black;
 }
-
+.imgCounter{
+    position: absolute;
+    bottom: 10px; /* 距離底部的距離 */
+    right: 10px; /* 距離右邊的距離 */
+    background: rgba(255, 255, 255, 0.7); /* 背景顏色，可選 */
+    padding: 5px; /* 內邊距，可選 */
+}
 /*展開詳細行程*/
 .hidden-details {
     /* display: none; */
