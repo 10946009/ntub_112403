@@ -1226,15 +1226,21 @@ img {
 } */
 
 .return_1 {
+    width: 8%;
     color: rgb(110, 79, 34);
+    cursor: pointer;
 }
 
 .return_1:hover {
-    transform: translateX(-10px);
+    transform: translateX(-20px);
     color: #2c63c8;
 }
 
 .return_2 {
+    width: 100%;
+    position: absolute;
+    left: 5px;
+    /* margin-left: 20px; */
     display: none;
 }
 
@@ -1254,6 +1260,17 @@ img {
 /* .detail_name__headerGrid {
     text-align: center;
 } */
+
+.icon_add {
+    text-align: center;
+    font-size: 24px;
+    position: absolute;
+    right: 10%;
+}
+
+.icon_name {
+    background: rgb(255, 255, 255);
+}
 
 .icon_name:hover {
     background-color: #000;
@@ -2589,6 +2606,14 @@ img {
         color: #fff;
         margin: 150px 0;
         text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 收藏分享位置 */
+    .icon_add {
+        text-align: center;
+        font-size: 24px;
+        position: absolute;
+        right: 1%;
     }
 
 }
