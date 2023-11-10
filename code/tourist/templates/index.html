@@ -45,7 +45,7 @@
                 <div class="group">
                   <i class="fa-solid fa-plus add_icon"></i>
                   <div class="dropdown_menu">
-                    <div><a class="dropdown_item" href="#">新增行程</a></div>
+                    <div><a class="dropdown_item" href="/createindex">新增行程</a></div>
                     <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
                     <div><a class="dropdown_item" href="#">開車一日遊</a></div>
                   </div>
@@ -166,10 +166,13 @@
             <div class="heart_icon_img">
               
               <div class="imgcontainer">
-                <div id="hover">
+                <div id="hover" class="hover" onmouseover="slideShow()">
                   <!-- 行程圖片  將下方的bottom修改為想切換的圖片-->
-                  <img src="../static/images/beitou.jpeg" class="img-responsive bottom" alt="">
-                  <img src="/static/images/attractions/{{ ct.img }}_0.jpg" class="spot_img img-responsive top" width="100%" alt="">
+                  <!-- <img src="../static/images/cloud1.png" class="img-responsive slideImg slideImg_show" alt="">
+                  <img src="../static/images/cake01.jpg" class="img-responsive slideImg " alt="">
+                  <img src="../static/images/101.jpg" class="img-responsive slideImg " alt=""> -->
+                  <img src="../static/images/beitou.jpeg" class="img-responsive bottom" alt="圖一">
+                  <img src="/static/images/attractions/{{ ct.img }}_0.jpg" class="spot_img img-responsive top" width="100%" alt="圖二">
                 </div>
                 <!-- 加入最愛 -->
                 {% if ct.is_favorite == "1" %}
@@ -195,7 +198,6 @@
             </div>
           </div>
         {% endfor %}
-        
         <!--  以下為熱門行程範例~~  -->
         {% comment %} <div class="col-md-4 hot_spot_block hidemespot" style="padding: 5px;">
           <div class="heart_icon_img">
@@ -256,7 +258,7 @@
           </div>
         </div> {% endcomment %}
 
-      </div>
+      </ㄥdiv>
       <!-- <div class="hideme">Fade In</div> -->
 
     </div>
