@@ -170,16 +170,21 @@ function adjustTextHeight(selector) {
 // // Call rotateLeftAndToggleContent when the button is clicked
 // document.getElementById('changeToRec-{{ day }}').addEventListener('click', rotateLeftAndToggleContent);
 
-var isdoneJourneyVisible = false;
-
-function clickChangeDone() {
-  console.log(globalDay)
-  const checkRec = document.getElementById('checkRec-' + globalDay);
-  const done = document.getElementById('done-' + globalDay);
-  const button = document.getElementById("changeToRec-" + globalDay);
-
-  isdoneJourneyVisible = !isdoneJourneyVisible
-  if (isdoneJourneyVisible) {
+var total_day = document.getElementsByClassName('tab-pane')
+var isdoneJourneyVisible = {};
+for( var i = 0; i < total_day.length; i++ ){
+  isdoneJourneyVisible[i+1] = false;
+}
+function clickChangeDone(day=null) {
+  if(day === null){
+    day = globalDay;
+  }
+  console.log(day)
+  const checkRec = document.getElementById('checkRec-' + day);
+  const done = document.getElementById('done-' + day);
+  const button = document.getElementById("changeToRec-" + day);
+  isdoneJourneyVisible[day] = !isdoneJourneyVisible[day];
+  if (isdoneJourneyVisible[day]) {
     checkRec.style.transform = 'rotateY(180deg)';
     done.style.transform = 'rotateY(0deg)';
     button.textContent = "重新推薦";
@@ -516,12 +521,15 @@ function checkAndAddClass() {
 }
 
 
-function inputBottom(){
+function inputBottom(day=null){
+  if(day === null){
+    day = globalDay;
+  }
   $.ajax({
     url:"/attractions",
     type: "GET",
     data: {
-      aidlist:Array.from(now_click_attractions[globalDay]).join(','),
+      aidlist:Array.from(now_click_attractions[day]).join(','),
     },
     success: function (response) {
       document.getElementById('bottomAttraction').innerHTML = response;
@@ -532,6 +540,26 @@ function inputBottom(){
     },
   });
 }
+// 用來進去翻轉景點排序或推薦景點的部分
+function checkHasData(){
+    const leftDev = document.querySelectorAll(".recAndDone");
+    console.log(leftDev);
+    leftDev.forEach(function (container, index) {
+      const hasAttractions = container.querySelector('.innerlist');
+      // console.log(hasAttractions);
+      if (hasAttractions != null) {
+        const changeToRec = container.querySelector('.changeToRec').id;
+        clickChangeDone(changeToRec.charAt(changeToRec.length - 1))
+      }
+    });
+}
+
+//用來把有的資料放入暫存區
+function checkHasDataBottom(){
+  
+}
+
+checkHasDataBottom()
 window.onload = changeRepeatBtnTxt;
 window.addEventListener('resize', changeRepeatBtnTxt);
 

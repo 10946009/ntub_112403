@@ -1,17 +1,17 @@
 
 //圖片等於螢幕高度
-window.onload = function(){
+window.onload = function () {
   var bannerbgimg = document.getElementsByClassName('banner');
   bannerbgimg.style.height = window.innerHeight + "px";
 }
 //重新計算螢幕高度
-window.onresize = function(){
+window.onresize = function () {
   var bannerbgimg = document.getElementsByClassName('banner');
   bannerbgimg.style.height = window.innerHeight + "px";
 }
 
 // randomBanner
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded", function () {
   var images = [
     '../static/images/IMG20220125115200.jpg',
     '../static/images/bg1.jpg',
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded",function(){
     '../static/images/jp_img.jpg',
   ]
 
-  var randomIndex = Math.floor(Math.random()*images.length);
+  var randomIndex = Math.floor(Math.random() * images.length);
   var randomImg = images[randomIndex];
 
   var banner = document.getElementById("randomBanner");
@@ -38,68 +38,32 @@ document.addEventListener("DOMContentLoaded",function(){
 })
 
 // change img when mouser hover
-        $(document).ready(function () {
-          $('.hoverTest').each(function () {
-              var $images = $(this).find('img');
-              var imageCount = $images.length;
-              var currentIndex = 0;
-              var timer; // 定时器变量
+function startSlideshow(container) {
+  let currentImageIndex = 1;  // 设置为1，从第二张图开始显示
+  const images = container.querySelectorAll('.changeImg');
 
-              function showImage(index) {
-                  $images.css('opacity', '0'); // 隐藏所有图片
-                  $images.eq(index).css('opacity', '1'); // 显示特定索引的图片
-              }
+  // 显示下一张图（从第二张开始）
+  images[currentImageIndex].classList.add('changeImg_show');
 
-              function nextImage() {
-                  currentIndex = (currentIndex + 1) % imageCount;
-                  showImage(currentIndex);
-              }
+  // 启动定时器，每2秒切换一次图片
+  container.slideshowInterval = setInterval(() => {
+      images[currentImageIndex].classList.remove('changeImg_show');
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      images[currentImageIndex].classList.add('changeImg_show');
+  }, 2000);
+}
 
+function stopSlideShow(container) {
+  clearInterval(container.slideshowInterval);
 
-              $(this).on('mouseenter', function () {
-                  // 当鼠标进入 .hoverTest 区域时
-                  showImage(1); // 显示第二张图片
-                  timer = setTimeout(function () {
-                      nextImage(); // 三秒后显示下一张图片
-                      timer = setInterval(nextImage, 3000); // 每三秒切换一次图片
-                  }, 2000);
-              }).on('mouseleave', function () {
-                  // 当鼠标离开 .hoverTest 区域时
-                  clearTimeout(timer); // 清除定时器
-                  $images.css('opacity', '1'); 
-              });
-          })
+  // 移除所有图片的 'show' 类
+  container.querySelectorAll('.changeImg').forEach(img => img.classList.remove('changeImg_show'));
 
-      });
-
-// const imageMouse = document.getElementById("hover").getElementsByTagName('img');
-// const initialImg = imageMouse[0].src;
-
-// const imageMouseSource = [
-//   '../static/images/attractions/{{item.place_id}}_0.jpg',
-//   '../static/images/attractions/{{item.place_id}}_1.jpg',
-//   '../static/images/attractions/{{item.place_id}}_2.jpg',
-// ]
-
-// function changeImg(){
-//   for (let i = 0; i < imageMouse.length; i++){
-//     imageMouse[i].src = imageMouseSource[i] || initialImg;
-//   }
-// }
-// function resetImg(){
-//   for (let i = 0; i < imageMouse.length; i++){
-//     imageMouse[i].src = initialImg;
-//   }
-// }
-
+  // 将第一张图片添加 'show' 类
+  container.querySelector('.changeImg').classList.add('changeImg_show');
+}
 
 //向下滑動
-// document.querySelector('.scroll-down-button').addEventListener('click', function (e) {
-//   e.preventDefault();
-//   document.querySelector('#main').scrollIntoView({
-//       behavior: 'smooth'
-//   });
-// });
 document.querySelector('.scroll-down-button').addEventListener('click', function (e) {
   e.preventDefault();
   const navbarHeight = document.querySelector('nav').offsetHeight; // 获取导航栏的高度
@@ -116,40 +80,26 @@ document.querySelector('.scroll-down-button').addEventListener('click', function
 var heart = document.getElementsByClassName('heart_icon');
 
 // var span = document.getElementsByClassName('count');
-for(var i = 0;i < heart.length; i++){
-    // var count;
-    (function(i){
-        heart[i].onclick = function(){
-          var isFavorite = this.getAttribute("data-isfavorite");
-          if(isFavorite==="0"){
-            this.setAttribute("data-isfavorite", "1");//無收藏被點擊
-            this.className = "fa-solid fa-heart heart_icon active_heart";
-            // ++span[i].innerHTML;
-          }else{
-            this.setAttribute("data-isfavorite", "0");//點擊取消收藏
-            this.className = "fa-solid fa-heart heart_icon";
-            // --span[i].innerHTML;
-          }
-          id = this.getAttribute("data-id")
-          type = this.getAttribute("data-type")
-          addFavorite_index(id,type);
-        }  
-    })(i);
-} 
-
-//熱門行程詳細資訊
-// $(function(){
-//   $("#hot_spot_show").hide();
-
-//   $(".more_data").click(function(){
-
-//     $("#hot_spot_show").fadeIn(200);
-//   })
-
-//   $(".close").click(function(){
-//     $("#hot_spot_show").fadeOut(200);
-//   })
-// })
+for (var i = 0; i < heart.length; i++) {
+  // var count;
+  (function (i) {
+    heart[i].onclick = function () {
+      var isFavorite = this.getAttribute("data-isfavorite");
+      if (isFavorite === "0") {
+        this.setAttribute("data-isfavorite", "1");//無收藏被點擊
+        this.className = "fa-solid fa-heart heart_icon active_heart";
+        // ++span[i].innerHTML;
+      } else {
+        this.setAttribute("data-isfavorite", "0");//點擊取消收藏
+        this.className = "fa-solid fa-heart heart_icon";
+        // --span[i].innerHTML;
+      }
+      id = this.getAttribute("data-id")
+      type = this.getAttribute("data-type")
+      addFavorite_index(id, type);
+    }
+  })(i);
+}
 
 //add選單
 function toggleDropdownMenu(addIcon) {
@@ -157,11 +107,11 @@ function toggleDropdownMenu(addIcon) {
   var dropdownMenu = group.find('.dropdown_menu'); // 使用 jQuery 的 find() 方法尋找 .dropdown_menu 元素
   var flagAdd = true;
 
-  addIcon.onclick = function() {
+  addIcon.onclick = function () {
     if (flagAdd) {
       flagAdd = false;
-      dropdownMenu.fadeIn(200); 
-      } else {
+      dropdownMenu.fadeIn(200);
+    } else {
       flagAdd = true;
       dropdownMenu.fadeOut(200);
     }
@@ -169,10 +119,10 @@ function toggleDropdownMenu(addIcon) {
 }
 
 //add dropdown
-$(function() {
+$(function () {
   $(".dropdown_menu").hide();
 
-  $(".add_icon").click(function() {
+  $(".add_icon").click(function () {
     var addIcon = $(this);
     var dropdownMenu = addIcon.siblings(".dropdown_menu");
 
@@ -182,7 +132,7 @@ $(function() {
   });
 
   // 點選任意地方時，檢查點擊的目標元素是否位於 .group 內部，若不是則隱藏 .dropdown_menu
-  $(document).click(function(event) {
+  $(document).click(function (event) {
     if (!$(event.target).closest(".group").length) {
       $(".dropdown_menu").fadeOut(200);
       $(".add_icon").removeClass("active");
@@ -191,103 +141,118 @@ $(function() {
 });
 
 //滑到才顯示
-// $(document).ready(function() {
-//   /* Every time the window is scrolled ... */
-//   $(window).scroll( function(){
-//       /* Check the location of each desired element */
-//       $('.hideme').each( function(i){
-          
-//           var bottom_of_object = $(this).offset().top + $(this).outerHeight();
-//           var bottom_of_window = $(window).scrollTop() + $(window).height();
-          
-//           /* If the object is completely visible in the window, fade it it */
-//           if( bottom_of_window > bottom_of_object ){
-              
-//               $(this).animate({'opacity':'1'},500);
-//           }
-//       }); 
-//   });
-// });
 
-$(document).ready(function() {
+$(document).ready(function () {
   /* Every time the window is scrolled ... */
-  $(window).scroll(function() {
+  $(window).scroll(function () {
     /* Check the location of each desired element */
 
     // For .hideme
-    $('.hideme').each(function(i) {
+    $('.hideme').each(function (i) {
       var $this = $(this);
       var bottom_of_object = $this.offset().top + $this.outerHeight();
       var bottom_of_window = $(window).scrollTop() + $(window).height();
 
       if (bottom_of_window > bottom_of_object) {
-        $(this).animate({'opacity':'1'},500);
+        $(this).animate({ 'opacity': '1' }, 500);
       }
     });
 
     // For .hidemespot
-    $('.hidemespot').each(function(i) {
+    $('.hidemespot').each(function (i) {
       var $this = $(this);
       var bottom_of_object = $this.offset().top + $this.outerHeight();
       var bottom_of_window = $(window).scrollTop() + $(window).height();
 
       if (bottom_of_window > bottom_of_object) {
-        $(this).animate({'opacity':'1'},1000);
+        $(this).animate({ 'opacity': '1' }, 1000);
       }
     });
 
     // For .hidemehot熱門景點
-    $('.hidemehot').each(function(i) {
+    $('.hidemehot').each(function (i) {
       var $this = $(this);
       var bottom_of_object = $this.offset().top + $this.outerHeight();
       var bottom_of_window = $(window).scrollTop() + $(window).height();
 
       if (bottom_of_window > bottom_of_object) {
-        setTimeout(function() {
-          $this.css('position','relative');
-          $this.css('top','-100%');
-          $this.animate({ 
-            'opacity': '1' ,
-            'top' : '0'
+        setTimeout(function () {
+          $this.css('position', 'relative');
+          $this.css('top', '-100%');
+          $this.animate({
+            'opacity': '1',
+            'top': '0'
           }, 1000); // 不同的延迟时间
         }, i * 500); // 不同的延迟时间
       }
     })
 
     // For .hidemehottoleft輪播
-    $('.hidemehottoleft').each(function(i) {
+    $('.hidemehottoleft').each(function (i) {
       var $this = $(this);
       var bottom_of_object = $this.offset().top + $this.outerHeight();
       var bottom_of_window = $(window).scrollTop() + $(window).height();
 
       if (bottom_of_window > bottom_of_object) {
-        setTimeout(function() {
-          $this.css('position','relative');
-          $this.css('left','100%');
-          $this.animate({ 
-            'opacity': '1' ,
-            'left' : '0'
+        setTimeout(function () {
+          $this.css('position', 'relative');
+          $this.css('left', '100%');
+          $this.animate({
+            'opacity': '1',
+            'left': '0'
           }, 1000); // 不同的延迟时间
         }, i * 500); // 不同的延迟时间
       }
     });
 
     // For .hidemeexplore
-    $('.hidemeexplore').each(function(i) {
+    $('.hidemeexplore').each(function (i) {
       var $this = $(this);
       var bottom_of_object = $this.offset().top + $this.outerHeight();
       var bottom_of_window = $(window).scrollTop() + $(window).height();
 
       if (bottom_of_window > bottom_of_object) {
-        setTimeout(function() {
-          $this.css('position','relative');
-          $this.css('top','100%');
-          $this.animate({ 
-            'opacity': '1' ,
-            'top' : '0'
+        setTimeout(function () {
+          $this.css('position', 'relative');
+          $this.css('top', '100%');
+          $this.animate({
+            'opacity': '1',
+            'top': '0'
           }, 1000); // 不同的延迟时间
         }, i * 500); // 不同的延迟时间
       }
     });
   });
 });
+
+// 計算輪播圖最大高度 高度一致
+$(document).ready(function () {
+  // 在文件載入時和視窗尺寸改變時調整高度
+  adjustTextHeightOnResize('.carousel_block .carousel_txt');
+});
+
+function adjustTextHeightOnResize(selector) {
+  // 初始化高度
+  adjustTextHeight(selector);
+
+  // 監聽視窗大小改變事件
+  $(window).on('resize', function () {
+    adjustTextHeight(selector);
+  });
+}
+
+function adjustTextHeight(selector) {
+  $(selector).height('auto'); // 先重置高度以便重新計算
+  var maxHeight = 0;
+
+  // 找出最大高度
+  $(selector).each(function () {
+    var textHeight = $(this).outerHeight();
+    if (textHeight > maxHeight) {
+      maxHeight = textHeight;
+    }
+  });
+
+  // 將所有文字區塊設置為最大高度
+  $(selector).height(maxHeight);
+}

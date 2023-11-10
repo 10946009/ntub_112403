@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-1"></div>
     <div class="col-10">
-        <div class="return_pre" style="margin-top: -90px; margin-left: -40px;">
+        <div class="return_pre" style="margin-top: -80px; margin-left: -40px;">
             <h3 onclick="showInfo()" title="上一頁">
                 <div class="return_1"><i class="fa-regular fa-circle-left"></i><strong>&thinsp;返回</strong>
                 </div>
@@ -21,7 +21,7 @@
                     <h2 style="color: rgb(172, 78, 1)" id="attractions-detail-name"><strong>{{ detail.a_name }}</strong>
                     </h2>
                 </div>
-                <div class="detail_name__headerGrid icon_add" style="">
+                <div class="detail_name__headerGrid icon_add">
                     <i class="fa-solid fa-arrow-up-from-bracket icon_name" id="share_icon"
                         onclick=" showShareLoaderAndContent()" title="分享"
                         style="border: black solid; border-radius: 60px;padding:6px 8px 6px 8px;"></i>
@@ -261,47 +261,48 @@
                 </div>
                 <!-- 鄰近景點 -->
                 <div class="row" style="margin-left: 10px;">
-                    <h5 style="font-size: 24px; margin-top: 20px;">
+                    <h5 style="font-size: 24px; margin-top: 20px; margin-bottom: 20px;">
                         <i class="fa-solid fa-map"></i>
                         鄰近景點
                     </h5>
                     <div class="row">
                         {% for near in near_attractions %}
-                        <div class="detail_near__header" onclick="showInfo({{ near.id }})">
+                        <div class=" detail_near__header" onclick="showInfo({{ near.id }})">
                             <div class="detail_near__headerGrid">
                                 <img src="/static/images/attractions/{{near.place_id}}_0.jpg" class="show_detail_img"
-                                    style="margin-top: 1px; width:100%;max-width: 100%;" alt="">
+                                    style="margin-top: 1px; width:100%;max-width: 100%; border: black solid;" alt="">
                             </div>
                             <div class="detail_near__headerGrid">
-                                <h4 data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                <h4 class="near_name" data-bottom-top="transform: translateY(-20px);opacity: 0"
                                     data-center="transform: translateY(0px);opacity: 1" data-a-Id="{{ near.id }}">
-                                    {{near.a_name }}</h3>
-                                    <!-- 星星數 -->
-                                    <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
-                                        data-center="transform: translateY(0px);opacity: 1;">
-                                        {% for i in "12345" %}
-                                        {% if i|add:0 <= near.rating %} <span class="rating-star"
-                                            style="color: rgb(241, 226, 62);">
-                                            &#9733;</span>
-                                            {% else %}
-                                            <span class="rating-star">&#9733;</span>
-                                            {% endif %}
-                                            {% endfor %}
-                                    </div>
-                                    <!-- 評分 -->
-                                    <h6 style="margin-top:5px;"
-                                        data-bottom-top="transform: translateY(-20px);opacity: 0"
-                                        data-center="transform: translateY(0px);opacity: 1">
-                                        綜合評分： <span id="list-selectedRating">{{ near.rating }}</span> / 5
-                                        ({{near.rating_total}}則評分)
-                                    </h6>
-                                    <!-- 總瀏覽人數 -->
-                                    <h6 style="color:#8b8a8a;" data-bottom-top="transform: translateY(-20px);opacity: 0"
-                                        data-center="transform: translateY(0px);opacity: 1">
-                                        <i class="fa-regular fa-eye"></i>&thinsp;瀏覽人數：<span>{{near.hit}}</span>人
-                                    </h6>
+                                    {{near.a_name }}
+                                </h4>
+                                <!-- 星星數 -->
+                                <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                    data-center="transform: translateY(0px);opacity: 1;">
+                                    {% for i in "12345" %}
+                                    {% if i|add:0 <= near.rating %} <span class="rating-star"
+                                        style="color:rgb(214, 166, 54);">
+                                        &#9733;</span>
+                                        {% else %}
+                                        <span class="rating-star">&#9733;</span>
+                                        {% endif %}
+                                        {% endfor %}
+                                </div>
+                                <!-- 評分 -->
+                                <h6 style="margin-top:5px;" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                    data-center="transform: translateY(0px);opacity: 1">
+                                    <span id="list-selectedRating">{{ near.rating }}</span> / 5
+                                    ({{near.rating_total}}則評分)
+                                </h6>
+                                <!-- 總瀏覽人數 -->
+                                <h6 style="color:#8b8a8a;" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                    data-center="transform: translateY(0px);opacity: 1">
+                                    <i class="fa-regular fa-eye"></i>&thinsp;<span>{{near.hit}}</span>
+                                </h6>
                             </div>
                         </div>
+                        <hr class="near_hr">
                         {% endfor %}
                         {% comment %} <div class="detail_near__header">
                             <div class="detail_near__headerGrid">
