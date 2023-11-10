@@ -487,14 +487,14 @@ body {
 }
 
 /* 下面learn more的部分 */
-.bottom h5 {
+.bottom h4 {
     color: #333;
     transition: 0.5s;
     cursor: pointer;
 }
 
 /* 下面learn more的部分 */
-.bottom h5:hover {
+.bottom h4:hover {
     color: #B54434;
     transform: scale(1.1);
 }
