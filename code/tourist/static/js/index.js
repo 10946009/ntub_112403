@@ -64,12 +64,6 @@ function stopSlideShow(container) {
 }
 
 //向下滑動
-// document.querySelector('.scroll-down-button').addEventListener('click', function (e) {
-//   e.preventDefault();
-//   document.querySelector('#main').scrollIntoView({
-//       behavior: 'smooth'
-//   });
-// });
 document.querySelector('.scroll-down-button').addEventListener('click', function (e) {
   e.preventDefault();
   const navbarHeight = document.querySelector('nav').offsetHeight; // 获取导航栏的高度
@@ -106,20 +100,6 @@ for (var i = 0; i < heart.length; i++) {
     }
   })(i);
 }
-
-//熱門行程詳細資訊
-// $(function(){
-//   $("#hot_spot_show").hide();
-
-//   $(".more_data").click(function(){
-
-//     $("#hot_spot_show").fadeIn(200);
-//   })
-
-//   $(".close").click(function(){
-//     $("#hot_spot_show").fadeOut(200);
-//   })
-// })
 
 //add選單
 function toggleDropdownMenu(addIcon) {
@@ -161,23 +141,6 @@ $(function () {
 });
 
 //滑到才顯示
-// $(document).ready(function() {
-//   /* Every time the window is scrolled ... */
-//   $(window).scroll( function(){
-//       /* Check the location of each desired element */
-//       $('.hideme').each( function(i){
-
-//           var bottom_of_object = $(this).offset().top + $(this).outerHeight();
-//           var bottom_of_window = $(window).scrollTop() + $(window).height();
-
-//           /* If the object is completely visible in the window, fade it it */
-//           if( bottom_of_window > bottom_of_object ){
-
-//               $(this).animate({'opacity':'1'},500);
-//           }
-//       }); 
-//   });
-// });
 
 $(document).ready(function () {
   /* Every time the window is scrolled ... */
@@ -261,3 +224,35 @@ $(document).ready(function () {
     });
   });
 });
+
+// 計算輪播圖最大高度 高度一致
+$(document).ready(function () {
+  // 在文件載入時和視窗尺寸改變時調整高度
+  adjustTextHeightOnResize('.carousel_block .carousel_txt');
+});
+
+function adjustTextHeightOnResize(selector) {
+  // 初始化高度
+  adjustTextHeight(selector);
+
+  // 監聽視窗大小改變事件
+  $(window).on('resize', function () {
+    adjustTextHeight(selector);
+  });
+}
+
+function adjustTextHeight(selector) {
+  $(selector).height('auto'); // 先重置高度以便重新計算
+  var maxHeight = 0;
+
+  // 找出最大高度
+  $(selector).each(function () {
+    var textHeight = $(this).outerHeight();
+    if (textHeight > maxHeight) {
+      maxHeight = textHeight;
+    }
+  });
+
+  // 將所有文字區塊設置為最大高度
+  $(selector).height(maxHeight);
+}

@@ -106,8 +106,7 @@
             <div class="heart_icon_img">
               
               <!-- <div class="imgcontainer"> -->
-                <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)"
-                onmouseout="stopSlideShow(this)">
+                <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)" onmouseout="stopSlideShow(this)">
                   <!-- 行程圖片  目前是假資料圖片要換成你們抓的-->
                     <img src="../static/images/101.jpg" class="changeImg changeImg_show">
                     <img src="../static/images/bg2.jpg" class="changeImg">
@@ -140,69 +139,7 @@
           </div>
         {% endfor %}
 
-
-        <!--  以下為熱門行程範例~~  -->
-        {% comment %} <div class="col-md-4 hot_spot_block hidemespot" style="padding: 5px;">
-          <div class="heart_icon_img">
-            <img src="../static/images/street.jpg" class="spot_img img-responsive" width="100%">
-            <form action="/login" method="post">
-              <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
-              <input id="submitButton" type="submit" style="display: none;">
-            </form>
-          </div>
-          <div class="spot_txt">
-            <h4>
-              捷運一日遊
-            </h4>
-            <h5>
-              aldfhlajkdhsfl
-            </h5>
-            <button class="btn btn-warning spot_data_btn more_data" id="more_data">詳細資料</button>
-          </div>
-        </div>
-
-        <div class="col-md-4 hot_spot_block hidemespot" style="padding: 5px;">
-          <div class="heart_icon_img">
-            <img src="../static/images/street.jpg" class="spot_img img-responsive" width="100%">
-            <form action="/login" method="post">
-              <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
-              <input id="submitButton" type="submit" style="display: none;">
-            </form>
-          </div>
-          <div class="spot_txt">
-            <h4>
-              九份老街
-            </h4>
-            <h5>
-              aldfhlajkdhsfl
-            </h5>
-            <button class="btn btn-warning spot_data_btn more_data" id="more_data">詳細資料</button>
-          </div>
-        </div>
-
-        <div class="col-md-4 hot_spot_block hidemespot" style="padding: 5px;">
-          <div class="heart_icon_img">
-            <img src="../static/images/street.jpg" class="spot_img img-responsive" width="100%">
-            <!-- <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this,{{item.id}})" id="heart-icon"></i> -->
-            <form action="/login" method="post">
-              <label for="submitButton" class="fa-solid fa-heart heart_icon" onclick="toggleFavorite(this,{{item.id}})"
-                id="heart_icon"></label>
-              <input id="submitButton" type="submit" style="display: none;">
-            </form>
-          </div>
-          <div class="spot_txt">
-            <h4>
-              九份老街
-            </h4>
-            <h5>
-              aldfhlajkdhsfl
-            </h5>
-            <button class="btn btn-warning spot_data_btn more_data" id="more_data">詳細資料</button>
-          </div>
-        </div> {% endcomment %}
-
-      </ㄥdiv>
-      <!-- <div class="hideme">Fade In</div> -->
+      </div>
 
     </div>
 
