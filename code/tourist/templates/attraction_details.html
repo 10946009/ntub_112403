@@ -300,6 +300,15 @@ endcomment %}
                 <h5 class="ask_qa" id="new_filiter_user">
                     排序<i class="fa-solid fa-chevron-down" style="margin-left: 6px;"></i>
                 </h5>
+                <div class="dropdown_filiter" id="dropdown">
+                    <div class="dropdown-content">
+                        <div class="dropdown-item focused" id="defaultFocus">大家最愛</div>
+                        <div class="dropdown-item">瀏覽最多</div>
+                        <!-- <div class="dropdown-item"></div> -->
+                        <!-- 添加更多項目 -->
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -430,17 +439,43 @@ endcomment %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script>
-    // 排序icon(click)
-    var chevronIcon = document.querySelector('#new_filiter_user i');
-    var h5Element = document.getElementById('new_filiter_user');
-    h5Element.addEventListener('click', function () {
-        if (chevronIcon.classList.contains('fa-chevron-down')) {
-            chevronIcon.classList.remove('fa-chevron-down');
-            chevronIcon.classList.add('fa-chevron-up');
-        } else {
-            chevronIcon.classList.remove('fa-chevron-up');
-            chevronIcon.classList.add('fa-chevron-down');
-        }
+    // 當頁面載入完成後執行
+    document.addEventListener('DOMContentLoaded', function () {
+        var dropdown = document.getElementById('dropdown');
+        var defaultFocus = document.getElementById('defaultFocus');
+
+        // 當標題點擊時顯示或隱藏下拉選單
+        var chevronIcon = document.querySelector('#new_filiter_user i');
+        document.getElementById('new_filiter_user').addEventListener('click', function () {
+            dropdown.style.display = (dropdown.style.display === 'none' || dropdown.style.display === '') ? 'block' : 'none';
+            defaultFocus.classList.add('focused'); // 添加focused樣式
+            defaultFocus.focus(); // 將第一個項目設為焦點
+            if (chevronIcon.classList.contains('fa-chevron-down')) {
+                chevronIcon.classList.remove('fa-chevron-down');
+                chevronIcon.classList.add('fa-chevron-up');
+            } else {
+                chevronIcon.classList.remove('fa-chevron-up');
+                chevronIcon.classList.add('fa-chevron-down');
+            }
+        });
+
+        // 點擊下拉選單外的區域時隱藏下拉選單
+        window.addEventListener('click', function (event) {
+            if (!dropdown.contains(event.target) && event.target !== document.getElementById('new_filiter_user')) {
+                dropdown.style.display = 'none';
+                defaultFocus.classList.remove('focused'); // 移除focused樣式
+            }
+        });
+
+        // 添加點擊項目的事件
+        var dropdownItems = document.querySelectorAll('.dropdown-item');
+        dropdownItems.forEach(function (item) {
+            item.addEventListener('click', function () {
+                defaultFocus.classList.remove('focused'); // 移除前一個項目的focused樣式
+                defaultFocus = item; // 更改defaultFocus為點擊的項目
+                defaultFocus.classList.add('focused'); // 添加focused樣式
+            });
+        });
     });
 
     sessionStorage.clear();
@@ -448,6 +483,19 @@ endcomment %}
         sessionStorage.setItem("{{base_search_text | safe}}", 'keyword_search');
         searchText("{{base_search_text | safe}}", 'keyword_search');
     }
+
+    // 排序icon(click)
+    // var chevronIcon = document.querySelector('#new_filiter_user i');
+    // var h5Element = document.getElementById('new_filiter_user');
+    // h5Element.addEventListener('click', function () {
+    //     if (chevronIcon.classList.contains('fa-chevron-down')) {
+    //         chevronIcon.classList.remove('fa-chevron-down');
+    //         chevronIcon.classList.add('fa-chevron-up');
+    //     } else {
+    //         chevronIcon.classList.remove('fa-chevron-up');
+    //         chevronIcon.classList.add('fa-chevron-down');
+    //     }
+    // });
 
     // skrollr滑鼠滾動
     var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
