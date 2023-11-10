@@ -71,14 +71,29 @@ document.addEventListener("DOMContentLoaded", function () {
 //   })
 
 // });
-let currentImgIndex = 0;
-const image = document.querySelectorAll('.slideImg');
-function slideShow(){
-  setInterval(() => {
-    image[currentImgIndex].classList.remove('show');
-    currentImgIndex = (currentImgIndex + 1) % image.length;
-    image[currentImgIndex].classList.add('show');
+function startSlideshow(container) {
+  let currentImageIndex = 1;  // 设置为1，从第二张图开始显示
+  const images = container.querySelectorAll('.image');
+
+  // 显示下一张图（从第二张开始）
+  images[currentImageIndex].classList.add('show');
+
+  // 启动定时器，每2秒切换一次图片
+  container.slideshowInterval = setInterval(() => {
+      images[currentImageIndex].classList.remove('show');
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      images[currentImageIndex].classList.add('show');
   }, 2000);
+}
+
+function stopSlideShow(container) {
+  clearInterval(container.slideshowInterval);
+
+  // 移除所有图片的 'show' 类
+  container.querySelectorAll('.image').forEach(img => img.classList.remove('show'));
+
+  // 将第一张图片添加 'show' 类
+  container.querySelector('.image').classList.add('show');
 }
 
 //向下滑動

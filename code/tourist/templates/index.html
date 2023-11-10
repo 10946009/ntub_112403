@@ -30,9 +30,13 @@
               {% for item in i %}
               <div class="col-4 carousel_block">
                 <div class="imgcontainer">
-                  <div id="hover"  onmouseenter="changeImg()" onmouseleave="resetImg()">
-                    <img src="../static/images/beitou.jpeg" class="img-responsive bottom" alt="">
-                    <img src="/static/images/attractions/{{item.place_id}}_0.jpg" class="img-responsive top" alt="">
+                  <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)" onmouseout="stopSlideShow(this)">
+                    <!-- 圖片要換成你們抓的 看你們要放幾張 -->
+                    <img src="../static/images/101.jpg" alt="Image 1" class="image show">
+                    <img src="../static/images/bg6.jpeg" alt="Image 2" class="image">
+                    <img src="../static/images/cake01.jpg" alt="Image 3" class="image">
+                    <!-- <img src="../static/images/beitou.jpeg" class="img-responsive bottom" alt="">
+                    <img src="/static/images/attractions/{{item.place_id}}_0.jpg" class="img-responsive top" alt=""> -->
                   </div>
                   {% if item.is_favorite == "1" %}
                   <button class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="{{item.is_favorite}}"
@@ -62,70 +66,6 @@
                 </div>
               </div>
               {% endfor %}
-              <!-- 留下來的下面這兩個滑過去會變圖片 -->
-              
-              <!-- <div class="col-4 carousel_block">
-                <div class="imgcontainer">
-                  <div id="hover" class="hoverTest">
-                    <img src="../static/images/bg6.jpeg" class="img-responsive" width="100%" />
-                    <img src="../static/images/bg7.png" class="img-responsive" width="100%" />
-                    <img src="../static/images/bg8.jpg" class="img-responsive" width="100%" />
-                  </div>
-                  <form action="/login" method="post">
-                    <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
-                    <input id="submitButton" type="submit" style="display: none;">
-                  </form>
-                </div>
-                <div class="group">
-                  <i class="fa-solid fa-plus add_icon"></i>
-                  <div class="dropdown_menu">
-                    <div><a class="dropdown_item" href="#">新增行程</a></div>
-                    <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
-                    <div><a class="dropdown_item" href="#">開車一日遊</a></div>
-                  </div>
-                </div>
-                <div class="carousel_txt">
-                  <h4 class="c_title">
-                    中正紀念堂
-                  </h4>
-                  <p class="c_txt">
-                    位於台北市中正區....
-                    <br>
-                    建議停留時間：大約1小時?
-                  </p>
-                </div>
-              </div>
-              <div class="col-4 carousel_block">
-                <div class="imgcontainer">
-                  <form action="/login" method="post">
-                    <label for="submitButton" class="fa-solid fa-heart heart_icon" id="heart_icon"></label>
-                    <input id="submitButton" type="submit" style="display: none;" click>
-                  </form>
-                  <div id="hover" class="hoverTest">
-                    <img src="../static/images/bg1.jpg" class="img-responsive" width="100%" />
-                    <img src="../static/images/bg2.jpg" class="img-responsive" width="100%" />
-                    <img src="../static/images/bg5.png" class="img-responsive" width="100%" />
-                  </div>
-                </div>
-                <div class="group">
-                  <i class="fa-solid fa-plus add_icon"></i>
-                  <div class="dropdown_menu">
-                    <div><a class="dropdown_item" href="#">新增行程</a></div>
-                    <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
-                    <div><a class="dropdown_item" href="#">開車一日遊</a></div>
-                  </div>
-                </div>
-                <div class="carousel_txt">
-                  <h4 class="c_title">
-                    中正紀念堂123
-                  </h4>
-                  <p class="c_txt">
-                    位於台北市中正區....
-                    <br>
-                    建議停留時間：大約1小時?
-                  </p>
-                </div>
-              </div> -->
               
             </div>
           </div>
@@ -165,14 +105,15 @@
           <div class="col-lg-4 col-md-6 hot_spot_block hidemespot" style="padding: 5px;">
             <div class="heart_icon_img">
               
-              <div class="imgcontainer">
-                <div id="hover" class="hover" onmouseover="slideShow()">
-                  <!-- 行程圖片  將下方的bottom修改為想切換的圖片-->
-                  <!-- <img src="../static/images/cloud1.png" class="img-responsive slideImg slideImg_show" alt="">
-                  <img src="../static/images/cake01.jpg" class="img-responsive slideImg " alt="">
-                  <img src="../static/images/101.jpg" class="img-responsive slideImg " alt=""> -->
-                  <img src="../static/images/beitou.jpeg" class="img-responsive bottom" alt="圖一">
-                  <img src="/static/images/attractions/{{ ct.img }}_0.jpg" class="spot_img img-responsive top" width="100%" alt="圖二">
+              <!-- <div class="imgcontainer"> -->
+                <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)"
+                onmouseout="stopSlideShow(this)">
+                  <!-- 行程圖片  目前是假資料圖片要換成你們抓的-->
+                    <img src="../static/images/101.jpg" alt="Image 1" class="image show">
+                    <img src="../static/images/bg2.jpg" alt="Image 2" class="image">
+                    <img src="../static/images/cake01.jpg" alt="Image 3" class="image">
+                  <!-- <img src="../static/images/beitou.jpeg" class="img-responsive bottom" alt="圖一">
+                  <img src="/static/images/attractions/{{ ct.img }}_0.jpg" class="spot_img img-responsive top" width="100%" alt="圖二"> -->
                 </div>
                 <!-- 加入最愛 -->
                 {% if ct.is_favorite == "1" %}
@@ -182,7 +123,7 @@
                   <button class="fa-solid fa-heart heart_icon" data-isfavorite="{{ct.is_favorite}}"
                     data-id="{{ct.id}}" data-type="/add_travel_favorite/"></button>
                 {% endif %}
-              </div>
+              <!-- </div> -->
 
             </div>
             <div class="spot_txt">
@@ -198,6 +139,8 @@
             </div>
           </div>
         {% endfor %}
+
+
         <!--  以下為熱門行程範例~~  -->
         {% comment %} <div class="col-md-4 hot_spot_block hidemespot" style="padding: 5px;">
           <div class="heart_icon_img">
@@ -263,17 +206,6 @@
 
     </div>
 
-    <!-- 原本是跳出詳細景點 -->
-    <!-- <div class="hot_spot_show" id="hot_spot_show">
-      <div class="hot_spot_show_txt">
-        <div class="hot_spot_show_title">捷運一日遊
-          <div class="close">X</div>
-        </div>
-        <hr class="hr_style">
-        <div class="hot_spot_show_author">使用者</div>
-
-      </div>
-    </div> -->
 
     {% endblock body %}
 
