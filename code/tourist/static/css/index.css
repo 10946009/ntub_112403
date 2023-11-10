@@ -5,6 +5,7 @@ body{
 }
 html{
 	height: 100%;
+	background-color: rgb(240, 240, 233);
 }
 .banner{
 	height: 100vh;
@@ -165,19 +166,19 @@ html{
 	position: relative;
 }
 .triangle {
-	width: 20px; /* 定义容器宽度 */
-	height: 20px; /* 定义容器高度 */
+	width: 20px; 
+	height: 20px; 
 	z-index: -100;
-	position: relative; /* 设置相对定位，以便伪元素参考容器 */
-	background-color: rgb(255, 242, 204); /* 设置容器的背景颜色 */
+	position: relative; 
+	background-color: rgb(244, 184, 255); 
 }
 .triangle::before {
 	content: ''; /* 必须有内容，可以为空字符串 */
-	position: absolute; /* 设置绝对定位，相对于容器 */
-	top: 0; /* 伪元素的上边缘与容器上边缘对齐 */
-	left: 0; /* 伪元素的左边缘与容器左边缘对齐 */
+	position: absolute; 
+	top: 0; 
+	left: 0; 
 	border-right: 650px solid transparent; /* 右边的边框透明 */
-	border-top: 650px solid rgb(255, 242, 204); /* 底边的边框形成三角形，可以设置背景颜色为你想要的颜色 */
+	border-top: 650px solid rgb(239, 209, 242); /* 底边的边框形成三角形，可以设置背景颜色为你想要的颜色 */
 }
 .hot_spot_title{
 	font-size: 48px;
@@ -221,22 +222,24 @@ html{
 }
 
 
-.hoverTest {
+#imageContainer {
 	position: relative;
+	height: 300px;
+	overflow: hidden;
 }
 
-.hoverTest img {
+.changeImg {
 	position: absolute;
-	/* CSS3淡出淡入效果,1秒 */
-	-webkit-transition: opacity 1s ease-in-out;
-	-moz-transition: opacity 1s ease-in-out;
-	-o-transition: opacity 1s ease-in-out;
-	transition: opacity 1s ease-in-out;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
 }
 
-.hoverTest img:nth-of-type(2):hover {
-	opacity: 0;
-	/* 滑鼠滑入時，透明度變0 */
+.changeImg_show {
+	opacity: 1;
 }
 
 .c_title{
@@ -279,7 +282,7 @@ html{
 	color: rgba(0, 0, 0, 0.3);
 	background-color: rgba(255, 255, 255,0.85);
 	cursor: pointer;
-	z-index: 100;
+	z-index: 99;
 }
 .add_icon:hover{
 	background-color: rgb(255, 236, 22);
@@ -297,6 +300,7 @@ html{
 	text-align: left;
 	display: inline-block;
 	z-index: 999;
+	user-select: none;
 }
 .dropdown_item{
 	text-decoration-line: none;
@@ -357,10 +361,10 @@ html{
 .spot_data_btn{
 	margin-bottom: 10px;
 }
-.spot_img{
+/* .spot_img{
 	padding: 0;
 	transition: transform 0.3s;
-}
+} */
 .spot_img:hover{
 	/* transform: scale(1.1); */
 }
@@ -445,7 +449,7 @@ html{
 	}
 	.triangle::before {
 		border-right: 500px solid transparent; 
-		border-top: 500px solid rgb(255, 242, 204); 
+		border-top: 500px solid rgb(239, 209, 242);
 	}
 }
 @media( max-width: 768px ) {
@@ -484,6 +488,9 @@ html{
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+	}
+	#imageContainer{
+		height: 200px;
 	}
 	.explore{
 		height: 100px;
@@ -535,6 +542,9 @@ html{
 		height: 100%;
 		object-fit: cover;
 	}
+	#imageContainer{
+		height: 150px;
+	}
 	.heart_icon{
 		position: absolute;
 		top: 0;
@@ -584,7 +594,7 @@ html{
 	}
 	.triangle::before {
 		border-right: 400px solid transparent; 
-		border-top: 450px solid rgb(255, 242, 204); 
+		border-top: 450px solid rgb(239, 209, 242);
 	}
 }
 @media (max-width: 488px) {
@@ -615,7 +625,7 @@ html{
 	}
 	.triangle::before {
 		border-right: 300px solid transparent; 
-		border-top: 450px solid rgb(255, 242, 204); 
+		border-top: 450px solid rgb(239, 209, 242);
 	}
 }
 @media(max-width: 376px){
@@ -667,6 +677,9 @@ html{
 		height: 100%;
 		object-fit: cover;
 	}
+	#imageContainer{
+		height: 100px;
+	}
 	.c_title{
 		font-size: 16px;
 	}
@@ -677,6 +690,6 @@ html{
 	}
 	.triangle::before {
 		border-right: 250px solid transparent; 
-		border-top: 400px solid rgb(255, 242, 204); 
+		border-top: 400px solid rgb(239, 209, 242); 
 	}
 }
