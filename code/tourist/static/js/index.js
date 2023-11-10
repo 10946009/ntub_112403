@@ -38,51 +38,18 @@ document.addEventListener("DOMContentLoaded", function () {
 })
 
 // change img when mouser hover
-// $(document).ready(function () {
-//   $('.hoverTest').each(function () {
-//     var $images = $(this).find('img');
-//     var imageCount = $images.length;
-//     var currentIndex = 0;
-//     var timer; // 定时器变量
-
-//     function showImage(index) {
-//       $images.css('opacity', '0'); // 隐藏所有图片
-//       $images.eq(index).css('opacity', '1'); // 显示特定索引的图片
-//     }
-
-//     function nextImage() {
-//       currentIndex = (currentIndex + 1) % imageCount;
-//       showImage(currentIndex);
-//     }
-
-
-//     $(this).on('mouseenter', function () {
-//       // 当鼠标进入 .hoverTest 区域时
-//       showImage(1); // 显示第二张图片
-//       timer = setTimeout(function () {
-//         nextImage(); // 三秒后显示下一张图片
-//         timer = setInterval(nextImage, 3000); // 每三秒切换一次图片
-//       }, 2000);
-//     }).on('mouseleave', function () {
-//       // 当鼠标离开 .hoverTest 区域时
-//       clearTimeout(timer); // 清除定时器
-//       $images.css('opacity', '1');
-//     });
-//   })
-
-// });
 function startSlideshow(container) {
   let currentImageIndex = 1;  // 设置为1，从第二张图开始显示
-  const images = container.querySelectorAll('.image');
+  const images = container.querySelectorAll('.changeImg');
 
   // 显示下一张图（从第二张开始）
-  images[currentImageIndex].classList.add('show');
+  images[currentImageIndex].classList.add('changeImg_show');
 
   // 启动定时器，每2秒切换一次图片
   container.slideshowInterval = setInterval(() => {
-      images[currentImageIndex].classList.remove('show');
+      images[currentImageIndex].classList.remove('changeImg_show');
       currentImageIndex = (currentImageIndex + 1) % images.length;
-      images[currentImageIndex].classList.add('show');
+      images[currentImageIndex].classList.add('changeImg_show');
   }, 2000);
 }
 
@@ -90,10 +57,10 @@ function stopSlideShow(container) {
   clearInterval(container.slideshowInterval);
 
   // 移除所有图片的 'show' 类
-  container.querySelectorAll('.image').forEach(img => img.classList.remove('show'));
+  container.querySelectorAll('.changeImg').forEach(img => img.classList.remove('changeImg_show'));
 
   // 将第一张图片添加 'show' 类
-  container.querySelector('.image').classList.add('show');
+  container.querySelector('.changeImg').classList.add('changeImg_show');
 }
 
 //向下滑動
