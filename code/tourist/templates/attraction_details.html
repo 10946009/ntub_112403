@@ -224,23 +224,23 @@ endcomment %}
         <div class="att_form">
             <span onclick="document.getElementById('show_filiter').style.display='none'" class="close"
                 title="Close Modal">&times;</span>
-            <h4>景點主題</h4>
+            <h3><strong>景點主題</strong></h3>
             <div class="filiter_search" id="filiter_search2">
                 <table style="width:45%;margin-left: 10px;margin-bottom:5px ;">
                     <div id="attractions_types">
-                        <tr>
+                        <!-- <tr>
                             <td><span class="more_btn"></span></td>
-                        </tr>
-                        <tr>
+                        </tr> -->
+                        <!-- <tr>
                             <td><span class="more_btn">最多人瀏覽</span></td>
                             <td><span class="more_btn">最多人按讚</span></td>
                             <td><span class="more_btn">最多人收藏</span></td>
-                        </tr>
-                        讓多出來的放到第二行
+                        </tr> -->
+                        <!-- 讓多出來的放到第二行 -->
                     </div>
                 </table>
-                <div class="sure"><button class="sure_btn" id="sure_att_type" name="sure_att_type" value="0">篩選</button>
-                </div>
+                <!-- <div class="sure"><button class="sure_btn" id="sure_att_type" name="sure_att_type" value="0">篩選</button>
+                </div> -->
             </div>
 
         </div>
@@ -293,18 +293,19 @@ endcomment %}
     <div class="col-2">
         <div class="new_fifliter">
             <div style="text-align: center;">
-                <h6 class="ask_qa" id="new_fifliter_topic">
-                    景點<i class="fa-solid fa-chevron-down" style="margin-left: 6px;"></i>
-                </h6>
-                <h6 class="ask_qa" id="new_filiter_user">
+                <h5 class="ask_qa" id="new_fifliter_topic"
+                    onclick="document.getElementById('show_filiter').style.display='block'">
+                    <i class="fa-solid fa-list" style="margin-right: 6px;"></i>主題
+                </h5>
+                <h5 class="ask_qa" id="new_filiter_user">
                     排序<i class="fa-solid fa-chevron-down" style="margin-left: 6px;"></i>
-                </h6>
+                </h5>
             </div>
         </div>
     </div>
     <div class="col-1"></div>
 </div>
-<div class="row" style="padding: 20px;" data-450="opacity: 0" data-500="transform: scale(1); opacity: 1">
+<div class="row" style="padding: 20px;">
     <div class="col-1"></div>
     <div class="col-10">
         <hr class="tit_hr">
@@ -414,7 +415,7 @@ endcomment %}
 <!-- footer-->
 <footer class="jumbotron1">
     <div class="container">
-        <h2>有哪些地方想跟我們分享？</h2>
+        <h2>還有哪些景點想要探索？</h2>
         <input class="form-control" placeholder="E-mail" />
         <button class="btn btn-default">立即註冊</button>
     </div>
@@ -429,6 +430,19 @@ endcomment %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script>
+    // 排序icon(click)
+    var chevronIcon = document.querySelector('#new_filiter_user i');
+    var h5Element = document.getElementById('new_filiter_user');
+    h5Element.addEventListener('click', function () {
+        if (chevronIcon.classList.contains('fa-chevron-down')) {
+            chevronIcon.classList.remove('fa-chevron-down');
+            chevronIcon.classList.add('fa-chevron-up');
+        } else {
+            chevronIcon.classList.remove('fa-chevron-up');
+            chevronIcon.classList.add('fa-chevron-down');
+        }
+    });
+
     sessionStorage.clear();
     if ("{{base_search_text | safe}}" != "") {
         sessionStorage.setItem("{{base_search_text | safe}}", 'keyword_search');

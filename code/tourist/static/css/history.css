@@ -171,7 +171,9 @@
     /* display: none; */
     border: 1px solid black;
 }
-
+.aboutDiv{
+    margin-bottom: 10px;
+}
 .filter {
     color: white;
     padding: 5px 10px;

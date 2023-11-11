@@ -28,7 +28,7 @@
 
     <div class="col-7 feature">
         <!-- 景點名稱 -->
-        <h4 data-bottom-top="transform: translateY(-20px);opacity: 0"
+        <h4 class="item_name" data-bottom-top="transform: translateY(-20px);opacity: 0"
             data-center="transform: translateY(0px);opacity: 1" data-a-Id="{{ item.id }}"
             onclick="showInfo({{ item.id }})" style="font-size: 26px;">
             {{item.a_name }}</h4>
@@ -36,7 +36,7 @@
         <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
             data-center="transform: translateY(0px);opacity: 1;">
             {% for i in "12345" %}
-            {% if i|add:0 <= item.rating %} <span class="rating-star" style="color: rgb(241, 226, 62);">
+            {% if i|add:0 <= item.rating %} <span class="rating-star" style="color: rgb(214, 166, 54);">
                 &#9733;</span>
                 {% else %}
                 <span class="rating-star">&#9733;</span>
@@ -44,25 +44,25 @@
                 {% endfor %}
         </div>
         <!-- 評分 -->
-        <h5 style="margin-top:5px;" data-bottom-top="transform: translateY(-20px);opacity: 0"
+        <h4 style="margin-top:5px;" data-bottom-top="transform: translateY(-20px);opacity: 0"
             data-center="transform: translateY(0px);opacity: 1">
             <span id="list-selectedRating">{{ item.rating }}</span> / 5 ({{item.rating_total}}則評分)
-        </h5>
+        </h4>
         <!-- 地址 -->
-        <h5 style="margin-top:5px;" data-bottom-top="transform: translateY(-20px);opacity: 0"
+        <h4 style="margin-top:5px;" data-bottom-top="transform: translateY(-20px);opacity: 0"
             data-center="transform: translateY(0px);opacity: 1">
             <span id="list-address">{{ item.address }}</span>
-        </h5>
+        </h4>
         <!-- 營業時間 -->
         <!-- <h5 data-bottom-top="transform: translateY(-20px);opacity: 0"
             data-center="transform: translateY(0px);opacity: 1">
             <span>24小時營業</span>
         </h5> -->
         <!-- 總瀏覽人數 -->
-        <h5 style="color:#8b8a8a;" data-bottom-top="transform: translateY(-20px);opacity: 0"
+        <h4 style="color:#8b8a8a;" data-bottom-top="transform: translateY(-20px);opacity: 0"
             data-center="transform: translateY(0px);opacity: 1">
             <i class="fa-regular fa-eye"></i>&thinsp;<span>{{item.hit}}</span>
-        </h5>
+        </h4>
     </div>
 </div>
 {% empty %}

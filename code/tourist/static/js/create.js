@@ -170,16 +170,21 @@ function adjustTextHeight(selector) {
 // // Call rotateLeftAndToggleContent when the button is clicked
 // document.getElementById('changeToRec-{{ day }}').addEventListener('click', rotateLeftAndToggleContent);
 
-var isdoneJourneyVisible = false;
-
-function clickChangeDone() {
-  console.log(globalDay)
-  const checkRec = document.getElementById('checkRec-' + globalDay);
-  const done = document.getElementById('done-' + globalDay);
-  const button = document.getElementById("changeToRec-" + globalDay);
-
-  isdoneJourneyVisible = !isdoneJourneyVisible
-  if (isdoneJourneyVisible) {
+var total_day = document.getElementsByClassName('tab-pane')
+var isdoneJourneyVisible = {};
+for( var i = 0; i < total_day.length; i++ ){
+  isdoneJourneyVisible[i+1] = false;
+}
+function clickChangeDone(day=null) {
+  if(day === null){
+    day = globalDay;
+  }
+  console.log(day)
+  const checkRec = document.getElementById('checkRec-' + day);
+  const done = document.getElementById('done-' + day);
+  const button = document.getElementById("changeToRec-" + day);
+  isdoneJourneyVisible[day] = !isdoneJourneyVisible[day];
+  if (isdoneJourneyVisible[day]) {
     checkRec.style.transform = 'rotateY(180deg)';
     done.style.transform = 'rotateY(0deg)';
     button.textContent = "重新推薦";
@@ -532,6 +537,20 @@ function inputBottom(){
     },
   });
 }
+
+function checkHasData(){
+    const leftDev = document.querySelectorAll(".recAndDone");
+    console.log(leftDev);
+    leftDev.forEach(function (container, index) {
+      const hasAttractions = container.querySelector('.innerlist');
+      console.log(hasAttractions);
+      if (hasAttractions != null) {
+        const changeToRec = container.querySelector('.changeToRec').id;
+        clickChangeDone(changeToRec.charAt(changeToRec.length - 1))
+      }
+    });
+}
+
 window.onload = changeRepeatBtnTxt;
 window.addEventListener('resize', changeRepeatBtnTxt);
 
