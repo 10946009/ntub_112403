@@ -137,13 +137,13 @@ def recommend_maybe(userid):  # 會回傳可能喜歡的使用者id和該使用�
         other_user_intersection = sorted(
             other_user_intersection.items(), key=lambda x: x[1], reverse=True
         )
-
-        if other_user_intersection[0][1] != 0:  # 假設有交集
-            maybe_user_id = other_user_intersection[0][0]
-            maybe_aid_list = UserClick.objects.filter(u_id=maybe_user_id).values_list(
-                "a_id", flat=True
-            )
-            return Attractions.objects.filter(id__in=maybe_aid_list)
+        if other_user_intersection:
+            if other_user_intersection[0][1] != 0:  # 假設有交集
+                maybe_user_id = other_user_intersection[0][0]
+                maybe_aid_list = UserClick.objects.filter(u_id=maybe_user_id).values_list(
+                    "a_id", flat=True
+                )
+                return Attractions.objects.filter(id__in=maybe_aid_list)
 
         return Attractions.objects.filter(id__in=user_click)
     else:
