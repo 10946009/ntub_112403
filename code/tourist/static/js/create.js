@@ -521,12 +521,15 @@ function checkAndAddClass() {
 }
 
 
-function inputBottom(){
+function inputBottom(day=null){
+  if(day === null){
+    day = globalDay;
+  }
   $.ajax({
     url:"/attractions",
     type: "GET",
     data: {
-      aidlist:Array.from(now_click_attractions[globalDay]).join(','),
+      aidlist:Array.from(now_click_attractions[day]).join(','),
     },
     success: function (response) {
       document.getElementById('bottomAttraction').innerHTML = response;
@@ -537,13 +540,13 @@ function inputBottom(){
     },
   });
 }
-
+// 用來進去翻轉景點排序或推薦景點的部分
 function checkHasData(){
     const leftDev = document.querySelectorAll(".recAndDone");
     console.log(leftDev);
     leftDev.forEach(function (container, index) {
       const hasAttractions = container.querySelector('.innerlist');
-      console.log(hasAttractions);
+      // console.log(hasAttractions);
       if (hasAttractions != null) {
         const changeToRec = container.querySelector('.changeToRec').id;
         clickChangeDone(changeToRec.charAt(changeToRec.length - 1))
@@ -551,6 +554,12 @@ function checkHasData(){
     });
 }
 
+//用來把有的資料放入暫存區
+function checkHasDataBottom(){
+  
+}
+
+checkHasDataBottom()
 window.onload = changeRepeatBtnTxt;
 window.addEventListener('resize', changeRepeatBtnTxt);
 

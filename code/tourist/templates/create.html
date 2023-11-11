@@ -343,12 +343,19 @@
   <script src="/static/js/recommend.js"></script>
   <script src="/static/js/createSave.js"></script>
 <script>
+var user_all_ct_data = JSON.parse('{{ all_ct_data_id | safe }}' );
 var total_day = document.getElementsByClassName('tab-pane')
 var now_click_attractions = {};
 for( var i = 0; i < total_day.length; i++ ){
-  now_click_attractions[i+1] = new Set();
+  if(user_all_ct_data[i+1] === "[]"){
+    now_click_attractions[i+1] = new Set();
+  }else{
+    console.log(user_all_ct_data[i+1]);
+    now_click_attractions[i+1] = new Set(user_all_ct_data[i+1]);
+    inputBottom(i+1);
+  }
 }
-
+inputBottom(1);//初始化第一天的bottom
 var globalDay = 1;
 checkHasData();//如果使用者是否有資料顯示排序景點
 // 放入景點名稱
