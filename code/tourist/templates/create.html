@@ -133,12 +133,12 @@
                     <i class="fa-solid fa-route done_icon"></i>
                     <span class="done_txt">景點排序</span>
                   </div>
-                  <form>
-                    <div class="list" id="orderAttractions-{{ day }}" style="cursor: pointer;height: 500px;overflow-y: auto;">
-                      {% include 'create_order_attractions.html' %}
-                    </div>
-                    <button class="recommend_save" id="saveDays" value="儲存" onclick="createSave()">儲存</button>
-                  </form>
+
+                  <div class="list" id="orderAttractions-{{ day }}" style="cursor: pointer;height: 500px;overflow-y: auto;">
+                    {% include 'create_order_attractions.html' %}
+                  </div>
+                  <button class="recommend_save" id="saveDays" value="儲存" onclick="createSave()">儲存</button>
+
                     <!-- 範例 -->
                     <!-- <div class="list" style="cursor: pointer;">
                       <div class="innerlist" draggable="true">
@@ -197,7 +197,7 @@
               </div>
             </div>
             <div class="col-6 searchAndlikeAndrec">
-              <button class="changeToSearch" id="changeToSearch" onclick="clickChange()">切換搜尋</button>
+              <button class="changeToSearch" id="changeToSearch">切換搜尋</button>
               <div class="change searchBlock" id="searchBlock">
                 <div class="searchBarDiv">
                   <i class="fa-solid fa-magnifying-glass-location find_icon"></i>
@@ -260,7 +260,8 @@
                                    class="img-responsive"
                                    width="100%"
                                    alt="">
-                              {% comment %} <button class="fa-solid fa-heart rec_heart_icon" id="rec_heart_icon" onclick="addRecFavorite(event,{{ item.a_id.id }})"> <!-- 這裡這裡的itemId要用你們的編號 --></button> {% endcomment %}
+                                   
+                              <a href="#" class="fa-solid fa-circle-info info_icon" id="info_icon" onclick="clickeInfo(event,{{ item.a_id.id }})"> <!-- 這裡這裡的itemId要用你們的編號 --></a>
                             </span>
 
                             <div class="spottxtdiv">
@@ -306,7 +307,7 @@
                     <span class="similar_icon">&asymp;</span>
                     <span class="similar_txt">相似景點</span>
                   </div>
-                  <div class="renew">
+                  <div class="renew" onclick="similarRecommend()">
                     <span>更新</span>
                   </div>
 
@@ -327,35 +328,10 @@
         <span class="upDiv"><i id="upDown_icon" class="fa-solid fa-caret-up up_icon"></i></span>
       </div>
       <div class="row bottomTempdiv" id="hiddenContent">
-        <div class="align">
-          <div class="image-container" >
-            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-            <div class="overlay">
-              <!-- <div class="tempXdiv"><i class="fa-solid fa-xmark tempX_icon"></i></div> -->
-              <div class="text">景點名稱</div><!-- 只抓點過的景點名稱跟營業時間 -->
-            </div>
-          </div>
-          <div class="image-container" >
-            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-            <div class="overlay">
-                <div class="text">景點名稱</div>
-            </div>
-          </div>
-          <div class="image-container" >
-            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-            <div class="overlay">
-                <div class="text">景點名稱</div>
-            </div>
-          </div>
-          <div class="image-container" >
-            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-            <div class="overlay">
-                <div class="text">景點名稱</div>
-            </div>
-          </div>
+        <div class="align" id="bottomAttraction">
+          {% comment %} 分割至create_bottom.html {% endcomment %}
         </div>
       </div>
-            
     </div>
   </main>
   <script src="../static/js/testGPS.js"></script>

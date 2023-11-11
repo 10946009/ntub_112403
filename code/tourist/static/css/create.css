@@ -735,19 +735,27 @@ main {
     cursor: pointer;
 }
 
-.rec_heart_icon {
+.info_icon {
     position: absolute;
     right: 5px;
     top: 5px;
     border: 0;
-    border-radius: 50%;
-    padding: 10px;
-    background-color: rgba(255, 255, 255);
-    font-size: 18px;
-    color: rgba(0, 0, 0, 0.3);
+    /* border-radius: 50%; */
+    /* padding: 10px; */
+    /* background-color: rgba(255, 255, 255); */
+    font-size: 24px;
+    color: white;
+    text-shadow: 2px 2px 3px #333;
+    /* color: rgba(0, 0, 0, 0.3); */
     cursor: pointer;
+    text-decoration: none;
 }
-
+.info_icon:hover{
+    color: orange;
+}
+.info_active{
+    color: orange;
+}
 .checkimg_div {
     /* position: relative;
     height: 200px;
@@ -947,6 +955,13 @@ main {
         padding: 0;
     }
 
+    .changeToSearch{
+        width: 50px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 18px;
+        padding: 0;
+    }
     .recommend_save {
         width: 50px;
         height: 40px;
@@ -976,10 +991,10 @@ main {
         font-size: 16px;
     }
 
-    .changeToSearch {
+    /* .changeToSearch {
         padding: 8px 10px;
         font-size: 14px;
-    }
+    } */
 
     .similar_icon {
         padding: 3px 10px 5px 10px;

@@ -7,7 +7,7 @@ from django.template.loader import render_to_string  # 頁面轉成html
 from django.forms.models import model_to_dict
 from .viewsConst import ATT_TYPE_CHINESE
 from .findpicture import get_picture_list
-
+import random
 
 def keyword_search(search_text, filter_condition_and, filter_condition_or, method):
     # Q物件可以用&和|來串接，串接後的Q物件可以用來過濾資料
@@ -118,6 +118,16 @@ def attraction_details(request):
         print(choose_attractions)
         choose_attractions.hit += 1
         choose_attractions.save()
+
+        # 記錄使用者點擊
+        if user :
+            if UserClick.objects.filter(u_id=user.id, a_id=choose_attractions.id).exists():
+                user_click = UserClick.objects.get(u_id=user.id, a_id=choose_attractions.id)
+                user_click.click_count += 1
+                user_click.save()
+            else:
+                UserClick.objects.create(u_id=user.id, a_id=choose_attractions.id)
+
         # 判斷是否已收藏
         
         is_favorite = Favorite.objects.filter(
@@ -143,6 +153,10 @@ def attraction_details(request):
         # 取得附近景點
         near_attractions = get_nearby_attractions(choose_attractions)
         
+        # 幫停留時間設亂數 為20-60之間間隔為10的任一個數
+        if choose_attractions.stay_time == 0:
+            choose_attractions.stay_time = random.randrange(20, 70, 10)
+
         # 取得留言
         comment_list = AttractionsComment.objects.filter(a_id=choose_a_id)
         question_list = AttractionsQuestion.objects.filter(a_id=choose_a_id)

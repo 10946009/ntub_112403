@@ -70,13 +70,24 @@ endcomment %}
 <!-- 動態大標 景點資訊 -->
 <div class="row jumbotron">
     <div class="container_info">
-        <div class="active_tit">
+        <div class="active_tit1">
+            <div class="active_tit">
+                <div class="scroll-text">
+                    <h1>景&ensp;點&ensp;資&ensp;訊</h1>
+                </div>
+                <div class="scroll-text1">
+                    <!-- <hr class="tit_hr"> -->
+                    <h5 class="text_trip">Trip&ensp;Fun&ensp;Chill&ensp;趣放假</h5>
+                </div>
+            </div>
+        </div>
+        <div class="active_tit3">
             <div class="scroll-text">
                 <h1>景&ensp;點&ensp;資&ensp;訊</h1>
             </div>
             <div class="scroll-text1">
-                <hr class="tit_hr">
-                <h5>Trip&ensp;Fun&ensp;Chill&ensp;趣放假</h5>
+                <!-- <hr class="tit_hr"> -->
+                <h5 class="text_trip">Trip&ensp;Fun&ensp;Chill&ensp;趣放假</h5>
             </div>
         </div>
     </div>
@@ -97,7 +108,7 @@ endcomment %}
                             <div class="enter"></div>
                             <div class="searchContent">
                                 <!-- history（目前放假資料） -->
-                                <div class="history_1" id="history_1">
+                                <div class="history_12" id="history_12">
                                     <i class="fa-solid fa-clock-rotate-left"
                                         style="margin-right: 12px;"></i><strong>123</strong>
                                     <div class="close_history" onclick="deleteFunction(this)">
@@ -114,7 +125,7 @@ endcomment %}
 </div>
 
 <!-- 人拖行李棟動圖（左） -->
-<div class="row" id="filiter_about">
+<!-- <div class="row" id="filiter_about">
     <div class="col-5 car_trip">
         <div class="cloud" data-0="transform: translateX(-20%); opacity: 0;"
             data-500="transform: translateX(10%); opacity: 0.8">
@@ -134,7 +145,7 @@ endcomment %}
             <img src="../static/images/travel.png" alt="" style="width: 100px; z-index: 2;margin-top: -30px;">
         </div>
     </div>
-    <!-- 篩選工具（右） -->
+    篩選工具（右）
     <div class="col-7">
         <div class="container_filiter">
             <div class="col-sm-7" style="text-align: center;padding-right: 20px;">
@@ -153,7 +164,7 @@ endcomment %}
                     <div class="column" data-400="transform: scale(1.5); opacity: 0"
                         data-500="transform: scale(1); opacity: 1"
                         onclick="document.getElementById('show_condition').style.display='block'">
-                        <!-- 當有篩選條件時右上跳出1 2...等(ribbon) -->
+                        當有篩選條件時右上跳出1 2...等(ribbon)
                         <div style="cursor: pointer; position: relative;">
                             <i class="fa-solid fa-list" style="font-size: 60px;"></i> <span class="ribbon">1</span><br>
                             <h3 class="filiter_btn">條件篩選</h3>
@@ -167,7 +178,7 @@ endcomment %}
                             <h3 class="filiter_btn">最受歡迎</h3>
                         </div>
                     </div>
-                    <!-- <div class="col-4 text-center topic_filiter" data-400="transform: scale(1.5); opacity: 0"
+                    <div class="col-4 text-center topic_filiter" data-400="transform: scale(1.5); opacity: 0"
                         data-500="transform: scale(1); opacity: 1"
                         onclick="document.getElementById('show_filiter').style.display='block'">
                         <div style="cursor: pointer;">
@@ -191,9 +202,9 @@ endcomment %}
                             <i class="fa-solid fa-thumbs-up" style="font-size: 60px;"></i><br>
                             <h3 class="filiter_btn">最受歡迎</h3>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
-                <!-- 清除所有篩選按鈕 -->
+                清除所有篩選按鈕
                 <div class="text-center row" style="margin:20px auto;" data-400="transform: scale(1.5); opacity: 0"
                     data-500="transform: scale(1); opacity: 1">
                     <span class="clear_btn" id="clear_btn" style="cursor: pointer;">清除所有篩選</span>
@@ -204,7 +215,7 @@ endcomment %}
     <div class="road">
         <img src="../static/images/road1.png" alt="" style="width: 100%; height: 50px; z-index: 1;">
     </div>
-</div>
+</div> -->
 
 <!-- 景點主題 -->
 <div id="show_filiter" style="display: none;">
@@ -217,15 +228,15 @@ endcomment %}
             <div class="filiter_search" id="filiter_search2">
                 <table style="width:45%;margin-left: 10px;margin-bottom:5px ;">
                     <div id="attractions_types">
-                        <!-- <tr>
+                        <tr>
                             <td><span class="more_btn"></span></td>
                         </tr>
                         <tr>
                             <td><span class="more_btn">最多人瀏覽</span></td>
                             <td><span class="more_btn">最多人按讚</span></td>
                             <td><span class="more_btn">最多人收藏</span></td>
-                        </tr> -->
-                        <!-- 讓多出來的放到第二行 -->
+                        </tr>
+                        讓多出來的放到第二行
                     </div>
                 </table>
                 <div class="sure"><button class="sure_btn" id="sure_att_type" name="sure_att_type" value="0">篩選</button>
@@ -277,18 +288,44 @@ endcomment %}
         </div>
     </form>
 </div>
-
-<div class="row" style="margin-top: 20px;margin-left:20px;" data-450="opacity: 0"
-    data-500="transform: scale(1); opacity: 1">
-    <h5>根據<span id="type_key_word"></span>的篩選條件搜尋出以下景點：</h5>
+<div class="row">
+    <div class="col-9"></div>
+    <div class="col-2">
+        <div class="new_fifliter">
+            <div style="text-align: center;">
+                <h6 class="ask_qa" id="new_fifliter_topic">
+                    景點<i class="fa-solid fa-chevron-down" style="margin-left: 6px;"></i>
+                </h6>
+                <h6 class="ask_qa" id="new_filiter_user">
+                    排序<i class="fa-solid fa-chevron-down" style="margin-left: 6px;"></i>
+                </h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-1"></div>
 </div>
+<div class="row" style="padding: 20px;" data-450="opacity: 0" data-500="transform: scale(1); opacity: 1">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <hr class="tit_hr">
+        <h4 style="  font-weight: bold;">共<span>xxx</span>個景點，以<span id="type_key_word"></span>排序</h4>
+        <!-- 清除所有篩選按鈕 -->
+        <!-- <div class="row" style="margin:20px auto;" data-400="transform: scale(1.5); opacity: 0"
+            data-500="transform: scale(1); opacity: 1">
+            <span class="clear_btn" id="clear_btn" style="cursor: pointer;">清除所有篩選</span>
+        </div> -->
+    </div>
+    <div class="col-1">
 
+    </div>
+    <!-- <h5>根據<span id="type_key_word"></span>的篩選條件搜尋出以下景點：</h5> -->
+</div>
 
 <!-- 下方景點 -->
 <div class="row" id="attractions_introduction">
     <div class="col-2"></div>
     <!-- 景點資訊主體 -->
-    <div class="col-8 contaioner_information" id="replaceable-content">
+    <div class="col-9 contaioner_information" id="replaceable-content">
         <!-- 景點資訊條列 -->
         {% include 'attraction_details_search.html' %}
         <!-- 更多 -->
@@ -377,7 +414,7 @@ endcomment %}
 <!-- footer-->
 <footer class="jumbotron1">
     <div class="container">
-        <h2>有哪些地方想跟我們分享？</h2>
+        <h2>還有哪些景點想要探索？</h2>
         <input class="form-control" placeholder="E-mail" />
         <button class="btn btn-default">立即註冊</button>
     </div>
@@ -520,35 +557,35 @@ endcomment %}
 
     //delete歷史紀錄
     function deleteFunction(element) {
-        var historyElement = element.closest('.history_1');
+        var historyElement = element.closest('.history_12');
         if (historyElement) {
             historyElement.remove(); //連同父元素删除
         }
     }
 
-    //動態大標（景點資訊tripfunchill去放假）
-    const scrollText = document.querySelector('.scroll-text');
-    const scrollTextH1 = scrollText.querySelector('h1');
-    const stopScrollY = 120; //在此位置停止移動
-    window.addEventListener('scroll', function () {
-        const scrollY = window.scrollY;// 獲取當前位置
-        if (scrollY <= stopScrollY) {// 當位置<=停止位置時移動
-            const translateY = Math.min(scrollY, stopScrollY);//根據位置調整本文位置，控制移動
-            scrollTextH1.style.transform = `translate(0%, ${translateY}%)`;
-        }
-    });
-    function getAllSessionStorageData() {
-        var data = []; // 創建一個空對象來保存所有的sessionStorage資料
+    // //動態大標（景點資訊tripfunchill去放假）
+    // const scrollText = document.querySelector('.scroll-text');
+    // const scrollTextH1 = scrollText.querySelector('h1');
+    // const stopScrollY = 120; //在此位置停止移動
+    // window.addEventListener('scroll', function () {
+    //     const scrollY = window.scrollY;// 獲取當前位置
+    //     if (scrollY <= stopScrollY) {// 當位置<=停止位置時移動
+    //         const translateY = Math.min(scrollY, stopScrollY);//根據位置調整本文位置，控制移動
+    //         scrollTextH1.style.transform = `translate(0%, ${translateY}%)`;
+    //     }
+    // });
+    // function getAllSessionStorageData() {
+    //     var data = []; // 創建一個空對象來保存所有的sessionStorage資料
 
-        for (var i = 0; i < sessionStorage.length; i++) {
-            var key = sessionStorage.key(i); // 獲取sessionStorage的鍵
-            var value = sessionStorage.getItem(key); // 獲取鍵對應的值
+    //     for (var i = 0; i < sessionStorage.length; i++) {
+    //         var key = sessionStorage.key(i); // 獲取sessionStorage的鍵
+    //         var value = sessionStorage.getItem(key); // 獲取鍵對應的值
 
-            data.push(key, value); // 將鍵值對添加到data對象中
-        }
+    //         data.push(key, value); // 將鍵值對添加到data對象中
+    //     }
 
-        return data; // 返回包含所有sessionStorage資料的對象
-    }
+    //     return data; // 返回包含所有sessionStorage資料的對象
+    // }
     // 用來刷新搜尋結果的function
     function searchText(search_text, data_type) {
         // data_type= keyword_search,tag_search,popular_search
