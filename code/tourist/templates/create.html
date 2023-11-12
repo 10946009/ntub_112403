@@ -386,11 +386,13 @@ autocomplete(create_searchInput,JSON.parse('{{ attractions_search_json|safe }}')
         .then(data => {
             if (data.display_name) {
               const addressParts = [
-                    data.address.city || data.address.town || data.address.village,
-                    data.address.suburb || data.address.suburb_district || data.address.neighbourhood,
-                    data.address.road || data.address.footway || data.address.cycleway || data.address.path,
-                    data.address.house_number || data.address.building,
-                ]; //修改address的格式  XX市 XX區 ......
+                data.address.postcode || data.address.zipcode,
+                data.address.country,
+                data.address.city || data.address.town || data.address.village,
+                data.address.suburb || data.address.suburb_district || data.address.neighbourhood,
+                data.address.road || data.address.footway || data.address.cycleway || data.address.path,
+                data.address.house_number || data.address.building,
+              ]; //修改address的格式  XX市 XX區 ......
               const formattedAddress = addressParts.filter(part => part).join('');
               //const address = data.display_name;
               userLocationName.textContent = formattedAddress; //將地址或名字寫進html

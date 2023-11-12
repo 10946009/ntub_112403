@@ -121,12 +121,12 @@ def create(request, ct_id):
         # print('crowd_list',crowd_list)
         # 合併上面四個資料
         for attraction, detail, co ,cl in zip(ct_attractions_list, ct_attractions_detail_list, ct_attractions_co_list,crowd_index_list):
-            print(f"{min(co.crowd[cl],co.crowd[cl+1])} ~ {max(co.crowd[cl],co.crowd[cl+1])}")
+            print(f"{min(co.crowd[cl],co.crowd[(cl+1)%24])} ~ {max(co.crowd[cl],co.crowd[(cl+1)%24])}")
             ct_data.append({
                 "attraction": attraction,
                 "detail": detail,
                 "co": co,
-                "crowd_list" : f"{min(co.crowd[cl],co.crowd[cl+1])} ~ {max(co.crowd[cl],co.crowd[cl+1])}"
+                "crowd_list" : f"{min(co.crowd[cl],co.crowd[(cl+1)%24])} ~ {max(co.crowd[cl],co.crowd[(cl+1)%24])}"
             })
             
         all_ct_data[index+1]=ct_data
