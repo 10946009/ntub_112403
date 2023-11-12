@@ -32,9 +32,16 @@
                 <div class="imgcontainer">
                   <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)" onmouseout="stopSlideShow(this)">
                     <!-- 圖片要換成你們抓的 看你們要放幾張 -->
-                    <img src="../static/images/101.jpg" class="changeImg changeImg_show">
+                    {% for  img in item.imglist %}
+                    {% if forloop.counter == 1 %} 
+                    <img src="/static/images/attractions/{{img}}" class="changeImg changeImg_show">
+                    {% else %}
+                    <img src="/static/images/attractions/{{img}}" class="changeImg">
+                    {% endif %}
+                    {% endfor %}
+                    {% comment %} <img src="../static/images/101.jpg" class="changeImg changeImg_show">
                     <img src="../static/images/bg6.jpeg" class="changeImg">
-                    <img src="../static/images/cake01.jpg" class="changeImg">
+                    <img src="../static/images/cake01.jpg" class="changeImg"> {% endcomment %}
                     <!-- <img src="../static/images/beitou.jpeg" class="img-responsive bottom" alt="">
                     <img src="/static/images/attractions/{{item.place_id}}_0.jpg" class="img-responsive top" alt=""> -->
                   </div>
@@ -108,9 +115,15 @@
               <!-- <div class="imgcontainer"> -->
                 <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)" onmouseout="stopSlideShow(this)">
                   <!-- 行程圖片  目前是假資料圖片要換成你們抓的-->
-                    <img src="../static/images/101.jpg" class="changeImg changeImg_show">
-                    <img src="../static/images/bg2.jpg" class="changeImg">
-                    <img src="../static/images/cake01.jpg" class="changeImg">
+                  {% for  img in ct.imglist %}
+                  {% if forloop.counter == 1 %} 
+                  <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="changeImg changeImg_show">
+                  {% else %}
+                  <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="changeImg">
+                  {% endif %}
+                  {%empty%}
+                  <img src="/static/images/attractions/default_0.jpg" class="changeImg changeImg_show">
+                  {% endfor %}
                   <!-- <img src="../static/images/beitou.jpeg" class="img-responsive bottom" alt="圖一">
                   <img src="/static/images/attractions/{{ ct.img }}_0.jpg" class="spot_img img-responsive top" width="100%" alt="圖二"> -->
                 </div>
