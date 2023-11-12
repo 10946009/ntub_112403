@@ -415,6 +415,22 @@ body {
     right: -5px;
 }
 
+/* 清除全部篩選條件  */
+.clear-all {
+    width: 140px;
+    cursor: pointer;
+    text-align: left;
+    margin-top: 40px;
+    margin-left: 30px;
+    color: rgb(6, 53, 128);
+    text-decoration: underline;
+}
+
+.clear-all:hover {
+    text-decoration: underline;
+    color: red;
+}
+
 /* 景點簡短資訊(主體) */
 #attractions_introduction {
     margin: 30px 0 50px 0;
@@ -2524,6 +2540,14 @@ img {
     background-color: #ddd;
 }
 
+.RWD_clear {
+    display: none;
+    cursor: pointer;
+    text-align: center;
+    color: rgb(6, 53, 128);
+    text-decoration: underline;
+}
+
 @media screen and (max-width:768px) {
 
     .active_tit {
@@ -2740,6 +2764,25 @@ img {
         transition: 0.5s;
         border: 2px solid rgb(50, 50, 50);
         line-height: 40px;
+    }
+
+    /* 清除全部篩選條件 */
+    .clear-all {
+        display: none;
+        width: 100%;
+        cursor: pointer;
+        text-align: center;
+        color: rgb(6, 53, 128);
+        text-decoration: underline;
+    }
+
+    .RWD_clear {
+        display: block;
+    }
+
+    .RWD_clear:hover {
+        text-decoration: underline;
+        color: red;
     }
 }
 
