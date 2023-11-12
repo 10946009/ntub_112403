@@ -559,7 +559,7 @@ function checkHasLocationData(){
   console.log(location);
   location.forEach(function (container, index) {
     // console.log(hasAttractions);
-    if (container.value != null) {
+    if (container.value != ',') {
       startRecommend(container.value,index)
     }
   });

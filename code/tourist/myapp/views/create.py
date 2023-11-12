@@ -77,6 +77,10 @@ def create(request, ct_id):
     travel_datas = {}
     # 抓出這是哪一筆行程
     ct_attractions_data_total = ChoiceDay_Ct.objects.filter(ct_id=ct_id).order_by('day')
+
+    # 預設總共天數的資料為""
+    for i in range(1,ct_data.travel_day+1):
+       travel_datas[i]="" 
     # 抓目前位置
     for index,ct_attractions_data in enumerate(ct_attractions_data_total):
         crowd_index_list=[]
