@@ -2,6 +2,7 @@
 function createSave() {
   var nowtime = document.getElementById("nowtime-" + globalDay);
   var userLocation = document.getElementById("userLocation-" + globalDay);
+  var userLocationName = document.getElementById("userLocationName-" + globalDay);
   var orderAttractions = document.getElementById(
     "orderAttractions-" + globalDay
   );
@@ -31,6 +32,7 @@ function createSave() {
     data: {
       day: globalDay,
       location: userLocation.value,
+      location_name: userLocationName.textContent,
       nowtime: nowtime.value,
       all_id: all_id.join(','),
       ct_status: 3,
