@@ -28,6 +28,7 @@ function saveTabState(tabId, day) {
   console.log(now_click_attractions);
   //使下面暫存的景點跟著換
   inputBottom();
+  checkHasLocationData();
 }
 
 // 翻轉右邊區塊&按鈕RWD變換
