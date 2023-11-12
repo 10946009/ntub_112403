@@ -93,9 +93,9 @@ class Create_Travel(models.Model):
 class ChoiceDay_Ct(models.Model):
     ct = models.ForeignKey(to=Create_Travel, on_delete=models.CASCADE)  # 行程沒了歷史也會被刪除
     day = models.IntegerField(null=False, blank=False)
-    location_name = models.TextField(max_length=255, null=False, blank=False,default="臺北")
-    start_location_x = models.FloatField(null=False, blank=False)
-    start_location_y = models.FloatField(null=False, blank=False)
+    location_name = models.TextField(max_length=255, null=False, default="")
+    start_location_x = models.FloatField(null=False,default="")
+    start_location_y = models.FloatField(null=False,default="")
     start_time = models.IntegerField(null=False, blank=False)
 
 
