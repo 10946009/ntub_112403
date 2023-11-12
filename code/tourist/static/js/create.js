@@ -232,7 +232,7 @@ function submitAction(day) {
   done.style.transform = 'rotateY(0deg)';
   button.textContent = "重新推薦";
   button.style.backgroundColor = "rgb(255, 41, 101)";
-  isdoneJourneyVisible = true;
+  isdoneJourneyVisible[globalDay] = true;
 
   submitRecommend();
 }
