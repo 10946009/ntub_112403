@@ -309,6 +309,7 @@ body {
 
 /* 篩選視窗裡面的內容物 */
 .more_btn {
+    cursor: pointer;
     color: rgb(73, 72, 72);
     display: inline-block;
     padding: 8px 12px;
@@ -386,17 +387,32 @@ body {
 
 /* 篩選條件結果標籤 */
 .tag-cloud {
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 4px 10px;
-    font-family: Arial;
-    border: solid #000 1.5px;
-    border-radius: 10px;
-    margin-top: 6px;
-    font-size: 18px;
-    background-color: rgb(134, 198, 251);
+    margin-left: 5px;
+    color: rgb(31, 87, 178);
     display: inline-block;
-    color: rgb(0, 0, 0);
+    padding: 8px 12px;
+    border: solid rgb(214, 213, 213) 1.5px;
+    border-radius: 30px;
+    margin-top: 6px;
+    margin-right: 5px;
+    font-size: 18px;
+    background: rgb(255, 255, 255);
+    position: relative;
+    display: inline-block;
+}
+
+.tag-cloud:hover {
+    background-color: rgb(236, 233, 233);
+    color: rgb(73, 72, 72);
+}
+
+/* 篩選條件結果標籤(右上x） */
+.x_icon {
+    color: rgb(200, 73, 73);
+    cursor: pointer;
+    position: absolute;
+    top: -5px;
+    right: -5px;
 }
 
 /* 景點簡短資訊(主體) */

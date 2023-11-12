@@ -626,18 +626,19 @@ endcomment %}
     //         scrollTextH1.style.transform = `translate(0%, ${translateY}%)`;
     //     }
     // });
-    // function getAllSessionStorageData() {
-    //     var data = []; // 創建一個空對象來保存所有的sessionStorage資料
 
-    //     for (var i = 0; i < sessionStorage.length; i++) {
-    //         var key = sessionStorage.key(i); // 獲取sessionStorage的鍵
-    //         var value = sessionStorage.getItem(key); // 獲取鍵對應的值
+    function getAllSessionStorageData() {
+        var data = []; // 創建一個空對象來保存所有的sessionStorage資料
 
-    //         data.push(key, value); // 將鍵值對添加到data對象中
-    //     }
+        for (var i = 0; i < sessionStorage.length; i++) {
+            var key = sessionStorage.key(i); // 獲取sessionStorage的鍵
+            var value = sessionStorage.getItem(key); // 獲取鍵對應的值
 
-    //     return data; // 返回包含所有sessionStorage資料的對象
-    // }
+            data.push(key, value); // 將鍵值對添加到data對象中
+        }
+
+        return data; // 返回包含所有sessionStorage資料的對象
+    }
     // 用來刷新搜尋結果的function
     function searchText(search_text, data_type) {
         // data_type= keyword_search,tag_search,popular_search
@@ -662,7 +663,7 @@ endcomment %}
                 }
                 keys.forEach(function (key) {
                     console.log(key);
-                    search_type_key_word.innerHTML += `<span class="tag-cloud">${key}<span>`;
+                    search_type_key_word.innerHTML += `<span class="tag-cloud">${key}<i class="fa-solid fa-circle-xmark x_icon"></i><span>`;
                 });
                 tagCloud = document.getElementsByClassName("tag-cloud");
                 console.log(tagCloud);
