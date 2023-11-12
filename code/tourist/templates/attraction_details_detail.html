@@ -24,7 +24,7 @@
                 <div class="detail_name__headerGrid icon_add">
                     <i class="fa-solid fa-arrow-up-from-bracket icon_name" id="share_icon"
                         onclick=" showShareLoaderAndContent()" title="分享"
-                        style="border: black solid; border-radius: 60px;padding:9px 10px 9px 10px;"></i>
+                        style="border: black solid; border-radius: 60px;padding:8px 10px 8px 10px;"></i>
                     {% if is_favorite %}
                     <i class="fas fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}"
                         onclick="addFavorite_attractions({{detail.id}})"
@@ -1625,17 +1625,17 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
-    // 評論刪除三個小點點
-    function Del_comment(icon) {
-        var deleteBox = icon.nextElementSibling;
-        deleteBox.style.display = (deleteBox.style.display === 'block') ? 'none' : 'block';
-        //點擊其他地方刪除div消失（關閉）
-        document.addEventListener('click', function (event) {
-            if (!deleteBox.contains(event.target) && event.target !== icon) {
-                deleteBox.style.display = 'none';
-            }
-        });
-    }
+    // // 評論刪除三個小點點
+    // function Del_comment(icon) {
+    //     var deleteBox = icon.nextElementSibling;
+    //     deleteBox.style.display = (deleteBox.style.display === 'block') ? 'none' : 'block';
+    //     //點擊其他地方刪除div消失（關閉）
+    //     document.addEventListener('click', function (event) {
+    //         if (!deleteBox.contains(event.target) && event.target !== icon) {
+    //             deleteBox.style.display = 'none';
+    //         }
+    //     });
+    // }
 
     var slideIndextotal = 1;
     showtotalDivs(slideIndextotal);
