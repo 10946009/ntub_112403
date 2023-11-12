@@ -2548,6 +2548,23 @@ img {
     text-decoration: underline;
 }
 
+/* 評論刪除div */
+.comment_delete-box {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    right: 0;
+    top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.comment_delete-box:hover {
+    background-color: #ddd;
+}
+
 @media screen and (max-width:768px) {
 
     .active_tit {
