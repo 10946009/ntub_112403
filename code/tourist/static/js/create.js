@@ -554,6 +554,17 @@ function checkHasData(){
     });
 }
 
+function checkHasLocationData(){
+  const location = document.querySelectorAll(".hiddenUserLocation");
+  console.log(location);
+  location.forEach(function (container, index) {
+    // console.log(hasAttractions);
+    if (container.value != null) {
+      startRecommend(container.value,index)
+    }
+  });
+}
+
 //用來把有的資料放入暫存區
 function checkHasDataBottom(){
   

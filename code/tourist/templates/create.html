@@ -72,6 +72,7 @@
                   </span>
                   <br>
                   <input type="hidden"
+                         class="hiddenUserLocation"
                          id="userLocation-{{ day }}"
                          value="{{ local_xy.0 }},{{ local_xy.1 }}">
                   <button class="placeBtn btn_now"
@@ -357,6 +358,7 @@ for( var i = 0; i < total_day.length; i++ ){
 }
 inputBottom(1);//初始化第一天的bottom
 var globalDay = 1;
+checkHasLocationData();//如果使用者已經有選擇位置
 checkHasData();//如果使用者是否有資料顯示排序景點
 // 放入景點名稱
 autocomplete(create_searchInput,JSON.parse('{{ attractions_search_json|safe }}'));
