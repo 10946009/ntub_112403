@@ -24,15 +24,15 @@
                 <div class="detail_name__headerGrid icon_add">
                     <i class="fa-solid fa-arrow-up-from-bracket icon_name" id="share_icon"
                         onclick=" showShareLoaderAndContent()" title="分享"
-                        style="border: black solid; border-radius: 60px;padding:6px 8px 6px 8px;"></i>
+                        style="border: black solid; border-radius: 60px;padding:9px 10px 9px 10px;"></i>
                     {% if is_favorite %}
                     <i class="fas fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}"
                         onclick="addFavorite_attractions({{detail.id}})"
-                        style="border: black solid; border-radius: 50px;padding:6px;"></i>
+                        style="border: black solid;border-radius: 50%; background-color: white; padding: 10px 10px 10px 10px;color: rgb(111, 110, 110); font-size: 20px;"></i>
                     {% else %}
-                    <i class="far fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}"
+                    <i class="fas fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}"
                         onclick="addFavorite_attractions({{detail.id}})"
-                        style="border: black solid; border-radius: 50px;padding:6px;"></i>
+                        style="border: black solid;border-radius: 50%; background-color: white; padding: 10px 10px 10px 10px;color: rgb(202, 13, 13); font-size: 20px;"></i>
                     {% endif %}
                 </div>
             </div>
