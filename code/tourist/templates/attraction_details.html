@@ -281,17 +281,17 @@ endcomment %}
 </div> -->
 <div class="row">
     <div class="col-1"></div>
-    <div class="col-8">
-        <div class="clear-all">
+    <div class="col-8 clear_8">
+        <div class="clear-all" id="clear-all">
             <h5><strong><i class="fa-solid fa-square-xmark"
                         style="color: rgb(179, 76, 76);margin-right: 5px;"></i>清除所有篩選</strong></h5>
         </div>
     </div>
-    <div class="col-2">
+    <div class="col-2 clear_2">
         <!-- style="position: relative;" -->
         <div class="new_fifliter">
             <!-- style="position:absolute ;right: 50px;" -->
-            <div style="text-align: center;">
+            <div class="in_filiter">
                 <h5 class="ask_qa" id="new_fifliter_topic"
                     onclick="document.getElementById('show_filiter').style.display='block'">
                     <i class="fa-solid fa-list" style="margin-right: 6px;"></i>主題
@@ -299,6 +299,14 @@ endcomment %}
                 <h5 class="ask_qa" id="new_filiter_user">
                     排序<i class="fa-solid fa-chevron-down" style="margin-left: 6px;"></i>
                 </h5>
+                <!-- <h5 class="ask_qa" id="new_filiter_user">
+                    <i class="fa-solid fa-square-xmark" style="color: rgb(179, 76, 76);margin-right: 5px;"></i>清除所有篩選
+                </h5> -->
+                </h5>
+                <div class="row RWD_clear" id="clear-all">
+                    <h5><strong><i class="fa-solid fa-square-xmark"
+                                style="color: rgb(179, 76, 76);margin-right: 5px;"></i>清除所有篩選</strong></h5>
+                </div>
                 <div class="dropdown_filiter" id="dropdown_filiter">
                     <div class="dropdown-content">
                         <div class="dropdown-item focused" id="defaultFocus">大家最愛</div>
@@ -306,20 +314,18 @@ endcomment %}
                         <!-- <div class="dropdown-item"></div> -->
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 </div>
-<div class="row RWD_clear">
-    <h5><strong><i class="fa-solid fa-square-xmark"
-                style="color: rgb(179, 76, 76);margin-right: 5px;"></i>清除所有篩選</strong></h5>
-</div>
 <div class="row" style="padding: 20px;">
     <div class="col-1"></div>
     <div class="col-10">
-        <hr class="tit_hr">
+        <!-- <hr class="tit_hr"> -->
         <h4 style="  font-weight: bold;"><i class="fa-solid fa-lightbulb"
-                style="color: rgb(203, 190, 6);"></i>共<span>xxx</span>個景點，以<span id="type_key_word"></span>排序</h4>
+                style="color: rgb(203, 190, 6);"></i>共<span>xxx</span>個景點，以<span
+                id="type_key_word"></span>為主題搜尋，並以xxx(大家最愛、最多按讚）排序</h4>
         <!-- 清除所有篩選按鈕 -->
         <!-- <div class="row" style="margin:20px auto;" data-400="transform: scale(1.5); opacity: 0"
             data-500="transform: scale(1); opacity: 1">

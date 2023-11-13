@@ -1508,8 +1508,7 @@ img {
 
 /* 詢問問題框框 */
 .ask_qa_container {
-    /* background: rgb(221, 219, 219); */
-    background: rgb(236, 221, 184);
+    background: rgb(221, 219, 219);
     border: black solid;
     width: 42%;
     margin: 50px auto;
@@ -1517,9 +1516,7 @@ img {
 
 /* 提問彈跳窗(ask,name) */
 .ask_container {
-    /* background-color: rgb(170, 171, 171); */
-    background-color: rgb(209, 177, 74);
-    color: rgb(90, 70, 25);
+    background-color: rgb(170, 171, 171);
     position: relative;
     padding: 20px;
 }
@@ -1563,7 +1560,8 @@ img {
 }
 
 /* 取消,張貼按鈕 */
-.ask_btn_cancel {
+.ask_btn_cancel,
+.ask_btn_ok {
     cursor: pointer;
     display: inline-block;
     color: rgb(0, 0, 0);
@@ -1575,34 +1573,15 @@ img {
     margin-right: 20px;
 }
 
-.ask_btn_ok {
-    cursor: pointer;
-    display: inline-block;
-    color: rgb(0, 0, 0);
-    padding: 2px 20px 2px 20px;
-    font-family: Arial;
-    border: #000 solid;
-    /* background-color: #a5a6a7; */
-    font-size: 14px;
-    margin-right: 20px;
-    background-color: #d2892f;
-}
-
+.ask_btn_cancel:hover,
 .ask_btn_ok:hover {
-    color: white;
-    background-color: #e2a941;
-    /* background-color: #727474; */
-}
-
-.ask_btn_cancel:hover {
     color: white;
     background-color: #727474;
 }
 
 /* 所有問題框框 */
 .all_ask_qa_container {
-    /* background: rgb(221, 219, 219); */
-    background: rgb(236, 221, 184);
+    background: rgb(221, 219, 219);
     border: black solid;
     width: 60%;
     margin: 50px auto;
@@ -1662,8 +1641,7 @@ img {
     padding: 2px 20px 2px 20px;
     font-family: Arial;
     border: #000 solid;
-    /* background-color: #a5a6a7; */
-    background-color: #d2892f;
+    background-color: #a5a6a7;
     font-size: 14px;
     margin-right: 40px;
     margin-top: 20px;
@@ -1671,8 +1649,7 @@ img {
 
 .all_ask_btn_ok:hover {
     color: white;
-    /* background-color: #727474; */
-    background-color: #e2a941;
+    background-color: #727474;
 }
 
 /* 載入圈圈 */
@@ -2563,6 +2540,7 @@ img {
     background-color: #ddd;
 }
 
+/* RWD所有清除 */
 .RWD_clear {
     display: none;
     cursor: pointer;
@@ -2571,7 +2549,7 @@ img {
     text-decoration: underline;
 }
 
-/* 評論刪除div */
+/* 三個點點刪除框框 */
 .comment_delete-box {
     display: none;
     position: absolute;
@@ -2581,11 +2559,23 @@ img {
     right: 0;
     top: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
 }
 
-.comment_delete-box:hover {
-    background-color: #ddd;
+/* filiter div */
+.in_filiter {
+    text-align: center;
+}
+
+/* 所有清除下面的border */
+.clear_8 {
+    border-bottom: rgb(177, 177, 177) solid 2px;
+    padding-bottom: 10px;
+}
+
+/* 排序下面的border */
+.clear_2 {
+    border-bottom: rgb(177, 177, 177) solid 2px;
+    padding-bottom: 10px;
 }
 
 @media screen and (max-width:768px) {
@@ -2817,7 +2807,14 @@ img {
     }
 
     .RWD_clear {
+        position: absolute;
+        right: 10px;
+        margin-top: 15px;
         display: block;
+        display: inline-block;
+        padding: 8px 10px;
+        border-radius: 25px;
+        margin-top: 8px;
     }
 
     .RWD_clear:hover {
@@ -2825,40 +2822,28 @@ img {
         color: red;
     }
 
-    /* 詢問問題框框 */
-    .ask_qa_container {
-        /* background: rgb(221, 219, 219); */
-        background: rgb(236, 221, 184);
-        border: black solid;
-        width: 100%;
-        margin: 50px auto;
+    /* 所有清除下面的border */
+    .clear_8 {
+        border-bottom: none;
+        padding-bottom: 10px;
     }
 
-    /* 後面黑色那塊 */
-    .out_ask_qa {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgb(0, 0, 0);
-        background-color: rgba(0, 0, 0, 0.4);
-        padding-top: 100px;
+    /* 排序下面的border */
+    .clear_2 {
+        border-bottom: rgb(177, 177, 177) solid 2px;
+        padding-bottom: 10px;
     }
 
-    /* 所有問題框框 */
-    .all_ask_qa_container {
-        /* background: rgb(221, 219, 219); */
-        background: rgb(236, 221, 184);
-        border: black solid;
-        width: 100%;
-        margin: 50px auto;
-        padding: 20px 40px 20px 40px;
+    /* filiter div */
+    .in_filiter {
+        text-align: left;
+        margin-left: 20px;
     }
 
+    /* 主題filiter */
+    #new_fifliter_topic {
+        margin-right: 10px;
+    }
 }
 
 
