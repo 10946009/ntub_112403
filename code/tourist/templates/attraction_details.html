@@ -282,7 +282,7 @@ endcomment %}
 <div class="row sticky_att">
     <div class="col-1"></div>
     <div class="col-8 clear_8">
-        <div class="clear-all" id="clear-all">
+        <div class="clear-all" id="clear-all1">
             <h5 class="clear_1"><strong><i class="fa-solid fa-square-xmark"
                         style="color: rgb(179, 76, 76);margin-right: 5px;"></i>清除所有篩選</strong></h5>
         </div>
@@ -303,14 +303,15 @@ endcomment %}
                     <i class="fa-solid fa-square-xmark" style="color: rgb(179, 76, 76);margin-right: 5px;"></i>清除所有篩選
                 </h5> -->
                 </h5>
-                <div class="row RWD_clear" id="clear-all">
+                <div class="row RWD_clear" id="clear-all2">
                     <h5><strong><i class="fa-solid fa-square-xmark"
                                 style="color: rgb(179, 76, 76);margin-right: 5px;"></i>清除所有篩選</strong></h5>
                 </div>
                 <div class="dropdown_filiter" id="dropdown_filiter">
                     <div class="dropdown-content">
-                        <div class="dropdown-item focused" id="defaultFocus">大家最愛</div>
-                        <div class="dropdown-item">瀏覽最多</div>
+                        <div class="dropdown-item focused first-defaultFocus" id="defaultFocus"　data-set="">相關度最高</div>
+                        <div class="dropdown-item " data-set="hit">瀏覽最多</div>
+                        <div class="dropdown-item" data-set="favorite">大家最愛</div>
                         <!-- <div class="dropdown-item"></div> -->
                     </div>
                 </div>
@@ -324,8 +325,8 @@ endcomment %}
     <div class="col-10">
         <!-- <hr class="tit_hr"> -->
         <h4 class="all_att_tip" style="  font-weight: bold;"><i class="fa-solid fa-lightbulb"
-                style="color: rgb(203, 190, 6);"></i>共<span>xxx</span>個景點，以<span
-                id="type_key_word"></span>為主題搜尋，並以xxx(大家最愛、最多按讚）排序</h4>
+                style="color: rgb(203, 190, 6);"></i>共<span id="searchListCount">{{search_list_count}}</span>個景點，以<span
+                id="type_key_word"></span>為主題搜尋，並以<span id="searchListOrder">相關度最高</span>排序</h4>
         <!-- 清除所有篩選按鈕 -->
         <!-- <div class="row" style="margin:20px auto;" data-400="transform: scale(1.5); opacity: 0"
             data-500="transform: scale(1); opacity: 1">
@@ -480,7 +481,33 @@ endcomment %}
             item.addEventListener('click', function () {
                 defaultFocus.classList.remove('focused'); // 移除前一個項目的focused樣式
                 defaultFocus = item; // 更改defaultFocus為點擊的項目
+                for (var key in sessionStorage) {
+                    // 检查值是否匹配
+                    if (sessionStorage.getItem(key) === "order") {
+                        // 删除匹配的项
+                        sessionStorage.removeItem(key);
+                    }
+                }
                 defaultFocus.classList.add('focused'); // 添加focused樣式
+                console.log(item.dataset.set);
+                sessionStorage.setItem(item.dataset.set, 'order');
+                $.ajax({
+                    url: '',  // 伺服器端的 URL
+                    type: 'GET',  // 請求類型為 GET
+                    data: {
+                        sessionStorage: getAllSessionStorageData(),
+                        order: item.dataset.set,
+                    },
+                    success: function (response) {
+                        document.getElementById('searchListOrder').textContent = item.textContent;
+                        document.getElementById('searchListCount').textContent = response['search_list_count'];
+                        const search_detail_div = $('#replaceable-content');
+                        search_detail_div.html(response['keyword_search_list']);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr);
+                    }
+                });
             });
         });
     });
@@ -563,39 +590,28 @@ endcomment %}
             searchText(this.dataset.set, 'tag_search');
         });
     }
+//清除所有篩選
+    var clear_btn1 = document.getElementById("clear-all1");
+    var clear_btn2 = document.getElementById("clear-all2");
+    clear_btn1.addEventListener("click", function () {
+        clearTag()
+    });
+    clear_btn2.addEventListener("click", function () {
+        clearTag()
+    });
 
-    var header = document.getElementById("filiter_search1");//條件篩選裡面按鈕active（固定）
-    var btns = header.getElementsByClassName("more_btn");
-
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function () {
-            console.log(this.textContent)
-            var current = document.getElementsByClassName("active");
-            current[0].className = current[0].className.replace(" active", "");
-            this.className += " active";
-
-
-        });
-    }
-
-    var header = document.getElementById("filiter_search");//最受歡迎裡面按鈕active（固定）
-    var btns = header.getElementsByClassName("more_btn");
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function () {
-            var current = document.getElementsByClassName("active");
-            current[0].className = current[0].className.replace(" active", "");
-            this.className += " active";
-
-        });
-    }
-    var clear_btn = document.getElementById("clear_btn");
-    clear_btn.addEventListener("click", function () {
+    function clearTag(){
         var search_type_key_word = document.getElementById('type_key_word');
+        console.log(search_type_key_word);
         while (search_type_key_word.firstChild) {
             search_type_key_word.removeChild(search_type_key_word.firstChild);
         }
         sessionStorage.clear();
-    });
+        searchText("", 'keyword_search');
+        
+        var firstItem = document.querySelector(".first-defaultFocus");
+        firstItem.click();
+    }
     //歷史紀錄（點一下input跳出來）
     const searchInput = document.getElementById("myInput");
     const searchBox = document.getElementById("searchBox");
@@ -658,6 +674,7 @@ endcomment %}
     }
     // 用來刷新搜尋結果的function
     function searchText(search_text, data_type) {
+        loadingpage = 2
         // data_type= keyword_search,tag_search,popular_search
         console.log(search_text, data_type);
         var search_type_key_word = document.getElementById('type_key_word');
@@ -671,7 +688,7 @@ endcomment %}
                 sessionStorage: getAllSessionStorageData()
             },
             success: function (response) {
-
+                document.getElementById('searchListCount').textContent = response['search_list_count'];
                 const search_detail_div = $('#replaceable-content');
                 search_detail_div.html(response['keyword_search_list']);
                 var keys = Object.keys(sessionStorage);
@@ -680,7 +697,9 @@ endcomment %}
                 }
                 keys.forEach(function (key) {
                     console.log(key);
-                    search_type_key_word.innerHTML += `<span class="tag-cloud">${key}<i class="fa-solid fa-circle-xmark x_icon"></i><span>`;
+                    if(sessionStorage[key] != 'order'){
+                        search_type_key_word.innerHTML += `<span class="tag-cloud">${key}<i class="fa-solid fa-circle-xmark x_icon"></i><span>`;
+                    }
                 });
                 tagCloud = document.getElementsByClassName("tag-cloud");
                 console.log(tagCloud);
@@ -880,6 +899,34 @@ endcomment %}
             console.log(attractionsDetailName);
         }
     }); {% endcomment %}
-
+    let loadingpage = 2;  // 初始页面
+    let waitload = false;  // 等待加载标志
+    // 当滚动到底部时触发加载更多数据
+    $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() >= $(document).height()*0.9 && !waitload) {
+            waitload = true;
+            loadMoreData();
+        }
+    });
+    function loadMoreData() {
+        $.ajax({
+            url: '', 
+            type: 'GET',
+            data:{
+                loadingpage: loadingpage,
+                sessionStorage: getAllSessionStorageData(),
+            },
+            success: function(response) {
+                if(response['keyword_search_list'].includes("查無相關資料")){
+                    waitload = false;
+                    return;
+                }
+                loadingpage++;
+                const search_detail_div = $('#replaceable-content');
+                search_detail_div.append(response['keyword_search_list']);
+                waitload = false;
+            },
+        });
+    }
 </script>
 {% endblock body %}
