@@ -481,7 +481,13 @@ endcomment %}
             item.addEventListener('click', function () {
                 defaultFocus.classList.remove('focused'); // 移除前一個項目的focused樣式
                 defaultFocus = item; // 更改defaultFocus為點擊的項目
-                sessionStorage.removeItem('order');
+                for (var key in sessionStorage) {
+                    // 检查值是否匹配
+                    if (sessionStorage.getItem(key) === "order") {
+                        // 删除匹配的项
+                        sessionStorage.removeItem(key);
+                    }
+                }
                 defaultFocus.classList.add('focused'); // 添加focused樣式
                 console.log(item.dataset.set);
                 sessionStorage.setItem(item.dataset.set, 'order');
