@@ -191,7 +191,11 @@
               </div>
             </div>
             <div class="col-5 searchAndlikeAndrec">
-              <button class="changeToSearch" id="changeToSearch">切換搜尋</button>
+              <button class="changeToSearch" id="changeToSearch" onclick="changeToSearchRec()">
+                <span>切換搜尋</span>
+                <i class="fa-solid fa-magnifying-glass-location changeToSearch_icon" style="display: none;"></i>
+              </button>
+              <button class="changeTolike" id="changeToSearch" onclick="changeToSearchRec()">收藏與推薦</button>
               <div class="change searchBlock" id="searchBlock">
                 <div class="searchBarDiv">
                   <i class="fa-solid fa-magnifying-glass-location find_icon"></i>
@@ -208,9 +212,9 @@
                              placeholder="想去哪玩.."
                              aria-label="Search"
                              name="create_search_text">
-                      <button class="search_icon" id="create_searchClick">
+                      <!-- <button class="search_icon" id="create_searchClick">
                         <i class="fas fa-search"></i>
-                      </button>
+                      </button> -->
                       <!-- 歷史紀錄 -->
                       <div id="create_searchBox">
                         <div class="create_enter"></div>

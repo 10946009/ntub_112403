@@ -35,26 +35,26 @@ function saveTabState(tabId, day) {
 var islikeAndRecVisible = false;
 var isIconSet = false;
 
-function checkWindowSize() {
-  const button = document.getElementById('changeToSearch');
-  if (window.innerWidth <= 690) {
-    if (!isIconSet) {
-      setIconContent(button);
-      isIconSet = true;
-    }
-  } else {
-    button.textContent = islikeAndRecVisible ? '收藏與推薦' : '切換搜尋';
-    isIconSet = false;
-  }
-}
-function setIconContent(button) {
-  if (islikeAndRecVisible) {
-    button.innerHTML = '<i class="fa-regular fa-face-grin-hearts"></i>';
-  } else {
-    button.innerHTML = '<i class="fa-solid fa-magnifying-glass-location"></i>';
-  }
-}
-function rotateAndToggleContent() {
+// function checkWindowSize() {
+//   const button = document.getElementById('changeToSearch');
+//   if (window.innerWidth <= 690) {
+//     if (!isIconSet) {
+//       setIconContent(button);
+//       isIconSet = true;
+//     }
+//   } else {
+//     button.textContent = islikeAndRecVisible ? '收藏與推薦' : '切換搜尋';
+//     isIconSet = false;
+//   }
+// }
+// function setIconContent(button) {
+//   if (islikeAndRecVisible) {
+//     button.innerHTML = '<i class="fa-regular fa-face-grin-hearts"></i>';
+//   } else {
+//     button.innerHTML = '<i class="fa-solid fa-magnifying-glass-location"></i>';
+//   }
+// }
+function changeToSearchRec() {
   const likeAndRec = document.getElementById('likeAndRec');
   const searchBlock = document.getElementById('searchBlock');
   const button = document.getElementById('changeToSearch');
@@ -65,22 +65,18 @@ function rotateAndToggleContent() {
     likeAndRec.style.transform = 'rotateY(180deg)';
     searchBlock.style.transform = 'rotateY(0deg)';
     button.style.backgroundColor = 'rgb(255, 41, 101)';
-    setIconContent(button);
-    isIconSet = true;
+    // setIconContent(button);
+    // isIconSet = true;
   } else {
     likeAndRec.style.transform = 'rotateY(0deg)';
     searchBlock.style.transform = 'rotateY(180deg)';
     button.style.backgroundColor = '#0066DB';
-    setIconContent(button);
-    isIconSet = true;
+    likeAndRec.textContent = "收藏與推薦";
+    // setIconContent(button);
+    // isIconSet = true;
   }
 }
 
-// Call checkWindowSize when the window loads and when it's resized
-window.addEventListener('load', checkWindowSize);
-window.addEventListener('resize', checkWindowSize);
-// 被點的時候呼叫rotateAndToggleContent
-document.getElementById('changeToSearch').addEventListener('click', rotateAndToggleContent);
 
 
 // 高度一致
@@ -117,59 +113,6 @@ function adjustTextHeight(selector) {
 }
 
 // 翻轉左邊區塊W&按鈕RWD變換
-// var isdoneJourneyVisible = false;
-// var isLeftIconSet = false;
-
-// function checkLeftWindowSize() {
-//   const button = document.getElementsByClassName('changeToRec');
-//   if (window.innerWidth <= 690) {
-//     if (!isLeftIconSet) {
-//       setLeftIconContent(button[0]); // Since getElementsByClassName returns a collection, select the first element
-//       isLeftIconSet = true;
-//     }
-//   } else {
-//     button[0].textContent = isdoneJourneyVisible ? '重新推薦' : '景點排序';
-//     isLeftIconSet = false;
-//   }
-// }
-
-// function setLeftIconContent(button) {
-//   if (isdoneJourneyVisible) {
-//     button.innerHTML = '<i class="fa-solid fa-repeat"></i>';
-//   } else {
-//     button.innerHTML = '<i class="fa-solid fa-route"></i>';
-//   }
-// }
-
-// function rotateLeftAndToggleContent(globalDay) {
-//   console.log(globalDay);
-//   const checkRec = document.getElementById('checkRec-' + globalDay);
-//   const done = document.getElementById('done-' + globalDay);
-//   const button = document.getElementById("changeToRec-" + globalDay);
-
-//   isdoneJourneyVisible = !isdoneJourneyVisible;
-
-//   if (isdoneJourneyVisible) {
-//     checkRec.style.transform = 'rotateY(180deg)';
-//     done.style.transform = 'rotateY(0deg)';
-//     button.style.backgroundColor = 'rgb(255, 41, 101)';
-//     setLeftIconContent(button);
-//     isLeftIconSet = true;
-//   } else {
-//     checkRec.style.transform = 'rotateY(0deg)';
-//     done.style.transform = 'rotateY(180deg)';
-//     button.style.backgroundColor = '#0066DB';
-//     setLeftIconContent(button);
-//     isLeftIconSet = true;
-//   }
-// }
-
-// // Call checkLeftWindowSize when the window loads and when it's resized
-// window.addEventListener('load', checkLeftWindowSize);
-// window.addEventListener('resize', checkLeftWindowSize);
-
-// // Call rotateLeftAndToggleContent when the button is clicked
-// document.getElementById('changeToRec-{{ day }}').addEventListener('click', rotateLeftAndToggleContent);
 
 var total_day = document.getElementsByClassName('tab-pane')
 var isdoneJourneyVisible = {};
