@@ -9,42 +9,36 @@
 {% endblock %}
 {% block body %}
   <main>
-    <div class="row pageedit">
-      <form action="" class="createdataform">
-        <div class="row createdata" style="width: 80%;">
-          <div class="col-md-6 tabc_txt">行程名稱：{{ name }}</div>
-          <div class="col-md-6 tabc_txt">出發日期：{{ start_day }}</div>
-        </div>
-      </form>
+    <button class="recommend_save" id="saveDays" value="儲存" onclick="createSave()">儲存</button>
+
+    <div class="pageedit"> 
+      <ul class="nav nav-tabs flex justify-content-start my-nav-tabs" id="myTab" role="tablist">
+        {% for day,data in travel_datas.items %}
+          <li class="nav-item" role="presentation">
+            <button class="create-nav-link {% if forloop.counter == 1 %}active{% endif %}"
+                    id="{{ day }}-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#ch-{{ day }}"
+                    type="button"
+                    role="tab"
+                    aria-controls="ch-{{ day }}"
+                    onclick="saveTabState('ch-{{ day }}',{{ day }})"
+                    aria-selected="true">DAY {{ day }}</button>
+          </li>
+          <!--aria-controls="ch-{{ day }}"變數名稱要改一下-->
+        {% endfor %}
+      </ul>    
+      <div class="createdata">
+        <span class="tabc_txt">行程名稱：{{ name }}<br></span>
+        <span class="tabc_txt">出發日期：{{ start_day }}</span>
+      </div>
     </div>
- 
-    <ul class="nav nav-tabs flex justify-content-center my-nav-tabs"
-        id="myTab"
-        role="tablist">
-      {% for day in travelday %}
-        <li class="nav-item" role="presentation">
-          <button class="nav-link {% if forloop.counter == 1 %}active{% endif %}"
-                  id="{{ day }}-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#ch-{{ day }}"
-                  type="button"
-                  role="tab"
-                  aria-controls="ch-{{ day }}"
-                  onclick="saveTabState('ch-{{ day }}',{{ day }})"
-                  aria-selected="true">第{{ day }}天</button>
-        </li>
-        <!--aria-controls="ch-{{ day }}"變數名稱要改一下-->
-      {% endfor %}
-    </ul>
  
  
 
-    <div class="tab-content"
-         id="myTabContent"
-         style="width: 100%;
-                margin: 0 auto">
-      {% for day in travelday %}
-        <div class="tab-pane fade{% if forloop.counter == 1 %} show active{% endif %}"
+    <div class="tab-content" id="myTabContent" style="width: 100%; margin: 0 auto">
+      {% for day,data in travel_datas.items %}
+      <div class="tab-pane fade{% if forloop.counter == 1 %} show active{% endif %}"
              id="ch-{{ day }}"
              role="tabpanel"
              aria-labelledby="{{ day }}-tab"
@@ -54,26 +48,28 @@
                     align-items: center;
                     align-content: center;
                     padding: 10px 0">
-          <div class="row" style="width: 100%;">
-            <div class="col-6 recAndDone"
+          <div class="row" style="width: 100%;color: black;">
+            <div class="col-7 recAndDone"
                  style="border-right: 2px solid rgb(152, 152, 152)">
               <!-- 我是左邊 顯示已排完序的景點 -->
               <div>
                 <div class="tabD">
                   <span id="tabDT" class="tabDT">請輸入出發時間：</span>
                   <input type="time"
-                         name="nowtime"
-                         id="nowtime-{{ day }}"
-                         {% if user_nowtime %} value="{{ user_nowtime }}" {% else %} value="09:00" {% endif %}>
+                    name="nowtime"
+                    id="nowtime-{{ day }}"
+                    {% if data.user_nowtime %} value="{{ data.user_nowtime }}" {% else %} value="09:00" {% endif %}>
+                  
                 </div>
                 <div class="tabD">
                   <span id="tabDL" class="tabDL">使用者位置：
-                    <label class="input_txt" id="userLocationName-{{ day }}">{{ location_name }}</label>
+                    <label class="input_txt" id="userLocationName-{{ day }}">{{ data.location_name }}</label>
                   </span>
                   <br>
                   <input type="hidden"
+                         class="hiddenUserLocation"
                          id="userLocation-{{ day }}"
-                         value="{{ local_xy.0 }},{{ local_xy.1 }}">
+                         value="{{ data.local_xy.0 }},{{ data.local_xy.1 }}">
                   <button class="placeBtn btn_now"
                           type="button"
                           id="nowLocationButton-{{ day }}"
@@ -137,8 +133,6 @@
                   <div class="list" id="orderAttractions-{{ day }}" style="cursor: pointer;height: 500px;overflow-y: auto;">
                     {% include 'create_order_attractions.html' %}
                   </div>
-                  <button class="recommend_save" id="saveDays" value="儲存" onclick="createSave()">儲存</button>
-
                     <!-- 範例 -->
                     <!-- <div class="list" style="cursor: pointer;">
                       <div class="innerlist" draggable="true">
@@ -196,7 +190,7 @@
 
               </div>
             </div>
-            <div class="col-6 searchAndlikeAndrec">
+            <div class="col-5 searchAndlikeAndrec">
               <button class="changeToSearch" id="changeToSearch">切換搜尋</button>
               <div class="change searchBlock" id="searchBlock">
                 <div class="searchBarDiv">
@@ -214,7 +208,6 @@
                              placeholder="想去哪玩.."
                              aria-label="Search"
                              name="create_search_text">
-                      <!-- <input type="hidden" name="data_type" value="keyword_search"> -->
                       <button class="search_icon" id="create_searchClick">
                         <i class="fas fa-search"></i>
                       </button>
@@ -260,7 +253,7 @@
                                    class="img-responsive"
                                    width="100%"
                                    alt="">
-                                   
+                                   <!-- 這個連結沒有改 所以沒辦法連到+0的 -->
                               <a href="#" class="fa-solid fa-circle-info info_icon" id="info_icon" onclick="clickeInfo(event,{{ item.a_id.id }})"> <!-- 這裡這裡的itemId要用你們的編號 --></a>
                             </span>
 
@@ -357,6 +350,7 @@ for( var i = 0; i < total_day.length; i++ ){
 }
 inputBottom(1);//初始化第一天的bottom
 var globalDay = 1;
+checkHasLocationData();//如果使用者已經有選擇位置
 checkHasData();//如果使用者是否有資料顯示排序景點
 // 放入景點名稱
 autocomplete(create_searchInput,JSON.parse('{{ attractions_search_json|safe }}'));
@@ -372,10 +366,39 @@ autocomplete(create_searchInput,JSON.parse('{{ attractions_search_json|safe }}')
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
       //if(userLocation.value==''){}
-      userLocationName.textContent = latitude + ',' + longitude;  //之後要修改成地址或名字
+      //userLocationName.textContent = latitude + ',' + longitude;  
       userLocation.value = latitude + ',' + longitude; // 將經緯度寫進html
-      startRecommend(userLocation.value,day)
       console.log(userLocation.textContent);
+
+      // 使用 Nominatim 逆地理编码服务获取地址信息
+      const nominatimApiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+      fetch(nominatimApiUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data.display_name) {
+              const addressParts = [
+                data.address.postcode || data.address.zipcode,
+                data.address.country,
+                data.address.city || data.address.town || data.address.village,
+                data.address.suburb || data.address.suburb_district || data.address.neighbourhood,
+                data.address.road || data.address.footway || data.address.cycleway || data.address.path,
+                data.address.house_number || data.address.building,
+              ]; //修改address的格式  XX市 XX區 ......
+              const formattedAddress = addressParts.filter(part => part).join('');
+              //const address = data.display_name;
+              userLocationName.textContent = formattedAddress; //將地址或名字寫進html
+              console.log(formattedAddress);
+            } else {
+                userLocationName.textContent = "Address not found";
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching address:", error);
+            userLocationName.textContent = "Error fetching address";
+        });
+
+      
+      startRecommend(userLocation.value,day)
     }
 
     function error() {

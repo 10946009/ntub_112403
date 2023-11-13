@@ -309,6 +309,7 @@ body {
 
 /* 篩選視窗裡面的內容物 */
 .more_btn {
+    cursor: pointer;
     color: rgb(73, 72, 72);
     display: inline-block;
     padding: 8px 12px;
@@ -386,17 +387,48 @@ body {
 
 /* 篩選條件結果標籤 */
 .tag-cloud {
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 4px 10px;
-    font-family: Arial;
-    border: solid #000 1.5px;
-    border-radius: 10px;
-    margin-top: 6px;
-    font-size: 18px;
-    background-color: rgb(134, 198, 251);
+    margin-left: 5px;
+    color: rgb(31, 87, 178);
     display: inline-block;
-    color: rgb(0, 0, 0);
+    padding: 8px 12px;
+    border: solid rgb(214, 213, 213) 1.5px;
+    border-radius: 30px;
+    margin-top: 6px;
+    margin-right: 5px;
+    font-size: 18px;
+    background: rgb(255, 255, 255);
+    position: relative;
+    display: inline-block;
+}
+
+.tag-cloud:hover {
+    background-color: rgb(236, 233, 233);
+    color: rgb(73, 72, 72);
+}
+
+/* 篩選條件結果標籤(右上x） */
+.x_icon {
+    color: rgb(200, 73, 73);
+    cursor: pointer;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+
+/* 清除全部篩選條件  */
+.clear-all {
+    width: 140px;
+    cursor: pointer;
+    text-align: left;
+    margin-top: 40px;
+    margin-left: 30px;
+    color: rgb(6, 53, 128);
+    text-decoration: underline;
+}
+
+.clear-all:hover {
+    text-decoration: underline;
+    color: red;
 }
 
 /* 景點簡短資訊(主體) */
@@ -456,6 +488,7 @@ body {
     border-bottom: 5px solid #DCB879;
     cursor: pointer;
     transition: 0.3s;
+    font-size: 26px;
 }
 
 /* 景點名稱(碰到動畫） */
@@ -1476,7 +1509,7 @@ img {
 
 /* 詢問問題框框 */
 .ask_qa_container {
-    background: rgb(221, 219, 219);
+    background: rgb(236, 221, 184);
     border: black solid;
     width: 42%;
     margin: 50px auto;
@@ -1484,7 +1517,8 @@ img {
 
 /* 提問彈跳窗(ask,name) */
 .ask_container {
-    background-color: rgb(170, 171, 171);
+    background-color: rgb(209, 177, 74);
+    color: rgb(90, 70, 25);
     position: relative;
     padding: 20px;
 }
@@ -1528,8 +1562,7 @@ img {
 }
 
 /* 取消,張貼按鈕 */
-.ask_btn_cancel,
-.ask_btn_ok {
+.ask_btn_cancel {
     cursor: pointer;
     display: inline-block;
     color: rgb(0, 0, 0);
@@ -1541,10 +1574,26 @@ img {
     margin-right: 20px;
 }
 
-.ask_btn_cancel:hover,
-.ask_btn_ok:hover {
+.ask_btn_ok {
+    cursor: pointer;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    padding: 2px 20px 2px 20px;
+    font-family: Arial;
+    border: #000 solid;
+    font-size: 14px;
+    margin-right: 20px;
+    background-color: #d2892f;
+}
+
+.ask_btn_cancel:hover {
     color: white;
     background-color: #727474;
+}
+
+.ask_btn_ok:hover {
+    color: white;
+    background-color: #e2a941;
 }
 
 /* 所有問題框框 */
@@ -1554,6 +1603,8 @@ img {
     width: 60%;
     margin: 50px auto;
     padding: 20px 40px 20px 40px;
+    height: 700px;
+    overflow-y: scroll;
 }
 
 /* 所有問題彈跳窗（name,address) */
@@ -2508,6 +2559,56 @@ img {
     background-color: #ddd;
 }
 
+/* RWD所有清除 */
+.RWD_clear {
+    display: none;
+    cursor: pointer;
+    text-align: center;
+    color: rgb(6, 53, 128);
+    text-decoration: underline;
+}
+
+/* 三個點點刪除框框 */
+.comment_delete-box {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    right: 0;
+    top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* filiter div */
+.in_filiter {
+    text-align: center;
+}
+
+/* 所有清除下面的border */
+.clear_8 {
+    border-bottom: rgb(177, 177, 177) solid 2px;
+    padding-bottom: 10px;
+}
+
+/* 排序下面的border */
+.clear_2 {
+    border-bottom: rgb(177, 177, 177) solid 2px;
+    padding-bottom: 10px;
+}
+
+.rating {
+    font-size: 22px;
+}
+
+/* .sticky_att {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 70px;
+    z-index: 2;
+    background-image: url(../images/trip_bg_att.png);
+} */
+
 @media screen and (max-width:768px) {
 
     .active_tit {
@@ -2724,6 +2825,141 @@ img {
         transition: 0.5s;
         border: 2px solid rgb(50, 50, 50);
         line-height: 40px;
+    }
+
+    /* 清除全部篩選條件 */
+    .clear-all {
+        display: none;
+        width: 100%;
+        cursor: pointer;
+        text-align: center;
+        color: rgb(6, 53, 128);
+        text-decoration: underline;
+    }
+
+    .RWD_clear {
+        position: absolute;
+        right: 10px;
+        margin-top: 15px;
+        display: block;
+        display: inline-block;
+        padding: 8px 10px;
+        border-radius: 25px;
+        margin-top: 8px;
+    }
+
+    .RWD_clear:hover {
+        text-decoration: underline;
+        color: red;
+    }
+
+    /* 所有清除下面的border */
+    .clear_8 {
+        border-bottom: none;
+        padding-bottom: 10px;
+    }
+
+    /* 排序下面的border */
+    .clear_2 {
+        border-bottom: rgb(177, 177, 177) solid 2px;
+        padding-bottom: 10px;
+    }
+
+    /* filiter div */
+    .in_filiter {
+        text-align: left;
+        margin-left: 20px;
+    }
+
+    /* 主題filiter */
+    #new_fifliter_topic {
+        margin-right: 10px;
+    }
+}
+
+@media screen and (min-width:1600px) {
+
+    /* 景點名稱 */
+    #attractions_introduction .item_name {
+        margin: 0 0 10px 0;
+        padding: 0 0 10px 0;
+        display: inline-block;
+        border-bottom: 5px solid #DCB879;
+        cursor: pointer;
+        transition: 0.3s;
+        font-size: 30px;
+    }
+
+    /* 簡版景點資訊 */
+    #list-address,
+    .rating,
+    .score_att,
+    #list-selectedRating,
+    .look_att {
+        font-size: 26px;
+    }
+
+    .img_wrap {
+        margin-right: 20px;
+    }
+
+    /* filiter div */
+    #new_fifliter_topic,
+    #new_filiter_user,
+    .all_att_tip {
+        font-size: 28px;
+    }
+
+    .clear_1 {
+        font-size: 18px;
+    }
+
+    /* 下面learn more的部分 */
+    .bottom h4 {
+        color: #333;
+        transition: 0.5s;
+        cursor: pointer;
+        font-size: 28px;
+    }
+
+    /* 後面黑色那塊(ask) */
+    .out_ask_qa {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 250px;
+    }
+
+    /* 所有問題框框 */
+    .all_ask_qa_container {
+        background: rgb(221, 219, 219);
+        border: black solid;
+        width: 60%;
+        margin: 50px auto;
+        padding: 20px 40px 20px 40px;
+        height: 1200px;
+        overflow-y: scroll;
+    }
+
+    .all_ask_qa {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 50px;
     }
 }
 

@@ -24,15 +24,15 @@
                 <div class="detail_name__headerGrid icon_add">
                     <i class="fa-solid fa-arrow-up-from-bracket icon_name" id="share_icon"
                         onclick=" showShareLoaderAndContent()" title="分享"
-                        style="border: black solid; border-radius: 60px;padding:6px 8px 6px 8px;"></i>
+                        style="border: black solid; border-radius: 60px;padding:8px 10px 8px 10px;"></i>
                     {% if is_favorite %}
                     <i class="fas fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}"
                         onclick="addFavorite_attractions({{detail.id}})"
-                        style="border: black solid; border-radius: 50px;padding:6px;"></i>
+                        style="border: black solid;border-radius: 50%; background-color: white; padding: 10px 10px 10px 10px;color: rgb(111, 110, 110); font-size: 20px;"></i>
                     {% else %}
-                    <i class="far fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}"
+                    <i class="fas fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}"
                         onclick="addFavorite_attractions({{detail.id}})"
-                        style="border: black solid; border-radius: 50px;padding:6px;"></i>
+                        style="border: black solid;border-radius: 50%; background-color: white; padding: 10px 10px 10px 10px;color: rgb(202, 13, 13); font-size: 20px;"></i>
                     {% endif %}
                 </div>
             </div>
@@ -399,7 +399,7 @@
     </div>
     <!-- 查看所有問題(ok) -->
     <div class="all_ask_qa" id="all_ask_qa">
-        <div id="all_ask_qa_container" class="all_ask_qa_container" style="height: 700px; overflow-y: scroll;">
+        <div id="all_ask_qa_container" class="all_ask_qa_container">
             <form class="all_ask-content" id="all_ask-content" action="">
                 <div class="all_ask_container" id="all_ask_container">
                     <h3 style="color: rgb(172, 78, 1)">
@@ -1040,11 +1040,12 @@
                         <strong>發表評論</strong>
                     </h5>
                 </div>
-                <div>
+                <!-- 先註解 -->
+                <!-- <div>
                     <h5 class="comment_topic" id="update_att_photo" onclick="showupdateLoaderAndContent()">
                         <strong>上傳景點照片</strong>
                     </h5>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="col-9">
@@ -1055,13 +1056,22 @@
                     <img src="../static/images/an.jpeg" alt="User Avatar">
                 </div>
                 <div class="comment-content">
-                    <h6 class="username">
-                        {{comment.u.username}}<br>
-                        <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
-                                class="fa-solid fa-crown"></i>在地嚮導</span>
-                        <span style="color:gray;font-size: 12px; font-style: italic;">·4則評論
-                            ·3張照片</span>
-                    </h6>
+                    <div style="display: flex; justify-content: space-between; position: relative;">
+                        <h6 class="username">
+                            {{comment.u.username}}<br>
+                            <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;">
+                                <i class="fa-solid fa-crown"></i>在地嚮導
+                            </span>
+                            <span style="color:gray;font-size: 12px; font-style: italic;">·4則評論 ·3張照片</span>
+                        </h6>
+                        <!-- 3個小點點(icon) -->
+                        <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer;"
+                            onclick="Del_comment(this)"></i>
+                        <!-- 評論刪除顯示框框 -->
+                        <div class="comment_delete-box">
+                            刪除
+                        </div>
+                    </div>
                     <p class="comment-text">
                         {{comment.content}}
                         <br>
@@ -1615,6 +1625,18 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
+    // // 評論刪除三個小點點
+    // function Del_comment(icon) {
+    //     var deleteBox = icon.nextElementSibling;
+    //     deleteBox.style.display = (deleteBox.style.display === 'block') ? 'none' : 'block';
+    //     //點擊其他地方刪除div消失（關閉）
+    //     document.addEventListener('click', function (event) {
+    //         if (!deleteBox.contains(event.target) && event.target !== icon) {
+    //             deleteBox.style.display = 'none';
+    //         }
+    //     });
+    // }
+
     var slideIndextotal = 1;
     showtotalDivs(slideIndextotal);
 

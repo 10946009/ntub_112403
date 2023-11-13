@@ -239,7 +239,7 @@ endcomment %}
 </div>
 
 <!-- 條件篩選 -->
-<div id="show_condition" style="display: none;">
+<!-- <div id="show_condition" style="display: none;">
     <form class="modal-content" method="post" style="border-radius: 10px;">
         <div class="att_form">
             <span onclick="document.getElementById('show_condition').style.display='none'" class="close"
@@ -257,10 +257,10 @@ endcomment %}
             <div class="sure"><button class="sure_btn">篩選</button></div>
         </div>
     </form>
-</div>
+</div> -->
 
 <!-- 最受歡迎 -->
-<div id="show_userfavorite" style="display: none;">
+<!-- <div id="show_userfavorite" style="display: none;">
     <form class="modal-content" method="post" style="border-radius: 10px;">
         <div class="att_form">
             <span onclick="document.getElementById('show_userfavorite').style.display='none'" class="close"
@@ -278,12 +278,20 @@ endcomment %}
             <div class="sure"><button class="sure_btn">篩選</button></div>
         </div>
     </form>
-</div>
-<div class="row">
-    <div class="col-9"></div>
-    <div class="col-2">
+</div> -->
+<div class="row sticky_att">
+    <div class="col-1"></div>
+    <div class="col-8 clear_8">
+        <div class="clear-all" id="clear-all">
+            <h5 class="clear_1"><strong><i class="fa-solid fa-square-xmark"
+                        style="color: rgb(179, 76, 76);margin-right: 5px;"></i>清除所有篩選</strong></h5>
+        </div>
+    </div>
+    <div class="col-2 clear_2">
+        <!-- style="position: relative;" -->
         <div class="new_fifliter">
-            <div style="text-align: center;">
+            <!-- style="position:absolute ;right: 50px;" -->
+            <div class="in_filiter">
                 <h5 class="ask_qa" id="new_fifliter_topic"
                     onclick="document.getElementById('show_filiter').style.display='block'">
                     <i class="fa-solid fa-list" style="margin-right: 6px;"></i>主題
@@ -291,6 +299,14 @@ endcomment %}
                 <h5 class="ask_qa" id="new_filiter_user">
                     排序<i class="fa-solid fa-chevron-down" style="margin-left: 6px;"></i>
                 </h5>
+                <!-- <h5 class="ask_qa" id="new_filiter_user">
+                    <i class="fa-solid fa-square-xmark" style="color: rgb(179, 76, 76);margin-right: 5px;"></i>清除所有篩選
+                </h5> -->
+                </h5>
+                <div class="row RWD_clear" id="clear-all">
+                    <h5><strong><i class="fa-solid fa-square-xmark"
+                                style="color: rgb(179, 76, 76);margin-right: 5px;"></i>清除所有篩選</strong></h5>
+                </div>
                 <div class="dropdown_filiter" id="dropdown_filiter">
                     <div class="dropdown-content">
                         <div class="dropdown-item focused" id="defaultFocus">大家最愛</div>
@@ -302,13 +318,14 @@ endcomment %}
             </div>
         </div>
     </div>
-    <div class="col-1"></div>
 </div>
 <div class="row" style="padding: 20px;">
     <div class="col-1"></div>
     <div class="col-10">
-        <hr class="tit_hr">
-        <h4 style="  font-weight: bold;">共<span>xxx</span>個景點，以<span id="type_key_word"></span>排序</h4>
+        <!-- <hr class="tit_hr"> -->
+        <h4 class="all_att_tip" style="  font-weight: bold;"><i class="fa-solid fa-lightbulb"
+                style="color: rgb(203, 190, 6);"></i>共<span>xxx</span>個景點，以<span
+                id="type_key_word"></span>為主題搜尋，並以xxx(大家最愛、最多按讚）排序</h4>
         <!-- 清除所有篩選按鈕 -->
         <!-- <div class="row" style="margin:20px auto;" data-400="transform: scale(1.5); opacity: 0"
             data-500="transform: scale(1); opacity: 1">
@@ -626,18 +643,19 @@ endcomment %}
     //         scrollTextH1.style.transform = `translate(0%, ${translateY}%)`;
     //     }
     // });
-    // function getAllSessionStorageData() {
-    //     var data = []; // 創建一個空對象來保存所有的sessionStorage資料
 
-    //     for (var i = 0; i < sessionStorage.length; i++) {
-    //         var key = sessionStorage.key(i); // 獲取sessionStorage的鍵
-    //         var value = sessionStorage.getItem(key); // 獲取鍵對應的值
+    function getAllSessionStorageData() {
+        var data = []; // 創建一個空對象來保存所有的sessionStorage資料
 
-    //         data.push(key, value); // 將鍵值對添加到data對象中
-    //     }
+        for (var i = 0; i < sessionStorage.length; i++) {
+            var key = sessionStorage.key(i); // 獲取sessionStorage的鍵
+            var value = sessionStorage.getItem(key); // 獲取鍵對應的值
 
-    //     return data; // 返回包含所有sessionStorage資料的對象
-    // }
+            data.push(key, value); // 將鍵值對添加到data對象中
+        }
+
+        return data; // 返回包含所有sessionStorage資料的對象
+    }
     // 用來刷新搜尋結果的function
     function searchText(search_text, data_type) {
         // data_type= keyword_search,tag_search,popular_search
@@ -662,7 +680,7 @@ endcomment %}
                 }
                 keys.forEach(function (key) {
                     console.log(key);
-                    search_type_key_word.innerHTML += `<span class="tag-cloud">${key}<span>`;
+                    search_type_key_word.innerHTML += `<span class="tag-cloud">${key}<i class="fa-solid fa-circle-xmark x_icon"></i><span>`;
                 });
                 tagCloud = document.getElementsByClassName("tag-cloud");
                 console.log(tagCloud);

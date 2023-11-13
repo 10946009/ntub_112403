@@ -74,21 +74,29 @@ def create(request, ct_id):
     ct_attractions_co_list=[]
     all_ct_data = {} #days從1開始
     all_ct_data_id = {}
-    
+    travel_datas = {}
     # 抓出這是哪一筆行程
     ct_attractions_data_total = ChoiceDay_Ct.objects.filter(ct_id=ct_id).order_by('day')
+
+    # 預設總共天數的資料為""
+    for i in range(1,ct_data.travel_day+1):
+       travel_datas[i]="" 
     # 抓目前位置
     for index,ct_attractions_data in enumerate(ct_attractions_data_total):
         crowd_index_list=[]
-        crowd_list=[]
-        local_xy = ""
-        user_nowtime=""
         ct_data = []
         ct_data_id = []
-        local_xy = [ct_attractions_data.start_location_x,ct_attractions_data.start_location_y]
-        # 抓出發時間
-        user_nowtime = format_minutes_as_time(ct_attractions_data.start_time)
-        location_name = ct_attractions_data.location_name
+        
+        local_xy = [ct_attractions_data.start_location_x,ct_attractions_data.start_location_y] # 抓使用者位置的經緯度
+        location_name = ct_attractions_data.location_name # 抓使用者位置的地址或名稱
+        user_nowtime = format_minutes_as_time(ct_attractions_data.start_time) # 抓出發時
+        # 每一天的基本資料(起始時間、位置等)
+        travel_datas[index+1] = {
+            "day": index+1,
+            "local_xy": local_xy,
+            "location_name": location_name,
+            "user_nowtime": user_nowtime,
+        }
         # 抓出這筆行程中的所有景點
         ct_attractions_list = Attractions_Ct.objects.filter(
             choice_ct_id=ct_attractions_data.id
@@ -113,12 +121,12 @@ def create(request, ct_id):
         # print('crowd_list',crowd_list)
         # 合併上面四個資料
         for attraction, detail, co ,cl in zip(ct_attractions_list, ct_attractions_detail_list, ct_attractions_co_list,crowd_index_list):
-            print(f"{min(co.crowd[cl],co.crowd[cl+1])} ~ {max(co.crowd[cl],co.crowd[cl+1])}")
+            print(f"{min(co.crowd[cl],co.crowd[(cl+1)%24])} ~ {max(co.crowd[cl],co.crowd[(cl+1)%24])}")
             ct_data.append({
                 "attraction": attraction,
                 "detail": detail,
                 "co": co,
-                "crowd_list" : f"{min(co.crowd[cl],co.crowd[cl+1])} ~ {max(co.crowd[cl],co.crowd[cl+1])}"
+                "crowd_list" : f"{min(co.crowd[cl],co.crowd[(cl+1)%24])} ~ {max(co.crowd[cl],co.crowd[(cl+1)%24])}"
             })
             
         all_ct_data[index+1]=ct_data
@@ -126,6 +134,7 @@ def create(request, ct_id):
         # print('all_ct_data',all_ct_data)
     # except:
     #     all_ct_data=[]
+
     all_ct_data_id=json.dumps(all_ct_data_id)
     if request.method == "POST":
         ct_status = request.POST["ct_status"]
@@ -289,6 +298,7 @@ def create(request, ct_id):
             print(request.POST)
             choiceday = int(request.POST["day"])
             get_user_address = list(map(float, request.POST["location"].split(",")))
+            get_user_location_name = request.POST["location_name"]
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
             unit_query = ChoiceDay_Ct.objects.filter(day=choiceday, ct_id=ct_id)
@@ -297,6 +307,7 @@ def create(request, ct_id):
                 unit.start_location_x = get_user_address[0]
                 unit.start_location_y = get_user_address[1]
                 unit.start_time = new_nowtime
+                unit.location_name = get_user_location_name
             else:
                 unit = ChoiceDay_Ct.objects.create(
                     day=choiceday,
@@ -304,6 +315,7 @@ def create(request, ct_id):
                     start_location_y=get_user_address[1],
                     start_time=new_nowtime,
                     ct_id=ct_id,
+                    location_name=get_user_location_name,
                 )
             unit.save()
             choice_ct_id = unit.id

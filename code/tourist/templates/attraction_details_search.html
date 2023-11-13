@@ -30,7 +30,7 @@
         <!-- 景點名稱 -->
         <h4 class="item_name" data-bottom-top="transform: translateY(-20px);opacity: 0"
             data-center="transform: translateY(0px);opacity: 1" data-a-Id="{{ item.id }}"
-            onclick="showInfo({{ item.id }})" style="font-size: 26px;">
+            onclick="showInfo({{ item.id }})">
             {{item.a_name }}</h4>
         <!-- 星星數 -->
         <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
@@ -44,7 +44,7 @@
                 {% endfor %}
         </div>
         <!-- 評分 -->
-        <h4 style="margin-top:5px;" data-bottom-top="transform: translateY(-20px);opacity: 0"
+        <h4 class="score_att" style="margin-top:5px;" data-bottom-top="transform: translateY(-20px);opacity: 0"
             data-center="transform: translateY(0px);opacity: 1">
             <span id="list-selectedRating">{{ item.rating }}</span> / 5 ({{item.rating_total}}則評分)
         </h4>
@@ -59,7 +59,7 @@
             <span>24小時營業</span>
         </h5> -->
         <!-- 總瀏覽人數 -->
-        <h4 style="color:#8b8a8a;" data-bottom-top="transform: translateY(-20px);opacity: 0"
+        <h4 class="look_att" style="color:#8b8a8a;" data-bottom-top="transform: translateY(-20px);opacity: 0"
             data-center="transform: translateY(0px);opacity: 1">
             <i class="fa-regular fa-eye"></i>&thinsp;<span>{{item.hit}}</span>
         </h4>

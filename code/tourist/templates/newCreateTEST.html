@@ -244,10 +244,69 @@
         .show {
             opacity: 1;
         }
+
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            /* 初始情況下是水平排列 */
+        }
+
+        .item {
+            width: 250px;
+        }
+
+        @media screen and (max-width: 767px) {
+            .flex-container {
+                flex-direction: column;
+                /* 在768像素以下的螢幕上變成垂直排列 */
+            }
+            .item2{
+                order: -1;
+            }
+        }
+        .containerTest {
+            position: relative;
+            width: 300px; /* 調整容器的寬度 */
+        }
+
+        .overlayTest {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white; /* 文字顏色 */
+            font-size: 20px; /* 文字大小 */
+        }
+
+        .imageTest {
+            width: 100%;
+            height: auto;
+            z-index: 0; /* 圖片放在文字的下層 */
+        }
     </style>
 </head>
 
 <body>
+    <div class="containerTest">
+        <img src="../static/images/cake01.jpg" width="100%" alt="Your Image" class="img-responsive imageTest">
+        <div class="overlayTest">
+            <p>Your Text Here</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="flex-container">
+            <div class="item1">i am left</div>
+            <div class="item2">i am right</div>
+        </div>
+    </div>
 
     <div class="row" style="width: 90%; margin: 0 auto;">
         <div class="col-lg-4 col-md-6 hot_spot_block hidemespot" style="padding: 5px;">

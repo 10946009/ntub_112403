@@ -28,6 +28,7 @@ function saveTabState(tabId, day) {
   console.log(now_click_attractions);
   //使下面暫存的景點跟著換
   inputBottom();
+  checkHasLocationData();
 }
 
 // 翻轉右邊區塊&按鈕RWD變換
@@ -232,7 +233,7 @@ function submitAction(day) {
   done.style.transform = 'rotateY(0deg)';
   button.textContent = "重新推薦";
   button.style.backgroundColor = "rgb(255, 41, 101)";
-  isdoneJourneyVisible = true;
+  isdoneJourneyVisible[globalDay] = true;
 
   submitRecommend();
 }
@@ -552,6 +553,17 @@ function checkHasData(){
         clickChangeDone(changeToRec.charAt(changeToRec.length - 1))
       }
     });
+}
+
+function checkHasLocationData(){
+  const location = document.querySelectorAll(".hiddenUserLocation");
+  console.log(location);
+  location.forEach(function (container, index) {
+    // console.log(hasAttractions);
+    if (container.value != ',') {
+      startRecommend(container.value,index)
+    }
+  });
 }
 
 //用來把有的資料放入暫存區
