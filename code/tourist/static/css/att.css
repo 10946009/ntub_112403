@@ -488,6 +488,7 @@ body {
     border-bottom: 5px solid #DCB879;
     cursor: pointer;
     transition: 0.3s;
+    font-size: 26px;
 }
 
 /* 景點名稱(碰到動畫） */
@@ -2578,6 +2579,10 @@ img {
     padding-bottom: 10px;
 }
 
+.rating {
+    font-size: 22px;
+}
+
 @media screen and (max-width:768px) {
 
     .active_tit {
@@ -2843,6 +2848,52 @@ img {
     /* 主題filiter */
     #new_fifliter_topic {
         margin-right: 10px;
+    }
+}
+
+@media screen and (min-width:1600px) {
+
+    /* 景點名稱 */
+    #attractions_introduction .item_name {
+        margin: 0 0 10px 0;
+        padding: 0 0 10px 0;
+        display: inline-block;
+        border-bottom: 5px solid #DCB879;
+        cursor: pointer;
+        transition: 0.3s;
+        font-size: 30px;
+    }
+
+    /* 簡版景點資訊 */
+    #list-address,
+    .rating,
+    .score_att,
+    #list-selectedRating,
+    .look_att {
+        font-size: 26px;
+    }
+
+    .img_wrap {
+        margin-right: 20px;
+    }
+
+    /* filiter div */
+    #new_fifliter_topic,
+    #new_filiter_user,
+    .all_att_tip {
+        font-size: 28px;
+    }
+
+    .clear_1 {
+        font-size: 18px;
+    }
+
+    /* 下面learn more的部分 */
+    .bottom h4 {
+        color: #333;
+        transition: 0.5s;
+        cursor: pointer;
+        font-size: 28px;
     }
 }
 
