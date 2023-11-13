@@ -9,42 +9,41 @@
 {% endblock %}
 {% block body %}
   <main>
-    <div class="row pageedit">
-      <form action="" class="createdataform">
-        <div class="row createdata" style="width: 80%;">
+    <div class="pageedit">
+      <div class="createdata">
+        <span class="tabc_txt">行程名稱：{{ name }}<br></span>
+        <span class="tabc_txt">出發日期：{{ start_day }}</span>
+      </div>
+      <!-- <form action="" class="createdataform"> -->
+        <!-- <div class="row createdata">
           <div class="col-md-6 tabc_txt">行程名稱：{{ name }}</div>
           <div class="col-md-6 tabc_txt">出發日期：{{ start_day }}</div>
-        </div>
-      </form>
-    </div>
+        </div> -->
+      <!-- </form> -->
  
-    <ul class="nav nav-tabs flex justify-content-center my-nav-tabs"
-        id="myTab"
-        role="tablist">
-      {% for day,data in travel_datas.items %}
-        <li class="nav-item" role="presentation">
-          <button class="nav-link {% if forloop.counter == 1 %}active{% endif %}"
-                  id="{{ day }}-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#ch-{{ day }}"
-                  type="button"
-                  role="tab"
-                  aria-controls="ch-{{ day }}"
-                  onclick="saveTabState('ch-{{ day }}',{{ day }})"
-                  aria-selected="true">第{{ day }}天</button>
-        </li>
-        <!--aria-controls="ch-{{ day }}"變數名稱要改一下-->
-      {% endfor %}
-    </ul>
+      <ul class="nav nav-tabs flex justify-content-start my-nav-tabs" id="myTab" role="tablist">
+        {% for day,data in travel_datas.items %}
+          <li class="nav-item" role="presentation">
+            <button class="create-nav-link {% if forloop.counter == 1 %}active{% endif %}"
+                    id="{{ day }}-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#ch-{{ day }}"
+                    type="button"
+                    role="tab"
+                    aria-controls="ch-{{ day }}"
+                    onclick="saveTabState('ch-{{ day }}',{{ day }})"
+                    aria-selected="true">DAY {{ day }}</button>
+          </li>
+          <!--aria-controls="ch-{{ day }}"變數名稱要改一下-->
+        {% endfor %}
+      </ul>
+    </div>
  
  
 
-    <div class="tab-content"
-         id="myTabContent"
-         style="width: 100%;
-                margin: 0 auto">
+    <div class="tab-content" id="myTabContent" style="width: 100%; margin: 0 auto">
       {% for day,data in travel_datas.items %}
-        <div class="tab-pane fade{% if forloop.counter == 1 %} show active{% endif %}"
+      <div class="tab-pane fade{% if forloop.counter == 1 %} show active{% endif %}"
              id="ch-{{ day }}"
              role="tabpanel"
              aria-labelledby="{{ day }}-tab"
@@ -54,8 +53,8 @@
                     align-items: center;
                     align-content: center;
                     padding: 10px 0">
-          <div class="row" style="width: 100%;">
-            <div class="col-6 recAndDone"
+          <div class="row" style="width: 100%;color: black;">
+            <div class="col-7 recAndDone"
                  style="border-right: 2px solid rgb(152, 152, 152)">
               <!-- 我是左邊 顯示已排完序的景點 -->
               <div>
@@ -198,7 +197,7 @@
 
               </div>
             </div>
-            <div class="col-6 searchAndlikeAndrec">
+            <div class="col-5 searchAndlikeAndrec">
               <button class="changeToSearch" id="changeToSearch">切換搜尋</button>
               <div class="change searchBlock" id="searchBlock">
                 <div class="searchBarDiv">
@@ -216,7 +215,6 @@
                              placeholder="想去哪玩.."
                              aria-label="Search"
                              name="create_search_text">
-                      <!-- <input type="hidden" name="data_type" value="keyword_search"> -->
                       <button class="search_icon" id="create_searchClick">
                         <i class="fas fa-search"></i>
                       </button>
