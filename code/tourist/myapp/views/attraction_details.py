@@ -11,6 +11,7 @@ import random
 
 def keyword_search(search_text, filter_condition_and, filter_condition_or, method):
     # Q物件可以用&和|來串接，串接後的Q物件可以用來過濾資料
+    if method == "order": return filter_condition_and, filter_condition_or
     if method == "tag_search":
         matching_dict = None
         for item in ATT_TYPE_CHINESE:
@@ -54,8 +55,15 @@ def get_nearby_attractions(choose_attractions):
     return near_attractions
 
 def attraction_details(request):
+    print(request.GET)
     # # 取得景點名稱
     # all_type_name = list(ATT_TYPE_CHINESE.keys())
+    loadingpage = 1
+    limit = 5
+    if request.GET.get("loadingpage"):
+        print("loadingpage", request.GET.get("loadingpage"))
+        loadingpage = int(request.GET.get("loadingpage"))
+    maxlimit = limit*loadingpage
     all_type_name_json = json.dumps(ATT_TYPE_CHINESE)
     if request.POST.get("base_search_text"):
         base_search_text = request.POST.get("base_search_text")
@@ -68,29 +76,41 @@ def attraction_details(request):
 
 
     # 搜尋引擎
-    if request.method == "GET" and request.GET.get("search_text") != None:
+    if request.method == "GET" and request.GET.get("sessionStorage[]") or request.GET.get("data_type") or request.GET.get("order"):
         # 初始化一个Q对象，表示没有过滤条件
         filter_condition_and = Q()
         filter_condition_or = Q()
         session_storage = request.GET.getlist("sessionStorage[]", [])
-
-        data_type = request.GET.get("data_type")
+        order = ""
         while len(session_storage) > 0:
             data_type = session_storage.pop()
             search_text = session_storage.pop()
+            if data_type == "order": 
+                order = search_text 
+                continue
 
             filter_condition_and, filter_condition_or = keyword_search(
                 search_text, filter_condition_and, filter_condition_or, data_type
             )
         search_list_and = list(
-            Attractions.objects.filter(filter_condition_and)[:30].values()
+            Attractions.objects.filter(filter_condition_and).values()
         )
         search_list_or = list(
             Attractions.objects.filter(filter_condition_or)
-            .exclude(filter_condition_and)[:30]
+            .exclude(filter_condition_and)
             .values()
         )
-        search_list = search_list_and + search_list_or
+        search_list = search_list_and + search_list_or if filter_condition_and else search_list_and
+
+        #排序
+        if order:
+            if order == "favorite":
+                for index, search in enumerate(search_list):
+                    search_list[index].setdefault("favorite_count",Attractions.objects.get(id=search["id"]).get_favorite_count())
+                search_list = sorted(search_list, key=lambda x: x['favorite_count'], reverse=True)
+                
+            elif order == "hit":
+                search_list = sorted(search_list, key=lambda x: x['hit'], reverse=True)
         # 判斷是否已收藏
         for index, search in enumerate(search_list):
             if user and Favorite.objects.filter(u_id=user.id, a_id=search["id"]).exists():
@@ -98,20 +118,36 @@ def attraction_details(request):
             else:
                 search_list[index].setdefault("is_favorite", "0")
 
-        html = render_to_string(
-            template_name="attraction_details_search.html",
-            context={"search_list": search_list},
-        )
-        data_dict = {"keyword_search_list": html}
+        # print(search_list)
+        if search_list:
+            html = render_to_string(
+                template_name="attraction_details_search.html",
+                context={"search_list": search_list[maxlimit-limit:maxlimit]},
+            )
+            data_dict = {"keyword_search_list": html,
+                        "search_list_count" : len(search_list),
+                        }
+        else:
+            data_dict = {"keyword_search_list": "",}
 
         return JsonResponse(data=data_dict, safe=False)
-    else:  # 後續要改(目前為顯示前3筆
-        keyword_attrations_id = [1, 2, 3]
-        for a_id in keyword_attrations_id:
-            search_list.append(Attractions.objects.filter(id=a_id).values().first())
+    else:
+        search_list_count = Attractions.objects.all().count()
+        search_list = list(Attractions.objects.all().values())[maxlimit-limit:maxlimit]
+        search_list = is_favorite_list(user, search_list)
+     
+    if request.GET.get("loadingpage") and loadingpage != 1:
+        if search_list:
+            html = render_to_string(
+                template_name="attraction_details_search.html",
+                context={"search_list": search_list},
+            )
+            data_dict = {"keyword_search_list": html,}
+        else:
+            data_dict = {"keyword_search_list": "",}
+        return JsonResponse(data=data_dict, safe=False)
 
-    search_list = search_list[:10]  # 之後要改 目前避免當掉
-
+    #點擊景點
     if request.GET.get("a_id") != None:
         choose_a_id = request.GET.get("a_id")  # 提取傳遞的值
         choose_attractions = Attractions.objects.get(id=choose_a_id)
@@ -178,9 +214,7 @@ def attraction_details(request):
         )
         detail_data_dict = {"attractions_detail_html": detail_html}
         return JsonResponse(data=detail_data_dict, safe=False)
-
-    search_list = is_favorite_list(user, search_list)
-    # print(search_list)
+    
     return render(request, "attraction_details.html", locals())
 
 
