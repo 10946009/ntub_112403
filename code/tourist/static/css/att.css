@@ -1509,7 +1509,7 @@ img {
 
 /* 詢問問題框框 */
 .ask_qa_container {
-    background: rgb(221, 219, 219);
+    background: rgb(236, 221, 184);
     border: black solid;
     width: 42%;
     margin: 50px auto;
@@ -1517,7 +1517,8 @@ img {
 
 /* 提問彈跳窗(ask,name) */
 .ask_container {
-    background-color: rgb(170, 171, 171);
+    background-color: rgb(209, 177, 74);
+    color: rgb(90, 70, 25);
     position: relative;
     padding: 20px;
 }
@@ -1561,8 +1562,7 @@ img {
 }
 
 /* 取消,張貼按鈕 */
-.ask_btn_cancel,
-.ask_btn_ok {
+.ask_btn_cancel {
     cursor: pointer;
     display: inline-block;
     color: rgb(0, 0, 0);
@@ -1574,10 +1574,26 @@ img {
     margin-right: 20px;
 }
 
-.ask_btn_cancel:hover,
-.ask_btn_ok:hover {
+.ask_btn_ok {
+    cursor: pointer;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    padding: 2px 20px 2px 20px;
+    font-family: Arial;
+    border: #000 solid;
+    font-size: 14px;
+    margin-right: 20px;
+    background-color: #d2892f;
+}
+
+.ask_btn_cancel:hover {
     color: white;
     background-color: #727474;
+}
+
+.ask_btn_ok:hover {
+    color: white;
+    background-color: #e2a941;
 }
 
 /* 所有問題框框 */
@@ -2582,6 +2598,14 @@ img {
 .rating {
     font-size: 22px;
 }
+
+/* .sticky_att {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 70px;
+    z-index: 2;
+    background-image: url(../images/trip_bg_att.png);
+} */
 
 @media screen and (max-width:768px) {
 
