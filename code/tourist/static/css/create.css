@@ -428,6 +428,9 @@ main {
     font-size: 1.4em;
     height: 20px;
 }
+.spot{
+    position: relative;
+}
 
 .spotOkName {
     margin-top: 5px;
@@ -750,10 +753,10 @@ main {
     text-decoration: none;
 }
 
-.info_icon_bottom {
+.info_icon_left {
     position: absolute;
-    left: 5px;
-    top: 5px;
+    left: 10px;
+    top: 10px;
     border: 0;
     font-size: 24px;
     color: white;
@@ -761,7 +764,7 @@ main {
     cursor: pointer;
     text-decoration: none;
 }
-.info_icon:hover ,.info_icon_bottom:hover {
+.info_icon:hover ,.info_icon_left:hover {
     color: orange;
 }
 
@@ -888,10 +891,13 @@ main {
     color: red;
     text-shadow: 1px 1px 1px wheat;
     font-weight: bold;
+    transition: transform 0.5s;
 }
 
 .tempX_icon:hover {
-    color: white;
+    color: red;
+    transform: scale(1.2);
+    text-shadow: 1px 1px 1px #333;
 }
 
 
