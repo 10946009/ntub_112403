@@ -9,18 +9,9 @@
 {% endblock %}
 {% block body %}
   <main>
-    <div class="pageedit">
-      <div class="createdata">
-        <span class="tabc_txt">行程名稱：{{ name }}<br></span>
-        <span class="tabc_txt">出發日期：{{ start_day }}</span>
-      </div>
-      <!-- <form action="" class="createdataform"> -->
-        <!-- <div class="row createdata">
-          <div class="col-md-6 tabc_txt">行程名稱：{{ name }}</div>
-          <div class="col-md-6 tabc_txt">出發日期：{{ start_day }}</div>
-        </div> -->
-      <!-- </form> -->
- 
+    <button class="recommend_save" id="saveDays" value="儲存" onclick="createSave()">儲存</button>
+
+    <div class="pageedit"> 
       <ul class="nav nav-tabs flex justify-content-start my-nav-tabs" id="myTab" role="tablist">
         {% for day,data in travel_datas.items %}
           <li class="nav-item" role="presentation">
@@ -36,7 +27,11 @@
           </li>
           <!--aria-controls="ch-{{ day }}"變數名稱要改一下-->
         {% endfor %}
-      </ul>
+      </ul>    
+      <div class="createdata">
+        <span class="tabc_txt">行程名稱：{{ name }}<br></span>
+        <span class="tabc_txt">出發日期：{{ start_day }}</span>
+      </div>
     </div>
  
  
@@ -138,8 +133,6 @@
                   <div class="list" id="orderAttractions-{{ day }}" style="cursor: pointer;height: 500px;overflow-y: auto;">
                     {% include 'create_order_attractions.html' %}
                   </div>
-                  <button class="recommend_save" id="saveDays" value="儲存" onclick="createSave()">儲存</button>
-
                     <!-- 範例 -->
                     <!-- <div class="list" style="cursor: pointer;">
                       <div class="innerlist" draggable="true">
