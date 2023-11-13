@@ -1,3 +1,38 @@
+
+// 公開or不公開
+function add_favorite_share(ctid) {
+  // var sharediv = document.getElementById("ct_share");
+  var favoriteButton = document.getElementById("submitfavorite_share" + ctid);
+  var text = document.getElementById("icontxt" + ctid);
+  var isFavoriteValue = favoriteButton.getAttribute("data-isfavorite");
+  if (isFavoriteValue === "1") {
+    //favoriteButton.setAttribute("class", "fa-regular fa-heart");  //將來修改icon放這
+    favoriteButton.setAttribute("data-isfavorite", "0");
+    text.textContent = "公開";
+    favoriteButton.style.color = 'black';
+  } else {
+    //favoriteButton.setAttribute("class", "fa-regular fa-heart");  //將來修改icon放這
+    favoriteButton.setAttribute("data-isfavorite", "1");
+    favoriteButton.style.color = 'orange';
+    text.textContent = "已公開";
+  }
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  $.ajax({
+    headers: { 'X-CSRFToken': csrftoken },
+    type: "POST",
+    url: "/add_favorite_share/",
+    data: {
+      'ctid': ctid,
+    },
+    success: function (data) {
+      console.log(data);
+    },
+    error: function (xhr, textStatus, errorThrown) {
+      console.error("Error:", textStatus, errorThrown);
+    }
+  });
+};
+
 function clickShow(button) {
   const targetBtn = button.getAttribute('data-target');
   const showDiv = document.getElementById(targetBtn);
