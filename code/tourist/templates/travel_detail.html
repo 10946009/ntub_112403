@@ -202,7 +202,15 @@
           .title-buttons .like-button:hover {
               transform: scale(1.2);
           }
-
+          .review-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+          }
+          .buttons {
+            display: flex;
+            gap: 10px;
+          }
 </style>
 {% endblock %}
 
@@ -299,6 +307,10 @@
                 <p>羽生偷ㄍㄟˋ婚</p>
               </div>
               <img class="review-img" src="https://www.nippon.com/hk/ncommon/contents/column/75500/75500.jpg" alt="">
+              <div class="buttons">
+                <button onclick="like()">👍</button>
+                <button onclick="dislike()">👎</button>
+              </div>
             </div>
             
              <div class="review-content">
@@ -312,6 +324,10 @@
                 <p>珮珮的寶</p>
               </div>
               <img class="review-img" src="https://i.pinimg.com/564x/7e/d1/ea/7ed1eafcb808b4b5765a59501e3d3574.jpg" alt="">
+              <div class="buttons">
+                <button onclick="like()">👍</button>
+                <button onclick="dislike()">👎</button>
+              </div>
             </div>
             <div class="review-content">
               <div class="head">
@@ -324,6 +340,10 @@
                 <p>趙晴的寶</p>
               </div>
               <img class="review-img" src="https://imgls.tvsou.com/g/202305/25/1685008193inhf.jpg" alt="">
+              <div class="buttons">
+                <button onclick="like()">👍</button>
+                <button onclick="dislike()">👎</button>
+              </div>
             </div>
             <div class="review-content">
               <div class="head">
@@ -336,6 +356,10 @@
                 <p>品茹的寶</p>
               </div>
               <img class="review-img" src="https://imgls.tvsou.com/g/202305/25/1685008193inhf.jpg" alt="">
+              <div class="buttons">
+                <button onclick="like()">👍</button>
+                <button onclick="dislike()">👎</button>
+              </div>
             </div>
           </section>
             </section>
@@ -359,6 +383,13 @@
         // 移除其他按鈕的藍色樣式
         newestButton.style.backgroundColor = '';
       });
+      function like() {
+        alert('喜歡');
+      }
+  
+      function dislike() {
+        alert('不喜歡');
+      } 
     </script>
     <script src="/static/js/travel_detail.js"></script>
     {{u_id}}
