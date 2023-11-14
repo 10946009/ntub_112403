@@ -2612,6 +2612,10 @@ img {
     z-index: 2;
     background-image: url(../images/trip_bg_att.png);
 } */
+#emptyQuestion {
+    font-size: 16px;
+    margin-left: 10px;
+}
 
 @media screen and (max-width:768px) {
 
