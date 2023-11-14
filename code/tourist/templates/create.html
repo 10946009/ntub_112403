@@ -164,7 +164,23 @@
     </div>
     {% endfor %}
   </div>
-  <div class="bottom" style="z-index: 99;width: 80%;margin: 0 auto;position: fixed;bottom: 0;left: 0;right: 0;">
+  <!-- show similar and choosed section -->
+  <div class="right" id="rightDiv" >
+      <button id="showRight" class="showRight_btn" onclick="showRightDiv()">
+          點
+      </button>
+      <div class="rightDiv">
+          <span>Right section</span>
+          <div>
+              similar recommend
+          </div>
+          <div>
+              be choosed
+          </div>
+      </div>
+  </div>
+  <div class="Roverlay" id="Roverlay"></div>
+  <!-- <div class="bottom" style="z-index: 99;width: 80%;margin: 0 auto;position: fixed;bottom: 0;left: 0;right: 0;">
     <div id="controller">
       <span class="upDiv"><i id="upDown_icon" class="fa-solid fa-caret-up up_icon"></i></span>
     </div>
@@ -173,7 +189,7 @@
         {% comment %} 分割至create_bottom.html {% endcomment %}
       </div>
     </div>
-  </div>
+  </div> -->
 </main>
 <script src="../static/js/testGPS.js"></script>
 {% endblock body %}
@@ -187,6 +203,24 @@
 <script src="/static/js/owlStart.js"></script>
 <script>
   owlStart();
+  
+const rightBtn = document.getElementById('showRight');
+const rightDiv = document.getElementById('rightDiv');
+const Roverlay = document.getElementById('Roverlay');
+
+var isRightVisible = false;
+
+function showRightDiv() {
+    isRightVisible = !isRightVisible;
+
+    if(isRightVisible){
+        rightDiv.style.right = '0px';
+        Roverlay.style.display = 'block';
+    }else{
+        rightDiv.style.right = '-150px';
+        Roverlay.style.display = 'none';
+    }
+}
   var user_all_ct_data = JSON.parse('{{ all_ct_data_id | safe }}');
   var total_day = document.getElementsByClassName('tab-pane')
   var now_click_attractions = {};
