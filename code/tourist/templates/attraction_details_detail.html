@@ -75,23 +75,23 @@
         <div class="att_slide">
             <div class="w3-content w3-display-container">
                 <div class="w3-display-container mytotalSlides">
-                    <img src="../static/images/bg7.png" style="width:100%">
+                    <img src="../static/images/bg7.png" style="width:100%" onclick="showPhotoDetail()">
                 </div>
 
                 <div class="w3-display-container mytotalSlides">
-                    <img src="../static/images/bg8.jpg" style="width:100%">
+                    <img src="../static/images/bg8.jpg" style="width:100%" onclick="showPhotoDetail()">
                 </div>
 
                 <div class="w3-display-container mytotalSlides">
-                    <img src="../static/images/bg1.jpg" style="width:100%">
+                    <img src="../static/images/bg1.jpg" style="width:100%" onclick="showPhotoDetail()">
                 </div>
 
                 <div class="w3-display-container mytotalSlides">
-                    <img src="../static/images/bg2.jpg" style="width:100%">
+                    <img src="../static/images/bg2.jpg" style="width:100%" onclick="showPhotoDetail()">
                 </div>
 
                 <div class="w3-display-container mytotalSlides">
-                    <img src="../static/images/bg6.jpeg" style="width:100%">
+                    <img src="../static/images/bg6.jpeg" style="width:100%" onclick="showPhotoDetail()">
                 </div>
                 <button class="w3-button w3-display-left w3-black" onclick="plustotalDivs(-1)">&#10094;</button>
                 <button class="w3-button w3-display-right w3-black" onclick="plustotalDivs(1)">&#10095;</button>
@@ -492,7 +492,9 @@
                 </div>
                 <hr style=" border:1px solid #777777; max-width: 100%;">
                 {% empty %}
-                <div id="emptyQuestion">尚未有人發問</div>
+                <div id="emptyQuestion">
+                    <h4>尚未有人發問</h4>
+                </div>
                 {% endfor %}
 
                 {% comment %} <div class="all_ask_qa_con">
@@ -1096,7 +1098,7 @@
                 </div>
             </div>
             {% empty %}
-            <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+            <div style="display: flex; justify-content: center; margin-bottom: 20px; margin-bottom: 60px;">
                 <h5>目前尚無留言！</h5>
             </div>
             {% endfor %}
