@@ -218,10 +218,52 @@
         .owl-prev span {
             font-size: 28px;
         }
+
+        .right {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 1px solid black;
+            height: 500px;
+            width: 150px;
+            transition: right 0.3s ease;
+            /* 添加过渡效果，使动画更流畅 */
+        }
+
+        .showRight_btn {
+            position: absolute;
+            left: -15px;
+            top: 0;
+            border: 1px solid black;
+            height: 25px;
+            width: 15px;
+            cursor: pointer;
+        }
+
+        /* 隐藏右侧区域 */
+        .right.hidden {
+            right: -150px;
+        }
     </style>
 </head>
 
 <body>
+    <div class="right">
+        <div id="showRight" class="showRight_btn" onclick="showRightDiv()">
+            <span>
+                < </span>
+        </div>
+        <div id="rightDiv" class="rightDiv">
+            <span>Right section</span>
+            <div>
+                similar recommend
+            </div>
+            <div>
+                be choosed
+            </div>
+        </div>
+    </div>
 
     <div class="main" style="width: 85%;margin: 0 auto;">
         <div class="left">
@@ -358,6 +400,13 @@
     <script src="../static/js/bootstrap.min.js"></script>
     <script src="../static/js/owl.carousel.min.js"></script>
     <script>
+        const rightBtn = document.getElementById('showRight');
+        const rightDiv = document.getElementById('rightDiv'); // 修改为正确的ID
+
+        function showRightDiv() {
+            rightDiv.classList.toggle('hidden');
+        }
+
         $('.owl-carousel').owlCarousel({
             items: 4,
             loop: true,
