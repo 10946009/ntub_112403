@@ -26,13 +26,15 @@
                         onclick=" showShareLoaderAndContent()" title="分享"
                         style="border: black solid; border-radius: 60px;padding:8px 10px 8px 10px;"></i>
                     {% if is_favorite %}
-                    <i class="fas fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}"
-                        onclick="addFavorite_attractions({{detail.id}})"
-                        style="border: black solid;border-radius: 50%; background-color: white; padding: 10px 10px 10px 10px;color: rgb(111, 110, 110); font-size: 20px;"></i>
+                    <div class="icon_name" id="submitfavorite{{detail.id}}"
+                        onclick="addFavorite_attractions({{detail.id}})">
+                        <i class="fas fa-regular fa-heart" title="收藏" style="color: rgb(111, 110, 110);"></i>
+                    </div>
                     {% else %}
-                    <i class="fas fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}"
-                        onclick="addFavorite_attractions({{detail.id}})"
-                        style="border: black solid;border-radius: 50%; background-color: white; padding: 10px 10px 10px 10px;color: rgb(202, 13, 13); font-size: 20px;"></i>
+                    <div class="icon_name" id="submitfavorite{{detail.id}}"
+                        onclick="addFavorite_attractions({{detail.id}})">
+                        <i class="fas fa-regular fa-heart" title="已收藏" style="color: rgb(202, 13, 13);"></i>
+                    </div>
                     {% endif %}
                 </div>
             </div>
@@ -1075,12 +1077,12 @@
                     </p>
                     <!-- 只有他有點讚功能 -->
                     <span style="margin-right: 20px;cursor: pointer;" id="likeButton">
-                    {% if request.user.id in comment.get_user_favorite %}
+                        {% if request.user.id in comment.get_user_favorite %}
                         <i class="fa-thumbs-up fa-solid" style=" color: rgb(0, 102, 255);"></i>
-                    {% else %}
+                        {% else %}
                         <i class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i>
-                    {% endif %}
-                    <span id="likeCount">{{comment.get_favorite_count}}</span></span>
+                        {% endif %}
+                        <span id="likeCount">{{comment.get_favorite_count}}</span></span>
                     {% comment %} <div class="comment_user_ph" style="max-width: 100%;">
                         <img src="../static/images/att_picture.png" alt=""
                             style="width: 150px; cursor: pointer; border: black aolid;" onclick="showPhotoDetail()">
