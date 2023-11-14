@@ -4,31 +4,13 @@ function watchQuestions() {
   allAskContainers.forEach(function (container, index) {
     var postButton = container.getElementsByClassName("all_ask_btn_ok");
     var commentCountElement = container.querySelector("#commentCountElement");
-    var commentCount = 3;
     for (let i = 0; i < postButton.length; i++) {
       postButton[i].addEventListener("click", function () {
-        commentCount++;
-        commentCountElement.textContent = commentCount;
+        commentCountElement.textContent = parseInt(commentCountElement.textContent) + 1;
       });
     }
 
-    // 點讚會變讚（點回去會沒有）只有第一個大標有這個功能
-    var likeButton = container.querySelector("#likeButton");
-    var likeIcon = container.querySelector(".fa-regular.fa-thumbs-up");
-    var likeCountElement = container.querySelector("#likeCount");
-    var likeCount = 8;
-    likeButton.addEventListener("click", function () {
-      if (likeIcon.classList.contains("fa-regular")) {
-        likeIcon.classList.remove("fa-regular");
-        likeIcon.classList.add("fa-solid");
-        likeCount++;
-      } else {
-        likeIcon.classList.remove("fa-solid");
-        likeIcon.classList.add("fa-regular");
-        likeCount--;
-      }
-      likeCountElement.textContent = likeCount;
-    });
+
 
     // 回覆問題時，可以將結果呈現在上面
     container

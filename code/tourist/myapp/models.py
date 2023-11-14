@@ -158,6 +158,12 @@ class AttractionsComment(models.Model):
     content = models.TextField(max_length=255,default="")
     comment_date = models.DateField(auto_now_add=True, null=False, blank=False)
 
+    def get_favorite_count(self):
+        return AttractionsCommentFavorite.objects.filter(ac_id=self.id).count()
+    def get_user_favorite(self):
+        user_ids = AttractionsCommentFavorite.objects.filter(ac_id=self.id).values_list('u_id', flat=True)
+        
+        return list(user_ids)
     # def get_name(self):
     #     return self.u.username
     # @property
@@ -171,7 +177,6 @@ class AttractionsCommentFavorite(models.Model):
     u = models.ForeignKey(
         to=User, on_delete=models.SET_DEFAULT, default=-1
     )  # user沒了留言u_id會被設為null
-
     
 class TravelComment(models.Model):
     u = models.ForeignKey(
