@@ -2879,6 +2879,34 @@ img {
     #new_fifliter_topic {
         margin-right: 10px;
     }
+
+    /* 相片集 */
+    .photo_show_book {
+        width: 80%;
+        border-top: #000 solid;
+        padding: 0;
+        margin-left: 40px;
+    }
+
+    .illustrate_photo {
+        display: none;
+    }
+
+    /* 圖片（幻燈片） */
+    .slide_this_photo {
+        margin-top: 20px;
+    }
+
+    /* 圖片框框RWD */
+    .photo_big_att_container {
+        background: rgb(221, 219, 219);
+        border: black solid;
+        border-radius: 10px;
+        width: 100%;
+        margin: 50px auto;
+        padding-bottom: 10px;
+        /* padding: 20px; */
+    }
 }
 
 @media screen and (min-width:1600px) {
