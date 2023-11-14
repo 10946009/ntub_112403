@@ -1,6 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', function () {
-  
+
   const selectedTab = localStorage.getItem('selectedTab');
   if (selectedTab === 'contact') {
     // 先移除之前的 active 状态
@@ -30,7 +30,25 @@ function saveTabState(tabId, day) {
   inputBottom();
   checkHasLocationData();
 }
-
+// 輪播
+$('.owl-carousel').owlCarousel({
+  items: 4,
+  loop: true,
+  margin: 10,
+  dots: false,
+  nav: true,
+  responsive: {
+    0: {
+      items: 1
+    },
+    600: {
+      items: 3
+    },
+    1000: {
+      items: 4
+    }
+  }
+})
 // 翻轉右邊區塊&按鈕RWD變換
 var islikeAndRecVisible = false;
 var isIconSet = false;
@@ -116,11 +134,11 @@ function adjustTextHeight(selector) {
 
 var total_day = document.getElementsByClassName('tab-pane')
 var isdoneJourneyVisible = {};
-for( var i = 0; i < total_day.length; i++ ){
-  isdoneJourneyVisible[i+1] = false;
+for (var i = 0; i < total_day.length; i++) {
+  isdoneJourneyVisible[i + 1] = false;
 }
-function clickChangeDone(day=null) {
-  if(day === null){
+function clickChangeDone(day = null) {
+  if (day === null) {
     day = globalDay;
   }
   console.log(day)
@@ -154,10 +172,10 @@ function changeRepeatBtnTxt() {
       repeatBtn.innerHTML = '<i class="fa-solid fa-route"></i>';
     }
   }
-  if(window.innerWidth > 690){
-    if(repeatBtn.innerHTML === '<i class="fa-solid fa-repeat"></i>'){
+  if (window.innerWidth > 690) {
+    if (repeatBtn.innerHTML === '<i class="fa-solid fa-repeat"></i>') {
       repeatBtn.innerHTML = '重新推薦';
-    }else if(repeatBtn.innerHTML === '<i class="fa-solid fa-route"></i>'){
+    } else if (repeatBtn.innerHTML === '<i class="fa-solid fa-route"></i>') {
       repeatBtn.innerHTML = '景點排序';
     }
   }
@@ -256,12 +274,12 @@ function pickspot(checkbox, aid) {
 
 // pick spot 刪除下面戰存的景點時
 function pickspotBottom(aid) {
-  try{
-    const container = document.getElementById('ch-'+globalDay);
+  try {
+    const container = document.getElementById('ch-' + globalDay);
     const elements = container.querySelector('.imgcheck[value="' + aid + '"]');
     console.log(elements);
     pickspot(elements, aid);
-  }catch(e){
+  } catch (e) {
     now_click_attractions[globalDay].delete(aid);
     inputBottom();
   }
@@ -463,7 +481,7 @@ function checkAndAddClass() {
       // 添加额外的检查，确保 closestColMd6 存在
       if (closestColMd6) {
         closestColMd6.classList.add('pickimg');
-      }else if (closestColMd4){
+      } else if (closestColMd4) {
         closestColMd4.classList.add('pickimg');
       }
 
@@ -472,53 +490,53 @@ function checkAndAddClass() {
 }
 
 
-function inputBottom(day=null){
-  if(day === null){
+function inputBottom(day = null) {
+  if (day === null) {
     day = globalDay;
   }
   $.ajax({
-    url:"/attractions",
+    url: "/attractions",
     type: "GET",
     data: {
-      aidlist:Array.from(now_click_attractions[day]).join(','),
+      aidlist: Array.from(now_click_attractions[day]).join(','),
     },
     success: function (response) {
       document.getElementById('bottomAttraction').innerHTML = response;
     },
 
     error: function () {
-        console.log('推薦回傳有錯誤!!!');
+      console.log('推薦回傳有錯誤!!!');
     },
   });
 }
 // 用來進去翻轉景點排序或推薦景點的部分
-function checkHasData(){
-    const leftDev = document.querySelectorAll(".recAndDone");
-    console.log(leftDev);
-    leftDev.forEach(function (container, index) {
-      const hasAttractions = container.querySelector('.innerlist');
-      // console.log(hasAttractions);
-      if (hasAttractions != null) {
-        const changeToRec = container.querySelector('.changeToRec').id;
-        clickChangeDone(changeToRec.charAt(changeToRec.length - 1))
-      }
-    });
+function checkHasData() {
+  const leftDev = document.querySelectorAll(".recAndDone");
+  console.log(leftDev);
+  leftDev.forEach(function (container, index) {
+    const hasAttractions = container.querySelector('.innerlist');
+    // console.log(hasAttractions);
+    if (hasAttractions != null) {
+      const changeToRec = container.querySelector('.changeToRec').id;
+      clickChangeDone(changeToRec.charAt(changeToRec.length - 1))
+    }
+  });
 }
 
-function checkHasLocationData(){
+function checkHasLocationData() {
   const location = document.querySelectorAll(".hiddenUserLocation");
   console.log(location);
   location.forEach(function (container, index) {
     // console.log(hasAttractions);
     if (container.value != ',') {
-      startRecommend(container.value,index)
+      startRecommend(container.value, index)
     }
   });
 }
 
 //用來把有的資料放入暫存區
-function checkHasDataBottom(){
-  
+function checkHasDataBottom() {
+
 }
 
 checkHasDataBottom()
