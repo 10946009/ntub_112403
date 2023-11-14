@@ -1,0 +1,714 @@
+{% extends 'base.html' %}
+{% block title %}建立行程{% endblock %}
+{% block content %}
+  <link rel="stylesheet" href="/static/css/create.css">
+  <link rel="stylesheet" href="/static/css/create_search.css">
+  <script src="https://maps.googleapis.com/maps/api/js?key={{apikey}}&libraries=places"></script>
+
+
+{% endblock %}
+{% block body %}
+  <main>
+    <button class="recommend_save" id="saveDays" value="儲存" onclick="createSave()">儲存</button>
+
+    <div class="pageedit"> 
+      <ul class="nav nav-tabs flex justify-content-start my-nav-tabs" id="myTab" role="tablist">
+        {% for day,data in travel_datas.items %}
+          <li class="nav-item" role="presentation">
+            <button class="create-nav-link {% if forloop.counter == 1 %}active{% endif %}"
+                    id="{{ day }}-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#ch-{{ day }}"
+                    type="button"
+                    role="tab"
+                    aria-controls="ch-{{ day }}"
+                    onclick="saveTabState('ch-{{ day }}',{{ day }})"
+                    aria-selected="true">DAY {{ day }}</button>
+          </li>
+          <!--aria-controls="ch-{{ day }}"變數名稱要改一下-->
+        {% endfor %}
+      </ul>    
+      <div class="createdata">
+        <span class="tabc_txt">行程名稱：{{ name }}<br></span>
+        <span class="tabc_txt">出發日期：{{ start_day }}</span>
+      </div>
+    </div>
+ 
+ 
+
+    <div class="tab-content" id="myTabContent" style="width: 100%; margin: 0 auto">
+      {% for day,data in travel_datas.items %}
+      <div class="tab-pane fade{% if forloop.counter == 1 %} show active{% endif %}"
+             id="ch-{{ day }}"
+             role="tabpanel"
+             aria-labelledby="{{ day }}-tab"
+             dataset="{{ day }}"
+             style="display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
+                    padding: 10px 0">
+          <div class="row" style="width: 100%;color: black;">
+            <div class="col-7 recAndDone"
+                 style="border-right: 2px solid rgb(152, 152, 152)">
+              <!-- 我是左邊 顯示已排完序的景點 -->
+              <div>
+                <div class="tabD">
+                  <span id="tabDT" class="tabDT">請輸入出發時間：</span>
+                  <input type="time"
+                    name="nowtime"
+                    id="nowtime-{{ day }}"
+                    {% if data.user_nowtime %} value="{{ data.user_nowtime }}" {% else %} value="09:00" {% endif %}>
+                  
+                </div>
+                <div class="tabD">
+                  <span id="tabDL" class="tabDL">使用者位置：
+                    <label class="input_txt" id="userLocationName-{{ day }}">{{ data.location_name }}</label>
+                  </span>
+                  <br>
+                  <input type="hidden"
+                         class="hiddenUserLocation"
+                         id="userLocation-{{ day }}"
+                         value="{{ data.local_xy.0 }},{{ data.local_xy.1 }}">
+                  <button class="placeBtn btn_now"
+                          type="button"
+                          id="nowLocationButton-{{ day }}"
+                          onclick="get_nowLocation({{ day }})">目前位置</button>
+                  <button class="placeBtn btn_choose"
+                          type="button"
+                          id="mapButton-{{ day }}"
+                          onclick="get_map({{ day }})">選擇位置</button>
+                  <button class="placeBtn btn_ok"
+                          type="button"
+                          id="okButton-{{ day }}"
+                          onclick="clickOkButton({{ day }})"
+                          style="display:none;">關閉地圖</button>
+                  <input type="hidden" placeholder="day" class="nowday" id="nowday">
+                </div>
+              </div>
+              <div style="position: relative;">
+                <!-- 添加地图容器 -->
+                <input id="pac-input-{{ day }}"
+                       class="controls"
+                       type="text"
+                       placeholder="輸入地址或選取地圖"
+                       style="display: none" />
+                <div id="map-{{ day }}" style="width: 100%;height: 300px;display: none;"></div>
+
+                <!--景點推薦div-->
+                <div style="position: relative;">
+                  <!--切換底下兩個div-->
+                  <button class="changeToRec" id="changeToRec-{{ day }}" onclick="clickChangeDone()">景點排序</button>
+                  <div class="changeRec checkRec" id="checkRec-{{ day }}">
+                    <div class="recDiv">
+                      <i class="fa-solid fa-thumbs-up rec_icon"></i>
+                      <span class="rec_txt">推薦景點</span>
+                    </div>
+                    <div id="checkbox-{{ day }}" class="checkboxDiv">
+                      <div class="row"
+                          style="padding: 10px 5px"
+                          id="AttractionsContainer-{{ day }}">
+                        <h4>請先選擇使用者位置和時間</h4>
+                        {% include 'create_recommend.html' %}
+                      </div>
+                    </div>
+                    <a href="#recommend-tab"
+                      class="tab_a submit1"
+                      id="clickLikeAttractions-{{ day }}">
+                      <button class="recommend_submit1" onclick="submitAction({{ day }})" value="送出">送出</button>
+                    </a>
+                    {% comment %} <a href="#home-tab" class="tab_a submit1" id="clickLikeAttractions_o"
+                      style="display: none;">
+                      <button class="recommend_submit1" onclick="submitAction()" value="送出">送出</button>
+                    </a> {% endcomment %}
+                  </div>
+                </div>
+
+                <!--景點排序div-->
+                <div class="changeRec done" id="done-{{ day }}">
+                  <div class="doneDiv">
+                    <i class="fa-solid fa-route done_icon"></i>
+                    <span class="done_txt">景點排序</span>
+                  </div>
+
+                  <div class="list" id="orderAttractions-{{ day }}" style="cursor: pointer;height: 500px;overflow-y: auto;">
+                    {% include 'create_order_attractions.html' %}
+                  </div>
+                    
+                      
+                    {% comment %} 
+                      <div class="row" style="padding: 12px;" id="AttractionsContainer_o">
+                        <div class="col-lg-4 col-md-6" style="margin-bottom: 5px;">
+                          <div class="checkimg_div">
+                            <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;" onclick="pickspot(this)">
+                              <span class="checkspot">
+                                <img src="../static/images/attractions/ChIJ-0tljYCpQjQRTyksupgnERQ_0.jpg" class="img-responsive" width="100%" alt="">
+                                <button class="fa-solid fa-heart rec_heart_icon" id="rec_heart_icon" onclick="addRecFavorite(event,'itemId')"> <!-- 這裡這裡的itemId要用你們的編號 --></button>
+                              </span>
+                              <div class="spottxtdiv">
+                                <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
+                                <span>評價：</span><br>
+                                <span>營業時間：</span>
+                              </div>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6" style="margin-bottom: 5px;">
+                          <div class="checkimg_div">
+                            <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;" onclick="pickspot(this)">
+                              <span class="checkspot">
+                                <img src="../static/images/attractions/ChIJ-0tljYCpQjQRTyksupgnERQ_0.jpg" class="img-responsive" width="100%" alt="">
+                                <button class="fa-solid fa-heart rec_heart_icon" id="rec_heart_icon" onclick="addRecFavorite(event,'itemId')"> <!-- 這裡這裡的itemId要用你們的編號 --></button>
+                              </span>
+                              <div class="spottxtdiv">
+                                <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
+                                <span>評價：</span><br>
+                                <span>營業時間：</span>
+                              </div>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    {% endcomment %}
+                  
+                </div>
+
+
+              </div>
+            </div>
+            <div class="col-5 searchAndlikeAndrec">
+              <button class="changeToSearch" id="changeToSearch" onclick="changeToSearchRec()">
+                <span>切換搜尋</span>
+                <i class="fa-solid fa-magnifying-glass-location changeToSearch_icon" style="display: none;"></i>
+              </button>
+              <button class="changeTolike" id="changeToSearch" onclick="changeToSearchRec()">收藏與推薦</button>
+              <div class="change searchBlock" id="searchBlock">
+                <div class="searchBarDiv">
+                  <i class="fa-solid fa-magnifying-glass-location find_icon"></i>
+                  <span class="search_txt">搜尋景點</span>
+                </div>
+                <form autocomplete="off" class="d-flex" role="search">
+                  {% csrf_token %}
+ 
+                  <div class="create_search">
+                    <div class="create_searchInput">
+                      <input class="form-control me-auto search"
+                             id="create_myInput"
+                             type="search"
+                             placeholder="想去哪玩.."
+                             aria-label="Search"
+                             name="create_search_text">
+                      <!-- <button class="search_icon" id="create_searchClick">
+                        <i class="fas fa-search"></i>
+                      </button> -->
+                      <!-- 歷史紀錄 -->
+                      <div id="create_searchBox">
+                        <div class="create_enter"></div>
+                        <div class="create_searchContent">
+                          <!-- history（目前放假資料） -->
+                          <div class="history_1" id="history_1">
+                            <i class="fa-solid fa-clock-rotate-left"></i><strong>123</strong>
+                            <div class="close_history" onclick="deleteFunction(this)">
+                              <i class="fa-solid fa-xmark" style="color: rgb(171, 5, 5);"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <div id="replaceable-content-{{ day }}" class="row searchResult">{% include "create_search.html" %}</div>
+              </div>
+              <div class="change likeAndRec" id="likeAndRec">
+                <div>
+                  <div onclick="openLikeBtn()" class="likeDiv">
+                    <i class="fa-solid fa-heart like_icon"></i>
+                    <span class="like_txt">我的收藏</span>
+                  </div>
+                  <div class="row openlike" style="display: none;">
+                    {% for item in user_favorite_list %}
+                      <div class=" col-md-4" style="margin-bottom: 5px;">
+                        <div class="checkimg_div">
+                          <label type="checkbox"
+                                 name="variety"
+                                 value="{{ item.a_id.id }}"
+                                 class="imgcheck"
+                                 style="margin: 0;
+                                        padding: 0;
+                                        border: 0"
+                                 onclick="pickspot(this,{{ item.a_id.id }})">
+ 
+                            <span class="checkspot">
+                              <img src="../static/images/attractions/{{ item.a_id.place_id }}_0.jpg"
+                                   class="img-responsive"
+                                   width="100%"
+                                   alt="">
+                                   <!-- 這個連結沒有改 所以沒辦法連到+0的 -->
+                              <a href="#" class="fa-solid fa-circle-info info_icon" id="info_icon" onclick="clickeInfo(event,{{ item.a_id.id }})"> <!-- 這裡這裡的itemId要用你們的編號 --></a>
+                            </span>
+
+                            <div class="spottxtdiv">
+                              <p style="text-align: center;padding: 5px;margin-bottom: 5px;">
+                                {{ item.a_id.a_name }}
+                              </p>
+                              <span>評價：{{ item.a_id.rating }}</span>
+                              <br>
+                              {% comment %} <span>營業時間：{{r.crow_opening_list.opening.0}}</span> {% endcomment %}
+                            </div>
+
+                          </label>
+                        </div>
+                      </div>
+                      {% comment %} 下面為舊的收藏景點 {% endcomment %}
+                      {% comment %} <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;" id = "{{ item.a_id.id }}">
+                      <div class="ct_heart_icon_box" style="border: 1px solid black;">
+                        <img src="../static/images/attractions/{{ item.a_id.place_id }}_0.jpg" class="img-responsive" width="100%" alt="">
+                        <i class="fa-solid fa-heart ct_heart_icon active_heart" data-isfavorite="1" data-type="/add_favorite/" onclick="addCtFavorite('{{ item.a_id.id }}')"></i>
+                      </div>
+                      <div style="border: 1px solid black;">
+                        {{ item.a_id.a_name }}
+                      </div>
+                      </div> {% endcomment %}
+
+                    {% endfor %}
+                    {% comment %}
+                  <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
+                    <div style="border: 1px solid black;">
+                      <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                    </div>
+                    <div style="border: 1px solid black;">
+                      我是介紹圖片的文字
+                    </div>
+                  </div>
+                    {% endcomment %}
+
+                  </div>
+                </div>
+                <hr style="margin: 10px 0;">
+                <div style="position: relative;">
+                  <div onclick="openSimilarBtn()" class="similarDiv">
+                    <span class="similar_icon">&asymp;</span>
+                    <span class="similar_txt">相似景點</span>
+                  </div>
+                  <div class="renew" onclick="similarRecommend()">
+                    <span>更新</span>
+                  </div>
+
+                  <div class="row openSimilar" style="display: none;" id="SimilarRecommend-{{ day }}">
+
+                    {% include "create_similar_recommend.html" %}
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="bottom" style="z-index: 99;width: 80%;margin: 0 auto;position: fixed;bottom: 0;left: 0;right: 0;">
+      <div id="controller">
+        <span class="upDiv"><i id="upDown_icon" class="fa-solid fa-caret-up up_icon"></i></span>
+      </div>
+      <div class="row bottomTempdiv" id="hiddenContent">
+        <div class="align" id="bottomAttraction">
+          {% comment %} 分割至create_bottom.html {% endcomment %}
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="../static/js/testGPS.js"></script>
+{% endblock body %}
+{% block content_script %}
+
+  <script src="../static/js/createSearchTool.js"></script>
+  <script src="/static/js/create.js"></script>
+  <script src="/static/js/recommend.js"></script>
+  <script src="/static/js/createSave.js"></script>
+<script>
+var user_all_ct_data = JSON.parse('{{ all_ct_data_id | safe }}' );
+var total_day = document.getElementsByClassName('tab-pane')
+var now_click_attractions = {};
+for( var i = 0; i < total_day.length; i++ ){
+  if(user_all_ct_data[i+1] === "[]"){
+    now_click_attractions[i+1] = new Set();
+  }else{
+    console.log(user_all_ct_data[i+1]);
+    now_click_attractions[i+1] = new Set(user_all_ct_data[i+1]);
+    inputBottom(i+1);
+  }
+}
+inputBottom(1);//初始化第一天的bottom
+var globalDay = 1;
+checkHasLocationData();//如果使用者已經有選擇位置
+checkHasData();//如果使用者是否有資料顯示排序景點
+// 放入景點名稱
+autocomplete(create_searchInput,JSON.parse('{{ attractions_search_json|safe }}'));
+//console.log('hi'+JSON.parse('{{ attractions_search_json|safe }}')) 顯示景點搜尋列
+  /*window.addEventListener = function () {
+    geoFindMe();
+  };*/
+
+  function get_nowLocation(day) {
+    const userLocationName = document.getElementById("userLocationName-" + day); //標籤為label
+    const userLocation = document.getElementById("userLocation-" + day); //標籤為input
+    function success(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      //if(userLocation.value==''){}
+      //userLocationName.textContent = latitude + ',' + longitude;  
+      userLocation.value = latitude + ',' + longitude; // 將經緯度寫進html
+      console.log(userLocation.textContent);
+
+      // 使用 Nominatim 逆地理编码服务获取地址信息
+      const nominatimApiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+      fetch(nominatimApiUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data.display_name) {
+              const addressParts = [
+                data.address.postcode || data.address.zipcode,
+                data.address.country,
+                data.address.city || data.address.town || data.address.village,
+                data.address.suburb || data.address.suburb_district || data.address.neighbourhood,
+                data.address.road || data.address.footway || data.address.cycleway || data.address.path,
+                data.address.house_number || data.address.building,
+              ]; //修改address的格式  XX市 XX區 ......
+              const formattedAddress = addressParts.filter(part => part).join('');
+              //const address = data.display_name;
+              userLocationName.textContent = formattedAddress; //將地址或名字寫進html
+              clickOkButton(day);
+              console.log(formattedAddress);
+            } else {
+                userLocationName.textContent = "Address not found";
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching address:", error);
+            userLocationName.textContent = "Error fetching address";
+        });
+
+      
+      startRecommend(userLocation.value,day)
+    }
+
+    function error() {
+      userLocationName.textContent = "Unable to retrieve your location";
+    }
+
+    if (!navigator.geolocation) {
+      userLocationName.textContent = "Geolocation is not supported by your browser";
+    } else {
+      userLocationName.textContent = "Locating…";
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
+  }
+
+
+
+
+  {% comment %} var nowday = 1
+  var nowDayValues = document.getElementById('nowday');
+  nowDayValues.value = nowday;
+  function clickDay(day) {
+    nowday = day
+    nowDayValues.value = nowday;
+  } {% endcomment %}
+
+  //第1步驟 推薦附近景點~~~~
+  /*function recommend(day){
+    var nowtime = document.getElementById("nowtime");
+    //var ct_status = 0;
+    const userLocation = document.getElementById("userLocation-1");
+    $.ajax({
+      type: "POST",
+      url: "/create/{{ct_id}}", // 替换为您的 views.py 文件的 URL
+      data: {
+        location: userLocation.value,
+        nowtime: nowtime.value,
+        ct_status: 0,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+      },
+      success: function (response) {
+        // 在這裡處理伺服器回傳的 JSON 數據
+        console.log(response);  // 查看回傳的值
+
+        // 進一步處理回傳的值，例如顯示在頁面上
+        var m_list = response.m_list;  // 假設 m_list 是 JSON 中的一個鍵
+        var crow_opening_list = response.crow_opening_list;  // 假設 crow_opening_list 是 JSON 中的一個鍵
+        console.log(crow_opening_list);
+
+        //第一步驟的div與按鈕(第一次推薦景點)
+        var mListContainer = document.getElementById("AttractionsContainer")
+        var clickLikeAttractions = document.getElementById('clickLikeAttractions');
+        //第二步驟的div與按鈕(推薦相似景點)
+        var mListContainer_o = document.getElementById("AttractionsContainer_o")
+        var clickLikeAttractions_o = document.getElementById('clickLikeAttractions_o');
+        // 將畫面1打開
+        mListContainer.style.display = '';
+        clickLikeAttractions.style.display = '';
+        // 將畫面2隱藏
+        mListContainer_o.style.display = 'none';
+        clickLikeAttractions_o.style.display = 'none';
+
+        mListContainer.innerHTML = '';
+        for (var i = 0; i < m_list.length; i++) {
+          mListContainer.innerHTML += `<div class="col-md-4 col-sm-6" style="margin-bottom: 5px;" value="${m_list[i].place_id}">
+            <div class="checkimg_div">
+              <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
+                onclick="pickspot(this)">
+                <span class="checkspot" style="display: block;cursor: pointer;">
+                  <img src="/static/images/attractions/${m_list[i].place_id + '_0'}.jpg" class="img-responsive" width="100%" alt="">
+                </span>
+              </label>
+            </div>
+            <div class="spottxtdiv">
+              <div class="checkspottxt">
+                <p style="text-align: center;padding: 5px;margin-bottom: 5px;">${m_list[i].a_name}</p>
+                <span class="spottxt spottxtaddress">地址：${m_list[i].address}</span><br>
+                <span class="spottxt spottxtstar">評價：${m_list[i].rating}</span><br>
+                <span class="spottxt spottxttime">營業時間：${crow_opening_list[i].opening}</span>
+              </div>
+            </div>
+          </div>`
+
+          {% comment %} mListContainer.innerHTML += '<input type="checkbox" value="' + item.place_id + '">';
+          mListContainer.innerHTML += '<div class="col-5"><img src="/static/images/attractions/' + item.place_id + '_0.jpg" alt=""  height="250"></div>';
+          mListContainer.innerHTML += '<div class="col-7"><div style="text-align: left;">';
+          mListContainer.innerHTML += "<p>" + item.a_name + "<p>";
+          mListContainer.innerHTML += "<p>" + item.address + "<p></div></div>"; {% endcomment %}
+
+        }
+
+      },
+      error: function () {
+      }
+    });
+  }*/
+  
+  /*var clickRecommend = document.getElementById('recommend-tab');
+  clickRecommend.addEventListener("click", function (e) {
+    
+  });*/
+
+  var all_select = [];
+  //第2步驟 推薦相似景點~~~
+  {% comment %} var clickLikeAttractions = document.getElementById('clickLikeAttractions');
+  clickLikeAttractions.addEventListener("click", function (e) {
+    var select_aid = document.getElementById('AttractionsContainer');
+    //var selectedCheckboxes = select_aid.querySelectorAll('input[type="checkbox"]:checked');
+    var selectedCheckboxes = select_aid.getElementsByClassName('pickimg');
+    console.log(selectedCheckboxes);
+    all_select = [] //清空先前的值
+    var select_aid_list = [];
+    var nowtime = document.getElementById("nowtime");
+    Array.from(selectedCheckboxes).forEach(function (checkbox) {
+      console.log(checkbox);
+      select_aid_list.push(checkbox.getAttribute('value'));
+      all_select.push(checkbox.getAttribute('value'))
+    });
+    console.log('选中的复选框值:', select_aid_list);
+    console.log('目前所選的所有值', all_select)
+
+    $.ajax({
+      type: "POST",
+      url: "/create/{{ct_id}}", // 替换为您的 views.py 文件的 URL
+      data: {
+        select_aid_list: select_aid_list,
+        nowtime: nowtime.value,
+        ct_status: 1,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+      },
+      success: function (response) {
+        // 在這裡處理伺服器回傳的 JSON 數據
+        console.log(response);  // 查看回傳的值
+        //alert("正確");
+        // 進一步處理回傳的值，例如顯示在頁面上
+        var o_list = response.o_list;  // 假設 m_list 是 JSON 中的一個鍵
+        var o_crow_opening_list = response.o_crow_opening_list;  // 假設 crow_opening_list 是 JSON 中的一個鍵
+        var mListContainer_o = document.getElementById("AttractionsContainer_o")
+        var clickLikeAttractions_o = document.getElementById('clickLikeAttractions_o');
+        // 將畫面1隱藏
+        select_aid.style.display = 'none';
+        clickLikeAttractions.style.display = 'none';
+
+        mListContainer_o.style.display = '';
+        clickLikeAttractions_o.style.display = '';
+        /* 修改提交為送出的ID與文字
+        
+        if (linkButton) {
+          // 修改id属性
+          linkButton.setAttribute('id', 'clickLikeAttractions_o');
+          
+          // 获取按钮元素
+          var buttonElement = linkButton.querySelector('button');
+          
+          // 修改按钮的value和内容
+          buttonElement.value = '送出';
+          buttonElement.textContent = '送出';
+        }*/
+        mListContainer_o.innerHTML = ''
+        for (var i = 0; i < o_list.length; i++) {
+          mListContainer_o.innerHTML += `<div class="col-md-4 col-sm-6" style="margin-bottom: 5px;" value="${o_list[i].place_id}">
+            <div class="checkimg_div">
+              <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck" style="margin: 0;padding: 0;border: 0;"
+                onclick="pickspot(this)">
+                <span class="checkspot" style="display: block;cursor: pointer;">
+                  <img src="/static/images/attractions/${o_list[i].place_id + '_0'}.jpg" class="img-responsive" width="100%" alt="">
+                </span>
+              </label>
+            </div>
+            <div class="spottxtdiv">
+              <div class="checkspottxt">
+                <p style="text-align: center;padding: 5px;margin-bottom: 5px;">${o_list[i].a_name}</p>
+                <span class="spottxt spottxtaddress">地址：${o_list[i].address}</span><br>
+                <span class="spottxt spottxtstar">評價：${o_list[i].rating}</span><br>
+                <span class="spottxt spottxttime">營業時間：${o_crow_opening_list[i].opening}</span>
+              </div>
+            </div>
+          </div>`
+
+
+
+          //mListContainer.innerHTML += '<input type="checkbox" value="' + item.place_id + '">';
+          //mListContainer.innerHTML += '<div class="col-5"><img src="/static/images/attractions/' + item.place_id + '_0.jpg" alt=""  height="250"></div>'
+          //mListContainer.innerHTML += '<div class="col-7"><div style="text-align: left;">'
+          //mListContainer.innerHTML += "<p>" + item.place_id + "<p>";
+          //mListContainer.innerHTML += "<p>" + item.a_name + "<p>";
+          //mListContainer.innerHTML += "<p>" + item.address + "<p></div></div>";
+
+        }
+
+      },
+
+      error: function () {
+        alert('有錯誤!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      },
+    });
+    event.preventDefault();
+  }); {% endcomment %}
+
+  //我是第3步驟   排序~~~
+  {% comment %} var clickLikeAttractions_o = document.getElementById('clickLikeAttractions_o');
+  clickLikeAttractions_o.addEventListener("click", function (e) {
+    var o_select_aid = document.getElementById('AttractionsContainer_o');
+    //var o_selectedCheckboxes = o_select_aid.querySelectorAll('input[type="checkbox"]:checked');
+    var o_selectedCheckboxes = o_select_aid.getElementsByClassName('pickimg');
+    var o_select_aid_list = [];
+    var nowtime = document.getElementById("nowtime");
+    Array.from(o_selectedCheckboxes).forEach(function (checkbox) {
+      o_select_aid_list.push(checkbox.getAttribute('value'));
+      all_select.push(checkbox.getAttribute('value'))
+
+    });
+    console.log('选中的复选框值(相似):', o_select_aid_list);
+    console.log('目前所選的所有值', all_select)
+
+    $.ajax({
+      type: "POST",
+      url: "/create/{{ct_id}}", // 替换为您的 views.py 文件的 URL
+      data: {
+        all_select: all_select,
+        nowtime: nowtime.value,
+        ct_status: 2,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+      },
+      success: function (response) {
+
+        // 在這裡處理伺服器回傳的 JSON 數據
+        console.log(response);  // 查看回傳的值
+
+        //切回建立行程
+        document.getElementById('1-tab').classList.add('active');
+        document.getElementById('child-1').classList.add('show', 'active');
+        document.getElementById('recommend-tab').classList.remove('active');
+        document.getElementById('recommend').classList.remove('show', 'active');
+        // 進一步處理回傳的值，例如顯示在頁面上
+        var final_result_list = response.final_result_list;  // 假設 m_list 是 JSON 中的一個鍵
+        var final_crow_opening_list = response.final_crow_opening_list;  // 假設 crow_opening_list 是 JSON 中的一個鍵
+        var final_remainder_result_list = response.final_remainder_result_list;  // 假設 m_list 是 JSON 中的一個鍵
+        var final_remainder_crow_opening_list = response.final_remainder_crow_opening_list;  // 假設 crow_opening_list 是 JSON 中的一個鍵
+        var final_now_time_list = response.final_now_time_list;  // 假設 crow_opening_list 是 JSON 中的一個鍵
+        //安排完的景點
+        var OrderAttractions = document.getElementById("OrderAttractions")
+        var count = 0
+        var length_f = final_result_list.length;
+        var all_a = []
+        OrderAttractions.innerHTML = '';
+        for (let i = 0; i < length_f; i++) {
+          var stay_time = final_result_list[i].stay_time;
+          if (stay_time == 0) {
+            stay_time = 150;
+          }
+          final_result = final_result_list[i];
+          final_crow_opening = final_crow_opening_list[i];
+          console.log('final_result', final_result);
+          console.log('final_crow_opening', final_crow_opening);
+          console.log(final_now_time_list)
+
+          final_now_time_list[i] = final_now_time_list[i] % 1440;
+
+          count++;
+          all_a.push(final_result.id)
+          var temp = '<div class="spot innerlist" id="spot' + count + '">';
+          temp += '<p style="font-size: 22px;font-weight: bold;">' + final_result.a_name;
+          temp += '<p>' + final_result.address;
+          temp += '<p>當下可能的人潮流量：' + final_crow_opening.crowd[parseInt(final_now_time_list[i] / 60, 10)] + '%<br>';  //抓取當下時間點的人潮
+          temp += '<p>營業時間：' + final_crow_opening.opening + '<br>';
+          temp += '<p>建議停留時間：' + stay_time + '分鐘<br>';
+          temp += '</div>';
+
+          OrderAttractions.innerHTML += temp;
+        }
+        OrderAttractions.innerHTML += '<div id="hiddenId" style="display: none;">' + all_a + '</div>';
+        //剩餘的部分(註解掉的)
+        var RemainderAttractions = document.getElementById("RemainderAttractions")
+        var count_remainder = 0
+        var length_fr = final_remainder_result_list.length;
+        RemainderAttractions.innerHTML = '';
+        if (length_fr != 0) {
+          RemainderAttractions.innerHTML = '<div class="hr_container"><hr></div>';
+          for (let r = 0; r < length_fr; r++) {
+            final_remainder_result = final_remainder_result_list[r];
+            final_remainder_crow_opening = final_remainder_crow_opening_list[r];
+            console.log('final_remainder_result', final_remainder_result);
+            console.log('final_remainder_crow_opening', final_remainder_crow_opening);
+            count++;
+            var temp_r = '<div style="color: black" class="spot" id="spot' + count + '" style="margin-bottom:10px">';
+            temp_r += final_remainder_result.a_name;
+            temp_r += '<div id="hiddenId" style="display: none;">' + final_remainder_result.id + '</div>';;
+            temp_r += '<p>' + final_remainder_result.address + '<br>';
+            temp_r += '<p>當下可能的人潮流量：' + final_remainder_crow_opening.crowd[parseInt(final_now_time_list[i] / 60, 10)] + '%<br>';
+            temp_r += '<p>營業時間：' + final_remainder_crow_opening.opening + '<br>';
+            temp_r += '<p>建議停留時間：' + final_remainder_result.stay_time + '<br>';
+            temp_r += '</div>';
+
+            RemainderAttractions.innerHTML += temp_r;
+          }
+        }
+
+      },
+
+      error: function () {
+        alert('有錯誤!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      },
+    });
+    event.preventDefault();
+  }); {% endcomment %}
+
+  //---------------------------------------------------------------------------------------------------------------------------------------------
+
+  {% comment %} var addDay = document.getElementById('addDay');
+  var num = 1;
+  addDay.addEventListener("click", function (e) {
+    var addDaydiv = document.getElementById("addDaydiv");
+    addDaydiv.innerHTML += '<a href="/create/{{ct_id}}/' + num + '" class="tab_day" >' + num + ' Day<br></a>'
+    num++;
+  });
+
+  addDay.click() //初始加 {% endcomment %}
+
+  </script>
+{% endblock %}
+
+</html>
