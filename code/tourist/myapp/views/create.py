@@ -63,10 +63,7 @@ def create(request, ct_id):
     travelday = range(1, ct_data.travel_day + 1)
     name = ct_data.ct_name
     start_day = ct_data.start_day
-    week = (
-        datetime(int(start_day[0:4]), int(start_day[5:7]), int(start_day[8:])).weekday()
-        + 1
-    )
+    start_week = (datetime(int(start_day[0:4]), int(start_day[5:7]), int(start_day[8:])).weekday()+ 1)
     # ct_id = ct_data.id
     
     stay_time = 150
@@ -83,6 +80,7 @@ def create(request, ct_id):
        travel_datas[i]="" 
     # 抓目前位置
     for index,ct_attractions_data in enumerate(ct_attractions_data_total):
+        week = (start_week + index) % 7 + 1
         crowd_index_list=[]
         ct_data = []
         ct_data_id = []
@@ -111,6 +109,7 @@ def create(request, ct_id):
         # print('crowd_index_list',crowd_index_list)
         # 抓出景點的人潮與營業時間
         for co in ct_attractions_detail_list:
+            print(week)
             ct_attractions_co_list.append(Crowd_Opening.objects.get(a_id=co.id,week=week))
             print(ct_attractions_co_list)
         #抓人潮流量
