@@ -14,6 +14,7 @@ function startRecommend(user_location,day){
         console.log( response);
         const attractions_detail_div = $('#AttractionsContainer-'+ globalDay );
         attractions_detail_div.html(response['recommend_attractions_list']);
+        checkAndAddClass();
       },
 
       error: function () {
@@ -43,7 +44,7 @@ function similarRecommend(){
         console.log( response);
         
         similar_attractions_detail_div.html(response['recommend_attractions_list']);
-        // checkAndAddClass();
+        checkAndAddClass();
       },
 
       error: function () {
@@ -75,6 +76,7 @@ function submitRecommend(){
         console.log(response);
         
         order_attractions_detail_div.html(response['order_attractions']);
+        checkAndAddClass();
       },
 
       error: function () {
