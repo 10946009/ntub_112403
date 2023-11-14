@@ -27,13 +27,13 @@
                         style="border: black solid; border-radius: 60px;padding:8px 10px 8px 10px;"></i>
                     {% if is_favorite %}
                     <div class="icon_name" id="submitfavorite{{detail.id}}"
-                        onclick="addFavorite_attractions({{detail.id}})">
-                        <i class="fas fa-regular fa-heart" title="收藏" style="color: rgb(111, 110, 110);"></i>
+                        onclick="addFavorite_attractions(this,{{detail.id}})">
+                        <i class="fas fa-regular fa-heart" title="已收藏" style="color: rgb(202, 13, 13);"></i>
                     </div>
                     {% else %}
                     <div class="icon_name" id="submitfavorite{{detail.id}}"
-                        onclick="addFavorite_attractions({{detail.id}})">
-                        <i class="fas fa-regular fa-heart" title="已收藏" style="color: rgb(202, 13, 13);"></i>
+                        onclick="addFavorite_attractions(this,{{detail.id}})">
+                        <i class="fas fa-regular fa-heart" title="收藏" style="color: rgb(111, 110, 110);"></i>
                     </div>
                     {% endif %}
                 </div>
