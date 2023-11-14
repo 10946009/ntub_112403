@@ -425,10 +425,6 @@
                             </div>
                         </div>
                         <div style="font-size: 18px; margin-bottom: 20px;">
-                            <!-- 只有他有點讚功能 -->
-                            <span style="margin-right: 20px;cursor: pointer;" id="likeButton"><i
-                                    class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i>
-                                <span id="likeCount">8</span></span>
                             <!-- 點擊張貼評論數字+1 -->
                             <span style="cursor: pointer;"><i class="fa-regular fa-comment"
                                     style=" color: rgb(89, 198, 53);margin-right: 5px;"></i><span
@@ -1050,12 +1046,11 @@
         </div>
         <div class="col-9">
             {% for comment in comment_list %}
-
             <div class="comment">
                 <div class="avatar">
                     <img src="../static/images/an.jpeg" alt="User Avatar">
                 </div>
-                <div class="comment-content">
+                <div class="comment-content userComment" id="{{comment.id}}">
                     <div style="display: flex; justify-content: space-between; position: relative;">
                         <h6 class="username">
                             {{comment.u.username}}<br>
@@ -1078,7 +1073,15 @@
                         <!-- <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
                                 2033</span> -->
                     </p>
-                    <div class="comment_user_ph" style="max-width: 100%;">
+                    <!-- 只有他有點讚功能 -->
+                    <span style="margin-right: 20px;cursor: pointer;" id="likeButton">
+                    {% if request.user.id in comment.get_user_favorite %}
+                        <i class="fa-thumbs-up fa-solid" style=" color: rgb(0, 102, 255);"></i>
+                    {% else %}
+                        <i class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i>
+                    {% endif %}
+                    <span id="likeCount">{{comment.get_favorite_count}}</span></span>
+                    {% comment %} <div class="comment_user_ph" style="max-width: 100%;">
                         <img src="../static/images/att_picture.png" alt=""
                             style="width: 150px; cursor: pointer; border: black aolid;" onclick="showPhotoDetail()">
                         <img src="../static/images/att_picture.png" alt=""
@@ -1087,7 +1090,7 @@
                             style="width: 150px; cursor: pointer; border: black aolid;" onclick="showPhotoDetail()">
                         <img src="../static/images/att_picture.png" alt=""
                             style="width: 150px; cursor: pointer; border: black aolid;" onclick="showPhotoDetail()">
-                    </div>
+                    </div> {% endcomment %}
                 </div>
             </div>
             {% empty %}
@@ -1161,7 +1164,7 @@
             <!-- 分頁  -->
             <div class="page-container" style="display: flex ; justify-content: center;">
                 <nav aria-label="Page navigation">
-                    <ul class="pagination" id="pagination">
+                    {% comment %} <ul class="pagination" id="pagination">
                         <li class="page-item">
                             <a class="page-link" href="#" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
@@ -1175,7 +1178,7 @@
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
-                    </ul>
+                    </ul> {% endcomment %}
                 </nav>
             </div>
         </div>
