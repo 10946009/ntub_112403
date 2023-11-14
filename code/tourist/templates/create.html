@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="/static/css/create_search.css">
 <link rel="stylesheet" href="/static/owl/owl.carousel.min.css">
 <script src="https://maps.googleapis.com/maps/api/js?key={{apikey}}&libraries=places"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 
 {% endblock %}
@@ -97,9 +98,7 @@
           </div>
         </form>
         <div id="replaceable-content-{{ day }}" class="searchResult">
-          <div class="owl-carousel owl-theme" style="border: 1px solid black;">
             {% include "create_search.html" %}
-          </div>
         </div>
       </div>
       <hr>
@@ -185,7 +184,9 @@
 <script src="/static/js/recommend.js"></script>
 <script src="/static/js/createSave.js"></script>
 <script src="../static/js/owl.carousel.min.js"></script>
+<script src="/static/js/owlStart.js"></script>
 <script>
+  owlStart();
   var user_all_ct_data = JSON.parse('{{ all_ct_data_id | safe }}');
   var total_day = document.getElementsByClassName('tab-pane')
   var now_click_attractions = {};
