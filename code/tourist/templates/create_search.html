@@ -1,7 +1,5 @@
-
 <div class="owl-carousel owl-theme" style="border: 1px solid black;">
 {% for item in search_list %}
-
   <div class="item checkimg_div" onclick="pickspot(this,{{ item.id }})">
     <!-- <label type="checkbox" name="variety" value="{{ item.id }}" class="imgcheck" style="margin: 0;padding: 0;border: 0;"> -->
       <div class="checkspot">
@@ -17,6 +15,9 @@
 
     <!-- </label> -->
   </div>
-
 {% endfor %}
 </div>
+<script src="/static/js/owlStart.js"></script>
+<script>
+  owlStart();
+</script>

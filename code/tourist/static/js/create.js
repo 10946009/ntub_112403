@@ -30,25 +30,7 @@ function saveTabState(tabId, day) {
   inputBottom();
   checkHasLocationData();
 }
-// 輪播
-$('.owl-carousel').owlCarousel({
-  items: 4,
-  loop: true,
-  margin: 10,
-  dots: false,
-  nav: true,
-  responsive: {
-    0: {
-      items: 1
-    },
-    600: {
-      items: 3
-    },
-    1000: {
-      items: 4
-    }
-  }
-})
+
 // 翻轉右邊區塊&按鈕RWD變換
 var islikeAndRecVisible = false;
 var isIconSet = false;
