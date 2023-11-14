@@ -143,6 +143,7 @@ function searchText(search_text, data_type) {
         console.log(response);
         const search_detail_div = $('#replaceable-content-'+day);
         search_detail_div.html(response['search_list']);
+        checkAndAddClass();
       },
       error: function (xhr, status, error) {
           // 請求失敗時的處理

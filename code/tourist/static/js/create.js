@@ -458,8 +458,15 @@ function checkAndAddClass() {
     console.log(globalDay);
     // 如果全局变量中包含 id，添加CSS类
     if (now_click_attractions[globalDay].has(id)) {
-      console.log(checkbox.closest('.col-md-6'));
-      checkbox.closest('.col-md-6').classList.add('pickimg');
+      var closestColMd6 = checkbox.closest('.col-md-6');
+      var closestColMd4 = checkbox.closest('.col-md-4');
+      // 添加额外的检查，确保 closestColMd6 存在
+      if (closestColMd6) {
+        closestColMd6.classList.add('pickimg');
+      }else if (closestColMd4){
+        closestColMd4.classList.add('pickimg');
+      }
+
     }
   });
 }
