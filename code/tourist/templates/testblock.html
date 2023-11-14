@@ -4,482 +4,399 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Create</title>
     <link rel="stylesheet" href="../static/css/bootstrap2023.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../static/owl/owl.carousel.min.css">
+    <style>
+        .classifierDiv {
+            width: 100%;
+        }
+
+        .pageedit {
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.536);
+        }
+
+        .checkimg_div {
+            /* width: 320px; */
+            cursor: pointer;
+        }
+
+        /* .checkspot {
+            height: 200px;
+            width: 100%;
+            position: relative;
+        }
+
+        .checkspotImg {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+        } */
+
+        .pickimg {
+            padding: 0;
+            border: 2px solid red;
+            /* transform: scale(0.95); */
+        }
+
+        .owl-prev,
+        .owl-next {
+            height: 100%;
+            width: 20px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: background 0.3s;
+        }
+
+        .owl-carousel .owl-nav button.owl-next:hover,
+        .owl-carousel .owl-nav button.owl-prev:hover {
+            background: rgba(81, 81, 81, 0.297);
+            color: white;
+            border: none;
+            padding: 0 !important;
+            font: inherit
+        }
+
+        .owl-prev:hover,
+        .owl-next:hover {
+            display: block;
+            height: 100%;
+            width: 20px;
+            background-color: rgba(0, 0, 0, 0.297);
+            color: white;
+        }
+
+        .owl-prev {
+            left: 0;
+        }
+
+        .owl-next {
+            right: 0;
+        }
+
+        .owl-next span,
+        .owl-prev span {
+            font-size: 28px;
+        }
+
+
+        .showRight_btn {
+            position: absolute;
+            left: -20px;
+            top: 0;
+            border: 1px solid black;
+            height: 25px;
+            width: 20px;
+            cursor: pointer;
+            text-align: center;
+            padding: 0;
+        }
+        .right {
+            position: fixed;
+            right: -150px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 1px solid black;
+            height: 500px;
+            width: 150px;
+            transition: right 0.3s ease;
+            z-index: 2;
+            background-color: white;
+        }
+
+        .right .right_show {
+            right: 0px;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* 半透明的黑色遮罩 */
+            display: none;
+            z-index: 1;
+        }
+    </style>
 </head>
 
 <body>
-
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <div class="pageedit">
-                <form action="" class="createdataform">
-                    <div class="row createdata" style="width: 80%;">
-                        <div class="col-md-6 tabc_txt">
-                            行程名稱：{{ name }}
-                        </div>
-                        <div class="col-md-6 tabc_txt">
-                            出發日期：{{ start_day }}
-                        </div>
-                    </div>
-                </form>
-                <div class="save_div">
-                    <span class="create_day_save" id="saveDays">儲存</span>
-                </div>
-            </div>
-            <div class="" style="display: flex;justify-content: center;align-items: center;align-content: center;">
-                <div class="childtabdiv" style="width: 90%;">
-                    <ul class="nav nav-underline flex justify-content-center my-nav-tabs" id="myTab" role="tablist">
-                        {% for day in travelday %}
-                        <li class="nav-item" role="presentation">
-                            <a class="create-child-nav-link createday{% if forloop.counter == 1 %} active{% endif %}"
-                                aria-current="page" id="child{{day}}-tab" data-bs-toggle="tab"
-                                data-bs-target="#child{{day}}" type="button" role="tab" aria-controls="child{{day}}"
-                                aria-selected="{% if forloop.counter == 1 %}true{% else %}false{% endif %}">
-                                第{{day}}天
-                            </a>
-                        </li>
-                        {% endfor %}
-                        {% comment %}
-                        <li class="nav-item" role="presentation">
-                            <a class="create-child-nav-link createday" id="child2-tab" data-bs-toggle="tab"
-                                data-bs-target="#child2" type="button" role="tab" aria-controls="child2"
-                                aria-selected="false" onclick="saveTabState('child2')">
-                                第二天
-                            </a>
-                        </li>
-
-                        <li class="nav-item" role="presentation">
-                            <a class="create-child-nav-link createday" id="child3-tab" data-bs-toggle="tab"
-                                data-bs-target="#child3" type="button" role="tab" aria-controls="child3"
-                                aria-selected="false" onclick="saveTabState('child3')">
-                                第三天
-                            </a>
-                        </li>
-                        {% endcomment %}
-                    </ul>
-                    {% for days in travelday %}
-                    <div class="tab-child" id="myTabchild{{ days }}"
-                        style="margin: 10px auto;display: flex;align-items: center;align-content: center;">
-                        <div class="tab-pane fade {% if forloop.counter == 1 %}show active{% endif %}"
-                            id="child{{days}}" role="tabpanel" aria-labelledby="child{{days}}-tab" data-set="{{days}}"
-                            style="width: 90%;background-color: #eee;padding: 10px;margin: 0 auto;">
-                            <form action="#tab_c" style="color: black;">
-                                <div>
-                                    <div class="tabD">
-                                        <span id="tabDT">請輸入出發時間：</span>
-                                        <input type="time" name="nowtime" id="nowtime" {% if user_nowtime
-                                            %}value="{{user_nowtime}}" {% else %}value="09:00" {% endif %}>
-                                    </div>
-                                    <div class="tabD">
-                                        <span id="tabDL">使用者位置：</span>
-                                        {% comment %} <input type="text" placeholder="請輸入位置" class="input_txt"
-                                            id="userLocation" value="{{local_address}}"> {% endcomment %}
-                                        <label class="input_txt" id="userLocationName-{{ days }}"> {{ location_name
-                                            }}</label>
-                                        <p></p>
-                                        <input type="hidden" id="userLocation-{{ days }}"
-                                            value="{{local_xy.0}},{{local_xy.1}}">
-                                        <button type="button" id="nowLocationButton-{{ days }}"
-                                            onclick="get_nowLocation({{ days }})">取得目前位置</button>
-                                        <button type="button" id="mapButton-{{ days }}"
-                                            onclick="get_map({{ days }})">選擇位置</button>
-                                        <button type="button" id="okButton-{{ days }}"
-                                            onclick="clickOkButton({{ days }})">確認</button>
-                                        <input type="hidden" placeholder="day" class="nowday" id="nowday">
-                                    </div>
-                                </div>
-                            </form>
-
-                            <!-- 添加地图容器 -->
-                            <input id="pac-input-{{ days }}" class="controls" type="text" placeholder="Search Box"
-                                style="display: none;" />
-                            <div id="map-{{ days }}" style="width: 100%; height: 400px; display: none;"></div>
-                            {% comment %} ct_attractions_co_list
-                            ct_attractions_detail_list {% endcomment %}
-                            <div id="OrderAttractions" style="color: black;">
-                                {% comment %}
-                                <div class="list" style="cursor: pointer;">
-                                    <div class="innerlist" draggable="true">
-                                        <p style="font-size: 22px;font-weight: bold;">景點名稱：</p>
-                                        <p style="font-size: 18px;margin-bottom: 10px;">地址：</p>
-                                        <p style="font-size: 18px;margin-bottom: 10px;">營業時間：</p>
-                                        <p style="font-size: 18px;margin-bottom: 10px;">當下可能的人潮流量：</p>
-                                        <p style="font-size: 18px;margin-bottom: 10px;">建議停留時間：</p>
-                                    </div>
-                                    <div class="innerlist" draggable="true">2</div>
-                                    <div class="innerlist" draggable="true">3</div>
-                                    <div class="innerlist" draggable="true">4</div>
-                                    <div class="innerlist" draggable="true">5</div>
-                                </div>
-                                {% endcomment %}
-
-
-                                <div class="list" style="cursor: pointer;">
-                                    {% for key,datalist in all_ct_data.items %}
-                                    {% if key == days %}
-                                    {%for data in datalist%}
-                                    <div class="spot innerlist" draggable="true" id="spot{{data.attraction.order}}"
-                                        style="color: black;margin-bottom:10px">
-                                        {{data.detail.a_name}}
-                                        <p id="hiddenId" style="display: none;">景點名稱：{{data.detail.id}}</p>
-                                        <p>地址：{{data.detail.address}} <br>
-                                        <p>當下可能的人潮流量：{{data.crowd_list}}%<br>
-                                        <p>營業時間： {% for time in data.co.opening %} {% if forloop.counter != 1 %},{%
-                                            endif %} {{time}} {% endfor %}<br>
-                                        <p>建議停留時間： {% if data.detail.stay_time == 0 %}150{% else
-                                            %}{{data.detail.stay_time}}{% endif %} 分鐘<br>
-                                    </div>
-                                    {%endfor%}
-                                    {% endif%}
-                                    {% endfor %}
-                                </div>
-
-
-                            </div>
-                            <div id="RemainderAttractions"></div>
-                        </div>
-                    </div>
-                    {% endfor %}
-
-                    {% comment %}
-                    <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab"
-                        style="width: 90%;background-color: #333;padding: 10px;margin: 0 auto;">
-                        <!-- 測試測試測試測試測試測試測試測試 -->
-                        <form action="#tab_c" style="color: black;">
-                            <div>
-                                <div class="tabD">
-                                    <span id="tabDT">請輸入出發時間：</span>
-                                    <input type="time" name="nowtime" id="nowtime" value="09:00">
-                                </div>
-                                <div class="tabD">
-                                    <span id="tabDL">使用者位置：</span>
-                                    <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation">
-                                    <input type="hidden" placeholder="day" class="nowday" id="nowday">
-                                </div>
-                            </div>
-                        </form>
-                        <div id="OrderAttractions">
-                            {% for attractions in ct_attractions_list %}
-
-                            {% endfor %}
-                            <!-- <span class="create_txt" >第</span>
-                <button style="border: none;">+</button> -->
-                            <!--我在JS~~~~~~~~~~~
-                <div class="spot" id="spot1">
-                  國父紀念館
-                  <p>位在台北市XX區</p>
-                  <p>
-                    目前人潮流量：適中
-                    <br>
-                    營業時間：09:00-18:00
-                    <br>
-                    建議停留時間：1小時
-                  </p>
-                </div>
-              -->
-                        </div>
-                        <div id="RemainderAttractions"></div>
-                    </div>
-                    <div class="tab-pane fade" id="child3" role="tabpanel" aria-labelledby="child3-tab"
-                        style="width: 90%;background-color: #ccc;padding: 10px;margin: 0 auto;">
-                        <!-- 測試測試測試測試測試測試測試測試 -->
-                        <form action="#tab_c" style="color: black;">
-                            <div>
-                                <div class="tabD">
-                                    <span id="tabDT">請輸入出發時間：</span>
-                                    <input type="time" name="nowtime" id="nowtime" value="09:00">
-                                </div>
-                                <div class="tabD">
-                                    <span id="tabDL">使用者位置：</span>
-                                    <input type="text" placeholder="請輸入位置" class="input_txt" id="userLocation">
-                                    <input type="hidden" placeholder="day" class="nowday" id="nowday">
-                                </div>
-                            </div>
-                        </form>
-                        <div id="OrderAttractions">
-                            {% for attractions in ct_attractions_list %}
-
-                            {% endfor %}
-                        </div>
-                        <div id="RemainderAttractions"></div>
-                    </div>
-                    {% endcomment %}
-                </div>
+    <main style="width: 85%;margin: 0 auto;">
+        <div class="pageedit">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">第一天</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">第二天</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">第三天</a>
+                </li>
+            </ul>
+            <div class="createdata">
+                <span class="tabc_txt">行程名稱：{{ name }}<br></span>
+                <span class="tabc_txt">出發日期：{{ start_day }}</span>
             </div>
         </div>
 
-        <!-- 我的收藏 -->
-        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"
-            style="width: 90%;margin: 0 auto;">
-            <div class="row favoritedata">
-
-                <div class="col-lg-4 col-md-6">
-                    <div style="text-align: center;">
-                        <div class="heart_icon_box">
-                            <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
-                            <i class="fa-solid fa-heart heart_icon"></i>
+        <div class="">
+            <div>start time</div>
+            <div>user location</div>
+        </div>
+        <hr>
+        <!-- 搜尋區塊 -->
+        <div class="classifierDiv srearchDiv">
+            <div style="margin-bottom: 5px;">
+                search bar
+                <div style="width: 80%;height: 50px;background-color: rgb(235, 235, 235);border-radius: 30px;">
+                </div>
+            </div>
+            <div class="searchResultDiv">
+                <div class="owl-carousel owl-theme" style="border: 1px solid black;">
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <div class="checkspot">
+                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
                         </div>
-                        <div class="spot_like_txt">
-                            <h3 class="spot_title">平溪老街</h3>
-                            <p>123456</p>
-                            <div class="group">
-                                <i class="fa-solid fa-plus add_icon"></i>
-                                <div class="dropdown_menu">
-                                    <div>
-                                        <a class="dropdown_item" href="#tab_c">新增行程</a>
-                                    </div>
-                                    <div>
-                                        <a class="dropdown_item" href="#">捷運一日遊</a>
-                                    </div>
-                                    <div>
-                                        <a class="dropdown_item" href="#">開車一日遊</a>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="checkspottxt" style="border: 1px solid #ccc;">
+                            <span>show my text</span>
+                        </div>
+                    </div>
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <div class="checkspot">
+                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
+                        </div>
+                        <div class="checkspottxt" style="border: 1px solid #ccc;">
+                            <span>show my text</span>
+                        </div>
+                    </div>
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <div class="checkspot">
+                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
+                        </div>
+                        <div class="checkspottxt" style="border: 1px solid #ccc;">
+                            <span>show my text</span>
+                        </div>
+                    </div>
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <div class="checkspot">
+                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
+                        </div>
+                        <div class="checkspottxt" style="border: 1px solid #ccc;">
+                            <span>show my text</span>
+                        </div>
+                    </div>
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <div class="checkspot">
+                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
+                        </div>
+                        <div class="checkspottxt" style="border: 1px solid #ccc;">
+                            <span>show my text</span>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div style="text-align: center;">
-                        <div class="heart_icon_box">
-                            <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
-                            <i class="fa-solid fa-heart heart_icon"></i>
-                        </div>
-                        <div class="spot_like_txt">
-                            <h3 class="spot_title">平溪老街</h3>
-                            <p>123456</p>
-                            <div class="group">
-                                <i class="fa-solid fa-plus add_icon"></i>
-                                <div class="dropdown_menu">
-                                    <div>
-                                        <a class="dropdown_item" href="#tab_c">新增行程</a>
-                                    </div>
-                                    <div>
-                                        <a class="dropdown_item" href="#">捷運一日遊</a>
-                                    </div>
-                                    <div>
-                                        <a class="dropdown_item" href="#">開車一日遊</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div style="text-align: center;">
-                        <div class="heart_icon_box">
-                            <img src="/static/images/pingxi.jpg" class="img-responsive" width="100%">
-                            <i class="fa-solid fa-heart heart_icon"></i>
-                        </div>
-                        <div class="spot_like_txt">
-                            <h3 class="spot_title">平溪老街</h3>
-                            <p>123456</p>
-                            <div class="group">
-                                <i class="fa-solid fa-plus add_icon"></i>
-                                <div class="dropdown_menu">
-                                    <div>
-                                        <a class="dropdown_item" href="#tab_c">新增行程</a>
-                                    </div>
-                                    <div>
-                                        <a class="dropdown_item" href="#">捷運一日遊</a>
-                                    </div>
-                                    <div>
-                                        <a class="dropdown_item" href="#">開車一日遊</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
-
-        <!-- 推薦景點 -->
-        <div class="tab-pane fade" id="recommend" role="tabpanel" aria-labelledby="recommend-tab"
-            style="margin: 0 auto;width: 90%;position: relative;">
-            <!-- <div style="display: flex; justify-content: center; margin:5px auto;">
-                <form class="d-flex" role="search" style="width:80%">
-                    <input class="form-control me-2" type="search" placeholder="查詢景點" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div> -->
-            <form action=""
-                style="color: black;display: flex;align-items: center;align-content: center;justify-content: center;"
-                class="form_rec">
-
-            </form>
-            <div class="filter row">
-                <form action="">
-                    <!-- <div class="filiter" style="padding: 12px;">
-                    <div class="filiter_tagtxt" onclick="openfiliter()">
-                    <span class="filiter_txt"><i class="fa-solid fa-filter"></i>篩選標籤</span>
-                    </div>
-                    <div class="show_filiter">
-                    <div id="checkbox">
-                        <label>
-                        <input type="checkbox" name="variety" value="公園 親子" />
-                        <span class="round button">公園</span>
-                        </label>
-                        <label><input type="checkbox" name="variety" value="遊樂園 親子 旅遊" />
-                        <span class="round button">遊樂園</span>
-                        </label>
-                        <label><input type="checkbox" name="variety" value="博物館" />
-                        <span class="round button">博物館</span>
-                        </label>
-                        <label><input type="checkbox" name="variety" value="水族館" />
-                        <span class="round button">水族館</span>
-                        </label>
-                        <label><input type="checkbox" name="variety" value="夜市" />
-                        <span class="round button">夜市</span>
-                        </label>
-                    </div>
-                    </div>
-                    </div> -->
-
-                    <div id="checkbox">
-                        <div class="row" style="padding: 12px;" id="AttractionsContainer">
-                            {% comment %}
-                            <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
-                                <div class="checkimg_div">
-                                    <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck"
-                                        style="margin: 0;padding: 0;border: 0;" onclick="pickspot(this)">
-                                        <span class="checkspot" style="display: block;cursor: pointer;">
-                                            <img src="../static/images/101.jpg" class="img-responsive" width="100%"
-                                                alt="">
-                                        </span>
-                                    </label>
-                                </div>
-                                <div class="spottxtdiv">
-                                    <div class="checkspottxt">
-                                        <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
-                                        <span>地址：</span><br>
-                                        <span>評價：</span><br>
-                                        <span>營業時間：</span>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endcomment %}
+        <hr>
+        <!-- 推薦區塊 -->
+        <div class="classifierDiv RecDiv">
+            <div style="margin-bottom: 5px;">
+                Recommend spot
+            </div>
+            <div class="recommendDiv">
+                <div class="owl-carousel owl-theme" style="border: 1px solid black;">
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <div class="checkspot">
+                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
                         </div>
-                        <div class="row" style="padding: 12px;" id="AttractionsContainer_o">
-                            {% comment %}
-                            <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
-                                <div class="checkimg_div">
-                                    <label type="checkbox" name="variety" value="地標 逛街" class="imgcheck"
-                                        style="margin: 0;padding: 0;border: 0;" onclick="pickspot(this)">
-                                        <span class="checkspot" style="display: block;cursor: pointer;">
-                                            <img src="../static/images/101.jpg" class="img-responsive" width="100%"
-                                                alt="">
-                                        </span>
-                                    </label>
-                                </div>
-                                <div class="spottxtdiv">
-                                    <div class="checkspottxt">
-                                        <p style="text-align: center;padding: 5px;margin-bottom: 5px;">景點名稱</p>
-                                        <span class="spottxt spottxtaddress">地址：</span><br>
-                                        <span class="spottxt spottxtstar">評價：</span><br>
-                                        <span class="spottxt spottxttime">營業時間：</span>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endcomment %}
+                        <div class="checkspottxt" style="border: 1px solid #ccc;">
+                            <span>show my text</span>
                         </div>
                     </div>
-
-                    <div class="shingyi col-md-6" name="AttractionsContainer" id="AttractionsContainer"
-                        style="display:block ;">
-                        <!--我在JS QQ-->
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <div class="checkspot">
+                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
+                        </div>
+                        <div class="checkspottxt" style="border: 1px solid #ccc;">
+                            <span>show my text</span>
+                        </div>
                     </div>
-
-                    <div class="shingyi col-md-6" name="AttractionsContainer" id="AttractionsContainer_o"
-                        style="display:none ;">
-                        <!--我在JS QQ-->
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <div class="checkspot">
+                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
+                        </div>
+                        <div class="checkspottxt" style="border: 1px solid #ccc;">
+                            <span>show my text</span>
+                        </div>
                     </div>
-                    <a href="#recommend-tab" class="tab_a submit1" id="clickLikeAttractions"
-                        style="position: fixed;bottom: 0;right: 0;display: block;">
-                        <button class="recommend_submit1" value="下一步">下一步</button>
-                    </a>
-                    <a href="#home-tab" class="tab_a submit1" id="clickLikeAttractions_o"
-                        style="position: fixed;bottom: 0;right: 0;display: none;">
-                        <button class="recommend_submit1" value="送出">送出</button>
-                    </a>
-                </form>
-                {% comment %}
-                <div class="beitou col-md-6">
-                    <div class="col-5">
-                        <img src="/static/images/beitou.jpeg" alt="" height="250">
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <div class="checkspot">
+                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
+                        </div>
+                        <div class="checkspottxt" style="border: 1px solid #ccc;">
+                            <span>show my text</span>
+                        </div>
                     </div>
-                    <div class="col-7">
-                        <div style="text-align: left;">
-                            <p>景點名稱</p>
-                            <p>地址</p>
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <div class="checkspot">
+                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
+                        </div>
+                        <div class="checkspottxt" style="border: 1px solid #ccc;">
+                            <span>show my text</span>
                         </div>
                     </div>
                 </div>
-                <div class="datong col-md-6">
-                    <div class="col-5">
-                        <img src="/static/images/Datong.jpeg" alt="" height="250">
+            </div>
+        </div>
+        <hr>
+        <!-- 收藏區塊 -->
+        <div class="classifierDiv FavDiv">
+            <div style="margin-bottom: 5px;">
+                Favorite spot
+            </div>
+            <div class="FavoriteDiv">
+                <div class="owl-carousel owl-theme" style="border: 1px solid black;">
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <div class="checkspot">
+                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
+                        </div>
+                        <div class="checkspottxt" style="border: 1px solid #ccc;">
+                            <span>show my text</span>
+                        </div>
                     </div>
-                    <div class="col-7">
-                        <div style="text-align: left;">
-                            <p>景點名稱</p>
-                            <p>地址</p>
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <div class="checkspot">
+                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
+                        </div>
+                        <div class="checkspottxt" style="border: 1px solid #ccc;">
+                            <span>show my text</span>
+                        </div>
+                    </div>
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <div class="checkspot">
+                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
+                        </div>
+                        <div class="checkspottxt" style="border: 1px solid #ccc;">
+                            <span>show my text</span>
+                        </div>
+                    </div>
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <div class="checkspot">
+                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
+                        </div>
+                        <div class="checkspottxt" style="border: 1px solid #ccc;">
+                            <span>show my text</span>
+                        </div>
+                    </div>
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <div class="checkspot">
+                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
+                        </div>
+                        <div class="checkspottxt" style="border: 1px solid #ccc;">
+                            <span>show my text</span>
                         </div>
                     </div>
                 </div>
-                <div class="shilin"><img src="/static/images/Shilin.jpeg" alt="" height="250"></div>
-                <div class="zhongshan"><img src="/static/images/Zhongshan.jpeg" alt="" height="250"></div>
-                {% endcomment%}
-            </div>
-
-            {% comment %}
-            <div class="row">
-                <a href="#tab_c" class="tab_a submit2" id="clickLikeAttractions_o">
-                    <button value="提交">提交1</button>
-                </a>
             </div>
         </div>
-        {% endcomment %}
-    </div>
+        <hr>
+    </main>
 
-    <!-- 橫向排列範例 -->
-    <div class="align"
-        style="width:90%;margin: 0 auto;display: flex;overflow-x: scroll;align-items: center;align-content: center;">
-        <div style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
-            123
-        </div>
-        <div
-            style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
-            123
-        </div>
-        <div
-            style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
-            123
-        </div>
-        <div
-            style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
-            123
-        </div>
-        <div
-            style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
-            123
-        </div>
-        <div
-            style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
-            123
-        </div>
-        <div
-            style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
-            123
-        </div>
-        <div
-            style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
-            123
+    <!-- show similar and choosed section -->
+    <div class="right" id="rightDiv" >
+        <button id="showRight" class="showRight_btn" onclick="showRightDiv()">
+            點
+        </button>
+        <div class="rightDiv">
+            <span>Right section</span>
+            <div>
+                similar recommend
+            </div>
+            <div>
+                be choosed
+            </div>
         </div>
     </div>
+    <div class="overlay" id="overlay"></div>
+    <script src="../static/js/jquery-3.7.0.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/owl.carousel.min.js"></script>
+    <script>
+
+    const rightBtn = document.getElementById('showRight');
+    const rightDiv = document.getElementById('rightDiv');
+    const overlay = document.getElementById('overlay');
+
+    var isRightVisible = false;
+
+    function showRightDiv() {
+        isRightVisible = !isRightVisible;
+
+        if(isRightVisible){
+            rightDiv.style.right = '0px';
+            overlay.style.display = 'block';
+        }else{
+            rightDiv.style.right = '-150px';
+            overlay.style.display = 'none';
+        }
+    }
+
+
+
+    $('.owl-carousel').owlCarousel({
+        items: 4,
+        loop: true,
+        margin: 10,
+        dots: false,
+        nav: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 3
+            },
+            1000: {
+                items: 4
+            }
+        }
+    })
+    // pick spot css 點擊景點時
+    function pickspot(checkbox) {
+        if (checkbox.classList.contains("pickimg")) {
+            checkbox.classList.remove("pickimg");
+        } else {
+            checkbox.classList.add("pickimg");
+        }
+    }
+
+    // function pickspot(checkbox) {
+    //     checkbox.checked = !checkbox.checked;
+    //     console.log(checkbox);
+    //     var div = checkbox.parentElement.parentElement; // 取得包含checkbox的div
+    //     if (checkbox.checked) {
+    //         div.classList.add("pickimg");
+    //         // now_click_attractions[globalDay].add(aid);
+    //         // inputBottom();
+
+    //     } else {
+    //         div.classList.remove("pickimg");
+    //         // now_click_attractions[globalDay].delete(aid);
+    //         // inputBottom();
+    //     }
+
+    // }
+    </script>
 </body>
 
 </html>
