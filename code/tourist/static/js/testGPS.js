@@ -16,6 +16,8 @@ function clickOkButton(day){
   map_display.style.display = "none";
   const searchInput = document.getElementById("pac-input-" + day);
   searchInput.style.display = "none";
+  const okButton = document.getElementById("okButton-" + day); //關閉地圖的btn
+  okButton.style.display = "none";
 }
 
 //地圖事件---------------------------------------------!!!!!!!!!!!!!!!!!
@@ -23,6 +25,9 @@ function get_map(day){
   var userLocationName = document.getElementById("userLocationName-" + day);
   var userLocation = document.getElementById("userLocation-" + day);
   var map_display = document.getElementById("map-" + day);
+  const okButton = document.getElementById("okButton-" + day); //關閉地圖的btn
+
+  okButton.style.display = "";
   map_display.style.display = "";
   // 打開地圖以選擇位置
   var map = new google.maps.Map(document.getElementById("map-" + day), {
