@@ -81,7 +81,8 @@
                   <button class="placeBtn btn_ok"
                           type="button"
                           id="okButton-{{ day }}"
-                          onclick="clickOkButton({{ day }})">關閉地圖</button>
+                          onclick="clickOkButton({{ day }})"
+                          style="display:none;">關閉地圖</button>
                   <input type="hidden" placeholder="day" class="nowday" id="nowday">
                 </div>
               </div>
@@ -391,6 +392,7 @@ autocomplete(create_searchInput,JSON.parse('{{ attractions_search_json|safe }}')
               const formattedAddress = addressParts.filter(part => part).join('');
               //const address = data.display_name;
               userLocationName.textContent = formattedAddress; //將地址或名字寫進html
+              clickOkButton(day);
               console.log(formattedAddress);
             } else {
                 userLocationName.textContent = "Address not found";
