@@ -183,47 +183,63 @@ function submitAction(day) {
 
 
 
-// 展開收藏跟相似景點
-var isLikeVisible = false;
+// 收合搜尋景點
+var isopenSearchDivVisible = true;
+function openSearchDiv() {
+  var searchResult = $('.searchResult');
+  isopenSearchDivVisible = !isopenSearchDivVisible
 
-function openLikeBtn() {
-
-  var openlike = $('.openlike');
-
-  isLikeVisible = !isLikeVisible
-
-  if (isLikeVisible) {
-    openlike.animate({
+  if (isopenSearchDivVisible) {
+    searchResult.animate({
       height: "show"
     }, 500);
   } else {
-    openlike.animate({
-      height: "hide"
-    }, 500);
-  }
-}
-
-var isSimilarVisible = true;
-function openSimilarBtn() {
-
-  var openSimilar = $('.openSimilar');
-
-  if (isSimilarVisible) {
-    openSimilar.animate({
-      height: "show"
-    }, 500);
-  } else {
-    openSimilar.animate({
+    searchResult.animate({
       height: "hide"
     }, 300);
   }
-
-  isSimilarVisible = !isSimilarVisible
 }
+
+// 收合推薦
+var isopenRecDivVisible = true;
+function openRecDiv() {
+
+  var openRec = $('.openRec');
+  isopenRecDivVisible = !isopenRecDivVisible
+
+  if (isopenRecDivVisible) {
+    openRec.animate({
+      height: "show"
+    }, 500);
+  } else {
+    openRec.animate({
+      height: "hide"
+    }, 300);
+  }
+}
+
+// 收合收藏
+var isopenFavDivVisible = true;
+function openFavDiv() {
+
+  var openFav = $('.openFav');
+  isopenFavDivVisible = !isopenFavDivVisible
+
+  if (isopenFavDivVisible) {
+    openFav.animate({
+      height: "show"
+    }, 500);
+  } else {
+    openFav.animate({
+      height: "hide"
+    }, 300);
+  }
+}
+
 // 當頁面載入後，呼叫一次以顯示相似元素
-$(document).ready(function () {
-  openSimilarBtn();
-});
+// $(document).ready(function () {
+//   openSimilarBtn();
+// });
 
 
 //open篩選
@@ -238,21 +254,31 @@ function openfiliter() {
 
 // pick spot css 點擊景點時
 function pickspot(checkbox, aid) {
-  checkbox.checked = !checkbox.checked;
-  console.log(checkbox);
-  var div = checkbox.parentElement.parentElement; // 取得包含checkbox的div
-  if (checkbox.checked) {
-    div.classList.add("pickimg");
-    now_click_attractions[globalDay].add(aid);
-    inputBottom();
-
-  } else {
-    div.classList.remove("pickimg");
-    now_click_attractions[globalDay].delete(aid);
-    inputBottom();
-  }
-
+    console.log(checkbox);
+    if (checkbox.classList.contains("pickimg")) {
+        checkbox.classList.remove("pickimg");
+        now_click_attractions[globalDay].delete(aid);
+    } else {
+        checkbox.classList.add("pickimg");
+        now_click_attractions[globalDay].add(aid);
+    }
 }
+// function pickspot(checkbox, aid) {
+//   checkbox.checked = !checkbox.checked;
+//   console.log(checkbox);
+//   var div = checkbox.parentElement.parentElement; // 取得包含checkbox的div
+//   if (checkbox.checked) {
+//     div.classList.add("pickimg");
+//     now_click_attractions[globalDay].add(aid);
+//     inputBottom();
+
+//   } else {
+//     div.classList.remove("pickimg");
+//     now_click_attractions[globalDay].delete(aid);
+//     inputBottom();
+//   }
+
+// }
 
 // pick spot 刪除下面戰存的景點時
 function pickspotBottom(aid) {
@@ -392,6 +418,27 @@ list.addEventListener('dragend', (e) => {
   currentLi.classList.remove('moving')
 })
 
+// slide right section
+
+// const rightBtn = document.getElementById('showRight');
+// const rightDiv = document.getElementById('rightDiv');
+// const Roverlay = document.getElementById('Roverlay');
+
+// var isRightVisible = false;
+
+// function showRightDiv() {
+//     isRightVisible = !isRightVisible;
+
+//     if(isRightVisible){
+//         rightDiv.style.right = '0px';
+//         Roverlay.style.display = 'block';
+//         document.body.style.overflow = "hidden";
+//     }else{
+//         rightDiv.style.right = '-90%';
+//         Roverlay.style.display = 'none';
+//         document.body.style.overflow = "auto";
+//     }
+// }
 
 // 底部暫存區塊
 $(document).ready(function () {

@@ -96,10 +96,6 @@ main {
     padding: 5px;
 }
 
-.create_txt {
-    font-size: 20px;
-}
-
 .createdata {
     text-align: end;
 }
@@ -127,6 +123,7 @@ main {
     color: #fff;
     background-color: #198754;
     text-shadow: 2px 2px 3px #333;
+    z-index: 2;
 }
 
 .saveIcon_btn::before {
@@ -211,7 +208,7 @@ main {
 }
 
 .active {
-    color: #1b3fe1;
+    color: #000;
     animation: heart 0.5s linear;
     font-weight: bolder;
 }
@@ -221,6 +218,7 @@ main {
     padding: 5px;
     width: 100%;
 }
+
 /* 右半邊 */
 .searchAndlikeAndrec {
     position: relative;
@@ -283,14 +281,6 @@ main {
     user-select: none;
 }
 
-.recDiv {
-    display: flex;
-    align-items: center;
-    align-content: center;
-    padding: 10px 0;
-    position: relative;
-    user-select: none;
-}
 
 .changeToRec {
     position: absolute;
@@ -316,8 +306,14 @@ main {
     content: '\f4d7';
     font-family: 'Font Awesome 5 Free';
 }
-
-.like_icon {
+.rec_icon{
+    color: white;
+    background-color: orange;
+    border-radius: 50%;
+    padding: 10px;
+    margin-right: 5px;
+}
+.fav_icon {
     color: white;
     background-color: rgb(255, 41, 101);
     border-radius: 50%;
@@ -335,12 +331,23 @@ main {
 }
 
 .searchBarDiv,
+.recDiv,
+.favDiv,
 .doneDiv {
+    display: block;
+    align-items: center;
+    align-content: center;
+    padding: 10px 0;
+    cursor: pointer;
+    user-select: none;
+}
+/* .recDiv {
     display: flex;
     align-items: center;
     align-content: center;
     padding: 10px 0;
-}
+    position: relative;
+} */
 
 .find_icon,
 .done_icon {
@@ -351,12 +358,18 @@ main {
     margin-right: 5px;
 }
 
-.like_txt,
+.fav_txt,
 .rec_txt,
+.search_txt,
 .similar_txt,
 .done_txt {
     font-size: 28px;
     font-weight: bold;
+}
+.tipsTxt{
+    font-size: 18px;
+    font-weight: 0;
+    margin-left: 10px;
 }
 
 .renew {
@@ -696,6 +709,8 @@ main {
 }
 
 .tabD {
+    color: #000;
+    margin-top: 5px;
     padding: 5px;
 }
 
@@ -714,7 +729,7 @@ main {
 }
 
 .checkboxDiv {
-    height: 520px;
+    /* height: 520px; */
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -757,7 +772,7 @@ main {
 .pickimg {
     padding: 0;
     border: 2px solid red;
-    transform: scale(0.9);
+    /* transform: scale(0.9); */
 }
 
 .spottxtdiv {
@@ -766,33 +781,30 @@ main {
     border-top: 0;
     color: black;
 }
-.owl-prev,
-.owl-next {
-    height: 100%;
-    width: 20px;
+
+.owl-carousel .owl-nav button.owl-next,
+.owl-carousel .owl-nav button.owl-prev  {
+    color: white;
+    height: 50px;
+    width: 30px;
+    background: rgba(0, 0, 0, 0.5);
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     transition: background 0.3s;
 }
 
-.owl-carousel .owl-nav button.owl-next:hover,
+/* .owl-carousel .owl-nav button.owl-next:hover,
 .owl-carousel .owl-nav button.owl-prev:hover {
     background: rgba(81, 81, 81, 0.297);
     color: white;
     border: none;
     padding: 0 !important;
-    font: inherit
-}
-
-.owl-prev:hover,
-.owl-next:hover {
+    font: inherit;
     display: block;
     height: 100%;
-    width: 20px;
-    background-color: rgba(0, 0, 0, 0.297);
-    color: white;
-}
+    width: 30px;
+} */
 
 .owl-prev {
     left: 0;
@@ -807,11 +819,11 @@ main {
     font-size: 28px;
 }
 
-/* .checkspot {
+.checkspot {
     position: relative;
     display: block;
     cursor: pointer;
-} */
+}
 
 .info_icon {
     position: absolute;
@@ -847,6 +859,7 @@ main {
 }
 
 .checkimg_div {
+    cursor: pointer;
     /* position: relative;
     height: 200px;
     overflow: hidden; */
@@ -856,14 +869,6 @@ main {
     width: 100%;
 }
 
-.checkimg_div img {
-    /* width: 100%; */
-    /* height: 100%;
-    object-fit: cover;
-    position: absolute;
-    left: 0;
-    top: 0; */
-}
 
 .spotName {
     text-align: center;
@@ -910,41 +915,50 @@ main {
 
 .showRight_btn {
     position: absolute;
-    left: -20px;
-    top: 0;
-    border: 1px solid black;
-    height: 25px;
-    width: 20px;
+    left: -30px;
+    bottom: 0;
+    border: 0;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    width: 30px;
+    height: 100px;
     cursor: pointer;
     text-align: center;
     padding: 0;
+    background-color: cadetblue;
 }
+
 .right {
     position: fixed;
-    right: -150px;
+    right: -90%;
     top: 50%;
     transform: translateY(-50%);
-    border: 1px solid black;
-    height: 500px;
-    width: 150px;
+    border: 1px solid gray;
+    border-top-left-radius: 10px;
+    height: 80%;
+    width: 90%;
     transition: right 0.3s ease;
-    z-index: 2;
+    z-index: 3;
     background-color: white;
+    padding: 5px;
 }
 
 .right .right_show {
     right: 0px;
 }
+
 .Roverlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* 半透明的黑色遮罩 */
+    background: rgba(0, 0, 0, 0.5);
+    /* 半透明的黑色遮罩 */
     display: none;
-    z-index: 1;
+    z-index: 2;
 }
+
 .align {
     margin: 0 auto;
     padding: 0;
@@ -1144,7 +1158,7 @@ main {
     }
 
     .rec_icon,
-    .like_icon {
+    .fav_icon {
         padding: 8px;
         font-size: 16px;
     }
@@ -1159,7 +1173,7 @@ main {
         font-size: 18px;
     }
 
-    .like_txt,
+    .fav_txt,
     .rec_txt,
     .similar_txt,
     .done_txt {

@@ -7,7 +7,20 @@
 <script src="https://maps.googleapis.com/maps/api/js?key={{apikey}}&libraries=places"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
-
+<style>
+  .owl-carousel .owl-nav button.owl-next,
+  .owl-carousel .owl-nav button.owl-prev  {
+      color: white;
+      height: 50px;
+      width: 30px;
+      background: rgba(74, 74, 74, 0.5);
+      box-shadow: 2px 2px 3px rgba(255, 255, 255, 0.625);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: background 0.3s;
+  }
+</style>
 {% endblock %}
 {% block body %}
 <main>
@@ -65,13 +78,13 @@
       <div id="map-{{ day }}" style="width: 100%;height: 300px;display: none;"></div>
       <!-- search section -->
       <div class="classifierDiv srearchDiv">
-        <div class="searchBarDiv">
+        <div class="searchBarDiv" onclick="openSearchDiv()">
           <i class="fa-solid fa-magnifying-glass-location find_icon"></i>
           <span class="search_txt">搜尋景點</span>
+          <span class="tipsTxt"> <i class="fa-solid fa-left-long"></i>  點這一列可以收合搜尋結果唷  <i class="fa-solid fa-left-long fa-rotate-180"></i></span>
         </div>
         <form autocomplete="off" class="d-flex" role="search">
           {% csrf_token %}
-
           <div class="create_search">
             <div class="create_searchInput">
               <input class="form-control me-auto search"
@@ -102,64 +115,50 @@
         </div>
       </div>
       <hr>
-      <!-- 推薦區塊 -->
-      <div class="classifierDiv RecDiv" id="checkRec-{{ day }}">
-        <div class="recDiv">
+      <!-- recommend section -->
+      <div class="classifierDiv RecommendDiv" id="checkRec-{{ day }}">
+        <div class="recDiv" onclick="openRecDiv()">
           <i class="fa-solid fa-thumbs-up rec_icon"></i>
-          <span class="rec_txt">推薦景點</span>
+          <span class="rec_txt" >推薦景點</span>
+          <span class="tipsTxt"> <i class="fa-solid fa-left-long"></i>  點這一列可以收合推薦結果唷  <i class="fa-solid fa-left-long fa-rotate-180"></i></span>
         </div>
         <div id="checkbox-{{ day }}" class="checkboxDiv">
-          <div style="padding: 10px 5px" id="AttractionsContainer-{{ day }}">
+          <div class="openRec" style="padding: 10px 5px" id="AttractionsContainer-{{ day }}">
             <h4>請先選擇使用者位置和時間</h4>
             {% include 'create_recommend.html' %}
           </div>
         </div>
-        <div class="recommendDiv">
-          <div class="owl-carousel owl-theme" style="border: 1px solid black;">
-            <div class="item checkimg_div" onclick="pickspot(this)">
-              <div class="checkspot">
-                <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
-              </div>
-              <div class="checkspottxt" style="border: 1px solid #ccc;">
-                <span>show my text</span>
-              </div>
-            </div>
-            <div class="item checkimg_div" onclick="pickspot(this)">
-              <div class="checkspot">
-                <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
-              </div>
-              <div class="checkspottxt" style="border: 1px solid #ccc;">
-                <span>show my text</span>
-              </div>
-            </div>
-            <div class="item checkimg_div" onclick="pickspot(this)">
-              <div class="checkspot">
-                <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
-              </div>
-              <div class="checkspottxt" style="border: 1px solid #ccc;">
-                <span>show my text</span>
-              </div>
-            </div>
-            <div class="item checkimg_div" onclick="pickspot(this)">
-              <div class="checkspot">
-                <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
-              </div>
-              <div class="checkspottxt" style="border: 1px solid #ccc;">
-                <span>show my text</span>
-              </div>
-            </div>
-            <div class="item checkimg_div" onclick="pickspot(this)">
-              <div class="checkspot">
-                <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
-              </div>
-              <div class="checkspottxt" style="border: 1px solid #ccc;">
-                <span>show my text</span>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <hr>
+      <!-- favorite section -->
+      <div class="classifierDiv FavoriteDiv">
+        <div class="favDiv" onclick="openFavDiv()">
+          <i class="fa-solid fa-heart fav_icon"></i>
+          <span class="fav_txt" >我的收藏</span>
+          <span class="tipsTxt"> <i class="fa-solid fa-left-long"></i>  點這一列可以收合收藏區塊唷  <i class="fa-solid fa-left-long fa-rotate-180"></i></span>
+        </div>
+        <div class="row openFav">
+          {% for item in user_favorite_list %}
+            <div class=" col-lg-3 col-md-4 " style="margin-bottom: 5px;">
+              <div class="checkimg_div" onclick="pickspot(this,{{ item.a_id.id }})">
+                <span class="checkspot">
+                  <img src="../static/images/attractions/{{ item.a_id.place_id }}_0.jpg" class="img-responsive" width="100%" alt="">
+                        <!-- 這個連結沒有改 所以沒辦法連到+0的 -->
+                  <a href="#" class="fa-solid fa-circle-info info_icon" id="info_icon" onclick="clickeInfo(event,{{ item.a_id.id }})"> </a>
+                </span>
+                <div class="spottxtdiv">
+                  <p style="text-align: center;padding: 5px;margin-bottom: 5px;">
+                    {{ item.a_id.a_name }}
+                  </p>
+                  <span>評價：{{ item.a_id.rating }}</span>
+                  <br>
+                  {% comment %} <span>營業時間：{{r.crow_opening_list.opening.0}}</span> {% endcomment %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
 
     </div>
     {% endfor %}
@@ -167,15 +166,18 @@
   <!-- show similar and choosed section -->
   <div class="right" id="rightDiv" >
       <button id="showRight" class="showRight_btn" onclick="showRightDiv()">
-          點
+        <i class="fa-solid fa-chevron-left"></i><br>
+        <!-- 已選擇 -->
       </button>
       <div class="rightDiv">
           <span>Right section</span>
+          <div class="align" id="bottomAttraction">
+              <!-- be choosed -->
+          </div>
+          <hr>
           <div>
               similar recommend
-          </div>
-          <div>
-              be choosed
+              {% include "create_similar_recommend.html" %}
           </div>
       </div>
   </div>
@@ -204,23 +206,31 @@
 <script>
   owlStart();
   
-const rightBtn = document.getElementById('showRight');
-const rightDiv = document.getElementById('rightDiv');
-const Roverlay = document.getElementById('Roverlay');
+  const rightBtn = document.getElementById('showRight');
+  const rightDiv = document.getElementById('rightDiv');
+  const Roverlay = document.getElementById('Roverlay');
 
-var isRightVisible = false;
+  var isRightVisible = false;
 
-function showRightDiv() {
-    isRightVisible = !isRightVisible;
+  function showRightDiv() {
+      isRightVisible = !isRightVisible;
 
-    if(isRightVisible){
-        rightDiv.style.right = '0px';
-        Roverlay.style.display = 'block';
-    }else{
-        rightDiv.style.right = '-150px';
-        Roverlay.style.display = 'none';
-    }
-}
+      if(isRightVisible){
+          rightDiv.style.right = '0px';
+          Roverlay.style.display = 'block';
+          document.body.style.overflow = "hidden";
+          rightBtn.innerHTML = '<i class="fa-solid fa-chevron-left fa-rotate-180"></i>';
+          rightBtn.style.backgroundColor = 'red';
+          rightBtn.style.color = 'white';
+      }else{
+          rightDiv.style.right = '-90%';
+          Roverlay.style.display = 'none';
+          document.body.style.overflow = "auto";
+          rightBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+          rightBtn.style.backgroundColor = '';
+          rightBtn.style.color = '';
+      }
+  }
   var user_all_ct_data = JSON.parse('{{ all_ct_data_id | safe }}');
   var total_day = document.getElementsByClassName('tab-pane')
   var now_click_attractions = {};

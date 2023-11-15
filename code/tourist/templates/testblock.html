@@ -274,38 +274,6 @@
                             <span>show my text</span>
                         </div>
                     </div>
-                    <div class="item checkimg_div" onclick="pickspot(this)">
-                        <div class="checkspot">
-                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
-                        </div>
-                        <div class="checkspottxt" style="border: 1px solid #ccc;">
-                            <span>show my text</span>
-                        </div>
-                    </div>
-                    <div class="item checkimg_div" onclick="pickspot(this)">
-                        <div class="checkspot">
-                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
-                        </div>
-                        <div class="checkspottxt" style="border: 1px solid #ccc;">
-                            <span>show my text</span>
-                        </div>
-                    </div>
-                    <div class="item checkimg_div" onclick="pickspot(this)">
-                        <div class="checkspot">
-                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
-                        </div>
-                        <div class="checkspottxt" style="border: 1px solid #ccc;">
-                            <span>show my text</span>
-                        </div>
-                    </div>
-                    <div class="item checkimg_div" onclick="pickspot(this)">
-                        <div class="checkspot">
-                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
-                        </div>
-                        <div class="checkspottxt" style="border: 1px solid #ccc;">
-                            <span>show my text</span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -345,9 +313,11 @@
         if(isRightVisible){
             rightDiv.style.right = '0px';
             overlay.style.display = 'block';
+        document.body.style.overflow = "hidden";
         }else{
             rightDiv.style.right = '-150px';
             overlay.style.display = 'none';
+        document.body.style.overflow = "auto";
         }
     }
 
