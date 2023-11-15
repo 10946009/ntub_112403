@@ -61,7 +61,29 @@
                 <h2>帳號管理</h2>
             </div>
             <div class="head_change">
-                <div class="avatar">
+                <div style="display: flex;justify-content: center;">
+                    <div id="selected-avatar">
+                        <img src="../static/images/dog.jpg" alt="Selected Avatar"
+                            style="width: 100%; height: 100%; border-radius:50%">
+                    </div>
+                </div>
+                <button onclick="openChange()" style="margin-top:20px;">更換頭像</button>
+                <div id="head_selected">
+                    <div id="head_selected-content">
+                        <h2>選擇頭像</h2>
+                        <!-- 預設頭貼 -->
+                        <img src="../static/images/dog.jpg" alt="Avatar 1" class="head_selected-avatar"
+                            onclick="selectAvatarAndClosehead_selected('../static/images/dog.jpg')">
+                        <img src="../static/images/user1.png" alt="Avatar 2" class="head_selected-avatar"
+                            onclick="selectAvatarAndClosehead_selected('../static/images/user1.png')">
+                        <img src="../static/images/user2.png" alt="Avatar 3" class="head_selected-avatar"
+                            onclick="selectAvatarAndClosehead_selected('../static/images/user2.png')">
+                        <img src="../static/images/user3.png" alt="Avatar 3" class="head_selected-avatar"
+                            onclick="selectAvatarAndClosehead_selected('../static/images/user3.png')">
+                        <button onclick="closehead_selected()">取消</button>
+                    </div>
+                </div>
+                <!-- <div class="avatar">
                     <img id="avatar-preview" src="../static/images/dog.jpg" alt="頭貼預覽">
                 </div>
                 <div class="head_file">
@@ -71,9 +93,9 @@
                     <label for="avatar" class="file-upload-label">選擇檔案</label>
                 </div>
                 <div class="form-group">
-                    <!-- <label for="bio">個人簡介:</label> -->
-                    <!-- <textarea id="bio" name="bio" placeholder="請輸入個人簡介"></textarea> -->
-                </div>
+                    <label for="bio">個人簡介:</label>
+                    <textarea id="bio" name="bio" placeholder="請輸入個人簡介"></textarea>
+                </div> -->
             </div>
             <div>
                 <ul>
@@ -120,11 +142,11 @@
                         <div style="margin-top: 20px;">
                             性別：
                             <select name="gender" style="padding: 6px;">
-                                <option {% if detail.gender=="男" %}selected {% endif %} value="1" name="gender">男
+                                <option {% if detail.gender == "男" %}selected {% endif %} value="1" name="gender">男
                                 </option>
-                                <option {% if detail.gender=="女" %}selected {% endif %} value="2" name="gender">女
+                                <option {% if detail.gender == "女" %}selected {% endif %} value="2" name="gender">女
                                 </option>
-                                <option {% if detail.gender=="不公開" %}selected {% endif %} value="0" name="gender">不公開
+                                <option {% if detail.gender == "不公開" %}selected {% endif %} value="0" name="gender">不公開
                                 </option>
                             </select>
                         </div>
@@ -315,6 +337,24 @@
     </div>
 
     <script>
+        function selectAvatar(avatarSrc) {
+            // 將選擇的頭像顯示在selected-avatar區域
+            document.getElementById('selected-avatar').innerHTML = `<img src="${avatarSrc}" alt="Selected Avatar" style="width: 100%; height: 100%; border-radius:50%">`;
+        }
+        function openChange() {
+            // 顯示
+            document.getElementById('head_selected').style.display = 'flex';
+        }
+        function closehead_selected() {
+            // 關閉
+            document.getElementById('head_selected').style.display = 'none';
+        }
+
+        function selectAvatarAndClosehead_selected(avatarSrc) {
+            // 選擇頭貼並關閉
+            selectAvatar(avatarSrc);
+            closehead_selected();
+        }
         function previewAvatar(event) {
             var input = event.target;
             var reader = new FileReader();
