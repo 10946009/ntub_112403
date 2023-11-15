@@ -96,16 +96,14 @@ main {
     padding: 5px;
 }
 
-.create_txt {
-    font-size: 20px;
-}
-
 .createdata {
     text-align: end;
 }
-.my-nav-tabs{
+
+.my-nav-tabs {
     text-align: center;
 }
+
 .recommend_save {
     position: fixed;
     bottom: 5px;
@@ -125,6 +123,7 @@ main {
     color: #fff;
     background-color: #198754;
     text-shadow: 2px 2px 3px #333;
+    z-index: 2;
 }
 
 .saveIcon_btn::before {
@@ -209,11 +208,16 @@ main {
 }
 
 .active {
-    color: #1b3fe1;
+    color: #000;
     animation: heart 0.5s linear;
     font-weight: bolder;
 }
 
+
+.classifierDiv {
+    padding: 5px;
+    width: 100%;
+}
 
 /* 右半邊 */
 .searchAndlikeAndrec {
@@ -237,7 +241,8 @@ main {
     top: 5px;
     z-index: 5;
 }
-.changeTolike{
+
+.changeTolike {
     padding: 10px 15px;
     border: 0;
     background-color: rgb(0, 102, 219);
@@ -252,7 +257,8 @@ main {
     z-index: 5;
     display: none;
 }
-.changeToSearch_icon{
+
+.changeToSearch_icon {
     display: none;
     color: white;
     /* background-color: rgb(255, 41, 101); */
@@ -275,14 +281,6 @@ main {
     user-select: none;
 }
 
-.recDiv {
-    display: flex;
-    align-items: center;
-    align-content: center;
-    padding: 10px 0;
-    position: relative;
-    user-select: none;
-}
 
 .changeToRec {
     position: absolute;
@@ -308,8 +306,14 @@ main {
     content: '\f4d7';
     font-family: 'Font Awesome 5 Free';
 }
-
-.like_icon {
+.rec_icon{
+    color: white;
+    background-color: orange;
+    border-radius: 50%;
+    padding: 10px;
+    margin-right: 5px;
+}
+.fav_icon {
     color: white;
     background-color: rgb(255, 41, 101);
     border-radius: 50%;
@@ -327,12 +331,23 @@ main {
 }
 
 .searchBarDiv,
+.recDiv,
+.favDiv,
 .doneDiv {
+    display: block;
+    align-items: center;
+    align-content: center;
+    padding: 10px 0;
+    cursor: pointer;
+    user-select: none;
+}
+/* .recDiv {
     display: flex;
     align-items: center;
     align-content: center;
     padding: 10px 0;
-}
+    position: relative;
+} */
 
 .find_icon,
 .done_icon {
@@ -343,12 +358,18 @@ main {
     margin-right: 5px;
 }
 
-.like_txt,
+.fav_txt,
 .rec_txt,
+.search_txt,
 .similar_txt,
 .done_txt {
     font-size: 28px;
     font-weight: bold;
+}
+.tipsTxt{
+    font-size: 18px;
+    font-weight: 0;
+    margin-left: 10px;
 }
 
 .renew {
@@ -450,7 +471,8 @@ main {
     font-size: 1.4em;
     height: 20px;
 }
-.spot{
+
+.spot {
     position: relative;
 }
 
@@ -683,9 +705,12 @@ main {
 /* 左半邊 */
 .recAndDone {
     height: 800px;
+    border-right: 2px solid rgb(152, 152, 152)
 }
 
 .tabD {
+    color: #000;
+    margin-top: 5px;
     padding: 5px;
 }
 
@@ -704,7 +729,7 @@ main {
 }
 
 .checkboxDiv {
-    height: 520px;
+    /* height: 520px; */
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -747,7 +772,7 @@ main {
 .pickimg {
     padding: 0;
     border: 2px solid red;
-    transform: scale(0.9);
+    /* transform: scale(0.9); */
 }
 
 .spottxtdiv {
@@ -755,6 +780,43 @@ main {
     border: 1px solid #33333394;
     border-top: 0;
     color: black;
+}
+
+.owl-carousel .owl-nav button.owl-next,
+.owl-carousel .owl-nav button.owl-prev  {
+    color: white;
+    height: 50px;
+    width: 30px;
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: background 0.3s;
+}
+
+/* .owl-carousel .owl-nav button.owl-next:hover,
+.owl-carousel .owl-nav button.owl-prev:hover {
+    background: rgba(81, 81, 81, 0.297);
+    color: white;
+    border: none;
+    padding: 0 !important;
+    font: inherit;
+    display: block;
+    height: 100%;
+    width: 30px;
+} */
+
+.owl-prev {
+    left: 0;
+}
+
+.owl-next {
+    right: 0;
+}
+
+.owl-next span,
+.owl-prev span {
+    font-size: 28px;
 }
 
 .checkspot {
@@ -786,7 +848,9 @@ main {
     cursor: pointer;
     text-decoration: none;
 }
-.info_icon:hover ,.info_icon_left:hover {
+
+.info_icon:hover,
+.info_icon_left:hover {
     color: orange;
 }
 
@@ -795,6 +859,7 @@ main {
 }
 
 .checkimg_div {
+    cursor: pointer;
     /* position: relative;
     height: 200px;
     overflow: hidden; */
@@ -804,14 +869,6 @@ main {
     width: 100%;
 }
 
-.checkimg_div img {
-    width: 100%;
-    /* height: 100%;
-    object-fit: cover;
-    position: absolute;
-    left: 0;
-    top: 0; */
-}
 
 .spotName {
     text-align: center;
@@ -856,6 +913,52 @@ main {
     margin: 0 auto;
 }
 
+.showRight_btn {
+    position: absolute;
+    left: -30px;
+    bottom: 0;
+    border: 0;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    width: 30px;
+    height: 100px;
+    cursor: pointer;
+    text-align: center;
+    padding: 0;
+    background-color: cadetblue;
+}
+
+.right {
+    position: fixed;
+    right: -90%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 1px solid gray;
+    border-top-left-radius: 10px;
+    height: 80%;
+    width: 90%;
+    transition: right 0.3s ease;
+    z-index: 3;
+    background-color: white;
+    padding: 5px;
+}
+
+.right .right_show {
+    right: 0px;
+}
+
+.Roverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* 半透明的黑色遮罩 */
+    display: none;
+    z-index: 2;
+}
+
 .align {
     margin: 0 auto;
     padding: 0;
@@ -876,11 +979,13 @@ main {
     border: 1px solid rgba(255, 255, 255, 0.57);
     display: block;
 }
-.imgOverlay{
+
+.imgOverlay {
     width: 100%;
     height: auto;
     z-index: 0;
 }
+
 .overlay {
     position: absolute;
     width: 100%;
@@ -889,7 +994,8 @@ main {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: white; /* 文字顏色 */
+    color: white;
+    /* 文字顏色 */
     font-size: 20px;
     background: rgba(0, 0, 0, 0.5);
     transition: opacity 0.3s ease;
@@ -980,19 +1086,22 @@ main {
 }
 
 @media (max-width:690px) {
-    main{
+    main {
         margin-top: 80px;
     }
-    .pageedit{
+
+    .pageedit {
         flex-direction: column;
         justify-content: center;
         align-items: center;
         align-content: center;
     }
-    .createdata{
+
+    .createdata {
         order: -1;
         text-align: center;
     }
+
     .checkboxDiv {
         height: 450px;
     }
@@ -1049,7 +1158,7 @@ main {
     }
 
     .rec_icon,
-    .like_icon {
+    .fav_icon {
         padding: 8px;
         font-size: 16px;
     }
@@ -1064,7 +1173,7 @@ main {
         font-size: 18px;
     }
 
-    .like_txt,
+    .fav_txt,
     .rec_txt,
     .similar_txt,
     .done_txt {

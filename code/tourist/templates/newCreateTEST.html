@@ -9,112 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../static/owl/owl.carousel.min.css">
     <style>
-        .showserachBlock {
-            display: block;
-        }
-
-        .searchAndlikeAndrec {
-            position: relative;
-            margin: 0 auto;
-        }
-
-        .change {
-            width: 95%;
-            height: 100%;
-            position: absolute;
-            backface-visibility: hidden;
-            /* 隐藏背面 */
-            transform-style: preserve-3d;
-            /* 保持3D效果 */
-            transition: transform 0.5s;
-            font-size: 24px;
-            transform: rotateY(0deg);
-            /* 初始状态：不翻转 */
-        }
-
-        #searchBlock {
-            transform: rotateY(180deg);
-            /* 初始状态：翻转180度 */
-        }
-
-        .imgcontainer {
-            position: relative;
-            height: 500px;
-            width: 500px;
-            overflow: hidden;
-            margin: 0 auto;
-        }
-
-        .imgcontainer img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            left: 0;
-            -webkit-transition: opacity 0.5s ease-in-out;
-            -moz-transition: opacity 0.5s ease-in-out;
-            -o-transition: opacity 0.5s ease-in-out;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        .imgcontainer img.top:hover {
-            opacity: 0;
-        }
-
-
-
-        .hoverTest {
-            position: relative;
-        }
-
-        .hoverTest img {
-            position: absolute;
-            /* CSS3淡出淡入效果,1秒 */
-            -webkit-transition: opacity 1s ease-in-out;
-            -moz-transition: opacity 1s ease-in-out;
-            -o-transition: opacity 1s ease-in-out;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .hoverTest img:nth-of-type(2):hover {
-            opacity: 0;
-            /* 滑鼠滑入時，透明度變0 */
-        }
-
-        .image-container {
-            position: relative;
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-        }
-
-        .overlay .text {
-            /* 根据需要调整文字样式 */
-            font-size: 24px;
-        }
-
-        .image-container:hover .overlay {
-            opacity: 1;
-        }
-
-
-
         .modal {
             display: none;
             position: fixed;
@@ -246,34 +142,21 @@
         }
 
 
-        .container {
-            width: 80%;
-            margin: 0 auto;
-        }
-
-        .flex-container {
-            display: flex;
-            justify-content: space-between;
-            flex-direction: row;
-            /* 初始情況下是水平排列 */
-        }
-
-        .item {
-            width: 250px;
-        }
-
         @media screen and (max-width: 767px) {
             .flex-container {
                 flex-direction: column;
                 /* 在768像素以下的螢幕上變成垂直排列 */
             }
-            .item2{
+
+            .item2 {
                 order: -1;
             }
         }
+
         .containerTest {
             position: relative;
-            width: 300px; /* 調整容器的寬度 */
+            width: 300px;
+            /* 調整容器的寬度 */
         }
 
         .overlayTest {
@@ -282,293 +165,179 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            color: white; /* 文字顏色 */
-            font-size: 20px; /* 文字大小 */
+            color: white;
+            /* 文字顏色 */
+            font-size: 20px;
+            /* 文字大小 */
         }
 
         .imageTest {
             width: 100%;
             height: auto;
-            z-index: 0; /* 圖片放在文字的下層 */
+            z-index: 0;
+            /* 圖片放在文字的下層 */
+        }
+
+        .owl-prev,
+        .owl-next {
+            height: 100%;
+            width: 20px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: background 0.3s;
+        }
+
+        .owl-carousel .owl-nav button.owl-next:hover,
+        .owl-carousel .owl-nav button.owl-prev:hover {
+            background: rgba(81, 81, 81, 0.297);
+            color: white;
+            border: none;
+            padding: 0 !important;
+            font: inherit
+        }
+
+        .owl-prev:hover,
+        .owl-next:hover {
+            display: block;
+            height: 100%;
+            width: 20px;
+            background-color: rgba(0, 0, 0, 0.297);
+            color: white;
+        }
+
+        .owl-prev {
+            left: 0;
+        }
+
+        .owl-next {
+            right: 0;
+        }
+
+        .owl-next span,
+        .owl-prev span {
+            font-size: 28px;
+        }
+
+        .right {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 1px solid black;
+            height: 500px;
+            width: 150px;
+            transition: right 0.3s ease;
+            /* 添加过渡效果，使动画更流畅 */
+        }
+
+        .showRight_btn {
+            position: absolute;
+            left: -15px;
+            top: 0;
+            border: 1px solid black;
+            height: 25px;
+            width: 15px;
+            cursor: pointer;
+        }
+
+        /* 隐藏右侧区域 */
+        .right.hidden {
+            right: -150px;
         }
     </style>
 </head>
 
 <body>
+    <div class="right">
+        <div id="showRight" class="showRight_btn" onclick="showRightDiv()">
+            <span>
+                < </span>
+        </div>
+        <div id="rightDiv" class="rightDiv">
+            <span>Right section</span>
+            <div>
+                similar recommend
+            </div>
+            <div>
+                be choosed
+            </div>
+        </div>
+    </div>
+
+    <div class="main" style="width: 85%;margin: 0 auto;">
+        <div class="left">
+            <div>
+                <span>這裡顯示搜尋</span>
+                <div class="searchBarDiv" style="width: 100%;border: 1px solid black;">
+                    <div class="row" style="margin: 0;width: 100%;overflow-x: auto;">
+                        <div style="height: 200px;width: 300px;position: relative;">
+                            <img src="../static/images/101.jpg" class="img-responsive" width="100%" alt=""
+                                style="position: absolute;top: 0;left: 0;height: 100%;width: 100%;object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <div class="owl-carousel owl-theme" style="border: 1px solid black;">
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                        <div style="border: 1px solid #ccc;">
+                            <span>show my text</span>
+                        </div>
+                    </div>
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                        <div style="border: 1px solid #ccc;">
+                            <span>show my text</span>
+                        </div>
+                    </div>
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                        <div style="border: 1px solid #ccc;">
+                            <span>show my text</span>
+                        </div>
+                    </div>
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                        <div style="border: 1px solid #ccc;">
+                            <span>show my text</span>
+                        </div>
+                    </div>
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                        <div style="border: 1px solid #ccc;">
+                            <span>show my text</span>
+                        </div>
+                    </div>
+                    <div class="item checkimg_div" onclick="pickspot(this)">
+                        <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                        <div style="border: 1px solid #ccc;">
+                            <span>show my text</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <span>這裡顯示收藏</span>
+            </div>
+        </div>
+        <div class="right"
+            style="position: fixed;right: 0;top: 20%;bottom: 50%;border: 1px solid black;width: 80px;height: 500px;">
+            我是右邊
+        </div>
+    </div>
+
     <div class="containerTest">
         <img src="../static/images/cake01.jpg" width="100%" alt="Your Image" class="img-responsive imageTest">
         <div class="overlayTest">
             <p>Your Text Here</p>
         </div>
     </div>
-    <div class="container">
-        <div class="flex-container">
-            <div class="item1">i am left</div>
-            <div class="item2">i am right</div>
-        </div>
-    </div>
 
-    <div class="row" style="width: 90%; margin: 0 auto;">
-        <div class="col-lg-4 col-md-6 hot_spot_block hidemespot" style="padding: 5px;">
-            <div class="heart_icon_img">
-                <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)"
-                    onmouseout="stopSlideShow(this)">
-                    <img src="../static/images/101.jpg" alt="Image 1" class="image show">
-                    <img src="../static/images/cloud1.png" alt="Image 2" class="image">
-                    <img src="../static/images/cake01.jpg" alt="Image 3" class="image">
-                </div>
-                <div style="border: 1px solid black;">
-                    文字顯示的地方
-                </div>
-            </div>
-            <!-- 其他内容... -->
-        </div>
-        <div class="col-lg-4 col-md-6 hot_spot_block hidemespot" style="padding: 5px;">
-            <div class="heart_icon_img">
-                <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)"
-                    onmouseout="stopSlideShow(this)">
-                    <img src="../static/images/beitou.jpeg" alt="Image 1" class="image show">
-                    <img src="../static/images/bg8.jpg" alt="Image 2" class="image">
-                    <img src="../static/images/bg6.jpeg" alt="Image 3" class="image">
-                </div>
-                <div style="border: 1px solid black;">
-                    文字顯示的地方
-                </div>
-            </div>
-            <!-- 其他内容... -->
-        </div>
-    </div>
 
-    <main style="width: 90%;margin: 0 auto;">
-        <div class="row" style="text-align: center;width: 50%; margin: 0 auto;">
-            <div class="col-md-6">
-                行程名稱：
-            </div>
-            <div class="col-md-6">
-                行程時間：
-            </div>
-        </div>
-        <ul class="nav nav-tabs flex justify-content-center mt-5 my-nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
-                    role="tab" aria-controls="home" aria-selected="true" onclick="saveTabState('home')">第一天</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="second-tab" data-bs-toggle="tab" data-bs-target="#second" type="button"
-                    role="tab" aria-controls="second" aria-selected="false"
-                    onclick="saveTabState('second')">第二天</button>
-            </li>
-        </ul>
-
-        <div class="tab-content" id="myTabContent" style="width: 100%;margin: 0 auto;">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"
-                style="display: flex;justify-content: center;align-items: center;align-content: center;">
-                <div class="row" style="width: 100%;">
-                    <div class="col-6" style="border: 1px solid black;">
-                        我是左邊 顯示已排完序的景點
-                        <div>
-                            <div class="tabD">
-                                <span id="tabDT">請輸入出發時間：</span>
-                                <input type="time" name="nowtime" id="nowtime" {% if user_nowtime
-                                    %}value="{{user_nowtime}}" {% else %}value="09:00" {% endif %}>
-                            </div>
-                            <div class="tabD">
-                                <span id="tabDL">使用者位置：</span>
-                                <label class="input_txt" id="userLocationName-{{ days }}"> 位置</label>
-                                <p></p>
-                                <input type="hidden" id="userLocation-{{ days }}" value="{{local_xy.0}},{{local_xy.1}}">
-                                <button type="button" id="nowLocationButton-{{ days }}"
-                                    onclick="get_nowLocation({{ days }})">取得目前位置</button>
-                                <button type="button" id="mapButton-{{ days }}"
-                                    onclick="get_map({{ days }})">選擇位置</button>
-                                <button type="button" id="okButton-{{ days }}"
-                                    onclick="clickOkButton({{ days }})">確認</button>
-                                <input type="hidden" placeholder="day" class="nowday" id="nowday">
-                            </div>
-                        </div>
-                        <div>
-                            推薦景點<br>
-                            左邊區塊點的景點加入右邊 這樣如果他附近沒有想去的地方可以從最愛或搜尋抓<br>
-                            顯示已排完序的景點
-                        </div>
-                    </div>
-                    <div class="col-6 searchAndlikeAndrec"
-                        style="position: relative;border: 1px solid black;overflow-y: scroll;height: 800px;">
-                        <button class="changeToSearch" style="position: absolute;right: 5px; top: 5px;z-index: 100;"
-                            id="changeToSearch" onclick="clickChange()">切換搜尋</button>
-                        <div class="change searchBlock" id="searchBlock">搜尋欄
-                            <form action="">
-                                <input type="text" placeholder="請輸入景點名稱">
-                            </form>
-                        </div>
-                        <div class="change likeAndRec" id="likeAndRec">
-                            <div>
-                                <div onclick="openLikeBtn()"
-                                    style="display: flex;cursor: pointer;align-items: center;align-content: center;padding: 10px 0;">
-                                    <i class="fa-solid fa-heart"
-                                        style="color: white;background-color: rgb(255, 41, 101); border-radius: 50%;padding: 10px;margin-right: 5px;"></i>
-                                    <span style="font-size: 28px;font-weight: bold;">我的收藏</span>
-                                </div>
-                                <div class="row openlike" style="display: none;">
-                                    <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                                        <div style="border: 1px solid black;">
-                                            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%"
-                                                alt="">
-                                        </div>
-                                        <div style="border: 1px solid black;">
-                                            我是介紹圖片的文字
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                                        <div style="border: 1px solid black;">
-                                            <img src="../static/images/Datong.jpeg" class="img-responsive" width="100%"
-                                                alt="">
-                                        </div>
-                                        <div style="border: 1px solid black;">
-                                            我是介紹圖片的文字
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                                        <div style="border: 1px solid black;">
-                                            <img src="../static/images/cloud1.png" class="img-responsive" width="100%"
-                                                alt="">
-                                        </div>
-                                        <div style="border: 1px solid black;">
-                                            我是介紹圖片的文字
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div>
-                                <div onclick="openRecBtn()"
-                                    style="display: flex;cursor: pointer;align-items: center;align-content: center;">
-                                    <i class="fa-solid fa-thumbs-up"
-                                        style="color: white;background-color: rgb(255, 41, 101); border-radius: 50%;padding: 10px;margin-right: 5px;"></i>
-                                    <span style="font-size: 28px;font-weight: bold;">相似景點</span>
-                                </div>
-                                <div class="row openRec" style="display: none;">
-                                    <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                                        <div style="border: 1px solid black;">
-                                            <img src="../static/images/cake01.jpg" class="img-responsive" width="100%"
-                                                alt="">
-                                        </div>
-                                        <div style="border: 1px solid black;">
-                                            我是介紹圖片的文字
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                                        <div style="border: 1px solid black;">
-                                            <img src="../static/images/cloud1.png" class="img-responsive" width="100%"
-                                                alt="">
-                                        </div>
-                                        <div style="border: 1px solid black;">
-                                            我是介紹圖片的文字
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6" style="margin-bottom: 10px;">
-                                        <div style="border: 1px solid black;">
-                                            <img src="../static/images/101.jpg" class="img-responsive" width="100%"
-                                                alt="">
-                                        </div>
-                                        <div style="border: 1px solid black;">
-                                            我是介紹圖片的文字
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
-                我是第二天
-                <div class="align"
-                    style="width:90%;margin: 0 auto;display: flex;overflow-x: scroll;align-items: center;align-content: center;">
-                    <div
-                        style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
-                        123
-                    </div>
-                    <div
-                        style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
-                        123
-                    </div>
-                    <div
-                        style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
-                        123
-                    </div>
-                    <div
-                        style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
-                        123
-                    </div>
-                    <div
-                        style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
-                        123
-                    </div>
-                    <div
-                        style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
-                        123
-                    </div>
-                    <div
-                        style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
-                        123
-                    </div>
-                    <div
-                        style="width: 350px;min-width:300px;height: 200px;margin-right: 10px;border: 1px solid black;display: block;">
-                        123
-                    </div>
-                </div>
-            </div>
-            <div class="bottom"
-                style="z-index: 99;width: 80%;margin: 0 auto;position: fixed;bottom: 0;left: 0;right: 0;">
-                <div id="controller" style="display:block;cursor: pointer;margin: 0;">
-                    <span style="border:1px solid black;border-bottom: 0;">控制器</span>
-                </div>
-                <div class="row" id="hiddenContent" style="border: 1px solid black;display: none;">
-                    <div class="col-md-4">
-                        <div class="image-container">
-                            <img src="../網頁練習/images/cake01.jpg" class="img-responsive" width="100%" alt="">
-                            <div class="overlay">
-                                <div class="text">Your Text Here</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="image-container">
-                            <img src="../網頁練習/images/cake02.jpg" class="img-responsive" width="100%" alt="">
-                            <div class="overlay">
-                                <div class="text">
-                                    <span>Your Text Here</span>
-                                    <div class="tempXdiv"><i class="fa-solid fa-xmark tempX_icon"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="image-container">
-                            <img src="../網頁練習/images/cake03.jpg" class="img-responsive" width="100%" alt="">
-                            <div class="overlay">
-                                <div class="text">Your Text Here</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-    <div class="row" style="width: 90%;">
-        <div class="hoverTest" style="width: 500px;margin: 0 auto;">
-            <img src="../static/images/bg1.jpg" class="img-responsive" width="100%" />
-            <img src="../static/images/bg2.jpg" class="img-responsive" width="100%" />
-            <img src="../static/images/bg5.png" class="img-responsive" width="100%" />
-        </div>
-        <div class="hoverTest" style="width: 500px;margin: 0 auto;">
-            <img src="../static/images/bg6.jpeg" class="img-responsive" width="100%" />
-            <img src="../static/images/bg7.png" class="img-responsive" width="100%" />
-            <img src="../static/images/bg8.jpg" class="img-responsive" width="100%" />
-        </div>
-    </div>
     <div class="row" style="width: 60%;text-align: center;margin: 0 auto;height: 200px;align-content: center;">
         <div class="col-6">
             <div>
@@ -629,103 +398,33 @@
 
     <script src="../static/js/jquery-3.7.0.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/owl.carousel.min.js"></script>
     <script>
+        const rightBtn = document.getElementById('showRight');
+        const rightDiv = document.getElementById('rightDiv'); // 修改为正确的ID
 
-        function startSlideshow(container) {
-            let currentImageIndex = 1;  // 设置为1，从第二张图开始显示
-            const images = container.querySelectorAll('.image');
-
-            // 显示下一张图（从第二张开始）
-            images[currentImageIndex].classList.add('show');
-
-            // 启动定时器，每2秒切换一次图片
-            container.slideshowInterval = setInterval(() => {
-                images[currentImageIndex].classList.remove('show');
-                currentImageIndex = (currentImageIndex + 1) % images.length;
-                images[currentImageIndex].classList.add('show');
-            }, 2000);
+        function showRightDiv() {
+            rightDiv.classList.toggle('hidden');
         }
 
-        function stopSlideShow(container) {
-            clearInterval(container.slideshowInterval);
-
-            // 移除所有图片的 'show' 类
-            container.querySelectorAll('.image').forEach(img => img.classList.remove('show'));
-
-            // 将第一张图片添加 'show' 类
-            container.querySelector('.image').classList.add('show');
-        }
-
-
-
-
-
-        let isEditing = false; // To track if the user is editing a comment
-
-        function addComment() {
-            const commentBtn = document.getElementById("addCommentBtn");
-            const commentSpace = document.getElementById("addCommentSpace");
-
-            if (isEditing) {
-                // If in edit mode, do nothing on toggle
-                return;
+        $('.owl-carousel').owlCarousel({
+            items: 4,
+            loop: true,
+            margin: 10,
+            dots: false,
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 4
+                }
             }
-
-            if (commentSpace.style.display === "none") {
-                commentBtn.textContent = "取消評論";
-                commentSpace.style.display = "block";
-            } else {
-                commentBtn.textContent = "新增評論";
-                commentSpace.style.display = "none";
-            }
-        }
-
-        function submitComment() {
-            const commentText = document.getElementById("addCTXT").value;
-            const commentDiv = document.createElement("div");
-            commentDiv.classList.add("row");
-            commentDiv.innerHTML = `
-    <div class="col-auto otherCommentAvatar">
-      <img src="../static/images/cloud1.png" class="img-responsive" style="width: 100%;" alt=""><br>
-    </div>
-    <div class="col otherCommentTxtDiv">
-      <span class="otherCommentTxt">
-        ${commentText}
-      </span>
-      <button onclick="editComment(this)">編輯評論</button>
-    </div>
-  `;
-
-            const alreadyComment = document.getElementById("alreadyComment");
-            alreadyComment.appendChild(commentDiv);
-
-            document.getElementById("addCTXT").value = "";
-            document.getElementById("addCommentBtn").textContent = "新增評論";
-            document.getElementById("addCommentSpace").style.display = "none";
-        }
-
-        function editComment(button) {
-            isEditing = true;
-            const commentText = button.parentNode.querySelector(".otherCommentTxt").innerText;
-            document.getElementById("addCTXT").value = commentText;
-
-            // Change submit button text to indicate editing
-            document.getElementById("commentSubmit").textContent = "重新送出";
-
-            // Remove the existing comment while editing
-            button.parentNode.parentNode.remove();
-        }
-
-        // Functionality to handle re-submitting an edited comment
-        document.getElementById("commentSubmit").onclick = function () {
-            if (isEditing) {
-                const commentText = document.getElementById("addCTXT").value;
-                submitComment();
-                isEditing = false;
-            }
-        };
-
-
+        })
 
 
         var infoIcon = document.getElementById("info_icon");
@@ -740,9 +439,6 @@
         closeBtn.addEventListener('click', function () {
             modal.classList.remove('active');
         });
-
-
-
 
 
         function clickShow(button) {

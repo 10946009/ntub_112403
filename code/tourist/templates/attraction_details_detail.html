@@ -26,13 +26,15 @@
                         onclick=" showShareLoaderAndContent()" title="分享"
                         style="border: black solid; border-radius: 60px;padding:8px 10px 8px 10px;"></i>
                     {% if is_favorite %}
-                    <i class="fas fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}"
-                        onclick="addFavorite_attractions({{detail.id}})"
-                        style="border: black solid;border-radius: 50%; background-color: white; padding: 10px 10px 10px 10px;color: rgb(111, 110, 110); font-size: 20px;"></i>
+                    <div class="icon_name" id="submitfavorite{{detail.id}}"
+                        onclick="addFavorite_attractions(this,{{detail.id}})">
+                        <i class="fas fa-regular fa-heart" title="已收藏" style="color: rgb(202, 13, 13);"></i>
+                    </div>
                     {% else %}
-                    <i class="fas fa-regular fa-heart icon_name" title="收藏" id="submitfavorite{{detail.id}}"
-                        onclick="addFavorite_attractions({{detail.id}})"
-                        style="border: black solid;border-radius: 50%; background-color: white; padding: 10px 10px 10px 10px;color: rgb(202, 13, 13); font-size: 20px;"></i>
+                    <div class="icon_name" id="submitfavorite{{detail.id}}"
+                        onclick="addFavorite_attractions(this,{{detail.id}})">
+                        <i class="fas fa-regular fa-heart" title="收藏" style="color: rgb(111, 110, 110);"></i>
+                    </div>
                     {% endif %}
                 </div>
             </div>
@@ -73,23 +75,23 @@
         <div class="att_slide">
             <div class="w3-content w3-display-container">
                 <div class="w3-display-container mytotalSlides">
-                    <img src="../static/images/bg7.png" style="width:100%">
+                    <img src="../static/images/bg7.png" style="width:100%" onclick="showPhotoDetail()">
                 </div>
 
                 <div class="w3-display-container mytotalSlides">
-                    <img src="../static/images/bg8.jpg" style="width:100%">
+                    <img src="../static/images/bg8.jpg" style="width:100%" onclick="showPhotoDetail()">
                 </div>
 
                 <div class="w3-display-container mytotalSlides">
-                    <img src="../static/images/bg1.jpg" style="width:100%">
+                    <img src="../static/images/bg1.jpg" style="width:100%" onclick="showPhotoDetail()">
                 </div>
 
                 <div class="w3-display-container mytotalSlides">
-                    <img src="../static/images/bg2.jpg" style="width:100%">
+                    <img src="../static/images/bg2.jpg" style="width:100%" onclick="showPhotoDetail()">
                 </div>
 
                 <div class="w3-display-container mytotalSlides">
-                    <img src="../static/images/bg6.jpeg" style="width:100%">
+                    <img src="../static/images/bg6.jpeg" style="width:100%" onclick="showPhotoDetail()">
                 </div>
                 <button class="w3-button w3-display-left w3-black" onclick="plustotalDivs(-1)">&#10094;</button>
                 <button class="w3-button w3-display-right w3-black" onclick="plustotalDivs(1)">&#10095;</button>
@@ -425,10 +427,6 @@
                             </div>
                         </div>
                         <div style="font-size: 18px; margin-bottom: 20px;">
-                            <!-- 只有他有點讚功能 -->
-                            <span style="margin-right: 20px;cursor: pointer;" id="likeButton"><i
-                                    class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i>
-                                <span id="likeCount">8</span></span>
                             <!-- 點擊張貼評論數字+1 -->
                             <span style="cursor: pointer;"><i class="fa-regular fa-comment"
                                     style=" color: rgb(89, 198, 53);margin-right: 5px;"></i><span
@@ -494,7 +492,9 @@
                 </div>
                 <hr style=" border:1px solid #777777; max-width: 100%;">
                 {% empty %}
-                <div id="emptyQuestion">尚未有人發問</div>
+                <div id="emptyQuestion">
+                    <h4>尚未有人發問</h4>
+                </div>
                 {% endfor %}
 
                 {% comment %} <div class="all_ask_qa_con">
@@ -1050,12 +1050,11 @@
         </div>
         <div class="col-9">
             {% for comment in comment_list %}
-
             <div class="comment">
                 <div class="avatar">
                     <img src="../static/images/an.jpeg" alt="User Avatar">
                 </div>
-                <div class="comment-content">
+                <div class="comment-content userComment" id="{{comment.id}}">
                     <div style="display: flex; justify-content: space-between; position: relative;">
                         <h6 class="username">
                             {{comment.u.username}}<br>
@@ -1078,7 +1077,15 @@
                         <!-- <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
                                 2033</span> -->
                     </p>
-                    <div class="comment_user_ph" style="max-width: 100%;">
+                    <!-- 只有他有點讚功能 -->
+                    <span style="margin-right: 20px;cursor: pointer;" id="likeButton">
+                        {% if request.user.id in comment.get_user_favorite %}
+                        <i class="fa-thumbs-up fa-solid" style=" color: rgb(0, 102, 255);"></i>
+                        {% else %}
+                        <i class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i>
+                        {% endif %}
+                        <span id="likeCount">{{comment.get_favorite_count}}</span></span>
+                    {% comment %} <div class="comment_user_ph" style="max-width: 100%;">
                         <img src="../static/images/att_picture.png" alt=""
                             style="width: 150px; cursor: pointer; border: black aolid;" onclick="showPhotoDetail()">
                         <img src="../static/images/att_picture.png" alt=""
@@ -1087,11 +1094,11 @@
                             style="width: 150px; cursor: pointer; border: black aolid;" onclick="showPhotoDetail()">
                         <img src="../static/images/att_picture.png" alt=""
                             style="width: 150px; cursor: pointer; border: black aolid;" onclick="showPhotoDetail()">
-                    </div>
+                    </div> {% endcomment %}
                 </div>
             </div>
             {% empty %}
-            <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+            <div style="display: flex; justify-content: center; margin-bottom: 20px; margin-bottom: 60px;">
                 <h5>目前尚無留言！</h5>
             </div>
             {% endfor %}
@@ -1161,7 +1168,7 @@
             <!-- 分頁  -->
             <div class="page-container" style="display: flex ; justify-content: center;">
                 <nav aria-label="Page navigation">
-                    <ul class="pagination" id="pagination">
+                    {% comment %} <ul class="pagination" id="pagination">
                         <li class="page-item">
                             <a class="page-link" href="#" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
@@ -1175,7 +1182,7 @@
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
-                    </ul>
+                    </ul> {% endcomment %}
                 </nav>
             </div>
         </div>
