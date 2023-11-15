@@ -81,7 +81,10 @@
         <div class="searchBarDiv" onclick="openSearchDiv()">
           <i class="fa-solid fa-magnifying-glass-location find_icon"></i>
           <span class="search_txt">搜尋景點</span>
-          <span class="tipsTxt"> <i class="fa-solid fa-left-long"></i>  點這一列可以收合搜尋結果唷  <i class="fa-solid fa-left-long fa-rotate-180"></i></span>
+          <span class="tipsTxt">
+            <i class="fa-solid fa-left-long"></i>  
+              點此收合搜尋區塊唷
+          </span>
         </div>
         <form autocomplete="off" class="d-flex" role="search">
           {% csrf_token %}
@@ -120,7 +123,10 @@
         <div class="recDiv" onclick="openRecDiv()">
           <i class="fa-solid fa-thumbs-up rec_icon"></i>
           <span class="rec_txt" >推薦景點</span>
-          <span class="tipsTxt"> <i class="fa-solid fa-left-long"></i>  點這一列可以收合推薦結果唷  <i class="fa-solid fa-left-long fa-rotate-180"></i></span>
+          <span class="tipsTxt">
+            <i class="fa-solid fa-left-long"></i>  
+              點此收合推薦區塊唷
+          </span>
         </div>
         <div id="checkbox-{{ day }}" class="checkboxDiv">
           <div class="openRec" style="padding: 10px 5px" id="AttractionsContainer-{{ day }}">
@@ -135,11 +141,14 @@
         <div class="favDiv" onclick="openFavDiv()">
           <i class="fa-solid fa-heart fav_icon"></i>
           <span class="fav_txt" >我的收藏</span>
-          <span class="tipsTxt"> <i class="fa-solid fa-left-long"></i>  點這一列可以收合收藏區塊唷  <i class="fa-solid fa-left-long fa-rotate-180"></i></span>
+          <span class="tipsTxt">
+            <i class="fa-solid fa-left-long"></i>  
+              點此收合收藏區塊唷
+          </span>
         </div>
         <div class="row openFav">
           {% for item in user_favorite_list %}
-            <div class=" col-lg-3 col-md-4 " style="margin-bottom: 5px;">
+            <div class=" col-lg-3 col-sm-4 " style="margin-bottom: 5px;">
               <div class="checkimg_div" onclick="pickspot(this,{{ item.a_id.id }})">
                 <span class="checkspot">
                   <img src="../static/images/attractions/{{ item.a_id.place_id }}_0.jpg" class="img-responsive" width="100%" alt="">
@@ -161,8 +170,8 @@
       </div>
 
     </div>
+    {% endfor %}
   </div>
-  {% endfor %}
   <!-- show similar and choosed section -->
   <div class="right" id="rightDiv" >
       <button id="showRight" class="showRight_btn" onclick="showRightDiv()">
@@ -187,40 +196,17 @@
               <span class="similar_icon">&asymp;</span>
               <span class="s_rec_txt" >相似景點推薦</span>
             </div>
-            <!-- <div class="owl-carousel owl-theme">
-                <div class="item checkimg_div" onclick="pickspot(this)">
-                    <div class="checkspot">
-                        <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
-                    </div>
-                    <div class="overlay" style="border: 1px solid #ccc;">
-                        <span>show my text</span>
-                    </div>
-                </div>
-            </div> -->
-            <a href="#recommend-tab"
-              class="tab_a submit1"
-              id="clickLikeAttractions">
-              <button class="recommend_submit1" onclick="submitAction()" value="送出">送出</button>
-            </a>
             <div class="openSimilar"id="SimilarRecommend">
-
               {% include "create_similar_recommend.html" %}
             </div>
+            <!-- <a href="#recommend-tab" class="tab_a submit1" id="clickLikeAttractions"> -->
+              <button class="recommend_submit1" id="clickLikeAttractions" onclick="submitAction()" value="送出">送出</button>
+            <!-- </a> -->
           </div>
         </div>
       </div>
   </div>
-  <div class="Roverlay" id="Roverlay"></div>
-  <!-- <div class="bottom" style="z-index: 99;width: 80%;margin: 0 auto;position: fixed;bottom: 0;left: 0;right: 0;">
-    <div id="controller">
-      <span class="upDiv"><i id="upDown_icon" class="fa-solid fa-caret-up up_icon"></i></span>
-    </div>
-    <div class="row bottomTempdiv" id="hiddenContent">
-      <div class="align" id="bottomAttraction">
-        {% comment %} 分割至create_bottom.html {% endcomment %}
-      </div>
-    </div>
-  </div> -->
+  <div class="overlayBg" id="overlayBg"></div>
 </main>
 <script src="../static/js/testGPS.js"></script>
 {% endblock body %}
@@ -237,7 +223,7 @@
   
   const rightBtn = document.getElementById('showRight');
   const rightDiv = document.getElementById('rightDiv');
-  const Roverlay = document.getElementById('Roverlay');
+  const overlayBg = document.getElementById('overlayBg');
 
   var isRightVisible = false;
 
@@ -246,22 +232,24 @@
 
     if (window !== 'undefined') {
       if(isRightVisible){
+        similarRecommend()
           rightDiv.style.right = '0px';
-          Roverlay.style.display = 'block';
+          overlayBg.style.display = 'block';
           rightBtn.innerHTML = '<i class="fa-solid fa-chevron-left fa-rotate-180"></i>';
           rightBtn.style.backgroundColor = 'red';
           rightBtn.style.color = 'white';
-          document.body.style.overflow = "hidden";
+        document.body.classList.add('body_noScroll');
       }else{
           rightDiv.style.right = '-90%';
-          Roverlay.style.display = 'none';
+          overlayBg.style.display = 'none';
           rightBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
           rightBtn.style.backgroundColor = '';
           rightBtn.style.color = '';
-          document.body.style.overflow = "auto";
+        document.body.classList.remove('body_noScroll');
       }
     }
   }
+  
   var user_all_ct_data = JSON.parse('{{ all_ct_data_id | safe }}');
   var total_day = document.getElementsByClassName('tab-pane')
   var now_click_attractions = {};
