@@ -280,14 +280,6 @@ main {
     user-select: none;
 }
 
-.recDiv {
-    display: flex;
-    align-items: center;
-    align-content: center;
-    padding: 10px 0;
-    position: relative;
-    user-select: none;
-}
 
 .changeToRec {
     position: absolute;
@@ -313,9 +305,14 @@ main {
     content: '\f4d7';
     font-family: 'Font Awesome 5 Free';
 }
-
-.rec_icon,
-.like_icon {
+.rec_icon{
+    color: white;
+    background-color: orange;
+    border-radius: 50%;
+    padding: 10px;
+    margin-right: 5px;
+}
+.fav_icon {
     color: white;
     background-color: rgb(255, 41, 101);
     border-radius: 50%;
@@ -334,13 +331,22 @@ main {
 
 .searchBarDiv,
 .recDiv,
+.favDiv,
 .doneDiv {
     display: block;
     align-items: center;
     align-content: center;
     padding: 10px 0;
     cursor: pointer;
+    user-select: none;
 }
+/* .recDiv {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    padding: 10px 0;
+    position: relative;
+} */
 
 .find_icon,
 .done_icon {
@@ -351,7 +357,7 @@ main {
     margin-right: 5px;
 }
 
-.like_txt,
+.fav_txt,
 .rec_txt,
 .search_txt,
 .similar_txt,
@@ -722,7 +728,7 @@ main {
 }
 
 .checkboxDiv {
-    height: 520px;
+    /* height: 520px; */
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -1146,7 +1152,7 @@ main {
     }
 
     .rec_icon,
-    .like_icon {
+    .fav_icon {
         padding: 8px;
         font-size: 16px;
     }
@@ -1161,7 +1167,7 @@ main {
         font-size: 18px;
     }
 
-    .like_txt,
+    .fav_txt,
     .rec_txt,
     .similar_txt,
     .done_txt {

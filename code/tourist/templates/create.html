@@ -115,8 +115,8 @@
         </div>
       </div>
       <hr>
-      <!-- 推薦區塊 -->
-      <div class="classifierDiv RecDiv" id="checkRec-{{ day }}">
+      <!-- recommend section -->
+      <div class="classifierDiv RecommendDiv" id="checkRec-{{ day }}">
         <div class="recDiv" onclick="openRecDiv()">
           <i class="fa-solid fa-thumbs-up rec_icon"></i>
           <span class="rec_txt" >推薦景點</span>
@@ -130,6 +130,35 @@
         </div>
       </div>
       <hr>
+      <!-- favorite section -->
+        <div class="classifierDiv FavoriteDiv">
+          <div class="favDiv" onclick="openFavDiv()">
+            <i class="fa-solid fa-heart fav_icon"></i>
+            <span class="fav_txt" >我的收藏</span>
+            <span class="tipsTxt"> <i class="fa-solid fa-left-long"></i>  點這一列可以收合收藏區塊唷  <i class="fa-solid fa-left-long fa-rotate-180"></i></span>
+          </div>
+          <div class="row openFav">
+            {% for item in user_favorite_list %}
+              <div class=" col-lg-3 col-md-4 " style="margin-bottom: 5px;">
+                <div class="checkimg_div" onclick="pickspot(this,{{ item.a_id.id }})">
+                  <span class="checkspot">
+                    <img src="../static/images/attractions/{{ item.a_id.place_id }}_0.jpg" class="img-responsive" width="100%" alt="">
+                          <!-- 這個連結沒有改 所以沒辦法連到+0的 -->
+                    <!-- <a href="#" class="fa-solid fa-circle-info info_icon" id="info_icon" onclick="clickeInfo(event,{{ item.a_id.id }})"> </a> -->
+                  </span>
+                  <div class="spottxtdiv">
+                    <p style="text-align: center;padding: 5px;margin-bottom: 5px;">
+                      {{ item.a_id.a_name }}
+                    </p>
+                    <span>評價：{{ item.a_id.rating }}</span>
+                    <br>
+                    {% comment %} <span>營業時間：{{r.crow_opening_list.opening.0}}</span> {% endcomment %}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+      </div>
 
     </div>
     {% endfor %}
