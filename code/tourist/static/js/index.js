@@ -256,17 +256,3 @@ function adjustTextHeight(selector) {
   // 將所有文字區塊設置為最大高度
   $(selector).height(maxHeight);
 }
-
-// info popup
-var infoIcon = document.getElementById("info_icon_left");
-var modal = document.getElementById("myModal");
-var closeBtn = document.querySelector(".close");
-
-infoIcon.addEventListener('click', function (event) {
-    event.preventDefault();
-    modal.classList.add('active');
-});
-
-closeBtn.addEventListener('click', function () {
-    modal.classList.remove('active');
-});
