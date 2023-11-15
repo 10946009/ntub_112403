@@ -222,7 +222,7 @@
     
     <div class="container">
         <header>
-            <h1 class="page-title">來自台北的千島湖和坪林茶園</h1>
+            <h1 class="page-title">{{ct_detail.ct_name}}來自台北的千島湖和坪林茶園</h1>
             <div class="title-buttons">
               <div class="share-button" id="share-button"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
               <div class="like-button" id="like-button"><i class="fa-solid fa-heart"></i></div>
@@ -230,13 +230,13 @@
         </header>
         <div class="title-info-container">
             <div class="title-info">
-                <p class="provider">提供者：XXX</p>
+                <p class="provider">提供者：{{ct_detail.u.username}}</p>
                 <p class="reviews-count">有幾則評論：XX</p>
             </div>
         </div>
         <section class="main-container">
           <div class="main-content">
-            <img src="https://via.placeholder.com/720x480">
+            <img src="../static/images/attractions/{{ct_detail.get_attractions_picture.0.a__place_id}}_0.jpg">
           </div>
           <div class="sub-content">
             <div class="sub-item">
@@ -249,7 +249,7 @@
         </section>
                 <div class="image-description">
                     <h3>關於</h3>
-                    <p>在京都隱藏的寶石的自行車探索中，您將擊敗人群並參觀更加寧靜的城市。從禪宗花園到被聯合國教科文組織列為金閣寺的寺廟，這裡是您在戶外活動中度過美好時光的完美方式。您還將從導遊那裡了解日本的歷史和文化。而且你可以打包燈，因為提供了可折疊的自行車和頭盔。</p>
+                    <p>{{ct_detail.detail}}在京都隱藏的寶石的自行車探索中，您將擊敗人群並參觀更加寧靜的城市。從禪宗花園到被聯合國教科文組織列為金閣寺的寺廟，這裡是您在戶外活動中度過美好時光的完美方式。您還將從導遊那裡了解日本的歷史和文化。而且你可以打包燈，因為提供了可折疊的自行車和頭盔。</p>
                 </div>
                 
                 <section class="itinerary">
