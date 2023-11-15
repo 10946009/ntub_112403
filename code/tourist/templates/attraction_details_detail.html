@@ -45,7 +45,8 @@
             {% if i|add:0 <= detail.rating %} <i class="fa-solid fa-star" style="color:rgb(226, 185, 2);"></i>
                 {% else %}
                 <!-- <i class="fa-regular fa-star"></i> -->
-                <i class="fa-regular fa-star-half-stroke" style="color:rgb(226, 185, 2);"></i>
+                <!-- <i class="fa-regular fa-star-half-stroke" style="color:rgb(226, 185, 2);"></i> -->
+                <i class="fa-solid fa-star" style="color:rgb(185, 184, 184);"></i>
                 {% endif %}
                 {% endfor %}
                 <span id="selectedRating">{{detail.rating}} / 5 ({{ detail.rating_total }}) </span>
@@ -73,7 +74,7 @@
         </div>
         <!-- 768px(RWD呈現圖片) -->
         <div class="att_slide">
-            
+
             <div class="w3-content w3-display-container">
                 {% for picture in picture_list %}
                 <div class="w3-display-container mytotalSlides">
@@ -267,7 +268,7 @@
                                     {{near.a_name }}
                                 </h4>
                                 <!-- 星星數 -->
-                                <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                <div class="rating1" data-bottom-top="transform: translateY(-20px);opacity: 0"
                                     data-center="transform: translateY(0px);opacity: 1;">
                                     {% for i in "12345" %}
                                     {% if i|add:0 <= near.rating %} <span class="rating-star"
@@ -279,13 +280,15 @@
                                         {% endfor %}
                                 </div>
                                 <!-- 評分 -->
-                                <h6 style="margin-top:5px;" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                <h6 class="score_RWD" style="margin-top:5px;"
+                                    data-bottom-top="transform: translateY(-20px);opacity: 0"
                                     data-center="transform: translateY(0px);opacity: 1">
                                     <span id="list-selectedRating">{{ near.rating }}</span> / 5
                                     ({{near.rating_total}}則評分)
                                 </h6>
                                 <!-- 總瀏覽人數 -->
-                                <h6 style="color:#8b8a8a;" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                <h6 class="look_people" style="color:#8b8a8a;"
+                                    data-bottom-top="transform: translateY(-20px);opacity: 0"
                                     data-center="transform: translateY(0px);opacity: 1">
                                     <i class="fa-regular fa-eye"></i>&thinsp;<span>{{near.hit}}</span>
                                 </h6>
@@ -978,7 +981,7 @@
                     </div>
                 </div>
                 <div class="col-9" style="text-align: center;">
-                    <div style="background-color: rgb(214, 208, 201);">
+                    <div style="background-color: rgb(228, 202, 171);">
                         <h2>
                             <strong><i class="fa-solid fa-thumbs-up"
                                     style="color: rgb(42, 106, 189);margin-right: 10px;"></i></strong>
@@ -986,7 +989,7 @@
                             <span>20</span>
                         </h2>
                     </div>
-                    <div style="background-color: rgb(214, 208, 201);">
+                    <div style="background-color: rgb(228, 202, 171);">
                         <h2>
                             <strong><i class="fa-solid fa-heart"
                                     style="color:rgb(186, 51, 51); margin-right: 10px;"></i></strong>
@@ -994,7 +997,7 @@
                             <span>{{detail.get_favorite_count}}</span>
                         </h2>
                     </div>
-                    <div style="background-color: rgb(214, 208, 201);">
+                    <div style="background-color: rgb(228, 202, 171);">
                         <h2>
                             <strong><i class="fa-solid fa-share-from-square"
                                     style="color: rgb(29, 101, 11); margin-right: 10px;"></i></strong>
@@ -1002,7 +1005,7 @@
                             <span>20</span>
                         </h2>
                     </div>
-                    <div style="background-color: rgb(214, 208, 201);">
+                    <div style="background-color: rgb(228, 202, 171);">
                         <h2>
                             <strong><i class="fa-solid fa-eye" style="color: gray; margin-right: 10px;"></i></strong>
                             <span style="margin-right: 20px;">觀看人數</span>
