@@ -237,9 +237,9 @@ function openFavDiv() {
 }
 
 // 當頁面載入後，呼叫一次以顯示相似元素
-$(document).ready(function () {
-  openSimilarBtn();
-});
+// $(document).ready(function () {
+//   openSimilarBtn();
+// });
 
 
 //open篩選
@@ -419,6 +419,7 @@ list.addEventListener('dragend', (e) => {
 })
 
 // slide right section
+
 // const rightBtn = document.getElementById('showRight');
 // const rightDiv = document.getElementById('rightDiv');
 // const Roverlay = document.getElementById('Roverlay');
@@ -431,9 +432,11 @@ list.addEventListener('dragend', (e) => {
 //     if(isRightVisible){
 //         rightDiv.style.right = '0px';
 //         Roverlay.style.display = 'block';
+//         document.body.style.overflow = "hidden";
 //     }else{
-//         rightDiv.style.right = '-150px';
+//         rightDiv.style.right = '-90%';
 //         Roverlay.style.display = 'none';
+//         document.body.style.overflow = "auto";
 //     }
 // }
 

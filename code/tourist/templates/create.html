@@ -131,33 +131,33 @@
       </div>
       <hr>
       <!-- favorite section -->
-        <div class="classifierDiv FavoriteDiv">
-          <div class="favDiv" onclick="openFavDiv()">
-            <i class="fa-solid fa-heart fav_icon"></i>
-            <span class="fav_txt" >我的收藏</span>
-            <span class="tipsTxt"> <i class="fa-solid fa-left-long"></i>  點這一列可以收合收藏區塊唷  <i class="fa-solid fa-left-long fa-rotate-180"></i></span>
-          </div>
-          <div class="row openFav">
-            {% for item in user_favorite_list %}
-              <div class=" col-lg-3 col-md-4 " style="margin-bottom: 5px;">
-                <div class="checkimg_div" onclick="pickspot(this,{{ item.a_id.id }})">
-                  <span class="checkspot">
-                    <img src="../static/images/attractions/{{ item.a_id.place_id }}_0.jpg" class="img-responsive" width="100%" alt="">
-                          <!-- 這個連結沒有改 所以沒辦法連到+0的 -->
-                    <!-- <a href="#" class="fa-solid fa-circle-info info_icon" id="info_icon" onclick="clickeInfo(event,{{ item.a_id.id }})"> </a> -->
-                  </span>
-                  <div class="spottxtdiv">
-                    <p style="text-align: center;padding: 5px;margin-bottom: 5px;">
-                      {{ item.a_id.a_name }}
-                    </p>
-                    <span>評價：{{ item.a_id.rating }}</span>
-                    <br>
-                    {% comment %} <span>營業時間：{{r.crow_opening_list.opening.0}}</span> {% endcomment %}
-                  </div>
+      <div class="classifierDiv FavoriteDiv">
+        <div class="favDiv" onclick="openFavDiv()">
+          <i class="fa-solid fa-heart fav_icon"></i>
+          <span class="fav_txt" >我的收藏</span>
+          <span class="tipsTxt"> <i class="fa-solid fa-left-long"></i>  點這一列可以收合收藏區塊唷  <i class="fa-solid fa-left-long fa-rotate-180"></i></span>
+        </div>
+        <div class="row openFav">
+          {% for item in user_favorite_list %}
+            <div class=" col-lg-3 col-md-4 " style="margin-bottom: 5px;">
+              <div class="checkimg_div" onclick="pickspot(this,{{ item.a_id.id }})">
+                <span class="checkspot">
+                  <img src="../static/images/attractions/{{ item.a_id.place_id }}_0.jpg" class="img-responsive" width="100%" alt="">
+                        <!-- 這個連結沒有改 所以沒辦法連到+0的 -->
+                  <a href="#" class="fa-solid fa-circle-info info_icon" id="info_icon" onclick="clickeInfo(event,{{ item.a_id.id }})"> </a>
+                </span>
+                <div class="spottxtdiv">
+                  <p style="text-align: center;padding: 5px;margin-bottom: 5px;">
+                    {{ item.a_id.a_name }}
+                  </p>
+                  <span>評價：{{ item.a_id.rating }}</span>
+                  <br>
+                  {% comment %} <span>營業時間：{{r.crow_opening_list.opening.0}}</span> {% endcomment %}
                 </div>
               </div>
-            {% endfor %}
-          </div>
+            </div>
+          {% endfor %}
+        </div>
       </div>
 
     </div>
@@ -166,15 +166,18 @@
   <!-- show similar and choosed section -->
   <div class="right" id="rightDiv" >
       <button id="showRight" class="showRight_btn" onclick="showRightDiv()">
-          點
+        <i class="fa-solid fa-chevron-left"></i><br>
+        <!-- 已選擇 -->
       </button>
       <div class="rightDiv">
           <span>Right section</span>
+          <div class="align" id="bottomAttraction">
+              <!-- be choosed -->
+          </div>
+          <hr>
           <div>
               similar recommend
-          </div>
-          <div>
-              be choosed
+              {% include "create_similar_recommend.html" %}
           </div>
       </div>
   </div>
@@ -203,23 +206,31 @@
 <script>
   owlStart();
   
-const rightBtn = document.getElementById('showRight');
-const rightDiv = document.getElementById('rightDiv');
-const Roverlay = document.getElementById('Roverlay');
+  const rightBtn = document.getElementById('showRight');
+  const rightDiv = document.getElementById('rightDiv');
+  const Roverlay = document.getElementById('Roverlay');
 
-var isRightVisible = false;
+  var isRightVisible = false;
 
-function showRightDiv() {
-    isRightVisible = !isRightVisible;
+  function showRightDiv() {
+      isRightVisible = !isRightVisible;
 
-    if(isRightVisible){
-        rightDiv.style.right = '0px';
-        Roverlay.style.display = 'block';
-    }else{
-        rightDiv.style.right = '-150px';
-        Roverlay.style.display = 'none';
-    }
-}
+      if(isRightVisible){
+          rightDiv.style.right = '0px';
+          Roverlay.style.display = 'block';
+          document.body.style.overflow = "hidden";
+          rightBtn.innerHTML = '<i class="fa-solid fa-chevron-left fa-rotate-180"></i>';
+          rightBtn.style.backgroundColor = 'red';
+          rightBtn.style.color = 'white';
+      }else{
+          rightDiv.style.right = '-90%';
+          Roverlay.style.display = 'none';
+          document.body.style.overflow = "auto";
+          rightBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+          rightBtn.style.backgroundColor = '';
+          rightBtn.style.color = '';
+      }
+  }
   var user_all_ct_data = JSON.parse('{{ all_ct_data_id | safe }}');
   var total_day = document.getElementsByClassName('tab-pane')
   var now_click_attractions = {};

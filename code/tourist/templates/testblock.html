@@ -313,9 +313,11 @@
         if(isRightVisible){
             rightDiv.style.right = '0px';
             overlay.style.display = 'block';
+        document.body.style.overflow = "hidden";
         }else{
             rightDiv.style.right = '-150px';
             overlay.style.display = 'none';
+        document.body.style.overflow = "auto";
         }
     }
 
