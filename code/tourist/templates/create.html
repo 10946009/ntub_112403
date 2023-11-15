@@ -161,8 +161,8 @@
       </div>
 
     </div>
-    {% endfor %}
   </div>
+  {% endfor %}
   <!-- show similar and choosed section -->
   <div class="right" id="rightDiv" >
       <button id="showRight" class="showRight_btn" onclick="showRightDiv()">
@@ -199,10 +199,10 @@
             </div> -->
             <a href="#recommend-tab"
               class="tab_a submit1"
-              id="clickLikeAttractions-{{ day }}">
-              <button class="recommend_submit1" onclick="submitAction({{ day }})" value="送出">送出</button>
+              id="clickLikeAttractions">
+              <button class="recommend_submit1" onclick="submitAction()" value="送出">送出</button>
             </a>
-            <div class="openSimilar" style="display: none;" id="SimilarRecommend-{{ day }}">
+            <div class="openSimilar"id="SimilarRecommend">
 
               {% include "create_similar_recommend.html" %}
             </div>
