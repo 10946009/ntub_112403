@@ -97,7 +97,7 @@
               <!-- 歷史紀錄 -->
               <div id="create_searchBox">
                 <div class="create_enter"></div>
-                <div class="create_searchContent">
+                <div class="create_searchContent" style="width: 80%;">
                   <!-- history（目前放假資料） -->
                   <div class="history_1" id="history_1">
                     <i class="fa-solid fa-clock-rotate-left"></i><strong>123</strong>
@@ -161,8 +161,8 @@
       </div>
 
     </div>
-    {% endfor %}
   </div>
+  {% endfor %}
   <!-- show similar and choosed section -->
   <div class="right" id="rightDiv" >
       <button id="showRight" class="showRight_btn" onclick="showRightDiv()">
@@ -170,15 +170,44 @@
         <!-- 已選擇 -->
       </button>
       <div class="rightDiv">
-          <span>Right section</span>
+        <div>
+          <div class="checkDiv">
+            <i class="fa-solid fa-check checked_icon"></i>
+            <span class="checked_txt" >已選景點</span>
+          </div>
           <div class="align" id="bottomAttraction">
               <!-- be choosed -->
           </div>
-          <hr>
-          <div>
-              similar recommend
+          <hr style="margin-bottom: 5px;">
+          <div style="position: relative;">
+            <div class="renew" onclick="similarRecommend()">
+              <span>更新</span>
+            </div>
+            <div class="s_recDiv">
+              <span class="similar_icon">&asymp;</span>
+              <span class="s_rec_txt" >相似景點推薦</span>
+            </div>
+            <!-- <div class="owl-carousel owl-theme">
+                <div class="item checkimg_div" onclick="pickspot(this)">
+                    <div class="checkspot">
+                        <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
+                    </div>
+                    <div class="overlay" style="border: 1px solid #ccc;">
+                        <span>show my text</span>
+                    </div>
+                </div>
+            </div> -->
+            <a href="#recommend-tab"
+              class="tab_a submit1"
+              id="clickLikeAttractions">
+              <button class="recommend_submit1" onclick="submitAction()" value="送出">送出</button>
+            </a>
+            <div class="openSimilar"id="SimilarRecommend">
+
               {% include "create_similar_recommend.html" %}
+            </div>
           </div>
+        </div>
       </div>
   </div>
   <div class="Roverlay" id="Roverlay"></div>
@@ -215,21 +244,23 @@
   function showRightDiv() {
       isRightVisible = !isRightVisible;
 
+    if (window !== 'undefined') {
       if(isRightVisible){
           rightDiv.style.right = '0px';
           Roverlay.style.display = 'block';
-          document.body.style.overflow = "hidden";
           rightBtn.innerHTML = '<i class="fa-solid fa-chevron-left fa-rotate-180"></i>';
           rightBtn.style.backgroundColor = 'red';
           rightBtn.style.color = 'white';
+          document.body.style.overflow = "hidden";
       }else{
           rightDiv.style.right = '-90%';
           Roverlay.style.display = 'none';
-          document.body.style.overflow = "auto";
           rightBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
           rightBtn.style.backgroundColor = '';
           rightBtn.style.color = '';
+          document.body.style.overflow = "auto";
       }
+    }
   }
   var user_all_ct_data = JSON.parse('{{ all_ct_data_id | safe }}');
   var total_day = document.getElementsByClassName('tab-pane')
