@@ -183,42 +183,39 @@ function submitAction(day) {
 
 
 
-// 展開收藏跟相似景點
-var isLikeVisible = false;
+// 收合搜尋景點
+var isopenSearchDivVisible = true;
+function openSearchDiv() {
+  var searchResult = $('.searchResult');
+  isopenSearchDivVisible = !isopenSearchDivVisible
 
-function openLikeBtn() {
-
-  var openlike = $('.openlike');
-
-  isLikeVisible = !isLikeVisible
-
-  if (isLikeVisible) {
-    openlike.animate({
+  if (isopenSearchDivVisible) {
+    searchResult.animate({
       height: "show"
     }, 500);
   } else {
-    openlike.animate({
-      height: "hide"
-    }, 500);
-  }
-}
-
-var isSimilarVisible = true;
-function openSimilarBtn() {
-
-  var openSimilar = $('.openSimilar');
-
-  if (isSimilarVisible) {
-    openSimilar.animate({
-      height: "show"
-    }, 500);
-  } else {
-    openSimilar.animate({
+    searchResult.animate({
       height: "hide"
     }, 300);
   }
+}
 
-  isSimilarVisible = !isSimilarVisible
+// 收合推薦
+var isopenRecDivVisible = true;
+function openRecDiv() {
+
+  var openRec = $('.openRec');
+  isopenRecDivVisible = !isopenRecDivVisible
+
+  if (isopenRecDivVisible) {
+    openRec.animate({
+      height: "show"
+    }, 500);
+  } else {
+    openRec.animate({
+      height: "hide"
+    }, 300);
+  }
 }
 // 當頁面載入後，呼叫一次以顯示相似元素
 $(document).ready(function () {
