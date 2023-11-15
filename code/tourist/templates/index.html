@@ -111,10 +111,9 @@
         {% for ct in top_hot_travel %}
           <div class="col-lg-4 col-md-6 hot_spot_block hidemespot" style="padding: 5px;">
             <div class="heart_icon_img">
-              
-              <!-- <div class="imgcontainer"> -->
                 <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)" onmouseout="stopSlideShow(this)">
-                  <!-- 行程圖片  目前是假資料圖片要換成你們抓的-->
+                  <a href="#" class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickeInfo(event,{{ item.a_id.id }})"></a>
+                
                   {% for  img in ct.imglist %}
                   {% if forloop.counter == 1 %} 
                   <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="changeImg changeImg_show">
@@ -124,8 +123,6 @@
                   {%empty%}
                   <img src="/static/images/attractions/default_0.jpg" class="changeImg changeImg_show">
                   {% endfor %}
-                  <!-- <img src="../static/images/beitou.jpeg" class="img-responsive bottom" alt="圖一">
-                  <img src="/static/images/attractions/{{ ct.img }}_0.jpg" class="spot_img img-responsive top" width="100%" alt="圖二"> -->
                 </div>
                 <!-- 加入最愛 -->
                 {% if ct.is_favorite == "1" %}
@@ -135,7 +132,6 @@
                   <button class="fa-solid fa-heart heart_icon" data-isfavorite="{{ct.is_favorite}}"
                     data-id="{{ct.id}}" data-type="/add_travel_favorite/"></button>
                 {% endif %}
-              <!-- </div> -->
 
             </div>
             <div class="spot_txt">
@@ -151,6 +147,12 @@
             </div>
           </div>
         {% endfor %}
+        <div class="modal" id="myModal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <iframe src="your_embedded_page_url" frameborder="0"></iframe>
+            </div>
+        </div>
 
       </div>
 
