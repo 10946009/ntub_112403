@@ -217,6 +217,25 @@ function openRecDiv() {
     }, 300);
   }
 }
+
+// 收合收藏
+var isopenFavDivVisible = true;
+function openFavDiv() {
+
+  var openFav = $('.openFav');
+  isopenFavDivVisible = !isopenFavDivVisible
+
+  if (isopenFavDivVisible) {
+    openFav.animate({
+      height: "show"
+    }, 500);
+  } else {
+    openFav.animate({
+      height: "hide"
+    }, 300);
+  }
+}
+
 // 當頁面載入後，呼叫一次以顯示相似元素
 $(document).ready(function () {
   openSimilarBtn();
