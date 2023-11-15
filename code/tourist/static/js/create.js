@@ -254,16 +254,16 @@ function openfiliter() {
 
 // pick spot css 點擊景點時
 function pickspot(checkbox, aid) {
-    console.log(checkbox);
-    if (checkbox.classList.contains("pickimg")) {
-        checkbox.classList.remove("pickimg");
-        now_click_attractions[globalDay].delete(aid);
-        inputBottom();
-    } else {
-        checkbox.classList.add("pickimg");
-        now_click_attractions[globalDay].add(aid);
-        inputBottom();
-    }
+  console.log(checkbox);
+  if (checkbox.classList.contains("pickimg")) {
+    checkbox.classList.remove("pickimg");
+    now_click_attractions[globalDay].delete(aid);
+    inputBottom();
+  } else {
+    checkbox.classList.add("pickimg");
+    now_click_attractions[globalDay].add(aid);
+    inputBottom();
+  }
 }
 // function pickspot(checkbox, aid) {
 //   checkbox.checked = !checkbox.checked;
@@ -421,25 +421,33 @@ list.addEventListener('dragend', (e) => {
 })
 
 // slide right section
-
 // const rightBtn = document.getElementById('showRight');
 // const rightDiv = document.getElementById('rightDiv');
-// const Roverlay = document.getElementById('Roverlay');
+// const overlayBg = document.getElementById('overlayBg');
 
 // var isRightVisible = false;
 
 // function showRightDiv() {
-//     isRightVisible = !isRightVisible;
+//   isRightVisible = !isRightVisible;
 
-//     if(isRightVisible){
-//         rightDiv.style.right = '0px';
-//         Roverlay.style.display = 'block';
-//         document.body.style.overflow = "hidden";
-//     }else{
-//         rightDiv.style.right = '-90%';
-//         Roverlay.style.display = 'none';
-//         document.body.style.overflow = "auto";
+//   if (window !== 'undefined') {
+//     if (isRightVisible) {
+//       similarRecommend()
+//       rightDiv.style.right = '0px';
+//       overlayBg.style.display = 'block';
+//       rightBtn.innerHTML = '<i class="fa-solid fa-chevron-left fa-rotate-180"></i>';
+//       rightBtn.style.backgroundColor = 'red';
+//       rightBtn.style.color = 'white';
+//       document.body.classList.add('body_noScroll');
+//     } else {
+//       rightDiv.style.right = '-90%';
+//       overlayBg.style.display = 'none';
+//       rightBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+//       rightBtn.style.backgroundColor = '';
+//       rightBtn.style.color = '';
+//       document.body.classList.remove('body_noScroll');
 //     }
+//   }
 // }
 
 // 底部暫存區塊
