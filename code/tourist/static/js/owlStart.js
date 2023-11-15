@@ -10,6 +10,9 @@ function owlStart(){
             0: {
                 items: 1
             },
+            576: {
+                items: 2
+            },
             600: {
                 items: 3
             },
