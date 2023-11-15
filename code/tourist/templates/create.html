@@ -244,6 +244,7 @@
   function showRightDiv() {
       isRightVisible = !isRightVisible;
 
+    if (window !== 'undefined') {
       if(isRightVisible){
           rightDiv.style.right = '0px';
           Roverlay.style.display = 'block';
@@ -259,6 +260,7 @@
           rightBtn.style.color = '';
           document.body.style.overflow = "auto";
       }
+    }
   }
   var user_all_ct_data = JSON.parse('{{ all_ct_data_id | safe }}');
   var total_day = document.getElementsByClassName('tab-pane')

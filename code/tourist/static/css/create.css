@@ -1,3 +1,6 @@
+body{
+    
+}
 /* create_index的 */
 .bgimg {
     /* background: url(../images/1526735109814.jpg); */
@@ -215,12 +218,6 @@ main {
 }
 
 /* 右半邊 */
-.searchAndlikeAndrec {
-    position: relative;
-    overflow-y: auto;
-    height: 800px;
-    margin: 0 auto;
-}
 
 .changeToSearch {
     padding: 10px 15px;
