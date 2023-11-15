@@ -123,6 +123,7 @@ main {
     color: #fff;
     background-color: #198754;
     text-shadow: 2px 2px 3px #333;
+    z-index: 2;
 }
 
 .saveIcon_btn::before {
@@ -818,11 +819,11 @@ main {
     font-size: 28px;
 }
 
-/* .checkspot {
+.checkspot {
     position: relative;
     display: block;
     cursor: pointer;
-} */
+}
 
 .info_icon {
     position: absolute;
@@ -914,27 +915,32 @@ main {
 
 .showRight_btn {
     position: absolute;
-    left: -20px;
-    top: 0;
-    border: 1px solid black;
-    height: 25px;
-    width: 20px;
+    left: -30px;
+    bottom: 0;
+    border: 0;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    width: 30px;
+    height: 100px;
     cursor: pointer;
     text-align: center;
     padding: 0;
+    background-color: cadetblue;
 }
 
 .right {
     position: fixed;
-    right: -150px;
+    right: -90%;
     top: 50%;
     transform: translateY(-50%);
-    border: 1px solid black;
-    height: 500px;
-    width: 150px;
+    border: 1px solid gray;
+    border-top-left-radius: 10px;
+    height: 80%;
+    width: 90%;
     transition: right 0.3s ease;
-    z-index: 2;
+    z-index: 3;
     background-color: white;
+    padding: 5px;
 }
 
 .right .right_show {
@@ -950,7 +956,7 @@ main {
     background: rgba(0, 0, 0, 0.5);
     /* 半透明的黑色遮罩 */
     display: none;
-    z-index: 1;
+    z-index: 2;
 }
 
 .align {
