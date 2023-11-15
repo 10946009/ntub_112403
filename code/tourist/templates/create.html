@@ -161,7 +161,6 @@
       </div>
 
     </div>
-    {% endfor %}
   </div>
   <!-- show similar and choosed section -->
   <div class="right" id="rightDiv" >
@@ -177,41 +176,42 @@
           </div>
           <div class="align" id="bottomAttraction">
               <!-- be choosed -->
-          </div>
-          <hr style="margin-bottom: 5px;">
-          <div style="position: relative;">
-            <div class="renew" onclick="similarRecommend()">
-              <span>更新</span>
             </div>
-            <div class="s_recDiv">
-              <span class="similar_icon">&asymp;</span>
-              <span class="s_rec_txt" >相似景點推薦</span>
-            </div>
+            <hr style="margin-bottom: 5px;">
+            <div style="position: relative;">
+              <div class="renew" onclick="similarRecommend()">
+                <span>更新</span>
+              </div>
+              <div class="s_recDiv">
+                <span class="similar_icon">&asymp;</span>
+                <span class="s_rec_txt" >相似景點推薦</span>
+              </div>
             <!-- <div class="owl-carousel owl-theme">
-                <div class="item checkimg_div" onclick="pickspot(this)">
-                    <div class="checkspot">
+              <div class="item checkimg_div" onclick="pickspot(this)">
+                <div class="checkspot">
                         <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
                     </div>
                     <div class="overlay" style="border: 1px solid #ccc;">
                         <span>show my text</span>
+                      </div>
                     </div>
+                  </div> -->
+                  <a href="#recommend-tab"
+                  class="tab_a submit1"
+                  id="clickLikeAttractions-{{ day }}">
+                  <button class="recommend_submit1" onclick="submitAction({{ day }})" value="送出">送出</button>
+                </a>
+                <div class="openSimilar" id="SimilarRecommend-{{ day }}">
+                  
+                  {% include "create_similar_recommend.html" %}
                 </div>
-            </div> -->
-            <a href="#recommend-tab"
-              class="tab_a submit1"
-              id="clickLikeAttractions-{{ day }}">
-              <button class="recommend_submit1" onclick="submitAction({{ day }})" value="送出">送出</button>
-            </a>
-            <div class="openSimilar" style="display: none;" id="SimilarRecommend-{{ day }}">
-
-              {% include "create_similar_recommend.html" %}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-  </div>
-  <div class="Roverlay" id="Roverlay"></div>
-  <!-- <div class="bottom" style="z-index: 99;width: 80%;margin: 0 auto;position: fixed;bottom: 0;left: 0;right: 0;">
+        <div class="Roverlay" id="Roverlay"></div>
+        {% endfor %}
+        <!-- <div class="bottom" style="z-index: 99;width: 80%;margin: 0 auto;position: fixed;bottom: 0;left: 0;right: 0;">
     <div id="controller">
       <span class="upDiv"><i id="upDown_icon" class="fa-solid fa-caret-up up_icon"></i></span>
     </div>
