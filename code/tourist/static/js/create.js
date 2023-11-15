@@ -1,6 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', function () {
-  
+
   const selectedTab = localStorage.getItem('selectedTab');
   if (selectedTab === 'contact') {
     // 先移除之前的 active 状态
@@ -116,11 +116,11 @@ function adjustTextHeight(selector) {
 
 var total_day = document.getElementsByClassName('tab-pane')
 var isdoneJourneyVisible = {};
-for( var i = 0; i < total_day.length; i++ ){
-  isdoneJourneyVisible[i+1] = false;
+for (var i = 0; i < total_day.length; i++) {
+  isdoneJourneyVisible[i + 1] = false;
 }
-function clickChangeDone(day=null) {
-  if(day === null){
+function clickChangeDone(day = null) {
+  if (day === null) {
     day = globalDay;
   }
   console.log(day)
@@ -154,10 +154,10 @@ function changeRepeatBtnTxt() {
       repeatBtn.innerHTML = '<i class="fa-solid fa-route"></i>';
     }
   }
-  if(window.innerWidth > 690){
-    if(repeatBtn.innerHTML === '<i class="fa-solid fa-repeat"></i>'){
+  if (window.innerWidth > 690) {
+    if (repeatBtn.innerHTML === '<i class="fa-solid fa-repeat"></i>') {
       repeatBtn.innerHTML = '重新推薦';
-    }else if(repeatBtn.innerHTML === '<i class="fa-solid fa-route"></i>'){
+    } else if (repeatBtn.innerHTML === '<i class="fa-solid fa-route"></i>') {
       repeatBtn.innerHTML = '景點排序';
     }
   }
@@ -183,47 +183,63 @@ function submitAction(day) {
 
 
 
-// 展開收藏跟相似景點
-var isLikeVisible = false;
+// 收合搜尋景點
+var isopenSearchDivVisible = true;
+function openSearchDiv() {
+  var searchResult = $('.searchResult');
+  isopenSearchDivVisible = !isopenSearchDivVisible
 
-function openLikeBtn() {
-
-  var openlike = $('.openlike');
-
-  isLikeVisible = !isLikeVisible
-
-  if (isLikeVisible) {
-    openlike.animate({
+  if (isopenSearchDivVisible) {
+    searchResult.animate({
       height: "show"
     }, 500);
   } else {
-    openlike.animate({
-      height: "hide"
-    }, 500);
-  }
-}
-
-var isSimilarVisible = true;
-function openSimilarBtn() {
-
-  var openSimilar = $('.openSimilar');
-
-  if (isSimilarVisible) {
-    openSimilar.animate({
-      height: "show"
-    }, 500);
-  } else {
-    openSimilar.animate({
+    searchResult.animate({
       height: "hide"
     }, 300);
   }
-
-  isSimilarVisible = !isSimilarVisible
 }
+
+// 收合推薦
+var isopenRecDivVisible = true;
+function openRecDiv() {
+
+  var openRec = $('.openRec');
+  isopenRecDivVisible = !isopenRecDivVisible
+
+  if (isopenRecDivVisible) {
+    openRec.animate({
+      height: "show"
+    }, 500);
+  } else {
+    openRec.animate({
+      height: "hide"
+    }, 300);
+  }
+}
+
+// 收合收藏
+var isopenFavDivVisible = true;
+function openFavDiv() {
+
+  var openFav = $('.openFav');
+  isopenFavDivVisible = !isopenFavDivVisible
+
+  if (isopenFavDivVisible) {
+    openFav.animate({
+      height: "show"
+    }, 500);
+  } else {
+    openFav.animate({
+      height: "hide"
+    }, 300);
+  }
+}
+
 // 當頁面載入後，呼叫一次以顯示相似元素
-$(document).ready(function () {
-  openSimilarBtn();
-});
+// $(document).ready(function () {
+//   openSimilarBtn();
+// });
 
 
 //open篩選
@@ -238,30 +254,42 @@ function openfiliter() {
 
 // pick spot css 點擊景點時
 function pickspot(checkbox, aid) {
-  checkbox.checked = !checkbox.checked;
   console.log(checkbox);
-  var div = checkbox.parentElement.parentElement; // 取得包含checkbox的div
-  if (checkbox.checked) {
-    div.classList.add("pickimg");
-    now_click_attractions[globalDay].add(aid);
-    inputBottom();
-
-  } else {
-    div.classList.remove("pickimg");
+  if (checkbox.classList.contains("pickimg")) {
+    checkbox.classList.remove("pickimg");
     now_click_attractions[globalDay].delete(aid);
     inputBottom();
+  } else {
+    checkbox.classList.add("pickimg");
+    now_click_attractions[globalDay].add(aid);
+    inputBottom();
   }
-
 }
+// function pickspot(checkbox, aid) {
+//   checkbox.checked = !checkbox.checked;
+//   console.log(checkbox);
+//   var div = checkbox.parentElement.parentElement; // 取得包含checkbox的div
+//   if (checkbox.checked) {
+//     div.classList.add("pickimg");
+//     now_click_attractions[globalDay].add(aid);
+//     inputBottom();
+
+//   } else {
+//     div.classList.remove("pickimg");
+//     now_click_attractions[globalDay].delete(aid);
+//     inputBottom();
+//   }
+
+// }
 
 // pick spot 刪除下面戰存的景點時
 function pickspotBottom(aid) {
-  try{
-    const container = document.getElementById('ch-'+globalDay);
+  try {
+    const container = document.getElementById('ch-' + globalDay);
     const elements = container.querySelector('.imgcheck[value="' + aid + '"]');
     console.log(elements);
     pickspot(elements, aid);
-  }catch(e){
+  } catch (e) {
     now_click_attractions[globalDay].delete(aid);
     inputBottom();
   }
@@ -392,6 +420,35 @@ list.addEventListener('dragend', (e) => {
   currentLi.classList.remove('moving')
 })
 
+// slide right section
+// const rightBtn = document.getElementById('showRight');
+// const rightDiv = document.getElementById('rightDiv');
+// const overlayBg = document.getElementById('overlayBg');
+
+// var isRightVisible = false;
+
+// function showRightDiv() {
+//   isRightVisible = !isRightVisible;
+
+//   if (window !== 'undefined') {
+//     if (isRightVisible) {
+//       similarRecommend()
+//       rightDiv.style.right = '0px';
+//       overlayBg.style.display = 'block';
+//       rightBtn.innerHTML = '<i class="fa-solid fa-chevron-left fa-rotate-180"></i>';
+//       rightBtn.style.backgroundColor = 'red';
+//       rightBtn.style.color = 'white';
+//       document.body.classList.add('body_noScroll');
+//     } else {
+//       rightDiv.style.right = '-90%';
+//       overlayBg.style.display = 'none';
+//       rightBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+//       rightBtn.style.backgroundColor = '';
+//       rightBtn.style.color = '';
+//       document.body.classList.remove('body_noScroll');
+//     }
+//   }
+// }
 
 // 底部暫存區塊
 $(document).ready(function () {
@@ -463,7 +520,7 @@ function checkAndAddClass() {
       // 添加额外的检查，确保 closestColMd6 存在
       if (closestColMd6) {
         closestColMd6.classList.add('pickimg');
-      }else if (closestColMd4){
+      } else if (closestColMd4) {
         closestColMd4.classList.add('pickimg');
       }
 
@@ -472,53 +529,53 @@ function checkAndAddClass() {
 }
 
 
-function inputBottom(day=null){
-  if(day === null){
+function inputBottom(day = null) {
+  if (day === null) {
     day = globalDay;
   }
   $.ajax({
-    url:"/attractions",
+    url: "/attractions",
     type: "GET",
     data: {
-      aidlist:Array.from(now_click_attractions[day]).join(','),
+      aidlist: Array.from(now_click_attractions[day]).join(','),
     },
     success: function (response) {
       document.getElementById('bottomAttraction').innerHTML = response;
     },
 
     error: function () {
-        console.log('推薦回傳有錯誤!!!');
+      console.log('推薦回傳有錯誤!!!');
     },
   });
 }
 // 用來進去翻轉景點排序或推薦景點的部分
-function checkHasData(){
-    const leftDev = document.querySelectorAll(".recAndDone");
-    console.log(leftDev);
-    leftDev.forEach(function (container, index) {
-      const hasAttractions = container.querySelector('.innerlist');
-      // console.log(hasAttractions);
-      if (hasAttractions != null) {
-        const changeToRec = container.querySelector('.changeToRec').id;
-        clickChangeDone(changeToRec.charAt(changeToRec.length - 1))
-      }
-    });
+function checkHasData() {
+  const leftDev = document.querySelectorAll(".recAndDone");
+  console.log(leftDev);
+  leftDev.forEach(function (container, index) {
+    const hasAttractions = container.querySelector('.innerlist');
+    // console.log(hasAttractions);
+    if (hasAttractions != null) {
+      const changeToRec = container.querySelector('.changeToRec').id;
+      clickChangeDone(changeToRec.charAt(changeToRec.length - 1))
+    }
+  });
 }
 
-function checkHasLocationData(){
+function checkHasLocationData() {
   const location = document.querySelectorAll(".hiddenUserLocation");
   console.log(location);
   location.forEach(function (container, index) {
     // console.log(hasAttractions);
     if (container.value != ',') {
-      startRecommend(container.value,index)
+      startRecommend(container.value, index)
     }
   });
 }
 
 //用來把有的資料放入暫存區
-function checkHasDataBottom(){
-  
+function checkHasDataBottom() {
+
 }
 
 checkHasDataBottom()

@@ -1,21 +1,24 @@
-
-{% for n in near_recommend_data %}
-  <div class=" col-lg-4 col-md-6 " style="margin-bottom: 5px;">
-    <div class="S_checkimg_div">
-      <label type="checkbox" name="variety" value="{{n.o_list.id}}" class="imgcheck" style="margin: 0;padding: 0;border: 0;" onclick="pickspot(this,{{ n.o_list.id }})">
-        <span class="checkspot">
-          <img src="../static/images/attractions/{{n.o_list.place_id}}_0.jpg" class="img-responsive" width="100%" alt="">
-          <a href="#" class="fa-solid fa-circle-info info_icon" id="info_icon" onclick="clickeInfo(event,{{n.o_list.id}})"> <!-- 這裡這裡的itemId要用你們的編號 --></a>
-        </span>
-        <div class="spottxtdiv">
-          <p class="spotName">{{n.o_list.a_name}}</p>
-          <span class="spottxt spottxtstar">評價：{{n.o_list.rating}}</span><br>
-          <span class="spottxt spottxttime">營業時間：{{n.o_crow_opening_list.opening.0}}</span>
-        </div>
-      </label>
-    </div>
-  </div>
-  {%empty%}
-  <h4 style="margin: 0 auto;display: block;">選擇景點後點擊右上方的更新來取得相似景點哦~</h4>
-
-{% endfor %}
+<div class="owl-carousel owl-theme owl_adjust">
+  {% for n in near_recommend_data %}
+      <div class="item S_checkimg_div" onclick="pickspot(this,{{ n.o_list.id }})">
+        <label type="checkbox" name="variety" value="{{n.o_list.id}}" class="imgcheck" style="margin: 0;padding: 0;border: 0;">
+          <span class="checkspot" style="height: 180px;">
+            <img src="../static/images/attractions/{{n.o_list.place_id}}_0.jpg" class="img-responsive " width="100%" alt="">
+          </span>
+          <div class="overlay" style="cursor: pointer;">
+            <div class="overlayTxt">
+              <p class="spotName">{{n.o_list.a_name}}</p>
+              <span class="spottxt spottxtstar">評價：{{n.o_list.rating}}</span><br>
+              <span class="spottxt spottxttime">營業時間：{{n.o_crow_opening_list.opening.0}}</span>
+            </div>
+          </div>
+          <a href="#" class="fa-solid fa-circle-info info_icon" id="info_icon" onclick="clickeInfo(event,{{n.o_list.id}})"></a>
+        </label>
+      </div>
+    {%empty%}
+  {% endfor %}
+</div>
+<script src="/static/js/owlStart.js"></script>
+<script>
+  owlStart();
+</script>

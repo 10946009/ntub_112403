@@ -27,7 +27,7 @@ function similarRecommend(){
   aid_list = Array.from(now_click_attractions[globalDay]);
   nowtime = document.getElementById('nowtime-' + globalDay);
   const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-  const similar_attractions_detail_div = $('#SimilarRecommend-'+ globalDay );
+  const similar_attractions_detail_div = $('#SimilarRecommend');
   $.ajax({
       type: "POST",
       headers: { 'X-CSRFToken': csrftoken },
@@ -42,7 +42,6 @@ function similarRecommend(){
     },
       success: function (response) {
         console.log( response);
-        
         similar_attractions_detail_div.html(response['recommend_attractions_list']);
         checkAndAddClass();
       },

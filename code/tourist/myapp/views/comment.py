@@ -31,3 +31,19 @@ def save_travel_comment(request,cid=None):
         unit = TravelComment.objects.create(u_id=user_id, c_id=cid, comment=comment)
         unit.save()
     return redirect(f"/attraction_details/{cid}")
+
+def comment_like(request):
+    if request.method == "POST":
+        comment_id = request.POST.get("comment_id")
+        user_id = request.user.id
+        if comment_id:
+            if AttractionsCommentFavorite.objects.filter(ac_id=comment_id, u_id=user_id).exists():
+                AttractionsCommentFavorite.objects.filter(ac_id=comment_id, u_id=user_id).delete()
+                return JsonResponse({"response_data": "成功"})
+            unit = AttractionsCommentFavorite.objects.create(ac_id=comment_id, u_id=user_id)
+            unit.save()
+            return JsonResponse({"response_data": "成功"})
+        else:
+            return JsonResponse({"response_data": "失敗"})
+    else:
+        return JsonResponse({"response_data": "失敗"})

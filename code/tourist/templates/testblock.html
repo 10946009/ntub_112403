@@ -88,6 +88,45 @@
         .owl-prev span {
             font-size: 28px;
         }
+
+
+        .showRight_btn {
+            position: absolute;
+            left: -20px;
+            top: 0;
+            border: 1px solid black;
+            height: 25px;
+            width: 20px;
+            cursor: pointer;
+            text-align: center;
+            padding: 0;
+        }
+        .right {
+            position: fixed;
+            right: -150px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 1px solid black;
+            height: 500px;
+            width: 150px;
+            transition: right 0.3s ease;
+            z-index: 2;
+            background-color: white;
+        }
+
+        .right .right_show {
+            right: 0px;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* 半透明的黑色遮罩 */
+            display: none;
+            z-index: 1;
+        }
     </style>
 </head>
 
@@ -235,47 +274,18 @@
                             <span>show my text</span>
                         </div>
                     </div>
-                    <div class="item checkimg_div" onclick="pickspot(this)">
-                        <div class="checkspot">
-                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
-                        </div>
-                        <div class="checkspottxt" style="border: 1px solid #ccc;">
-                            <span>show my text</span>
-                        </div>
-                    </div>
-                    <div class="item checkimg_div" onclick="pickspot(this)">
-                        <div class="checkspot">
-                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
-                        </div>
-                        <div class="checkspottxt" style="border: 1px solid #ccc;">
-                            <span>show my text</span>
-                        </div>
-                    </div>
-                    <div class="item checkimg_div" onclick="pickspot(this)">
-                        <div class="checkspot">
-                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
-                        </div>
-                        <div class="checkspottxt" style="border: 1px solid #ccc;">
-                            <span>show my text</span>
-                        </div>
-                    </div>
-                    <div class="item checkimg_div" onclick="pickspot(this)">
-                        <div class="checkspot">
-                            <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
-                        </div>
-                        <div class="checkspottxt" style="border: 1px solid #ccc;">
-                            <span>show my text</span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
         <hr>
-        <!-- show similar and choosed section -->
-        <div style="position: fixed;right: 0;top: 50%;transform: translateY(-50%);border: 1px solid black;height: 500px;width: 150px;">
-            <div style="position: absolute;left: -15px;top: 0;border: 1px solid black;height: 25px;width: 15px;">
-                <
-            </div>
+    </main>
+
+    <!-- show similar and choosed section -->
+    <div class="right" id="rightDiv" >
+        <button id="showRight" class="showRight_btn" onclick="showRightDiv()">
+            點
+        </button>
+        <div class="rightDiv">
             <span>Right section</span>
             <div>
                 similar recommend
@@ -284,58 +294,78 @@
                 be choosed
             </div>
         </div>
-    </main>
-
-
-
-
+    </div>
+    <div class="overlay" id="overlay"></div>
     <script src="../static/js/jquery-3.7.0.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
     <script src="../static/js/owl.carousel.min.js"></script>
     <script>
-        $('.owl-carousel').owlCarousel({
-            items: 4,
-            loop: true,
-            margin: 10,
-            dots: false,
-            nav: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 4
-                }
-            }
-        })
-        // pick spot css 點擊景點時
-        function pickspot(checkbox) {
-            if (checkbox.classList.contains("pickimg")) {
-                checkbox.classList.remove("pickimg"); 
-            } else {
-                checkbox.classList.add("pickimg");
+
+    const rightBtn = document.getElementById('showRight');
+    const rightDiv = document.getElementById('rightDiv');
+    const overlay = document.getElementById('overlay');
+
+    var isRightVisible = false;
+
+    function showRightDiv() {
+        isRightVisible = !isRightVisible;
+
+        if(isRightVisible){
+            rightDiv.style.right = '0px';
+            overlay.style.display = 'block';
+        document.body.style.overflow = "hidden";
+        }else{
+            rightDiv.style.right = '-150px';
+            overlay.style.display = 'none';
+        document.body.style.overflow = "auto";
+        }
+    }
+
+
+
+    $('.owl-carousel').owlCarousel({
+        items: 4,
+        loop: true,
+        margin: 10,
+        dots: false,
+        nav: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 3
+            },
+            1000: {
+                items: 4
             }
         }
+    })
+    // pick spot css 點擊景點時
+    function pickspot(checkbox) {
+        if (checkbox.classList.contains("pickimg")) {
+            checkbox.classList.remove("pickimg");
+        } else {
+            checkbox.classList.add("pickimg");
+        }
+    }
 
-        // function pickspot(checkbox) {
-        //     checkbox.checked = !checkbox.checked;
-        //     console.log(checkbox);
-        //     var div = checkbox.parentElement.parentElement; // 取得包含checkbox的div
-        //     if (checkbox.checked) {
-        //         div.classList.add("pickimg");
-        //         // now_click_attractions[globalDay].add(aid);
-        //         // inputBottom();
+    // function pickspot(checkbox) {
+    //     checkbox.checked = !checkbox.checked;
+    //     console.log(checkbox);
+    //     var div = checkbox.parentElement.parentElement; // 取得包含checkbox的div
+    //     if (checkbox.checked) {
+    //         div.classList.add("pickimg");
+    //         // now_click_attractions[globalDay].add(aid);
+    //         // inputBottom();
 
-        //     } else {
-        //         div.classList.remove("pickimg");
-        //         // now_click_attractions[globalDay].delete(aid);
-        //         // inputBottom();
-        //     }
+    //     } else {
+    //         div.classList.remove("pickimg");
+    //         // now_click_attractions[globalDay].delete(aid);
+    //         // inputBottom();
+    //     }
 
-        // }
+    // }
     </script>
 </body>
 
