@@ -143,14 +143,9 @@ main {
     right: 5px;
 }
 
-.submit1 {
-    position: relative;
-    display: block;
-}
 
 .recommend_submit1 {
-    position: absolute;
-    right: 0;
+    float: right;
     margin-top: 10px;
     display: block;
     width: 80px;
@@ -306,6 +301,8 @@ main {
     content: '\f4d7';
     font-family: 'Font Awesome 5 Free';
 }
+
+.checked_icon,
 .rec_icon{
     color: white;
     background-color: orange;
@@ -323,7 +320,7 @@ main {
 
 .similar_icon {
     background-color: rgb(255, 41, 101);
-    padding: 2px 12px;
+    padding: 2px 10px;
     border-radius: 50%;
     color: white;
     font-size: 28px;
@@ -339,6 +336,13 @@ main {
     align-content: center;
     padding: 10px 0;
     cursor: pointer;
+    user-select: none;
+}
+.s_recDiv{
+    display: block;
+    align-items: center;
+    align-content: center;
+    padding: 10px 0;
     user-select: none;
 }
 /* .recDiv {
@@ -357,11 +361,14 @@ main {
     padding: 10px;
     margin-right: 5px;
 }
-
+.checkDiv{
+    margin-bottom: 5px;
+}
 .fav_txt,
 .rec_txt,
+.s_rec_txt,
 .search_txt,
-.similar_txt,
+.checked_txt,
 .done_txt {
     font-size: 28px;
     font-weight: bold;
@@ -388,6 +395,7 @@ main {
     text-shadow: 1px 1px 2px #333;
     border-radius: 30px;
     box-shadow: inset 1px 1px 2px #333;
+    user-select: none;
 }
 
 .placeBtn {
@@ -916,7 +924,7 @@ main {
 .showRight_btn {
     position: absolute;
     left: -30px;
-    bottom: 0;
+    top: 20px;
     border: 0;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
@@ -931,11 +939,11 @@ main {
 .right {
     position: fixed;
     right: -90%;
-    top: 50%;
+    top: 55%;
     transform: translateY(-50%);
     border: 1px solid gray;
     border-top-left-radius: 10px;
-    height: 80%;
+    height: 90%;
     width: 90%;
     transition: right 0.3s ease;
     z-index: 3;
@@ -997,7 +1005,7 @@ main {
     color: white;
     /* 文字顏色 */
     font-size: 20px;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.333);
     transition: opacity 0.3s ease;
     display: flex;
     justify-content: center;
@@ -1040,6 +1048,9 @@ main {
 @media (max-width: 920px) {
     .innerlist {
         width: 350px;
+    }
+    .right{
+        height: 80%;
     }
 }
 
@@ -1175,7 +1186,7 @@ main {
 
     .fav_txt,
     .rec_txt,
-    .similar_txt,
+    .s_rec_txt,
     .done_txt {
         font-size: 22px;
     }

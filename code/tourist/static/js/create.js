@@ -258,9 +258,11 @@ function pickspot(checkbox, aid) {
     if (checkbox.classList.contains("pickimg")) {
         checkbox.classList.remove("pickimg");
         now_click_attractions[globalDay].delete(aid);
+        inputBottom();
     } else {
         checkbox.classList.add("pickimg");
         now_click_attractions[globalDay].add(aid);
+        inputBottom();
     }
 }
 // function pickspot(checkbox, aid) {
