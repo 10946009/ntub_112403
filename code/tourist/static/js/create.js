@@ -1,3 +1,17 @@
+// info_icon popup
+var infoIcon = document.getElementById("info_icon");
+var modal = document.getElementById("myModal");
+var closeBtn = document.querySelector(".close");
+
+infoIcon.addEventListener('click', function (event) {
+  event.preventDefault();
+  modal.classList.add('active');
+});
+
+closeBtn.addEventListener('click', function () {
+  modal.classList.remove('active');
+});
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -35,25 +49,6 @@ function saveTabState(tabId, day) {
 var islikeAndRecVisible = false;
 var isIconSet = false;
 
-// function checkWindowSize() {
-//   const button = document.getElementById('changeToSearch');
-//   if (window.innerWidth <= 690) {
-//     if (!isIconSet) {
-//       setIconContent(button);
-//       isIconSet = true;
-//     }
-//   } else {
-//     button.textContent = islikeAndRecVisible ? '收藏與推薦' : '切換搜尋';
-//     isIconSet = false;
-//   }
-// }
-// function setIconContent(button) {
-//   if (islikeAndRecVisible) {
-//     button.innerHTML = '<i class="fa-regular fa-face-grin-hearts"></i>';
-//   } else {
-//     button.innerHTML = '<i class="fa-solid fa-magnifying-glass-location"></i>';
-//   }
-// }
 function changeToSearchRec() {
   const likeAndRec = document.getElementById('likeAndRec');
   const searchBlock = document.getElementById('searchBlock');
@@ -265,22 +260,6 @@ function pickspot(checkbox, aid) {
     inputBottom();
   }
 }
-// function pickspot(checkbox, aid) {
-//   checkbox.checked = !checkbox.checked;
-//   console.log(checkbox);
-//   var div = checkbox.parentElement.parentElement; // 取得包含checkbox的div
-//   if (checkbox.checked) {
-//     div.classList.add("pickimg");
-//     now_click_attractions[globalDay].add(aid);
-//     inputBottom();
-
-//   } else {
-//     div.classList.remove("pickimg");
-//     now_click_attractions[globalDay].delete(aid);
-//     inputBottom();
-//   }
-
-// }
 
 // pick spot 刪除下面戰存的景點時
 function pickspotBottom(aid) {
