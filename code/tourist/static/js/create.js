@@ -238,21 +238,31 @@ function openfiliter() {
 
 // pick spot css 點擊景點時
 function pickspot(checkbox, aid) {
-  checkbox.checked = !checkbox.checked;
-  console.log(checkbox);
-  var div = checkbox.parentElement.parentElement; // 取得包含checkbox的div
-  if (checkbox.checked) {
-    div.classList.add("pickimg");
-    now_click_attractions[globalDay].add(aid);
-    inputBottom();
-
-  } else {
-    div.classList.remove("pickimg");
-    now_click_attractions[globalDay].delete(aid);
-    inputBottom();
-  }
-
+    console.log(checkbox);
+    if (checkbox.classList.contains("pickimg")) {
+        checkbox.classList.remove("pickimg");
+        now_click_attractions[globalDay].delete(aid);
+    } else {
+        checkbox.classList.add("pickimg");
+        now_click_attractions[globalDay].add(aid);
+    }
 }
+// function pickspot(checkbox, aid) {
+//   checkbox.checked = !checkbox.checked;
+//   console.log(checkbox);
+//   var div = checkbox.parentElement.parentElement; // 取得包含checkbox的div
+//   if (checkbox.checked) {
+//     div.classList.add("pickimg");
+//     now_click_attractions[globalDay].add(aid);
+//     inputBottom();
+
+//   } else {
+//     div.classList.remove("pickimg");
+//     now_click_attractions[globalDay].delete(aid);
+//     inputBottom();
+//   }
+
+// }
 
 // pick spot 刪除下面戰存的景點時
 function pickspotBottom(aid) {
@@ -392,6 +402,24 @@ list.addEventListener('dragend', (e) => {
   currentLi.classList.remove('moving')
 })
 
+// slide right section
+// const rightBtn = document.getElementById('showRight');
+// const rightDiv = document.getElementById('rightDiv');
+// const Roverlay = document.getElementById('Roverlay');
+
+// var isRightVisible = false;
+
+// function showRightDiv() {
+//     isRightVisible = !isRightVisible;
+
+//     if(isRightVisible){
+//         rightDiv.style.right = '0px';
+//         Roverlay.style.display = 'block';
+//     }else{
+//         rightDiv.style.right = '-150px';
+//         Roverlay.style.display = 'none';
+//     }
+// }
 
 // 底部暫存區塊
 $(document).ready(function () {
