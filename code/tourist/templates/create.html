@@ -7,7 +7,19 @@
 <script src="https://maps.googleapis.com/maps/api/js?key={{apikey}}&libraries=places"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
-
+<!-- <style>
+  .owl-carousel .owl-nav button.owl-next,
+  .owl-carousel .owl-nav button.owl-prev  {
+      color: white;
+      height: 50px;
+      width: 30px;
+      background: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: background 0.3s;
+  }
+</style> -->
 {% endblock %}
 {% block body %}
 <main>
@@ -112,50 +124,6 @@
           <div style="padding: 10px 5px" id="AttractionsContainer-{{ day }}">
             <h4>請先選擇使用者位置和時間</h4>
             {% include 'create_recommend.html' %}
-          </div>
-        </div>
-        <div class="recommendDiv">
-          <div class="owl-carousel owl-theme" style="border: 1px solid black;">
-            <div class="item checkimg_div" onclick="pickspot(this)">
-              <div class="checkspot">
-                <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
-              </div>
-              <div class="checkspottxt" style="border: 1px solid #ccc;">
-                <span>show my text</span>
-              </div>
-            </div>
-            <div class="item checkimg_div" onclick="pickspot(this)">
-              <div class="checkspot">
-                <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
-              </div>
-              <div class="checkspottxt" style="border: 1px solid #ccc;">
-                <span>show my text</span>
-              </div>
-            </div>
-            <div class="item checkimg_div" onclick="pickspot(this)">
-              <div class="checkspot">
-                <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
-              </div>
-              <div class="checkspottxt" style="border: 1px solid #ccc;">
-                <span>show my text</span>
-              </div>
-            </div>
-            <div class="item checkimg_div" onclick="pickspot(this)">
-              <div class="checkspot">
-                <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
-              </div>
-              <div class="checkspottxt" style="border: 1px solid #ccc;">
-                <span>show my text</span>
-              </div>
-            </div>
-            <div class="item checkimg_div" onclick="pickspot(this)">
-              <div class="checkspot">
-                <img src="../static/images/cake01.jpg" class="img-responsive checkspotImg" alt="">
-              </div>
-              <div class="checkspottxt" style="border: 1px solid #ccc;">
-                <span>show my text</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>

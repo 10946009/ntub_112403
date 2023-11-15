@@ -221,6 +221,7 @@ main {
     padding: 5px;
     width: 100%;
 }
+
 /* 右半邊 */
 .searchAndlikeAndrec {
     position: relative;
@@ -757,7 +758,7 @@ main {
 .pickimg {
     padding: 0;
     border: 2px solid red;
-    transform: scale(0.9);
+    /* transform: scale(0.9); */
 }
 
 .spottxtdiv {
@@ -766,33 +767,39 @@ main {
     border-top: 0;
     color: black;
 }
-.owl-prev,
-.owl-next {
-    height: 100%;
-    width: 20px;
+
+.owl-carousel .owl-nav button.owl-next,
+.owl-carousel .owl-nav button.owl-prev  {
+    color: white;
+    height: 50px;
+    width: 30px;
+    background: rgba(0, 0, 0, 0.5);
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     transition: background 0.3s;
 }
 
-.owl-carousel .owl-nav button.owl-next:hover,
+/* .owl-carousel .owl-nav button.owl-next:hover,
 .owl-carousel .owl-nav button.owl-prev:hover {
     background: rgba(81, 81, 81, 0.297);
     color: white;
     border: none;
     padding: 0 !important;
-    font: inherit
-}
+    font: inherit;
+    display: block;
+    height: 100%;
+    width: 30px;
+} */
 
-.owl-prev:hover,
+/* .owl-prev:hover,
 .owl-next:hover {
     display: block;
     height: 100%;
-    width: 20px;
+    width: 30px;
     background-color: rgba(0, 0, 0, 0.297);
     color: white;
-}
+} */
 
 .owl-prev {
     left: 0;
@@ -847,6 +854,7 @@ main {
 }
 
 .checkimg_div {
+    cursor: pointer;
     /* position: relative;
     height: 200px;
     overflow: hidden; */
@@ -856,14 +864,6 @@ main {
     width: 100%;
 }
 
-.checkimg_div img {
-    /* width: 100%; */
-    /* height: 100%;
-    object-fit: cover;
-    position: absolute;
-    left: 0;
-    top: 0; */
-}
 
 .spotName {
     text-align: center;
@@ -919,6 +919,7 @@ main {
     text-align: center;
     padding: 0;
 }
+
 .right {
     position: fixed;
     right: -150px;
@@ -935,16 +936,19 @@ main {
 .right .right_show {
     right: 0px;
 }
+
 .Roverlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* 半透明的黑色遮罩 */
+    background: rgba(0, 0, 0, 0.5);
+    /* 半透明的黑色遮罩 */
     display: none;
     z-index: 1;
 }
+
 .align {
     margin: 0 auto;
     padding: 0;
