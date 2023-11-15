@@ -13,7 +13,8 @@
 endcomment %}
 {% comment %}
 <script src="../static/js/jquery-3.7.0.min.js"></script> {% endcomment %}
-{% comment %} <script src="../static/js/bootstrap.js"></script> {% endcomment %}
+{% comment %}
+<script src="../static/js/bootstrap.js"></script> {% endcomment %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 {% comment %}
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> {% endcomment %}
@@ -59,8 +60,8 @@ endcomment %}
                         <!-- 歷史紀錄 -->
                         <div id="searchBox">
                             <div class="enter"></div>
-                            <div class="searchContent">
-                                <!-- history（目前放假資料） -->
+                            <!-- <div class="searchContent">
+                                history（目前放假資料）
                                 <div class="history_12" id="history_12">
                                     <i class="fa-solid fa-clock-rotate-left"
                                         style="margin-right: 12px;"></i><strong>123</strong>
@@ -68,7 +69,7 @@ endcomment %}
                                         <i class="fa-solid fa-xmark" style="color: rgb(171, 5, 5);"></i>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -262,9 +263,9 @@ endcomment %}
                 </div>
                 <div class="dropdown_filiter" id="dropdown_filiter">
                     <div class="dropdown-content">
-                        <div class="dropdown-item focused first-defaultFocus" id="defaultFocus"　data-set="">相關度最高</div>
+                        <div class="dropdown-item focused first-defaultFocus" id="defaultFocus" 　data-set="">相關度最高</div>
                         <div class="dropdown-item " data-set="hit">瀏覽最多</div>
-                        <div class="dropdown-item" data-set="favorite">大家最愛</div>
+                        <div class="dropdown-item" data-set="favorite">收藏最多</div>
                         <!-- <div class="dropdown-item"></div> -->
                     </div>
                 </div>
@@ -539,7 +540,7 @@ endcomment %}
             searchText(this.dataset.set, 'tag_search');
         });
     }
-//清除所有篩選
+    //清除所有篩選
     var clear_btn1 = document.getElementById("clear-all1");
     var clear_btn2 = document.getElementById("clear-all2");
     clear_btn1.addEventListener("click", function () {
@@ -549,7 +550,7 @@ endcomment %}
         clearTag()
     });
 
-    function clearTag(){
+    function clearTag() {
         var search_type_key_word = document.getElementById('type_key_word');
         console.log(search_type_key_word);
         while (search_type_key_word.firstChild) {
@@ -557,45 +558,45 @@ endcomment %}
         }
         sessionStorage.clear();
         searchText("", 'keyword_search');
-        
+
         var firstItem = document.querySelector(".first-defaultFocus");
         firstItem.click();
     }
     //歷史紀錄（點一下input跳出來）
-    const searchInput = document.getElementById("myInput");
-    const searchBox = document.getElementById("searchBox");
-    const enter = document.getElementById("enter");
+    // const searchInput = document.getElementById("myInput");
+    // const searchBox = document.getElementById("searchBox");
+    // const enter = document.getElementById("enter");
 
-    //點不是input裡的元素就關起來
-    document.addEventListener("click", function (event) {
-        if (!searchBox.contains(event.target)) {
-            searchBox.style.display = "none";
-        }
-    });
+    // //點不是input裡的元素就關起來
+    // document.addEventListener("click", function (event) {
+    //     if (!searchBox.contains(event.target)) {
+    //         searchBox.style.display = "none";
+    //     }
+    // });
 
-    // 如果input裡有東西的話就關起來，沒有就打開歷史紀錄畫面
-    searchInput.addEventListener("input", function () {
-        const inputValue = myInput.value;
-        if (inputValue.trim() !== "") {
-            searchBox.style.display = "none";
-        } else {
-            searchBox.style.display = "block";
-        }
-    });
+    // // 如果input裡有東西的話就關起來，沒有就打開歷史紀錄畫面
+    // searchInput.addEventListener("input", function () {
+    //     const inputValue = myInput.value;
+    //     if (inputValue.trim() !== "") {
+    //         searchBox.style.display = "none";
+    //     } else {
+    //         searchBox.style.display = "block";
+    //     }
+    // });
 
-    // 點一下input內框跳出來歷史紀錄畫面
-    searchInput.addEventListener("click", function (event) {
-        event.stopPropagation();// 防止觸發 document 上的點擊事件
-        searchBox.style.display = "block";
-    });
+    // // 點一下input內框跳出來歷史紀錄畫面
+    // searchInput.addEventListener("click", function (event) {
+    //     event.stopPropagation();// 防止觸發 document 上的點擊事件
+    //     searchBox.style.display = "block";
+    // });
 
-    //delete歷史紀錄
-    function deleteFunction(element) {
-        var historyElement = element.closest('.history_12');
-        if (historyElement) {
-            historyElement.remove(); //連同父元素删除
-        }
-    }
+    // //delete歷史紀錄
+    // function deleteFunction(element) {
+    //     var historyElement = element.closest('.history_12');
+    //     if (historyElement) {
+    //         historyElement.remove(); //連同父元素删除
+    //     }
+    // }
 
     // //動態大標（景點資訊tripfunchill去放假）
     // const scrollText = document.querySelector('.scroll-text');
@@ -646,7 +647,7 @@ endcomment %}
                 }
                 keys.forEach(function (key) {
                     console.log(key);
-                    if(sessionStorage[key] != 'order'){
+                    if (sessionStorage[key] != 'order') {
                         search_type_key_word.innerHTML += `<span class="tag-cloud">${key}<i class="fa-solid fa-circle-xmark x_icon"></i><span>`;
                     }
                 });
@@ -851,22 +852,22 @@ endcomment %}
     let loadingpage = 2;  // 初始页面
     let waitload = false;  // 等待加载标志
     // 当滚动到底部时触发加载更多数据
-    $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() >= $(document).height()*0.9 && !waitload) {
+    $(window).scroll(function () {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() * 0.9 && !waitload) {
             waitload = true;
             loadMoreData();
         }
     });
     function loadMoreData() {
         $.ajax({
-            url: '', 
+            url: '',
             type: 'GET',
-            data:{
+            data: {
                 loadingpage: loadingpage,
                 sessionStorage: getAllSessionStorageData(),
             },
-            success: function(response) {
-                if(response['keyword_search_list'].includes("查無相關資料")){
+            success: function (response) {
+                if (response['keyword_search_list'].includes("查無相關資料")) {
                     waitload = false;
                     return;
                 }
