@@ -6,6 +6,73 @@
     overflow-y: scroll;
 }
 
+/* info popup */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 5;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    animation: fadeIn 0.3s forwards;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: auto;
+    width: 80%;
+    height: 80%;
+    z-index: 5;
+    background: #fefefe;
+    animation: slideIn 0.3s forwards;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+
 /* create_index的 */
 .bgimg {
     /* background: url(../images/1526735109814.jpg); */
@@ -305,13 +372,14 @@ main {
 }
 
 .checked_icon,
-.rec_icon{
+.rec_icon {
     color: white;
     background-color: orange;
     border-radius: 50%;
     padding: 10px;
     margin-right: 5px;
 }
+
 .fav_icon {
     color: white;
     background-color: rgb(255, 41, 101);
@@ -340,13 +408,15 @@ main {
     cursor: pointer;
     user-select: none;
 }
-.s_recDiv{
+
+.s_recDiv {
     display: block;
     align-items: center;
     align-content: center;
     padding: 10px 0;
     user-select: none;
 }
+
 /* .recDiv {
     display: flex;
     align-items: center;
@@ -363,9 +433,11 @@ main {
     padding: 10px;
     margin-right: 5px;
 }
-.checkDiv{
+
+.checkDiv {
     margin-bottom: 5px;
 }
+
 .fav_txt,
 .rec_txt,
 .s_rec_txt,
@@ -375,7 +447,8 @@ main {
     font-size: 28px;
     font-weight: bold;
 }
-.tipsTxt{
+
+.tipsTxt {
     font-size: 18px;
     margin-left: 10px;
 }
@@ -759,7 +832,7 @@ main {
 }
 
 .owl-carousel .owl-nav button.owl-next,
-.owl-carousel .owl-nav button.owl-prev  {
+.owl-carousel .owl-nav button.owl-prev {
     color: white;
     height: 50px;
     width: 30px;
@@ -934,7 +1007,8 @@ main {
     text-align: center;
     user-select: none;
 }
-.overlayTxt{
+
+.overlayTxt {
     display: block;
     text-shadow: 2px 2px 2px #333;
 }
@@ -971,7 +1045,8 @@ main {
     .innerlist {
         width: 350px;
     }
-    .right{
+
+    .right {
         height: 80%;
     }
 }
@@ -1018,7 +1093,8 @@ main {
     main {
         margin-top: 80px;
     }
-    .tabD{
+
+    .tabD {
         margin-top: 10px;
     }
 
@@ -1079,10 +1155,12 @@ main {
     .tab_a {
         font-size: 18px;
     }
-    .spotName{
+
+    .spotName {
         font-size: 20px;
     }
-    .spottxt{
+
+    .spottxt {
         font-size: 16px;
     }
 
@@ -1147,7 +1225,8 @@ main {
     .tab_a {
         font-size: 14px;
     }
-    .tipsTxt{
+
+    .tipsTxt {
         margin-left: 0;
         font-size: 16px;
     }
