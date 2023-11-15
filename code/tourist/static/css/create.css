@@ -96,10 +96,6 @@ main {
     padding: 5px;
 }
 
-.create_txt {
-    font-size: 20px;
-}
-
 .createdata {
     text-align: end;
 }
@@ -211,7 +207,7 @@ main {
 }
 
 .active {
-    color: #1b3fe1;
+    color: #000;
     animation: heart 0.5s linear;
     font-weight: bolder;
 }
@@ -318,6 +314,7 @@ main {
     font-family: 'Font Awesome 5 Free';
 }
 
+.rec_icon,
 .like_icon {
     color: white;
     background-color: rgb(255, 41, 101);
@@ -336,11 +333,13 @@ main {
 }
 
 .searchBarDiv,
+.recDiv,
 .doneDiv {
-    display: flex;
+    display: block;
     align-items: center;
     align-content: center;
     padding: 10px 0;
+    cursor: pointer;
 }
 
 .find_icon,
@@ -354,10 +353,16 @@ main {
 
 .like_txt,
 .rec_txt,
+.search_txt,
 .similar_txt,
 .done_txt {
     font-size: 28px;
     font-weight: bold;
+}
+.tipsTxt{
+    font-size: 18px;
+    font-weight: 0;
+    margin-left: 10px;
 }
 
 .renew {
@@ -697,6 +702,8 @@ main {
 }
 
 .tabD {
+    color: #000;
+    margin-top: 5px;
     padding: 5px;
 }
 
@@ -790,15 +797,6 @@ main {
     display: block;
     height: 100%;
     width: 30px;
-} */
-
-/* .owl-prev:hover,
-.owl-next:hover {
-    display: block;
-    height: 100%;
-    width: 30px;
-    background-color: rgba(0, 0, 0, 0.297);
-    color: white;
 } */
 
 .owl-prev {
