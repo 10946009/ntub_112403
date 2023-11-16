@@ -40,7 +40,9 @@
                     {% endif %}
                     {% endfor %}
                   </div>
-                  <a href="#" class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickeInfo(event,{{ item.a_id.id }})"></a><!-- 圖片要換成你們抓的 看你們要放幾張 -->
+
+                  <a class="fa-solid fa-circle-info info_icon_left" onclick="clickInfo(this)"></a>
+                  
                   {% if item.is_favorite == "1" %}
                   <button class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="{{item.is_favorite}}"
                     data-id="{{item.id}}" data-type="/add_favorite/"></button>
@@ -73,9 +75,7 @@
             </div>
           </div>
           {% endfor %}
-          {% comment %}
         </div>
-        {% endcomment %}
         <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
@@ -85,6 +85,12 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+    </div>
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+            <span class="close" onclick="clickClose()">&times;</span>
+            <iframe src="../templates/newCreateTEST.html" frameborder="0"></iframe>
+        </div>
     </div>
     <div class="explore hidemeexplore">
       <a href="/attraction_details" class="explorea">探索更多相關景點資訊

@@ -256,3 +256,16 @@ function adjustTextHeight(selector) {
   // 將所有文字區塊設置為最大高度
   $(selector).height(maxHeight);
 }
+
+let nowPosition = 0;
+function clickInfo(element) {
+  var modal = document.getElementById('myModal');
+  modal.classList.add('modal_active');
+  document.body.classList.add('body_noScroll');
+  console.log(1)
+}
+function clickClose() {
+  var modal = document.getElementById('myModal');
+  modal.classList.remove('modal_active');
+  document.body.classList.remove('body_noScroll');
+}
