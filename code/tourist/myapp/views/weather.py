@@ -1,4 +1,4 @@
-from viewsConst import WEATHER_API_KEY
+from .viewsConst import WEATHER_API_KEY
 import requests
 
 HEADERS = {
