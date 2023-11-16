@@ -128,8 +128,20 @@
 <script src="../static/js/bootstrap.min.js"></script>
 {% block content_script %}{% endblock %}
 <script>
-
-
+  // popup info
+  function clickInfo(element) {
+    event.stopPropagation(); // 阻止事件传播
+    var modal = document.getElementById('myModal');
+    modal.classList.add('modal_active');
+    document.body.classList.add('body_noScroll');
+    console.log(1)
+  }
+  function clickClose() {
+    var modal = document.getElementById('myModal');
+    modal.classList.remove('modal_active');
+    document.body.classList.remove('body_noScroll');
+  }
+  // random bgimg
   function changebgimg() {
     const logo_icon = document.getElementById('logo_icon');
 

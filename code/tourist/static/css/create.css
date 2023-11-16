@@ -6,9 +6,8 @@
     overflow-y: scroll;
 }
 
-/* info popup */
-
-.modal {
+/* info popup (set in all.css)*/
+/* .modal {
     display: none;
     position: fixed;
     z-index: 5;
@@ -70,7 +69,7 @@ iframe {
     to {
         transform: scale(1);
     }
-}
+} */
 
 
 /* create_index的 */

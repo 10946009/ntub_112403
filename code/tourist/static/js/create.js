@@ -1,16 +1,16 @@
-// info_icon popup
-var infoIcon = document.getElementById("info_icon");
-var modal = document.getElementById("myModal");
-var closeBtn = document.querySelector(".close");
+// info_icon popup(set in base.html)
+// var infoIcon = document.getElementById("info_icon");
+// var modal = document.getElementById("myModal");
+// var closeBtn = document.querySelector(".close");
 
-infoIcon.addEventListener('click', function (event) {
-  event.preventDefault();
-  modal.classList.add('active');
-});
+// infoIcon.addEventListener('click', function (event) {
+//   event.preventDefault();
+//   modal.classList.add('active');
+// });
 
-closeBtn.addEventListener('click', function () {
-  modal.classList.remove('active');
-});
+// closeBtn.addEventListener('click', function () {
+//   modal.classList.remove('active');
+// });
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -250,6 +250,7 @@ function openfiliter() {
 // pick spot css 點擊景點時
 function pickspot(checkbox, aid) {
   console.log(checkbox);
+  
   if (checkbox.classList.contains("pickimg")) {
     checkbox.classList.remove("pickimg");
     now_click_attractions[globalDay].delete(aid);
