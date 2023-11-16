@@ -68,6 +68,7 @@ urlpatterns = [
 
     path("attraction_details/", attraction_details.attraction_details, name="search_results"),
     path("attraction_details/<int:aid>", attraction_details.attraction_details),
+    path("clickInfo/", attraction_details.click_info),
     # path("attraction_details/", attraction_details.attraction_details,name="search_results_base"),
     path(
         "serach_results_att_type",

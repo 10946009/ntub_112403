@@ -129,12 +129,36 @@
 {% block content_script %}{% endblock %}
 <script>
   // popup info
-  function clickInfo(element) {
+  function clickInfo(aId) {
     event.stopPropagation(); // 阻止事件传播
     var modal = document.getElementById('myModal');
     modal.classList.add('modal_active');
     document.body.classList.add('body_noScroll');
     console.log(1)
+    if (aId) {
+      // 發起 AJAX 請求
+      $.ajax({
+          url: 'clickInfo/',  // 伺服器端的 URL
+          type: 'GET',  // 請求類型為 GET
+          data: {
+              a_id: aId  // 傳遞給伺服器的參數，以 a_id 為名
+          },
+          success: function (response) {
+              // 當請求成功時執行的處理程式
+              const attractions_detail_div = $('#changeInfo');
+              attractions_detail_div.html(response['attractions_detail_html']);
+              // 取得模態框元素
+              // var showInfo = document.getElementById("id01");
+              // // 將模態框的顯示樣式設定為 "block"，顯示模態框
+              // showInfo.style.display = "block";
+
+          },
+          error: function (xhr, status, error) {
+              // 請求失敗時的處理
+              console.log("AJAX請求失敗: " + error);
+          }
+      });
+  }
   }
   function clickClose() {
     var modal = document.getElementById('myModal');
