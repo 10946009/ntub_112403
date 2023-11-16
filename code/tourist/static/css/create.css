@@ -5,6 +5,9 @@
     height: 100%;
     overflow-y: scroll;
 }
+body{
+	/* background-color: rgba(237, 237, 210, 0.3); */
+}
 
 /* info popup (set in all.css)*/
 /* .modal {
@@ -164,12 +167,6 @@ main {
     border-bottom: 1px solid rgba(128, 128, 128, 0.536);
 }
 
-.createday {
-    text-decoration: none;
-    color: #000;
-    padding: 5px;
-}
-
 .createdata {
     text-align: end;
 }
@@ -178,7 +175,7 @@ main {
     text-align: center;
 }
 
-.recommend_save {
+.recommend_next {
     position: fixed;
     bottom: 5px;
     right: 5px;
@@ -203,6 +200,25 @@ main {
 .saveIcon_btn::before {
     content: '\f0c7';
     font-family: 'Font Awesome 5 Free';
+}
+
+/* 切換按鈕CSS */
+.tab-content {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.changeToDone {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    border: 0;
+    border-radius: 30px;
+    padding: 10px 15px;
+    background-color: pink;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .controls {
@@ -290,46 +306,6 @@ main {
 
 /* 右半邊 */
 
-.changeToSearch {
-    padding: 10px 15px;
-    border: 0;
-    background-color: rgb(0, 102, 219);
-    box-shadow: inset 1px 1px 3px #333;
-    color: white;
-    font-weight: bold;
-    text-shadow: 2px 2px 3px #333;
-    border-radius: 30px;
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    z-index: 5;
-}
-
-.changeTolike {
-    padding: 10px 15px;
-    border: 0;
-    background-color: rgb(0, 102, 219);
-    box-shadow: inset 1px 1px 3px #333;
-    color: white;
-    font-weight: bold;
-    text-shadow: 2px 2px 3px #333;
-    border-radius: 30px;
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    z-index: 5;
-    display: none;
-}
-
-.changeToSearch_icon {
-    display: none;
-    color: white;
-    /* background-color: rgb(255, 41, 101); */
-    border-radius: 50%;
-    padding: 10px;
-    margin-right: 5px;
-}
-
 .searchResult {
     margin-top: 10px;
 }
@@ -360,16 +336,6 @@ main {
     z-index: 5;
 }
 
-.repeatIcon_btn::before {
-    content: '\f363';
-    font-family: 'Font Awesome 5 Free';
-}
-
-.doneIcon_btn::before {
-    content: '\f4d7';
-    font-family: 'Font Awesome 5 Free';
-}
-
 .checked_icon,
 .rec_icon {
     color: white;
@@ -398,8 +364,7 @@ main {
 
 .searchBarDiv,
 .recDiv,
-.favDiv,
-.doneDiv {
+.favDiv {
     display: block;
     align-items: center;
     align-content: center;
@@ -415,17 +380,8 @@ main {
     padding: 10px 0;
     user-select: none;
 }
-
-/* .recDiv {
-    display: flex;
-    align-items: center;
-    align-content: center;
-    padding: 10px 0;
-    position: relative;
-} */
-
-.find_icon,
-.done_icon {
+.done_icon,
+.find_icon {
     color: white;
     background-color: #0066DB;
     border-radius: 50%;
@@ -441,8 +397,8 @@ main {
 .rec_txt,
 .s_rec_txt,
 .search_txt,
-.checked_txt,
-.done_txt {
+.done_txt,
+.checked_txt {
     font-size: 28px;
     font-weight: bold;
 }
@@ -567,42 +523,23 @@ main {
     margin-bottom: 5px;
 }
 
-/* 翻轉右邊區塊(搜尋&收藏與推薦相似 */
-
+/* 翻轉排序跟建立 */
 .change {
-    width: 95%;
-    height: 100%;
-    position: absolute;
+    transition: transform 0.5s ease, opacity 0.5s ease;
     backface-visibility: hidden;
-    /* 隐藏背面 */
-    transform-style: preserve-3d;
-    /* 保持3D效果 */
-    transition: transform 0.5s;
-    font-size: 24px;
-    transform: rotateY(0deg);
-    /* 初始状态：不翻转 */
-}
-
-.changeRec {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    backface-visibility: hidden;
-    /* 隐藏背面 */
-    transform-style: preserve-3d;
-    /* 保持3D效果 */
-    transition: transform 0.5s;
-    transform: rotateY(0deg);
-    /* 初始状态：不翻转 */
-}
-
-#searchBlock {
+    opacity: 0;
     transform: rotateY(180deg);
-    /* 初始状态：翻转180度 */
+    visibility: hidden;
 }
 
-.changeRec.done {
-    transform: rotateY(180deg);
+.changeActive {
+    opacity: 1;
+    visibility: visible;
+    transform: rotateY(0deg);
+}
+
+.hidden {
+    display: none;
 }
 
 
@@ -1137,7 +1074,7 @@ main {
         padding: 0;
     }
 
-    .recommend_save {
+    .recommend_next {
         width: 50px;
         height: 40px;
         line-height: 40px;
@@ -1163,10 +1100,6 @@ main {
         font-size: 16px;
     }
 
-    /* .recAndDone, */
-    .searchAndlikeAndrec {
-        padding: 0 5px;
-    }
 
     .rec_icon,
     .find_icon,
@@ -1183,8 +1116,8 @@ main {
     .fav_txt,
     .rec_txt,
     .s_rec_txt,
-    .search_txt,
-    .done_txt {
+    .done_txt,
+    .search_txt {
         font-size: 22px;
     }
 
@@ -1194,7 +1127,7 @@ main {
         margin-bottom: 5px;
     }
 
-    .recommend_save {
+    .recommend_next {
         width: 50px;
         height: 40px;
         line-height: 40px;
