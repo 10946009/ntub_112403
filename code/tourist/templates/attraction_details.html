@@ -173,10 +173,10 @@ endcomment %}
 
 <!-- 景點主題 -->
 <div id="show_filiter" style="display: none;">
-    <div class="modal-content" method="post" style="border-radius: 10px;">
+    <div class="modal-content_filiter" method="post" style="border-radius: 10px;">
         {% csrf_token %}
         <div class="att_form">
-            <span onclick="document.getElementById('show_filiter').style.display='none'" class="close"
+            <span onclick="document.getElementById('show_filiter').style.display='none'" class="close_filter"
                 title="Close Modal">&times;</span>
             <h3><strong>景點主題</strong></h3>
             <div class="filiter_search" id="filiter_search2">
@@ -194,7 +194,7 @@ endcomment %}
 
 <!-- 條件篩選 -->
 <!-- <div id="show_condition" style="display: none;">
-    <form class="modal-content" method="post" style="border-radius: 10px;">
+    <form class="modal-content_filiter" method="post" style="border-radius: 10px;">
         <div class="att_form">
             <span onclick="document.getElementById('show_condition').style.display='none'" class="close"
                 title="Close Modal">&times;</span>
@@ -215,7 +215,7 @@ endcomment %}
 
 <!-- 最受歡迎 -->
 <!-- <div id="show_userfavorite" style="display: none;">
-    <form class="modal-content" method="post" style="border-radius: 10px;">
+    <form class="modal-content_filiter" method="post" style="border-radius: 10px;">
         <div class="att_form">
             <span onclick="document.getElementById('show_userfavorite').style.display='none'" class="close"
                 title="Close Modal">&times;</span>
