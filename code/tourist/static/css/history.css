@@ -225,15 +225,22 @@
     margin: 0;
 }
 .otherCommentTxtDiv{
-    position: relative;
+    display: flex;
+    padding-right: 5px;
+}
+.otherCommentTxt{
+    word-wrap: break-word;
+    width: 90%;
 }
 .c_editDiv{
-    position: absolute;
-    top: 0;
-    right: 0;
+    width: 10%;
+    text-align: end;
 }
 .c_icon{
-    cursor: pointer;
+    border: 0;
+    background-color: #ffffff00;
+    width: 40px;
+    height: 40px;
 }
 .otherCommentAvatar {
     display: flex;
