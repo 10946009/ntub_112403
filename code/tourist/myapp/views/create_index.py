@@ -18,5 +18,14 @@ def create_index(request):
             travel_day=travel_day,
         )
         unit.save()
+        for i in range(int(travel_day)):
+            choice_unit = ChoiceDay_Ct.objects.create(
+                ct_id=unit.id,
+                day=i,
+                start_time="540",
+                start_location_x="25.04638359",
+                start_location_y="121.5174624",
+                location_name="台北車站",
+            )
         return redirect(f"/create/{unit.id}")
     return render(request, "create_index.html")

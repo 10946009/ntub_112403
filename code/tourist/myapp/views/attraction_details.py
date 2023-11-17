@@ -237,3 +237,73 @@ def is_favorite_list(userobject, search_list):
         else:
             search_list[index].setdefault("is_favorite", "0")
     return search_list
+
+def click_info(request):
+    #點擊景點
+    user = request.user.id
+    if request.GET.get("a_id") != None:
+        choose_a_id = request.GET.get("a_id")  # 提取傳遞的值
+        choose_attractions = Attractions.objects.get(id=choose_a_id)
+        print(choose_attractions)
+        choose_attractions.hit += 1
+        choose_attractions.save()
+
+        # 記錄使用者點擊
+        if user :
+            if UserClick.objects.filter(u_id=user.id, a_id=choose_attractions.id).exists():
+                user_click = UserClick.objects.get(u_id=user.id, a_id=choose_attractions.id)
+                user_click.click_count += 1
+                user_click.save()
+            else:
+                UserClick.objects.create(u_id=user.id, a_id=choose_attractions.id)
+
+        # 判斷是否已收藏
+        
+        is_favorite = Favorite.objects.filter(
+            u_id=user.id, a_id=choose_attractions.id
+        ).exists() if user  else False
+        # 取得擁擠資訊
+        crowd = (
+            Crowd_Opening.objects.filter(a_id=choose_attractions.id)
+            .order_by("week")
+            .values()
+        )
+        crowd_list = list(crowd)
+        crowd_dict = [{"week": x["week"], "crowd": x["crowd"]} for x in crowd_list]
+        crowd_dict = json.dumps(crowd_dict)
+        chinese_week = ["", "一", "二", "三", "四", "五", "六", "日"]
+        opentime_list = [
+            {"week": chinese_week[int(x["week"])], "opening": x["opening"]}
+            for x in crowd_list
+        ]
+        # 取得照片列表
+        picture_list = get_picture_list(choose_attractions.place_id)
+
+        # 取得附近景點
+        near_attractions = get_nearby_attractions(choose_attractions)
+        
+        # 幫停留時間設亂數 為20-60之間間隔為10的任一個數
+        if choose_attractions.stay_time == 0:
+            choose_attractions.stay_time = random.randrange(20, 70, 10)
+
+        # 取得留言
+        comment_list = AttractionsComment.objects.filter(a_id=choose_a_id)
+        question_list = AttractionsQuestion.objects.filter(a_id=choose_a_id)
+        print('comment_list',comment_list)
+        # 轉HTML格式
+        detail_html = render_to_string(
+            template_name="attractions_info.html",
+            context={
+                "detail": choose_attractions,
+                "crowd": crowd_dict,
+                "picture_list": picture_list,
+                "opentime_list": opentime_list,
+                "near_attractions":near_attractions,
+                "request": request,
+                "is_favorite":is_favorite,
+                "comment_list":comment_list,
+                "question_list":question_list,
+            },
+        )
+        detail_data_dict = {"attractions_detail_html": detail_html}
+        return JsonResponse(data=detail_data_dict, safe=False)

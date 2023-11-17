@@ -15,6 +15,7 @@ import os
 from os.path import join, dirname
 from dotenv import load_dotenv, find_dotenv
 import json
+from .weather import get_weather_data
 
 dotenv_path = join(dirname(__file__), ".env")
 load_dotenv(dotenv_path, override=True)  # 設定 override 才會更新變數哦！
@@ -80,7 +81,8 @@ def create(request, ct_id):
        travel_datas[i]="" 
     # 抓目前位置
     for index,ct_attractions_data in enumerate(ct_attractions_data_total):
-        week = (start_week + index) % 7 + 1
+        chinese_week = ["日","一","二","三","四","五","六"]
+        week = (start_week + index) % 7 
         crowd_index_list=[]
         ct_data = []
         ct_data_id = []
@@ -94,6 +96,8 @@ def create(request, ct_id):
             "local_xy": local_xy,
             "location_name": location_name,
             "user_nowtime": user_nowtime,
+            "date": f"{start_day[5:7]}月{int(start_day[8:])+index}日",
+            "week": chinese_week[week],
         }
         # 抓出這筆行程中的所有景點
         ct_attractions_list = Attractions_Ct.objects.filter(
@@ -120,12 +124,13 @@ def create(request, ct_id):
         # print('crowd_list',crowd_list)
         # 合併上面四個資料
         for attraction, detail, co ,cl in zip(ct_attractions_list, ct_attractions_detail_list, ct_attractions_co_list,crowd_index_list):
-            print(f"{min(co.crowd[cl],co.crowd[(cl+1)%24])} ~ {max(co.crowd[cl],co.crowd[(cl+1)%24])}")
+            # print(f"{min(co.crowd[cl],co.crowd[(cl+1)%24])} ~ {max(co.crowd[cl],co.crowd[(cl+1)%24])}")
             ct_data.append({
                 "attraction": attraction,
                 "detail": detail,
                 "co": co,
-                "crowd_list" : f"{min(co.crowd[cl],co.crowd[(cl+1)%24])} ~ {max(co.crowd[cl],co.crowd[(cl+1)%24])}"
+                "crowd_list" : f"{min(co.crowd[cl],co.crowd[(cl+1)%24])} ~ {max(co.crowd[cl],co.crowd[(cl+1)%24])}",
+                "weather": get_weather_data(detail.address,start_day[0:4],start_day[5:7],int(start_day[8:])+index,ct_attractions_data.start_time),
             })
             
         all_ct_data[index+1]=ct_data
@@ -157,8 +162,8 @@ def create(request, ct_id):
                     .first()
                 )
                 crow_opening_list.append(m_db)
-            print('m_list',m_list)
-            print('crow_opening_list',crow_opening_list[0])
+            # print('m_list',m_list)
+            # print('crow_opening_list',crow_opening_list[0])
             recommend_data= []
             for m, fc in zip(m_list, crow_opening_list):
                 recommend_data.append({
@@ -209,7 +214,7 @@ def create(request, ct_id):
 
         if ct_status == "2":
             o_attractions_list = request.POST.getlist("total_aid_list[]")
-            print('o_attractions_list我在這!!!!!!!!!!!!!!!!!!',o_attractions_list)
+            # print('o_attractions_list我在這!!!!!!!!!!!!!!!!!!',o_attractions_list)
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
             final = final_order(
@@ -275,7 +280,8 @@ def create(request, ct_id):
                 order_attractions_data.append({
                     'final_result_list': fr,
                     'final_crow_opening_list': fc,
-                    'final_crowd_list' : f"{min(fc['crowd'][f_nt],fc['crowd'][f_nt+1])} ~ {max(fc['crowd'][f_nt],fc['crowd'][f_nt+1])}"  
+                    'final_crowd_list' : f"{min(fc['crowd'][f_nt],fc['crowd'][f_nt+1])} ~ {max(fc['crowd'][f_nt],fc['crowd'][f_nt+1])}",  
+                    'weather': get_weather_data(fr['address'],start_day[0:4],start_day[5:7],int(start_day[8:])+index,fnowtime),
                 })
             for frr,frc in zip(final_remainder_result_list,final_remainder_crow_opening_list):
                 remainder_attractions_data.append({

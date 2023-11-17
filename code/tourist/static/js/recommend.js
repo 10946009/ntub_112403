@@ -73,7 +73,6 @@ function submitRecommend(){
     },
       success: function (response) {
         console.log(response);
-        
         order_attractions_detail_div.html(response['order_attractions']);
         checkAndAddClass();
       },

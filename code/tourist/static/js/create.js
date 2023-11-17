@@ -75,9 +75,9 @@ for (var i = 0; i < total_day.length; i++) {
 let isDoneVisible = false;
 
 function flipped() {
-  const done = document.getElementById('done');
-  const initialLayout = document.getElementById('initialLayout');
-  const flippedBtn = document.getElementById('flippedBtn');
+  const done = document.getElementById('done-' + globalDay);
+  const initialLayout = document.getElementById('initialLayout-'+globalDay);
+  const flippedBtn = document.getElementById('flippedBtn-'+globalDay);
 
 
   if (isDoneVisible) {
@@ -129,6 +129,7 @@ function submitAction(day) {
 function submitAction2(day) {
   showRightDiv();
   flipped();
+  submitRecommend();
 }
 
 // slide right section
