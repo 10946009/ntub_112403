@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="../static/css/register.css"> -->
 <link rel="stylesheet" href="../static/css/edit.css">
 
-{% comment %} <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> {% endcomment %}
+{% comment %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> {% endcomment %}
 <script src="/static/js/jquery-3.7.0.min.js"></script>
-{% comment %} <script src="/static/js/bootstrap.js"></script> {% endcomment %}
+{% comment %}
+<script src="/static/js/bootstrap.js"></script> {% endcomment %}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 {% endblock %}
@@ -52,14 +54,45 @@
         </div>
     </nav> {% endcomment %}
     {% block body %}
-    <div class="row info">
+    <div class="row info" style="margin-top: 140px;">
         <div class="col-1"></div>
         <div class="col-3 col-s-12 menu">
             <div class="topic">
                 <h2>帳號管理</h2>
             </div>
             <div class="head_change">
-                <div class="avatar">
+                <div style="display: flex;justify-content: center;">
+                    <div id="selected-avatar">
+                        <img src="../static/images/dog.jpg" alt="Selected Avatar"
+                            style="width: 100%; height: 100%; border-radius:50%">
+                    </div>
+                </div>
+                <button onclick="openChange()" style="margin-top:20px;">更換頭像</button>
+                <div id="head_selected">
+                    <div id="head_selected-content">
+                        <h2 style="margin-bottom:20px;">更換頭貼</h2>
+                        <!-- 預設頭貼 -->
+                        <img src="../static/images/dog.jpg" alt="Avatar 1" class="head_selected-avatar"
+                            onclick="selectAvatarAndClosehead_selected('../static/images/dog.jpg')">
+                        <img src="../static/images/user1.png" alt="Avatar 2" class="head_selected-avatar"
+                            onclick="selectAvatarAndClosehead_selected('../static/images/user1.png')">
+                        <img src="../static/images/user2.png" alt="Avatar 3" class="head_selected-avatar"
+                            onclick="selectAvatarAndClosehead_selected('../static/images/user2.png')">
+                        <img src="../static/images/user3.png" alt="Avatar 3" class="head_selected-avatar"
+                            onclick="selectAvatarAndClosehead_selected('../static/images/user3.png')">
+                        <img src="../static/images/peka.webp" alt="Avatar 3" class="head_selected-avatar"
+                            onclick="selectAvatarAndClosehead_selected('../static/images/peka.webp')">
+                        <img src="../static/images/an.jpeg" alt="Avatar 3" class="head_selected-avatar"
+                            onclick="selectAvatarAndClosehead_selected('../static/images/an.jpeg')">
+                        <img src="../static/images/user1.png" alt="Avatar 2" class="head_selected-avatar"
+                            onclick="selectAvatarAndClosehead_selected('../static/images/user1.png')">
+                        <img src="../static/images/user2.png" alt="Avatar 3" class="head_selected-avatar"
+                            onclick="selectAvatarAndClosehead_selected('../static/images/user2.png')">
+                        <div><button onclick="closehead_selected()" style="margin-top:20px;">取消</button></div>
+                    </div>
+                </div>
+
+                <!-- <div class="avatar">
                     <img id="avatar-preview" src="../static/images/dog.jpg" alt="頭貼預覽">
                 </div>
                 <div class="head_file">
@@ -69,11 +102,31 @@
                     <label for="avatar" class="file-upload-label">選擇檔案</label>
                 </div>
                 <div class="form-group">
-                    <!-- <label for="bio">個人簡介:</label> -->
+                    <label for="bio">個人簡介:</label>
                     <textarea id="bio" name="bio" placeholder="請輸入個人簡介"></textarea>
+                </div> -->
+            </div>
+            <div class="usertopic">
+                <h6 style=" font-size: 18px;">
+                    <i class="fa-solid fa-palette" style="margin-right:5px; margin-bottom:20px;"></i>喜愛主題
+                </h6>
+                <div style="margin-left:20px;">
+                    <span class="add_tag" style="background-color: #4caf50;">新增<span style="margin-left:5px;"><i class="fa-solid fa-plus"></i></span></span>
+                    <span class="article-tag">動物園<span class="_icon"><i class="fas fa-times"></i></span></span>
+                    <span class="article-tag">公園<span class="_icon"><i class="fas fa-times"></i></span></span>
+                    <span class="article-tag">學校<span class="_icon"><i class="fas fa-times"></i></span></span>
+                    <span class="article-tag">廟<span class="_icon"><i class="fas fa-times"></i></span></span>
+                    <span class="article-tag">動物園<span class="_icon"><i class="fas fa-times"></i></span></span>
+                    <span class="article-tag">公園<span class="_icon"><i class="fas fa-times"></i></span></span>
+                    <span class="article-tag">學校<span class="_icon"><i class="fas fa-times"></i></span></span>
+                    <span class="article-tag">廟<span class="_icon"><i class="fas fa-times"></i></span></span>
+                    <span class="article-tag">動物園<span class="_icon"><i class="fas fa-times"></i></span></span>
+                    <span class="article-tag">公園<span class="_icon"><i class="fas fa-times"></i></span></span>
+                    <span class="article-tag">學校<span class="_icon"><i class="fas fa-times"></i></span></span>
+                    <span class="article-tag">廟<span class="_icon"><i class="fas fa-times"></i></span></span>
                 </div>
             </div>
-            <div>
+            <!--<div>
                 <ul>
                     <a href="#person_info">
                         <span>
@@ -87,13 +140,13 @@
                             <i class="fa-solid fa-lock"></i> TripFunChill 帳號密碼
                         </li>
                     </a>
-                    <a href="#user_check">
+                     <a href="#user_check">
                         <li>
                             <i class="fa-solid fa-shield-halved"></i> 雙重驗證
                         </li>
                     </a>
                 </ul>
-            </div>
+            </div> -->
         </div>
         <div class="col-7 col-s-12 content">
             <div class="row">
@@ -109,18 +162,23 @@
                 </div>
                 <div class="col-7 col-s-7 aside">
                     <div class="inner">
-                        <div class="input-with-icon">
-                            
+                        <div class="input-with-icon" style="font-size:16px;">
+
                             {% comment %} <i class="fa-solid fa-envelope icon_email"></i> {% endcomment %}
                             信箱：{{detail.email}}<br>
                             {% comment %} <input type="email" placeholder="e-mail" name="email" value="" required>
                         </div> {% endcomment %}
-                        性別：
-                        <select name="gender" style="padding: 6px;">
-                            <option {% if detail.gender == "男" %}selected {% endif %} value="1" name="gender">男</option>
-                            <option {% if detail.gender == "女" %}selected {% endif %} value="2" name="gender">女</option>
-                            <option {% if detail.gender == "不公開" %}selected {% endif %} value="0" name="gender">不公開</option>
-                        </select>
+                        <div style="margin-top: 20px;">
+                            性別：
+                            <select name="gender" style="padding: 6px;">
+                                <option {% if detail.gender == "男" %}selected {% endif %} value="1" name="gender">男
+                                </option>
+                                <option {% if detail.gender == "女" %}selected {% endif %} value="2" name="gender">女
+                                </option>
+                                <option {% if detail.gender == "不公開" %}selected {% endif %} value="0" name="gender">不公開
+                                </option>
+                            </select>
+                        </div>
                         <span>
                             <p></p>
                         </span>
@@ -170,8 +228,8 @@
                         <p>
                         </p>
                         生日：
-                        <input type="date" placeholder="生日(範例:2000/01/01)" name="birthday" required value="{{detail.birthday}}"
-                            min="1911-01-01" max="{{ nowday }}" style="padding:4px">
+                        <input type="date" placeholder="生日(範例:2000/01/01)" name="birthday" required
+                            value="{{detail.birthday}}" min="1911-01-01" max="{{ nowday }}" style="padding:4px">
                         <p>
                         </p>
                     </div>
@@ -204,7 +262,8 @@
                         <div class="inner">
                             <div class="input-with-icon">
                                 <i class="fas fa-user input-icon"></i>
-                                <input type="text" placeholder="使用者名稱" name="username" value= "{{detail.username}}"required>
+                                <input type="text" placeholder="使用者名稱" name="username" value="{{detail.username}}"
+                                    required>
                             </div>
                             <div class="password-container">
                                 <i class="fa-solid fa-key input-icon"></i>
@@ -247,6 +306,9 @@
                                 <span style="color:rgb(207, 49, 49);">至少包含8個字元符號</span>
                                 <br>
                             </div>
+                            <div style="text-align: right;">
+                                <button class="pwd_btn" style="margin-top:20px;">確定更改並驗證</button>
+                            </div>
                             <!-- <div class="head_change">
                             <div class="avatar">
                                 <img id="avatar-preview" src="../static/images/dog.jpg" alt="頭貼預覽">
@@ -261,7 +323,7 @@
                     </div>
                 </div>
             </div>
-            <div class="info1">
+            <!-- <div class="info1">
                 <div class="row">
                     <div class="col-5 col-s-5 aside1" id="user_check">
                         <div class="con">
@@ -287,19 +349,23 @@
                                 </div>
 
                             </div>
-                            <!-- <div class="head_change">
-                            <div class="avatar">
-                                <img id="avatar-preview" src="../static/images/dog.jpg" alt="頭貼預覽">
+                            <div class="head_change">
+                                <div class="avatar">
+                                    <img id="avatar-preview" src="../static/images/dog.jpg" alt="頭貼預覽">
+                                </div>
+                                <div class="head_file">
+                                    <input type="file" id="avatar" name="avatar" accept="image/*"
+                                        class="file-upload-input" onchange="previewAvatar(event)"><br>
+                                    <label for="avatar" class="file-upload-label">選擇檔案</label>
+                                </div>
                             </div>
-                            <div class="head_file">
-                                <input type="file" id="avatar" name="avatar" accept="image/*" class="file-upload-input"
-                                    onchange="previewAvatar(event)"><br>
-                                <label for="avatar" class="file-upload-label">選擇檔案</label>
-                            </div>
-                        </div> -->
                         </div>
                     </div>
                 </div>
+            </div> -->
+            <div style="text-align: right;">
+                <button class="cancel_btn" style="margin-top:20px;">取消</button> 
+                <button class="confirm_change_btn" style="margin-top:20px;">確定更改</button>
             </div>
             <div class="col-1">
             </div>
@@ -307,6 +373,24 @@
     </div>
 
     <script>
+        function selectAvatar(avatarSrc) {
+            // 將選擇的頭像顯示在selected-avatar區域
+            document.getElementById('selected-avatar').innerHTML = `<img src="${avatarSrc}" alt="Selected Avatar" style="width: 100%; height: 100%; border-radius:50%">`;
+        }
+        function openChange() {
+            // 顯示
+            document.getElementById('head_selected').style.display = 'flex';
+        }
+        function closehead_selected() {
+            // 關閉
+            document.getElementById('head_selected').style.display = 'none';
+        }
+
+        function selectAvatarAndClosehead_selected(avatarSrc) {
+            // 選擇頭貼並關閉
+            selectAvatar(avatarSrc);
+            closehead_selected();
+        }
         function previewAvatar(event) {
             var input = event.target;
             var reader = new FileReader();

@@ -108,7 +108,7 @@
 }
 
 .aside1 {
-    background-color: rgb(2, 118, 153);
+    background-color: rgb(3, 136, 176);
     padding: 15px;
     color: #ffffff;
     font-size: 14px;
@@ -117,6 +117,15 @@
     border-bottom-left-radius: 3%;
 
 }
+
+
+body {
+    /* background-color: #d5d5d5bf; */
+    background-image: url(../images/trip_bg_att.png);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 
 .info1 {
     margin-top: 20px;
@@ -283,7 +292,7 @@
     margin: 0px 0px 20px;
     font-family: inherit;
     font-size: inherit;
-    line-height: inherit
+    line-height: inherit;
 }
 
 .check {
@@ -415,4 +424,140 @@
     color: #000;
     top: 10px;
     left: 10px;
+}
+
+#avatar-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+#selected-avatar {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    border: 1px solid #333;
+}
+
+#head_selected {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+#head_selected-content {
+    width: 40%;
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.head_selected-avatar {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.pwd_btn {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.pwd_btn:hover {
+    background-color: #45a049;
+}
+
+.usertopic {
+    margin-bottom: 20px;
+}
+
+.article-tag {
+    background-color: #c3c2c2;
+    color: rgb(0, 0, 0);
+    padding: 6px 12px;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+    position: relative;
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+/* 篩選條件結果標籤(右上x） */
+._icon {
+    font-size: 12px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: rgb(200, 73, 73);
+    border-radius: 50%;
+    padding: 0 4px 0 4px;
+}
+
+.add_tag {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.add_tag:hover {
+    background-color: #45a049;
+}
+
+.confirm_change_btn {
+    background-color: #427dae;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cancel_btn {
+    background-color: #af514c;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.confirm_change_btn:hover {
+    background-color: #1c6bab;
+}
+
+.cancel_btn:hover {
+    background-color: #a32f28;
 }

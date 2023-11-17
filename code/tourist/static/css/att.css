@@ -2167,7 +2167,7 @@ img {
     display: inline-block;
     padding: 8px 10px;
     border-radius: 25px;
-    background-color: rgb(203, 202, 201);
+    background-color: rgb(193, 223, 236);
     margin-top: 8px;
 
 }
@@ -2666,7 +2666,7 @@ img {
     /* RWD返回上一頁 */
     .return_2 {
         display: block;
-        background-color: #a5a6a7;
+        background-color: rgb(228, 202, 171);
         padding: 10px;
     }
 
@@ -2676,6 +2676,7 @@ img {
     }
 
     .comment_topic {
+        background-color: rgb(193, 223, 236);
         width: 100%;
         display: flex;
         justify-content: center;
@@ -2911,6 +2912,18 @@ img {
         padding-bottom: 10px;
         /* padding: 20px; */
     }
+
+    .score_RWD {
+        font-size: 14px;
+    }
+
+    .rating1 {
+        font-size: 18px;
+    }
+
+    .look_people {
+        font-size: 16px;
+    }
 }
 
 @media screen and (min-width:1600px) {
@@ -2943,7 +2956,7 @@ img {
     #new_fifliter_topic,
     #new_filiter_user,
     .all_att_tip {
-        font-size: 28px;
+        font-size: 26px;
     }
 
     .clear_1 {
