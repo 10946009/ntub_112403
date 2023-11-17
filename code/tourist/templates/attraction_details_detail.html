@@ -171,7 +171,7 @@
                                         {% for question in question_list %}
                                         {% if forloop.counter <= 2 %} <div class="comment">
                                             <div class="avatar">
-                                                <img src="../static/images/peka.webp" alt="User Avatar">
+                                                <img src="{{question.u.get_photo}}" alt="User Avatar">
                                             </div>
                                             <div class="comment-content">
                                                 <h5 class="username">
@@ -427,10 +427,9 @@
                     <!-- 放user新增回覆的框框 -->
                     <div class="comment_new" id="comment_new">
                         {% for answer in question.get_answer %}
-
                         <div class="comment">
                             <div class="avatar">
-                                <img src="../static/images/an.jpeg" alt="User Avatar">
+                                <img src="{{answer.u.get_photo}}" alt="User Avatar">
                             </div>
                             <div class="comment-content">
                                 <h6 class="username">
@@ -455,13 +454,14 @@
 
                     <div id="comment_qa" style="display: none;">
                     </div>
+                    {% if request.user.is_authenticated %}
                     <div class="comment">
                         <div class="avatar">
-                            <img src="../static/images/peka.webp" alt="User Avatar">
+                            <img src="{{request.user.get_photo}}" alt="User Avatar">
                         </div>
                         <div class="comment-content">
                             <h6 class="username">
-                                皮卡丘<br>
+                                {{request.user.username}}<br>
                                 <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;">
                                     <i class="fa-solid fa-crown"></i>在地嚮導&ensp;
                                 </span>
@@ -479,6 +479,16 @@
                                 onclick="sendAnswer({{question.id}})">張貼</span>
                         </div>
                     </div>
+                    {% else %}
+                    <a href="/login">
+                        <div style="text-align: center;">
+                            <h6 class="ask_qa" id="ask_qa">
+                                登入後即可提問
+                            </h6>
+                        </div>
+                    </a>
+                    {% endif %}
+                    
                 </div>
                 <hr style=" border:1px solid #777777; max-width: 100%;">
                 {% empty %}
@@ -1026,9 +1036,16 @@
         <div class="col-3">
             <div style="margin-left: 30px; margin-top: 10px;">
                 <div>
+                    {% if request.user.is_authenticated %}
                     <h5 class="comment_topic" id="write_comment" onclick="showCommentLoaderAndContent()">
                         <strong>發表評論</strong>
                     </h5>
+                    {% else %}
+                    <a href="/login">
+                    <h5 class="comment_topic" id="write_comment">
+                        <strong>登入後發表評論</strong>
+                    </a>
+                    {% endif %}
                 </div>
                 <!-- 先註解 -->
                 <!-- <div>
@@ -1042,7 +1059,7 @@
             {% for comment in comment_list %}
             <div class="comment">
                 <div class="avatar">
-                    <img src="../static/images/an.jpeg" alt="User Avatar">
+                    <img src="{{comment.u.get_photo}}" alt="User Avatar">
                 </div>
                 <div class="comment-content userComment" id="{{comment.id}}">
                     <div style="display: flex; justify-content: space-between; position: relative;">
@@ -1191,7 +1208,7 @@
                     <div class="share_comment_con" style="padding: 20px;">
                         <div class="comment">
                             <div class="avatar">
-                                <img src="../static/images/an.jpeg" alt="User Avatar">
+                                <img src="{{request.user.get_photo}}" alt="User Avatar">
                             </div>
                             <div class="comment-content">
                                 <h6 class="username">

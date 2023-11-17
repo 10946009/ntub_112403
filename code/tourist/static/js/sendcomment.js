@@ -139,8 +139,8 @@ allComment.forEach(function (container, index) {
     var likeButton = container.querySelector("#likeButton");
     var likeIcon = container.querySelector(".fa-thumbs-up");
     var likeCountElement = container.querySelector("#likeCount");
-    
     likeButton.addEventListener("click", function () {
+        console.log("hello")
         const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
         $.ajax({
             headers: { 'X-CSRFToken': csrftoken },
@@ -150,20 +150,20 @@ allComment.forEach(function (container, index) {
                 comment_id: container.id
             },
             success: function (response) {
-                console.log(response);
+                if (likeIcon.classList.contains("fa-regular")) {
+                    likeIcon.classList.remove("fa-regular");
+                    likeIcon.classList.add("fa-solid");
+                    likeCountElement.textContent = parseInt(likeCountElement.textContent) + 1;
+                  } else {
+                    likeIcon.classList.remove("fa-solid");
+                    likeIcon.classList.add("fa-regular");
+                    likeCountElement.textContent = parseInt(likeCountElement.textContent) - 1;
+                  }
             },
-            error: function (xhr, status, error) {
-                console.log("AJAX請求失敗: " + error);
+            error: function(xhr, status, error) {
+                    console.error("Error:", error);
             }});
-      if (likeIcon.classList.contains("fa-regular")) {
-        likeIcon.classList.remove("fa-regular");
-        likeIcon.classList.add("fa-solid");
-        likeCountElement.textContent = parseInt(likeCountElement.textContent) + 1;
-      } else {
-        likeIcon.classList.remove("fa-solid");
-        likeIcon.classList.add("fa-regular");
-        likeCountElement.textContent = parseInt(likeCountElement.textContent) - 1;
-      }
+
       
     });
 });

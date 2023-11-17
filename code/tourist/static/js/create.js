@@ -1,18 +1,3 @@
-// info_icon popup
-var infoIcon = document.getElementById("info_icon");
-var modal = document.getElementById("myModal");
-var closeBtn = document.querySelector(".close");
-
-infoIcon.addEventListener('click', function (event) {
-  event.preventDefault();
-  modal.classList.add('active');
-});
-
-closeBtn.addEventListener('click', function () {
-  modal.classList.remove('active');
-});
-
-
 document.addEventListener('DOMContentLoaded', function () {
 
   const selectedTab = localStorage.getItem('selectedTab');
@@ -44,34 +29,6 @@ function saveTabState(tabId, day) {
   inputBottom();
   checkHasLocationData();
 }
-
-// 翻轉右邊區塊&按鈕RWD變換
-var islikeAndRecVisible = false;
-var isIconSet = false;
-
-function changeToSearchRec() {
-  const likeAndRec = document.getElementById('likeAndRec');
-  const searchBlock = document.getElementById('searchBlock');
-  const button = document.getElementById('changeToSearch');
-
-  islikeAndRecVisible = !islikeAndRecVisible;
-
-  if (islikeAndRecVisible) {
-    likeAndRec.style.transform = 'rotateY(180deg)';
-    searchBlock.style.transform = 'rotateY(0deg)';
-    button.style.backgroundColor = 'rgb(255, 41, 101)';
-    // setIconContent(button);
-    // isIconSet = true;
-  } else {
-    likeAndRec.style.transform = 'rotateY(0deg)';
-    searchBlock.style.transform = 'rotateY(180deg)';
-    button.style.backgroundColor = '#0066DB';
-    likeAndRec.textContent = "收藏與推薦";
-    // setIconContent(button);
-    // isIconSet = true;
-  }
-}
-
 
 
 // 高度一致
@@ -114,68 +71,95 @@ var isdoneJourneyVisible = {};
 for (var i = 0; i < total_day.length; i++) {
   isdoneJourneyVisible[i + 1] = false;
 }
-function clickChangeDone(day = null) {
-  if (day === null) {
-    day = globalDay;
-  }
-  console.log(day)
-  const checkRec = document.getElementById('checkRec-' + day);
-  const done = document.getElementById('done-' + day);
-  const button = document.getElementById("changeToRec-" + day);
-  isdoneJourneyVisible[day] = !isdoneJourneyVisible[day];
-  if (isdoneJourneyVisible[day]) {
-    checkRec.style.transform = 'rotateY(180deg)';
-    done.style.transform = 'rotateY(0deg)';
-    button.textContent = "重新推薦";
-    button.style.backgroundColor = "rgb(255, 41, 101)";
 
+let isDoneVisible = false;
+
+function flipped() {
+  const done = document.getElementById('done');
+  const initialLayout = document.getElementById('initialLayout');
+  const flippedBtn = document.getElementById('flippedBtn');
+
+
+  if (isDoneVisible) {
+    done.classList.remove('changeActive');
+    setTimeout(() => {
+      done.classList.add('hidden');
+      initialLayout.classList.add('changeActive');
+    }, 50); // 延遲切換，不然會直接跳轉沒有翻轉效果
+    flippedBtn.textContent = '景點排序';
   } else {
-    checkRec.style.transform = 'rotateY(0deg)';
-    done.style.transform = 'rotateY(180deg)';
-    button.textContent = "景點排序";
-    button.style.backgroundColor = "#0066DB";
+    initialLayout.classList.remove('changeActive');
+    done.classList.remove('hidden');
+    setTimeout(() => {
+      done.classList.add('changeActive');
+    }, 50); 
+    flippedBtn.textContent = '查看推薦';
   }
-}
-// RWD文字切圖示按鈕
-const repeatBtn = document.querySelector('.changeToRec');
-
-function changeRepeatBtnTxt() {
-  if (window.innerWidth <= 690) {
-    if (repeatBtn.textContent === '重新推薦') {
-      // repeatBtn.classList.add('repeatIcon_btn');
-      repeatBtn.innerHTML = '<i class="fa-solid fa-repeat"></i>';
-    } else if (repeatBtn.textContent === '景點排序') {
-      // repeatBtn.classList.add('doneIcon_btn');
-      repeatBtn.innerHTML = '<i class="fa-solid fa-route"></i>';
-    }
-  }
-  if (window.innerWidth > 690) {
-    if (repeatBtn.innerHTML === '<i class="fa-solid fa-repeat"></i>') {
-      repeatBtn.innerHTML = '重新推薦';
-    } else if (repeatBtn.innerHTML === '<i class="fa-solid fa-route"></i>') {
-      repeatBtn.innerHTML = '景點排序';
-    }
-  }
+  isDoneVisible = !isDoneVisible;
 }
 
+// function clickChangeDone(day = null) {
+//   if (day === null) {
+//     day = globalDay;
+//   }
+//   console.log(day)
+//   const initialLayout = document.getElementById('initialLayout-' + day);
+//   const done = document.getElementById('done-' + day);
+//   const button = document.getElementById("changeToDone-" + day);
+//   isdoneJourneyVisible[day] = !isdoneJourneyVisible[day];
+//   if (isdoneJourneyVisible[day]) {
+//     initialLayout.style.transform = 'rotateY(180deg)';
+//     done.style.transform = 'rotateY(0deg)';
+//     button.textContent = "重新推薦";
+//     button.style.backgroundColor = "rgb(255, 41, 101)";
+
+//   } else {
+//     initialLayout.style.transform = 'rotateY(0deg)';
+//     done.style.transform = 'rotateY(180deg)';
+//     button.textContent = "景點排序";
+//     button.style.backgroundColor = "#0066DB";
+//   }
+// }
 
 // 送出功能整合到clickChangeDone函数中
 // 點擊送出會切換到景點排序頁面
 function submitAction(day) {
-
-  const checkRec = document.getElementById('checkRec-' + globalDay);
-  const done = document.getElementById('done-' + globalDay);
-  const button = document.getElementById("changeToRec-" + globalDay);
-
-  checkRec.style.transform = 'rotateY(180deg)';
-  done.style.transform = 'rotateY(0deg)';
-  button.textContent = "重新推薦";
-  button.style.backgroundColor = "rgb(255, 41, 101)";
-  isdoneJourneyVisible[globalDay] = true;
-
-  submitRecommend();
+  showRightDiv();
+}
+function submitAction2(day) {
+  showRightDiv();
+  flipped();
 }
 
+// slide right section
+// const rightBtn = document.getElementById('showRight');
+// const rightDiv = document.getElementById('rightDiv');
+// const overlayBg = document.getElementById('overlayBg');
+
+// var isRightVisible = false;
+
+// function showRightDiv() {
+//   isRightVisible = !isRightVisible;
+
+//   if (window !== 'undefined') {
+//     if (isRightVisible) {
+//       similarRecommend()
+//       rightDiv.style.right = '0px';
+//       overlayBg.style.display = 'block';
+//       rightBtn.innerHTML = '<i class="fa-solid fa-chevron-left fa-rotate-180"></i>';
+//       rightBtn.style.backgroundColor = 'red';
+//       rightBtn.style.color = 'white';
+//       document.body.classList.add('body_noScroll');
+//     } else {
+//       rightDiv.style.right = '-90%';
+//       overlayBg.style.display = 'none';
+//       rightBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+//       rightBtn.style.backgroundColor = '';
+//       rightBtn.style.color = '';
+//       document.body.classList.remove('body_noScroll');
+//     }
+//   }
+// }
 
 
 // 收合搜尋景點
@@ -250,6 +234,7 @@ function openfiliter() {
 // pick spot css 點擊景點時
 function pickspot(checkbox, aid) {
   console.log(checkbox);
+  
   if (checkbox.classList.contains("pickimg")) {
     checkbox.classList.remove("pickimg");
     now_click_attractions[globalDay].delete(aid);
@@ -399,77 +384,6 @@ list.addEventListener('dragend', (e) => {
   currentLi.classList.remove('moving')
 })
 
-// slide right section
-// const rightBtn = document.getElementById('showRight');
-// const rightDiv = document.getElementById('rightDiv');
-// const overlayBg = document.getElementById('overlayBg');
-
-// var isRightVisible = false;
-
-// function showRightDiv() {
-//   isRightVisible = !isRightVisible;
-
-//   if (window !== 'undefined') {
-//     if (isRightVisible) {
-//       similarRecommend()
-//       rightDiv.style.right = '0px';
-//       overlayBg.style.display = 'block';
-//       rightBtn.innerHTML = '<i class="fa-solid fa-chevron-left fa-rotate-180"></i>';
-//       rightBtn.style.backgroundColor = 'red';
-//       rightBtn.style.color = 'white';
-//       document.body.classList.add('body_noScroll');
-//     } else {
-//       rightDiv.style.right = '-90%';
-//       overlayBg.style.display = 'none';
-//       rightBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
-//       rightBtn.style.backgroundColor = '';
-//       rightBtn.style.color = '';
-//       document.body.classList.remove('body_noScroll');
-//     }
-//   }
-// }
-
-// 底部暫存區塊
-$(document).ready(function () {
-  var isContentHidden = true;
-  var originalHeight = $(document).height();
-  var bottomHeight = $('.bottom').height();
-  var contentHeight = $("#hiddenContent").height(); // 計算高度
-  var upDown_icon = $('#upDown_icon');
-
-  var originalScrollPos = 0;
-
-  $("#controller").click(function () {
-    if (isContentHidden) {
-      $("#hiddenContent").slideDown(function () {
-        // 展開內容並滑道也面底部
-        var newHeight = originalHeight + contentHeight / 2;
-        $('body').css('height', newHeight);
-        window.scrollTo({
-          top: newHeight,
-          behavior: 'smooth'
-        });
-      });
-      upDown_icon.toggleClass('fa-rotate-180')
-    } else {
-      // 計算原始高度底部位置
-      var originalBottomPos = originalHeight - $(window).height();
-
-      $("#hiddenContent").slideUp(function () {
-        // 收起後恢復原網頁高度
-        $('body').css('height', originalHeight);
-        window.scrollTo({
-          top: originalBottomPos,
-          behavior: 'smooth'
-        });
-      });
-
-      upDown_icon.toggleClass('fa-rotate-180')
-    }
-    isContentHidden = !isContentHidden;
-  });
-});
-
 // RWD縮小之後"儲存"變圖案
 const saveBtn = document.querySelector('.recommend_save');
 
@@ -535,8 +449,8 @@ function checkHasData() {
     const hasAttractions = container.querySelector('.innerlist');
     // console.log(hasAttractions);
     if (hasAttractions != null) {
-      const changeToRec = container.querySelector('.changeToRec').id;
-      clickChangeDone(changeToRec.charAt(changeToRec.length - 1))
+      const changeToDone = container.querySelector('.changeToDone').id;
+      clickChangeDone(changeToDone.charAt(changeToDone.length - 1))
     }
   });
 }

@@ -1,11 +1,12 @@
 /* 整個搜尋引擎那條 */
 .create_search {
-    width: 100%;
+    width: 80%;
     /* padding: 0 20px; */
 }
 
 .create_search .create_searchInput {
     display: inline-block;
+    padding: 2px;
     background: #fff;
     width: 100%;
     border-radius: 30px;
@@ -60,7 +61,7 @@
     top: 100%;
     left: 0;
     right: 0;
-    width: 80%;
+    width: 100%;
 }
 
 /* 歷史紀錄的部分 */
