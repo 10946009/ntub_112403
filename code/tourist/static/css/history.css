@@ -225,6 +225,7 @@
     margin: 0;
 }
 .otherCommentTxtDiv{
+    width: 100%;
     display: flex;
     padding-right: 5px;
 }

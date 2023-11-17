@@ -131,6 +131,7 @@ function submitComment() {
     c_edit_icon.className = 'fa-solid fa-pen-to-square c_edit_icon c_icon';
     c_edit_iconDiv.appendChild(c_edit_icon);
     iconDiv.appendChild(c_edit_iconDiv);
+    textDiv.appendChild(iconDiv);
     // 加入該class的css(因為是創建的所以抓不到?)
     c_edit_iconDiv.classList.add('c_icon');
 
@@ -140,10 +141,11 @@ function submitComment() {
     c_delete_icon.className = 'fa-solid fa-trash c_delete_icon c_icon';
     c_delete_iconDiv.appendChild(c_delete_icon);
     iconDiv.appendChild(c_delete_iconDiv);
+    textDiv.appendChild(iconDiv);
     // 加入該class的css(因為是創建的所以抓不到?)
     c_delete_iconDiv.classList.add('c_icon');
     
-    newComment.appendChild(iconDiv);
+    newComment.appendChild(textDiv);
     return newComment;
   }
 
