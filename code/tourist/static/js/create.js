@@ -129,6 +129,7 @@ function submitAction(day) {
 function submitAction2(day) {
   showRightDiv();
   flipped();
+  submitRecommend();
 }
 
 // slide right section

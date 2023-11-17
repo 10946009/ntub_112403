@@ -41,7 +41,7 @@
                     {% endfor %}
                   </div>
 
-                  <a class="fa-solid fa-circle-info info_icon_left" onclick="clickInfo(this)"></a>
+                  <a class="fa-solid fa-circle-info info_icon_left" onclick="clickInfo({{item.id}})"></a>
                   
                   {% if item.is_favorite == "1" %}
                   <button class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="{{item.is_favorite}}"
@@ -89,7 +89,10 @@
     <div class="modal" id="myModal">
         <div class="modal-content">
             <span class="close" onclick="clickClose()">&times;</span>
-            <iframe src="../templates/newCreateTEST.html" frameborder="0"></iframe>
+            <div id = "changeInfo">
+              {% include "attractions_info.html" %}
+            </div>
+            
         </div>
     </div>
     <div class="explore hidemeexplore">
