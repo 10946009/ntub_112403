@@ -144,8 +144,15 @@
           
           .review-container .head {
             display: flex;
-            align-items: flex-start;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 1rem;
+          }
+
+          .review-container .head .info{
+              display: flex;
+              justify-content: center;
+              align-items: center;
           }
           
           .review-container .user-name {
@@ -295,52 +302,55 @@
           <section>
             <div class="review-content">
               <div class="head">
-                <img class="user-img" src="https://media.karousell.com/media/photos/products/2023/6/14/aera___1686711619_e0898264_progressive.jpg" alt="">
-                <p class="user-name">羽生</p>
+                <div class="info">
+                  <img class="user-img" src="https://media.karousell.com/media/photos/products/2023/6/14/aera___1686711619_e0898264_progressive.jpg" alt="">
+                  <p class="user-name">羽生</p>
+                </div>
+                <div>
+                  <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
+                </div>
               </div>
               <div class="body">
                 <h4 class="title">景點</h4>
                 <date>2023 / 10 / 30</date>
-                <p>羽生偷ㄍㄟˋ婚</p>
+                <p>三峽老街</p>
               </div>
-              <img class="review-img" src="https://www.nippon.com/hk/ncommon/contents/column/75500/75500.jpg" alt="">
+              <img class="review-img" src="https://www.hotelscombined.com.tw/news/wp-content/uploads/sites/316/2020/04/san-xia-lao-jie-768x511.jpg" alt="">
             </div>
             
              <div class="review-content">
               <div class="head">
+                <div class="info">
                 <img class="user-img"src="https://i.pinimg.com/564x/2b/b6/80/2bb680878c04c55c8ea11062de431834.jpg" alt="">
                 <p class="user-name">大谷</p>
               </div>
+              <div>
+                <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
+              </div>
+              </div>
               <div class="body">
                 <h4 class="title">景點</h4>
                 <date>2023 / 10 / 31</date>
-                <p>珮珮的寶</p>
+                <p>北投圖書館</p>
               </div>
-              <img class="review-img" src="https://i.pinimg.com/564x/7e/d1/ea/7ed1eafcb808b4b5765a59501e3d3574.jpg" alt="">
+              <img class="review-img" src="https://www.hotelscombined.com.tw/news/wp-content/uploads/sites/316/2020/04/jing-dian-tui-jian.jpg" alt="">
             </div>
             <div class="review-content">
               <div class="head">
+                <div class="info">
                 <img class="user-img"src="https://hips.hearstapps.com/hmg-prod/images/collage-64b6a4bde5172.jpg?crop=0.496xw:0.990xh;0,0.00977xh&resize=640:*" alt="">
                 <p class="user-name">白白</p>
               </div>
-              <div class="body">
-                <h4 class="title">景點</h4>
-                <date>2023 / 10 / 31</date>
-                <p>趙晴的寶</p>
+              <div>
+                <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
               </div>
-              <img class="review-img" src="https://imgls.tvsou.com/g/202305/25/1685008193inhf.jpg" alt="">
-            </div>
-            <div class="review-content">
-              <div class="head">
-                <img class="user-img"src="https://hips.hearstapps.com/hmg-prod/images/collage-64b6a4bde5172.jpg?crop=0.496xw:0.990xh;0,0.00977xh&resize=640:*" alt="">
-                <p class="user-name"></p>
               </div>
               <div class="body">
                 <h4 class="title">景點</h4>
                 <date>2023 / 10 / 31</date>
-                <p>品茹的寶</p>
+                <p>中正紀念堂</p>
               </div>
-              <img class="review-img" src="https://imgls.tvsou.com/g/202305/25/1685008193inhf.jpg" alt="">
+              <img class="review-img" src="https://blog.tripbaa.com/wp-content/uploads/2020/10/plan_2020090316351725750_b.jpg" alt="">
             </div>
           </section>
             </section>
@@ -364,6 +374,9 @@
         // 移除其他按鈕的藍色樣式
         newestButton.style.backgroundColor = '';
       });
+      function like(){
+        alert('已按讚');
+      }
     </script>
     <script src="/static/js/travel_detail.js"></script>
     {{u_id}}
