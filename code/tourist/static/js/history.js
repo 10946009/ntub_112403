@@ -120,6 +120,32 @@ function submitComment() {
     textDiv.appendChild(textSpan);
     newComment.appendChild(textDiv);
 
+    var iconDiv = document.createElement('div');
+    iconDiv.className = 'c_editDiv';
+    // 加入該class的css(因為是創建的所以抓不到?)
+    iconDiv.classList.add('c_editDiv');
+
+    var c_edit_iconDiv = document.createElement('div');
+    c_edit_iconDiv.className = 'c_edit_iconDiv';
+    var c_edit_icon = document.createElement('button');
+    c_edit_icon.className = 'fa-solid fa-pen-to-square c_edit_icon c_icon';
+    c_edit_iconDiv.appendChild(c_edit_icon);
+    iconDiv.appendChild(c_edit_iconDiv);
+    textDiv.appendChild(iconDiv);
+    // 加入該class的css(因為是創建的所以抓不到?)
+    c_edit_iconDiv.classList.add('c_icon');
+
+    var c_delete_iconDiv = document.createElement('div');
+    c_delete_iconDiv.className = 'c_delete_iconDiv';
+    var c_delete_icon = document.createElement('button');
+    c_delete_icon.className = 'fa-solid fa-trash c_delete_icon c_icon';
+    c_delete_iconDiv.appendChild(c_delete_icon);
+    iconDiv.appendChild(c_delete_iconDiv);
+    textDiv.appendChild(iconDiv);
+    // 加入該class的css(因為是創建的所以抓不到?)
+    c_delete_iconDiv.classList.add('c_icon');
+    
+    newComment.appendChild(textDiv);
     return newComment;
   }
 
