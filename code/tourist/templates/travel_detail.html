@@ -219,6 +219,27 @@
             height: calc(50% - 0.5rem);
 
           }
+          .title-buttons .share-button,
+          .title-buttons .like-button {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            font-size: 20px;
+          }
+
+          .title-buttons .share-button:hover,
+          .title-buttons .like-button:hover {
+            transform: scale(1.2);
+          }
+          .fa-regular.fa-thumbs-up {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+          }
+        
+          .fa-regular.fa-thumbs-up:hover {
+            transform: scale(1.2);
+          }
 </style>
 {% endblock %}
 
