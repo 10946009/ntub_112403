@@ -369,7 +369,9 @@
     <div class="modal" id="myModal">
       <div class="modal-content">
         <span class="close" onclick="clickClose()">&times;</span>
-        <iframe src="your_embedded_page_url" frameborder="0"></iframe>
+        <div id = "changeInfo">
+            {% include "attractions_info.html" %}
+          </div>
       </div>
     </div>
     

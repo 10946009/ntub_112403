@@ -191,7 +191,9 @@
   <div class="modal" id="myModal">
       <div class="modal-content">
           <span class="close" onclick="clickClose()">&times;</span>
-          <iframe src="../templates/newCreateTEST.html" frameborder="0"></iframe>
+          <div id = "changeInfo">
+            {% include "attractions_info.html" %}
+          </div>
       </div>
   </div>
   <!-- show similar and choosed section -->
