@@ -69,35 +69,15 @@ let isEdit = false;
 function addComment() {
   if (!isaddCommentSpaceVisible) {
     addCommentSpace.style.display = 'block';
-    if (addCommentBtn.textContent === '編輯評論') {
-      editedComment();
-    } else {
-      addCommentBtn.textContent = '取消評論';
-    }
+    addCommentBtn.textContent = '取消評論';
   } else {
-    if (addCommentBtn.textContent === '編輯評論') {
-      addCommentBtn.textContent = '取消評論';
-      editedComment();
-    } else {
-      addCommentSpace.style.display = 'none';
-      addCommentBtn.textContent = '新增評論';
-    }
+    addCommentSpace.style.display = 'none';
+    addCommentBtn.textContent = '新增評論';
+
   }
   isaddCommentSpaceVisible = !isaddCommentSpaceVisible;
 }
-// Move the event listener outside of editedComment function
-document.getElementById('commentSubmit').addEventListener('click', function () {
-  if (isEdit) {
-    var commentText = document.getElementById('addCTXT').value;
-    var editedComment = document.querySelector('.row.editing');
 
-    editedComment.querySelector('.otherCommentTxt').innerText = commentText;
-
-    addCommentSpace.style.display = 'none';
-    addCommentBtn.textContent = '編輯評論';
-    isEdit = false;
-  }
-});
 
 // Change editedComment function to only handle edit initiation
 function editedComment() {
@@ -115,22 +95,13 @@ function editedComment() {
 // 發送評論
 function submitComment() {
   var commentText = document.getElementById('addCTXT').value;
+  addCommentBtn.style.display = 'none';
 
-  if (!isEdit) {
-    // Create a new comment when not in edit mode
-    var newCreateComment = createCommentElement(commentText);
-    insertComment(newCreateComment);
-    addCommentSpace.style.display = 'none';
-    addCommentBtn.textContent = '編輯評論';
-  } else {
-    // Logic for editing an existing comment
-    var editedComment = document.querySelector('.row.editing');
-    editedComment.querySelector('.otherCommentTxt').innerText = commentText;
-    editedComment.classList.remove('editing');
-    addCommentSpace.style.display = 'none';
-    addCommentBtn.textContent = '編輯評論';
-    isEdit = false;
-  }
+  var newCreateComment = createCommentElement(commentText);
+  insertComment(newCreateComment);
+  var editedComment = document.querySelector('.row.editing');
+  editedComment.querySelector('.otherCommentTxt').innerText = commentText;
+
   // 創建新評論
   function createCommentElement(commentText) {
     var newComment = document.createElement('div');
@@ -168,30 +139,6 @@ function submitComment() {
     document.getElementById('addCommentSpace').style.display = 'none';
     document.getElementById('addCommentBtn').textContent = '編輯評論'
   }
-  // // 編輯評論
-  // function editedComment() {
-  //   var commentTxt = document.querySelector('.row.editing .otherCommentTxt').innerText;
-  //   var editedComment = document.querySelector('.row.editing');
-
-  //   document.getElementById('addCTXT').value = commentTxt;
-  //   addCommentSpace.style.display = 'block';
-  //   addCommentBtn.textContent = '取消評論';
-
-  //   editedComment.classList.add('editing');
-  //   isEdit = true;
-
-  //   // 下面是你的提交评论的逻辑示例，应该在确认编辑后执行。
-  //   document.getElementById('commentSubmit').addEventListener('click', function () {
-  //     var commentText = document.getElementById('addCTXT').value;
-
-  //     // Update the existing comment with the edited text
-  //     editedComment.querySelector('.otherCommentTxt').innerText = commentText;
-
-  //     addCommentSpace.style.display = 'none';
-  //     addCommentBtn.textContent = '編輯評論';
-  //     isEdit = false;
-  //   });
-  // }
 
 }
 
@@ -214,11 +161,11 @@ $(document).ready(function () {
 })
 
 // 顯示目前市第幾張圖(好像沒辦法放在圖片的右下角)
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   var carousel = document.getElementById('carouselExampleRide');
   var counter = document.getElementById('imgCounter');
   var totalItems = carousel.querySelectorAll('.carousel-item').length; // 定義 totalItems 變數，表示總共有幾張圖片
-  
+
   var carouselInstance = new bootstrap.Carousel(carousel, {
     interval: 3000
   });

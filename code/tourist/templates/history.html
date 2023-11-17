@@ -46,6 +46,16 @@
             </span>
           </a>
         </div>
+        
+        <div class="delete">
+          <a href="" class="deletea">
+            <span class="fa-solid fa-trash-can delete_icon">
+              <br>
+              <span class="icontxt">刪除</span>
+            </span>
+          </a>
+        </div>
+        <!-- 公開按鈕 -->
         <div class="share" id="ct_share">
           {% if item.my_history.status == True %}
           <span class="fa-solid fa-share share_icon" title="已公開" id="submitfavorite_share{{ item.my_history.id }}"
@@ -216,6 +226,14 @@
                   隨邊說說這裡是評論文字的地方<br>
                   隨邊說說這裡是評論文字的地方
                 </span>
+                <div class="c_editDiv">
+                  <div>
+                    <div class="fa-solid fa-pen-to-square c_edit_icon c_icon">編輯</div>
+                  </div>
+                  <div>
+                    <div class="fa-solid fa-trash c_delete_icon c_icon">刪除</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
