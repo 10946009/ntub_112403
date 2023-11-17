@@ -151,7 +151,17 @@
     right: 75px;
     padding: 0;
 }
-
+.delete{
+    display: block;
+    width: 35px;
+    height: 30px;
+    text-align: center;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    padding: 0;
+}
+.deletea,
 .edita {
     font-size: 28px;
     text-decoration: none;
@@ -214,7 +224,17 @@
 .alreadyComment {
     margin: 0;
 }
-
+.otherCommentTxtDiv{
+    position: relative;
+}
+.c_editDiv{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.c_icon{
+    cursor: pointer;
+}
 .otherCommentAvatar {
     display: flex;
     justify-content: center;
@@ -395,16 +415,17 @@
 }
 
 @media (max-width: 768px) {
+    .delete,
     .share {
         top: 0;
     }
-
     .edit {
         top: 0;
         right: 80px;
     }
-
+    .delete_icon,
     .edit_icon {
+        padding-top: 5px;
         color: white;
         text-shadow: 2px 2px 1px #000;
         border-bottom-left-radius: 30px;
@@ -416,6 +437,7 @@
     }
 
     .share_icon {
+        padding-top: 5px;
         color: white;
         text-shadow: 2px 2px 1px #000;
         border-bottom-left-radius: 30px;
