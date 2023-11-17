@@ -78,6 +78,8 @@ urlpatterns = [
     # path("base/", attraction_details.attraction_details_search,name="search_results_base"),
     # path('test/',views.test_input),
     path("useredit/", user_edit.user_edit),
+    path("useredit/post/", user_edit.user_edit_form,name="user_post"),
+
     path("useredit/change_avatar/", user_edit.user_change_avatar),
     path("favorite/", favorite.favorite),
     path("add_travel_favorite/", favorite.add_travel_favorite),  # 沒有頁面

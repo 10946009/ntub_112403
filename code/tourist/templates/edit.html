@@ -1,23 +1,19 @@
 {% extends 'base.html' %}
-
 {% block title %}個人資料編輯{% endblock %}
 {% block content %}
-<!-- RWD沒辦法詮釋，因為下面這串，會有padding:12px出現 -->
-<link rel="stylesheet" href="/static/css/bootstrap2023.css">
-<!-- <link rel="stylesheet" href="/static/css/reset_pw.css">
+    <!-- RWD沒辦法詮釋，因為下面這串，會有padding:12px出現 -->
+    <link rel="stylesheet" href="/static/css/bootstrap2023.css">
+    <!-- <link rel="stylesheet" href="/static/css/reset_pw.css">
     <link rel="stylesheet" href="/static/css/register.css"> -->
-<link rel="stylesheet" href="/static/css/edit.css">
-
-{% comment %}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> {% endcomment %}
-<script src="/static/js/jquery-3.7.0.min.js"></script>
-{% comment %}
-<script src="/static/js/bootstrap.js"></script> {% endcomment %}
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/edit.css">
+    {% comment %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> {% endcomment %}
+    <script src="/static/js/jquery-3.7.0.min.js"></script>
+    {% comment %}
+    <script src="/static/js/bootstrap.js"></script> {% endcomment %}
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 {% endblock %}
-
-
 {% comment %}
 
 <body>
@@ -52,8 +48,8 @@
                 </ul>
             </div>
         </div>
-    </nav> {% endcomment %}
-    {% block body %}
+</nav> {% endcomment %}
+{% block body %}
     <div class="row info" style="margin-top: 140px;">
         <div class="col-1"></div>
         <div class="col-3 col-s-12 menu">
@@ -63,8 +59,11 @@
             <div class="head_change">
                 <div style="display: flex;justify-content: center;">
                     <div id="selected-avatar">
-                        <img src="{{detail.get_photo}}" alt="Selected Avatar"
-                            style="width: 100%; height: 100%; border-radius:50%">
+                        <img src="{{ detail.get_photo }}"
+                             alt="Selected Avatar"
+                             style="width: 100%;
+                                    height: 100%;
+                                    border-radius:50%">
                     </div>
                 </div>
                 <button onclick="openChange()" style="margin-top:20px;">更換頭像</button>
@@ -72,26 +71,43 @@
                     <div id="head_selected-content">
                         <h2 style="margin-bottom:20px;">更換頭貼</h2>
                         <!-- 預設頭貼 -->
-                        <img src="../static/images/dog.jpg" alt="Avatar 1" class="head_selected-avatar"
-                            onclick="selectAvatarAndClosehead_selected('../static/images/dog.jpg')">
-                        <img src="../static/images/user1.png" alt="Avatar 2" class="head_selected-avatar"
-                            onclick="selectAvatarAndClosehead_selected('../static/images/user1.png')">
-                        <img src="../static/images/user2.png" alt="Avatar 3" class="head_selected-avatar"
-                            onclick="selectAvatarAndClosehead_selected('../static/images/user2.png')">
-                        <img src="../static/images/user3.png" alt="Avatar 3" class="head_selected-avatar"
-                            onclick="selectAvatarAndClosehead_selected('../static/images/user3.png')">
-                        <img src="../static/images/peka.webp" alt="Avatar 3" class="head_selected-avatar"
-                            onclick="selectAvatarAndClosehead_selected('../static/images/peka.webp')">
-                        <img src="../static/images/an.jpeg" alt="Avatar 3" class="head_selected-avatar"
-                            onclick="selectAvatarAndClosehead_selected('../static/images/an.jpeg')">
-                        <img src="../static/images/user1.png" alt="Avatar 2" class="head_selected-avatar"
-                            onclick="selectAvatarAndClosehead_selected('../static/images/user1.png')">
-                        <img src="../static/images/user2.png" alt="Avatar 3" class="head_selected-avatar"
-                            onclick="selectAvatarAndClosehead_selected('../static/images/user2.png')">
-                        <div><button onclick="closehead_selected()" style="margin-top:20px;">取消</button></div>
+                        <img src="../static/images/dog.jpg"
+                             alt="Avatar 1"
+                             class="head_selected-avatar"
+                             onclick="selectAvatarAndClosehead_selected('../static/images/dog.jpg')">
+                        <img src="../static/images/user1.png"
+                             alt="Avatar 2"
+                             class="head_selected-avatar"
+                             onclick="selectAvatarAndClosehead_selected('../static/images/user1.png')">
+                        <img src="../static/images/user2.png"
+                             alt="Avatar 3"
+                             class="head_selected-avatar"
+                             onclick="selectAvatarAndClosehead_selected('../static/images/user2.png')">
+                        <img src="../static/images/user3.png"
+                             alt="Avatar 3"
+                             class="head_selected-avatar"
+                             onclick="selectAvatarAndClosehead_selected('../static/images/user3.png')">
+                        <img src="../static/images/peka.webp"
+                             alt="Avatar 3"
+                             class="head_selected-avatar"
+                             onclick="selectAvatarAndClosehead_selected('../static/images/peka.webp')">
+                        <img src="../static/images/an.jpeg"
+                             alt="Avatar 3"
+                             class="head_selected-avatar"
+                             onclick="selectAvatarAndClosehead_selected('../static/images/an.jpeg')">
+                        <img src="../static/images/user1.png"
+                             alt="Avatar 2"
+                             class="head_selected-avatar"
+                             onclick="selectAvatarAndClosehead_selected('../static/images/user1.png')">
+                        <img src="../static/images/user2.png"
+                             alt="Avatar 3"
+                             class="head_selected-avatar"
+                             onclick="selectAvatarAndClosehead_selected('../static/images/user2.png')">
+                        <div>
+                            <button onclick="closehead_selected()" style="margin-top:20px;">取消</button>
+                        </div>
                     </div>
                 </div>
-
                 <!-- <div class="avatar">
                     <img id="avatar-preview" src="/static/images/dog.jpg" alt="頭貼預覽">
                 </div>
@@ -104,11 +120,13 @@
                 <div class="form-group">
                     <label for="bio">個人簡介:</label>
                     <textarea id="bio" name="bio" placeholder="請輸入個人簡介"></textarea>
-                </div> -->
+                                </div> -->
             </div>
             <div class="usertopic">
                 <h6 style=" font-size: 18px;">
-                    <i class="fa-solid fa-palette" style="margin-right:5px; margin-bottom:20px;"></i>喜愛主題
+                    <i class="fa-solid fa-palette"
+                       style="margin-right:5px;
+                              margin-bottom:20px"></i>喜愛主題
                 </h6>
                 <div style="margin-left:20px;">
                     <span class="add_tag" style="background-color: #4caf50;">新增<span style="margin-left:5px;"><i class="fa-solid fa-plus"></i></span></span>
@@ -149,165 +167,103 @@
             </div> -->
         </div>
         <div class="col-7 col-s-12 content">
-            <div class="row">
-                <div class="col-5 col-s-5 aside1" id="person_info">
-                    <div class="con">
-                        <h3>個人資訊</h3>
-                        <p>
-                            此資料為保密資訊，其他用戶無法檢視。閱讀TripFunChill隱私權政策隨時都可以。
-                            <br>
-                            馬上更改個人資料～讓你的自介更加豐富！
-                        </p>
-                    </div>
-                </div>
-                <div class="col-7 col-s-7 aside">
-                    <div class="inner">
-                        <div class="input-with-icon" style="font-size:16px;">
-
-                            {% comment %} <i class="fa-solid fa-envelope icon_email"></i> {% endcomment %}
-                            信箱：{{detail.email}}<br>
-                            {% comment %} <input type="email" placeholder="e-mail" name="email" value="" required>
-                        </div> {% endcomment %}
-                        <div style="margin-top: 20px;">
-                            性別：
-                            <select name="gender" style="padding: 6px;">
-                                <option {% if detail.gender == "男" %}selected {% endif %} value="1" name="gender">男
-                                </option>
-                                <option {% if detail.gender == "女" %}selected {% endif %} value="2" name="gender">女
-                                </option>
-                                <option {% if detail.gender == "不公開" %}selected {% endif %} value="0" name="gender">不公開
-                                </option>
-                            </select>
-                        </div>
-                        <span>
-                            <p></p>
-                        </span>
-                        <!-- <span>居住地：
-                            <select name="gender" style="padding: 6px;">
-                                <option value="1" name="gender">基隆</option>
-                                <option value="2" name="gender">臺北</option>
-                                <option value="3" name="gender">新北</option>
-                                <option value="4" name="gender">桃園</option>
-                                <option value="5" name="gender">新竹</option>
-                                <option value="6" name="gender">苗栗</option>
-                                <option value="7" name="gender">
-                                    臺中
-                                </option>
-                                <option value="8" name="gender">
-                                    彰化
-                                </option>
-                                <option value="9" name="gender">
-                                    雲林
-                                </option>
-                                <option value="10" name="gender">
-                                    嘉義
-                                </option>
-                                <option value="11" name="gender">
-                                    臺南
-                                </option>
-                                <option value="12" name="gender">
-                                    高雄
-                                </option>
-                                <option value="13" name="gender">
-                                    屏東
-                                </option>
-                                <option value="14" name="gender">
-                                    臺東
-                                </option>
-                                <option value="15" name="gender">
-                                    花蓮
-                                </option>
-                                <option value="16" name="gender">
-                                    宜蘭
-                                </option>
-                                <option selected value="0" name="gender">
-                                    不公開
-                                </option>
-                            </select>
-                        </span> -->
-                        <p>
-                        </p>
-                        生日：
-                        <input type="date" placeholder="生日(範例:2000/01/01)" name="birthday" required
-                            value="{{detail.birthday}}" min="1911-01-01" max="{{ nowday }}" style="padding:4px">
-                        <p>
-                        </p>
-                    </div>
-
-                    <!-- <div class="head_change">
-                        <div class="avatar">
-                            <img id="avatar-preview" src="/static/images/dog.jpg" alt="頭貼預覽">
-                        </div>
-                        <div class="head_file">
-                            <input type="file" id="avatar" name="avatar" accept="image/*" class="file-upload-input"
-                                onchange="previewAvatar(event)"><br>
-                            <label for="avatar" class="file-upload-label">選擇檔案</label>
-                        </div>
-                    </div> -->
-                </div>
-            </div>
-            <div class="info1">
+            <form id="editForm"
+                    name="editForm"
+                    method="POST"
+                    action="{% url "user_post" %}">
+                {% csrf_token %}
                 <div class="row">
-                    <div class="col-5 col-s-5 aside1" id="user_pwd">
+                    <div class="col-5 col-s-5 aside1" id="person_info">
                         <div class="con">
-                            <h3>
-                                TripFunChill 帳號密碼
-                            </h3>
+                            <h3>個人資訊</h3>
                             <p>
-                                我們建議你定期更改密碼，以防有心人士駭入你的帳號。
+                                此資料為保密資訊，其他用戶無法檢視。閱讀TripFunChill隱私權政策隨時都可以。
+                                <br>
+                                馬上更改個人資料～讓你的自介更加豐富！
                             </p>
                         </div>
                     </div>
                     <div class="col-7 col-s-7 aside">
                         <div class="inner">
-                            <div class="input-with-icon">
-                                <i class="fas fa-user input-icon"></i>
-                                <input type="text" placeholder="使用者名稱" name="username" value="{{detail.username}}"
-                                    required>
-                            </div>
-                            <div class="password-container">
-                                <i class="fa-solid fa-key input-icon"></i>
-                                <input type="password" id="passwordInput2" placeholder="目前密碼" name="passwd" required>
-                                <i id="checkEye2" class="toggle-password fas fa-eye"></i>
-                            </div>
-                            <div class="password-container">
-                                <i class="fa-solid fa-key input-icon"></i>
-                                <input type="password" id="passwordInput" oninput="password_validation()"
-                                    onclick="showPasswordToggle()" onblur="hidePasswordToggle()" placeholder="新密碼"
-                                    name="passwd" required>
-                                <i id="checkEye" class="toggle-password fas fa-eye"></i>
-                            </div>
-                            <div class="password-container">
-                                <i class="fa-solid fa-key input-icon"></i>
-                                <input type="password" id="passwordInput1" placeholder="確認新密碼" name="passwd1" required>
-                                <i id="checkEye1" class="toggle-password fas fa-eye"></i>
-                            </div>
-
-
-                            <div id="validationIcons">
-                                <img src="/static/images/check.png" alt="Image 1" class="check" style="width:20px;
-                                            height:auto" id="lowercaseIcon">
-                                <span style="color:rgb(207, 49, 49);">至少包含一個小寫子母</span>
+                            <div class="input-with-icon" style="font-size:16px;">
+                                {% comment %} <i class="fa-solid fa-envelope icon_email"></i> {% endcomment %}
+                                信箱：{{ detail.email }}
                                 <br>
-                                <img src="/static/images/check.png" alt="Image 2" class="check" style="width:20px;
-                                            height:auto" id="uppercaseIcon">
-                                <span style="color:rgb(207, 49, 49);">至少包含一個大寫字母</span>
-                                <br>
-                                <img src="/static/images/check.png" alt="Image 3" class="check" style="width:20px;
-                                            height:auto" id="numberIcon">
-                                <span style="color:rgb(207, 49, 49);">至少包含一個數字符號</span>
-                                <br>
-                                <img src="/static/images/check.png" alt="Image 4" class="check" style="width:20px;
-                                            height:auto" id="specialCharIcon">
-                                <span style="color:rgb(207, 49, 49);">至少包含一個非字母和數字的特殊字符</span>
-                                <br>
-                                <img src="/static/images/check.png" alt="Image 5" class="check" style="width:20px;
-                                            height:auto" id="lengthIcon">
-                                <span style="color:rgb(207, 49, 49);">至少包含8個字元符號</span>
-                                <br>
-                            </div>
-                            <div style="text-align: right;">
-                                <button class="pwd_btn" style="margin-top:20px;">確定更改並驗證</button>
+                                {% comment %} <input type="email" placeholder="e-mail" name="email" value="" required>
+                                </div> {% endcomment %}
+                                <div style="margin-top: 20px;">
+                                    性別：
+                                    <select name="gender" style="padding: 6px;">
+                                        <option {% if detail.gender == "男" %}selected{% endif %}
+                                                value="1"
+                                                name="gender">男</option>
+                                        <option {% if detail.gender == "女" %}selected{% endif %}
+                                                value="2"
+                                                name="gender">女</option>
+                                        <option {% if detail.gender == "不公開" %}selected{% endif %}
+                                                value="0"
+                                                name="gender">不公開</option>
+                                    </select>
+                                </div>
+                                <span>
+                                    <p></p>
+                                </span>
+                                <!-- <span>居住地：
+                                <select name="gender" style="padding: 6px;">
+                                    <option value="1" name="gender">基隆</option>
+                                    <option value="2" name="gender">臺北</option>
+                                    <option value="3" name="gender">新北</option>
+                                    <option value="4" name="gender">桃園</option>
+                                    <option value="5" name="gender">新竹</option>
+                                    <option value="6" name="gender">苗栗</option>
+                                    <option value="7" name="gender">
+                                        臺中
+                                    </option>
+                                    <option value="8" name="gender">
+                                        彰化
+                                    </option>
+                                    <option value="9" name="gender">
+                                        雲林
+                                    </option>
+                                    <option value="10" name="gender">
+                                        嘉義
+                                    </option>
+                                    <option value="11" name="gender">
+                                        臺南
+                                    </option>
+                                    <option value="12" name="gender">
+                                        高雄
+                                    </option>
+                                    <option value="13" name="gender">
+                                        屏東
+                                    </option>
+                                    <option value="14" name="gender">
+                                        臺東
+                                    </option>
+                                    <option value="15" name="gender">
+                                        花蓮
+                                    </option>
+                                    <option value="16" name="gender">
+                                        宜蘭
+                                    </option>
+                                    <option selected value="0" name="gender">
+                                        不公開
+                                    </option>
+                                </select>
+                            </span> -->
+                                <p>
+                                </p>
+                                生日：
+                                <input type="date"
+                                       placeholder="生日(範例:2000/01/01)"
+                                       name="birthday"
+                                       required
+                                       value="{{ detail.birthday }}"
+                                       min="1911-01-01"
+                                       max="{{ nowday }}"
+                                       style="padding:4px">
+                                <p>
+                                </p>
                             </div>
                             <!-- <div class="head_change">
                             <div class="avatar">
@@ -321,58 +277,174 @@
                         </div> -->
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- <div class="info1">
-                <div class="row">
-                    <div class="col-5 col-s-5 aside1" id="user_check">
-                        <div class="con">
-                            <h3>
-                                雙重驗證
-                            </h3>
-                            <p>
-                                登入時要求輸入安全碼可以保護你的帳號免受不明人士駭入。
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-7 col-s-7 aside">
-                        <div class="inner">
-                            <div class="row aside_in">
-                                <div class="col-7">
-                                    <div class="a">
-                                        <i class="fa-sharp fa-solid fa-envelope mail"></i>
-                                        <div style="width: 300px; margin-left:50px;line-height:35px;">信箱驗證</div>
-                                    </div>
+                    <div class="info1">
+                        <div class="row">
+                            <div class="col-5 col-s-5 aside1" id="user_pwd">
+                                <div class="con">
+                                    <h3>
+                                        TripFunChill 帳號密碼
+                                    </h3>
+                                    <p>
+                                        我們建議你定期更改密碼，以防有心人士駭入你的帳號。
+                                    </p>
                                 </div>
-                                <div class="col-5 ｂ">
-                                    <input type="submit" onclick="openPopup()" value="啟用" class="check_ch">
-                                </div>
-
                             </div>
-                            <div class="head_change">
+                            <div class="col-7 col-s-7 aside">
+                                <div class="inner">
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-user input-icon"></i>
+                                        <input type="text"
+                                               placeholder="使用者名稱"
+                                               name="username"
+                                               value="{{ detail.username }}"
+                                               required>
+                                    </div>
+                                    <div class="password-container">
+                                        <i class="fa-solid fa-key input-icon"></i>
+                                        <input type="password"
+                                               id="passwordInput2"
+                                               placeholder="目前密碼"
+                                               name="passwd"
+                                               required>
+                                        <i id="checkEye2" class="toggle-password fas fa-eye"></i>
+                                    </div>
+                                    <div class="password-container">
+                                        <i class="fa-solid fa-key input-icon"></i>
+                                        <input type="password"
+                                               id="passwordInput"
+                                               oninput="password_validation()"
+                                               onclick="showPasswordToggle()"
+                                               onblur="hidePasswordToggle()"
+                                               placeholder="新密碼"
+                                               name="passwd"
+                                               required>
+                                        <i id="checkEye" class="toggle-password fas fa-eye"></i>
+                                    </div>
+                                    <div class="password-container">
+                                        <i class="fa-solid fa-key input-icon"></i>
+                                        <input type="password"
+                                               id="passwordInput1"
+                                               placeholder="確認新密碼"
+                                               name="passwd1"
+                                               required>
+                                        <i id="checkEye1" class="toggle-password fas fa-eye"></i>
+                                    </div>
+                                    <div id="validationIcons">
+                                        <img src="/static/images/check.png"
+                                             alt="Image 1"
+                                             class="check"
+                                             style="width:20px;
+                                                    height:auto"
+                                             id="lowercaseIcon">
+                                        <span style="color:rgb(207, 49, 49);">至少包含一個小寫子母</span>
+                                        <br>
+                                        <img src="/static/images/check.png"
+                                             alt="Image 2"
+                                             class="check"
+                                             style="width:20px;
+                                                    height:auto"
+                                             id="uppercaseIcon">
+                                        <span style="color:rgb(207, 49, 49);">至少包含一個大寫字母</span>
+                                        <br>
+                                        <img src="/static/images/check.png"
+                                             alt="Image 3"
+                                             class="check"
+                                             style="width:20px;
+                                                    height:auto"
+                                             id="numberIcon">
+                                        <span style="color:rgb(207, 49, 49);">至少包含一個數字符號</span>
+                                        <br>
+                                        <img src="/static/images/check.png"
+                                             alt="Image 4"
+                                             class="check"
+                                             style="width:20px;
+                                                    height:auto"
+                                             id="specialCharIcon">
+                                        <span style="color:rgb(207, 49, 49);">至少包含一個非字母和數字的特殊字符</span>
+                                        <br>
+                                        <img src="/static/images/check.png"
+                                             alt="Image 5"
+                                             class="check"
+                                             style="width:20px;
+                                                    height:auto"
+                                             id="lengthIcon">
+                                        <span style="color:rgb(207, 49, 49);">至少包含8個字元符號</span>
+                                        <br>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <button class="pwd_btn" style="margin-top:20px;" type="submit">
+                                            確定更改並驗證
+                                        </button>
+                                    </div>
+                                    <!-- <div class="head_change">
                                 <div class="avatar">
                                     <img id="avatar-preview" src="/static/images/dog.jpg" alt="頭貼預覽">
                                 </div>
                                 <div class="head_file">
-                                    <input type="file" id="avatar" name="avatar" accept="image/*"
-                                        class="file-upload-input" onchange="previewAvatar(event)"><br>
+                                    <input type="file" id="avatar" name="avatar" accept="image/*" class="file-upload-input"
+                                        onchange="previewAvatar(event)"><br>
                                     <label for="avatar" class="file-upload-label">選擇檔案</label>
+                                </div>
+                            </div> -->
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div> -->
-            <div style="text-align: right;">
-                <button class="cancel_btn" style="margin-top:20px;">取消</button> 
-                <button class="confirm_change_btn" style="margin-top:20px;">確定更改</button>
-            </div>
-            <div class="col-1">
-            </div>
-        </div>
-    </div>
+                    <!-- <div class="info1">
+                    <div class="row">
+                        <div class="col-5 col-s-5 aside1" id="user_check">
+                            <div class="con">
+                                <h3>
+                                    雙重驗證
+                                </h3>
+                                <p>
+                                    登入時要求輸入安全碼可以保護你的帳號免受不明人士駭入。
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-7 col-s-7 aside">
+                            <div class="inner">
+                                <div class="row aside_in">
+                                    <div class="col-7">
+                                        <div class="a">
+                                            <i class="fa-sharp fa-solid fa-envelope mail"></i>
+                                            <div style="width: 300px; margin-left:50px;line-height:35px;">信箱驗證</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-5 ｂ">
+                                        <input type="submit" onclick="openPopup()" value="啟用" class="check_ch">
+                                    </div>
 
-    <script>
+                                </div>
+                                <div class="head_change">
+                                    <div class="avatar">
+                                        <img id="avatar-preview" src="/static/images/dog.jpg" alt="頭貼預覽">
+                                    </div>
+                                    <div class="head_file">
+                                        <input type="file" id="avatar" name="avatar" accept="image/*"
+                                            class="file-upload-input" onchange="previewAvatar(event)"><br>
+                                        <label for="avatar" class="file-upload-label">選擇檔案</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                    <div style="text-align: right;">
+                        <button class="cancel_btn" style="margin-top:20px;">
+                            取消
+                        </button>
+                        <button class="confirm_change_btn" style="margin-top:20px;">
+                            確定更改
+                        </button>
+                    </div>
+                    <div class="col-1">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <script src="/static/js/editSubmit.js"></script>
+        <script>
         function selectAvatar(avatarSrc) {
             // 將選擇的頭像顯示在selected-avatar區域
             document.getElementById('selected-avatar').innerHTML = `<img src="${avatarSrc}" alt="Selected Avatar" style="width: 100%; height: 100%; border-radius:50%">`;
@@ -531,7 +603,6 @@
             // 使用 JavaScript 的 `alert()` 函式來彈出視窗
             alert(msg);
         }
-    </script>
+        </script>
     {% endblock body %}
-
-    </html>
+</html>
