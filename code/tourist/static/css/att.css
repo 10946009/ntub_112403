@@ -282,11 +282,27 @@ body {
 }
 
 /* 篩選視窗 */
-.modal-content {
+.modal-content_filiter {
     background-color: #fefefe;
     margin: 5% auto 15% auto;
     border: 1px solid #888;
     width: 80%;
+    position: relative;
+}
+
+.close_filter {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #908f8f;
+}
+
+.close_filter:hover,
+.close_filter:focus {
+    color: #f44336;
+    cursor: pointer;
 }
 
 .att_form {
@@ -327,7 +343,7 @@ body {
     color: rgb(73, 72, 72);
 }
 
-.modal-content .more_btn.active {
+.modal-content_filiter .more_btn.active {
     border: solid rgb(0, 0, 0) 1.5px;
     background-color: rgb(236, 233, 233);
     color: rgb(73, 72, 72);
@@ -569,7 +585,7 @@ body {
 }
 
 /* 詳細景點裡面內容*/
-.modal-content {
+.modal-content_filiter {
     background-color: #fefefe;
     margin: 5% auto 15% auto;
     border: 1px solid #888;
@@ -1009,7 +1025,7 @@ img {
         background-color: rgba(0, 0, 0, 0.4);
         padding: 0;
     }
-    .modal-content {
+    .modal-content_filiter {
         background-color: #fefefe;
         margin: 0 auto;
         border: 1px solid #888;
@@ -2801,7 +2817,7 @@ img {
         padding: 80px 0 0 0;
     }
 
-    .modal-content {
+    .modal-content_filiter {
         background-color: #fefefe;
         margin: 5% auto 15% auto;
         border: 1px solid #888;
