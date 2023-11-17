@@ -28,7 +28,11 @@ class User(AbstractUser):
     verification_token = models.TextField(max_length=32, default="")
     USERNAME_FIELD = "email"  # 使用信箱當登入帳號
     REQUIRED_FIELDS = ["username"]  # username 是預設的必填欄位
-
+    def get_photo(self):
+        if self.user_photo == "":
+            return "/static/images/user1.png"
+        else:
+            return self.user_photo
     class Meta:
         verbose_name = "user"
         verbose_name_plural = verbose_name
@@ -70,6 +74,17 @@ class Attractions(models.Model):
         return Favorite.objects.filter(a_id=self.id).count()
     def get_crowd_opening(self):
         return Crowd_Opening.objects.filter(a_id=self.id).order_by('week')
+    def is_fit(self):
+        # att = ""
+        # IS_FIT ={
+        #     "親子":[4,9,11,12,25,31,37,26,28],
+        #     "戶外":[4,21,30,29,33],
+        #     "室內":[3,8,10,12,19,20,28,24]
+        # }
+        # for k,v in IS_FIT.items():
+        #     if self.att_type in v:
+        #        att+=k
+        return 1 
 class Crowd_Opening(models.Model):
     a = models.ForeignKey(
         to=Attractions, on_delete=models.SET_DEFAULT, default=-1

@@ -4,7 +4,7 @@
     <label type="checkbox" name="variety" value="{{r.m_list.id}}" class="imgcheck" style="margin: 0;padding: 0;border: 0;" >
       <span class="checkspot">
         <img src="../static/images/attractions/{{r.m_list.place_id}}_0.jpg" class="img-responsive" width="100%" alt="">
-        <a href="#" class="fa-solid fa-circle-info info_icon" id="info_icon" onclick="clickeInfo(event,{{r.m_list.id}})"></a>
+        <a class="fa-solid fa-circle-info info_icon" id="info_icon" onclick="clickInfo(this)"></a>
       </span>
       <div class="spottxtdiv">
         <p class="spotName">{{r.m_list.a_name}}</p>

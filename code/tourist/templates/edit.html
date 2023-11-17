@@ -3,10 +3,10 @@
 {% block title %}個人資料編輯{% endblock %}
 {% block content %}
 <!-- RWD沒辦法詮釋，因為下面這串，會有padding:12px出現 -->
-<link rel="stylesheet" href="../static/css/bootstrap2023.css">
-<!-- <link rel="stylesheet" href="../static/css/reset_pw.css">
-    <link rel="stylesheet" href="../static/css/register.css"> -->
-<link rel="stylesheet" href="../static/css/edit.css">
+<link rel="stylesheet" href="/static/css/bootstrap2023.css">
+<!-- <link rel="stylesheet" href="/static/css/reset_pw.css">
+    <link rel="stylesheet" href="/static/css/register.css"> -->
+<link rel="stylesheet" href="/static/css/edit.css">
 
 {% comment %}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> {% endcomment %}
@@ -63,7 +63,7 @@
             <div class="head_change">
                 <div style="display: flex;justify-content: center;">
                     <div id="selected-avatar">
-                        <img src="../static/images/dog.jpg" alt="Selected Avatar"
+                        <img src="{{detail.get_photo}}" alt="Selected Avatar"
                             style="width: 100%; height: 100%; border-radius:50%">
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                 </div>
 
                 <!-- <div class="avatar">
-                    <img id="avatar-preview" src="../static/images/dog.jpg" alt="頭貼預覽">
+                    <img id="avatar-preview" src="/static/images/dog.jpg" alt="頭貼預覽">
                 </div>
                 <div class="head_file">
                     <input type="file" id="avatar" name="avatar" accept="image/*" class="file-upload-input"
@@ -236,7 +236,7 @@
 
                     <!-- <div class="head_change">
                         <div class="avatar">
-                            <img id="avatar-preview" src="../static/images/dog.jpg" alt="頭貼預覽">
+                            <img id="avatar-preview" src="/static/images/dog.jpg" alt="頭貼預覽">
                         </div>
                         <div class="head_file">
                             <input type="file" id="avatar" name="avatar" accept="image/*" class="file-upload-input"
@@ -285,23 +285,23 @@
 
 
                             <div id="validationIcons">
-                                <img src="../static/images/check.png" alt="Image 1" class="check" style="width:20px;
+                                <img src="/static/images/check.png" alt="Image 1" class="check" style="width:20px;
                                             height:auto" id="lowercaseIcon">
                                 <span style="color:rgb(207, 49, 49);">至少包含一個小寫子母</span>
                                 <br>
-                                <img src="../static/images/check.png" alt="Image 2" class="check" style="width:20px;
+                                <img src="/static/images/check.png" alt="Image 2" class="check" style="width:20px;
                                             height:auto" id="uppercaseIcon">
                                 <span style="color:rgb(207, 49, 49);">至少包含一個大寫字母</span>
                                 <br>
-                                <img src="../static/images/check.png" alt="Image 3" class="check" style="width:20px;
+                                <img src="/static/images/check.png" alt="Image 3" class="check" style="width:20px;
                                             height:auto" id="numberIcon">
                                 <span style="color:rgb(207, 49, 49);">至少包含一個數字符號</span>
                                 <br>
-                                <img src="../static/images/check.png" alt="Image 4" class="check" style="width:20px;
+                                <img src="/static/images/check.png" alt="Image 4" class="check" style="width:20px;
                                             height:auto" id="specialCharIcon">
                                 <span style="color:rgb(207, 49, 49);">至少包含一個非字母和數字的特殊字符</span>
                                 <br>
-                                <img src="../static/images/check.png" alt="Image 5" class="check" style="width:20px;
+                                <img src="/static/images/check.png" alt="Image 5" class="check" style="width:20px;
                                             height:auto" id="lengthIcon">
                                 <span style="color:rgb(207, 49, 49);">至少包含8個字元符號</span>
                                 <br>
@@ -311,7 +311,7 @@
                             </div>
                             <!-- <div class="head_change">
                             <div class="avatar">
-                                <img id="avatar-preview" src="../static/images/dog.jpg" alt="頭貼預覽">
+                                <img id="avatar-preview" src="/static/images/dog.jpg" alt="頭貼預覽">
                             </div>
                             <div class="head_file">
                                 <input type="file" id="avatar" name="avatar" accept="image/*" class="file-upload-input"
@@ -351,7 +351,7 @@
                             </div>
                             <div class="head_change">
                                 <div class="avatar">
-                                    <img id="avatar-preview" src="../static/images/dog.jpg" alt="頭貼預覽">
+                                    <img id="avatar-preview" src="/static/images/dog.jpg" alt="頭貼預覽">
                                 </div>
                                 <div class="head_file">
                                     <input type="file" id="avatar" name="avatar" accept="image/*"
@@ -387,9 +387,21 @@
         }
 
         function selectAvatarAndClosehead_selected(avatarSrc) {
+            const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
             // 選擇頭貼並關閉
             selectAvatar(avatarSrc);
             closehead_selected();
+            $.ajax({
+                headers: { 'X-CSRFToken': csrftoken },
+                url: '/useredit/change_avatar/',
+                type: 'POST',
+                data: {
+                    'avatar': avatarSrc
+                },
+                success: function (response) {
+                    console.log(response);
+                }
+            });
         }
         function previewAvatar(event) {
             var input = event.target;

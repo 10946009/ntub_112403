@@ -128,6 +128,20 @@
 <script src="../static/js/bootstrap.min.js"></script>
 {% block content_script %}{% endblock %}
 <script>
+  // popup info
+  function clickInfo(element) {
+    event.stopPropagation(); // 阻止事件传播
+    var modal = document.getElementById('myModal');
+    modal.classList.add('modal_active');
+    document.body.classList.add('body_noScroll');
+    console.log(1)
+  }
+  function clickClose() {
+    var modal = document.getElementById('myModal');
+    modal.classList.remove('modal_active');
+    document.body.classList.remove('body_noScroll');
+  }
+  // random bgimg
   function changebgimg() {
     const logo_icon = document.getElementById('logo_icon');
 
@@ -154,9 +168,6 @@
         systemNameElement.style.display = "none";
         downicon.style.display = "none";
       }
-      // if(navbgcolor){
-      //   navbgcolor.classList.add("navchange");
-      // }
     }
   };
 
@@ -252,44 +263,44 @@
     });
   }
 
-    //歷史紀錄（點一下input跳出來）
-    const base_searchInput = document.getElementById("base_myInput");
-    const base_searchBox = document.getElementById("base_searchBox");
-    const base_enter = document.getElementById("base_enter");
+  //歷史紀錄（點一下input跳出來）
+  const base_searchInput = document.getElementById("base_myInput");
+  const base_searchBox = document.getElementById("base_searchBox");
+  const base_enter = document.getElementById("base_enter");
 
-    //點不是input裡的元素就關起來
-    document.addEventListener("click", function (event) {
-        if (!base_searchBox.contains(event.target)) {
-            base_searchBox.style.display = "none";
-        }
-    });
-
-    // 如果input裡有東西的話就關起來，沒有就打開歷史紀錄畫面
-    base_searchInput.addEventListener("input", function () {
-        const inputValue = base_myInput.value;
-        if (inputValue.trim() !== "") {
-            base_searchBox.style.display = "none";
-        } else {
-            base_searchBox.style.display = "block";
-        }
-    });
-
-    // 點一下input內框跳出來歷史紀錄畫面
-    base_searchInput.addEventListener("click", function (event) {
-        event.stopPropagation();// 防止觸發 document 上的點擊事件
-        base_searchBox.style.display = "block";
-    });
-
-    //delete歷史紀錄
-    function deleteFunction(element) {
-        var historyElement = element.closest('.history_1');
-        if (historyElement) {
-            historyElement.remove(); //連同父元素删除
-        }
+  //點不是input裡的元素就關起來
+  document.addEventListener("click", function (event) {
+    if (!base_searchBox.contains(event.target)) {
+      base_searchBox.style.display = "none";
     }
-    // 放入景點名稱
-attractions = JSON.parse('{{ attractions_search_json|safe }}');
-autocomplete(base_searchInput,attractions);
+  });
+
+  // 如果input裡有東西的話就關起來，沒有就打開歷史紀錄畫面
+  base_searchInput.addEventListener("input", function () {
+    const inputValue = base_myInput.value;
+    if (inputValue.trim() !== "") {
+      base_searchBox.style.display = "none";
+    } else {
+      base_searchBox.style.display = "block";
+    }
+  });
+
+  // 點一下input內框跳出來歷史紀錄畫面
+  base_searchInput.addEventListener("click", function (event) {
+    event.stopPropagation();// 防止觸發 document 上的點擊事件
+    base_searchBox.style.display = "block";
+  });
+
+  //delete歷史紀錄
+  function deleteFunction(element) {
+    var historyElement = element.closest('.history_1');
+    if (historyElement) {
+      historyElement.remove(); //連同父元素删除
+    }
+  }
+  // 放入景點名稱
+  attractions = JSON.parse('{{ attractions_search_json|safe }}');
+  autocomplete(base_searchInput, attractions);
 
 </script>
 

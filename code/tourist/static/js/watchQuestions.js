@@ -1,8 +1,12 @@
 function watchQuestions() {
   // 一點擊張貼則評論數＋1
   var allAskContainers = document.querySelectorAll(".all_ask_qa_con");
+  console.log(allAskContainers);
   allAskContainers.forEach(function (container, index) {
     var postButton = container.getElementsByClassName("all_ask_btn_ok");
+    if (postButton.length === 0) {
+      return;
+    }
     var commentCountElement = container.querySelector("#commentCountElement");
     for (let i = 0; i < postButton.length; i++) {
       postButton[i].addEventListener("click", function () {
