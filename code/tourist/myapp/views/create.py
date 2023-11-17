@@ -98,7 +98,6 @@ def create(request, ct_id):
             "user_nowtime": user_nowtime,
             "date": f"{start_day[5:7]}月{int(start_day[8:])+index}日",
             "week": chinese_week[week],
-            # "weather": get_weather_data(location_name,start_day[0:4],start_day[5:7],int(start_day[8:])+index,ct_attractions_data.start_time),
         }
         # 抓出這筆行程中的所有景點
         ct_attractions_list = Attractions_Ct.objects.filter(
@@ -130,7 +129,8 @@ def create(request, ct_id):
                 "attraction": attraction,
                 "detail": detail,
                 "co": co,
-                "crowd_list" : f"{min(co.crowd[cl],co.crowd[(cl+1)%24])} ~ {max(co.crowd[cl],co.crowd[(cl+1)%24])}"
+                "crowd_list" : f"{min(co.crowd[cl],co.crowd[(cl+1)%24])} ~ {max(co.crowd[cl],co.crowd[(cl+1)%24])}",
+                "weather": get_weather_data(detail.address,start_day[0:4],start_day[5:7],int(start_day[8:])+index,ct_attractions_data.start_time),
             })
             
         all_ct_data[index+1]=ct_data
@@ -280,7 +280,8 @@ def create(request, ct_id):
                 order_attractions_data.append({
                     'final_result_list': fr,
                     'final_crow_opening_list': fc,
-                    'final_crowd_list' : f"{min(fc['crowd'][f_nt],fc['crowd'][f_nt+1])} ~ {max(fc['crowd'][f_nt],fc['crowd'][f_nt+1])}"  
+                    'final_crowd_list' : f"{min(fc['crowd'][f_nt],fc['crowd'][f_nt+1])} ~ {max(fc['crowd'][f_nt],fc['crowd'][f_nt+1])}",  
+                    'weather': get_weather_data(fr['address'],start_day[0:4],start_day[5:7],int(start_day[8:])+index,fnowtime),
                 })
             for frr,frc in zip(final_remainder_result_list,final_remainder_crow_opening_list):
                 remainder_attractions_data.append({
