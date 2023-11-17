@@ -136,10 +136,6 @@
                         <div class="filiter_search" id="user_like">
                             <table style="width:45%;margin-left: 10px;margin-bottom:5px ;">
                                 <div id="attractions_types">
-                                    <span class="more_btn" onclick="toggleSelection(this)">123</span>
-                                    <span class="more_btn" onclick="toggleSelection(this)">123</span>
-                                    <span class="more_btn" onclick="toggleSelection(this)">123</span>
-                                    <span class="more_btn" onclick="toggleSelection(this)">123</span>
                                 </div>
                             </table>
                             <!-- <div class="sure"><button class="sure_btn" id="sure_att_type" name="sure_att_type" value="0">篩選</button>
@@ -402,9 +398,22 @@
         </div>
         </form>
     </div>
-    <script src="/static/js/editSubmit.js"></script>
     <script>
         //tag focus(點選) 
+
+         // 放入景點標籤
+    var attractions_types_json = JSON.parse('{{ all_type_name_json|safe }}');
+    var attractions_types = document.getElementById("attractions_types");
+
+    attractions_types.innerHTML += "<tr>";
+
+    attractions_types_json.forEach(function (item) {
+        //console.log(item);
+        attractions_types.innerHTML += `<td><span class="more_btn" onclick="toggleSelection(this)" data-set="${item.id}">${item.name}</span></td>`;
+    });
+    //景點標籤按鈕
+    attractions_types.innerHTML += "</tr>"
+
         function toggleSelection(button) {
             button.classList.toggle('selected');
         }
