@@ -35,5 +35,8 @@ def get_weather_data(address,year,mouth,day,nowtime):#地址、年、月、日�
             weather_data[k] = "暫無資料"
     # print("------------------------------------------------------------------")
     # print(weather_data["天氣預報綜合描述"])
-    return weather_data["天氣預報綜合描述"]
+    try:
+        return weather_data["天氣預報綜合描述"]
+    except:
+        return "暫無資料"
 # print(get_weather_data("南港區",2023,11,7,1080))
