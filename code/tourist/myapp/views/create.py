@@ -65,6 +65,7 @@ def create(request, ct_id):
     name = ct_data.ct_name
     start_day = ct_data.start_day
     start_week = (datetime(int(start_day[0:4]), int(start_day[5:7]), int(start_day[8:])).weekday()+ 1)
+    print(start_week)
     # ct_id = ct_data.id
     
     stay_time = 150
@@ -81,8 +82,9 @@ def create(request, ct_id):
        travel_datas[i]="" 
     # 抓目前位置
     for index,ct_attractions_data in enumerate(ct_attractions_data_total):
-        chinese_week = ["日","一","二","三","四","五","六"]
-        week = (start_week + index) % 7 
+        chinese_week = ["","一","二","三","四","五","六","日"]
+        week = (start_week + index) % 8
+        if week == 0: week = 1
         crowd_index_list=[]
         ct_data = []
         ct_data_id = []
