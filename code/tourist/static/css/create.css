@@ -816,7 +816,7 @@ main {
 .showRight_btn {
     position: absolute;
     left: -30px;
-    top: 20px;
+    top: 40%;
     border: 0;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
@@ -1028,12 +1028,9 @@ main {
         padding: 0;
     }
 
-    .changeToSearch {
-        width: 50px;
-        height: 40px;
-        line-height: 40px;
+    .changeToDone {
+        padding: 8px 10px;
         font-size: 18px;
-        padding: 0;
     }
 
     .recommend_next {
@@ -1111,6 +1108,15 @@ main {
     }
 
     .input_txt {
+        font-size: 16px;
+    }
+    .image-container{
+        width: 200px;
+        min-width: 200px;
+        height: 150px;
+    }
+    .changeToDone {
+        padding: 6px 8px;
         font-size: 16px;
     }
 }

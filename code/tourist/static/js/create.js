@@ -78,6 +78,7 @@ function flipped() {
   const done = document.getElementById('done-' + globalDay);
   const initialLayout = document.getElementById('initialLayout-'+globalDay);
   const flippedBtn = document.getElementById('flippedBtn-' + globalDay);
+  var saveButton = document.getElementById('saveDays');
 
   if (isDoneVisible) {
     done.classList.remove('changeActive');
@@ -86,6 +87,7 @@ function flipped() {
       initialLayout.classList.add('changeActive');
     }, 50); // 延遲切換，不然會直接跳轉沒有翻轉效果
     flippedBtn.textContent = '景點排序';
+    saveButton.style.display = "block";
   } else {
     initialLayout.classList.remove('changeActive');
     done.classList.remove('hidden');
@@ -93,6 +95,7 @@ function flipped() {
       done.classList.add('changeActive');
     }, 50); 
     flippedBtn.textContent = '查看推薦';
+    saveButton.style.display = "none";
   }
   isDoneVisible = !isDoneVisible;
 }
@@ -114,7 +117,7 @@ function submitAction2(day) {
   // 顯示儲存按鈕
   var saveButton = document.getElementById('saveDays');
   if (saveButton) {
-    saveButton.style.display = 'block'; // 或者 'inline-block'，視情況而定
+    saveButton.style.display = 'block'; 
   }
 
   // 隱藏 submitNext 按鈕
@@ -343,21 +346,6 @@ list.addEventListener('dragend', (e) => {
   currentLi.classList.remove('moving')
 })
 
-// RWD縮小之後"儲存"變圖案
-const saveBtn = document.querySelector('.recommend_save');
-
-function changeBtnTxt() {
-  if (window.innerWidth <= 690) {
-    saveBtn.classList.add('saveIcon_btn');
-    saveBtn.innerHTML = '';
-  } else {
-    saveBtn.classList.remove('saveIcon_btn');
-    saveBtn.innerHTML = '儲存';
-  }
-}
-window.onload = changeBtnTxt;
-window.addEventListener('resize', changeBtnTxt);
-
 
 // 定义一个函数来检查全局变量并更新CSS类
 function checkAndAddClass() {
@@ -402,13 +390,13 @@ function inputBottom(day = null) {
 }
 // 用來進去翻轉景點排序或推薦景點的部分
 function checkHasData() {
-  const leftDev = document.querySelectorAll(".recAndDone");
+  const leftDev = document.querySelectorAll(".changeInitial");
   console.log(leftDev);
   leftDev.forEach(function (container, index) {
     const hasAttractions = container.querySelector('.innerlist');
     // console.log(hasAttractions);
     if (hasAttractions != null) {
-      const changeToDone = container.querySelector('.changeToDone').id;
+      const changeToDone = container.querySelector('.changeDone').id;
       clickChangeDone(changeToDone.charAt(changeToDone.length - 1))
     }
   });
@@ -431,6 +419,4 @@ function checkHasDataBottom() {
 }
 
 checkHasDataBottom()
-window.onload = changeRepeatBtnTxt;
-window.addEventListener('resize', changeRepeatBtnTxt);
 
