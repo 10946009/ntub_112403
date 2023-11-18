@@ -141,6 +141,10 @@ main {
 .recommend_submit{
     z-index: 2;
 }
+.recommend_save{
+    display: none;
+    z-index: 3;
+}
 .hideBtn{
     display: none !important;
 }

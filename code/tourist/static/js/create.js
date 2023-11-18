@@ -109,10 +109,16 @@ function submitAction2(day) {
   }
   showRightDiv();
   submitRecommend();
+  // 顯示儲存按鈕
+  var saveButton = document.getElementById('saveDays');
+  if (saveButton) {
+    saveButton.style.display = 'block'; // 或者 'inline-block'，視情況而定
+  }
+
   // 隱藏 submitNext 按鈕
   var submitNextBtn = document.getElementById('submitNext-' + day);
   if (submitNextBtn) {
-    submitNextBtn.classList.add('hideBtn');
+    submitNextBtn.style.display = 'none';
   }
 }
 
