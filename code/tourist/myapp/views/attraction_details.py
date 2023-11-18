@@ -234,7 +234,7 @@ def is_favorite_list(userobject, search_list):
 
 def click_info(request):
     #點擊景點
-    user = request.user.id
+    user = User.objects.get(id=request.user.id)
     if request.GET.get("a_id") != None:
         choose_a_id = request.GET.get("a_id")  # 提取傳遞的值
         choose_attractions = Attractions.objects.get(id=choose_a_id)
