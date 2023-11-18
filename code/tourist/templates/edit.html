@@ -397,7 +397,25 @@
     </div>
     <script>
         function toggleSelection(button) {
+            const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
             button.classList.toggle('selected');
+            var id = button.getAttribute('data-set');
+            $.ajax({
+                headers: { 'X-CSRFToken': csrftoken },
+                url: '/useredit/change_favorite/',
+                type: 'POST',
+                data: {
+                    'type_id': id
+                },
+                success: function (response) {
+                    if(response['status'] == 'remove'){
+                        document.querySelector(`.article-tag[data-set="${id}"]`).remove();
+                    }
+                    else{
+                        document.querySelector('.article-tag').insertAdjacentHTML('beforebegin', `<span class="article-tag" data-set="${id}">${button.textContent}<span class="_icon"><i class="fas fa-times"></i></span></span>`);
+                    }
+                }
+            });
         }
 
         var filiter_win = document.getElementById('user_like_topic');//景點主題

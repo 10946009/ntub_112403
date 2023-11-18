@@ -79,8 +79,8 @@ urlpatterns = [
     # path('test/',views.test_input),
     path("useredit/", user_edit.user_edit),
     path("useredit/post/", user_edit.user_edit_form,name="user_post"),
-
-    path("useredit/change_avatar/", user_edit.user_change_avatar),
+    path("useredit/post/", user_edit.user_edit_form,name="user_post"),
+    path("useredit/change_favorite/", user_edit.change_favorite),
     path("favorite/", favorite.favorite),
     path("add_travel_favorite/", favorite.add_travel_favorite),  # 沒有頁面
     path("add_favorite/", favorite.add_favorite),  # 沒有頁面
