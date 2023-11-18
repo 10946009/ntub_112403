@@ -106,12 +106,14 @@ function submitNext(day) {
   showRightDiv();
 }
 function submitAction2(day) {
-  console.log(3);
+  user = User.objects.get(id=user)
   if(!isDoneVisible){
     flipped();
   }
   showRightDiv();
   submitRecommend();
+  submitNextBtn.style.display = 'none';
+  console.log(3);
   // 顯示儲存按鈕
   var saveButton = document.getElementById('saveDays');
   if (saveButton) {
