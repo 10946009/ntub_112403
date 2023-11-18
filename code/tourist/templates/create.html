@@ -50,9 +50,10 @@
 
   <div class="tab-content" id="myTabContent">
     {% for day,data in travel_datas.items %}
-    <button class="changeToDone" id="flippedBtn-{{ day }}" onclick="flipped()">景點排序</button>
+    
     <div class="tab-pane fade{% if forloop.counter == 1 %} show active{% endif %}" id="ch-{{ day }}" role="tabpanel"
       aria-labelledby="{{ day }}-tab" dataset="{{ day }}">
+      <button class="changeToDone" id="flippedBtn-{{ day }}" onclick="flipped()">景點排序</button>
       <!-- 基本資訊 -->
       <div>
         <div class="tabD">
