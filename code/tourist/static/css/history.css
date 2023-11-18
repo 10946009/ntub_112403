@@ -178,7 +178,7 @@
 
 /* 打開右半邊詳細行程 */
 .openDetailDiv {
-    /* display: none; */
+    display: none;
     border: 1px solid black;
 }
 .aboutDiv{
