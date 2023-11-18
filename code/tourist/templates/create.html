@@ -177,7 +177,7 @@
                       {{ item.a.a_name }}
                     </p>
                     <span>評價：{{ item.a.rating }}</span><br>
-                    <span>營業時間：{{item.opening.0}}</span>
+                    <span style="{% if item.opening.0 == "休息" %} color:red; {% endif %}">營業時間：{{item.opening.0}}</span>
                     <br>
                     {% comment %} <span>營業時間：{{r.crow_opening_list.opening.0}}</span> {% endcomment %}
                   </div>
