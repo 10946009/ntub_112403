@@ -77,7 +77,8 @@ let isDoneVisible = false;
 function flipped() {
   const done = document.getElementById('done-' + globalDay);
   const initialLayout = document.getElementById('initialLayout-'+globalDay);
-  const flippedBtn = document.getElementById('flippedBtn-'+globalDay);
+  const flippedBtn = document.getElementById('flippedBtn-' + globalDay);
+  const submitNext = document.getElementById('submitNext-' + globalDay);
 
 
   if (isDoneVisible) {
@@ -123,44 +124,16 @@ function flipped() {
 
 // 送出功能整合到clickChangeDone函数中
 // 點擊送出會切換到景點排序頁面
-function submitAction(day) {
+function submitNext(day) {
   showRightDiv();
 }
 function submitAction2(day) {
+  if(!isDoneVisible){
+    flipped();
+  }
   showRightDiv();
-  flipped();
   submitRecommend();
 }
-
-// slide right section
-// const rightBtn = document.getElementById('showRight');
-// const rightDiv = document.getElementById('rightDiv');
-// const overlayBg = document.getElementById('overlayBg');
-
-// var isRightVisible = false;
-
-// function showRightDiv() {
-//   isRightVisible = !isRightVisible;
-
-//   if (window !== 'undefined') {
-//     if (isRightVisible) {
-//       similarRecommend()
-//       rightDiv.style.right = '0px';
-//       overlayBg.style.display = 'block';
-//       rightBtn.innerHTML = '<i class="fa-solid fa-chevron-left fa-rotate-180"></i>';
-//       rightBtn.style.backgroundColor = 'red';
-//       rightBtn.style.color = 'white';
-//       document.body.classList.add('body_noScroll');
-//     } else {
-//       rightDiv.style.right = '-90%';
-//       overlayBg.style.display = 'none';
-//       rightBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
-//       rightBtn.style.backgroundColor = '';
-//       rightBtn.style.color = '';
-//       document.body.classList.remove('body_noScroll');
-//     }
-//   }
-// }
 
 
 // 收合搜尋景點

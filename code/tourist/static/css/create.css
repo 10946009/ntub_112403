@@ -175,7 +175,12 @@ main {
     text-align: center;
 }
 
-.recommend_next {
+.recommend_next{
+    /* 還沒改好 */
+    position: absolute;
+    bottom: 0;
+}
+.recommend_submit {
     position: fixed;
     bottom: 5px;
     right: 5px;
@@ -1074,7 +1079,7 @@ main {
         padding: 0;
     }
 
-    .recommend_next {
+    .recommend_submit {
         width: 50px;
         height: 40px;
         line-height: 40px;
@@ -1127,7 +1132,7 @@ main {
         margin-bottom: 5px;
     }
 
-    .recommend_next {
+    .recommend_submit {
         width: 50px;
         height: 40px;
         line-height: 40px;
