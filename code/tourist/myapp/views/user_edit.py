@@ -1,9 +1,12 @@
+import json
 from django.shortcuts import render, redirect
 from myapp.models import *
 from django.http import JsonResponse
+from .viewsConst import ATT_TYPE_CHINESE
 
 def user_edit(request):
     detail = User.objects.get(id=request.user.id)
+    all_type_name_json = json.dumps(ATT_TYPE_CHINESE)
     return render(request, "edit.html",locals())
 
 
