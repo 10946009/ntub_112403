@@ -111,12 +111,13 @@ main {
     text-align: center;
 }
 
-.recommend_next{
-    /* 還沒改好 */
-    position: absolute;
-    bottom: 0;
+.recommend_submit{
+    z-index: 2;
 }
-.recommend_submit {
+.hideBtn{
+    display: none !important;
+}
+.recommend_next {
     position: fixed;
     bottom: 5px;
     right: 5px;
@@ -135,7 +136,6 @@ main {
     color: #fff;
     background-color: #198754;
     text-shadow: 2px 2px 3px #333;
-    z-index: 2;
 }
 
 .saveIcon_btn::before {
@@ -1004,7 +1004,7 @@ main {
         padding: 0;
     }
 
-    .recommend_submit {
+    .recommend_next {
         width: 50px;
         height: 40px;
         line-height: 40px;
@@ -1057,7 +1057,7 @@ main {
         margin-bottom: 5px;
     }
 
-    .recommend_submit {
+    .recommend_next {
         width: 50px;
         height: 40px;
         line-height: 40px;

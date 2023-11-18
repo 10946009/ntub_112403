@@ -79,7 +79,6 @@ function flipped() {
   const initialLayout = document.getElementById('initialLayout-'+globalDay);
   const flippedBtn = document.getElementById('flippedBtn-' + globalDay);
 
-
   if (isDoneVisible) {
     done.classList.remove('changeActive');
     setTimeout(() => {
@@ -104,14 +103,17 @@ function submitNext(day) {
   showRightDiv();
 }
 function submitAction2(day) {
-  const submitNextBtn = document.getElementById('submitNext-' + globalDay);
+  console.log(3);
   if(!isDoneVisible){
     flipped();
   }
   showRightDiv();
   submitRecommend();
-  submitNextBtn.style.display = 'none';
-  console.log(3);
+  // 隱藏 submitNext 按鈕
+  var submitNextBtn = document.getElementById('submitNext-' + day);
+  if (submitNextBtn) {
+    submitNextBtn.classList.add('hideBtn');
+  }
 }
 
 
