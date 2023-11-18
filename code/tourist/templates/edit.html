@@ -185,14 +185,14 @@
                     </div>
                     <div class="col-7 col-s-7 aside">
                         <div class="inner">
-                            <div class="input-with-icon" style="font-size:16px;">
+                            <div class="input-with-icon" style="font-size:17px;">
                                 {% comment %} <i class="fa-solid fa-envelope icon_email"></i> {% endcomment %}
-                                信箱：{{ detail.email }}
+                                <strong style="margin-right:5px;">信箱：</strong><span style=" color: rgb(81, 81, 81); font-size:18px;">{{ detail.email }}</span>
                                 <br>
                                 {% comment %} <input type="email" placeholder="e-mail" name="email" value="" required>
                             </div> {% endcomment %}
                             <div style="margin-top: 20px;">
-                                性別：
+                                <strong>性別：</strong>
                                 <select name="gender" style="padding: 6px;">
                                     <option {% if detail.gender == "男" %}selected{% endif %} value="1" name="gender">男
                                     </option>
@@ -250,7 +250,7 @@
                             </span> -->
                             <p>
                             </p>
-                            生日：
+                            <strong>生日：</strong>
                             <input type="date" placeholder="生日(範例:2000/01/01)" name="birthday" required
                                 value="{{ detail.birthday }}" min="1911-01-01" max="{{ nowday }}" style="padding:4px">
                             <p>
