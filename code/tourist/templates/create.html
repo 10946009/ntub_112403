@@ -25,7 +25,7 @@
 {% block body %}
 <main>
   <button class="recommend_next recommend_save" id="saveDays" style="display: none;" value="儲存" onclick="createSave()">儲存</button>
-  <button class="recommend_next recommend_submit" id="clickLikeAttractions" onclick="submitAction()" value="送出">送出</button>
+  <button class="recommend_next recommend_submit" id="submitNext-{{ day }}" onclick="submitNext()" value="下一步">下一步</button>
 
   <div class="pageedit">
     <ul class="nav nav-tabs flex justify-content-start my-nav-tabs" id="myTab" role="tablist">
@@ -35,7 +35,7 @@
         <button class="create-nav-link {% if forloop.counter == 1 %}active{% endif %}" id="{{ day }}-tab"
         data-bs-toggle="tab" data-bs-target="#ch-{{ day }}" type="button" role="tab" aria-controls="ch-{{ day }}"
         onclick="saveTabState('ch-{{ day }}',{{ day }})" aria-selected="true">DAY {{ day }}</button>
-        <div>{{data.date}}({{data.week}})</div> 
+        <!-- <div>{{data.date}}({{data.week}})</div>  -->
       </li>
       <!--aria-controls="ch-{{ day }}"變數名稱要改一下-->
       {% endfor %}
@@ -111,7 +111,7 @@
                 <input class="form-control me-auto search"
                       id="create_myInput"
                       type="search"
-                      placeholder="想去哪玩.."
+                      placeholder="輸入景點名稱.."
                       aria-label="Search"
                       name="create_search_text"
                       style="width: 100%;">
