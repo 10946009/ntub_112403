@@ -3,7 +3,7 @@
     <img src="../static/images/attractions/{{d.place_id}}_0.jpg" class="img-responsive imgOverlay" width="100%" alt="">
     <div class="overlay">
       <div class="tempXdiv" onclick="pickspotBottom({{d.id}})"><i class="fa-solid fa-xmark tempX_icon"></i></div>     
-      <a class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickInfo(this)"> <!-- 這裡這裡的Id不知道要改哪一個 --></a>
+      <a class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickInfo({{d.id}})"> <!-- 這裡這裡的Id不知道要改哪一個 --></a>
       <div class="text">{{d.a_name}}</div><!-- 只抓點過的景點名稱跟營業時間 -->
     </div>
   </div>

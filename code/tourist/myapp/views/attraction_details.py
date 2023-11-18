@@ -250,17 +250,17 @@ def click_info(request):
 
         # 記錄使用者點擊
         if user :
-            if UserClick.objects.filter(u_id=user.id, a_id=choose_attractions.id).exists():
-                user_click = UserClick.objects.get(u_id=user.id, a_id=choose_attractions.id)
+            if UserClick.objects.filter(u_id=user, a_id=choose_attractions.id).exists():
+                user_click = UserClick.objects.get(u_id=user, a_id=choose_attractions.id)
                 user_click.click_count += 1
                 user_click.save()
             else:
-                UserClick.objects.create(u_id=user.id, a_id=choose_attractions.id)
+                UserClick.objects.create(u_id=user, a_id=choose_attractions.id)
 
         # 判斷是否已收藏
         
         is_favorite = Favorite.objects.filter(
-            u_id=user.id, a_id=choose_attractions.id
+            u_id=user, a_id=choose_attractions.id
         ).exists() if user  else False
         # 取得擁擠資訊
         crowd = (
