@@ -106,7 +106,8 @@
                             style="margin-left:5px;"><i class="fa-solid fa-plus"></i></span></button>
                     {% for type in all_type_name %}
                     {% if type.id in detail.user_favorite_tag %}
-                    <span class="article-tag" data-set="{{type.id}}">{{type.name}}<span class="_icon"><i class="fas fa-times"></i></span></span>
+                    <span class="article-tag" data-set="{{type.id}}">{{type.name}}</span>
+                    {% comment %} <span class="_icon"><i class="fas fa-times"></i></span> {% endcomment %}
                     {% endif %}
                     {% endfor %}
                 </div>
@@ -412,7 +413,7 @@
                         document.querySelector(`.article-tag[data-set="${id}"]`).remove();
                     }
                     else{
-                        document.querySelector('.article-tag').insertAdjacentHTML('beforebegin', `<span class="article-tag" data-set="${id}">${button.textContent}<span class="_icon"><i class="fas fa-times"></i></span></span>`);
+                        document.querySelector('.article-tag').insertAdjacentHTML('beforebegin', `<span class="article-tag" data-set="${id}">${button.textContent}</span>`);
                     }
                 }
             });

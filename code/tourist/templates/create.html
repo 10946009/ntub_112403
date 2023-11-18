@@ -165,25 +165,24 @@
             </span>
           </div>
           <div class="row openFav">
-            {% for item in data.user_favorite_list %}
-              <div class="col-lg-3 col-sm-4 " style="margin-bottom: 5px;">
-                <div class="checkimg_div" onclick="pickspot(this,{{ item.a.id }})">
-                  <span class="checkspot">
-                    <img src="../static/images/attractions/{{ item.a.place_id }}_0.jpg" class="img-responsive" width="100%" alt="">
-                    <a class="fa-solid fa-circle-info info_icon" id="info_icon" onclick="clickInfo({{ item.a.id }})"></a>
-                  </span>
-                  <div class="spottxtdiv">
-                    <p style="text-align: center;padding: 5px;margin-bottom: 5px;">
-                      {{ item.a.a_name }}
-                    </p>
-                    <span>評價：{{ item.a.rating }}</span><br>
-                    <span style="{% if item.opening.0 == "休息" %} color:red; {% endif %}">營業時間：{{item.opening.0}}</span>
-                    <br>
-                    {% comment %} <span>營業時間：{{r.crow_opening_list.opening.0}}</span> {% endcomment %}
+            <div class="owl-carousel owl-theme">
+              {% for item in data.user_favorite_list %}
+                  <div class="checkimg_div" onclick="pickspot(this,{{ item.a.id }})">
+                    <span class="checkspot">
+                      <img src="../static/images/attractions/{{ item.a.place_id }}_0.jpg" class="img-responsive" width="100%" alt="">
+                      <a class="fa-solid fa-circle-info info_icon" id="info_icon" onclick="clickInfo({{ item.a.id }})"></a>
+                    </span>
+                    <div class="spottxtdiv">
+                      <p style="text-align: center;padding: 5px;margin-bottom: 5px;">
+                        {{ item.a.a_name }}
+                      </p>
+                      <span>評價：{{ item.a.rating }}</span><br>
+                      <span style="{% if item.opening.0 == "休息" %} color:red; {% endif %}">營業時間：{{item.opening.0}}</span>
+                      <br>
+                      {% comment %} <span>營業時間：{{r.crow_opening_list.opening.0}}</span> {% endcomment %}
+                    </div>
                   </div>
-                </div>
-              </div>
-            {% endfor %}
+              {% endfor %}
           </div>
         </div>
       </div>
