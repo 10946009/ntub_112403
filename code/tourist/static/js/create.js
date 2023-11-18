@@ -106,6 +106,7 @@ function submitNext(day) {
   showRightDiv();
 }
 function submitAction2(day) {
+  // 這個是什麼 他噴錯ㄌQQ
   user = User.objects.get(id=user)
   if(!isDoneVisible){
     flipped();
