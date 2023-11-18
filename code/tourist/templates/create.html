@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="/static/css/create.css">
 <link rel="stylesheet" href="/static/css/create_search.css">
 <link rel="stylesheet" href="/static/owl/owl.carousel.min.css">
+<link rel="stylesheet" href="/static/css/attractions_info.css">
 <script src="https://maps.googleapis.com/maps/api/js?key={{apikey}}&libraries=places"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
@@ -24,8 +25,8 @@
 {% endblock %}
 {% block body %}
 <main>
-  <button class="recommend_next recommend_save" id="saveDays"  value="儲存" onclick="createSave()">儲存</button>
-  <!-- <button class="recommend_next recommend_submit" id="submitNext-{{ day }}" onclick="submitNext()" value="下一步">下一步</button> -->
+  <button class="recommend_next recommend_save" id="saveDays" style="display: none;" value="儲存" onclick="createSave()">儲存</button>
+  <button class="recommend_next recommend_submit" id="submitNext-{{ day }}" onclick="submitNext()" value="下一步">下一步</button>
 
   <div class="pageedit">
     <ul class="nav nav-tabs flex justify-content-start my-nav-tabs" id="myTab" role="tablist">
@@ -191,8 +192,8 @@
     {% endfor %}
   </div>
   <div class="modal" id="myModal">
-      <div class="modal-content">
-          <span class="close" onclick="clickClose()">&times;</span>
+      <div class="modal-content_att_info">
+          <span class="close_att_info" onclick="clickClose()">&times;</span>
           <div id = "changeInfo">
             {% include "attractions_info.html" %}
           </div>
