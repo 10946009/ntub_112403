@@ -2699,6 +2699,10 @@ img {
         border-radius: 0;
     }
 
+    .write_comment_btn {
+        margin-bottom: 20px;
+    }
+
     .detail_img {
         display: none;
     }
@@ -2716,6 +2720,7 @@ img {
         border: black solid;
         width: 100%;
         margin: 80px auto;
+        margin-bottom: 20px;
     }
 
     /* 評論彈跳窗(name) */
