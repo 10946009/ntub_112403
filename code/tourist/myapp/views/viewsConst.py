@@ -46,7 +46,7 @@ ATT_TYPE = {
     'DIY':37, #DIY
 }
 ATT_TYPE_CHINESE= [
-    { 'name': '機構', 'id': 3 },
+    # { 'name': '機構', 'id': 3 },
     { 'name': '公園', 'id': 4 },
     { 'name': '宗教場所', 'id': 5 },
     { 'name': '食物', 'id': 6 },
