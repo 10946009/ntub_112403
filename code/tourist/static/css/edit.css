@@ -460,7 +460,7 @@ body {
 
 #head_selected-content {
     width: 40%;
-    background: #fff;
+    background: rgb(230, 230, 230);
     padding: 20px;
     text-align: center;
 }
