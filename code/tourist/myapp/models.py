@@ -76,17 +76,7 @@ class Attractions(models.Model):
         return Favorite.objects.filter(a_id=self.id).count()
     def get_crowd_opening(self):
         return Crowd_Opening.objects.filter(a_id=self.id).order_by('week')
-    def is_fit(self):
-        # att = ""
-        # IS_FIT ={
-        #     "親子":[4,9,11,12,25,31,37,26,28],
-        #     "戶外":[4,21,30,29,33],
-        #     "室內":[3,8,10,12,19,20,28,24]
-        # }
-        # for k,v in IS_FIT.items():
-        #     if self.att_type in v:
-        #        att+=k
-        return 1 
+
 class Crowd_Opening(models.Model):
     a = models.ForeignKey(
         to=Attractions, on_delete=models.SET_DEFAULT, default=-1
@@ -107,6 +97,21 @@ class Create_Travel(models.Model):
     detail = models.TextField(max_length=255, null=False, blank=False, default="")
     def get_attractions_picture(ctid):
         return Attractions_Ct.objects.filter(choice_ct__ct=ctid).values('a__place_id').distinct()
+    def is_fit(self):
+        att = []
+        IS_FIT ={
+            "親子":[4,9,11,12,25,31,37,26,28],
+            "戶外":[4,21,30,29,33],
+            "室內":[3,8,10,12,19,20,28,24]
+        }
+        travel_att_type = Attractions_Ct.objects.filter(choice_ct__ct=self.id).values_list('a__att_type', flat=True)
+    
+        for k,v in IS_FIT.items():
+            for i in travel_att_type:
+                if set(i) & set(v):
+                    att.append(k)
+                    break
+        return att
 
 class ChoiceDay_Ct(models.Model):
     ct = models.ForeignKey(to=Create_Travel, on_delete=models.CASCADE)  # 行程沒了歷史也會被刪除

@@ -68,22 +68,18 @@
                     <div id="head_selected-content">
                         <h2 style="margin-bottom:20px;">更換頭貼</h2>
                         <!-- 預設頭貼 -->
-                        <img src="../static/images/dog.jpg" alt="Avatar 1" class="head_selected-avatar"
-                            onclick="selectAvatarAndClosehead_selected('../static/images/dog.jpg')">
                         <img src="../static/images/user1.png" alt="Avatar 2" class="head_selected-avatar"
                             onclick="selectAvatarAndClosehead_selected('../static/images/user1.png')">
                         <img src="../static/images/user2.png" alt="Avatar 3" class="head_selected-avatar"
                             onclick="selectAvatarAndClosehead_selected('../static/images/user2.png')">
                         <img src="../static/images/user3.png" alt="Avatar 3" class="head_selected-avatar"
                             onclick="selectAvatarAndClosehead_selected('../static/images/user3.png')">
-                        <img src="../static/images/peka.webp" alt="Avatar 3" class="head_selected-avatar"
-                            onclick="selectAvatarAndClosehead_selected('../static/images/peka.webp')">
-                        <img src="../static/images/an.jpeg" alt="Avatar 3" class="head_selected-avatar"
-                            onclick="selectAvatarAndClosehead_selected('../static/images/an.jpeg')">
-                        <img src="../static/images/user1.png" alt="Avatar 2" class="head_selected-avatar"
-                            onclick="selectAvatarAndClosehead_selected('../static/images/user1.png')">
-                        <img src="../static/images/user2.png" alt="Avatar 3" class="head_selected-avatar"
-                            onclick="selectAvatarAndClosehead_selected('../static/images/user2.png')">
+                        <img src="../static/images/user4.png" alt="Avatar 3" class="head_selected-avatar"
+                            onclick="selectAvatarAndClosehead_selected('../static/images/user4.png')">
+                            <img src="../static/images/user5.jpg" alt="Avatar 3" class="head_selected-avatar"
+                            onclick="selectAvatarAndClosehead_selected('../static/images/user5.jpg')">
+                            <img src="../static/images/user6.jpg" alt="Avatar 3" class="head_selected-avatar"
+                            onclick="selectAvatarAndClosehead_selected('../static/images/user6.jpg')">
                         <div>
                             <button onclick="closehead_selected()" style="margin-top:20px;">取消</button>
                         </div>
@@ -112,18 +108,12 @@
                     <button class="add_topic"
                         onclick="document.getElementById('user_like_topic').style.display='block'">新增<span
                             style="margin-left:5px;"><i class="fa-solid fa-plus"></i></span></button>
-                    <span class="article-tag">動物園<span class="_icon"><i class="fas fa-times"></i></span></span>
-                    <span class="article-tag">公園<span class="_icon"><i class="fas fa-times"></i></span></span>
-                    <span class="article-tag">學校<span class="_icon"><i class="fas fa-times"></i></span></span>
-                    <span class="article-tag">廟<span class="_icon"><i class="fas fa-times"></i></span></span>
-                    <span class="article-tag">動物園<span class="_icon"><i class="fas fa-times"></i></span></span>
-                    <span class="article-tag">公園<span class="_icon"><i class="fas fa-times"></i></span></span>
-                    <span class="article-tag">學校<span class="_icon"><i class="fas fa-times"></i></span></span>
-                    <span class="article-tag">廟<span class="_icon"><i class="fas fa-times"></i></span></span>
-                    <span class="article-tag">動物園<span class="_icon"><i class="fas fa-times"></i></span></span>
-                    <span class="article-tag">公園<span class="_icon"><i class="fas fa-times"></i></span></span>
-                    <span class="article-tag">學校<span class="_icon"><i class="fas fa-times"></i></span></span>
-                    <span class="article-tag">廟<span class="_icon"><i class="fas fa-times"></i></span></span>
+                    {% for type in all_type_name %}
+                    {% if type.id in detail.user_favorite_tag %}
+                    <span class="article-tag" data-set="{{type.id}}">{{type.name}}</span>
+                    {% comment %} <span class="_icon"><i class="fas fa-times"></i></span> {% endcomment %}
+                    {% endif %}
+                    {% endfor %}
                 </div>
             </div>
             <div id="user_like_topic">
@@ -133,9 +123,21 @@
                         <span onclick="document.getElementById('user_like_topic').style.display='none'"
                             class="close_user_like" title="Close Modal">&times;</span>
                         <h3><strong>景點主題</strong></h3>
+                        {% comment %} {% if type.id in detail.user_favorite_tag %}
+                        <span class="more_btn " onclick="toggleSelection(this)">使用系統預設</span>
+                        {% else %}
+                        <span class="more_btn selected" onclick="toggleSelection(this)">使用系統預設</span>
+                        {% endif %} {% endcomment %}
                         <div class="filiter_search" id="user_like">
                             <table style="width:45%;margin-left: 10px;margin-bottom:5px ;">
                                 <div id="attractions_types">
+                                    {% for type in all_type_name %}
+                                    {% if type.id in detail.user_favorite_tag %}
+                                    <span class="more_btn selected " onclick="toggleSelection(this)" data-set="{{type.id}}">{{type.name}}</span>
+                                    {% else %}
+                                    <span class="more_btn" onclick="toggleSelection(this)" data-set="{{type.id}}">{{type.name}}</span>
+                                    {% endif %}
+                                    {% endfor %}
                                 </div>
                             </table>
                             <!-- <div class="sure"><button class="sure_btn" id="sure_att_type" name="sure_att_type" value="0">篩選</button>
@@ -183,14 +185,14 @@
                     </div>
                     <div class="col-7 col-s-7 aside">
                         <div class="inner">
-                            <div class="input-with-icon" style="font-size:16px;">
+                            <div class="input-with-icon" style="font-size:17px;">
                                 {% comment %} <i class="fa-solid fa-envelope icon_email"></i> {% endcomment %}
-                                信箱：{{ detail.email }}
+                                <strong style="margin-right:5px;">信箱：</strong><span style=" color: rgb(81, 81, 81); font-size:18px;">{{ detail.email }}</span>
                                 <br>
                                 {% comment %} <input type="email" placeholder="e-mail" name="email" value="" required>
                             </div> {% endcomment %}
                             <div style="margin-top: 20px;">
-                                性別：
+                                <strong>性別：</strong>
                                 <select name="gender" style="padding: 6px;">
                                     <option {% if detail.gender == "男" %}selected{% endif %} value="1" name="gender">男
                                     </option>
@@ -248,7 +250,7 @@
                             </span> -->
                             <p>
                             </p>
-                            生日：
+                            <strong>生日：</strong>
                             <input type="date" placeholder="生日(範例:2000/01/01)" name="birthday" required
                                 value="{{ detail.birthday }}" min="1911-01-01" max="{{ nowday }}" style="padding:4px">
                             <p>
@@ -399,23 +401,26 @@
         </form>
     </div>
     <script>
-        //tag focus(點選) 
-
-         // 放入景點標籤
-    var attractions_types_json = JSON.parse('{{ all_type_name_json|safe }}');
-    var attractions_types = document.getElementById("attractions_types");
-
-    attractions_types.innerHTML += "<tr>";
-
-    attractions_types_json.forEach(function (item) {
-        //console.log(item);
-        attractions_types.innerHTML += `<td><span class="more_btn" onclick="toggleSelection(this)" data-set="${item.id}">${item.name}</span></td>`;
-    });
-    //景點標籤按鈕
-    attractions_types.innerHTML += "</tr>"
-
         function toggleSelection(button) {
+            const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
             button.classList.toggle('selected');
+            var id = button.getAttribute('data-set');
+            $.ajax({
+                headers: { 'X-CSRFToken': csrftoken },
+                url: '/useredit/change_favorite/',
+                type: 'POST',
+                data: {
+                    'type_id': id
+                },
+                success: function (response) {
+                    if(response['status'] == 'remove'){
+                        document.querySelector(`.article-tag[data-set="${id}"]`).remove();
+                    }
+                    else{
+                        document.querySelector('.article-tag').insertAdjacentHTML('beforebegin', `<span class="article-tag" data-set="${id}">${button.textContent}</span>`);
+                    }
+                }
+            });
         }
 
         var filiter_win = document.getElementById('user_like_topic');//景點主題

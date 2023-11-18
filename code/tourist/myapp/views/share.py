@@ -21,6 +21,7 @@ def share(request):
             share['img']=place_id
         except:
             share['img']="default"
+        share['object'] = Create_Travel.objects.get(id=share['id'])
         all_share_list.append(share)
     print(all_share_list)
     return render(request, "share.html",locals())

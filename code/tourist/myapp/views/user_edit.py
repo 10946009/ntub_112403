@@ -6,7 +6,8 @@ from .viewsConst import ATT_TYPE_CHINESE
 
 def user_edit(request):
     detail = User.objects.get(id=request.user.id)
-    all_type_name_json = json.dumps(ATT_TYPE_CHINESE)
+    all_type_name = ATT_TYPE_CHINESE
+    
     return render(request, "edit.html",locals())
 
 
@@ -27,3 +28,28 @@ def user_edit_form(request):
         user.username = request.POST.get('username')
         user.save()
         return redirect("/useredit")
+
+def change_favorite(request):
+    if request.method == "POST":
+        type_id = int(request.POST.get('type_id'))
+        user = User.objects.get(id=request.user.id)
+        status = ""
+        if user:
+            type_list = user.user_favorite_tag
+            print(type_list)
+            print(type_id)
+            if type_id in type_list:
+                status="remove"
+                type_list.remove(type_id)
+            else:
+                status="add"
+                type_list.append(type_id)
+
+            user.user_favorite_tag = type_list
+            user.edit_tag_status = True
+            user.save()
+            
+            detail = User.objects.get(id=request.user.id)
+            all_type_name = ATT_TYPE_CHINESE
+
+            return JsonResponse({'status': status})

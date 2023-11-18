@@ -156,13 +156,7 @@ def attraction_details(request):
         choose_attractions.save()
 
         # 記錄使用者點擊
-        if user :
-            if UserClick.objects.filter(u_id=user.id, a_id=choose_attractions.id).exists():
-                user_click = UserClick.objects.get(u_id=user.id, a_id=choose_attractions.id)
-                user_click.click_count += 1
-                user_click.save()
-            else:
-                UserClick.objects.create(u_id=user.id, a_id=choose_attractions.id)
+        user_click(user,choose_attractions.id)
 
         # 判斷是否已收藏
         
@@ -248,14 +242,7 @@ def click_info(request):
         choose_attractions.hit += 1
         choose_attractions.save()
 
-        # 記錄使用者點擊
-        if user :
-            if UserClick.objects.filter(u_id=user, a_id=choose_attractions.id).exists():
-                user_click = UserClick.objects.get(u_id=user, a_id=choose_attractions.id)
-                user_click.click_count += 1
-                user_click.save()
-            else:
-                UserClick.objects.create(u_id=user, a_id=choose_attractions.id)
+        user_click(user,choose_attractions.id)
 
         # 判斷是否已收藏
         
@@ -307,3 +294,22 @@ def click_info(request):
         )
         detail_data_dict = {"attractions_detail_html": detail_html}
         return JsonResponse(data=detail_data_dict, safe=False)
+    
+# 記錄使用者點擊
+def user_click(user,aid):
+    if user :
+        user = User.objects.get(id=user)
+        if UserClick.objects.filter(u_id=user.id, a_id=aid).exists():
+            user_click = UserClick.objects.get(u_id=user.id, a_id=aid)
+            user_click.click_count += 1
+            user_click.save()
+        else:
+            UserClick.objects.create(u_id=user.id, a_id=aid)
+
+        if not user.edit_tag_status :
+            user_maybe_list = UserClick.objects.filter(u_id=user.id).order_by('-click_count').values_list('a__att_type', flat=True)[:5]
+            user_maybe = [item for x in user_maybe_list for item in x] #拆list
+            user_maybe_set = list(set(user_maybe)) #去重複
+            user.user_favorite_tag =user_maybe_set
+            user.save()
+    

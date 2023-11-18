@@ -1033,7 +1033,7 @@
             <i class="fa-solid fa-pen" style="color: gray;"></i>
             評論
         </h5>
-        <div class="col-3">
+        <div class="col-3 write_comment_btn">
             <div style="margin-left: 30px; margin-top: 10px;">
                 <div>
                     {% if request.user.is_authenticated %}
@@ -1055,9 +1055,9 @@
                 </div> -->
             </div>
         </div>
-        <div class="col-9">
+        <div class="col-9" style="margin-bottom:30px;">
             {% for comment in comment_list %}
-            <div class="comment">
+            <div class="comment" style="margin-bottom:20px;">
                 <div class="avatar">
                     <img src="{{comment.u.get_photo}}" alt="User Avatar">
                 </div>
