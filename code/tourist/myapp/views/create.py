@@ -62,7 +62,7 @@ def create(request, ct_id):
     name = ct_data.ct_name
     start_day = ct_data.start_day
     start_week = (datetime(int(start_day[0:4]), int(start_day[5:7]), int(start_day[8:])).weekday()+ 1)
-    print(start_week)
+    # print(start_week)
     # ct_id = ct_data.id
     
     stay_time = 150
@@ -84,9 +84,9 @@ def create(request, ct_id):
         chinese_week = ["","一","二","三","四","五","六","日"]
         week = (start_week + index) % 8
         if week == 0: week = 1
-
+        print(week)
         user_favorite_list = Crowd_Opening.objects.filter(week=week, a_id__in=user_favorite_id_list)
-
+        print(week,user_favorite_list)
         crowd_index_list=[]
         ct_data = []
         ct_data_id = []
@@ -152,9 +152,9 @@ def create(request, ct_id):
             get_user_address = list(map(float, request.POST["user_location"].split(",")))
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
-            print("user目前位置",get_user_address)
-            print("user目前位置",type(get_user_address))
-            print(new_nowtime)
+            # print("user目前位置",get_user_address)
+            # print("user目前位置",type(get_user_address))
+            # print(new_nowtime)
             m = recommend(
                 user_favorite_type, new_nowtime, get_user_address, start_day, stay_time
             )
@@ -215,7 +215,6 @@ def create(request, ct_id):
             data_dict = {"recommend_attractions_list": html}
             
             return JsonResponse(data=data_dict, safe=False)
-
 
         if ct_status == "2":
             o_attractions_list = request.POST.getlist("total_aid_list[]")
