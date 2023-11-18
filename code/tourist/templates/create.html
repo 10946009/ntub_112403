@@ -25,9 +25,7 @@
 {% endblock %}
 {% block body %}
 <main>
-  <button class="recommend_next recommend_save" style="
-  display: none;
-  z-index: 3;" id="saveDays" value="儲存" onclick="createSave()">儲存</button>
+  <button class="recommend_next recommend_save" style="display: none;z-index: 3;" id="saveDays" value="儲存" onclick="createSave()">儲存</button>
   <button class="recommend_next recommend_submit" id="submitNext-{{ day }}" onclick="submitNext()" value="下一步">下一步</button>
 
   <div class="pageedit">
@@ -166,13 +164,13 @@
                 點此收合收藏區塊唷
             </span>
           </div>
-          <div class="row openFav">
+          <div class="openFav">
             <div class="owl-carousel owl-theme owl_adjust">
               {% for item in data.user_favorite_list %}
-                  <div class="checkimg_div" onclick="pickspot(this,{{ item.a.id }})">
+                  <div class="item checkimg_div" onclick="pickspot(this,{{ item.a.id }})">
                     <span class="checkspot">
                       <img src="../static/images/attractions/{{ item.a.place_id }}_0.jpg" class="img-responsive" width="100%" alt="">
-                      <a class="fa-solid fa-circle-info info_icon_left" id="info_icon" onclick="clickInfo({{ item.a.id }})"></a>
+                      <a class="fa-solid fa-circle-info info_icon_left" onclick="clickInfo({{ item.a.id }})"></a>
                       
                     </span>
                     <div class="spottxtdiv">
