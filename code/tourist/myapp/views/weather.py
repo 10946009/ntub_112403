@@ -13,7 +13,6 @@ def get_weather_data(address,year,mouth,day,nowtime):#地址、年、月、日�
     mouth = str(mouth).zfill(2) #補0
     day = str(day).zfill(2) #補0
     nowtime =(nowtime // 60) % 24
-    print(url)
     response = requests.get(url, headers=HEADERS)
     if response.status_code == 200:
         data = response.json()

@@ -78,7 +78,6 @@ function flipped() {
   const done = document.getElementById('done-' + globalDay);
   const initialLayout = document.getElementById('initialLayout-'+globalDay);
   const flippedBtn = document.getElementById('flippedBtn-' + globalDay);
-  const submitNext = document.getElementById('submitNext-' + globalDay);
 
 
   if (isDoneVisible) {
@@ -99,40 +98,20 @@ function flipped() {
   isDoneVisible = !isDoneVisible;
 }
 
-// function clickChangeDone(day = null) {
-//   if (day === null) {
-//     day = globalDay;
-//   }
-//   console.log(day)
-//   const initialLayout = document.getElementById('initialLayout-' + day);
-//   const done = document.getElementById('done-' + day);
-//   const button = document.getElementById("changeToDone-" + day);
-//   isdoneJourneyVisible[day] = !isdoneJourneyVisible[day];
-//   if (isdoneJourneyVisible[day]) {
-//     initialLayout.style.transform = 'rotateY(180deg)';
-//     done.style.transform = 'rotateY(0deg)';
-//     button.textContent = "重新推薦";
-//     button.style.backgroundColor = "rgb(255, 41, 101)";
-
-//   } else {
-//     initialLayout.style.transform = 'rotateY(0deg)';
-//     done.style.transform = 'rotateY(180deg)';
-//     button.textContent = "景點排序";
-//     button.style.backgroundColor = "#0066DB";
-//   }
-// }
-
 // 送出功能整合到clickChangeDone函数中
 // 點擊送出會切換到景點排序頁面
 function submitNext(day) {
   showRightDiv();
 }
 function submitAction2(day) {
+  const submitNextBtn = document.getElementById('submitNext-' + globalDay);
   if(!isDoneVisible){
     flipped();
   }
   showRightDiv();
   submitRecommend();
+  submitNextBtn.style.display = 'none';
+  console.log(3);
 }
 
 
@@ -189,10 +168,6 @@ function openFavDiv() {
   }
 }
 
-// 當頁面載入後，呼叫一次以顯示相似元素
-// $(document).ready(function () {
-//   openSimilarBtn();
-// });
 
 
 //open篩選
