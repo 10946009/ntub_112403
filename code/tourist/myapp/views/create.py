@@ -54,9 +54,6 @@ def format_minutes_as_time(minutes):
 def create(request, ct_id):
     # 抓使用者收藏的景點
     uid = request.user.id
-    user_favorite_list = Favorite.objects.filter(u_id = uid).values()
-    for i in user_favorite_list:
-        i['a_id'] = Attractions.objects.get(id = i['a_id'])
         
     user_favorite_type = [4, 6, 9, 10, 15, 16, 18] #需修改新增的部分
     ct_data = Create_Travel.objects.get(id=ct_id)
@@ -76,15 +73,20 @@ def create(request, ct_id):
     travel_datas = {}
     # 抓出這是哪一筆行程
     ct_attractions_data_total = ChoiceDay_Ct.objects.filter(ct_id=ct_id).order_by('day')
-
+    user_favorite = Favorite.objects.filter(u_id = uid)
+    user_favorite_id_list = [uf.a_id for uf in user_favorite]
     # 預設總共天數的資料為""
     for i in range(1,ct_data.travel_day+1):
        travel_datas[i]="" 
     # 抓目前位置
     for index,ct_attractions_data in enumerate(ct_attractions_data_total):
+            
         chinese_week = ["","一","二","三","四","五","六","日"]
         week = (start_week + index) % 8
         if week == 0: week = 1
+
+        user_favorite_list = Crowd_Opening.objects.filter(week=week, a_id__in=user_favorite_id_list)
+
         crowd_index_list=[]
         ct_data = []
         ct_data_id = []
@@ -100,6 +102,7 @@ def create(request, ct_id):
             "user_nowtime": user_nowtime,
             "date": f"{start_day[5:7]}月{int(start_day[8:])+index}日",
             "week": chinese_week[week],
+            "user_favorite_list": user_favorite_list,
         }
         # 抓出這筆行程中的所有景點
         ct_attractions_list = Attractions_Ct.objects.filter(
