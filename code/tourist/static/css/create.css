@@ -4,9 +4,36 @@
     width: 100%;
     height: 100%;
     overflow-y: scroll;
+}
+
+/* body {
+    background-color: rgba(237, 237, 210, 0.3);
 } */
-body{
-	/* background-color: rgba(237, 237, 210, 0.3); */
+
+/* 詳細景點資訊 彈跳框 */
+.modal-content_att_info {
+    background: rgb(221, 219, 219);
+    border: black solid;
+    width: 55%;
+    margin: 90px auto;
+    padding: 50px;
+    position: relative;
+}
+
+/* 詳細景點資訊 叉叉 */
+.close_att_info {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #908f8f;
+    cursor: pointer;
+}
+
+.close_att_info:hover {
+    color: #f44336;
+    cursor: pointer;
 }
 
 
@@ -321,6 +348,7 @@ main {
     padding: 10px 0;
     user-select: none;
 }
+
 .done_icon,
 .find_icon {
     color: white;

@@ -9,23 +9,20 @@ function owlStart(){
         responsive: {
             0: {
                 items: 1,
-                slideBy: 1
+                slideBy:1
             },
-            500: {
+            576: {
                 items: 2,
-                slideBy: 2
+                slideBy:2
             },
-            650: {
+            600: {
                 items: 3,
-                slideBy: 3
-            },
-            700: {
-                items: 4,
-                slideBy: 4
+                slideBy:3
+                
             },
             1000: {
                 items: 5,
-                slideBy: 5
+                slideBy:5
             }
         }
     });
