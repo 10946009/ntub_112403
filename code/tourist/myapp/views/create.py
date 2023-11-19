@@ -138,8 +138,8 @@ def create(request, ct_id):
                 "weather": get_weather_data(detail.address,start_day[0:4],start_day[5:7],int(start_day[8:])+index,ct_attractions_data.start_time),
             })
             
-        all_ct_data[index+1]=ct_data
-        all_ct_data_id[index+1]=ct_data_id
+        all_ct_data[index]=ct_data
+        all_ct_data_id[index]=ct_data_id
         # print('all_ct_data',all_ct_data)
     # except:
     #     all_ct_data=[]

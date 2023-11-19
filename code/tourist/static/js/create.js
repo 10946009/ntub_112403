@@ -78,7 +78,7 @@ function flipped() {
   const done = document.getElementById('done-' + globalDay);
   const initialLayout = document.getElementById('initialLayout-'+globalDay);
   const flippedBtn = document.getElementById('flippedBtn-' + globalDay);
-  var saveButton = document.getElementById('saveDays');
+  var saveButton = document.getElementById('saveDays-'+ globalDay);
 
   if (isDoneVisible) {
     done.classList.remove('changeActive');
@@ -87,7 +87,7 @@ function flipped() {
       initialLayout.classList.add('changeActive');
     }, 50); // 延遲切換，不然會直接跳轉沒有翻轉效果
     flippedBtn.textContent = '景點排序';
-    saveButton.style.display = "block";
+    saveButton.style.display = "none";
   } else {
     initialLayout.classList.remove('changeActive');
     done.classList.remove('hidden');
@@ -95,7 +95,7 @@ function flipped() {
       done.classList.add('changeActive');
     }, 50); 
     flippedBtn.textContent = '查看推薦';
-    saveButton.style.display = "none";
+    saveButton.style.display = "";
   }
   isDoneVisible = !isDoneVisible;
 }
@@ -105,24 +105,22 @@ function flipped() {
 function submitNext(day) {
   showRightDiv();
 }
-function submitAction2(day) {
-  // 這個是什麼 他噴錯ㄌQQ
-  user = User.objects.get(id=user)
+function submitAction2() {
   if(!isDoneVisible){
     flipped();
   }
   showRightDiv();
   submitRecommend();
+  var submitNextBtn = document.getElementById('submitNext-' + globalDay);
   submitNextBtn.style.display = 'none';
   console.log(3);
   // 顯示儲存按鈕
-  var saveButton = document.getElementById('saveDays');
+  var saveButton = document.getElementById('saveDays-'+globalDay);
   if (saveButton) {
     saveButton.style.display = 'block'; 
   }
 
   // 隱藏 submitNext 按鈕
-  var submitNextBtn = document.getElementById('submitNext-' + day);
   if (submitNextBtn) {
     submitNextBtn.style.display = 'none';
   }
