@@ -21,7 +21,7 @@ def create_index(request):
         for i in range(int(travel_day)):
             choice_unit = ChoiceDay_Ct.objects.create(
                 ct_id=unit.id,
-                day=i,
+                day=i+1,
                 start_time="540",
                 start_location_x="25.04638359",
                 start_location_y="121.5174624",

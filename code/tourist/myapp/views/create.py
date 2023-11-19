@@ -136,8 +136,8 @@ def create(request, ct_id):
                 "weather": get_weather_data(detail.address,start_day[0:4],start_day[5:7],int(start_day[8:])+index,ct_attractions_data.start_time),
             })
             
-        all_ct_data[index]=ct_data
-        all_ct_data_id[index]=ct_data_id
+        all_ct_data[index+1]=ct_data
+        all_ct_data_id[index+1]=ct_data_id
         # print('all_ct_data',all_ct_data)
     # except:
     #     all_ct_data=[]
@@ -304,26 +304,28 @@ def create(request, ct_id):
             print("我進來了")
             print(request.POST)
             choiceday = int(request.POST["day"])
+            print("choiceday",choiceday,"ct_id",ct_id)
             get_user_address = list(map(float, request.POST["location"].split(",")))
             get_user_location_name = request.POST["location_name"]
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
             unit_query = ChoiceDay_Ct.objects.filter(day=choiceday, ct_id=ct_id)
+            print(unit_query)
             if unit_query.exists():
                 unit = unit_query.first()
                 unit.start_location_x = get_user_address[0]
                 unit.start_location_y = get_user_address[1]
                 unit.start_time = new_nowtime
                 unit.location_name = get_user_location_name
-            else:
-                unit = ChoiceDay_Ct.objects.create(
-                    day=choiceday,
-                    start_location_x=get_user_address[0],
-                    start_location_y=get_user_address[1],
-                    start_time=new_nowtime,
-                    ct_id=ct_id,
-                    location_name=get_user_location_name,
-                )
+            # else: #已經會自己生成了
+            #     unit = ChoiceDay_Ct.objects.create(
+            #         day=choiceday,
+            #         start_location_x=get_user_address[0],
+            #         start_location_y=get_user_address[1],
+            #         start_time=new_nowtime,
+            #         ct_id=ct_id,
+            #         location_name=get_user_location_name,
+            #     )
             unit.save()
             choice_ct_id = unit.id
             if request.POST["all_id"] != "":
@@ -332,11 +334,11 @@ def create(request, ct_id):
                 print("all_id",all_id)
                 Attractions_Ct.objects.filter(choice_ct_id=choice_ct_id).delete() #刪除舊資料
                 for index, id in enumerate(all_id):
+                    id_db = Attractions.objects.get(id=id)
                     if index == len(all_id) - 1:
                         distance = 0
                         duration = 0
                     else:
-                        id_db = Attractions.objects.get(id=id)
                         id2_db = Attractions.objects.get(id=all_id[index + 1])
                         distance = 2200  # 距離(公尺)
                         duration = 10  # 時間(分鐘)
