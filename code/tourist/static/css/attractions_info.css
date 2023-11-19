@@ -18,3 +18,61 @@
     background-color: rgb(71, 117, 162);
     color: #000;
 }
+
+.avatar img {
+    width: 40px;
+    height: 40px;
+}
+
+/* comment_tips */
+.comment_info {
+    cursor: pointer;
+}
+
+.show_comment_info {
+    width: 300px;
+    display: none;
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* 三個點點刪除框框 */
+.comment_delete-box {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    right: 0;
+    top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+/*張貼div */
+.post_share_comment {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+/* 張貼按鈕 */
+.share_comment_btn_ok {
+    cursor: pointer;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    padding: 2px 20px 2px 20px;
+    font-family: Arial;
+    border: #000 solid;
+    background-color: #d2892f;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.share_comment_btn_ok:hover {
+    color: white;
+    background-color: #e2a941;
+}
