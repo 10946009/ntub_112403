@@ -33,7 +33,9 @@
         <div class="col-md-7 mytravel_txt">
           <div class="basicTxt">
             <h4 class="mytravel_txt_title">行程名稱：{{ item.my_history.ct_name }}</h4>
-            <h4 class="mytravel_review">喜愛程度：(被幾個人收藏)</h4>
+            {% if item.my_history.status == True %}
+            <h4 class="mytravel_review">喜愛程度：0</h4>
+            {% endif %}
             <h4 class="mytravel_txt_detail">天數：{{ item.my_history.travel_day }}</h4>
             <h4 class="mytravel_txt_detail">地點：</h4>
           </div>
@@ -161,7 +163,7 @@
     </div>
     <!-- 這邊好像抓不到id名稱所以JS不會動 -->
     <div class="col-lg-6" style="margin-top: 10px;" id="changeHistory">
-      
+      {% comment %} 拆分到histry_detail了 {% endcomment %}
     </div>
 
   </div>

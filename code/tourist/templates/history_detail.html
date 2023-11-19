@@ -5,32 +5,23 @@
       </div>
       <hr style="margin-top: 0;">
       <div style="float: right;">
-        <span>分享人：</span>
+        <span>分享人：{{data.u.username}}</span>
       </div>
       <div class="aboutDiv">
         <span>相關標籤</span>
-        <span class="filter">動物園</span>
+        {% for type in data.is_fit %}<span class="filter">{{type}}</span>{% endfor %}
+        
       </div>
     </div>
     <div>
       <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
         <div class="carousel-inner">
           <!-- 圖片要幫忙抓他選到景點的圖 -->
+          {% for img in data.get_attractions_picture %}
           <div class="carousel-item active historyCarousel">
-            <img src="../static/images/101.jpg" class="img-responsive historyCarouselImg" width="100%" alt="">
+            <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="img-responsive historyCarouselImg" width="100%" alt="">
           </div>
-          <div class="carousel-item historyCarousel">
-            <img src="../static/images/beitou.jpeg" class="img-responsive historyCarouselImg" width="100%" alt="">
-          </div>
-          <div class="carousel-item historyCarousel">
-            <img src="../static/images/bg5.png" class="img-responsive historyCarouselImg" width="100%" alt="">
-          </div>
-          <div class="carousel-item historyCarousel">
-            <img src="../static/images/bg8.jpg" class="img-responsive historyCarouselImg" width="100%" alt="">
-          </div>
-          <div class="carousel-item historyCarousel">
-            <img src="../static/images/bg7.png" class="img-responsive historyCarouselImg" width="100%" alt="">
-          </div>
+          {% endfor %}
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide"
           data-bs-slide="prev">
