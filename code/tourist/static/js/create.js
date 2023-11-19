@@ -64,7 +64,7 @@ function adjustTextHeight(selector) {
   $(selector).height(maxHeight);
 }
 
-// 翻轉左邊區塊W&按鈕RWD變換
+// 翻轉景點排序&推薦
 
 var total_day = document.getElementsByClassName('tab-pane')
 var isdoneJourneyVisible = {};
@@ -80,6 +80,7 @@ function flipped(day = null) {
   const initialLayout = document.getElementById('initialLayout-'+day);
   const flippedBtn = document.getElementById('flippedBtn-' + day);
   var saveButton = document.getElementById('saveDays-'+ day);
+  var nextButton = document.getElementById('submitNext-' + day);
 
   if (isdoneJourneyVisible[day]) {
     done.classList.remove('changeActive');
@@ -89,6 +90,7 @@ function flipped(day = null) {
     }, 50); // 延遲切換，不然會直接跳轉沒有翻轉效果
     flippedBtn.textContent = '景點排序';
     saveButton.style.display = "none";
+    nextButton.style.display = 'block';
   } else {
     initialLayout.classList.remove('changeActive');
     done.classList.remove('hidden');
@@ -97,6 +99,7 @@ function flipped(day = null) {
     }, 50); 
     flippedBtn.textContent = '查看推薦';
     saveButton.style.display = "";
+    nextButton.style.display = '';
   }
   isdoneJourneyVisible[day] = !isdoneJourneyVisible[day];
 }

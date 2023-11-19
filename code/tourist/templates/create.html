@@ -24,12 +24,7 @@
 </style>
 {% endblock %}
 {% block body %}
-<main>
-  {% comment %} <button class="recommend_next recommend_save" style="
-  display: none;
-  z-index: 3;" id="saveDays" value="儲存" onclick="createSave()">儲存</button>
-  <button class="recommend_next recommend_submit" id="submitNext-{{ day }}" onclick="submitNext()" value="下一步">下一步</button> {% endcomment %}
-  
+<main>  
   <div class="pageedit">
     <ul class="nav nav-tabs flex justify-content-start my-nav-tabs" id="myTab" role="tablist">
       {% for day,data in travel_datas.items %}
@@ -55,8 +50,10 @@
     {% for day,data in travel_datas.items %}
     <div class="tab-pane fade{% if forloop.counter == 1 %} show active{% endif %}" id="ch-{{ day }}" role="tabpanel"
     aria-labelledby="{{ day }}-tab" dataset="{{ day }}">
-      <button class="recommend_next recommend_save"style="display: none;z-index: 3;" id="saveDays-{{ day }}"  value="儲存" onclick="createSave()">儲存</button>
+      <button class="recommend_next recommend_save recommend_saveTxt" id="saveDays-{{ day }}"  value="儲存" onclick="createSave()">儲存</button>
       <button class="recommend_next recommend_submit" id="submitNext-{{ day }}" onclick="submitNext()" value="下一步">下一步</button>
+      <button class="recommend_next recommend_save recommend_saveIcon" style="display: none;" id="saveDays-{{ day }}"  value="儲存" onclick="createSave()"><i class="fa-solid fa-floppy-disk"></i></button>
+      <!-- <button class="recommend_next recommend_submit" id="submitNext-{{ day }}" onclick="submitNext()" value="下一步">下一步</button> -->
       <button class="changeToDone" id="flippedBtn-{{ day }}" onclick="flipped()">景點排序</button>
       <!-- 基本資訊 -->
       <div>
@@ -218,7 +215,7 @@
           <div class="align" id="bottomAttraction">
               <!-- be choosed -->
           </div>
-          <hr style="margin-bottom: 5px;">
+          <hr class="rightHr">
           <div style="position: relative;">
             <div class="renew" onclick="similarRecommend()">
               <span>更新</span>
