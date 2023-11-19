@@ -27,28 +27,32 @@ function similarRecommend(){
   nowtime = document.getElementById('nowtime-' + globalDay);
   const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
   const similar_attractions_detail_div = $('#SimilarRecommend');
-  $.ajax({
-      type: "POST",
-      headers: { 'X-CSRFToken': csrftoken },
-      data: {
-          aid_list: aid_list,
-          nowtime: nowtime.value,
-          ct_status: 1,
+  if (aid_list.length ==0){
+    similar_attractions_detail_div.html("<div>請先選擇景點!</div>");
+  }else{
+    $.ajax({
+        type: "POST",
+        headers: { 'X-CSRFToken': csrftoken },
+        data: {
+            aid_list: aid_list,
+            nowtime: nowtime.value,
+            ct_status: 1,
+        },
+        beforeSend: function () {
+          console.log("请求发送中...");
+          similar_attractions_detail_div.html("<div>正在為您推薦相似景點…</div>");
       },
-      beforeSend: function () {
-        console.log("请求发送中...");
-        similar_attractions_detail_div.html("<div>正在為您推薦相似景點…</div>");
-    },
-      success: function (response) {
-        console.log( response);
-        similar_attractions_detail_div.html(response['recommend_attractions_list']);
-        checkAndAddClass();
-      },
-
-      error: function () {
-          console.log('推薦相似回傳有錯誤!!!');
-      },
-    });
+        success: function (response) {
+          console.log( response);
+          similar_attractions_detail_div.html(response['recommend_attractions_list']);
+          checkAndAddClass();
+        },
+  
+        error: function () {
+            console.log('推薦相似回傳有錯誤!!!');
+        },
+      });
+  }
 
 }
 

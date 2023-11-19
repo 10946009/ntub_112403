@@ -124,13 +124,15 @@ def create(request, ct_id):
         # print('ct_attractions_co_list',ct_attractions_co_list)
         # print('crowd_list',crowd_list)
         # 合併上面四個資料
-        for attraction, detail, co ,cl in zip(ct_attractions_list, ct_attractions_detail_list, ct_attractions_co_list,crowd_index_list):
+        ct_distance_list = Attractions_Ct.objects.filter(choice_ct_id=ct_attractions_data.id).order_by('order')
+        for attraction, detail, co ,cl ,cd in zip(ct_attractions_list, ct_attractions_detail_list, ct_attractions_co_list,crowd_index_list,ct_distance_list):
             # print(f"{min(co.crowd[cl],co.crowd[(cl+1)%24])} ~ {max(co.crowd[cl],co.crowd[(cl+1)%24])}")
             ct_data.append({
                 "attraction": attraction,
                 "detail": detail,
                 "co": co,
                 "crowd_list" : f"{min(co.crowd[cl],co.crowd[(cl+1)%24])} ~ {max(co.crowd[cl],co.crowd[(cl+1)%24])}",
+                "distance": cd,
                 "weather": get_weather_data(detail.address,start_day[0:4],start_day[5:7],int(start_day[8:])+index,ct_attractions_data.start_time),
             })
             
