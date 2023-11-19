@@ -376,4 +376,26 @@
             }
             x[slideIndextotal - 1].style.display = "block";
         }
+        // 評論公開顯示tips
+        var comment_info = document.getElementById("comment_info");
+        var show_comment_info = document.getElementById("show_comment_info");
+        comment_info.addEventListener("click", function () {
+            if (show_comment_info.style.display === "block") {
+                show_comment_info.style.display = "none";
+            } else {
+                show_comment_info.style.display = "block";
+            }
+        });
+
+        // 評論刪除三個小點點
+        function Del_comment(icon) {
+            var deleteBox = icon.nextElementSibling;
+            deleteBox.style.display = (deleteBox.style.display === 'block') ? 'none' : 'block';
+            //點擊其他地方刪除div消失（關閉）
+            document.addEventListener('click', function (event) {
+                if (!deleteBox.contains(event.target) && event.target !== icon) {
+                    deleteBox.style.display = 'none';
+                }
+            });
+        }
     </script>
