@@ -82,26 +82,298 @@
                 <span class="tag-week" data-set="5">星期六</span>
                 <span class="tag-week" data-set="6">星期日</span>
             </div>
+            <!-- 圖表 -->
+            <div>
+                <!-- <canvas id="chart" width="300" height="150"></canvas> -->
+                <canvas id="people_if_Chart" width="700%;" height="500%;"></canvas>
+            </div>
         </h6>
     </div>
-</div>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<script>
-    var slideIndextotal = 1;
-    showtotalDivs(slideIndextotal);
+    <hr style=" border:1px solid #777777; max-width: 95%;">
+    <h5 style="font-size: 22px;">
+        <i class="fa-solid fa-pen" style="color: gray;"></i>
+        評論
+    </h5>
+    <div style="margin-top:30px;">
+        {% for comment in comment_list %}
+        <div class="comment" style="margin-bottom:20px;">
+            <div class="avatar">
+                <img src="{{comment.u.get_photo}}" alt="User Avatar">
+            </div>
+            <div class="comment-content userComment" id="{{comment.id}}">
+                <div style="display: flex; justify-content: space-between; position: relative;">
+                    <h6 class="username">
+                        {{comment.u.username}}<br>
+                        <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;">
+                            <i class="fa-solid fa-crown"></i>在地嚮導
+                        </span>
+                        <span style="color:gray;font-size: 12px; font-style: italic;">·4則評論 ·3張照片</span>
+                    </h6>
+                    <!-- 3個小點點(icon) -->
+                    <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer;" onclick="Del_comment(this)"></i>
+                    <!-- 評論刪除顯示框框 -->
+                    <div class="comment_delete-box">
+                        刪除
+                    </div>
+                </div>
+                <p class="comment-text">
+                    {{comment.content}}
+                    <br>
+                    <!-- <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
+                            2033</span> -->
+                </p>
+                <!-- 只有他有點讚功能 -->
+                <span style="margin-right: 20px;cursor: pointer;" id="likeButton">
+                    {% if request.user.id in comment.get_user_favorite %}
+                    <i class="fa-thumbs-up fa-solid" style=" color: rgb(0, 102, 255);"></i>
+                    {% else %}
+                    <i class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i>
+                    {% endif %}
+                    <span id="likeCount">{{comment.get_favorite_count}}</span></span>
+                {% comment %} <div class="comment_user_ph" style="max-width: 100%;">
+                    <img src="../static/images/att_picture.png" alt=""
+                        style="width: 150px; cursor: pointer; border: black aolid;" onclick="showPhotoDetail()">
+                    <img src="../static/images/att_picture.png" alt=""
+                        style="width: 150px; cursor: pointer; border: black aolid;" onclick="showPhotoDetail()">
+                    <img src="../static/images/att_picture.png" alt=""
+                        style="width: 150px; cursor: pointer; border: black aolid;" onclick="showPhotoDetail()">
+                    <img src="../static/images/att_picture.png" alt=""
+                        style="width: 150px; cursor: pointer; border: black aolid;" onclick="showPhotoDetail()">
+                </div> {% endcomment %}
+            </div>
+        </div>
+        {% empty %}
+        <div style="display: flex; justify-content: center; margin-bottom: 20px; margin-bottom: 60px;">
+            <h5>目前尚無留言！</h5>
+        </div>
+        {% endfor %}
+        {% comment %} <div class="comment">
+            <div class="avatar">
+                <img src="../static/images/dog.jpg" alt="User Avatar">
+            </div>
+            <div class="comment-content">
+                <h6 class="username">
+                    彭德<br>
+                    <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
+                            class="fa-solid fa-crown"></i>在地嚮導</span>
+                    <span style="color:gray;font-size: 12px; font-style: italic;">·7則評論
+                        ·1張照片</span><br>
+                    <span style="color:gray;font-size: 12px; font-style: italic;">3個月前</span>
+                </h6>
+                <!-- <div class="star_count">
+                        <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
+                        <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
+                        <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
+                        <span><i class="fa-solid fa-star"></i></span>
+                        <span><i class="fa-solid fa-star"></i></span>
 
-    function plustotalDivs(n) {
-        showtotalDivs(slideIndextotal += n);
-    }
-
-    function showtotalDivs(n) {
-        var i;
-        var x = document.getElementsByClassName("mytotalSlides");
-        if (n > x.length) { slideIndextotal = 1 }
-        if (n < 1) { slideIndextotal = x.length }
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
+                    </div> -->
+                <p class="comment-text">
+                    我實在越來越覺得動物園越來越差，維修的東西擴建的項目越來越多，但都沒有東西完成！太誇張了!!!
+                    <br>
+                    <!-- <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
+                            2023</span> -->
+                </p>
+                <div class="comment_user_ph" style="max-width: 100%;">
+                    <img src="../static/images/att_picture.png" alt=""
+                        style="width: 150px; cursor: pointer; border: black aolid;" onclick="showPhotoDetail()">
+                    <img src="../static/images/att_picture.png" alt=""
+                        style="width: 150px; cursor: pointer; border: black aolid;" onclick="showPhotoDetail()">
+                </div>
+            </div>
+        </div>
+        <div class="comment">
+            <div class="avatar">
+                <img src="../static/images/peka.webp" alt="User Avatar">
+            </div>
+            <div class="comment-content">
+                <h6 class="username">
+                    皮卡丘<br>
+                    <!-- <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
+                                class="fa-solid fa-crown"></i>在地嚮導
+                            &ensp;</span> -->
+                    <span style="color:gray;font-size: 12px; font-style: italic;">·5則評論</span><br>
+                    <span style="color:gray;font-size: 12px; font-style: italic;">5天前</span>
+                </h6>
+                <!-- <div class="star_count">
+                        <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
+                        <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
+                        <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
+                        <span><i class="fa-solid fa-star"></i></span>
+                        <span><i class="fa-solid fa-star"></i></span>
+                    </div> -->
+                <p class="comment-text">
+                    帶小孩來看動物很棒！可以玩一整天！廁所很多很方便,用餐座位如果能再多一些就好了!麥當勞大排長龍實在太誇張！希望能增設其他餐廳或便利商店~
+                    <br>
+                    <!-- <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
+                            2023</span> -->
+                </p>
+            </div>
+        </div> {% endcomment %}
+        <!-- 分頁  -->
+        <div class="page-container" style="display: flex ; justify-content: center;">
+            <nav aria-label="Page navigation">
+                {% comment %} <ul class="pagination" id="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#" data-page="1">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#" data-page="2">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#" data-page="3">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul> {% endcomment %}
+            </nav>
+        </div>
+        <div class="share_comment_con">
+            <div class="comment">
+                <div class="avatar">
+                    <img src="{{request.user.get_photo}}" alt="User Avatar">
+                </div>
+                <div class="comment-content">
+                    <h6 class="username">
+                        {{request.user.username}}<br>
+                        <span style="color: gray; font-size: 14px; font-style: italic;">公開發佈
+                            &ensp;</span>
+                        <span class="show_com_info"><i class="comment_info fa-solid fa-circle-info"
+                                id="comment_info"></i></span>
+                        <div class="show_comment_info" id="show_comment_info">
+                            您的貼文會與個人資料名稱及相片一併公開顯示。您的貼文必須遵循政策的規定。</div>
+                    </h6>
+                </div>
+            </div>
+            <!-- <div class="comment_rating" id="rating">
+                    <div class="comment_star" data-value="1"><i class="fas fa-star"></i></div>
+                    <div class="comment_star" data-value="2"><i class="fas fa-star"></i></div>
+                    <div class="comment_star" data-value="3"><i class="fas fa-star"></i></div>
+                    <div class="comment_star" data-value="4"><i class="fas fa-star"></i></div>
+                    <div class="comment_star" data-value="5"><i class="fas fa-star"></i></div>
+                </div> -->
+            <div>
+                <textarea name="user_share_comment" id="user_share_comment" cols="100%" rows="5"
+                    style="resize:none; border-radius: 10px;max-width: 100%;padding: 10px; "
+                    placeholder="詳細說明你在這個地點的親身體驗。"></textarea>
+            </div>
+            <div class="post_share_comment">
+                <span class="share_comment_btn_ok" id="share_comment_btn_ok"
+                    onclick="sendComment({{detail.id}})">張貼</span>
+            </div>
+        </div>
+    </div>
+    <script src="../static/js/sendcomment.js"></script>
+    <!-- 圖表會用到script -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="../static/css/comment.css">
+    <script>
+        //人潮分佈圖(有加時間,數量)
+        var total_data = [];
+        var data_crowdlist = [];
+        var crowd = JSON.parse('{{crowd | safe}}')
+        for (var i = 0; i < crowd.length; i++) {
+            for (var j = 0; j < crowd[i].crowd.length; j++) {
+                data_crowdlist.push({
+                    "Time": `2020–09–01 ${j}:00`,
+                    "Volume": crowd[i].crowd[j]
+                });
+            }
+            total_data.push({
+                "week": crowd[i].week,
+                "crowd": data_crowdlist
+            });
+            data_crowdlist = [];
         }
-        x[slideIndextotal - 1].style.display = "block";
-    }
-</script>
+        var tagWeek = document.getElementsByClassName("tag-week");
+        var crowdCanvas = document.getElementById('people_if_Chart')
+        var ctx = crowdCanvas.getContext('2d');
+        var chart;
+        for (var i = 0; i < tagWeek.length; i++) {
+            tagWeek[i].addEventListener("click", function () {
+                if (chart) {
+                    chart.destroy();
+                }
+                var data = total_data[this.dataset.set].crowd;
+                if (data.map(x => x.Volume).reduce((a, b) => a + b) == 0) { //判斷加總是否為0
+                    ctx.clearRect(0, 0, crowdCanvas.width, crowdCanvas.height);
+                    ctx.font = "72px Arial";
+                    ctx.fillStyle = "black";
+                    ctx.fillText("休息", 200, 200);
+                } else {
+                    chart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: data.map(x => x.Time.slice(11, 16)),
+                            datasets: [{
+                                // label: '人潮流量',
+                                data: data.map(x => x.Volume),
+                                // Line
+                                lineTension: 0,
+                                backgroundColor: '#FF5376',
+                                borderColor: '#FF5376',
+                                fill: false,
+                                borderWidth: 2,
+                                // Point
+                                pointRadius: 5,
+                                pointHoverRadius: 7,
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true, // 从0开始
+                                        max: 100, // 最大值设置为100
+                                    }
+                                }]
+                            },
+                            title: {
+                                display: true,
+                                // text: '人潮流量',
+                                position: 'bottom',
+                                fontSize: 24,
+                                fontStyle: 'normal',
+                                fontFamily: 'Century Gothic'
+                            },
+                            legend: {
+                                display: false
+                            },
+                            responsive: false,
+                            interaction: {
+                                mode: 'point' // 设置交互模式为'point'以禁用点击和悬停
+                            },
+                            elements: {
+                                line: {
+                                    tension: 0, // 设置线条的曲线张力为0，使线条更直接
+                                }
+                            },
+                        }
+                    });
+                }
+
+            });
+        }
+
+
+        var slideIndextotal = 1;
+        showtotalDivs(slideIndextotal);
+
+        function plustotalDivs(n) {
+            showtotalDivs(slideIndextotal += n);
+        }
+
+        function showtotalDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mytotalSlides");
+            if (n > x.length) { slideIndextotal = 1 }
+            if (n < 1) { slideIndextotal = x.length }
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndextotal - 1].style.display = "block";
+        }
+    </script>
