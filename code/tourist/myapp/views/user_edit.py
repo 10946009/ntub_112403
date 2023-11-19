@@ -26,6 +26,8 @@ def user_edit_form(request):
         print(request.POST)
         user = User.objects.get(id=request.user.id)
         user.username = request.POST.get('username')
+        user.gender = request.POST.get('gender')
+        user.birthday = request.POST.get('birthday')
         user.save()
         return redirect("/useredit")
 

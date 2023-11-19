@@ -62,6 +62,7 @@ urlpatterns = [
     path("search/get", search.search),
     path("history/", history.history),
     path("history/<int:select>", history.history),
+    path("history/delete/", history.travel_delete),
 
     path("share/", share.share),
     path("add_favorite_share/", share.add_share),
@@ -79,7 +80,7 @@ urlpatterns = [
     # path('test/',views.test_input),
     path("useredit/", user_edit.user_edit),
     path("useredit/post/", user_edit.user_edit_form,name="user_post"),
-    path("useredit/post/", user_edit.user_edit_form,name="user_post"),
+    # path("useredit/pwd/", user_edit.user_edit_pwd,name="user_pwd"),
     path("useredit/change_favorite/", user_edit.change_favorite),
     path("favorite/", favorite.favorite),
     path("add_travel_favorite/", favorite.add_travel_favorite),  # 沒有頁面
