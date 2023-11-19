@@ -23,11 +23,11 @@ function saveTabState(tabId, day) {
   tab.style.display = 'block';
 
   globalDay = day;
+  inputBottom();
+  checkHasLocationData();
   console.log(globalDay);
   console.log(now_click_attractions);
   //使下面暫存的景點跟著換
-  inputBottom();
-  checkHasLocationData();
 }
 
 
@@ -374,20 +374,26 @@ function inputBottom(day = null) {
   if (day === null) {
     day = globalDay;
   }
-  $.ajax({
-    url: "/attractions",
-    type: "GET",
-    data: {
-      aidlist: Array.from(now_click_attractions[day]).join(','),
-    },
-    success: function (response) {
-      document.getElementById('bottomAttraction').innerHTML = response;
-    },
-
-    error: function () {
-      console.log('推薦回傳有錯誤!!!');
-    },
-  });
+  const bottomAttraction = document.getElementById('bottomAttraction')
+  console.log("inputBottom"+day);
+  if (now_click_attractions[day].size == 0){
+    bottomAttraction.innerHTML = "";
+  }else{
+    $.ajax({
+      url: "/attractions",
+      type: "GET",
+      data: {
+        aidlist: Array.from(now_click_attractions[day]).join(','),
+      },
+      success: function (response) {
+        bottomAttraction.innerHTML = response;
+      },
+  
+      error: function () {
+        console.log('推薦回傳有錯誤!!!');
+      },
+    });
+  }
 }
 // 用來進去翻轉景點排序或推薦景點的部分
 function checkHasData() {
