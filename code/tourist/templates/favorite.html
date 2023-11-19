@@ -79,7 +79,10 @@
                 <h4 class="card-title">{{ item.ct_name }}</h4>
                 <h5>user:{{ item.u_id.username }}</h5>
                 {% comment %} <p class="description">20230318去平溪玩水一天</p> {% endcomment %}
-                <a href="/travel_detail/{{ item.id }}" class="btn btn-warning spot_data_btn">詳細資料</a>
+                <a href="/travel_detail/{{ item.id }}" class="btn btn-warning spot_data_btn">詳細資料</a><br>
+                {% for tag in item.ct_object.is_fit %}
+                <span class="badge rounded-pill bg-success">{{ tag }}</span>
+                {% endfor %}
               </div>
             </div>
           </div>
