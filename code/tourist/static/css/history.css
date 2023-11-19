@@ -63,11 +63,20 @@
 }
 
 .mytravel_txt {
+    display: flex;
     padding: 0;
     position: relative;
     border: 1px solid black;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+}
+
+.basicTxt {
+    display: block;
+    width: 75%;
+}
+.basicButton{
+    width: 25%;
 }
 
 .mytravel_txt_title {
@@ -115,9 +124,9 @@
     width: 35px;
     height: 30px;
     text-align: center;
-    position: absolute;
+    /* position: absolute;
     top: 5px;
-    right: 35px;
+    right: 35px; */
 }
 
 .share_icon {
@@ -146,12 +155,13 @@
     width: 35px;
     height: 30px;
     text-align: center;
-    position: absolute;
+    /* position: absolute;
     top: 5px;
-    right: 75px;
+    right: 75px; */
     padding: 0;
 }
-.delete{
+
+.delete {
     display: block;
     width: 35px;
     height: 30px;
@@ -161,6 +171,7 @@
     left: 5px;
     padding: 0;
 }
+
 .deletea,
 .edita {
     font-size: 28px;
@@ -181,9 +192,11 @@
     display: none;
     border: 1px solid black;
 }
-.aboutDiv{
+
+.aboutDiv {
     margin-bottom: 10px;
 }
+
 .filter {
     color: white;
     padding: 5px 10px;
@@ -224,27 +237,31 @@
 .alreadyComment {
     margin: 0 5px;
 }
-.otherCommentTxtDiv{
+
+.otherCommentTxtDiv {
     width: 80%;
     display: flex;
     padding-right: 5px;
 }
-.otherCommentTxt{
+
+.otherCommentTxt {
     word-wrap: break-word;
     width: 90%;
 }
-.c_editDiv{
+
+.c_editDiv {
     width: 10%;
     text-align: end;
 }
-.c_icon{
+
+.c_icon {
     border: 0;
     background-color: #ffffff00;
     width: 40px;
     height: 40px;
 }
 
-.cancelBtn{
+.cancelBtn {
     display: block;
     width: 70px;
     height: 50px;
@@ -255,7 +272,8 @@
     font-weight: bold;
     background-color: gray;
 }
-.saveBtn{
+
+.saveBtn {
     display: block;
     width: 70px;
     height: 50px;
@@ -268,6 +286,7 @@
     color: #000;
     /* text-shadow: 2px 2px 3px #ccc; */
 }
+
 .otherCommentAvatar {
     display: flex;
     justify-content: center;
@@ -278,7 +297,8 @@
     border-radius: 50%;
     border: 1px solid black;
 }
-.imgCounter{
+
+.imgCounter {
     position: absolute;
     right: 0;
     top: 0;
@@ -286,6 +306,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
 }
+
 .historyCarousel {
     position: relative;
     overflow: hidden;
@@ -448,14 +469,17 @@
 }
 
 @media (max-width: 768px) {
+
     .delete,
     .share {
         top: 0;
     }
+
     .edit {
         top: 0;
         right: 80px;
     }
+
     .delete_icon,
     .edit_icon {
         padding-top: 5px;
