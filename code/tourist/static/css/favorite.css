@@ -159,3 +159,15 @@
     width: 100%;
   }
 }
+
+.info_icon_left {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  border: 0;
+  font-size: 24px;
+  color: white;
+  text-shadow: 2px 2px 3px #333;
+  cursor: pointer;
+  text-decoration: none;
+}
