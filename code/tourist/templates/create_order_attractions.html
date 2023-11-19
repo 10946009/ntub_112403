@@ -1,11 +1,12 @@
 {% for key,datalist in all_ct_data.items %}
   {% if key == day %}
     {%for data in datalist%}
+    {% comment %} {{forloop.counter}}
     {% if forloop.counter == 1 %}
     <a target="_blank" href="https://www.google.com/maps/dir/{{data.distance.choice_ct.start_location_x}},{{data.distance.choice_ct.start_location_y}}/{{data.distance.a.location_x}},{{data.distance.a.location_y}}/"><div class="box" style="height:60px;background-color:#444444;color:white;">↓預估交通時間{{data.distance.distance_time}}分鐘</div></a>
     {% else %}
     <a target="_blank" href="https://www.google.com/maps/dir/{{data.distance.get_previous.a.location_x}},{{data.distance.get_previous.a.location_y}}/{{data.distance.a.location_x}},{{data.distance.a.location_y}}/"><div class="box" style="height:60px;background-color:#444444;color:white;">↓預估交通時間{{data.distance.distance_time}}分鐘</div></a>
-    {% endif %}
+    {% endif %} {% endcomment %}
     <div class="spot innerlist" draggable="true" id="spot{{data.attraction.order}}" style="color: black;margin-bottom:10px" data-id="{{data.detail.id}}" data-stay = "{% if data.detail.stay_time == 0 %}150{% else %}{{data.detail.stay_time}}{% endif %}">
       <div class="tempXdiv" onclick="pickspotBottom({{d.id}})"><i class="fa-solid fa-xmark tempX_icon"></i></div><!-- 這裡這裡的itemId要用你們的編號 -->
       <a href="#" class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickeInfo(event,{{ item.a_id.id }})"> <!-- 這裡這裡的itemId要用你們的編號 --></a>
