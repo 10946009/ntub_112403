@@ -2,7 +2,7 @@ import json
 from django.shortcuts import render, redirect
 from myapp.models import *
 from django.http import JsonResponse
-from .viewsConst import ATT_TYPE_CHINESE
+from .viewsConst import ATT_TYPE_CHINESE,GENDER
 from django.contrib.auth.hashers import make_password
 
 def user_edit(request):
@@ -27,7 +27,7 @@ def user_edit_form(request):
         print(request.POST)
         user = User.objects.get(id=request.user.id)
         user.username = request.POST.get('username')
-        user.gender = request.POST.get('gender')
+        user.gender = GENDER[request.POST.get('gender')]
         user.birthday = request.POST.get('birthday')
         user.save()
         return redirect("/useredit")
