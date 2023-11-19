@@ -50,7 +50,12 @@ def history(request,select=None):
 # temp_allattractions.filter(id=item['id']).update(a_id=attractions_data)
 
 def travel_info(request):
-    return render(request, "travel_info.html")
+    print(request.GET)
+    ctid = request.GET.get("id")
+    u_id = request.user.id
+    ct_detail = Create_Travel.objects.get(id=ctid, u_id=u_id)
+    if ct_detail:
+        return render(request, 'history_detail.html', {'data': ct_detail})
 # temp_allattractions.filter(id=item['id']).update(a_id=attractions_data)
 
 def travel_delete(request):
@@ -62,3 +67,4 @@ def travel_delete(request):
         return JsonResponse({'message': '刪除成功'})
     else:
         return JsonResponse({'message': '刪除失敗'})
+    
