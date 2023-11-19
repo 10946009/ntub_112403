@@ -204,11 +204,11 @@
                             <div style="margin-top: 20px;">
                                 <strong>性別：</strong>
                                 <select name="gender" style="padding: 6px;">
-                                    <option {% if detail.gender == "1" %}selected{% endif %} value="1" name="gender">男
+                                    <option {% if detail.gender == "男" %}selected{% endif %} value="1" name="gender">男
                                     </option>
-                                    <option {% if detail.gender == "2" %}selected{% endif %} value="2" name="gender">女
+                                    <option {% if detail.gender == "女" %}selected{% endif %} value="2" name="gender">女
                                     </option>
-                                    <option {% if detail.gender == "0" %}selected{% endif %} value="0" name="gender">不公開
+                                    <option {% if detail.gender == "不公開" %}selected{% endif %} value="0" name="gender">不公開
                                     </option>
                                 </select>
                             </div>
