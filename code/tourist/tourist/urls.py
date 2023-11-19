@@ -63,7 +63,7 @@ urlpatterns = [
     path("history/", history.history),
     path("history/<int:select>", history.history),
     path("history/delete/", history.travel_delete),
-
+    path("history/info/", history.travel_info),
     path("share/", share.share),
     path("add_favorite_share/", share.add_share),
 
