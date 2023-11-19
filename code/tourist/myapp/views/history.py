@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from myapp.models import *
 from django.contrib.auth.decorators import login_required
@@ -5,8 +6,6 @@ from django.contrib.auth.decorators import login_required
 # 我的行程(歷史紀錄)
 @login_required(login_url="/login")
 def history(request,select=None):
-    
-
     my_history = []
     user_id = request.user.id
     print(user_id)
@@ -49,3 +48,17 @@ def history(request,select=None):
         })
     return render(request, "history.html", locals())
 # temp_allattractions.filter(id=item['id']).update(a_id=attractions_data)
+
+def travel_info(request):
+    return render(request, "travel_info.html")
+# temp_allattractions.filter(id=item['id']).update(a_id=attractions_data)
+
+def travel_delete(request):
+    ctid = request.POST["id"]
+    print(ctid)
+    ct = Create_Travel.objects.get(id=ctid)
+    if ct.u_id == request.user.id:
+        ct.delete()
+        return JsonResponse({'message': '刪除成功'})
+    else:
+        return JsonResponse({'message': '刪除失敗'})

@@ -279,3 +279,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
   carouselInstance.update();
 });
+
+function deleteTravel(id) {
+  const deleteCheck = confirm("確定要刪除嗎?");
+  if (deleteCheck == false) {
+    return;
+  }else{
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    $.ajax({
+      headers: { 'X-CSRFToken': csrftoken },
+      url: "/history/delete/",
+      type: "POST",
+      data: {
+        'id': id,
+      },
+      success: function (data) {
+        location.reload();
+      }
+    });
+  }
+}
