@@ -230,7 +230,7 @@
                 </ul> {% endcomment %}
             </nav>
         </div>
-        <div class="share_comment_con">
+        <!-- <div class="share_comment_con">
             <div class="comment">
                 <div class="avatar">
                     <img src="{{request.user.get_photo}}" alt="User Avatar">
@@ -247,13 +247,13 @@
                     </h6>
                 </div>
             </div>
-            <!-- <div class="comment_rating" id="rating">
+            <div class="comment_rating" id="rating">
                     <div class="comment_star" data-value="1"><i class="fas fa-star"></i></div>
                     <div class="comment_star" data-value="2"><i class="fas fa-star"></i></div>
                     <div class="comment_star" data-value="3"><i class="fas fa-star"></i></div>
                     <div class="comment_star" data-value="4"><i class="fas fa-star"></i></div>
                     <div class="comment_star" data-value="5"><i class="fas fa-star"></i></div>
-                </div> -->
+                </div>
             <div>
                 <textarea name="user_share_comment" id="user_share_comment" cols="100%" rows="5"
                     style="resize:none; border-radius: 10px;max-width: 100%;padding: 10px; "
@@ -263,6 +263,9 @@
                 <span class="share_comment_btn_ok" id="share_comment_btn_ok"
                     onclick="sendComment({{detail.id}})">張貼</span>
             </div>
+        </div> -->
+        <div class="close_info" style="text-align: center;">
+            <span class="close_comment_btn_ok" id="close_comment_btn_ok" onclick="clickClose()">關閉</span>
         </div>
     </div>
     <script src="../static/js/sendcomment.js"></script>
