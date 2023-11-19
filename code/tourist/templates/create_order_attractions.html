@@ -16,6 +16,8 @@
   {% empty %}
   {% for o in order_attractions_data %}
   <div class="spot innerlist" draggable="true" id="spot{{forloop.counter}}" style="color: black;margin-bottom:10px" data-id="{{o.final_result_list.id}}" data-stay = "{% if o.final_result_list.stay_time == 0 %}150{% else %}{{o.final_result_list.stay_time}}{% endif %}">
+    <div class="tempXdiv" onclick="pickspotBottom({{d.id}})"><i class="fa-solid fa-xmark tempX_icon"></i></div><!-- 這裡這裡的itemId要用你們的編號 -->
+    <a href="#" class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickeInfo(event,{{ item.a_id.id }})"> <!-- 這裡這裡的itemId要用你們的編號 --></a>
     <p class="spotOkName">{{o.final_result_list.a_name}}</p>
     <p id="hiddenId" style="display: none;">景點名稱：{{o.final_result_list.id}}</p>
     <p class="spotOk spotOkCrowd">當下可能的人潮流量：{{o.final_crowd_list}}%<br>
