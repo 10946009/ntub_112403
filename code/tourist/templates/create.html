@@ -52,7 +52,9 @@
     aria-labelledby="{{ day }}-tab" dataset="{{ day }}">
       <button class="recommend_next recommend_save recommend_saveTxt" id="saveDays-{{ day }}"  value="儲存" onclick="createSave()"><i class="fa-solid fa-floppy-disk"></i></button>
       <button class="recommend_next recommend_submit" id="submitNext-{{ day }}" onclick="submitNext()" value="下一步"><i class="fa-solid fa-arrow-right" style="font-weight: bold;"></i></button>
-      <button class="changeToDone" id="flippedBtn-{{ day }}" onclick="flipped()">景點排序</button>
+      <button class="changeToDone changeToDoneTxt" id="flippedBtn-{{ day }}" onclick="flipped()"><i class="fa-solid fa-route"></i><!-- 景點排序 --></button>
+      <!-- <button class="changeToDone changeToDoneBtn" id="flippedBtnIcon-{{ day }}" onclick="flipped()"><i class="fa-solid fa-route"></i></button> -->
+      <button class="changeToDone changeToInitialTxt" id="flippedRecBtn-{{ day }}"  onclick="flipped()"><i class="fa-solid fa-magnifying-glass-location"></i><!-- 查看推薦 --></button>
       <!-- 基本資訊 -->
       <div>
         <div class="tabD">

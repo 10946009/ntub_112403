@@ -79,6 +79,7 @@ function flipped(day = null) {
   const done = document.getElementById('done-' + day);
   const initialLayout = document.getElementById('initialLayout-'+day);
   const flippedBtn = document.getElementById('flippedBtn-' + day);
+  const flippedRecBtn = document.getElementById('flippedRecBtn-' + day);
   var saveButton = document.getElementById('saveDays-'+ day);
   var nextButton = document.getElementById('submitNext-' + day);
 
@@ -88,7 +89,8 @@ function flipped(day = null) {
       done.classList.add('hidden');
       initialLayout.classList.add('changeActive');
     }, 50); // 延遲切換，不然會直接跳轉沒有翻轉效果
-    flippedBtn.textContent = '景點排序';
+    flippedBtn.style.display = "block";
+    flippedRecBtn.style.display = "none";
     saveButton.style.display = "none";
     nextButton.style.display = 'block';
   } else {
@@ -97,12 +99,14 @@ function flipped(day = null) {
     setTimeout(() => {
       done.classList.add('changeActive');
     }, 50); 
-    flippedBtn.textContent = '查看推薦';
+    flippedBtn.style.display = "none";
+    flippedRecBtn.style.display = "block";
     saveButton.style.display = "";
     nextButton.style.display = '';
   }
   isdoneJourneyVisible[day] = !isdoneJourneyVisible[day];
 }
+
 
 // 送出功能整合到clickChangeDone函数中
 // 點擊送出會切換到景點排序頁面
