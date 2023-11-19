@@ -283,6 +283,9 @@ main {
     padding: 5px;
     width: 100%;
 }
+.sectionHr{
+    border: 1px solid black;
+}
 
 /* 右半邊 */
 
@@ -466,8 +469,8 @@ main {
     margin: 10px;
     text-align: left;
     padding: 10px;
-    width: 400px;
-    height: 200px;
+    width: 50%;
+    height: 250px;
     background-color: rgb(247, 247, 203);
     border-radius: 30px;
     box-shadow: 3px 3px 4px #333;
@@ -952,7 +955,7 @@ main {
 
 @media (max-width: 920px) {
     .innerlist {
-        width: 350px;
+        width: 70%;
     }
 
     .right {
@@ -969,9 +972,6 @@ main {
         font-size: 14px;
     }
 
-    .innerlist {
-        width: 320px;
-    }
 }
 
 @media(max-width: 768px) {
@@ -991,9 +991,6 @@ main {
         font-size: 20px;
     }
 
-    .innerlist {
-        width: 90%;
-    }
 
 }
 
@@ -1116,6 +1113,9 @@ main {
         line-height: 40px;
         font-size: 18px;
     }
+    .innerlist {
+        width: 80%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1132,6 +1132,7 @@ main {
     }
 
     .input_txt {
+        width: 250px;
         font-size: 16px;
     }
 
