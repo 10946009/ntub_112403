@@ -197,8 +197,9 @@
 
 /* 打開右半邊詳細行程 */
 .openDetailDiv {
-    display: none;
+    /* display: none; */
     border: 1px solid black;
+    border-radius: 20px;
 }
 
 .aboutDiv {
@@ -454,10 +455,6 @@
         margin: 5px auto;
     }
 
-    .content_align {
-        /* display: block; */
-    }
-
     .content_detail {
         height: 180px;
         width: 250px;
@@ -491,24 +488,4 @@
     .basicButton{
         width: 20%;
     }
-    .delete {
-        top: 0;
-    }
-
-
-    /* .share_icon {
-        padding-top: 5px;
-        color: white;
-        text-shadow: 2px 2px 1px #000;
-        border-bottom-left-radius: 30px;
-        border-bottom-right-radius: 30px;
-        height: 80px;
-        background-color: rgba(253, 251, 255, 0.5);
-        box-shadow: 3px 3px 5px #333;
-    } */
-
-    /* .icontxt {
-        color: white;
-        text-shadow: 2px 2px 1px #000;
-    } */
 }
