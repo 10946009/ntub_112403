@@ -23,11 +23,11 @@ function saveTabState(tabId, day) {
   tab.style.display = 'block';
 
   globalDay = day;
+  inputBottom();
+  checkHasLocationData();
   console.log(globalDay);
   console.log(now_click_attractions);
   //使下面暫存的景點跟著換
-  inputBottom();
-  checkHasLocationData();
 }
 
 
@@ -71,23 +71,24 @@ var isdoneJourneyVisible = {};
 for (var i = 0; i < total_day.length; i++) {
   isdoneJourneyVisible[i + 1] = false;
 }
+console.log(isdoneJourneyVisible);
+function flipped(day = null) {
+  if (day === null) {
+    day = globalDay;
+  }
+  const done = document.getElementById('done-' + day);
+  const initialLayout = document.getElementById('initialLayout-'+day);
+  const flippedBtn = document.getElementById('flippedBtn-' + day);
+  var saveButton = document.getElementById('saveDays-'+ day);
 
-let isDoneVisible = false;
-
-function flipped() {
-  const done = document.getElementById('done-' + globalDay);
-  const initialLayout = document.getElementById('initialLayout-'+globalDay);
-  const flippedBtn = document.getElementById('flippedBtn-' + globalDay);
-  var saveButton = document.getElementById('saveDays');
-
-  if (isDoneVisible) {
+  if (isdoneJourneyVisible[day]) {
     done.classList.remove('changeActive');
     setTimeout(() => {
       done.classList.add('hidden');
       initialLayout.classList.add('changeActive');
     }, 50); // 延遲切換，不然會直接跳轉沒有翻轉效果
     flippedBtn.textContent = '景點排序';
-    saveButton.style.display = "block";
+    saveButton.style.display = "none";
   } else {
     initialLayout.classList.remove('changeActive');
     done.classList.remove('hidden');
@@ -95,9 +96,9 @@ function flipped() {
       done.classList.add('changeActive');
     }, 50); 
     flippedBtn.textContent = '查看推薦';
-    saveButton.style.display = "none";
+    saveButton.style.display = "";
   }
-  isDoneVisible = !isDoneVisible;
+  isdoneJourneyVisible[day] = !isdoneJourneyVisible[day];
 }
 
 // 送出功能整合到clickChangeDone函数中
@@ -105,24 +106,26 @@ function flipped() {
 function submitNext(day) {
   showRightDiv();
 }
-function submitAction2(day) {
-  // 這個是什麼 他噴錯ㄌQQ
-  user = User.objects.get(id=user)
-  if(!isDoneVisible){
-    flipped();
+function submitAction2(day=null) {
+  if (day === null) {
+    day = globalDay;
+  }
+  console.log(day);
+  if(!isdoneJourneyVisible[day]){
+    flipped(day);
   }
   showRightDiv();
   submitRecommend();
+  var submitNextBtn = document.getElementById('submitNext-' + day);
   submitNextBtn.style.display = 'none';
   console.log(3);
   // 顯示儲存按鈕
-  var saveButton = document.getElementById('saveDays');
+  var saveButton = document.getElementById('saveDays-'+day);
   if (saveButton) {
     saveButton.style.display = 'block'; 
   }
 
   // 隱藏 submitNext 按鈕
-  var submitNextBtn = document.getElementById('submitNext-' + day);
   if (submitNextBtn) {
     submitNextBtn.style.display = 'none';
   }
@@ -353,16 +356,13 @@ function checkAndAddClass() {
   var checkboxes = document.querySelectorAll('label[type="checkbox"]');
   checkboxes.forEach(function (checkbox) {
     var id = parseInt(checkbox.getAttribute('value'));
-    console.log(globalDay);
+    // console.log(globalDay);
     // 如果全局变量中包含 id，添加CSS类
     if (now_click_attractions[globalDay].has(id)) {
-      var closestColMd6 = checkbox.closest('.col-md-6');
-      var closestColMd4 = checkbox.closest('.col-md-4');
+      var checkimg_div  = checkbox.closest('.checkimg_div');
       // 添加额外的检查，确保 closestColMd6 存在
-      if (closestColMd6) {
-        closestColMd6.classList.add('pickimg');
-      } else if (closestColMd4) {
-        closestColMd4.classList.add('pickimg');
+      if (checkimg_div) {
+        checkimg_div.classList.add('pickimg');
       }
 
     }
@@ -374,31 +374,36 @@ function inputBottom(day = null) {
   if (day === null) {
     day = globalDay;
   }
-  $.ajax({
-    url: "/attractions",
-    type: "GET",
-    data: {
-      aidlist: Array.from(now_click_attractions[day]).join(','),
-    },
-    success: function (response) {
-      document.getElementById('bottomAttraction').innerHTML = response;
-    },
-
-    error: function () {
-      console.log('推薦回傳有錯誤!!!');
-    },
-  });
+  const bottomAttraction = document.getElementById('bottomAttraction')
+  console.log("inputBottom"+day);
+  if (now_click_attractions[day].size == 0){
+    bottomAttraction.innerHTML = "";
+  }else{
+    $.ajax({
+      url: "/attractions",
+      type: "GET",
+      data: {
+        aidlist: Array.from(now_click_attractions[day]).join(','),
+      },
+      success: function (response) {
+        bottomAttraction.innerHTML = response;
+      },
+  
+      error: function () {
+        console.log('推薦回傳有錯誤!!!');
+      },
+    });
+  }
 }
 // 用來進去翻轉景點排序或推薦景點的部分
 function checkHasData() {
-  const leftDev = document.querySelectorAll(".changeInitial");
-  console.log(leftDev);
+  const leftDev = document.querySelectorAll(".changeDone");
+  // console.log(leftDev);
   leftDev.forEach(function (container, index) {
     const hasAttractions = container.querySelector('.innerlist');
-    // console.log(hasAttractions);
     if (hasAttractions != null) {
-      const changeToDone = container.querySelector('.changeDone').id;
-      clickChangeDone(changeToDone.charAt(changeToDone.length - 1))
+      const containerID = container.id;
+      flipped(containerID.charAt(containerID.length - 1))
     }
   });
 }

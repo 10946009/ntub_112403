@@ -84,9 +84,7 @@ def create(request, ct_id):
         chinese_week = ["","一","二","三","四","五","六","日"]
         week = (start_week + index) % 8
         if week == 0: week = 1
-        print(week)
         user_favorite_list = Crowd_Opening.objects.filter(week=week, a_id__in=user_favorite_id_list)
-        print(week,user_favorite_list)
         crowd_index_list=[]
         ct_data = []
         ct_data_id = []
@@ -118,9 +116,7 @@ def create(request, ct_id):
         # print('crowd_index_list',crowd_index_list)
         # 抓出景點的人潮與營業時間
         for co in ct_attractions_detail_list:
-            print(week)
             ct_attractions_co_list.append(Crowd_Opening.objects.get(a_id=co.id,week=week))
-            print(ct_attractions_co_list)
         #抓人潮流量
         # print('crowd_listcrowd_listcrowd_listcrowd_listcrowd_listcrowd_listcrowd_list',crowd_list)
         # for i in range(len(ct_attractions_list)):
@@ -128,13 +124,15 @@ def create(request, ct_id):
         # print('ct_attractions_co_list',ct_attractions_co_list)
         # print('crowd_list',crowd_list)
         # 合併上面四個資料
-        for attraction, detail, co ,cl in zip(ct_attractions_list, ct_attractions_detail_list, ct_attractions_co_list,crowd_index_list):
+        ct_distance_list = Attractions_Ct.objects.filter(choice_ct_id=ct_attractions_data.id).order_by('order')
+        for attraction, detail, co ,cl ,cd in zip(ct_attractions_list, ct_attractions_detail_list, ct_attractions_co_list,crowd_index_list,ct_distance_list):
             # print(f"{min(co.crowd[cl],co.crowd[(cl+1)%24])} ~ {max(co.crowd[cl],co.crowd[(cl+1)%24])}")
             ct_data.append({
                 "attraction": attraction,
                 "detail": detail,
                 "co": co,
                 "crowd_list" : f"{min(co.crowd[cl],co.crowd[(cl+1)%24])} ~ {max(co.crowd[cl],co.crowd[(cl+1)%24])}",
+                "distance": cd,
                 "weather": get_weather_data(detail.address,start_day[0:4],start_day[5:7],int(start_day[8:])+index,ct_attractions_data.start_time),
             })
             
@@ -306,26 +304,28 @@ def create(request, ct_id):
             print("我進來了")
             print(request.POST)
             choiceday = int(request.POST["day"])
+            print("choiceday",choiceday,"ct_id",ct_id)
             get_user_address = list(map(float, request.POST["location"].split(",")))
             get_user_location_name = request.POST["location_name"]
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
             unit_query = ChoiceDay_Ct.objects.filter(day=choiceday, ct_id=ct_id)
+            print(unit_query)
             if unit_query.exists():
                 unit = unit_query.first()
                 unit.start_location_x = get_user_address[0]
                 unit.start_location_y = get_user_address[1]
                 unit.start_time = new_nowtime
                 unit.location_name = get_user_location_name
-            else:
-                unit = ChoiceDay_Ct.objects.create(
-                    day=choiceday,
-                    start_location_x=get_user_address[0],
-                    start_location_y=get_user_address[1],
-                    start_time=new_nowtime,
-                    ct_id=ct_id,
-                    location_name=get_user_location_name,
-                )
+            # else: #已經會自己生成了
+            #     unit = ChoiceDay_Ct.objects.create(
+            #         day=choiceday,
+            #         start_location_x=get_user_address[0],
+            #         start_location_y=get_user_address[1],
+            #         start_time=new_nowtime,
+            #         ct_id=ct_id,
+            #         location_name=get_user_location_name,
+            #     )
             unit.save()
             choice_ct_id = unit.id
             if request.POST["all_id"] != "":
@@ -334,11 +334,11 @@ def create(request, ct_id):
                 print("all_id",all_id)
                 Attractions_Ct.objects.filter(choice_ct_id=choice_ct_id).delete() #刪除舊資料
                 for index, id in enumerate(all_id):
+                    id_db = Attractions.objects.get(id=id)
                     if index == len(all_id) - 1:
                         distance = 0
                         duration = 0
                     else:
-                        id_db = Attractions.objects.get(id=id)
                         id2_db = Attractions.objects.get(id=all_id[index + 1])
                         distance = 2200  # 距離(公尺)
                         duration = 10  # 時間(分鐘)
