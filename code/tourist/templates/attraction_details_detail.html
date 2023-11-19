@@ -488,7 +488,7 @@
                         </div>
                     </a>
                     {% endif %}
-                    
+
                 </div>
                 <hr style=" border:1px solid #777777; max-width: 100%;">
                 {% empty %}
@@ -845,9 +845,10 @@
                 其他資訊
             </h5>
             <!-- 使用者按讚、收藏、分享、觀看人數 -->
+            <div style="padding:0 100px 0 100px;">
             <div class="User_more_add_fav">
                 <div class="User__header">
-                    <div class="User__headerGrid" style="border-right: black dashed;">
+                    <!-- <div class="User__headerGrid" style="border-right: black dashed;">
                         <div class=" row" style="text-align:center;">
                             <div class="total_score_star">
                                 <h2>
@@ -866,26 +867,7 @@
                                 </h2>
                             </div>
                         </div>
-                    </div>
-                    <div class="User__headerGrid" style="border-right: black dashed;">
-                        <div class=" row" style="text-align:center;">
-                            <div class="total_score_star">
-                                <h2>
-                                    <strong>收藏人數</strong>
-                                </h2>
-                            </div>
-                            <div class="total_score_star">
-                                <p style="font-size:60px;">
-                                    <strong><i class="fa-solid fa-heart" style="color:rgb(186, 51, 51);"></i></strong>
-                                </p>
-                            </div>
-                            <div class="total_score_star">
-                                <h2>
-                                    <strong>{{detail.get_favorite_count}}</strong>
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
+                    </div> -->
                     <div class="User__headerGrid" style="border-right: black dashed;">
                         <div class=" row" style="text-align:center;">
                             <div class="total_score_star">
@@ -916,6 +898,25 @@
                         <div class=" row" style="text-align:center;">
                             <div class="total_score_star">
                                 <h2>
+                                    <strong>收藏人數</strong>
+                                </h2>
+                            </div>
+                            <div class="total_score_star">
+                                <p style="font-size:60px;">
+                                    <strong><i class="fa-solid fa-heart" style="color:rgb(186, 51, 51);"></i></strong>
+                                </p>
+                            </div>
+                            <div class="total_score_star">
+                                <h2>
+                                    <strong>{{detail.get_favorite_count}}</strong>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="User__headerGrid" style="border-right: black dashed;">
+                        <div class=" row" style="text-align:center;">
+                            <div class="total_score_star">
+                                <h2>
                                     <strong>分享人數</strong>
                                 </h2>
                             </div>
@@ -931,7 +932,7 @@
                                 </h2>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="User__headerGrid">
                         <div class=" row" style="text-align:center;">
                             <div class="total_score_star">
@@ -953,6 +954,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         <!-- RWD(768px)會用到的大小 -->
         <div class="col-12 others2">
@@ -991,14 +993,14 @@
                     </div>
                 </div>
                 <div class="col-9" style="text-align: center;">
-                    <div style="background-color: rgb(228, 202, 171);">
+                    {% comment %} <div style="background-color: rgb(228, 202, 171);">
                         <h2>
                             <strong><i class="fa-solid fa-thumbs-up"
                                     style="color: rgb(42, 106, 189);margin-right: 10px;"></i></strong>
                             <span style="margin-right: 20px;">按讚人數</span>
                             <span>20</span>
                         </h2>
-                    </div>
+                    </div> {% endcomment %}
                     <div style="background-color: rgb(228, 202, 171);">
                         <h2>
                             <strong><i class="fa-solid fa-heart"
@@ -1007,14 +1009,14 @@
                             <span>{{detail.get_favorite_count}}</span>
                         </h2>
                     </div>
-                    <div style="background-color: rgb(228, 202, 171);">
+                    {% comment %} <div style="background-color: rgb(228, 202, 171);">
                         <h2>
                             <strong><i class="fa-solid fa-share-from-square"
                                     style="color: rgb(29, 101, 11); margin-right: 10px;"></i></strong>
                             <span style="margin-right: 20px;">分享人數</span>
                             <span>20</span>
                         </h2>
-                    </div>
+                    </div> {% endcomment %}
                     <div style="background-color: rgb(228, 202, 171);">
                         <h2>
                             <strong><i class="fa-solid fa-eye" style="color: gray; margin-right: 10px;"></i></strong>
@@ -1042,8 +1044,8 @@
                     </h5>
                     {% else %}
                     <a href="/login" style="text-decoration:none;">
-                    <h5 class="comment_topic" id="write_comment">
-                        <strong>登入後發表評論</strong>
+                        <h5 class="comment_topic" id="write_comment">
+                            <strong>登入後發表評論</strong>
                     </a>
                     {% endif %}
                 </div>
