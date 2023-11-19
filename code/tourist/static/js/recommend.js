@@ -11,7 +11,6 @@ function startRecommend(user_location,day){
           ct_status: 0,
       },
       success: function (response) {
-        console.log( response);
         const attractions_detail_div = $('#AttractionsContainer-'+ globalDay );
         attractions_detail_div.html(response['recommend_attractions_list']);
         checkAndAddClass();

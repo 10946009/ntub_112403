@@ -84,9 +84,7 @@ def create(request, ct_id):
         chinese_week = ["","一","二","三","四","五","六","日"]
         week = (start_week + index) % 8
         if week == 0: week = 1
-        print(week)
         user_favorite_list = Crowd_Opening.objects.filter(week=week, a_id__in=user_favorite_id_list)
-        print(week,user_favorite_list)
         crowd_index_list=[]
         ct_data = []
         ct_data_id = []
@@ -118,9 +116,7 @@ def create(request, ct_id):
         # print('crowd_index_list',crowd_index_list)
         # 抓出景點的人潮與營業時間
         for co in ct_attractions_detail_list:
-            print(week)
             ct_attractions_co_list.append(Crowd_Opening.objects.get(a_id=co.id,week=week))
-            print(ct_attractions_co_list)
         #抓人潮流量
         # print('crowd_listcrowd_listcrowd_listcrowd_listcrowd_listcrowd_listcrowd_list',crowd_list)
         # for i in range(len(ct_attractions_list)):

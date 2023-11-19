@@ -71,16 +71,17 @@ var isdoneJourneyVisible = {};
 for (var i = 0; i < total_day.length; i++) {
   isdoneJourneyVisible[i + 1] = false;
 }
+console.log(isdoneJourneyVisible);
+function flipped(day = null) {
+  if (day === null) {
+    day = globalDay;
+  }
+  const done = document.getElementById('done-' + day);
+  const initialLayout = document.getElementById('initialLayout-'+day);
+  const flippedBtn = document.getElementById('flippedBtn-' + day);
+  var saveButton = document.getElementById('saveDays-'+ day);
 
-let isDoneVisible = false;
-
-function flipped() {
-  const done = document.getElementById('done-' + globalDay);
-  const initialLayout = document.getElementById('initialLayout-'+globalDay);
-  const flippedBtn = document.getElementById('flippedBtn-' + globalDay);
-  var saveButton = document.getElementById('saveDays-'+ globalDay);
-
-  if (isDoneVisible) {
+  if (isdoneJourneyVisible[day]) {
     done.classList.remove('changeActive');
     setTimeout(() => {
       done.classList.add('hidden');
@@ -97,7 +98,7 @@ function flipped() {
     flippedBtn.textContent = '查看推薦';
     saveButton.style.display = "";
   }
-  isDoneVisible = !isDoneVisible;
+  isdoneJourneyVisible[day] = !isdoneJourneyVisible[day];
 }
 
 // 送出功能整合到clickChangeDone函数中
@@ -105,17 +106,21 @@ function flipped() {
 function submitNext(day) {
   showRightDiv();
 }
-function submitAction2() {
-  if(!isDoneVisible){
-    flipped();
+function submitAction2(day=null) {
+  if (day === null) {
+    day = globalDay;
+  }
+  console.log(day);
+  if(!isdoneJourneyVisible[day]){
+    flipped(day);
   }
   showRightDiv();
   submitRecommend();
-  var submitNextBtn = document.getElementById('submitNext-' + globalDay);
+  var submitNextBtn = document.getElementById('submitNext-' + day);
   submitNextBtn.style.display = 'none';
   console.log(3);
   // 顯示儲存按鈕
-  var saveButton = document.getElementById('saveDays-'+globalDay);
+  var saveButton = document.getElementById('saveDays-'+day);
   if (saveButton) {
     saveButton.style.display = 'block'; 
   }
@@ -351,16 +356,13 @@ function checkAndAddClass() {
   var checkboxes = document.querySelectorAll('label[type="checkbox"]');
   checkboxes.forEach(function (checkbox) {
     var id = parseInt(checkbox.getAttribute('value'));
-    console.log(globalDay);
+    // console.log(globalDay);
     // 如果全局变量中包含 id，添加CSS类
     if (now_click_attractions[globalDay].has(id)) {
-      var closestColMd6 = checkbox.closest('.col-md-6');
-      var closestColMd4 = checkbox.closest('.col-md-4');
+      var checkimg_div  = checkbox.closest('.checkimg_div');
       // 添加额外的检查，确保 closestColMd6 存在
-      if (closestColMd6) {
-        closestColMd6.classList.add('pickimg');
-      } else if (closestColMd4) {
-        closestColMd4.classList.add('pickimg');
+      if (checkimg_div) {
+        checkimg_div.classList.add('pickimg');
       }
 
     }
@@ -389,14 +391,13 @@ function inputBottom(day = null) {
 }
 // 用來進去翻轉景點排序或推薦景點的部分
 function checkHasData() {
-  const leftDev = document.querySelectorAll(".changeInitial");
-  console.log(leftDev);
+  const leftDev = document.querySelectorAll(".changeDone");
+  // console.log(leftDev);
   leftDev.forEach(function (container, index) {
     const hasAttractions = container.querySelector('.innerlist');
-    // console.log(hasAttractions);
     if (hasAttractions != null) {
-      const changeToDone = container.querySelector('.changeDone').id;
-      clickChangeDone(changeToDone.charAt(changeToDone.length - 1))
+      const containerID = container.id;
+      flipped(containerID.charAt(containerID.length - 1))
     }
   });
 }
