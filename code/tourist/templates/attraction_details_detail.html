@@ -1885,11 +1885,11 @@
         detail_photo__headerGrid_all.style.border = "1px solid black";
         detail_photo__headerGrid_user.style.border = "none";
     });
-    var detail_photo__headerGrid_user = document.getElementById("detail_photo__headerGrid_user");//旅客
+    {% comment %} var detail_photo__headerGrid_user = document.getElementById("detail_photo__headerGrid_user");//旅客
     detail_photo__headerGrid_user.addEventListener("click", function () {
         detail_photo__headerGrid_user.style.border = "1px solid black";
         detail_photo__headerGrid_all.style.border = "none";
-    });
+    }); {% endcomment %}
 
     // 切換相片和幻燈片功能
     var detail_photo__headerGrid_all = document.getElementById("detail_photo__headerGrid_all");
