@@ -76,3 +76,19 @@
     color: white;
     background-color: #e2a941;
 }
+
+.close_comment_btn_ok {
+    cursor: pointer;
+    display: inline-block;
+    color: rgb(255, 255, 255);
+    padding: 3px 50px 3px 50px;
+    font-family: Arial;
+    border: #000 solid;
+    background-color: #ca4238;
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+.close_comment_btn_ok:hover {
+    background-color: #e94c3b;
+}
