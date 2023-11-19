@@ -134,6 +134,8 @@ class Attractions_Ct(models.Model):
     distance = models.FloatField(null=False, blank=False)
     distance_time = models.IntegerField(null=False, blank=False)
     order = models.IntegerField(null=False, blank=False)
+    def get_previous(self):
+        return Attractions_Ct.objects.filter(choice_ct=self.choice_ct,order=self.order-1).first()
 
 
 # class History(models.Model):
