@@ -15,9 +15,12 @@
     background: rgb(221, 219, 219);
     border: black solid;
     width: 55%;
-    margin: 90px auto;
-    padding: 50px;
+    margin: 50px auto;
+    padding: 30px 50px 30px 50px;
     position: relative;
+    overflow: scroll;
+    max-height: 800px;
+    border-radius: 20px;
 }
 
 /* 詳細景點資訊 叉叉 */
@@ -138,16 +141,19 @@ main {
     text-align: center;
 }
 
-.recommend_submit{
+.recommend_submit {
     z-index: 2;
 }
-.recommend_save{
+
+.recommend_save {
     display: none;
     z-index: 3;
 }
-.hideBtn{
+
+.hideBtn {
     display: none !important;
 }
+
 .recommend_next {
     position: fixed;
     bottom: 5px;
@@ -1110,11 +1116,13 @@ main {
     .input_txt {
         font-size: 16px;
     }
-    .image-container{
+
+    .image-container {
         width: 200px;
         min-width: 200px;
         height: 150px;
     }
+
     .changeToDone {
         padding: 6px 8px;
         font-size: 16px;

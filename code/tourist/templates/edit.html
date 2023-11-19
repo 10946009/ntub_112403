@@ -76,9 +76,11 @@
                             onclick="selectAvatarAndClosehead_selected('../static/images/user3.png')">
                         <img src="../static/images/user4.png" alt="Avatar 3" class="head_selected-avatar"
                             onclick="selectAvatarAndClosehead_selected('../static/images/user4.png')">
-                            <img src="../static/images/user5.jpg" alt="Avatar 3" class="head_selected-avatar"
+                        <img src="../static/images/user5.jpg" alt="Avatar 3" class="head_selected-avatar"
                             onclick="selectAvatarAndClosehead_selected('../static/images/user5.jpg')">
-                            <img src="../static/images/user6.jpg" alt="Avatar 3" class="head_selected-avatar"
+                        <img src="../static/images/user6.jpg" alt="Avatar 3" class="head_selected-avatar"
+                            onclick="selectAvatarAndClosehead_selected('../static/images/user7.jpg')">
+                        <img src="../static/images/user7.jpg" alt="Avatar 3" class="head_selected-avatar"
                             onclick="selectAvatarAndClosehead_selected('../static/images/user6.jpg')">
                         <div>
                             <button onclick="closehead_selected()" style="margin-top:20px;">取消</button>
@@ -133,9 +135,11 @@
                                 <div id="attractions_types">
                                     {% for type in all_type_name %}
                                     {% if type.id in detail.user_favorite_tag %}
-                                    <span class="more_btn selected " onclick="toggleSelection(this)" data-set="{{type.id}}">{{type.name}}</span>
+                                    <span class="more_btn selected " onclick="toggleSelection(this)"
+                                        data-set="{{type.id}}">{{type.name}}</span>
                                     {% else %}
-                                    <span class="more_btn" onclick="toggleSelection(this)" data-set="{{type.id}}">{{type.name}}</span>
+                                    <span class="more_btn" onclick="toggleSelection(this)"
+                                        data-set="{{type.id}}">{{type.name}}</span>
                                     {% endif %}
                                     {% endfor %}
                                 </div>
@@ -187,7 +191,8 @@
                         <div class="inner">
                             <div class="input-with-icon" style="font-size:17px;">
                                 {% comment %} <i class="fa-solid fa-envelope icon_email"></i> {% endcomment %}
-                                <strong style="margin-right:5px;">信箱：</strong><span style=" color: rgb(81, 81, 81); font-size:18px;">{{ detail.email }}</span>
+                                <strong style="margin-right:5px;">信箱：</strong><span
+                                    style=" color: rgb(81, 81, 81); font-size:18px;">{{ detail.email }}</span>
                                 <br>
                                 {% comment %} <input type="email" placeholder="e-mail" name="email" value="" required>
                             </div> {% endcomment %}
@@ -413,10 +418,10 @@
                     'type_id': id
                 },
                 success: function (response) {
-                    if(response['status'] == 'remove'){
+                    if (response['status'] == 'remove') {
                         document.querySelector(`.article-tag[data-set="${id}"]`).remove();
                     }
-                    else{
+                    else {
                         document.querySelector('.article-tag').insertAdjacentHTML('beforebegin', `<span class="article-tag" data-set="${id}">${button.textContent}</span>`);
                     }
                 }
