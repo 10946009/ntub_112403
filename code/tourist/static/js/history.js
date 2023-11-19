@@ -33,10 +33,11 @@ function add_favorite_share(ctid) {
   });
 };
 
-function clickShow(button) {
+function clickShow(button,ctid) {
+  console.log(ctid);
   const targetDivId = button.getAttribute('data-target');
   const targetDiv = document.getElementById(targetDivId);
-
+  const changeHistory = document.getElementById('changeHistory');
   if (targetDiv.style.display === 'block') {
     targetDiv.style.display = 'none';
     button.textContent = '詳細行程';
@@ -50,6 +51,21 @@ function clickShow(button) {
     targetDiv.style.display = 'block';
     button.textContent = '關閉閱覽';
     button.style.backgroundColor = "#F55";
+    $.ajax({
+      type: "GET",
+      url: "/history/info/",
+      data: {
+        'id': ctid,
+      },
+      success: function (data) {
+        changeHistory.innerHTML = data;
+      },
+      error: function (xhr, textStatus, errorThrown) {
+        console.error("Error:", textStatus, errorThrown);
+      }
+    });
+
+    
   }
 
   // 更改其他按鈕的文字狀態
@@ -258,27 +274,7 @@ $(document).ready(function () {
   });
 })
 
-// 顯示目前是第幾張圖
-document.addEventListener("DOMContentLoaded", function () {
-  var carousel = document.getElementById('carouselExampleRide');
-  var counter = document.getElementById('imgCounter');
-  var totalItems = carousel.querySelectorAll('.carousel-item').length; // 定義 totalItems 變數，表示總共有幾張圖片
 
-  var carouselInstance = new bootstrap.Carousel(carousel, {
-    interval: 3000
-  });
-
-  carouselInstance.update = function () {
-    var activeIndex = Array.from(carousel.querySelectorAll('.carousel-item')).indexOf(carousel.querySelector('.carousel-item.active')) + 1;
-    counter.innerHTML = activeIndex + '  /  ' + totalItems;
-  };
-
-  carousel.addEventListener('slid.bs.carousel', function () {
-    carouselInstance.update();
-  });
-
-  carouselInstance.update();
-});
 
 function deleteTravel(id) {
   const deleteCheck = confirm("確定要刪除嗎?");
@@ -289,7 +285,7 @@ function deleteTravel(id) {
     $.ajax({
       headers: { 'X-CSRFToken': csrftoken },
       url: "/history/delete/",
-      type: "POST",
+      type: "get",
       data: {
         'id': id,
       },
