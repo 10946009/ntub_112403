@@ -2063,7 +2063,8 @@ img {
 
 /* 人潮星期 */
 .week_number {
-    padding-left: 25px;
+    padding-left: 5px;
+    margin-bottom: 10px;
 }
 
 .tag-week {
