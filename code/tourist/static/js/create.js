@@ -75,6 +75,9 @@ console.log(isdoneJourneyVisible);
 function flipped(day = null) {
   if (day === null) {
     day = globalDay;
+  }else{
+    var nextButton = document.getElementById('submitNext-' + day);
+    nextButton.style.display = 'none';
   }
   const done = document.getElementById('done-' + day);
   const initialLayout = document.getElementById('initialLayout-'+day);
@@ -91,8 +94,8 @@ function flipped(day = null) {
     }, 50); // 延遲切換，不然會直接跳轉沒有翻轉效果
     flippedBtn.style.display = "block";
     flippedRecBtn.style.display = "none";
-    saveButton.style.display = "none";
-    nextButton.style.display = 'block';
+    // saveButton.style.display = "none";
+    // nextButton.style.display = 'block';
   } else {
     initialLayout.classList.remove('changeActive');
     done.classList.remove('hidden');
@@ -101,8 +104,8 @@ function flipped(day = null) {
     }, 50); 
     flippedBtn.style.display = "none";
     flippedRecBtn.style.display = "block";
-    saveButton.style.display = "";
-    nextButton.style.display = '';
+    // saveButton.style.display = "";
+    // nextButton.style.display = '';
   }
   isdoneJourneyVisible[day] = !isdoneJourneyVisible[day];
 }
@@ -205,31 +208,45 @@ function openfiliter() {
 }
 
 // pick spot css 點擊景點時
-function pickspot(checkbox, aid) {
+function pickspot(checkbox, aid ) {
   console.log(checkbox);
-  
+
   if (checkbox.classList.contains("pickimg")) {
     checkbox.classList.remove("pickimg");
     now_click_attractions[globalDay].delete(aid);
+    console.log(now_click_attractions[globalDay]+'刪除'+aid);
     inputBottom();
   } else {
     checkbox.classList.add("pickimg");
     now_click_attractions[globalDay].add(aid);
+    
+    console.log(now_click_attractions[globalDay]+'新增'+aid);
     inputBottom();
   }
 }
 
 // pick spot 刪除下面戰存的景點時
 function pickspotBottom(aid) {
+  console.log("pickspotBottom");
+  now_click_attractions[globalDay].delete(aid);
   try {
     const container = document.getElementById('ch-' + globalDay);
     const elements = container.querySelector('.imgcheck[value="' + aid + '"]');
-    console.log(elements);
-    pickspot(elements, aid);
+    const checkimgDIV = elements.closest('.checkimg_div');
+    checkimgDIV.classList.remove('pickimg');
   } catch (e) {
-    now_click_attractions[globalDay].delete(aid);
-    inputBottom();
+  console.log("找不到被pickimg的景點");
   }
+  try {
+    const rightDiv = document.getElementById('rightDiv');
+    const rightElements = rightDiv.querySelector('.imgcheck[value="' + aid + '"]');
+    const S_checkimgDIV = rightElements.closest('.S_checkimg_div');
+    S_checkimgDIV.classList.remove('pickimg');
+  } catch (e) {
+  console.log(e);
+  }
+
+  inputBottom();
 }
 var heart = document.getElementsByClassName('heart_icon');
 for (var i = 0; i < heart.length; i++) {
@@ -382,7 +399,7 @@ function inputBottom(day = null) {
     day = globalDay;
   }
   const bottomAttraction = document.getElementById('bottomAttraction')
-  console.log("inputBottom"+day);
+  console.log("inputBottom"+day+ Array.from(now_click_attractions[day]).join(','));
   if (now_click_attractions[day].size == 0){
     bottomAttraction.innerHTML = "";
   }else{
@@ -410,6 +427,7 @@ function checkHasData() {
     const hasAttractions = container.querySelector('.innerlist');
     if (hasAttractions != null) {
       const containerID = container.id;
+      console.log(containerID);
       flipped(containerID.charAt(containerID.length - 1))
     }
   });
