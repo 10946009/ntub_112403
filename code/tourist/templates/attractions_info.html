@@ -66,7 +66,7 @@
         <!-- 旺季月份 -->
         <h6 style="margin-top: 20px;font-size: 20px;">
             <i class="fa-solid fa-calendar-days" style="color: rgb(168, 126, 0);"></i>
-            旺季月份：{{ detail.hot_month }}
+            旺季月份：{%if detail.hot_month|length == 12%} 全年 {% else %} {{ detail.hot_month }} {% endif %}
         </h6>
         <!-- 人潮資訊 -->
         <h6 style="margin-top: 20px;font-size: 20px;">
@@ -104,9 +104,9 @@
                 <div style="display: flex; justify-content: space-between; position: relative;">
                     <h6 class="username">
                         {{comment.u.username}}<br>
-                        <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;">
+                        {% comment %} <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;">
                             <i class="fa-solid fa-crown"></i>在地嚮導
-                        </span>
+                        </span> {% endcomment %}
                         <span style="color:gray;font-size: 12px; font-style: italic;">·4則評論 ·3張照片</span>
                     </h6>
                     <!-- 3個小點點(icon) -->
@@ -402,4 +402,6 @@
             }
         });
     }
+
+    
 </script>
