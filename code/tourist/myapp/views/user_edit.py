@@ -6,6 +6,7 @@ from .viewsConst import ATT_TYPE_CHINESE,GENDER
 from django.contrib.auth.hashers import make_password
 
 def user_edit(request):
+    message = ""
     detail = User.objects.get(id=request.user.id)
     all_type_name = ATT_TYPE_CHINESE
     if request.method == "POST":
@@ -27,7 +28,7 @@ def user_edit(request):
         else:
             message = "舊密碼輸入錯誤"
             return render(request, "edit.html",locals())
-            return JsonResponse({'status': 'old_pwd_error'})
+
     return render(request, "edit.html",locals())
 
 
