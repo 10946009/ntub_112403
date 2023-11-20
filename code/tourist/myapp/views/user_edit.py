@@ -6,9 +6,29 @@ from .viewsConst import ATT_TYPE_CHINESE,GENDER
 from django.contrib.auth.hashers import make_password
 
 def user_edit(request):
+    message = ""
     detail = User.objects.get(id=request.user.id)
     all_type_name = ATT_TYPE_CHINESE
-    
+    if request.method == "POST":
+        print(request.POST)
+        user = User.objects.get(id=request.user.id)
+        old_pwd = request.POST.get('old_pwd')
+        new_pwd = request.POST.get('new_pwd')
+        new_pwd1 = request.POST.get('new_pwd1')
+        if user.check_password(old_pwd):
+            if new_pwd == new_pwd1:
+                # user.password = make_password(new_pwd)
+                # user.save()
+                user.set_password(new_pwd)
+                user.save()
+                return redirect("/login")
+            else:
+                message = "密碼與確認密碼不相符"
+                return render(request, "edit.html",locals())
+        else:
+            message = "舊密碼輸入錯誤"
+            return render(request, "edit.html",locals())
+
     return render(request, "edit.html",locals())
 
 
@@ -61,16 +81,21 @@ def change_favorite(request):
 def user_edit_pwd(request):
     if request.method == "POST":
         print(request.POST)
-        # user = User.objects.get(id=request.user.id)
-        # old_pwd = request.POST.get('old_pwd')
-        # new_pwd = request.POST.get('new_pwd')
-        # new_pwd1 = request.POST.get('new_pwd1')
-        # if user.check_password(old_pwd):
-        #     if new_pwd == new_pwd1:
-        #         user.password = make_password(new_pwd)
-        #         user.save()
-        #         return redirect("/useredit")
-        #     else:
-        #         return JsonResponse({'status': 'new_pwd_error'})
-        # else:
-        #     return JsonResponse({'status': 'old_pwd_error'})
+        user = User.objects.get(id=request.user.id)
+        old_pwd = request.POST.get('old_pwd')
+        new_pwd = request.POST.get('new_pwd')
+        new_pwd1 = request.POST.get('new_pwd1')
+        if user.check_password(old_pwd):
+            if new_pwd == new_pwd1:
+                # user.password = make_password(new_pwd)
+                # user.save()
+                user.set_password(new_pwd)
+                user.save()
+                return redirect("/login")
+            else:
+                message = "密碼與確認密碼不相符"
+                return render(request, "edit.html",locals())
+        else:
+            message = "舊密碼輸入錯誤"
+            return render(request, "edit.html",locals())
+            return JsonResponse({'status': 'old_pwd_error'})
