@@ -22,9 +22,9 @@
                     </h2>
                 </div>
                 <div class="detail_name__headerGrid icon_add">
-                    <i class="fa-solid fa-arrow-up-from-bracket icon_name" id="share_icon"
+                    {% comment %} <i class="fa-solid fa-arrow-up-from-bracket icon_name" id="share_icon"
                         onclick=" showShareLoaderAndContent()" title="分享"
-                        style="border: black solid; border-radius: 60px;padding:8px 10px 8px 10px;"></i>
+                        style="border: black solid; border-radius: 60px;padding:8px 10px 8px 10px;"></i> {% endcomment %}
                     {% if is_favorite %}
                     <div class="icon_name" id="submitfavorite{{detail.id}}"
                         onclick="addFavorite_attractions(this,{{detail.id}})">
@@ -462,9 +462,9 @@
                         <div class="comment-content">
                             <h6 class="username">
                                 {{request.user.username}}<br>
-                                <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;">
+                                {% comment %} <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;">
                                     <i class="fa-solid fa-crown"></i>在地嚮導&ensp;
-                                </span>
+                                </span> {% endcomment %}
                             </h6>
                         </div>
                     </div>
@@ -1067,9 +1067,9 @@
                     <div style="display: flex; justify-content: space-between; position: relative;">
                         <h6 class="username">
                             {{comment.u.username}}<br>
-                            <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;">
+                            {% comment %} <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;">
                                 <i class="fa-solid fa-crown"></i>在地嚮導
-                            </span>
+                            </span> {% endcomment %}
                             <span style="color:gray;font-size: 12px; font-style: italic;">·4則評論 ·3張照片</span>
                         </h6>
                         <!-- 3個小點點(icon) -->
@@ -1241,7 +1241,7 @@
                             <div id="imagePreview"></div>
                         </div>
                         <!-- 上傳評論圖片 -->
-                        <form action="" method="post" enctype="multipart/form-data">
+                        {% comment %} <form action="" method="post" enctype="multipart/form-data">
                             <div class="add_comment_photo">
                                 <label for="photoInput" class="add_ph">
                                     <i class="fa-solid fa-camera-retro"
@@ -1250,7 +1250,7 @@
                                 <input type="file" id="photoInput" accept="image/*" style="display: none;" multiple
                                     onchange="previewphoto(event)">
                             </div>
-                        </form>
+                        </form> {% endcomment %}
                     </div>
                     <div class="post_share_comment">
                         <span class="share_comment_btn_cancel" id="share_comment_btn_cancel">取消</span>
