@@ -1,0 +1,6 @@
+body {
+    /* background-color: #d5d5d5bf; */
+    background-image: url(../images/trip_bg_att.png);
+    background-size: cover;
+    background-attachment: fixed;
+}
