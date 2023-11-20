@@ -86,14 +86,23 @@
         </button>
       </div>
     </div>
-    <div class="modal" id="myModal">
+    {% comment %} <div class="modal" id="myModal">
+      <div class="modal-content_att_info">
         <div class="modal-content">
             <span class="close" onclick="clickClose()">&times;</span>
             <div id = "changeInfo">
               {% include "attractions_info.html" %}
             </div>
-            
-        </div>
+        </div> 
+      </div>
+    </div> {% endcomment %}
+    <div class="modal" id="myModal">
+      <div class="modal-content_att_info">
+          <span class="close_att_info" onclick="clickClose()">&times;</span>
+          <div id = "changeInfo">
+            {% include "attractions_info.html" %}
+          </div>
+      </div>
     </div>
     <div class="explore hidemeexplore">
       <a href="/attraction_details" class="explorea">探索更多相關景點資訊
