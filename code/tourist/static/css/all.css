@@ -7,7 +7,7 @@
 	padding: 30px 50px 30px 50px;
 	position: relative;
 	overflow: scroll;
-	max-height: 800px;
+	max-height: 90%;
 	border-radius: 20px;
 }
 
@@ -258,6 +258,30 @@ iframe {
 
 	.base_searchInput .search {
 		width: 250px;
+	}
+
+	/* 詳細景點資訊 彈跳框 */
+	.modal-content_att_info {
+		background: rgb(221, 219, 219);
+		border: black solid;
+		width: 100%;
+		margin: 0px auto;
+		padding: 30px 30px 30px 30px;
+		position: relative;
+		overflow: scroll;
+		max-height: 100%;
+		border-radius: 20px;
+	}
+
+	/* 詳細景點資訊 叉叉 */
+	.close_att_info {
+		position: absolute;
+		right: 20px;
+		top: 15px;
+		font-size: 30px;
+		font-weight: bold;
+		color: #b1afaf;
+		cursor: pointer;
 	}
 }
 
