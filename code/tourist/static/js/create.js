@@ -376,17 +376,21 @@ function clickShow(button) {
 
 
 // move blcok(replace 托拽)
-let blocksOrder = [];
-for (var i = 0; i < total_day.length; i++) {
-  blocksOrder[i+1]  = [];
-  let orderAttractions = document.getElementById('orderAttractions-' + (i + 1));
-  let blockElements = orderAttractions.querySelectorAll('.spot');
-  let blockCount = blockElements.length;
-  // 初始化 blocksOrder 陣列
-    for(let j = 1; j <= blockCount; j++){
-      blocksOrder[i+1].push(j);
+
+//調整順序的初始化
+var blocksOrder = [];
+function blocksOrderInit() {
+  for (var i = 0; i < total_day.length; i++) {
+    blocksOrder[i+1]  = [];
+    let orderAttractions = document.getElementById('orderAttractions-' + (i + 1));
+    let blockElements = orderAttractions.querySelectorAll('.spot');
+    let blockCount = blockElements.length;
+    // 初始化 blocksOrder 陣列
+      for(let j = 1; j <= blockCount; j++){
+        blocksOrder[i+1].push(j);
+      }
     }
-  }
+}
 
 function moveBlock(blockDoneId, direction) {
   console.log(blocksOrder[globalDay]);

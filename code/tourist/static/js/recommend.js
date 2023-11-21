@@ -11,6 +11,7 @@ function startRecommend(user_location,day){
           ct_status: 0,
       },
       success: function (response) {
+        console.log("成功推薦");
         const attractions_detail_div = $('#AttractionsContainer-'+ globalDay );
         attractions_detail_div.html(response['recommend_attractions_list']);
         checkAndAddClass();
@@ -78,6 +79,7 @@ function submitRecommend(){
         console.log(response);
         order_attractions_detail_div.html(response['order_attractions']);
         checkAndAddClass();
+        blocksOrderInit();
       },
 
       error: function () {
