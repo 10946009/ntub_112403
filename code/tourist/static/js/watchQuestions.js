@@ -20,10 +20,14 @@ function watchQuestions() {
     container
       .querySelector("#all_ask_btn_ok")
       .addEventListener("click", function () {
+        let currentDate = new Date(); // 不提供參數即為當前日期和時間
+        let options = { month: 'short', day: 'numeric', year: 'numeric' };
+        let formattedDate = currentDate.toLocaleDateString('en-US', options);
+
         var answerContent = container.querySelector("#answer_qa").value;
         var newComment = document.createElement("div");
         newComment.className = "comment";
-        newComment.innerHTML = `
+        newComment.innerHTML =`
         <div class="avatar">
             <img src="../static/images/peka.webp" alt="User Avatar">
         </div>
@@ -31,8 +35,7 @@ function watchQuestions() {
             <h6 class="username">
                 皮卡丘<br>
                 <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;">
-                    <i class="fa-solid fa-crown"></i>在地嚮導&ensp;<br>
-                    <span style="color: gray; font-size: 12px; font-style: italic;">10天前&ensp;</span>
+                    <span style="color: gray; font-size: 12px; font-style: italic;">${ formattedDate }&ensp;</span>
                 </span>
             </h6>
             <h6 style="margin-bottom: 20px;"> <div>${answerContent}</div></h6>
