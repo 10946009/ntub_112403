@@ -81,29 +81,45 @@ function clickShow(button,ctid) {
 
 
 // 點新增評論按鈕
-const addCommentBtn = document.getElementById('addCommentBtn');
-const addCommentSpace = document.getElementById('addCommentSpace');
-const addCTXT = document.getElementById('addCTXT');
 
 let isaddCommentSpaceVisible = false;
 let isEdit = false;
 
 function addComment() {
+  const addCommentBtn = document.getElementById('addCommentBtn');
+  const addCommentSpace = document.getElementById('addCommentSpace');
+  console.log(addCommentSpace);
+  const addCTXT = document.getElementById('addCTXT');
   console.log(1);
   addCTXT.value = '';
-  if (addCommentBtn.textContent === '新增評論') {
+  if (addCommentBtn.textContent === '新增簡介') {
     addCommentSpace.style.display = 'block';
-    addCommentBtn.textContent = '取消評論';
-  } else if(addCommentBtn.textContent === '取消評論') {
+    addCommentBtn.textContent = '取消簡介';
+  } else if(addCommentBtn.textContent === '取消簡介') {
     addCommentSpace.style.display = 'none';
-    addCommentBtn.textContent = '新增評論';
+    addCommentBtn.textContent = '新增簡介';
   }
   isaddCommentSpaceVisible = !isaddCommentSpaceVisible;
 }
 
 // 發送評論
-function submitComment() {
+function submitComment(ctid){
   var commentText = document.getElementById('addCTXT').value;
+  //傳送簡介
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  $.ajax({
+    headers: { 'X-CSRFToken': csrftoken },
+    type: "POST",
+    url: "/history/add_detail/",
+    data: {
+      'id': ctid,
+      'detail': commentText,
+    },
+    success: function (data) {
+      console.log("編輯成功");
+    }
+  });
+
   addCommentBtn.style.display = 'none';
   addCommentBtn.textContent = '新增評論';
 

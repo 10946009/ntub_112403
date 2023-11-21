@@ -64,6 +64,7 @@ urlpatterns = [
     path("history/<int:select>", history.history),
     path("history/delete/", history.travel_delete),
     path("history/info/", history.travel_info),
+    path("history/add_detail/", history.travel_detail),
     path("share/", share.share),
     path("add_favorite_share/", share.add_share),
 

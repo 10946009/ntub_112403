@@ -59,12 +59,30 @@ def travel_info(request):
 # temp_allattractions.filter(id=item['id']).update(a_id=attractions_data)
 
 def travel_delete(request):
-    ctid = request.POST["id"]
-    print(ctid)
-    ct = Create_Travel.objects.get(id=ctid)
-    if ct.u_id == request.user.id:
-        ct.delete()
-        return JsonResponse({'message': '刪除成功'})
+    print(request.POST)
+    if request.POST["id"]:
+        ctid = request.POST["id"]
+        print(ctid)
+        ct = Create_Travel.objects.get(id=ctid)
+        if ct.u_id == request.user.id:
+            ct.delete()
+            return JsonResponse({'message': '刪除成功'})
+        else:
+            return JsonResponse({'message': '刪除失敗'})
     else:
-        return JsonResponse({'message': '刪除失敗'})
+        return JsonResponse({'message': '請求失敗'})
     
+
+def travel_detail(request):
+    if  request.POST["id"]:
+        ctid = request.POST["id"]
+        ct = Create_Travel.objects.get(id=ctid)
+        if ct.u_id == request.user.id:
+            detail = request.POST["detail"]
+            ct.detail = detail
+            ct.save()
+            return JsonResponse({'message': '修改成功'})
+        else:
+            return JsonResponse({'message': '修改失敗'})
+    else:
+        return JsonResponse({'message': '請求失敗'})
