@@ -245,31 +245,74 @@
         .right.hidden {
             right: -150px;
         }
+
+
+        /* 上下調整 */
+        .block {
+            border: 1px solid black;
+            width: 400px;
+            height: 250px;
+            margin-top: 10px;
+            display: flex;
+        }
+
+        .blockTxt {
+            width: 80%;
+        }
+
+        .blockBtn {
+            width: 20%;
+        }
+
+        .controlBtn {
+            display: block;
+            width: 80px;
+            height: 40px;
+            border-radius: 20px;
+        }
     </style>
 </head>
 
 <body>
-    <div id="blocks-container">
+    <div id="blocks-container" style="width: 80%;margin: 0 auto;">
         <div class="block" id="block1">
-            Block 1
-            <button onclick="moveBlock('block1', 'up')">Up</button>
-            <button onclick="moveBlock('block1', 'down')">Down</button>
-            <button onclick="moveFirst('block1')">第一個</button>
-            <button onclick="moveLast('block1')">最後</button>
+            <div class="blockTxt">
+                Block 1
+                <p>content</p>
+                <p>content</p>
+                <p>content</p>
+                <p>content</p>
+            </div>
+            <div class="blockBtn">
+                <button class="controlBtn btn_up" onclick="moveBlock('block1', 'up')">Up</button>
+                <button class="controlBtn btn_down" onclick="moveBlock('block1', 'down')">Down</button>
+                <button class="controlBtn btn_first" onclick="moveFirst('block1')">第一個</button>
+                <button class="controlBtn btn_last" onclick="moveLast('block1')">最後</button>
+            </div>
         </div>
         <div class="block" id="block2">
-            Block 2
-            <button onclick="moveBlock('block2', 'up')">Up</button>
-            <button onclick="moveBlock('block2', 'down')">Down</button>
-            <button onclick="moveFirst('block2')">第一個</button>
-            <button onclick="moveLast('block2')">最後</button>
+            <div class="blockTxt">
+                Block 2
+                <p>content</p>
+            </div>
+            <div style="width: 20%;">
+                <button class="controlBtn btn_up" onclick="moveBlock('block2', 'up')">Up</button>
+                <button class="controlBtn btn_down" onclick="moveBlock('block2', 'down')">Down</button>
+                <button class="controlBtn btn_first" onclick="moveFirst('block2')">第一個</button>
+                <button class="controlBtn btn_last" onclick="moveLast('block2')">最後</button>
+            </div>
         </div>
         <div class="block" id="block3">
-            Block 3
-            <button onclick="moveBlock('block3', 'up')">Up</button>
-            <button onclick="moveBlock('block3', 'down')">Down</button>
-            <button onclick="moveFirst('block3')">第一個</button>
-            <button onclick="moveLast('block3')">最後</button>
+            <div class="blockTxt">
+                Block 3
+                <p>content</p>
+            </div>
+            <div style="width: 20%;">
+                <button class="controlBtn btn_up" onclick="moveBlock('block3', 'up')">Up</button>
+                <button class="controlBtn btn_down" onclick="moveBlock('block3', 'down')">Down</button>
+                <button class="controlBtn btn_first" onclick="moveFirst('block3')">第一個</button>
+                <button class="controlBtn btn_last" onclick="moveLast('block3')">最後</button>
+            </div>
         </div>
     </div>
 
@@ -341,9 +384,6 @@
         </div>
     </div>
 
-    <div style="height: 300px;">
-
-    </div>
     <br><br>
 
     <div class="row"
@@ -686,51 +726,6 @@
             rearrangeBlocks();
         }
 
-
-        function rearrangeBlocks() {
-            let parent = document.getElementById('blocks-container');
-
-            // 清空容器
-            parent.innerHTML = '';
-
-            // 重新根據新的順序建立區塊
-            blocksOrder.forEach((blockNum) => {
-                let block = document.createElement('div');
-                block.className = 'block';
-                block.id = 'block' + blockNum;
-                block.textContent = 'Block ' + blockNum;
-
-                let upButton = document.createElement('button');
-                upButton.textContent = 'Up';
-                upButton.onclick = function () {
-                    moveBlock('block' + blockNum, 'up');
-                };
-
-                let downButton = document.createElement('button');
-                downButton.textContent = 'Down';
-                downButton.onclick = function () {
-                    moveBlock('block' + blockNum, 'down');
-                };
-
-                let firstButton = document.createElement('button');
-                firstButton.textContent = '第一個';
-                firstButton.onclick = function () {
-                    moveFirst('block' + blockNum);
-                };
-
-                let lastButton = document.createElement('button');
-                lastButton.textContent = '最後';
-                lastButton.onclick = function () {
-                    moveLast('block' + blockNum);
-                };
-
-                block.appendChild(upButton);
-                block.appendChild(downButton);
-                block.appendChild(firstButton);
-                block.appendChild(lastButton);
-                parent.appendChild(block);
-            });
-        }
         function moveFirst(blockId) {
             let index = blocksOrder.indexOf(parseInt(blockId.slice(-1)));
             if (index > 0) {
@@ -748,6 +743,75 @@
                 rearrangeBlocks();
             }
         }
+        function rearrangeBlocks() {
+  let parent = document.getElementById('blocks-container');
+
+  // 移除所有区块
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+
+  // 重新根据新的顺序建立区块
+  blocksOrder.forEach((blockNum) => {
+    let block = document.createElement('div');
+    block.classList.add('block'); // 保留原始的 block class
+    block.id = 'block' + blockNum;
+
+    let blockTxt = document.createElement('div');
+    blockTxt.classList.add('blockTxt');
+    blockTxt.textContent = 'Block ' + blockNum;
+
+    let blockBtn = document.createElement('div');
+    blockBtn.classList.add('blockBtn');
+
+    let upDownDiv = document.createElement('div');
+
+    let upButton = document.createElement('button');
+    upButton.textContent = 'Up';
+    upButton.classList.add('controlBtn');
+    upButton.onclick = function () {
+      moveBlock('block' + blockNum, 'up');
+    };
+
+    let downButton = document.createElement('button');
+    downButton.textContent = 'Down';
+    downButton.classList.add('controlBtn');
+    downButton.onclick = function () {
+      moveBlock('block' + blockNum, 'down');
+    };
+
+    upDownDiv.appendChild(upButton);
+    upDownDiv.appendChild(downButton);
+
+    let firstButton = document.createElement('button');
+    firstButton.textContent = '第一個';
+    firstButton.classList.add('controlBtn');
+    firstButton.onclick = function () {
+      moveFirst('block' + blockNum);
+    };
+
+    let lastButton = document.createElement('button');
+    lastButton.textContent = '最後';
+    lastButton.classList.add('controlBtn');
+    lastButton.onclick = function () {
+      moveLast('block' + blockNum);
+    };
+
+    blockBtn.appendChild(upDownDiv);
+    blockBtn.appendChild(firstButton);
+    blockBtn.appendChild(lastButton);
+
+    block.appendChild(blockTxt);
+    block.appendChild(blockBtn);
+    parent.appendChild(block);
+  });
+}
+
+
+
+
+
+
         function clickShow(button) {
             const targetBtn = button.getAttribute('data-target');
             const showDiv = document.getElementById(targetBtn);
