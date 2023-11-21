@@ -18,9 +18,15 @@
         <div class="carousel-inner">
           <!-- 圖片要幫忙抓他選到景點的圖 -->
           {% for img in data.get_attractions_picture %}
+          {% if forloop.counter == 1 %}
           <div class="carousel-item active historyCarousel">
             <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="img-responsive historyCarouselImg" width="100%" alt="">
           </div>
+          {% else %}
+          <div class="carousel-item historyCarousel">
+            <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="img-responsive historyCarouselImg" width="100%" alt="">
+          </div>
+          {% endif %}
           {% endfor %}
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide"
@@ -75,26 +81,6 @@
 
 
 <script>
-// 顯示目前是第幾張圖
-document.addEventListener("DOMContentLoaded", function () {
-    var carousel = document.getElementById('carouselExampleRide');
-    var counter = document.getElementById('imgCounter');
-    var totalItems = carousel.querySelectorAll('.carousel-item').length; // 定義 totalItems 變數，表示總共有幾張圖片
-  
-    var carouselInstance = new bootstrap.Carousel(carousel, {
-      interval: 3000
-    });
-  
-    carouselInstance.update = function () {
-      var activeIndex = Array.from(carousel.querySelectorAll('.carousel-item')).indexOf(carousel.querySelector('.carousel-item.active')) + 1;
-      counter.innerHTML = activeIndex + '  /  ' + totalItems;
-    };
-  
-    carousel.addEventListener('slid.bs.carousel', function () {
-      carouselInstance.update();
-    });
-  
-    carouselInstance.update();
-  });
+
 
 </script>
