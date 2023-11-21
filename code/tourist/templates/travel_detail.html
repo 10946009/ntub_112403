@@ -324,10 +324,10 @@ header {
 </div>
 <div class="sub-content">
   <div class="sub-item">
-    <img src="https://via.placeholder.com/720x480">
+    <img src="../static/images/attractions/{% if ct_detail.get_attractions_picture.1.a__place_id %}{{ ct_detail.get_attractions_picture.1.a__place_id }}_0.jpg {% else %}{{ ct_detail.get_attractions_picture.0.a__place_id }}_1.jpg{% endif %}">
   </div>
   <div class="sub-item">
-    <img src="https://via.placeholder.com/720x480">
+    <img src="../static/images/attractions/{% if ct_detail.get_attractions_picture.2.a__place_id %}{{ ct_detail.get_attractions_picture.2.a__place_id }}_0.jpg {% else %}{{ ct_detail.get_attractions_picture.0.a__place_id }}_2.jpg{% endif %}">
   </div>
 </div>
 </section>
@@ -345,63 +345,24 @@ header {
               <i class="fa-regular fa-calendar"></i> DAY 2
           </div>
       </div>
-<div id="content1" style="display: none;">
-    <div class="dayContent">
-        <div
-            style="height: 250px;display: flex;justify-content: center;align-items: center;align-content: center;">
-            起始<br>位置</div>
-        <a href="" style="text-decoration: none;color: black;">
-            <i class="fa-solid fa-car-side car_icon"></i>
-        </a>
-        <div class="dayContentIntro">
-            <p>景點名稱</p>
-            <p>營業時間</p>
-            <p>停留時間</p>
-        </div>
-        <a href="" style="text-decoration: none;color: black;">
-            <i class="fa-solid fa-car-side car_icon"></i>
-        </a>
-        <div class="dayContentIntro">
-            <p>景點名稱</p>
-            <p>營業時間</p>
-            <p>停留時間</p>
-        </div>
-        <a href="" style="text-decoration: none;color: black;">
-            <i class="fa-solid fa-car-side car_icon"></i>
-        </a>
-        <div class="dayContentIntro">
-            <p>景點名稱</p>
-            <p>營業時間</p>
-            <p>停留時間</p>
-        </div>
-        <a href="" style="text-decoration: none;color: black;">
-            <i class="fa-solid fa-car-side car_icon"></i>
-        </a>
-        <div class="dayContentIntro">
-            <p>景點名稱</p>
-            <p>營業時間</p>
-            <p>停留時間</p>
-        </div>
-        <a href="" style="text-decoration: none;color: black;">
-            <i class="fa-solid fa-car-side car_icon"></i>
-        </a>
-        <div class="dayContentIntro">
-            <p>景點名稱</p>
-            <p>營業時間</p>
-            <p>停留時間</p>
-        </div>
-        <a href="" style="text-decoration: none;color: black;">
-            <i class="fa-solid fa-car-side car_icon"></i>
-        </a>
-        <div class="dayContentIntro">
-            <p>景點名稱</p>
-            <p>營業時間</p>
-            <p>停留時間</p>
-        </div>
-        <a href="" style="text-decoration: none;color: black;">
-            <i class="fa-solid fa-car-side car_icon"></i>
-        </a>
-    </div>
+
+{% for day in ct_detail.get_choice_day %}
+<div id="content{{forloop.counter}}" style="display: none;">
+  <div class="dayContent">
+      <div style="height: 250px;display: flex;justify-content: center;align-items: center;align-content: center;">
+          起始<br>位置</div>
+          {% for att in day.get_attractions %}
+          <a href="" style="text-decoration: none;color: black;">
+              <i class="fa-solid fa-car-side car_icon"></i>
+          </a>
+          <div class="dayContentIntro">
+              <p>{{att.a.a_name}}</p>
+              <p></p>
+              <p>{{att.a.stay_time}}</p>
+          </div>
+          {% endfor %}
+  </div>
+{% endfor %}
 </div>
 <div id="content2" style="display: none;">
     <div class="dayContent">
