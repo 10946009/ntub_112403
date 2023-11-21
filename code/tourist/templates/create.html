@@ -92,6 +92,49 @@
         <div class="list" id="orderAttractions-{{ day }}" style="cursor: pointer;overflow-y: auto;">
           {% include 'create_order_attractions.html' %}
         </div>
+
+        <!-- 範例 -->
+            <div id="blockDones-container" style="width: 80%;margin: 0 auto;">
+              <div class="blockDone" id="blockDone1">
+                  <div class="blockTxt">
+                      Block 1
+                      <p>content</p>
+                      <p>content</p>
+                      <p>content</p>
+                      <p>content</p>
+                  </div>
+                  <div class="blockBtn">
+                      <button class="controlBtn btn_up" onclick="moveBlock('blockDone1', 'up')">Up</button>
+                      <button class="controlBtn btn_down" onclick="moveBlock('blockDone1', 'down')">Down</button>
+                      <button class="controlBtn btn_first" onclick="moveFirst('blockDone1')">第一個</button>
+                      <button class="controlBtn btn_last" onclick="moveLast('blockDone1')">最後</button>
+                  </div>
+              </div>
+              <div class="blockDone" id="blockDone2">
+                  <div class="blockTxt">
+                      Block 2
+                      <p>content</p>
+                  </div>
+                  <div>
+                      <button class="controlBtn btn_up" onclick="moveBlock('blockDone2', 'up')">Up</button>
+                      <button class="controlBtn btn_down" onclick="moveBlock('blockDone2', 'down')">Down</button>
+                      <button class="controlBtn btn_first" onclick="moveFirst('blockDone2')">第一個</button>
+                      <button class="controlBtn btn_last" onclick="moveLast('blockDone2')">最後</button>
+                  </div>
+              </div>
+              <div class="blockDone" id="blockDone3">
+                  <div class="blockTxt">
+                      Block 3
+                      <p>content</p>
+                  </div>
+                  <div>
+                      <button class="controlBtn btn_up" onclick="moveBlock('blockDone3', 'up')">Up</button>
+                      <button class="controlBtn btn_down" onclick="moveBlock('blockDone3', 'down')">Down</button>
+                      <button class="controlBtn btn_first" onclick="moveFirst('blockDone3')">第一個</button>
+                      <button class="controlBtn btn_last" onclick="moveLast('blockDone3')">最後</button>
+                  </div>
+              </div>
+          </div>
       </div>
       <div class="change changeInitial changeActive" id="initialLayout-{{ day }}">
         <!-- search section -->
@@ -192,14 +235,14 @@
     {% endfor %}
   </div>
   <div class="modal" id="myModal">
-      <div class="modal-content_att_info">
-          <span class="close_att_info" onclick="clickClose()">&times;</span>
-          <div id = "changeInfo">
-            {% include "attractions_info.html" %}
-          </div>
+    <div class="modal-content_att_info">
+      <span class="close_att_info" onclick="clickClose()">&times;</span>
+      <div id = "changeInfo">
+        {% include "attractions_info.html" %}
       </div>
+    </div>
   </div>
-</div>
+
   <!-- show similar and choosed section -->
   <div class="right" id="rightDiv" >
       <button id="showRight" class="showRight_btn" onclick="showRightDiv()">
@@ -247,6 +290,7 @@
 <script src="../static/js/owl.carousel.min.js"></script>
 <script src="/static/js/owlStart.js"></script>
 <script>
+  
   owlStart();
   // slide rignt section
   const rightBtn = document.getElementById('showRight');

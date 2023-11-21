@@ -1,18 +1,3 @@
-/* 在需要隱藏滾動條的地方添加相應的 class
-.body_noScroll {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    overflow-y: scroll;
-}
-
-/* body {
-    background-color: rgba(237, 237, 210, 0.3);
-} */
-
-
-
-
 /* create_index的 */
 .bgimg {
     /* background: url(../images/1526735109814.jpg); */
@@ -175,19 +160,16 @@ main {
     font-size: 20px;
     font-weight: bold;
 }
-.changeToInitialTxt{
+
+.changeToInitialTxt {
     display: none;
 }
+
 .changeToDoneTxt {
     display: block;
 }
-/* 
-.changeToDoneBtn {
-    display: none;
-} */
 
 .controls {
-    /* display: none; */
     width: 100%;
     height: 30px;
 }
@@ -216,20 +198,6 @@ main {
     color: #fff;
     background-color: #198754;
 }
-
-/* .tab_div {
-    padding: 10px;
-    margin-top: 30px;
-} */
-
-/* .tabtitle {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    text-align: center;
-} */
 
 .tab_a {
     text-decoration: none;
@@ -412,7 +380,6 @@ main {
 
 .btn_now {
     background-color: #0d6efd;
-    /* border:1px solid #0d6efd; */
 }
 
 .btn_choose {
@@ -423,6 +390,32 @@ main {
     background-color: #198754;
 }
 
+
+/* 上下調整 */
+.blockDone {
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 5px;
+    width: 400px;
+    height: 250px;
+    margin-top: 10px;
+    display: flex;
+}
+
+.blockTxt {
+    width: 80%;
+}
+
+.blockBtn {
+    width: 20%;
+}
+
+.controlBtn {
+    display: block;
+    width: 80px;
+    height: 40px;
+    border-radius: 20px;
+}
 
 /* 收藏CSS */
 .favoritedata {
