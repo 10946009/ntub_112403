@@ -2,7 +2,8 @@ import json
 from django.shortcuts import render, redirect
 from myapp.models import *
 from django.http import JsonResponse
-from .viewsConst import ATT_TYPE_CHINESE
+from .viewsConst import ATT_TYPE_CHINESE,GENDER
+from django.contrib.auth.hashers import make_password
 
 def user_edit(request):
     detail = User.objects.get(id=request.user.id)
@@ -26,6 +27,8 @@ def user_edit_form(request):
         print(request.POST)
         user = User.objects.get(id=request.user.id)
         user.username = request.POST.get('username')
+        user.gender = GENDER[request.POST.get('gender')]
+        user.birthday = request.POST.get('birthday')
         user.save()
         return redirect("/useredit")
 
@@ -53,3 +56,21 @@ def change_favorite(request):
             all_type_name = ATT_TYPE_CHINESE
 
             return JsonResponse({'status': status})
+        
+
+def user_edit_pwd(request):
+    if request.method == "POST":
+        print(request.POST)
+        # user = User.objects.get(id=request.user.id)
+        # old_pwd = request.POST.get('old_pwd')
+        # new_pwd = request.POST.get('new_pwd')
+        # new_pwd1 = request.POST.get('new_pwd1')
+        # if user.check_password(old_pwd):
+        #     if new_pwd == new_pwd1:
+        #         user.password = make_password(new_pwd)
+        #         user.save()
+        #         return redirect("/useredit")
+        #     else:
+        #         return JsonResponse({'status': 'new_pwd_error'})
+        # else:
+        #     return JsonResponse({'status': 'old_pwd_error'})

@@ -79,9 +79,9 @@
                         <img src="../static/images/user5.jpg" alt="Avatar 3" class="head_selected-avatar"
                             onclick="selectAvatarAndClosehead_selected('../static/images/user5.jpg')">
                         <img src="../static/images/user6.jpg" alt="Avatar 3" class="head_selected-avatar"
-                            onclick="selectAvatarAndClosehead_selected('../static/images/user7.jpg')">
-                        <img src="../static/images/user7.jpg" alt="Avatar 3" class="head_selected-avatar"
                             onclick="selectAvatarAndClosehead_selected('../static/images/user6.jpg')">
+                        <img src="../static/images/user7.jpg" alt="Avatar 3" class="head_selected-avatar"
+                            onclick="selectAvatarAndClosehead_selected('../static/images/user7.jpg')">
                         <div>
                             <button onclick="closehead_selected()" style="margin-top:20px;">取消</button>
                         </div>
@@ -189,6 +189,11 @@
                     </div>
                     <div class="col-7 col-s-7 aside">
                         <div class="inner">
+                            <div class="input-with-icon">
+                                <i class="fas fa-user input-icon"></i>
+                                <input type="text" placeholder="使用者名稱" name="username" value="{{ detail.username }}"
+                                    required>
+                            </div>
                             <div class="input-with-icon" style="font-size:17px;">
                                 {% comment %} <i class="fa-solid fa-envelope icon_email"></i> {% endcomment %}
                                 <strong style="margin-right:5px;">信箱：</strong><span
@@ -210,75 +215,30 @@
                             <span>
                                 <p></p>
                             </span>
-                            <!-- <span>居住地：
-                                <select name="gender" style="padding: 6px;">
-                                    <option value="1" name="gender">基隆</option>
-                                    <option value="2" name="gender">臺北</option>
-                                    <option value="3" name="gender">新北</option>
-                                    <option value="4" name="gender">桃園</option>
-                                    <option value="5" name="gender">新竹</option>
-                                    <option value="6" name="gender">苗栗</option>
-                                    <option value="7" name="gender">
-                                        臺中
-                                    </option>
-                                    <option value="8" name="gender">
-                                        彰化
-                                    </option>
-                                    <option value="9" name="gender">
-                                        雲林
-                                    </option>
-                                    <option value="10" name="gender">
-                                        嘉義
-                                    </option>
-                                    <option value="11" name="gender">
-                                        臺南
-                                    </option>
-                                    <option value="12" name="gender">
-                                        高雄
-                                    </option>
-                                    <option value="13" name="gender">
-                                        屏東
-                                    </option>
-                                    <option value="14" name="gender">
-                                        臺東
-                                    </option>
-                                    <option value="15" name="gender">
-                                        花蓮
-                                    </option>
-                                    <option value="16" name="gender">
-                                        宜蘭
-                                    </option>
-                                    <option selected value="0" name="gender">
-                                        不公開
-                                    </option>
-                                </select>
-                            </span> -->
                             <p>
                             </p>
                             <strong>生日：</strong>
                             <input type="date" placeholder="生日(範例:2000/01/01)" name="birthday" required
                                 value="{{ detail.birthday }}" min="1911-01-01" max="{{ nowday }}" style="padding:4px">
                             <p>
+                                <div style="text-align: right;">
+                                    <button class="pwd_btn" style="margin-top:20px;" type="submit">
+                                        儲存
+                                    </button>
+                                </div>
                             </p>
                         </div>
-                        <!-- <div class="head_change">
-                            <div class="avatar">
-                                <img id="avatar-preview" src="/static/images/dog.jpg" alt="頭貼預覽">
-                            </div>
-                            <div class="head_file">
-                                <input type="file" id="avatar" name="avatar" accept="image/*" class="file-upload-input"
-                                    onchange="previewAvatar(event)"><br>
-                                <label for="avatar" class="file-upload-label">選擇檔案</label>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
+            </form>
+            <form id="passwordForm" name="editForm" method="POST" action="{% url "user_pwd" %}">
+                {% csrf_token %}
                 <div class="info1">
                     <div class="row">
                         <div class="col-5 col-s-5 aside1" id="user_pwd">
                             <div class="con">
                                 <h3>
-                                    TripFunChill 帳號密碼
+                                    TripFunChill 密碼
                                 </h3>
                                 <p>
                                     我們建議你定期更改密碼，以防有心人士駭入你的帳號。
@@ -287,11 +247,6 @@
                         </div>
                         <div class="col-7 col-s-7 aside">
                             <div class="inner">
-                                <div class="input-with-icon">
-                                    <i class="fas fa-user input-icon"></i>
-                                    <input type="text" placeholder="使用者名稱" name="username" value="{{ detail.username }}"
-                                        required>
-                                </div>
                                 <div class="password-container">
                                     <i class="fa-solid fa-key input-icon"></i>
                                     <input type="password" id="passwordInput2" placeholder="目前密碼" name="passwd"
@@ -402,8 +357,8 @@
                 </div>
                 <div class="col-1">
                 </div>
+            </form>
         </div>
-        </form>
     </div>
     <script>
         function toggleSelection(button) {

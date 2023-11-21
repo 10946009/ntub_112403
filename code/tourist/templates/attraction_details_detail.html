@@ -131,7 +131,7 @@
                             <!-- 旺季月份 -->
                             <h6 style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-calendar-days" style="color: rgb(168, 126, 0);"></i>
-                                旺季月份：{{ detail.hot_month }}
+                                旺季月份：{%if detail.hot_month|length == 12%} 全年 {% else %} {{ detail.hot_month }} {% endif %}
                             </h6>
                             <!-- <hr style="border:2px solid #b3b2b2"> -->
                             <!-- 人潮資訊 -->
@@ -420,7 +420,7 @@
                             <!-- 點擊張貼評論數字+1 -->
                             <span style="cursor: pointer;"><i class="fa-regular fa-comment"
                                     style=" color: rgb(89, 198, 53);margin-right: 5px;"></i><span
-                                    id="commentCountElement">{{question.get_answer | length }}</span>
+                                    id="commentCountElement">{{question.get_answer|length }}</span>
                             </span>
                         </div>
                     </div>
@@ -488,7 +488,7 @@
                         </div>
                     </a>
                     {% endif %}
-                    
+
                 </div>
                 <hr style=" border:1px solid #777777; max-width: 100%;">
                 {% empty %}
@@ -661,13 +661,13 @@
                                         所有照片（{{picture_list|length}}）
                                     </div>
                                 </div>
-                                <div class="detail_photo__headerGrid" id="detail_photo__headerGrid_user">
+                                {% comment %} <div class="detail_photo__headerGrid" id="detail_photo__headerGrid_user">
                                     <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
                                         class="show_detail_img" style="width: 100%;" alt="">
                                     <div class="photo-text">
                                         旅客（7）
                                     </div>
-                                </div>
+                                </div> {% endcomment %}
                             </div>
                         </div>
                     </div>
@@ -845,9 +845,10 @@
                 其他資訊
             </h5>
             <!-- 使用者按讚、收藏、分享、觀看人數 -->
+            <div style="padding:0 100px 0 100px;">
             <div class="User_more_add_fav">
                 <div class="User__header">
-                    <div class="User__headerGrid" style="border-right: black dashed;">
+                    <!-- <div class="User__headerGrid" style="border-right: black dashed;">
                         <div class=" row" style="text-align:center;">
                             <div class="total_score_star">
                                 <h2>
@@ -862,30 +863,11 @@
                             </div>
                             <div class="total_score_star">
                                 <h2>
-                                    <strong>10,000+K</strong>
+                                    <strong>{{ detail.rating_total|add:"123" }}</strong>
                                 </h2>
                             </div>
                         </div>
-                    </div>
-                    <div class="User__headerGrid" style="border-right: black dashed;">
-                        <div class=" row" style="text-align:center;">
-                            <div class="total_score_star">
-                                <h2>
-                                    <strong>收藏人數</strong>
-                                </h2>
-                            </div>
-                            <div class="total_score_star">
-                                <p style="font-size:60px;">
-                                    <strong><i class="fa-solid fa-heart" style="color:rgb(186, 51, 51);"></i></strong>
-                                </p>
-                            </div>
-                            <div class="total_score_star">
-                                <h2>
-                                    <strong>{{detail.get_favorite_count}}</strong>
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
+                    </div> -->
                     <div class="User__headerGrid" style="border-right: black dashed;">
                         <div class=" row" style="text-align:center;">
                             <div class="total_score_star">
@@ -916,6 +898,25 @@
                         <div class=" row" style="text-align:center;">
                             <div class="total_score_star">
                                 <h2>
+                                    <strong>收藏人數</strong>
+                                </h2>
+                            </div>
+                            <div class="total_score_star">
+                                <p style="font-size:60px;">
+                                    <strong><i class="fa-solid fa-heart" style="color:rgb(186, 51, 51);"></i></strong>
+                                </p>
+                            </div>
+                            <div class="total_score_star">
+                                <h2>
+                                    <strong>{{detail.get_favorite_count}}</strong>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="User__headerGrid" style="border-right: black dashed;">
+                        <div class=" row" style="text-align:center;">
+                            <div class="total_score_star">
+                                <h2>
                                     <strong>分享人數</strong>
                                 </h2>
                             </div>
@@ -927,11 +928,11 @@
                             </div>
                             <div class="total_score_star">
                                 <h2>
-                                    <strong>10K</strong>
+                                    <strong>0</strong>
                                 </h2>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="User__headerGrid">
                         <div class=" row" style="text-align:center;">
                             <div class="total_score_star">
@@ -953,6 +954,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         <!-- RWD(768px)會用到的大小 -->
         <div class="col-12 others2">
@@ -991,14 +993,14 @@
                     </div>
                 </div>
                 <div class="col-9" style="text-align: center;">
-                    <div style="background-color: rgb(228, 202, 171);">
+                    {% comment %} <div style="background-color: rgb(228, 202, 171);">
                         <h2>
                             <strong><i class="fa-solid fa-thumbs-up"
                                     style="color: rgb(42, 106, 189);margin-right: 10px;"></i></strong>
                             <span style="margin-right: 20px;">按讚人數</span>
                             <span>20</span>
                         </h2>
-                    </div>
+                    </div> {% endcomment %}
                     <div style="background-color: rgb(228, 202, 171);">
                         <h2>
                             <strong><i class="fa-solid fa-heart"
@@ -1007,14 +1009,14 @@
                             <span>{{detail.get_favorite_count}}</span>
                         </h2>
                     </div>
-                    <div style="background-color: rgb(228, 202, 171);">
+                    {% comment %} <div style="background-color: rgb(228, 202, 171);">
                         <h2>
                             <strong><i class="fa-solid fa-share-from-square"
                                     style="color: rgb(29, 101, 11); margin-right: 10px;"></i></strong>
                             <span style="margin-right: 20px;">分享人數</span>
                             <span>20</span>
                         </h2>
-                    </div>
+                    </div> {% endcomment %}
                     <div style="background-color: rgb(228, 202, 171);">
                         <h2>
                             <strong><i class="fa-solid fa-eye" style="color: gray; margin-right: 10px;"></i></strong>
@@ -1042,8 +1044,8 @@
                     </h5>
                     {% else %}
                     <a href="/login" style="text-decoration:none;">
-                    <h5 class="comment_topic" id="write_comment">
-                        <strong>登入後發表評論</strong>
+                        <h5 class="comment_topic" id="write_comment">
+                            <strong>登入後發表評論</strong>
                     </a>
                     {% endif %}
                 </div>
@@ -1883,11 +1885,11 @@
         detail_photo__headerGrid_all.style.border = "1px solid black";
         detail_photo__headerGrid_user.style.border = "none";
     });
-    var detail_photo__headerGrid_user = document.getElementById("detail_photo__headerGrid_user");//旅客
+    {% comment %} var detail_photo__headerGrid_user = document.getElementById("detail_photo__headerGrid_user");//旅客
     detail_photo__headerGrid_user.addEventListener("click", function () {
         detail_photo__headerGrid_user.style.border = "1px solid black";
         detail_photo__headerGrid_all.style.border = "none";
-    });
+    }); {% endcomment %}
 
     // 切換相片和幻燈片功能
     var detail_photo__headerGrid_all = document.getElementById("detail_photo__headerGrid_all");
