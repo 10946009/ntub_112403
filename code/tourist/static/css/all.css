@@ -202,6 +202,11 @@ iframe {
 	z-index: 100;
 }
 
+#all_user_photo{
+	height: 30px;
+	width: 30px;
+	border-radius: 30px;
+}
 @keyframes fadeIn {
 	from {
 		opacity: 0;
