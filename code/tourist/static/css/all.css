@@ -1,37 +1,40 @@
 /* 詳細景點資訊 彈跳框 */
 .modal-content_att_info {
-    background: rgb(221, 219, 219);
-    border: black solid;
-    width: 55%;
-    margin: 50px auto;
-    padding: 30px 50px 30px 50px;
-    position: relative;
-    overflow: scroll;
-    max-height: 800px;
-    border-radius: 20px;
+	background: rgb(221, 219, 219);
+	border: black solid;
+	width: 55%;
+	margin: 50px auto;
+	padding: 30px 50px 30px 50px;
+	position: relative;
+	overflow: scroll;
+	max-height: 800px;
+	border-radius: 20px;
 }
+
 /* 詳細景點資訊 叉叉 */
 .close_att_info {
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    font-size: 30px;
-    font-weight: bold;
-    color: #908f8f;
-    cursor: pointer;
+	position: fixed;
+	right: 20px;
+	top: 15px;
+	font-size: 30px;
+	font-weight: bold;
+	color: #b1afaf;
+	cursor: pointer;
 }
 
 .close_att_info:hover {
-    color: #f44336;
-    cursor: pointer;
+	color: #f44336;
+	cursor: pointer;
 }
+
 /* 在需要隱藏滾動條的地方添加相應的 class */
 .body_noScroll {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    overflow-y: scroll;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	overflow-y: scroll;
 }
+
 @font-face {
 	font-family: 'HanyiSentyTea Regular';
 	src: url('HanyiSentyTea Regular.ttf') format('truetype');
@@ -40,115 +43,125 @@
 	animation: fadeIn 0.3s forwards;
 	z-index: 100;
 }
+
 /* 整個搜尋引擎那條 */
 .base_search {
-    width: 100%;
+	width: 100%;
 }
 
 .base_search .base_searchInput {
-    display: inline-block;
-    background: #fff;
-    width: 100%;
-    border-radius: 30px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: inline-block;
+	background: #fff;
+	width: 100%;
+	border-radius: 30px;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
+
 /* (type:search input的樣式) */
 .base_searchInput input {
-    border: 1px solid transparent;
-    background-color: #f1f1f1;
-    font-size: 16px;
-    height: 55px;
-    width: 100%;
-    outline: none;
-    padding: 0 20px ;
-    font-size: 18px;
-    transition: all 50ms ease-in-out;
-    border-radius: 30px;
-    outline: none;
+	border: 1px solid transparent;
+	background-color: #f1f1f1;
+	font-size: 16px;
+	height: 55px;
+	width: 100%;
+	outline: none;
+	padding: 0 20px;
+	font-size: 18px;
+	transition: all 50ms ease-in-out;
+	border-radius: 30px;
+	outline: none;
 }
 
 /* 搜尋小icon */
 .base_searchInput .search_icon {
-    border: none;
-    position: absolute;
+	border: none;
+	position: absolute;
 	padding: 0;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
+	top: 50%;
+	right: 15px;
+	transform: translateY(-50%);
 }
+
 /* 點一下input裡面會改變樣式 */
 .base_searchContent {
-    text-align: left;
-    padding-left: 12px;
-    padding-right: 12px;
-    background-color: #f1f1f1;
-    padding: 5px;
-    border-radius: 30px;
-    position: absolute;
-    border-top: none;
-    z-index: 99;
-    top: 100%;
-    left: 0;
-    right: 0;
+	text-align: left;
+	padding-left: 12px;
+	padding-right: 12px;
+	background-color: #f1f1f1;
+	padding: 5px;
+	border-radius: 30px;
+	position: absolute;
+	border-top: none;
+	z-index: 99;
+	top: 100%;
+	left: 0;
+	right: 0;
 }
 
 /* 歷史紀錄的部分 */
 /* 歷史紀錄的呈現容器 */
 #base_searchBox {
-    display: none;
+	display: none;
 
 }
 
 /* 點一下input跳出base_searchbox */
 #base_myInput:focus+#base_searchBox {
-    display: block;
+	display: block;
 }
+
 /* 歷史紀錄那一條 */
 .history_1 {
-    z-index: 1;
-    position: relative;
-    cursor: pointer;
-    padding: 10px;
+	z-index: 1;
+	position: relative;
+	cursor: pointer;
+	padding: 10px;
 }
 
 .history_1:hover {
-    background-color: #d9d8d8;
+	background-color: #d9d8d8;
 	border-radius: 30px;
 }
 
 /* 關閉歷史紀錄(x的位置-靠右） */
 .close_history {
-    z-index: 2;
-    position: absolute;
-    top: 10px;
-    right: 0;
-    margin-right: 10px;
+	z-index: 2;
+	position: absolute;
+	top: 10px;
+	right: 0;
+	margin-right: 10px;
 }
-html{
+
+html {
 	width: 100%;
 	overflow-x: hidden;
 }
-.logo_square1{
+
+.logo_square1 {
 	width: 120px;
 }
-.toolbar{
+
+.toolbar {
 	position: fixed !important;
 	width: 100%;
 	top: 0;
 	background-color: rgba(193, 193, 193, 0.504);
 }
-.dropdown-menu{
+
+.dropdown-menu {
 	/* position: absolute;
 	right: 80px; */
 	margin: 0 0 0 -30px !important;
 }
-.base_searchInput .search{
+
+.base_searchInput .search {
 	width: 400px;
 	opacity: 0.8;
 }
+
 /* popup info iframe */
 .modal {
 	display: none;
@@ -202,11 +215,12 @@ iframe {
 	z-index: 100;
 }
 
-#all_user_photo{
+#all_user_photo {
 	height: 30px;
 	width: 30px;
 	border-radius: 30px;
 }
+
 @keyframes fadeIn {
 	from {
 		opacity: 0;
@@ -228,30 +242,36 @@ iframe {
 }
 
 @media (max-width:1022px) {
-	.logo_square1{
-	  width: 100px;
+	.logo_square1 {
+		width: 100px;
 	}
-	.base_searchInput .search{
-	  width: 300px;
+
+	.base_searchInput .search {
+		width: 300px;
 	}
 }
+
 @media (max-width:768px) {
-	.logo_square1{
-	  width: 100px;
+	.logo_square1 {
+		width: 100px;
 	}
-	.base_searchInput .search{
-	  width: 250px;
+
+	.base_searchInput .search {
+		width: 250px;
 	}
 }
+
 @media (max-width:488px) {
-	.logo_square1{
-	  width: 30px;
-	  height: auto;
+	.logo_square1 {
+		width: 30px;
+		height: auto;
 	}
-	.base_searchInput .search{
-	  width: 200px;
+
+	.base_searchInput .search {
+		width: 200px;
 	}
-	.rwd_icon{
-	  padding-right: 8px;
+
+	.rwd_icon {
+		padding-right: 8px;
 	}
-  }
+}

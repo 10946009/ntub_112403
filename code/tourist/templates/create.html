@@ -237,7 +237,8 @@
   </div>
   <div class="modal" id="myModal">
     <div class="modal-content_att_info">
-      <span class="close_att_info" onclick="clickClose()">&times;</span>
+      <div class="close_att_info" onclick="clickClose()"><i class="fa-solid fa-xmark"></i></div>
+      {% comment %} <span class="close_att_info" onclick="clickClose()">&times;</span> {% endcomment %}
       <div id = "changeInfo">
         {% include "attractions_info.html" %}
       </div>
