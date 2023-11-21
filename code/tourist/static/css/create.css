@@ -62,13 +62,14 @@
 }
 
 /* create的 */
-body{
+body {
     background: url(../images/trip_bg_att.png);
     background-color: rgba(255, 255, 255, 0.3);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
 }
+
 .tab-pane {
     display: none;
     height: 0;
@@ -398,40 +399,6 @@ main {
 }
 
 
-/* 上下調整 */
-.blockDone {
-    border: 2px solid black;
-    border-radius: 20px;
-    padding: 5px;
-    width: 80%;
-    height: 250px;
-    margin: 10px auto;
-    display: flex;
-    position: relative;
-}
-
-.blockTxt {
-    width: 90%;
-    position: relative;
-}
-
-.blockBtn {
-    width: 10%;
-    position: relative;
-}
-.blockBtnLayout{
-    position: absolute;
-    bottom: 0;
-}
-
-.controlBtn {
-    float: right;
-    display: block;
-    width: 40px;
-    height: 30px;
-    border-radius: 20px;
-}
-
 /* 收藏CSS */
 .favoritedata {
     color: #000;
@@ -454,10 +421,71 @@ main {
     border-radius: 20%;
 }
 
-/* 我的範例 */
+/* 新我的範例 */
+/* 上下調整 */
+.blockDone {
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 5px;
+    width: 80%;
+    height: 250px;
+    margin: 10px auto;
+    display: flex;
+    position: relative;
+}
+
+.blockTxt {
+    width: 90%;
+    position: relative;
+}
+
+.blockBtn {
+    width: 10%;
+    position: relative;
+}
+
+.blockBtnLayout {
+    position: absolute;
+    bottom: 0;
+}
+
+.controlBtn {
+    float: right;
+    display: block;
+    width: 40px;
+    height: 30px;
+    border-radius: 20px;
+}
 
 .list {
-    /* margin: 5px,5px; */
+    width: 80%;
+    margin: 10px auto;
+}
+
+.spot {
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 5px;
+    width: 80%;
+    height: 250px;
+    margin: 10px auto;
+    display: flex;
+    position: relative;
+}
+
+.spotOkName {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.spotOk {
+    margin-bottom: 5px;
+}
+
+/* 我的範例 */
+/* 
+.list {
     width: 100%;
 }
 
@@ -490,7 +518,7 @@ main {
     padding-left: 1.5em;
     font-size: 1.4em;
     height: 20px;
-}
+} 
 
 .spot {
     position: relative;
@@ -505,7 +533,7 @@ main {
 .spotOk {
     margin-bottom: 5px;
 }
-
+*/
 /* 翻轉排序跟建立 */
 .change {
     transition: transform 0.5s ease, opacity 0.5s ease;
