@@ -82,7 +82,7 @@
             {% if request.user.is_authenticated %}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown"
-                aria-expanded="false"><img src="{{request.user.user_photo}}" alt="" id="all_user_photo">{{request.user.username}}</a>
+                aria-expanded="false"><img src="{{request.user.user_photo}}" alt="" id="all_user_photo"> {{request.user.username}}</a>
               <ul class="dropdown-menu" style="z-index: 999;">
                 <li>
                   <a class="dropdown-item" href="/history">我的行程</a>
