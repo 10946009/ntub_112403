@@ -1623,14 +1623,14 @@ img {
     width: 60%;
     margin: 50px auto;
     padding: 20px 40px 20px 40px;
-    height: 700px;
+    height: 90%;
     overflow-y: scroll;
 }
 
 /* 所有問題彈跳窗（name,address) */
 .all_ask_container {
     position: relative;
-    /* padding: 20px 40px 20px 40px; */
+    padding: 20px 0px 0px 0px;
 }
 
 /* 所有問題x按鈕 */
@@ -1641,6 +1641,7 @@ img {
     color: #000;
     font-size: 35px;
     font-weight: bold;
+    /* margin-top: -20px; */
 }
 
 /* 所有問題x按鈕 */
@@ -3016,7 +3017,7 @@ img {
         width: 60%;
         margin: 50px auto;
         padding: 20px 40px 20px 40px;
-        height: 1200px;
+        height: 90%;
         overflow-y: scroll;
     }
 
