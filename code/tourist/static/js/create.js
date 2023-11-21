@@ -375,59 +375,64 @@ function clickShow(button) {
 }
 
 
-
 // move blcok(replace 托拽)
 let blocksOrder = [];
-let blockElements = document.querySelectorAll('.spot');
-let blockCount = blockElements.length;
-
-// 初始化 blocksOrder 陣列
-for (let i = 1; i <= blockCount; i++) {
-  blocksOrder.push(i);
-}
+for (var i = 0; i < total_day.length; i++) {
+  blocksOrder[i+1]  = [];
+  let orderAttractions = document.getElementById('orderAttractions-' + (i + 1));
+  let blockElements = orderAttractions.querySelectorAll('.spot');
+  let blockCount = blockElements.length;
+  // 初始化 blocksOrder 陣列
+    for(let j = 1; j <= blockCount; j++){
+      blocksOrder[i+1].push(j);
+    }
+  }
 
 function moveBlock(blockDoneId, direction) {
-  let currentIndex = blocksOrder.indexOf(parseInt(blockDoneId.slice(-1))); // 取得目前區塊的索引位置
-
+  console.log(blocksOrder[globalDay]);
+  console.log(globalDay);
+  let currentIndex = blocksOrder[globalDay].indexOf(parseInt(blockDoneId)); // 取得目前區塊的索引位置
   if (direction === 'up' && currentIndex > 0) {
-    let temp = blocksOrder[currentIndex];
-    blocksOrder[currentIndex] = blocksOrder[currentIndex - 1];
-    blocksOrder[currentIndex - 1] = temp;
-  } else if (direction === 'down' && currentIndex < blocksOrder.length - 1) {
-    let temp = blocksOrder[currentIndex];
-    blocksOrder[currentIndex] = blocksOrder[currentIndex + 1];
-    blocksOrder[currentIndex + 1] = temp;
+    let temp = blocksOrder[globalDay][currentIndex];
+    console.log('temp'+temp);
+    blocksOrder[globalDay][currentIndex] = blocksOrder[globalDay][currentIndex - 1];
+    blocksOrder[globalDay][currentIndex - 1] = temp;
+  } else if (direction === 'down' && currentIndex < blocksOrder[globalDay].length - 1) {
+    let temp = blocksOrder[globalDay][currentIndex];
+    console.log('temp'+temp);
+    blocksOrder[globalDay][currentIndex] = blocksOrder[globalDay][currentIndex + 1];
+    blocksOrder[globalDay][currentIndex + 1] = temp;
   }
-
   rearrangeBlocks();
 }
-// move to top
-function moveFirst(blockDoneId) {
-  let index = blocksOrder.indexOf(parseInt(blockDoneId.slice(-1)));
-  if (index > 0) {
-    blocksOrder.splice(index, 1);
-    blocksOrder.unshift(parseInt(blockDoneId.slice(-1)));
-    rearrangeBlocks();
-  }
-}
-// move to last
-function moveLast(blockDoneId) {
-  let index = blocksOrder.indexOf(parseInt(blockDoneId.slice(-1)));
-  if (index < blocksOrder.length - 1) {
-    blocksOrder.splice(index, 1);
-    blocksOrder.push(parseInt(blockDoneId.slice(-1)));
-    rearrangeBlocks();
-  }
-}
+// // move to top
+// function moveFirst(blockDoneId) {
+//   let index = blocksOrder[globalDay].indexOf(parseInt(blockDoneId.slice(-1)));
+//   if (index > 0) {
+//     blocksOrder[globalDay].splice(index, 1);
+//     blocksOrder[globalDay].unshift(parseInt(blockDoneId.slice(-1)));
+//     rearrangeBlocks();
+//   }
+// }
+// // move to last
+// function moveLast(blockDoneId) {
+//   let index = blocksOrder[globalDay].indexOf(parseInt(blockDoneId.slice(-1)));
+//   if (index < blocksOrder[globalDay].length - 1) {
+//     blocksOrder[globalDay].splice(index, 1);
+//     blocksOrder[globalDay].push(parseInt(blockDoneId.slice(-1)));
+//     rearrangeBlocks();
+//   }
+// }
 
 
 function rearrangeBlocks() {
-  let parent = document.getElementById('blockDones-container');
-  let blocks = document.querySelectorAll('.spot');
+  let parent = document.getElementById('orderAttractions-' + globalDay);
+  let blocks = parent.querySelectorAll('.spot');
+  console.log(blocks);
   let orderedBlocks = Array.from(blocks).sort((a, b) => {
     let indexA = parseInt(a.id.slice(-1));
     let indexB = parseInt(b.id.slice(-1));
-    return blocksOrder.indexOf(indexA) - blocksOrder.indexOf(indexB);
+    return blocksOrder[globalDay].indexOf(indexA) - blocksOrder[globalDay].indexOf(indexB);
   });
 
   // 清空父容器

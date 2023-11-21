@@ -1,53 +1,60 @@
 {% for key,datalist in all_ct_data.items %}
   {% if key == day %}
-    {%for data in datalist%}
-    <div class="spot innerlist" id="blockDone1" data-id="{{data.detail.id}}" data-stay = "{% if data.detail.stay_time == 0 %}150{% else %}{{data.detail.stay_time}}{% endif %}"><!--id="spot{{data.attraction.order}}"-->
-      <div class="tempXdiv" onclick="pickspotBottom({{data.detail.id}})"><i class="fa-solid fa-xmark tempX_icon"></i></div>
-        <div class="blockTxt">
-          <a href="#" class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickeInfo(event,{{ o.final_result_list.id }})"></a>
-            <p class="spotOkName">{{data.detail.a_name}}</p>
-            <p id="hiddenId" style="display: none;">{{data.detail.id}}</p>
-            <p class="spotOk spotOkCrowd">當下可能的人潮流量：{{data.crowd_list}}%<br>
-            <p class="spotOk spotOkTime">營業時間：  {% for time in data.co.opening %} {% if forloop.counter != 1 %},{% endif %} {{time}} {% endfor %}</p>
-            <p class="spotOk spotOkStay">建議停留時間： {% if data.detail.stay_time == 0 %}150{% else %}{{data.detail.stay_time}}{% endif %} 分鐘</p>
-            <p class="spotOk spotOkweather">天氣狀況：{% if  data.weather %} {{data.weather}} {% else %} 尚無資料 {% endif %} <br>
-            </div>
-              <div class="blockBtn">
-          <div class="blockBtnLayout">
-            <button class="controlBtn btn_first" onclick="moveFirst('blockDone1')"><i class="fa-solid fa-angles-up"></i></button>
-            <button class="controlBtn btn_up" onclick="moveBlock('blockDone1', 'up')"><i class="fa-solid fa-angle-up"></i></button>
-            <button class="controlBtn btn_down" onclick="moveBlock('blockDone1', 'down')"><i class="fa-solid fa-angle-up fa-rotate-180"></i></button>
-            <button class="controlBtn btn_last" onclick="moveLast('blockDone1')"><i class="fa-solid fa-angles-up fa-rotate-180"></i></button>
-          </div>
-        </div>
+  {% for data in datalist %}
+  <div class="spot innerlist" id="blockDone{{forloop.counter}}" data-id="{{ data.detail.id }}" data-stay="{% if data.detail.stay_time == 0 %}150{% else %}{{ data.detail.stay_time }}{% endif %}">
+    <div class="tempXdiv" onclick="pickspotBottom({{ data.detail.id }})"><i class="fa-solid fa-xmark tempX_icon"></i></div>
+      <div class="blockTxt">
+        <a href="#" class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickeInfo(event,{{ data.detail.id }})"></a>
+        <p class="spotOkName">{{ data.detail.a_name }}</p>
+        <p id="hiddenId" style="display: none;">{{ data.detail.id }}</p>
+        <p class="spotOk spotOkCrowd">當下可能的人潮流量：{{ data.crowd_list }}%<br>
+        <p class="spotOk spotOkTime">營業時間：
+          {% for time in data.co.opening %}
+            {% if forloop.counter != 1 %},{% endif %}
+            {{ time }}
+          {% endfor %}
+        </p>
+        <p class="spotOk spotOkStay">建議停留時間：{% if data.detail.stay_time == 0 %}150{% else %}{{ data.detail.stay_time }}{% endif %} 分鐘</p>
+        <p class="spotOk spotOkweather">天氣狀況：{% if data.weather %} {{ data.weather }} {% else %} 尚無資料 {% endif %} <br>
+      </div>
+    <div class="blockBtn">
+      <div class="blockBtnLayout">
+        <button class="controlBtn btn_up" onclick="moveBlock('{{forloop.counter}}', 'up')"><i class="fa-solid fa-angle-up"></i></button>
+        <button class="controlBtn btn_down" onclick="moveBlock('{{forloop.counter}}', 'down')"><i class="fa-solid fa-angle-up fa-rotate-180"></i></button>
+      </div>
     </div>
-    {%endfor%}
+  </div>
+{% endfor %}
   {% endif%}
   {% empty %}
   {% for o in order_attractions_data %}
-<div class="spot innerlist" id="blockDone1" data-id="{{o.final_result_list.id}}" data-stay = "{% if o.final_result_list.stay_time == 0 %}150{% else %}{{o.final_result_list.stay_time}}{% endif %}"><!--id="spot{{data.attraction.order}}"-->
-            <div class="tempXdiv" onclick="pickspotBottom({{o.final_result_list.id}})"><i class="fa-solid fa-xmark tempX_icon"></i></div>
-              <div class="blockTxt">
-                <a href="#" class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickeInfo(event,{{ o.final_result_list..id }})"></a>
-                  <p class="spotOkName">{{o.final_result_list.a_name}}</p>
-                  <p id="hiddenId" style="display: none;">{{o.final_result_list.id}}</p>
-                  <p class="spotOk spotOkCrowd">當下可能的人潮流量：{{o.final_crowd_list}}%<br>
-                  <p class="spotOk spotOkTime">營業時間： {% for time in o.final_crow_opening_list.opening %} {% if forloop.counter != 1 %},{% endif %} {{time}} {% endfor %}</p>
-                  <p class="spotOk spotOkStay">建議停留時間： {% if o.final_result_list.stay_time == 0 %}150{% else %}{{o.final_result_list.stay_time}}{% endif %} 分鐘</p>
-                  <p class="spotOk spotOkweather">天氣狀況：{% if  o.weather %} {{o.weather}} {% else %} 尚無資料 {% endif %} <br>
-              </div>
-              <div class="blockBtn">
-                <div class="blockBtnLayout">
-                  <button class="controlBtn btn_first" onclick="moveFirst('blockDone1')"><i class="fa-solid fa-angles-up"></i></button>
-                  <button class="controlBtn btn_up" onclick="moveBlock('blockDone1', 'up')"><i class="fa-solid fa-angle-up"></i></button>
-                  <button class="controlBtn btn_down" onclick="moveBlock('blockDone1', 'down')"><i class="fa-solid fa-angle-up fa-rotate-180"></i></button>
-                  <button class="controlBtn btn_last" onclick="moveLast('blockDone1')"><i class="fa-solid fa-angles-up fa-rotate-180"></i></button>
-                </div>
-              </div>
-          </div>
-  {%empty%}
+  <div class="spot innerlist" id="blockDone{{forloop.counter}}" data-id="{{ o.final_result_list.id }}" data-stay="{% if o.final_result_list.stay_time == 0 %}150{% else %}{{ o.final_result_list.stay_time }}{% endif %}">
+    <div class="tempXdiv" onclick="pickspotBottom({{ o.final_result_list.id }})"><i class="fa-solid fa-xmark tempX_icon"></i></div>
+      <div class="blockTxt">
+        <a href="#" class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickeInfo(event,{{ o.final_result_list.id }})"></a>
+        <p class="spotOkName">{{ o.final_result_list.a_name }}</p>
+        <p id="hiddenId" style="display: none;">{{ o.final_result_list.id }}</p>
+        <p class="spotOk spotOkCrowd">當下可能的人潮流量：{{ o.final_crowd_list }}%<br>
+        <p class="spotOk spotOkTime">營業時間：
+          {% for time in o.final_crow_opening_list.opening %}
+            {% if forloop.counter != 1 %},{% endif %}
+            {{ time }}
+          {% endfor %}
+        </p>
+        <p class="spotOk spotOkStay">建議停留時間：{% if o.final_result_list.stay_time == 0 %}150{% else %}{{ o.final_result_list.stay_time }}{% endif %} 分鐘</p>
+        <p class="spotOk spotOkweather">天氣狀況：{% if o.weather %} {{ o.weather }} {% else %} 尚無資料 {% endif %} <br>
+      </div>
+    <div class="blockBtn">
+      <div class="blockBtnLayout">
+        <button class="controlBtn btn_up" onclick="moveBlock('{{forloop.counter}}', 'up')"><i class="fa-solid fa-angle-up"></i></button>
+        <button class="controlBtn btn_down" onclick="moveBlock('{{forloop.counter}}', 'down')"><i class="fa-solid fa-angle-up fa-rotate-180"></i></button>
+    </div>
+  </div>
+</div>
+{% empty %}
   目前沒有景點
 {% endfor %}
+
 {%endfor%}
 
 

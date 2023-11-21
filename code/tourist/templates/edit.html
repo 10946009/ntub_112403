@@ -400,6 +400,7 @@
 
         function selectAvatarAndClosehead_selected(avatarSrc) {
             const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+            var user_photo = document.getElementById("all_user_photo");
             // 選擇頭貼並關閉
             selectAvatar(avatarSrc);
             closehead_selected();
@@ -412,6 +413,8 @@
                 },
                 success: function (response) {
                     console.log(response);
+                    user_photo.src = avatarSrc;
+
                 }
             });
         }

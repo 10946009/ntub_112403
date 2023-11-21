@@ -95,6 +95,8 @@ class Create_Travel(models.Model):
     status = models.BooleanField(null=False, blank=False, default=0)
     like = models.IntegerField(default=0, null=False, blank=False)
     detail = models.TextField(max_length=255, null=False, blank=False, default="")
+    def get_choice_day(self):
+        return ChoiceDay_Ct.objects.filter(ct=self.id).order_by('day')
     def get_attractions_picture(ctid):
         return Attractions_Ct.objects.filter(choice_ct__ct=ctid).values('a__place_id').distinct()
     def is_fit(self):
@@ -120,7 +122,8 @@ class ChoiceDay_Ct(models.Model):
     start_location_x = models.FloatField(null=False,default="")
     start_location_y = models.FloatField(null=False,default="")
     start_time = models.IntegerField(null=False, blank=False)
-
+    def get_attractions(self):
+        return Attractions_Ct.objects.filter(choice_ct=self.id).order_by('order')
 
 class Attractions_Ct(models.Model):
     choice_ct = models.ForeignKey(

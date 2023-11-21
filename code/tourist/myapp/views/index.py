@@ -3,9 +3,9 @@ from myapp.models import *
 from .findpicture import get_picture_list
 def index(request):
     # 抓熱門資料
-    # hot_result = Attractions.objects.order_by('rating', 'rating_total').values()[:9]
-    hot =[57,79,100,199,216,421,450,454,713]
-    hot_result = Attractions.objects.filter(id__in=hot).values()
+    hot_result = Attractions.objects.order_by('hit').values()[:9]
+    # hot =[57,79,100,199,216,421,450,454,713]
+    # hot_result = Attractions.objects.filter(id__in=hot_result).values()
     user = request.user.id
 
     for index,attractions in enumerate(hot_result):
@@ -44,9 +44,10 @@ def index(request):
             item['is_favorite']= "1"
         else:
             item['is_favorite']= "0"
-    print(top_hot_travel)
+        item['u_id'] = User.objects.get(id=item['u_id']) 
+    # print(top_hot_travel)
         # #抓user資料庫
-        # item['u_id'] = User.objects.get(id=item['u_id']) 
+    
         # try:
         # # 抓place_id
         #     choiceid= ChoiceDay_Ct.objects.filter(ct_id=item['id']).values().first()
@@ -57,5 +58,4 @@ def index(request):
         # except:
         #     item['img']="default"
 
-    print(top_hot_travel)
     return render(request, "index.html", locals())

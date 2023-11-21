@@ -358,7 +358,7 @@
                 <div class="ask_qa_con" style="padding: 20px;">
                     <div class="comment">
                         <div class="avatar">
-                            <img src="../static/images/an.jpeg" alt="User Avatar">
+                            <img src="{{user.get_photo}}" alt="User Avatar">
                         </div>
                         <div class="comment-content">
                             <h6 class="username">
@@ -890,7 +890,7 @@
                                     {% endfor %}
                             </div>
                             <p>
-                                {{detail.rating_total}}則評論
+                                {{detail.rating_total}}則評分
                             </p>
                         </div>
                     </div>
@@ -1070,7 +1070,7 @@
                             {% comment %} <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;">
                                 <i class="fa-solid fa-crown"></i>在地嚮導
                             </span> {% endcomment %}
-                            <span style="color:gray;font-size: 12px; font-style: italic;">·4則評論 ·3張照片</span>
+                            {% comment %} <span style="color:gray;font-size: 12px; font-style: italic;">·4則評論 ·3張照片</span> {% endcomment %}
                         </h6>
                         <!-- 3個小點點(icon) -->
                         <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer;"
@@ -1275,7 +1275,7 @@
                 <div class="update_att_ph_con" style="padding: 20px;">
                     <div class="comment">
                         <div class="avatar">
-                            <img src="../static/images/an.jpeg" alt="User Avatar">
+                            <img src="{{user.get_photo}}" alt="User Avatar">
                         </div>
                         <div class="update_att_ph-content">
                             <h6 class="username">
