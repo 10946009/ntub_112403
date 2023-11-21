@@ -34,19 +34,27 @@ function add_favorite_share(ctid) {
 };
 
 function clickShow(button,ctid) {
+  // 更改其他按鈕的文字狀態
+  const allButtons = document.querySelectorAll("[class^='more_btn']");
   console.log(ctid);
   const targetDivId = button.getAttribute('data-target');
   const targetDiv = document.getElementById(targetDivId);
   const changeHistory = document.getElementById('changeHistory');
-  if (targetDiv.style.display === 'block') {
-    targetDiv.style.display = 'none';
-    button.textContent = '詳細行程';
-    button.style.backgroundColor = "rgb(255, 240, 126)";
-  } else {
+  allButtons.forEach(btn => {
+    if (btn !== button) {
+      btn.textContent = '詳細行程';
+      btn.style.backgroundColor = "rgb(255, 240, 126)";
+    }
+  });
+  if (button.textContent === '關閉閱覽') {
     // 隱藏所有類似的詳細資訊 div
     document.querySelectorAll(".openDetailDiv").forEach(div => {
       div.style.display = 'none';
     });
+    targetDiv.style.display = 'none';
+    button.textContent = '詳細行程';
+    button.style.backgroundColor = "rgb(255, 240, 126)";
+  } else {
     // 顯示目標詳細資訊 div
     targetDiv.style.display = 'block';
     button.textContent = '關閉閱覽';
@@ -68,14 +76,6 @@ function clickShow(button,ctid) {
     
   }
 
-  // 更改其他按鈕的文字狀態
-  const allButtons = document.querySelectorAll("[class^='more_btn']");
-  allButtons.forEach(btn => {
-    if (btn !== button) {
-      btn.textContent = '詳細行程';
-      btn.style.backgroundColor = "rgb(255, 240, 126)";
-    }
-  });
 }
 
 
