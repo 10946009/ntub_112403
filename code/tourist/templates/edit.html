@@ -58,7 +58,7 @@
             <div class="head_change">
                 <div style="display: flex;justify-content: center;">
                     <div id="selected-avatar">
-                        <img src="{{ detail.get_photo }}" alt="Selected Avatar" style="width: 100%;
+                        <img id="user_photo" src="{{ detail.get_photo }}" alt="Selected Avatar" style="width: 100%;
                                     height: 100%;
                                     border-radius:50%">
                     </div>
@@ -231,7 +231,7 @@
                     </div>
                 </div>
             </form>
-            <form id="passwordForm" name="editForm" method="POST" action="{% url "user_pwd" %}">
+            <form id="passwordForm" name="editForm" method="POST" action="">
                 {% csrf_token %}
                 <div class="info1">
                     <div class="row">
@@ -241,7 +241,8 @@
                                     TripFunChill 密碼
                                 </h3>
                                 <p>
-                                    我們建議你定期更改密碼，以防有心人士駭入你的帳號。
+                                    我們建議你定期更改密碼，以防有心人士駭入你的帳號。<br><br><br>
+                                    ps.修改密碼後需重新登入!
                                 </p>
                             </div>
                         </div>
@@ -249,23 +250,24 @@
                             <div class="inner">
                                 <div class="password-container">
                                     <i class="fa-solid fa-key input-icon"></i>
-                                    <input type="password" id="passwordInput2" placeholder="目前密碼" name="passwd"
+                                    <input type="password" id="old_pwd" placeholder="目前密碼" name="old_pwd"
                                         required>
                                     <i id="checkEye2" class="toggle-password fas fa-eye"></i>
                                 </div>
                                 <div class="password-container">
                                     <i class="fa-solid fa-key input-icon"></i>
-                                    <input type="password" id="passwordInput" oninput="password_validation()"
+                                    <input type="password" id="new_pwd" oninput="password_validation()"
                                         onclick="showPasswordToggle()" onblur="hidePasswordToggle()" placeholder="新密碼"
-                                        name="passwd" required>
+                                        name="new_pwd" required>
                                     <i id="checkEye" class="toggle-password fas fa-eye"></i>
                                 </div>
                                 <div class="password-container">
                                     <i class="fa-solid fa-key input-icon"></i>
-                                    <input type="password" id="passwordInput1" placeholder="確認新密碼" name="passwd1"
+                                    <input type="password" id="new_pwd1" placeholder="確認新密碼" name="new_pwd1"
                                         required>
                                     <i id="checkEye1" class="toggle-password fas fa-eye"></i>
                                 </div>
+                                <p style="color: red;">{{ message }}</p>
                                 <div id="validationIcons">
                                     <img src="/static/images/check.png" alt="Image 1" class="check" style="width:20px;
                                                     height:auto" id="lowercaseIcon">
@@ -347,16 +349,6 @@
                         </div>
                     </div>
                 </div> -->
-                <div style="text-align: right;">
-                    <button class="cancel_btn" style="margin-top:20px;">
-                        取消
-                    </button>
-                    <button class="confirm_change_btn" style="margin-top:20px;">
-                        確定更改
-                    </button>
-                </div>
-                <div class="col-1">
-                </div>
             </form>
         </div>
     </div>
@@ -433,7 +425,7 @@
             reader.readAsDataURL(input.files[0]);
         }
         function password_validation() {
-            var password = document.getElementById("passwordInput").value;
+            var password = document.getElementById("new_pwd").value;
 
             var lowercaseIcon = document.getElementById("lowercaseIcon");
             var uppercaseIcon = document.getElementById("uppercaseIcon");
@@ -448,7 +440,7 @@
             lengthIcon.classList.toggle("valid", password.length >= 8);
         }
         function password_validation1() {
-            var password = document.getElementById("passwordInput1").value;
+            var password = document.getElementById("new_pwd1").value;
 
             var lowercaseIcon = document.getElementById("lowercaseIcon");
             var uppercaseIcon = document.getElementById("uppercaseIcon");
@@ -463,7 +455,7 @@
             lengthIcon.classList.toggle("valid", password.length >= 8);
         }
         const togglePassword = document.getElementById('checkEye');
-        const passwordField = document.getElementById('passwordInput');
+        const passwordField = document.getElementById('new_pwd');
 
         togglePassword.addEventListener('click', function () {
             if (passwordField.type === 'password') {
@@ -478,7 +470,7 @@
         });
 
         const togglePassword1 = document.getElementById('checkEye1');
-        const passwordField1 = document.getElementById('passwordInput1');
+        const passwordField1 = document.getElementById('new_pwd1');
 
         togglePassword1.addEventListener('click', function () {
             if (passwordField1.type === 'password') {
@@ -493,7 +485,7 @@
         });
 
         const togglePassword2 = document.getElementById('checkEye2');
-        const passwordField2 = document.getElementById('passwordInput2');
+        const passwordField2 = document.getElementById('old_pwd');
 
         togglePassword2.addEventListener('click', function () {
             if (passwordField2.type === 'password') {

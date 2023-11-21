@@ -10,34 +10,6 @@
     background-color: rgba(237, 237, 210, 0.3);
 } */
 
-/* 詳細景點資訊 彈跳框 */
-.modal-content_att_info {
-    background: rgb(221, 219, 219);
-    border: black solid;
-    width: 55%;
-    margin: 50px auto;
-    padding: 30px 50px 30px 50px;
-    position: relative;
-    overflow: scroll;
-    max-height: 800px;
-    border-radius: 20px;
-}
-
-/* 詳細景點資訊 叉叉 */
-.close_att_info {
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    font-size: 30px;
-    font-weight: bold;
-    color: #908f8f;
-    cursor: pointer;
-}
-
-.close_att_info:hover {
-    color: #f44336;
-    cursor: pointer;
-}
 
 
 
