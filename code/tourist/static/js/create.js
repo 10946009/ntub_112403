@@ -339,10 +339,46 @@ $(function () {
 });
 
 
+function clickShow(button) {
+  const targetBtn = button.getAttribute('data-target');
+  const showDiv = document.getElementById(targetBtn);
+
+  if (showDiv.style.display === 'block') {
+    showDiv.style.display = 'none';
+    button.textContent = '詳細行程';
+  } else {
+    showDiv.style.display = 'block';
+    button.textContent = '關閉預覽';
+
+    const leftButtonRect = button.getBoundingClientRect(); // 获取左侧按钮位置信息
+    const rightDiv = showDiv; // 获取右侧区块的引用
+
+    // 设置右侧区块的位置
+    rightDiv.style.position = 'absolute';
+    rightDiv.style.top = `${leftButtonRect.top}px`; // 根据左侧按钮的位置设置右侧区块的位置
+
+    // 隐藏其他展开区块（可选）
+    document.querySelectorAll("[id^='show']").forEach(div => {
+      if (div !== showDiv) {
+        div.style.display = 'none';
+      }
+    });
+
+    // 获取所有左侧按钮并更改非当前点击按钮的文本为 "詳細行程"
+    const allButtons = document.querySelectorAll("[id^='clickme']");
+    allButtons.forEach(btn => {
+      if (btn !== button) {
+        btn.textContent = '詳細行程';
+      }
+    });
+  }
+}
+
+
 
 // move blcok(replace 托拽)
 let blocksOrder = [];
-let blockElements = document.querySelectorAll('.blockDone');
+let blockElements = document.querySelectorAll('.spot');
 let blockCount = blockElements.length;
 
 // 初始化 blocksOrder 陣列
@@ -387,7 +423,7 @@ function moveLast(blockDoneId) {
 
 function rearrangeBlocks() {
   let parent = document.getElementById('blockDones-container');
-  let blocks = document.querySelectorAll('.blockDone');
+  let blocks = document.querySelectorAll('.spot');
   let orderedBlocks = Array.from(blocks).sort((a, b) => {
     let indexA = parseInt(a.id.slice(-1));
     let indexB = parseInt(b.id.slice(-1));
@@ -403,80 +439,40 @@ function rearrangeBlocks() {
   });
 }
 
-
-
-
-
-function clickShow(button) {
-  const targetBtn = button.getAttribute('data-target');
-  const showDiv = document.getElementById(targetBtn);
-
-  if (showDiv.style.display === 'block') {
-    showDiv.style.display = 'none';
-    button.textContent = '詳細行程';
-  } else {
-    showDiv.style.display = 'block';
-    button.textContent = '關閉預覽';
-
-    const leftButtonRect = button.getBoundingClientRect(); // 获取左侧按钮位置信息
-    const rightDiv = showDiv; // 获取右侧区块的引用
-
-    // 设置右侧区块的位置
-    rightDiv.style.position = 'absolute';
-    rightDiv.style.top = `${leftButtonRect.top}px`; // 根据左侧按钮的位置设置右侧区块的位置
-
-    // 隐藏其他展开区块（可选）
-    document.querySelectorAll("[id^='show']").forEach(div => {
-      if (div !== showDiv) {
-        div.style.display = 'none';
-      }
-    });
-
-    // 获取所有左侧按钮并更改非当前点击按钮的文本为 "詳細行程"
-    const allButtons = document.querySelectorAll("[id^='clickme']");
-    allButtons.forEach(btn => {
-      if (btn !== button) {
-        btn.textContent = '詳細行程';
-      }
-    });
-  }
-}
-
-
 // 托拽
-var list = document.querySelector('.list')
-var currentLi
-list.addEventListener('dragstart', (e) => {
-  e.dataTransfer.effectAllowed = 'move'
-  currentLi = e.target
-  setTimeout(() => {
-    currentLi.classList.add('moving')
-  })
-})
+// var list = document.querySelector('.list')
+// var currentLi
+// list.addEventListener('dragstart', (e) => {
+//   e.dataTransfer.effectAllowed = 'move'
+//   currentLi = e.target
+//   setTimeout(() => {
+//     currentLi.classList.add('moving')
+//   })
+// })
 
-list.addEventListener('dragenter', (e) => {
-  e.preventDefault()
-  if (e.target === currentLi || e.target === list) {
-    return
-  }
-  var liArray = Array.from(list.childNodes)
-  var currentIndex = liArray.indexOf(currentLi)
-  var targetindex = liArray.indexOf(e.target)
+// list.addEventListener('dragenter', (e) => {
+//   e.preventDefault()
+//   if (e.target === currentLi || e.target === list) {
+//     return
+//   }
+//   var liArray = Array.from(list.childNodes)
+//   var currentIndex = liArray.indexOf(currentLi)
+//   var targetindex = liArray.indexOf(e.target)
 
-  if (currentIndex < targetindex) {
+//   if (currentIndex < targetindex) {
 
-    list.insertBefore(currentLi, e.target.nextElementSibling)
-  } else {
+//     list.insertBefore(currentLi, e.target.nextElementSibling)
+//   } else {
 
-    list.insertBefore(currentLi, e.target)
-  }
-})
-list.addEventListener('dragover', (e) => {
-  e.preventDefault()
-})
-list.addEventListener('dragend', (e) => {
-  currentLi.classList.remove('moving')
-})
+//     list.insertBefore(currentLi, e.target)
+//   }
+// })
+// list.addEventListener('dragover', (e) => {
+//   e.preventDefault()
+// })
+// list.addEventListener('dragend', (e) => {
+//   currentLi.classList.remove('moving')
+// })
 
 
 // 定义一个函数来检查全局变量并更新CSS类
