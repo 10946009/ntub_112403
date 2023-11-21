@@ -69,6 +69,12 @@ def travel_delete(request):
             return JsonResponse({'message': '刪除成功'})
         else:
             return JsonResponse({'message': '刪除失敗'})
+    ctid = request.POST["id"]
+    print(ctid)
+    ct = Create_Travel.objects.get(id=ctid,u_id=request.user.id)
+    if ct:
+        ct.delete()
+        return JsonResponse({'message': '刪除成功'})
     else:
         return JsonResponse({'message': '請求失敗'})
     

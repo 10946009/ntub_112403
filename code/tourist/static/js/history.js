@@ -302,7 +302,7 @@ function deleteTravel(id) {
     $.ajax({
       headers: { 'X-CSRFToken': csrftoken },
       url: "/history/delete/",
-      type: "get",
+      type: "post",
       data: {
         'id': id,
       },
