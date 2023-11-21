@@ -87,7 +87,7 @@ header {
     max-width: 1000px;
 }
 .review-container .btn-style-1 {
-    background-color: #fff;
+    background-color: ;
     border-radius: 50px;
     padding: 0.5rem 1rem;
     border: 2px solid #000;
@@ -268,6 +268,35 @@ header {
     flex-direction: column;
     justify-content: center;
 }
+.avatar img {
+  border-radius: 50%;
+}
+#cancel-success-modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+#cancel-success-modal h3 {
+  color: #333;
+}
+
+#cancel-success-modal button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 </style>
 {% endblock %}
 
@@ -395,15 +424,63 @@ header {
 </section>
 <section class="review-container">
   <section>
-  <h2>分享內容</h2>
+    <div class="row">
+      <h5 style="font-size: 24px;">
+          <i class="fa-solid fa-pen" style="color: gray;"></i>
+          評論
+      </h5>
+    </div>
   <div>
-    <button class="btn-style-1">完成您的評論</button>
-    <button class="btn-style-1">上傳一張照片</button>
+    <button class="btn-style-1">發表評論</button>
   </div>
+  <form class="ask-content" id="ask-content" action="/comment/{{detail.id}}/" method="POST">
+    <div class="out_share_comment" id="out_share_comment">
+        <div id="share_comment_container" class="share_comment_container">
+            <form class="share_comment-content" id="share_comment-content" action="">
+                <div class="comment_container" id="comment_container">
+                    <h5 style="font-size: 24px;">
+                        {{ detail.a_name }}
+                    </h5>
+                </div>
+                <div class="share_comment_con" style="padding: 20px;">
+                    <div class="comment">
+                        <div class="avatar">
+                            <img src="{{request.user.get_photo}}" alt="User Avatar">
+                        </div>
+                        <div class="comment-content">
+                            <h6 class="username">
+                                {{request.user.username}}<br>
+                                <span style="color: gray; font-size: 14px; font-style: italic;">公開發佈
+                                    &ensp;</span>
+                                <span class="show_com_info"><i class="comment_info fa-solid fa-circle-info"
+                                        id="comment_info"></i></span>
+                                <div class="show_comment_info" id="show_comment_info">
+                                    您的貼文會與個人資料名稱及相片一併公開顯示。您的貼文必須遵循政策的規定。</div>
+                            </h6>
+                        </div>
+                    </div>
+                    <div>
+                        <textarea name="user_share_comment" id="user_share_comment" cols="100%" rows="5"
+                            style="resize:none; border-radius: 10px;max-width: 100%;padding: 10px; "
+                            placeholder="詳細說明你在這個地點的親身體驗。"></textarea>
+                    </div>
+                    <div class="image-container_ph">
+                        <div id="imagePreview"></div>
+                    </div>
+                </div>
+                <div class="post_share_comment">
+                    <span class="share_comment_btn_cancel" id="share_comment_btn_cancel">取消</span>
+                    <span class="share_comment_btn_ok" id="share_comment_btn_ok"
+                        onclick="sendComment({{detail.id}})">張貼</span>
+                </div>
+            </form>
+        </div>
+    </div>
+</form>
 </section>
 <section class="review">
   <div class="review-wrap">
-    <h2>評論</h2>
+    <h2>所有評論</h2>
     <div>
     <button class="btn-style-2">篩選條件</button>
     <button class="btn-style-2">最新評論</button>
@@ -528,6 +605,27 @@ header {
           openContent(dayNumber);
       }
   });
+  function sendComment(postId) {
+    var isPostConfirmed = confirm("確定要張貼評論嗎？");
+
+    if (isPostConfirmed) {
+        // 在這裡執行張貼評論的相關操作
+        alert("張貼成功");
+    } else {
+        alert("已取消張貼");
+    }
+}
+
+document.getElementById('share_comment_btn_cancel').addEventListener('click', function () {
+    var isCancelConfirmed = confirm("確定要取消嗎？");
+
+    if (isCancelConfirmed) {
+        // 在這裡執行取消的相關操作
+        alert("取消成功");
+    } else {
+        alert("已取消取消");
+    }
+});
     </script>
     <script src="/static/js/travel_detail.js"></script>
     {{u_id}}
