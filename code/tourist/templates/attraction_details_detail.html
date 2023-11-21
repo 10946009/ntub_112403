@@ -1070,7 +1070,7 @@
                             {% comment %} <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;">
                                 <i class="fa-solid fa-crown"></i>在地嚮導
                             </span> {% endcomment %}
-                            {% comment %} <span style="color:gray;font-size: 12px; font-style: italic;">·4則評論 ·3張照片</span> {% endcomment %}
+                            <span style="color:gray;font-size: 12px; font-style: italic;">{{comment.comment_date}}</span>
                         </h6>
                         <!-- 3個小點點(icon) -->
                         <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer;"
@@ -1641,6 +1641,8 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
+    var username = "{{request.user.username}}";
+    var userPhoto = "{{request.user.get_photo}}";
     // // 評論刪除三個小點點
     // function Del_comment(icon) {
     //     var deleteBox = icon.nextElementSibling;

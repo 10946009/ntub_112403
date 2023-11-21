@@ -29,11 +29,11 @@ function watchQuestions() {
         newComment.className = "comment";
         newComment.innerHTML =`
         <div class="avatar">
-            <img src="../static/images/peka.webp" alt="User Avatar">
+            <img src="${ userPhoto }" alt="User Avatar">
         </div>
         <div class="comment-content">
             <h6 class="username">
-                皮卡丘<br>
+            ${ username }<br>
                 <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;">
                     <span style="color: gray; font-size: 12px; font-style: italic;">${ formattedDate }&ensp;</span>
                 </span>
