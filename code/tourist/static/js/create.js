@@ -87,6 +87,7 @@ function flipped(day = null) {
   var nextButton = document.getElementById('submitNext-' + day);
 
   if (isdoneJourneyVisible[day]) {
+    initialLayout.style.height = 'auto';
     initialLayout.classList.remove('hedden');
     done.classList.remove('changeActive');
     setTimeout(() => {
@@ -95,10 +96,8 @@ function flipped(day = null) {
     }, 50); // 延遲切換，不然會直接跳轉沒有翻轉效果
     flippedBtn.style.display = "block";
     flippedRecBtn.style.display = "none";
-    // saveButton.style.display = "none";
-    // nextButton.style.display = 'block';
   } else {
-    initialLayout.classList.add('hedden');
+    initialLayout.style.height = '0';
     initialLayout.classList.remove('changeActive');
     done.classList.remove('hidden');
     setTimeout(() => {
@@ -106,8 +105,6 @@ function flipped(day = null) {
     }, 50);
     flippedBtn.style.display = "none";
     flippedRecBtn.style.display = "block";
-    // saveButton.style.display = "";
-    // nextButton.style.display = '';
   }
   isdoneJourneyVisible[day] = !isdoneJourneyVisible[day];
 }
