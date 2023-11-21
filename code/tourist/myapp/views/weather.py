@@ -34,8 +34,17 @@ def get_weather_data(address,year,mouth,day,nowtime):#地址、年、月、日�
             weather_data[k] = "暫無資料"
     # print("------------------------------------------------------------------")
     # print(weather_data["天氣預報綜合描述"])
+    rain = weather_data.get("12小時降雨機率", "")
+    low_temp = weather_data.get("最低體感溫度", "")
+    high_temp = weather_data.get("最高體感溫度", "")
+    if rain:
+        total =  f'降雨機率{rain}%，溫度攝氏{low_temp}~{high_temp}度'
+    elif low_temp and high_temp:
+        total = f'溫度攝氏{low_temp}~{high_temp}度'
+    else:
+        total = "暫無資料"
     try:
-        return weather_data["天氣預報綜合描述"]
+        return total
     except:
         return "暫無資料"
 # print(get_weather_data("南港區",2023,11,7,1080))

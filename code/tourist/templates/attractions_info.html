@@ -1,4 +1,3 @@
-{{detail}}
 <div class="row">
     <div class="col-12">
         <div class="detail_name__headerGrid">
@@ -361,7 +360,10 @@
 
         });
     }
-
+    //預設點今天的人潮
+    var currentDate = new Date();
+    var currentWeek = (currentDate.getDay() + 6) % 7;
+    tagWeek[currentWeek].click(); //今天
 
     var slideIndextotal = 1;
     showtotalDivs(slideIndextotal);

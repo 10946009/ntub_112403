@@ -88,7 +88,7 @@ def create(request, ct_id):
         crowd_index_list=[]
         ct_data = []
         ct_data_id = []
-        
+        ct_attractions_list = []
         local_xy = [ct_attractions_data.start_location_x,ct_attractions_data.start_location_y] # 抓使用者位置的經緯度
         location_name = ct_attractions_data.location_name # 抓使用者位置的地址或名稱
         user_nowtime = format_minutes_as_time(ct_attractions_data.start_time) # 抓出發時
@@ -112,27 +112,16 @@ def create(request, ct_id):
             crowd_index_list.append((int(a['a_start_time']//60)%24)) #人潮流量索引
             ct_attractions_detail_list.append(Attractions.objects.get(id=a['a_id']))
             ct_data_id.append(a['a_id'])
-        # print('ct_attractions_detail_list',ct_attractions_detail_list)
-        # print('crowd_index_list',crowd_index_list)
-        # 抓出景點的人潮與營業時間
+
         for co in ct_attractions_detail_list:
             ct_attractions_co_list.append(Crowd_Opening.objects.get(a_id=co.id,week=week))
-        #抓人潮流量
-        # print('crowd_listcrowd_listcrowd_listcrowd_listcrowd_listcrowd_listcrowd_list',crowd_list)
-        # for i in range(len(ct_attractions_list)):
-        #     crowd_list.append(ct_attractions_co_list[i].crowd[crowd_index_list[i]]) 
-        # print('ct_attractions_co_list',ct_attractions_co_list)
-        # print('crowd_list',crowd_list)
-        # 合併上面四個資料
-        ct_distance_list = Attractions_Ct.objects.filter(choice_ct_id=ct_attractions_data.id).order_by('order')
-        for attraction, detail, co ,cl ,cd in zip(ct_attractions_list, ct_attractions_detail_list, ct_attractions_co_list,crowd_index_list,ct_distance_list):
-            # print(f"{min(co.crowd[cl],co.crowd[(cl+1)%24])} ~ {max(co.crowd[cl],co.crowd[(cl+1)%24])}")
+
+        for attraction, detail, co ,cl  in zip(ct_attractions_list, ct_attractions_detail_list, ct_attractions_co_list,crowd_index_list):
             ct_data.append({
                 "attraction": attraction,
                 "detail": detail,
                 "co": co,
                 "crowd_list" : f"{min(co.crowd[cl],co.crowd[(cl+1)%24])} ~ {max(co.crowd[cl],co.crowd[(cl+1)%24])}",
-                "distance": cd,
                 "weather": get_weather_data(detail.address,start_day[0:4],start_day[5:7],int(start_day[8:])+index,ct_attractions_data.start_time),
             })
             

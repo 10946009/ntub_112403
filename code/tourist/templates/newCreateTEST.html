@@ -245,12 +245,80 @@
         .right.hidden {
             right: -150px;
         }
+
+
+        /* 上下調整 */
+        .blockDone {
+            border: 2px solid black;
+            border-radius: 20px;
+            padding: 5px;
+            width: 400px;
+            height: 250px;
+            margin-top: 10px;
+            display: flex;
+        }
+
+        .blockTxt {
+            width: 80%;
+        }
+
+        .blockBtn {
+            width: 20%;
+        }
+
+        .controlBtn {
+            display: block;
+            width: 80px;
+            height: 40px;
+            border-radius: 20px;
+        }
     </style>
 </head>
 
 <body>
+    <div id="blockDones-container" style="width: 80%;margin: 0 auto;">
+        <div class="blockDone" id="blockDone1">
+            <div class="blockTxt">
+                Block 1
+                <p>content</p>
+                <p>content</p>
+                <p>content</p>
+                <p>content</p>
+            </div>
+            <div class="blockBtn">
+                <button class="controlBtn btn_up" onclick="moveBlock('blockDone1', 'up')">Up</button>
+                <button class="controlBtn btn_down" onclick="moveBlock('blockDone1', 'down')">Down</button>
+                <button class="controlBtn btn_first" onclick="moveFirst('blockDone1')">第一個</button>
+                <button class="controlBtn btn_last" onclick="moveLast('blockDone1')">最後</button>
+            </div>
+        </div>
+        <div class="blockDone" id="blockDone2">
+            <div class="blockTxt">
+                Block 2
+                <p>content</p>
+            </div>
+            <div>
+                <button class="controlBtn btn_up" onclick="moveBlock('blockDone2', 'up')">Up</button>
+                <button class="controlBtn btn_down" onclick="moveBlock('blockDone2', 'down')">Down</button>
+                <button class="controlBtn btn_first" onclick="moveFirst('blockDone2')">第一個</button>
+                <button class="controlBtn btn_last" onclick="moveLast('blockDone2')">最後</button>
+            </div>
+        </div>
+        <div class="blockDone" id="blockDone3">
+            <div class="blockTxt">
+                Block 3
+                <p>content</p>
+            </div>
+            <div>
+                <button class="controlBtn btn_up" onclick="moveBlock('blockDone3', 'up')">Up</button>
+                <button class="controlBtn btn_down" onclick="moveBlock('blockDone3', 'down')">Down</button>
+                <button class="controlBtn btn_first" onclick="moveFirst('blockDone3')">第一個</button>
+                <button class="controlBtn btn_last" onclick="moveLast('blockDone3')">最後</button>
+            </div>
+        </div>
+    </div>
 
-    <!-- <div class="main" style="width: 85%;margin: 0 auto;">
+    <div class="main" style="width: 85%;margin: 0 auto;">
         <div class="left">
             <div>
                 <span>這裡顯示搜尋</span>
@@ -316,11 +384,8 @@
         <div class="overlayTest">
             <p>Your Text Here</p>
         </div>
-    </div> -->
-
-    <div style="height: 300px;">
-
     </div>
+
     <br><br>
 
     <div class="row"
@@ -348,22 +413,6 @@
                 </div>
                 <div class="col-7">
                     <button id="clickme3" data-target="show3" onclick="clickShow(this)">詳細行程</button>
-                </div>
-            </div>
-            <div class="row" style="border: 1px solid black;">
-                <div class="col-5">
-                    <img src="../static/images/cloud1.png" class="img-responsive" width="100%" alt="">
-                </div>
-                <div class="col-7">
-                    <button id="clickme4" data-target="show4" onclick="clickShow(this)">詳細行程</button>
-                </div>
-            </div>
-            <div class="row" style="border: 1px solid black;">
-                <div class="col-5">
-                    <img src="../static/images/cloud1.png" class="img-responsive" width="100%" alt="">
-                </div>
-                <div class="col-7">
-                    <button id="clickme5" data-target="show5" onclick="clickShow(this)">詳細行程</button>
                 </div>
             </div>
         </div>
@@ -605,116 +654,6 @@
                     </div>
                 </div>
             </div>
-            <div id="show4" style="display: none;border: 1px solid black;">
-                <div style="padding: 0 5px;">
-                    <div style="height: 40px;">
-                        <span style="font-size: 18px;line-height: 40px;font-weight: bold;">行程名稱</span>
-                    </div>
-                    <hr style="margin-top: 0;">
-                    <div style="float: right;">
-                        <span>分享人：</span>
-                    </div>
-                    <div class="aboutDiv">
-                        <span>相關標籤</span>
-                        <span class="filter">動物園</span>
-                    </div>
-                </div>
-                <div>
-                    <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
-                        <div class="carousel-inner">
-                            <!-- 圖片要幫忙抓他選到景點的圖 -->
-                            <div class="carousel-item active historyCarousel">
-                                <img src="../static/images/101.jpg" class="img-responsive historyCarouselImg"
-                                    width="100%" alt="">
-                            </div>
-                            <div class="carousel-item historyCarousel">
-                                <img src="../static/images/beitou.jpeg" class="img-responsive historyCarouselImg"
-                                    width="100%" alt="">
-                            </div>
-                            <div class="carousel-item historyCarousel">
-                                <img src="../static/images/bg5.png" class="img-responsive historyCarouselImg"
-                                    width="100%" alt="">
-                            </div>
-                            <div class="carousel-item historyCarousel">
-                                <img src="../static/images/bg8.jpg" class="img-responsive historyCarouselImg"
-                                    width="100%" alt="">
-                            </div>
-                            <div class="carousel-item historyCarousel">
-                                <img src="../static/images/bg7.png" class="img-responsive historyCarouselImg"
-                                    width="100%" alt="">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                        <div class="imgCounter" id="imgCounter">
-                            <!-- JS裡面顯示目前是第幾張 -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="show5" style="display: none;border: 1px solid black;">
-                <div style="padding: 0 5px;">
-                    <div style="height: 40px;">
-                        <span style="font-size: 18px;line-height: 40px;font-weight: bold;">行程名稱</span>
-                    </div>
-                    <hr style="margin-top: 0;">
-                    <div style="float: right;">
-                        <span>分享人：</span>
-                    </div>
-                    <div class="aboutDiv">
-                        <span>相關標籤</span>
-                        <span class="filter">動物園</span>
-                    </div>
-                </div>
-                <div>
-                    <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
-                        <div class="carousel-inner">
-                            <!-- 圖片要幫忙抓他選到景點的圖 -->
-                            <div class="carousel-item active historyCarousel">
-                                <img src="../static/images/101.jpg" class="img-responsive historyCarouselImg"
-                                    width="100%" alt="">
-                            </div>
-                            <div class="carousel-item historyCarousel">
-                                <img src="../static/images/beitou.jpeg" class="img-responsive historyCarouselImg"
-                                    width="100%" alt="">
-                            </div>
-                            <div class="carousel-item historyCarousel">
-                                <img src="../static/images/bg5.png" class="img-responsive historyCarouselImg"
-                                    width="100%" alt="">
-                            </div>
-                            <div class="carousel-item historyCarousel">
-                                <img src="../static/images/bg8.jpg" class="img-responsive historyCarouselImg"
-                                    width="100%" alt="">
-                            </div>
-                            <div class="carousel-item historyCarousel">
-                                <img src="../static/images/bg7.png" class="img-responsive historyCarouselImg"
-                                    width="100%" alt="">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                        <div class="imgCounter" id="imgCounter">
-                            <!-- JS裡面顯示目前是第幾張 -->
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <!-- 按钮触发模态框 -->
@@ -762,6 +701,74 @@
     <script src="../static/js/bootstrap.min.js"></script>
     <script src="../static/js/owl.carousel.min.js"></script>
     <script>
+        let blocksOrder = [];
+        let blockElements = document.querySelectorAll('.blockDone');
+        let blockCount = blockElements.length;
+
+        // 初始化 blocksOrder 陣列
+        for (let i = 1; i <= blockCount; i++) {
+            blocksOrder.push(i);
+        }
+
+        function moveBlock(blockDoneId, direction) {
+            let currentIndex = blocksOrder.indexOf(parseInt(blockDoneId.slice(-1))); // 取得目前區塊的索引位置
+
+            if (direction === 'up' && currentIndex > 0) {
+                // 往上移動
+                let temp = blocksOrder[currentIndex];
+                blocksOrder[currentIndex] = blocksOrder[currentIndex - 1];
+                blocksOrder[currentIndex - 1] = temp;
+            } else if (direction === 'down' && currentIndex < blocksOrder.length - 1) {
+                // 往下移動
+                let temp = blocksOrder[currentIndex];
+                blocksOrder[currentIndex] = blocksOrder[currentIndex + 1];
+                blocksOrder[currentIndex + 1] = temp;
+            }
+
+            rearrangeBlocks();
+        }
+
+        function moveFirst(blockDoneId) {
+            let index = blocksOrder.indexOf(parseInt(blockDoneId.slice(-1)));
+            if (index > 0) {
+                blocksOrder.splice(index, 1);
+                blocksOrder.unshift(parseInt(blockDoneId.slice(-1)));
+                rearrangeBlocks();
+            }
+        }
+
+        function moveLast(blockDoneId) {
+            let index = blocksOrder.indexOf(parseInt(blockDoneId.slice(-1)));
+            if (index < blocksOrder.length - 1) {
+                blocksOrder.splice(index, 1);
+                blocksOrder.push(parseInt(blockDoneId.slice(-1)));
+                rearrangeBlocks();
+            }
+        }
+
+
+        function rearrangeBlocks() {
+            let parent = document.getElementById('blockDones-container');
+            let blocks = document.querySelectorAll('.blockDone');
+            let orderedBlocks = Array.from(blocks).sort((a, b) => {
+                let indexA = parseInt(a.id.slice(-1));
+                let indexB = parseInt(b.id.slice(-1));
+                return blocksOrder.indexOf(indexA) - blocksOrder.indexOf(indexB);
+            });
+
+            // 清空父容器
+            parent.innerHTML = '';
+
+            // 重新添加排序后的区块
+            orderedBlocks.forEach((block) => {
+                parent.appendChild(block);
+            });
+        }
+
+
+
+
+
         function clickShow(button) {
             const targetBtn = button.getAttribute('data-target');
             const showDiv = document.getElementById(targetBtn);

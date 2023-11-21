@@ -92,6 +92,50 @@
         <div class="list" id="orderAttractions-{{ day }}" style="cursor: pointer;overflow-y: auto;">
           {% include 'create_order_attractions.html' %}
         </div>
+
+        <!-- 範例 -->
+        {% comment %} <div class="list" id="blockDones-container"><!--id="orderAttractions-{{ day }}"-->
+          <div class="spot innerlist" id="blockDone2">
+            <div class="tempXdiv" onclick="pickspotBottom({{d.id}})"><i class="fa-solid fa-xmark tempX_icon"></i></div>
+              <div class="blockTxt">
+                <a href="#" class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickeInfo(event,{{ item.a_id.id }})"></a>
+                  <p class="spotOkName">景點名稱：2{{o.final_result_list.a_name}}</p>
+                  <p id="hiddenId" style="display: none;">景點名稱：{{o.final_result_list.id}}</p>
+                  <p class="spotOk spotOkCrowd">當下可能的人潮流量：{{o.final_crowd_list}}%<br>
+                  <p class="spotOk spotOkTime">營業時間： {% for time in o.final_crow_opening_list.opening %} {% if forloop.counter != 1 %},{% endif %} {{time}} {% endfor %}</p>
+                  <p class="spotOk spotOkStay">建議停留時間： {% if o.final_result_list.stay_time == 0 %}150{% else %}{{o.final_result_list.stay_time}}{% endif %} 分鐘</p>
+                  <p class="spotOk spotOkweather">天氣狀況：{% if  o.weather %} {{o.weather}} {% else %} 尚無資料 {% endif %} <br>
+              </div>
+              <div class="blockBtn">
+                <div class="blockBtnLayout">
+                  <button class="controlBtn btn_first" onclick="moveFirst('blockDone2')"><i class="fa-solid fa-angles-up"></i></button>
+                  <button class="controlBtn btn_up" onclick="moveBlock('blockDone2', 'up')"><i class="fa-solid fa-angle-up"></i></button>
+                  <button class="controlBtn btn_down" onclick="moveBlock('blockDone2', 'down')"><i class="fa-solid fa-angle-up fa-rotate-180"></i></button>
+                  <button class="controlBtn btn_last" onclick="moveLast('blockDone2')"><i class="fa-solid fa-angles-up fa-rotate-180"></i></button>
+                </div>
+              </div>
+          </div>
+          <div class="spot innerlist" id="blockDone3">
+            <div class="tempXdiv" onclick="pickspotBottom({{d.id}})"><i class="fa-solid fa-xmark tempX_icon"></i></div>
+              <div class="blockTxt">
+                <a href="#" class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickeInfo(event,{{ item.a_id.id }})"></a>
+                  <p class="spotOkName">景點名稱：3{{o.final_result_list.a_name}}</p>
+                  <p id="hiddenId" style="display: none;">景點名稱：{{o.final_result_list.id}}</p>
+                  <p class="spotOk spotOkCrowd">當下可能的人潮流量：{{o.final_crowd_list}}%<br>
+                  <p class="spotOk spotOkTime">營業時間： {% for time in o.final_crow_opening_list.opening %} {% if forloop.counter != 1 %},{% endif %} {{time}} {% endfor %}</p>
+                  <p class="spotOk spotOkStay">建議停留時間： {% if o.final_result_list.stay_time == 0 %}150{% else %}{{o.final_result_list.stay_time}}{% endif %} 分鐘</p>
+                  <p class="spotOk spotOkweather">天氣狀況：{% if  o.weather %} {{o.weather}} {% else %} 尚無資料 {% endif %} <br>
+              </div>
+              <div class="blockBtn">
+                <div class="blockBtnLayout">
+                  <button class="controlBtn btn_first" onclick="moveFirst('blockDone3')"><i class="fa-solid fa-angles-up"></i></button>
+                  <button class="controlBtn btn_up" onclick="moveBlock('blockDone3', 'up')"><i class="fa-solid fa-angle-up"></i></button>
+                  <button class="controlBtn btn_down" onclick="moveBlock('blockDone3', 'down')"><i class="fa-solid fa-angle-up fa-rotate-180"></i></button>
+                  <button class="controlBtn btn_last" onclick="moveLast('blockDone3')"><i class="fa-solid fa-angles-up fa-rotate-180"></i></button>
+                </div>
+              </div>
+          </div>
+        </div> {% endcomment %}
       </div>
       <div class="change changeInitial changeActive" id="initialLayout-{{ day }}">
         <!-- search section -->
@@ -192,14 +236,14 @@
     {% endfor %}
   </div>
   <div class="modal" id="myModal">
-      <div class="modal-content_att_info">
-          <span class="close_att_info" onclick="clickClose()">&times;</span>
-          <div id = "changeInfo">
-            {% include "attractions_info.html" %}
-          </div>
+    <div class="modal-content_att_info">
+      <span class="close_att_info" onclick="clickClose()">&times;</span>
+      <div id = "changeInfo">
+        {% include "attractions_info.html" %}
       </div>
+    </div>
   </div>
-</div>
+
   <!-- show similar and choosed section -->
   <div class="right" id="rightDiv" >
       <button id="showRight" class="showRight_btn" onclick="showRightDiv()">
@@ -247,6 +291,7 @@
 <script src="../static/js/owl.carousel.min.js"></script>
 <script src="/static/js/owlStart.js"></script>
 <script>
+  
   owlStart();
   // slide rignt section
   const rightBtn = document.getElementById('showRight');

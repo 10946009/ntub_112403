@@ -75,18 +75,20 @@ console.log(isdoneJourneyVisible);
 function flipped(day = null) {
   if (day === null) {
     day = globalDay;
-  }else{
+  } else {
     var nextButton = document.getElementById('submitNext-' + day);
     nextButton.style.display = 'none';
   }
   const done = document.getElementById('done-' + day);
-  const initialLayout = document.getElementById('initialLayout-'+day);
+  const initialLayout = document.getElementById('initialLayout-' + day);
   const flippedBtn = document.getElementById('flippedBtn-' + day);
   const flippedRecBtn = document.getElementById('flippedRecBtn-' + day);
-  var saveButton = document.getElementById('saveDays-'+ day);
+  var saveButton = document.getElementById('saveDays-' + day);
   var nextButton = document.getElementById('submitNext-' + day);
 
   if (isdoneJourneyVisible[day]) {
+    initialLayout.style.height = 'auto';
+    initialLayout.classList.remove('hedden');
     done.classList.remove('changeActive');
     setTimeout(() => {
       done.classList.add('hidden');
@@ -94,18 +96,15 @@ function flipped(day = null) {
     }, 50); // 延遲切換，不然會直接跳轉沒有翻轉效果
     flippedBtn.style.display = "block";
     flippedRecBtn.style.display = "none";
-    // saveButton.style.display = "none";
-    // nextButton.style.display = 'block';
   } else {
+    initialLayout.style.height = '0';
     initialLayout.classList.remove('changeActive');
     done.classList.remove('hidden');
     setTimeout(() => {
       done.classList.add('changeActive');
-    }, 50); 
+    }, 50);
     flippedBtn.style.display = "none";
     flippedRecBtn.style.display = "block";
-    // saveButton.style.display = "";
-    // nextButton.style.display = '';
   }
   isdoneJourneyVisible[day] = !isdoneJourneyVisible[day];
 }
@@ -116,12 +115,12 @@ function flipped(day = null) {
 function submitNext(day) {
   showRightDiv();
 }
-function submitAction2(day=null) {
+function submitAction2(day = null) {
   if (day === null) {
     day = globalDay;
   }
   console.log(day);
-  if(!isdoneJourneyVisible[day]){
+  if (!isdoneJourneyVisible[day]) {
     flipped(day);
   }
   showRightDiv();
@@ -130,9 +129,9 @@ function submitAction2(day=null) {
   submitNextBtn.style.display = 'none';
   console.log(3);
   // 顯示儲存按鈕
-  var saveButton = document.getElementById('saveDays-'+day);
+  var saveButton = document.getElementById('saveDays-' + day);
   if (saveButton) {
-    saveButton.style.display = 'block'; 
+    saveButton.style.display = 'block';
   }
 
   // 隱藏 submitNext 按鈕
@@ -208,19 +207,19 @@ function openfiliter() {
 }
 
 // pick spot css 點擊景點時
-function pickspot(checkbox, aid ) {
+function pickspot(checkbox, aid) {
   console.log(checkbox);
 
   if (checkbox.classList.contains("pickimg")) {
     checkbox.classList.remove("pickimg");
     now_click_attractions[globalDay].delete(aid);
-    console.log(now_click_attractions[globalDay]+'刪除'+aid);
+    console.log(now_click_attractions[globalDay] + '刪除' + aid);
     inputBottom();
   } else {
     checkbox.classList.add("pickimg");
     now_click_attractions[globalDay].add(aid);
-    
-    console.log(now_click_attractions[globalDay]+'新增'+aid);
+
+    console.log(now_click_attractions[globalDay] + '新增' + aid);
     inputBottom();
   }
 }
@@ -235,7 +234,7 @@ function pickspotBottom(aid) {
     const checkimgDIV = elements.closest('.checkimg_div');
     checkimgDIV.classList.remove('pickimg');
   } catch (e) {
-  console.log("找不到被pickimg的景點");
+    console.log("找不到被pickimg的景點");
   }
   try {
     const rightDiv = document.getElementById('rightDiv');
@@ -243,7 +242,7 @@ function pickspotBottom(aid) {
     const S_checkimgDIV = rightElements.closest('.S_checkimg_div');
     S_checkimgDIV.classList.remove('pickimg');
   } catch (e) {
-  console.log(e);
+    console.log(e);
   }
 
   inputBottom();
@@ -339,40 +338,141 @@ $(function () {
   });
 });
 
-// 托拽
-var list = document.querySelector('.list')
-var currentLi
-list.addEventListener('dragstart', (e) => {
-  e.dataTransfer.effectAllowed = 'move'
-  currentLi = e.target
-  setTimeout(() => {
-    currentLi.classList.add('moving')
-  })
-})
 
-list.addEventListener('dragenter', (e) => {
-  e.preventDefault()
-  if (e.target === currentLi || e.target === list) {
-    return
-  }
-  var liArray = Array.from(list.childNodes)
-  var currentIndex = liArray.indexOf(currentLi)
-  var targetindex = liArray.indexOf(e.target)
+function clickShow(button) {
+  const targetBtn = button.getAttribute('data-target');
+  const showDiv = document.getElementById(targetBtn);
 
-  if (currentIndex < targetindex) {
-
-    list.insertBefore(currentLi, e.target.nextElementSibling)
+  if (showDiv.style.display === 'block') {
+    showDiv.style.display = 'none';
+    button.textContent = '詳細行程';
   } else {
+    showDiv.style.display = 'block';
+    button.textContent = '關閉預覽';
 
-    list.insertBefore(currentLi, e.target)
+    const leftButtonRect = button.getBoundingClientRect(); // 获取左侧按钮位置信息
+    const rightDiv = showDiv; // 获取右侧区块的引用
+
+    // 设置右侧区块的位置
+    rightDiv.style.position = 'absolute';
+    rightDiv.style.top = `${leftButtonRect.top}px`; // 根据左侧按钮的位置设置右侧区块的位置
+
+    // 隐藏其他展开区块（可选）
+    document.querySelectorAll("[id^='show']").forEach(div => {
+      if (div !== showDiv) {
+        div.style.display = 'none';
+      }
+    });
+
+    // 获取所有左侧按钮并更改非当前点击按钮的文本为 "詳細行程"
+    const allButtons = document.querySelectorAll("[id^='clickme']");
+    allButtons.forEach(btn => {
+      if (btn !== button) {
+        btn.textContent = '詳細行程';
+      }
+    });
   }
-})
-list.addEventListener('dragover', (e) => {
-  e.preventDefault()
-})
-list.addEventListener('dragend', (e) => {
-  currentLi.classList.remove('moving')
-})
+}
+
+
+
+// move blcok(replace 托拽)
+let blocksOrder = [];
+let blockElements = document.querySelectorAll('.spot');
+let blockCount = blockElements.length;
+
+// 初始化 blocksOrder 陣列
+for (let i = 1; i <= blockCount; i++) {
+  blocksOrder.push(i);
+}
+
+function moveBlock(blockDoneId, direction) {
+  let currentIndex = blocksOrder.indexOf(parseInt(blockDoneId.slice(-1))); // 取得目前區塊的索引位置
+
+  if (direction === 'up' && currentIndex > 0) {
+    let temp = blocksOrder[currentIndex];
+    blocksOrder[currentIndex] = blocksOrder[currentIndex - 1];
+    blocksOrder[currentIndex - 1] = temp;
+  } else if (direction === 'down' && currentIndex < blocksOrder.length - 1) {
+    let temp = blocksOrder[currentIndex];
+    blocksOrder[currentIndex] = blocksOrder[currentIndex + 1];
+    blocksOrder[currentIndex + 1] = temp;
+  }
+
+  rearrangeBlocks();
+}
+// move to top
+function moveFirst(blockDoneId) {
+  let index = blocksOrder.indexOf(parseInt(blockDoneId.slice(-1)));
+  if (index > 0) {
+    blocksOrder.splice(index, 1);
+    blocksOrder.unshift(parseInt(blockDoneId.slice(-1)));
+    rearrangeBlocks();
+  }
+}
+// move to last
+function moveLast(blockDoneId) {
+  let index = blocksOrder.indexOf(parseInt(blockDoneId.slice(-1)));
+  if (index < blocksOrder.length - 1) {
+    blocksOrder.splice(index, 1);
+    blocksOrder.push(parseInt(blockDoneId.slice(-1)));
+    rearrangeBlocks();
+  }
+}
+
+
+function rearrangeBlocks() {
+  let parent = document.getElementById('blockDones-container');
+  let blocks = document.querySelectorAll('.spot');
+  let orderedBlocks = Array.from(blocks).sort((a, b) => {
+    let indexA = parseInt(a.id.slice(-1));
+    let indexB = parseInt(b.id.slice(-1));
+    return blocksOrder.indexOf(indexA) - blocksOrder.indexOf(indexB);
+  });
+
+  // 清空父容器
+  parent.innerHTML = '';
+
+  // 重新添加排序后的区块
+  orderedBlocks.forEach((block) => {
+    parent.appendChild(block);
+  });
+}
+
+// 托拽
+// var list = document.querySelector('.list')
+// var currentLi
+// list.addEventListener('dragstart', (e) => {
+//   e.dataTransfer.effectAllowed = 'move'
+//   currentLi = e.target
+//   setTimeout(() => {
+//     currentLi.classList.add('moving')
+//   })
+// })
+
+// list.addEventListener('dragenter', (e) => {
+//   e.preventDefault()
+//   if (e.target === currentLi || e.target === list) {
+//     return
+//   }
+//   var liArray = Array.from(list.childNodes)
+//   var currentIndex = liArray.indexOf(currentLi)
+//   var targetindex = liArray.indexOf(e.target)
+
+//   if (currentIndex < targetindex) {
+
+//     list.insertBefore(currentLi, e.target.nextElementSibling)
+//   } else {
+
+//     list.insertBefore(currentLi, e.target)
+//   }
+// })
+// list.addEventListener('dragover', (e) => {
+//   e.preventDefault()
+// })
+// list.addEventListener('dragend', (e) => {
+//   currentLi.classList.remove('moving')
+// })
 
 
 // 定义一个函数来检查全局变量并更新CSS类
@@ -383,7 +483,7 @@ function checkAndAddClass() {
     // console.log(globalDay);
     // 如果全局变量中包含 id，添加CSS类
     if (now_click_attractions[globalDay].has(id)) {
-      var checkimg_div  = checkbox.closest('.checkimg_div');
+      var checkimg_div = checkbox.closest('.checkimg_div');
       // 添加额外的检查，确保 closestColMd6 存在
       if (checkimg_div) {
         checkimg_div.classList.add('pickimg');
@@ -399,10 +499,10 @@ function inputBottom(day = null) {
     day = globalDay;
   }
   const bottomAttraction = document.getElementById('bottomAttraction')
-  console.log("inputBottom"+day+ Array.from(now_click_attractions[day]).join(','));
-  if (now_click_attractions[day].size == 0){
+  console.log("inputBottom" + day + Array.from(now_click_attractions[day]).join(','));
+  if (now_click_attractions[day].size == 0) {
     bottomAttraction.innerHTML = "";
-  }else{
+  } else {
     $.ajax({
       url: "/attractions",
       type: "GET",
@@ -412,7 +512,7 @@ function inputBottom(day = null) {
       success: function (response) {
         bottomAttraction.innerHTML = response;
       },
-  
+
       error: function () {
         console.log('推薦回傳有錯誤!!!');
       },
