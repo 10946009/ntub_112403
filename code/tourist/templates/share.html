@@ -8,6 +8,9 @@
 {% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> 主要影響toolbar的原因 {% endcomment %}
 {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> {% endcomment %}
 <style>
+  .justify-content-center{
+    margin-top: 15px;
+  }
   .location-wrap {
     overflow: hidden;
     position: relative;
@@ -71,7 +74,7 @@
   <h1 style="text-align:left;"><i class="fas fa-heart text-danger"></i> 已公開行程</h2>
   <hr>
   <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content">
 
       {% for item in all_share_list %}
       
