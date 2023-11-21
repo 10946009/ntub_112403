@@ -248,7 +248,7 @@
 
 
         /* 上下調整 */
-        .block {
+        .blockDone {
             border: 2px solid black;
             border-radius: 20px;
             padding: 5px;
@@ -276,8 +276,8 @@
 </head>
 
 <body>
-    <div id="blocks-container" style="width: 80%;margin: 0 auto;">
-        <div class="block" id="block1">
+    <div id="blockDones-container" style="width: 80%;margin: 0 auto;">
+        <div class="blockDone" id="blockDone1">
             <div class="blockTxt">
                 Block 1
                 <p>content</p>
@@ -286,34 +286,34 @@
                 <p>content</p>
             </div>
             <div class="blockBtn">
-                <button class="controlBtn btn_up" onclick="moveBlock('block1', 'up')">Up</button>
-                <button class="controlBtn btn_down" onclick="moveBlock('block1', 'down')">Down</button>
-                <button class="controlBtn btn_first" onclick="moveFirst('block1')">第一個</button>
-                <button class="controlBtn btn_last" onclick="moveLast('block1')">最後</button>
+                <button class="controlBtn btn_up" onclick="moveBlock('blockDone1', 'up')">Up</button>
+                <button class="controlBtn btn_down" onclick="moveBlock('blockDone1', 'down')">Down</button>
+                <button class="controlBtn btn_first" onclick="moveFirst('blockDone1')">第一個</button>
+                <button class="controlBtn btn_last" onclick="moveLast('blockDone1')">最後</button>
             </div>
         </div>
-        <div class="block" id="block2">
+        <div class="blockDone" id="blockDone2">
             <div class="blockTxt">
                 Block 2
                 <p>content</p>
             </div>
             <div>
-                <button class="controlBtn btn_up" onclick="moveBlock('block2', 'up')">Up</button>
-                <button class="controlBtn btn_down" onclick="moveBlock('block2', 'down')">Down</button>
-                <button class="controlBtn btn_first" onclick="moveFirst('block2')">第一個</button>
-                <button class="controlBtn btn_last" onclick="moveLast('block2')">最後</button>
+                <button class="controlBtn btn_up" onclick="moveBlock('blockDone2', 'up')">Up</button>
+                <button class="controlBtn btn_down" onclick="moveBlock('blockDone2', 'down')">Down</button>
+                <button class="controlBtn btn_first" onclick="moveFirst('blockDone2')">第一個</button>
+                <button class="controlBtn btn_last" onclick="moveLast('blockDone2')">最後</button>
             </div>
         </div>
-        <div class="block" id="block3">
+        <div class="blockDone" id="blockDone3">
             <div class="blockTxt">
                 Block 3
                 <p>content</p>
             </div>
             <div>
-                <button class="controlBtn btn_up" onclick="moveBlock('block3', 'up')">Up</button>
-                <button class="controlBtn btn_down" onclick="moveBlock('block3', 'down')">Down</button>
-                <button class="controlBtn btn_first" onclick="moveFirst('block3')">第一個</button>
-                <button class="controlBtn btn_last" onclick="moveLast('block3')">最後</button>
+                <button class="controlBtn btn_up" onclick="moveBlock('blockDone3', 'up')">Up</button>
+                <button class="controlBtn btn_down" onclick="moveBlock('blockDone3', 'down')">Down</button>
+                <button class="controlBtn btn_first" onclick="moveFirst('blockDone3')">第一個</button>
+                <button class="controlBtn btn_last" onclick="moveLast('blockDone3')">最後</button>
             </div>
         </div>
     </div>
@@ -702,7 +702,7 @@
     <script src="../static/js/owl.carousel.min.js"></script>
     <script>
         let blocksOrder = [];
-        let blockElements = document.querySelectorAll('.block');
+        let blockElements = document.querySelectorAll('.blockDone');
         let blockCount = blockElements.length;
 
         // 初始化 blocksOrder 陣列
@@ -710,8 +710,8 @@
             blocksOrder.push(i);
         }
 
-        function moveBlock(blockId, direction) {
-            let currentIndex = blocksOrder.indexOf(parseInt(blockId.slice(-1))); // 取得目前區塊的索引位置
+        function moveBlock(blockDoneId, direction) {
+            let currentIndex = blocksOrder.indexOf(parseInt(blockDoneId.slice(-1))); // 取得目前區塊的索引位置
 
             if (direction === 'up' && currentIndex > 0) {
                 // 往上移動
@@ -728,28 +728,28 @@
             rearrangeBlocks();
         }
 
-        function moveFirst(blockId) {
-            let index = blocksOrder.indexOf(parseInt(blockId.slice(-1)));
+        function moveFirst(blockDoneId) {
+            let index = blocksOrder.indexOf(parseInt(blockDoneId.slice(-1)));
             if (index > 0) {
                 blocksOrder.splice(index, 1);
-                blocksOrder.unshift(parseInt(blockId.slice(-1)));
+                blocksOrder.unshift(parseInt(blockDoneId.slice(-1)));
                 rearrangeBlocks();
             }
         }
 
-        function moveLast(blockId) {
-            let index = blocksOrder.indexOf(parseInt(blockId.slice(-1)));
+        function moveLast(blockDoneId) {
+            let index = blocksOrder.indexOf(parseInt(blockDoneId.slice(-1)));
             if (index < blocksOrder.length - 1) {
                 blocksOrder.splice(index, 1);
-                blocksOrder.push(parseInt(blockId.slice(-1)));
+                blocksOrder.push(parseInt(blockDoneId.slice(-1)));
                 rearrangeBlocks();
             }
         }
 
 
         function rearrangeBlocks() {
-            let parent = document.getElementById('blocks-container');
-            let blocks = document.querySelectorAll('.block');
+            let parent = document.getElementById('blockDones-container');
+            let blocks = document.querySelectorAll('.blockDone');
             let orderedBlocks = Array.from(blocks).sort((a, b) => {
                 let indexA = parseInt(a.id.slice(-1));
                 let indexB = parseInt(b.id.slice(-1));
