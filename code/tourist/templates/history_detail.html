@@ -1,3 +1,5 @@
+
+
 <div class="openDetailDiv" id="details{{ item.my_history.id }}">
     <div style="padding: 0 5px;">
       <div style="height: 40px;">
@@ -49,7 +51,7 @@
       </div>
     </div>
     <div class="commentArea">
-      <span>行程簡介</span>
+      <span style="line-height:60px;font-size:20px;margin-left:10px;">行程簡介</span>
       <div>
 
         <div class="row alreadyComment" id="alreadyComment">
@@ -58,15 +60,12 @@
           </div> {% endcomment %}
           {% if data.detail %}
           <div class="col otherCommentTxtDiv">
-            <span class="otherCommentTxt" id="otherCommentTxt">
+            <span class="otherCommentTxt" id="otherCommentTxt" data-set="{{data.id}}">
               {{data.detail}}
             </span>
             <div class="c_editDiv">
               <div class="c_edit_iconDiv">
-                <button class="fa-solid fa-pen-to-square c_edit_icon c_icon" id="c_edit_icon" onclick="editComment({{data.id}})"></button>
-              </div>
-              <div class="c_delete_iconDiv">
-                <button class="fa-solid fa-trash c_delete_icon c_icon" id="c_delete_icon"></button>
+                <button class="fa-solid fa-pen-to-square c_edit_icon c_icon" id="c_edit_icon" onclick="editComment('',{{data.id}})"></button>
               </div>
             </div>
           </div>
@@ -79,7 +78,32 @@
             </div>
           </div>
           {% endif %}
+          
         </div>
+
+        <span style="line-height:60px;font-size:20px;margin-left:10px;">評論</span>
+        <div class="row alreadyComment" style="margin-left:10px">
+          
+        {% for comment in data.get_comment %}
+          <div class="review-content">
+            <div class="head">
+              <div class="info">
+                <img class="user-img" src="{{comment.u.get_photo}}" alt="">
+                <p class="user-name">{{comment.u.username}}<br>{{comment.comment_date}}</p>
+                <p></p>
+              </div>
+              {% comment %} <div>
+                <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
+              </div> {% endcomment %}
+            </div>
+            <div class="body">
+              <p>{{comment.content}}</p>
+            </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+        
       </div>
     </div>
   </div>

@@ -105,6 +105,7 @@ function addComment() {
 // 發送評論
 function submitComment(ctid){
   var commentText = document.getElementById('addCTXT').value;
+  console.log(commentText);
   //傳送簡介
   const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
   $.ajax({
@@ -132,16 +133,17 @@ function submitComment(ctid){
     var newComment = document.createElement('div');
     newComment.className = 'row';
 
-    var avatarDiv = document.createElement('div');
-    avatarDiv.className = 'col-auto otherCommentAvatar';
-    avatarDiv.innerHTML = '<img src="../static/images/cloud1.png" class="img-responsive" style="width: 100%;" alt=""><br>';
-    newComment.appendChild(avatarDiv);
+    // var avatarDiv = document.createElement('div');
+    // avatarDiv.className = 'col-auto otherCommentAvatar';
+    // avatarDiv.innerHTML = '<img src="../static/images/cloud1.png" class="img-responsive" style="width: 100%;" alt=""><br>';
+    // newComment.appendChild(avatarDiv);
 
     var textDiv = document.createElement('div');
     textDiv.className = 'col otherCommentTxtDiv';
     var textSpan = document.createElement('span');
     textSpan.className = 'otherCommentTxt';
     textSpan.innerText = commentText;
+    textSpan.id = 'otherCommentTxt';
     textDiv.appendChild(textSpan);
     newComment.appendChild(textDiv);
 
@@ -155,26 +157,26 @@ function submitComment(ctid){
     var editBtn = document.createElement('button');
     editBtn.className = 'fa-solid fa-pen-to-square c_edit_icon c_icon';
     editBtn.onclick = function () {
-      editComment(textSpan);
+      editComment(textSpan,ctid);
       // iconDiv.style.display = 'none';
     };
     editBtnDiv.appendChild(editBtn);
     iconDiv.appendChild(editBtnDiv);
 
     // 新增刪除按鈕
-    var deleteBtnDiv = document.createElement('div');
-    deleteBtnDiv.className = 'c_delete_iconDiv';
-    var deleteBtn = document.createElement('button');
-    deleteBtn.className = 'fa-solid fa-trash c_delete_icon c_icon';
-    deleteBtn.onclick = function () {
-      if (confirm('確定要刪除該留言嗎？')) {
-        newComment.parentNode.removeChild(newComment);
-        addCommentBtn.style.display = 'block';
-        console.log(6);
-      }
-    };
-    deleteBtnDiv.appendChild(deleteBtn);
-    iconDiv.appendChild(deleteBtnDiv);
+    // var deleteBtnDiv = document.createElement('div');
+    // deleteBtnDiv.className = 'c_delete_iconDiv';
+    // var deleteBtn = document.createElement('button');
+    // deleteBtn.className = 'fa-solid fa-trash c_delete_icon c_icon';
+    // deleteBtn.onclick = function () {
+    //   if (confirm('確定要刪除該留言嗎？')) {
+    //     newComment.parentNode.removeChild(newComment);
+    //     addCommentBtn.style.display = 'block';
+    //     console.log(6);
+    //   }
+    // };
+    // deleteBtnDiv.appendChild(deleteBtn);
+    // iconDiv.appendChild(deleteBtnDiv);
 
     textDiv.appendChild(iconDiv);
 
@@ -199,7 +201,10 @@ function submitComment(ctid){
 
 }
 // 編輯按鈕
-function editComment(commentSpan) {
+function editComment(commentSpan,ctid) {
+  if (commentSpan === "") {
+    var commentSpan = document.getElementById('otherCommentTxt');
+  }
   var originalText = commentSpan.innerText;
 
   commentSpan.style.display = 'none';
@@ -208,6 +213,7 @@ function editComment(commentSpan) {
   editTextArea.value = originalText;
   editTextArea.style.width = '100%';
   editTextArea.style.height = '200px';
+  editTextArea.id = 'addCTXT';
 
   var buttonsContainer = document.createElement('div'); // 創建容器元素
   buttonsContainer.style.display = 'flex'; // 使用 Flex 排列元素
@@ -217,6 +223,8 @@ function editComment(commentSpan) {
   saveEditBtn.textContent = '儲存';
   saveEditBtn.classList.add('saveBtn');
   saveEditBtn.onclick = function () {
+    
+    submitCommentNew(ctid,editTextArea.value);
     commentSpan.innerText = editTextArea.value;
     commentSpan.parentNode.removeChild(editTextArea);
     commentSpan.parentNode.removeChild(buttonsContainer); 
@@ -249,7 +257,25 @@ function editComment(commentSpan) {
   editBtn.style.display = 'none';
 }
 
-
+function submitCommentNew(ctid,value){
+  // var commentText = document.getElementById('addCTXT').value;
+  // var commentSpan = document.getElementById('otherCommentTxt').textContent;
+  console.log(value);
+  //傳送簡介
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  $.ajax({
+    headers: { 'X-CSRFToken': csrftoken },
+    type: "POST",
+    url: "/history/add_detail/",
+    data: {
+      'id': ctid,
+      'detail': value,
+    },
+    success: function (data) {
+      console.log("編輯成功");
+    }
+  });
+}
 
 // function editComment(){
 //   console.log(3);
