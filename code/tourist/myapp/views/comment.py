@@ -19,18 +19,15 @@ def save_attractions_comment(request,aid=None):
     return JsonResponse({"response_data": "成功"})
 
 @login_required(login_url="/login")
-def save_travel_comment(request,cid=None):
-    if cid:
-        cid = cid
-    else:
-        cid = request.POST.get("cid")
+def save_travel_comment(request):
+    cid = request.POST.get("cid")
     user_id = request.user.id
     comment = request.POST.get("comment")
-
+    print(cid,user_id,comment)
     if comment:
-        unit = TravelComment.objects.create(u_id=user_id, c_id=cid, comment=comment)
+        unit = TravelComment.objects.create(u_id=user_id, ct_id=cid, content=comment)
         unit.save()
-    return redirect(f"/attraction_details/{cid}")
+    return JsonResponse({"response_data": "成功"})
 
 def comment_like(request):
     if request.method == "POST":

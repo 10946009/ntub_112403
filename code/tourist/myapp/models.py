@@ -114,7 +114,9 @@ class Create_Travel(models.Model):
                     att.append(k)
                     break
         return att
-
+    def get_comment(self):
+        return TravelComment.objects.filter(ct=self.id).order_by('comment_date')
+    
 class ChoiceDay_Ct(models.Model):
     ct = models.ForeignKey(to=Create_Travel, on_delete=models.CASCADE)  # 行程沒了歷史也會被刪除
     day = models.IntegerField(null=False, blank=False)
@@ -190,7 +192,6 @@ class AttractionsComment(models.Model):
         return AttractionsCommentFavorite.objects.filter(ac_id=self.id).count()
     def get_user_favorite(self):
         user_ids = AttractionsCommentFavorite.objects.filter(ac_id=self.id).values_list('u_id', flat=True)
-        
         return list(user_ids)
     # def get_name(self):
     #     return self.u.username

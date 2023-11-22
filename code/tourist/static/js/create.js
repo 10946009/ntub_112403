@@ -75,9 +75,11 @@ console.log(isdoneJourneyVisible);
 function flipped(day = null) {
   if (day === null) {
     day = globalDay;
+    
   } else {
     var nextButton = document.getElementById('submitNext-' + day);
     nextButton.style.display = 'none';
+    
   }
   const done = document.getElementById('done-' + day);
   const initialLayout = document.getElementById('initialLayout-' + day);
@@ -91,12 +93,16 @@ function flipped(day = null) {
     initialLayout.classList.remove('hedden');
     done.classList.remove('changeActive');
     setTimeout(() => {
+      nextButton.style.display = 'block';
+      saveButton.style.display = 'none';
       done.classList.add('hidden');
       initialLayout.classList.add('changeActive');
     }, 50); // 延遲切換，不然會直接跳轉沒有翻轉效果
     flippedBtn.style.display = "block";
     flippedRecBtn.style.display = "none";
   } else {
+    nextButton.style.display = 'none';
+    saveButton.style.display = 'block';
     initialLayout.style.height = '0';
     initialLayout.classList.remove('changeActive');
     done.classList.remove('hidden');
@@ -395,6 +401,7 @@ function blocksOrderInit() {
 function moveBlock(blockDoneId, direction) {
   console.log(blocksOrder[globalDay]);
   console.log(globalDay);
+  console.log(blockDoneId);
   let currentIndex = blocksOrder[globalDay].indexOf(parseInt(blockDoneId)); // 取得目前區塊的索引位置
   if (direction === 'up' && currentIndex > 0) {
     let temp = blocksOrder[globalDay][currentIndex];
