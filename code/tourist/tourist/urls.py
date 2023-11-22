@@ -95,6 +95,7 @@ urlpatterns = [
     path('travel_detail/', travel_detail.travel_detail),
     path("travel_detail/<int:ctid>", travel_detail.travel_detail),
     path('comment/<int:aid>/', comment.save_attractions_comment,name="attraction_comment"),
+    path('comment/delete_comment/',comment.comment_delete),
     path('comment/', comment.save_travel_comment,name="travel_comment"),
     path('comment/like/', comment.comment_like,name="travel_comment"),
     path('question/<int:aid>/', question.save_question,name="attraction_question"),

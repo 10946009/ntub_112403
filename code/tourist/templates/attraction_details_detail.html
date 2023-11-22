@@ -1031,11 +1031,11 @@
         </div>
         <div class="col-9" style="margin-bottom:30px;">
             {% for comment in comment_list %}
-            <div class="comment" style="margin-bottom:20px;">
+            <div class="comment" style="margin-bottom:20px;" id="userComment{{comment.id}}" >
                 <div class="avatar">
                     <img src="{{comment.u.get_photo}}" alt="User Avatar">
                 </div>
-                <div class="comment-content userComment" id="{{comment.id}}">
+                <div class="comment-content userComment">
                     <div style="display: flex; justify-content: space-between; position: relative;">
                         <h6 class="username">
                             {{comment.u.username}}<br>
@@ -1044,13 +1044,15 @@
                             </span> {% endcomment %}
                             <span style="color:gray;font-size: 12px; font-style: italic;">{{comment.comment_date}}</span>
                         </h6>
+                        {% if comment.u.id == request.user.id %}
                         <!-- 3個小點點(icon) -->
                         <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer;"
                             onclick="Del_comment(this)"></i>
                         <!-- 評論刪除顯示框框 -->
-                        <div class="comment_delete-box">
+                        <div class="comment_delete-box" onclick="deleteComment({{comment.id}})">
                             刪除
                         </div>
+                        {% endif %}
                     </div>
                     <p class="comment-text">
                         {{comment.content}}
@@ -1297,17 +1299,35 @@
     var username = "{{request.user.username}}";
     var userPhoto = "{{request.user.get_photo}}";
     // // 評論刪除三個小點點
-    // function Del_comment(icon) {
-    //     var deleteBox = icon.nextElementSibling;
-    //     deleteBox.style.display = (deleteBox.style.display === 'block') ? 'none' : 'block';
-    //     //點擊其他地方刪除div消失（關閉）
-    //     document.addEventListener('click', function (event) {
-    //         if (!deleteBox.contains(event.target) && event.target !== icon) {
-    //             deleteBox.style.display = 'none';
-    //         }
-    //     });
-    // }
-
+     function Del_comment(icon) {
+         var deleteBox = icon.nextElementSibling;
+         deleteBox.style.display = (deleteBox.style.display === 'block') ? 'none' : 'block';
+         //點擊其他地方刪除div消失（關閉）
+         document.addEventListener('click', function (event) {
+             if (!deleteBox.contains(event.target) && event.target !== icon) {
+                 deleteBox.style.display = 'none';
+             }
+         });
+     }
+     function deleteComment(id){
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        if(confirm('確定要刪除留言嗎？')){
+            $.ajax({
+                headers: { "X-CSRFToken": csrftoken },
+                url: '/comment/delete_comment/',
+                type: 'POST',
+                data: {
+                    'comment_id':id,
+                },
+                success: function (data) {
+                    alert("刪除"+data["response_data"])
+                    if(data["response_data"] == "成功"){
+                        document.getElementById("userComment"+id).remove();
+                    }
+                }
+            });
+        }
+     }
     var slideIndextotal = 1;
     showtotalDivs(slideIndextotal);
 

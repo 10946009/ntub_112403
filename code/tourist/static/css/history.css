@@ -77,6 +77,30 @@ body {
     border-bottom-right-radius: 20px;
 }
 
+
+.createbtn{
+	font-family: Microsoft JhengHei;
+	font-size: 32px;
+    font-weight: bold;
+	text-decoration-line: none;
+	color: white;
+	box-shadow: 4px 4px 2px rgba(69, 69, 69, 0.7);
+	text-shadow: 2px 2px 2px rgba(207, 207, 207, 0.5);
+	display: block;
+	width: 200px;
+	line-height: 80px;
+	padding: 0 10px;
+    text-align: center;
+	border-radius: 20px;
+	background-color: rgba(34, 34, 34,.8);
+	transition: background-color 0.3s ,color 0.3s;
+}
+.createbtn:hover{
+	background-color: #ff473d;
+	/* color: black; */
+	text-shadow: 2px 2px 2px rgba(86, 86, 86, 0.5);
+}
+
 .mytravel_txt_title {
     margin: 10px auto;
 }
@@ -489,6 +513,7 @@ body {
         border-top-right-radius: 20px;
         border-bottom-left-radius: 0;
     }
+
     .mytravel_img img {
         border-top-right-radius: 20px;
         border-bottom-left-radius: 0;
@@ -509,17 +534,20 @@ body {
 }
 
 @media (max-width: 576px) {
-    .basicTxt h4{
+    .basicTxt h4 {
         font-size: 18px;
     }
-    .icontxt{
+
+    .icontxt {
         display: none;
     }
-    .share_icon{
+
+    .share_icon {
         margin-top: 5px;
     }
-    
+
 }
+
 @media (max-width: 480px) {
 
     .shareFilter_btn {
@@ -527,5 +555,5 @@ body {
         padding: 5px 10px;
         font-size: 16px;
     }
-    
+
 }

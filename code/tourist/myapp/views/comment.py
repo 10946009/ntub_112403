@@ -47,3 +47,14 @@ def comment_like(request):
             return JsonResponse({"response_data": "失敗"})
     else:
         return JsonResponse({"response_data": "失敗"})
+    
+
+def comment_delete(request):
+    if request.method == "POST":
+        comment_id = request.POST.get("comment_id")
+        user_id = request.user.id
+        if comment_id:
+            if AttractionsComment.objects.filter(id=comment_id, u_id=user_id).exists():
+                AttractionsComment.objects.filter(id=comment_id, u_id=user_id).delete()
+                return JsonResponse({"response_data": "成功"})  
+    return JsonResponse({"response_data": "失敗"})
