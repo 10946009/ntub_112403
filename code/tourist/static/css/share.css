@@ -1,3 +1,24 @@
+
+/*收藏*/
+.heart_icon{
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 10px;
+	margin: 10px;
+	background-color: rgba(255, 255, 255);
+	border-radius: 50%;
+	border:none;
+	color: rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+}
+.active_heart{/*收藏動畫*/
+	color: #E1251B;
+	animation: heart 0.5s linear;
+	/* transform: scale(1.1); */
+}
+
+
 .card {
     display: flex;
     flex-direction: column;

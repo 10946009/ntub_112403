@@ -83,6 +83,16 @@
             <div class="location-wrap" style="position: relative;">
               <img src="/static/images/attractions/{{ item.img }}_0.jpg" class="img-responsive custom-image">
             </div>
+
+            <!-- 加入最愛 -->
+            {% if item.is_favorite == "1" %}
+              <button class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="{{item.is_favorite}}"
+              data-id="{{item.id}}" data-type="/add_travel_favorite/"></button>
+            {% else %}
+              <button class="fa-solid fa-heart heart_icon" data-isfavorite="{{item.is_favorite}}"
+                data-id="{{item.id}}" data-type="/add_travel_favorite/"></button>
+            {% endif %}
+
             <div class="card-body text-center">
               <h4 class="card-title">{{item.ct_name}}</h4>
               <h5>使用者:{{ item.u_id.username }}</h5>
@@ -155,6 +165,7 @@
   </div>
 </div>
 <script src="/static/js/share.js"></script>
+<script src="../static/js/addFavorite.js"></script>
 <script>
   const deleteIcons = document.querySelectorAll('.delete-icon');
   deleteIcons.forEach(icon => {
