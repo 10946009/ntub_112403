@@ -6,15 +6,15 @@ function add_favorite_share(ctid) {
   var text = document.getElementById("icontxt" + ctid);
   var isFavoriteValue = favoriteButton.getAttribute("data-isfavorite");
   if (isFavoriteValue === "1") {
-    //favoriteButton.setAttribute("class", "fa-regular fa-heart");  //將來修改icon放這
+    favoriteButton.className = 'fa-solid fa-lock share_icon';
     favoriteButton.setAttribute("data-isfavorite", "0");
-    text.textContent = "公開";
+    text.textContent = "私人";
     favoriteButton.style.color = 'black';
   } else {
-    //favoriteButton.setAttribute("class", "fa-regular fa-heart");  //將來修改icon放這
+    favoriteButton.className = 'fa-solid fa-unlock share_icon';
     favoriteButton.setAttribute("data-isfavorite", "1");
     favoriteButton.style.color = 'orange';
-    text.textContent = "已公開";
+    text.textContent = "公開";
   }
   const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
   $.ajax({

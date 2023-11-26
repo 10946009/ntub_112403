@@ -6,7 +6,7 @@ body {
 }
 
 .container {
-    width: 90%;
+    width: 95%;
     margin: 80px auto;
 }
 
@@ -140,7 +140,7 @@ body {
 
 .share {
     display: block;
-    width: 53%;
+    width: 50%;
     height: 30px;
     text-align: center;
     padding: 0;
@@ -148,7 +148,7 @@ body {
 
 .edit {
     display: block;
-    width: 47%;
+    width: 50%;
     height: 30px;
     text-align: center;
     padding: 0;
@@ -508,6 +508,11 @@ body {
     }
 }
 
+@media (max-width: 950px) {
+    /* .icontxt {
+        font-size: 16px;
+    } */
+}
 @media (max-width: 768px) {
     .mytravel_img {
         border-top-right-radius: 20px;
