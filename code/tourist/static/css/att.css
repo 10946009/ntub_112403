@@ -2643,6 +2643,36 @@ img {
 
 @media screen and (max-width:768px) {
 
+    /* 檢舉框框 */
+    .report_an_att_container {
+        background: rgb(221, 219, 219);
+        border: black solid;
+        border-radius: 10px;
+        width: 80%;
+        margin: 50px auto;
+        padding-bottom: 10px;
+        /* padding: 20px; */
+    }
+
+    /* 詢問問題框框 */
+    .ask_qa_container {
+        background: rgb(236, 221, 184);
+        border: black solid;
+        width: 100%;
+        margin: 50px auto;
+    }
+
+    /* 所有問題框框 */
+    .all_ask_qa_container {
+        background: rgb(221, 219, 219);
+        border: black solid;
+        width: 100%;
+        margin: 50px auto;
+        padding: 20px 40px 20px 40px;
+        height: 80%;
+        overflow-y: scroll;
+    }
+
     .active_tit {
         text-align: 26px;
         background-color: rgba(113, 113, 113, 0.2);
