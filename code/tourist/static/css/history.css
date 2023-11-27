@@ -485,6 +485,53 @@ body {
     border-bottom-right-radius: 20px;
 }
 
+.dayDiv {
+    user-select: none;
+    display: block;
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid rgba(128, 128, 128, 0.46);
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.dayContent {
+    user-select: none;
+    width: 100%;
+    height: 300px;
+    border: 1px solid rgba(128, 128, 128, 0.46);
+    display: flex;
+    align-items: center;
+    align-content: center;
+    overflow-x: scroll;
+    overflow-y:hidden;
+}
+.car_icon {
+    line-height: 300px;
+    cursor: pointer;
+}
+.dayContentIntro {
+    width: 220px;
+    min-width: 220px;
+    height: 250px;
+    padding: 10px 5px;
+    border: 1px solid black;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.car_time{
+    width: 30px;
+    min-width: 30px; 
+    text-align: center; 
+    margin: 0px 10px;
+  }
 @media (max-width:1024px) {
     .content {
         margin: 5px auto;
