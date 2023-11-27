@@ -510,7 +510,6 @@ body {
     overflow-y:hidden;
 }
 .car_icon {
-    height: 300px;
     line-height: 300px;
     cursor: pointer;
 }
@@ -527,6 +526,12 @@ body {
     justify-content: center;
     align-items: center;
 }
+.car_time{
+    width: 30px;
+    min-width: 30px; 
+    text-align: center; 
+    margin: 0px 10px;
+  }
 @media (max-width:1024px) {
     .content {
         margin: 5px auto;

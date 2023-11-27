@@ -24,7 +24,7 @@ class User(AbstractUser):
     )
     gender = models.TextField(max_length=3, null=False, blank=False)
     birthday = models.TextField(max_length=10, null=False, blank=False)
-    user_photo = models.TextField(max_length=10, blank=True, default="../static/images/user1.jpg")
+    user_photo = models.TextField(max_length=10, blank=True, default="../static/images/user1.png")
     user_favorite_tag = ArrayField(models.IntegerField(), null=True)
     edit_tag_status =  models.BooleanField(null=False, blank=False, default=0)
     verification_token = models.TextField(max_length=32, default="")
