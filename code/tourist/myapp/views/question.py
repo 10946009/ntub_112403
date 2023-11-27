@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import render, redirect
 from myapp.models import *
 from django.http import JsonResponse
@@ -40,3 +41,16 @@ def save_travel_comment(request,cid=None):
         unit = TravelComment.objects.create(u_id=user_id, c_id=cid, comment=comment)
         unit.save()
     return redirect(f"/attraction_details/{cid}")
+
+
+# def crowd(request):
+#     att = Attractions.objects.all()
+#     for i in att:
+#         if i.stay_time == 0:
+#             print(i.a_name)
+#             if "公園" in i.a_name :
+#                 i.stay_time = random.randrange(45, 70, 5)
+#             else:
+#                 i.stay_time = random.randrange(20, 70, 10)
+#             i.save()
+#     return JsonResponse({"response_data": "成功"})

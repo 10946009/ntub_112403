@@ -8,6 +8,9 @@
 {% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> 主要影響toolbar的原因 {% endcomment %}
 {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> {% endcomment %}
 <style>
+  .justify-content-center{
+    margin-top: 15px;
+  }
   .location-wrap {
     overflow: hidden;
     position: relative;
@@ -71,7 +74,7 @@
   <h1 style="text-align:left;"><i class="fas fa-heart text-danger"></i> 已公開行程</h2>
   <hr>
   <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content">
 
       {% for item in all_share_list %}
       
@@ -80,6 +83,16 @@
             <div class="location-wrap" style="position: relative;">
               <img src="/static/images/attractions/{{ item.img }}_0.jpg" class="img-responsive custom-image">
             </div>
+
+            <!-- 加入最愛 -->
+            {% if item.is_favorite == "1" %}
+              <button class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="{{item.is_favorite}}"
+              data-id="{{item.id}}" data-type="/add_travel_favorite/"></button>
+            {% else %}
+              <button class="fa-solid fa-heart heart_icon" data-isfavorite="{{item.is_favorite}}"
+                data-id="{{item.id}}" data-type="/add_travel_favorite/"></button>
+            {% endif %}
+
             <div class="card-body text-center">
               <h4 class="card-title">{{item.ct_name}}</h4>
               <h5>使用者:{{ item.u_id.username }}</h5>
@@ -152,6 +165,7 @@
   </div>
 </div>
 <script src="/static/js/share.js"></script>
+<script src="../static/js/addFavorite.js"></script>
 <script>
   const deleteIcons = document.querySelectorAll('.delete-icon');
   deleteIcons.forEach(icon => {

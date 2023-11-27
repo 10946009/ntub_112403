@@ -3,7 +3,95 @@
 {% load custom_tags %}
 {% block title %}我的行程{% endblock %}
 {% block content %}
-<link rel="stylesheet" href="../static/css/history.css">{% endblock %}
+<link rel="stylesheet" href="../static/css/history.css">
+<style>
+.btn-style-1 {
+  background-color: ;
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  border: 2px solid #000;
+  font-weight: bold;
+}
+
+.btn-style-2 {
+  background-color: #fff;
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  border: 2px solid #e6e6e6;
+  font-weight: bold;
+}
+
+.review {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.review-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tag {
+  border: 1px solid #5a9bd5;
+  padding: 5px 10px;
+  border-radius: 50px;
+}
+
+.tag.active {
+  border: 1px solid rgba(90, 155, 213, 0.2);
+  background-color: rgba(90, 155, 213, 0.2);
+}
+
+.review-content {
+  {% comment %} margin: 2rem 1rem; {% endcomment %}
+  margin:10px 0px;
+  padding: 1rem;
+  border-bottom: 2px solid #c2bebe;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.head .info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.user-img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.review-img {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+
+.review-img img {
+    height: 100%;
+    width: auto;
+}
+.title {
+  padding: 0;
+  margin: 0;
+}
+</style>
+
+{% endblock %}
+
 {% block body %}
 
 <div class="container">
@@ -36,7 +124,7 @@
             <h4 class="mytravel_review">喜愛程度：0</h4>
             {% endif %}
             <h4 class="mytravel_txt_detail">天數：{{ item.my_history.travel_day }}</h4>
-            <h4 class="mytravel_txt_detail">地點：</h4>
+            <h4 class="mytravel_txt_detail">起始日期：{{item.my_history.start_day}}</h4>
           </div>
           <div class="basicButton">
             <!--編輯按紐-->
@@ -51,17 +139,18 @@
             <!-- 公開按鈕 -->
             <div class="share" id="ct_share">
               {% if item.my_history.status == True %}
-              <span class="fa-solid fa-share share_icon" title="已公開" id="submitfavorite_share{{ item.my_history.id }}"
+              <span class="fa-solid fa-unlock share_icon" title="公開" id="submitfavorite_share{{ item.my_history.id }}"
                 data-isfavorite="1" onclick="add_favorite_share({{ item.my_history.id }})"> <!--圖案改這裡的class-->
                 <br>
-                <span class="icontxt" id="icontxt{{ item.my_history.id }}">已公開</span> <!--文字放這-->
+                <span class="icontxt" id="icontxt{{ item.my_history.id }}">公開</span> <!--文字放這-->
               </span>
     
               {% else %}
-              <span class="fa-solid fa-share share_icon" title="公開" id="submitfavorite_share{{ item.my_history.id }}"
+              <!-- <i class="fa-solid fa-lock"></i> -->
+              <span class="fa-solid fa-lock share_icon" title="公開" id="submitfavorite_share{{ item.my_history.id }}"
                 data-isfavorite="0" onclick="add_favorite_share({{ item.my_history.id }})"> <!--圖案改這裡的class-->
                 <br>
-                <span class="icontxt" id="icontxt{{ item.my_history.id }}">公開</span> <!--文字放這-->
+                <span class="icontxt" id="icontxt{{ item.my_history.id }}">私人</span> <!--文字放這-->
               </span>
     
               {% endif %}
@@ -158,6 +247,12 @@
           </div>
         </div>
       </div>
+      {% empty %}
+        <div style="text-align:left;margin-left:0px;">
+          <h4 class="mytravel_txt_title" >目前還沒有行程！</h4>
+          {% comment %} <h6><a href="/createindex" class="shareFilter_btn all_travel">建立行程</a><h6> {% endcomment %}
+        </div>
+        <a href="/createindex" class="createbtn">建立行程</a>
       {% endfor %}
     </div>
     <!-- 這邊好像抓不到id名稱所以JS不會動 -->
@@ -166,34 +261,6 @@
     </div>
 
   </div>
-
-
-
-  <!-- 這個是範例是可以打開右邊的 -->
-  <div class="row" style="width: 60%;text-align: center;margin: 0 auto;height: 200px;align-content: center;">
-    <div class="col-6">
-      <div>
-        我是左邊1
-        <button id="clickme1" data-target="show1" onclick="clickShow(this,)">點我出現</button>
-      </div>
-      <div>
-        我是左邊2
-        <button id="clickme2" data-target="show2" onclick="clickShow(this)">點我出現</button>
-      </div>
-    </div>
-    <div class="col-6" style="border: 1px solid black;">
-      <div id="show1" style="display: none;">
-        我是右邊1
-      </div>
-      <div id="show2" style="display: none;">
-        我是右邊2 <br>
-        我是右邊2 <br>
-        我是右邊2
-      </div>
-    </div>
-  </div>
-</div>
-
 {% endblock body %}
 {% block content_script %}
 <script src="/static/js/history.js"></script>{% endblock %}

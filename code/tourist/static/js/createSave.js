@@ -40,7 +40,9 @@ function createSave() {
     success: function (response) {
       // 在這裡處理伺服器回傳的 JSON 數據
       console.log(response); // 查看回傳的值
+      location.reload();
       alert("儲存成功");
+      
     },
 
     error: function () {

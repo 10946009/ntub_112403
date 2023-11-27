@@ -49,8 +49,8 @@
     {% for day,data in travel_datas.items %}
     <div class="tab-pane fade{% if forloop.counter == 1 %} show active{% endif %}" id="ch-{{ day }}" role="tabpanel"
     aria-labelledby="{{ day }}-tab" dataset="{{ day }}">
-      <button class="recommend_next recommend_save recommend_saveTxt" id="saveDays-{{ day }}"  value="儲存" onclick="createSave()"><i class="fa-solid fa-floppy-disk"></i></button>
-      <button class="recommend_next recommend_submit" id="submitNext-{{ day }}" onclick="submitNext()" value="下一步"><i class="fa-solid fa-arrow-right" style="font-weight: bold;"></i></button>
+      <button class="recommend_next recommend_save recommend_saveTxt" id="saveDays-{{ day }}"  value="儲存" style="display:block;z-index:4;" onclick="createSave()"><i class="fa-solid fa-floppy-disk"></i></button>
+      <button class="recommend_next recommend_submit" id="submitNext-{{ day }}" style="z-index:4;"onclick="submitNext()" value="下一步"><i class="fa-solid fa-arrow-right" style="font-weight: bold;"></i></button>
       <button class="changeToDone changeToDoneTxt" id="flippedBtn-{{ day }}" onclick="flipped()"><i class="fa-solid fa-route"></i><!-- 景點排序 --></button>
       <!-- <button class="changeToDone changeToDoneBtn" id="flippedBtnIcon-{{ day }}" onclick="flipped()"><i class="fa-solid fa-route"></i></button> -->
       <button class="changeToDone changeToInitialTxt" id="flippedRecBtn-{{ day }}"  onclick="flipped()"><i class="fa-solid fa-magnifying-glass-location"></i><!-- 查看推薦 --></button>
@@ -237,7 +237,8 @@
   </div>
   <div class="modal" id="myModal">
     <div class="modal-content_att_info">
-      <span class="close_att_info" onclick="clickClose()">&times;</span>
+      <div class="close_att_info" onclick="clickClose()"><i class="fa-solid fa-xmark"></i></div>
+      {% comment %} <span class="close_att_info" onclick="clickClose()">&times;</span> {% endcomment %}
       <div id = "changeInfo">
         {% include "attractions_info.html" %}
       </div>
@@ -291,7 +292,7 @@
 <script src="../static/js/owl.carousel.min.js"></script>
 <script src="/static/js/owlStart.js"></script>
 <script>
-  
+  blocksOrderInit();
   owlStart();
   // slide rignt section
   const rightBtn = document.getElementById('showRight');

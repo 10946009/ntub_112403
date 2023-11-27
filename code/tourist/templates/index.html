@@ -28,48 +28,58 @@
             <div class="row">
 
               {% for item in i %}
-              <div class="col-4 carousel_block">
-                <div class="imgcontainer">
-                  <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)" onmouseout="stopSlideShow(this)">
-                    
-                    {% for  img in item.imglist %}
-                    {% if forloop.counter == 1 %} 
-                    <img src="/static/images/attractions/{{img}}" class="changeImg changeImg_show">
-                    {% else %}
-                    <img src="/static/images/attractions/{{img}}" class="changeImg">
-                    {% endif %}
-                    {% endfor %}
-                  </div>
+                <div class="col-4 carousel_block">
+                  <div class="imgcontainer">
+                    <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)" onmouseout="stopSlideShow(this)">
+                      
+                      {% for  img in item.imglist %}
+                      {% if forloop.counter == 1 %} 
+                      <img src="/static/images/attractions/{{img}}" class="changeImg changeImg_show">
+                      {% else %}
+                      <img src="/static/images/attractions/{{img}}" class="changeImg">
+                      {% endif %}
+                      {% endfor %}
+                    </div>
 
-                  <a class="fa-solid fa-circle-info info_icon_left" onclick="clickInfo({{item.id}})"></a>
-                  
-                  {% if item.is_favorite == "1" %}
-                  <button class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="{{item.is_favorite}}"
-                    data-id="{{item.id}}" data-type="/add_favorite/"></button>
-                  {% else %}
-                  <button class="fa-solid fa-heart heart_icon" data-isfavorite="{{item.is_favorite}}"
-                    data-id="{{item.id}}" data-type="/add_favorite/"></button>
-                  {% endif %}
-                </div>
-                <div class="group">
-                  {% comment %} <i class="fa-solid fa-plus add_icon"></i> {% endcomment %}
-                  <div class="dropdown_menu">
-                    <div><a class="dropdown_item" href="/createindex">新增行程</a></div>
-                    <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
-                    <div><a class="dropdown_item" href="#">開車一日遊</a></div>
+                    <a class="fa-solid fa-circle-info info_icon_left" onclick="clickInfo({{item.id}})"></a>
+                    
+                    {% if item.is_favorite == "1" %}
+                    <button class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="{{item.is_favorite}}"
+                      data-id="{{item.id}}" data-type="/add_favorite/"></button>
+                    {% else %}
+                    <button class="fa-solid fa-heart heart_icon" data-isfavorite="{{item.is_favorite}}"
+                      data-id="{{item.id}}" data-type="/add_favorite/"></button>
+                    {% endif %}
+                  </div>
+                  <div class="group">
+                    {% comment %} <i class="fa-solid fa-plus add_icon"></i> {% endcomment %}
+                    <div class="dropdown_menu">
+                      <div><a class="dropdown_item" href="/createindex">新增行程</a></div>
+                      <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
+                      <div><a class="dropdown_item" href="#">開車一日遊</a></div>
+                    </div>
+                  </div>
+                  <div class="carousel_txt">
+                    <h4 class="c_title">
+                      {{item.a_name}}
+                    </h4>
+                      <div class="rating" style="text-align: center;">
+                        {% for i in "12345" %}
+                          {% if i|add:0 <= item.rating %} 
+                            <i class="fa-solid fa-star" style="color:rgb(226, 185, 2);"></i>
+                          {% else %}
+                            <!-- <i class="fa-regular fa-star"></i> -->
+                            <!-- <i class="fa-regular fa-star-half-stroke" style="color:rgb(226, 185, 2);"></i> -->
+                            <i class="fa-solid fa-star" style="color:rgb(185, 184, 184);"></i>
+                          {% endif %}
+                        {% endfor %}
+                        <br>
+                        <span id="selectedRating">{{item.rating}} / 5 ({{ item.rating_total }}則) </span>
+                      </div>
+                        
+                    </p>
                   </div>
                 </div>
-                <div class="carousel_txt">
-                  <h4 class="c_title">
-                    {{item.a_name}}
-                  </h4>
-                  <p class="c_txt">
-                    地址：{{item.address}}
-                    <br>
-                    評分：{{item.rating}}星
-                  </p>
-                </div>
-              </div>
               {% endfor %}
               
             </div>

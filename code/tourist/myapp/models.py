@@ -24,7 +24,7 @@ class User(AbstractUser):
     )
     gender = models.TextField(max_length=3, null=False, blank=False)
     birthday = models.TextField(max_length=10, null=False, blank=False)
-    user_photo = models.TextField(max_length=10, blank=True, default="")
+    user_photo = models.TextField(max_length=10, blank=True, default="../static/images/user1.jpg")
     user_favorite_tag = ArrayField(models.IntegerField(), null=True)
     edit_tag_status =  models.BooleanField(null=False, blank=False, default=0)
     verification_token = models.TextField(max_length=32, default="")
@@ -79,7 +79,7 @@ class Attractions(models.Model):
 
 class Crowd_Opening(models.Model):
     a = models.ForeignKey(
-        to=Attractions, on_delete=models.SET_DEFAULT, default=-1
+        to=Attractions, on_delete=models.CASCADE, default=-1
     )  # 景點沒了留言a_id會被設為null
     week = models.IntegerField(null=False, blank=False)
     crowd = ArrayField(models.IntegerField())
@@ -95,6 +95,8 @@ class Create_Travel(models.Model):
     status = models.BooleanField(null=False, blank=False, default=0)
     like = models.IntegerField(default=0, null=False, blank=False)
     detail = models.TextField(max_length=255, null=False, blank=False, default="")
+    def get_choice_day(self):
+        return ChoiceDay_Ct.objects.filter(ct=self.id).order_by('day')
     def get_attractions_picture(ctid):
         return Attractions_Ct.objects.filter(choice_ct__ct=ctid).values('a__place_id').distinct()
     def is_fit(self):
@@ -112,7 +114,9 @@ class Create_Travel(models.Model):
                     att.append(k)
                     break
         return att
-
+    def get_comment(self):
+        return TravelComment.objects.filter(ct=self.id).order_by('comment_date')
+    
 class ChoiceDay_Ct(models.Model):
     ct = models.ForeignKey(to=Create_Travel, on_delete=models.CASCADE)  # 行程沒了歷史也會被刪除
     day = models.IntegerField(null=False, blank=False)
@@ -120,14 +124,15 @@ class ChoiceDay_Ct(models.Model):
     start_location_x = models.FloatField(null=False,default="")
     start_location_y = models.FloatField(null=False,default="")
     start_time = models.IntegerField(null=False, blank=False)
-
+    def get_attractions(self):
+        return Attractions_Ct.objects.filter(choice_ct=self.id).order_by('order')
 
 class Attractions_Ct(models.Model):
     choice_ct = models.ForeignKey(
         to=ChoiceDay_Ct, on_delete=models.CASCADE, default=-1
     )  # 行程沒了也會被刪除
     a = models.ForeignKey(
-        to=Attractions, on_delete=models.SET_DEFAULT, default=-1
+        to=Attractions, on_delete=models.CASCADE, default=-1
     )  # 景點沒了a_id會被設為-1
     a_start_time = models.IntegerField(null=False, blank=False)
     stay_time = models.IntegerField(null=False, blank=False)
@@ -148,10 +153,10 @@ class Attractions_Ct(models.Model):
 # 景點問問題和回答問題的資料庫
 class AttractionsQuestion(models.Model):
     u = models.ForeignKey(
-        to=User, on_delete=models.SET_DEFAULT, default=-1
+        to=User, on_delete=models.CASCADE, default=-1
     )  # user沒了問題u_id會被設為null
     a = models.ForeignKey(
-        to=Attractions, on_delete=models.SET_DEFAULT, default=-1
+        to=Attractions, on_delete=models.CASCADE, default=-1
     )  # 景點沒了留言a_id會被設為null
     content = models.TextField(max_length=255,default="")
     question_date = models.DateField(auto_now_add=True, null=False, blank=False)
@@ -163,10 +168,10 @@ class AttractionsQuestion(models.Model):
     
 class AttractionsAnswer(models.Model):
     u = models.ForeignKey(
-        to=User, on_delete=models.SET_DEFAULT, default=-1
+        to=User, on_delete=models.CASCADE, default=-1
     )  # user沒了留言u_id會被設為null
     aq = models.ForeignKey(
-        to=AttractionsQuestion, on_delete=models.SET_DEFAULT, default=-1
+        to=AttractionsQuestion, on_delete=models.CASCADE, default=-1
     )  # 問題沒了aq_id會被設為null
     content = models.TextField(max_length=255,default="")
     answer_date = models.DateField(auto_now_add=True, null=False, blank=False)
@@ -175,10 +180,10 @@ class AttractionsAnswer(models.Model):
 
 class AttractionsComment(models.Model):
     u = models.ForeignKey(
-        to=User, on_delete=models.SET_DEFAULT, default=-1
+        to=User, on_delete=models.CASCADE, default=-1
     )  # user沒了留言u_id會被設為null
     a = models.ForeignKey(
-        to=Attractions, on_delete=models.SET_DEFAULT, default=-1
+        to=Attractions, on_delete=models.CASCADE, default=-1
     )  # 景點沒了留言a_id會被設為null
     content = models.TextField(max_length=255,default="")
     comment_date = models.DateField(auto_now_add=True, null=False, blank=False)
@@ -187,7 +192,6 @@ class AttractionsComment(models.Model):
         return AttractionsCommentFavorite.objects.filter(ac_id=self.id).count()
     def get_user_favorite(self):
         user_ids = AttractionsCommentFavorite.objects.filter(ac_id=self.id).values_list('u_id', flat=True)
-        
         return list(user_ids)
     # def get_name(self):
     #     return self.u.username
@@ -200,14 +204,14 @@ class AttractionsCommentFavorite(models.Model):
         to=AttractionsComment, on_delete=models.CASCADE, default=-1
     )  # 景點沒了留言a_id會被設為null
     u = models.ForeignKey(
-        to=User, on_delete=models.SET_DEFAULT, default=-1
+        to=User, on_delete=models.CASCADE, default=-1
     )  # user沒了留言u_id會被設為null
     
 class TravelComment(models.Model):
     u = models.ForeignKey(
-        to=User, on_delete=models.SET_DEFAULT, default=-1
+        to=User, on_delete=models.CASCADE, default=-1
     )  # user沒了留言u_id會被設為null
-    ct = models.ForeignKey(to=Create_Travel, on_delete=models.SET_DEFAULT , default=-1)
+    ct = models.ForeignKey(to=Create_Travel, on_delete=models.CASCADE , default=-1)
     content = models.TextField(max_length=255,default="")
     comment_date = models.DateField(auto_now_add=True, null=False, blank=False)
 
@@ -216,7 +220,7 @@ class TravelCommentFavorite(models.Model):
         to=TravelComment, on_delete=models.CASCADE, default=-1
     )  # 景點沒了留言a_id會被設為null
     u = models.ForeignKey(
-        to=User, on_delete=models.SET_DEFAULT, default=-1
+        to=User, on_delete=models.CASCADE, default=-1
     )  # user沒了留言u_id會被設為null
 
 # 我的最愛
@@ -227,7 +231,7 @@ class Favorite(models.Model):
 class TravelFavorite(models.Model):
     u = models.ForeignKey(to=User, on_delete=models.CASCADE)
     ct = models.ForeignKey(
-        to=Create_Travel, on_delete=models.SET_DEFAULT, default=-1
+        to=Create_Travel, on_delete=models.CASCADE, default=0
     )  # 行程沒了歷史也會被刪除
 
 class Search(models.Model):

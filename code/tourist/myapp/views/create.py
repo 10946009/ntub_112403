@@ -89,6 +89,7 @@ def create(request, ct_id):
         ct_data = []
         ct_data_id = []
         ct_attractions_list = []
+        ct_attractions_detail_list =[]
         local_xy = [ct_attractions_data.start_location_x,ct_attractions_data.start_location_y] # 抓使用者位置的經緯度
         location_name = ct_attractions_data.location_name # 抓使用者位置的地址或名稱
         user_nowtime = format_minutes_as_time(ct_attractions_data.start_time) # 抓出發時
