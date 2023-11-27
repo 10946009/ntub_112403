@@ -501,40 +501,6 @@ function rearrangeBlocks() {
   });
 }
 
-// 托拽
-// var list = document.querySelector('.list')
-// var currentLi
-// list.addEventListener('dragstart', (e) => {
-//   e.dataTransfer.effectAllowed = 'move'
-//   currentLi = e.target
-//   setTimeout(() => {
-//     currentLi.classList.add('moving')
-//   })
-// })
-
-// list.addEventListener('dragenter', (e) => {
-//   e.preventDefault()
-//   if (e.target === currentLi || e.target === list) {
-//     return
-//   }
-//   var liArray = Array.from(list.childNodes)
-//   var currentIndex = liArray.indexOf(currentLi)
-//   var targetindex = liArray.indexOf(e.target)
-
-//   if (currentIndex < targetindex) {
-
-//     list.insertBefore(currentLi, e.target.nextElementSibling)
-//   } else {
-
-//     list.insertBefore(currentLi, e.target)
-//   }
-// })
-// list.addEventListener('dragover', (e) => {
-//   e.preventDefault()
-// })
-// list.addEventListener('dragend', (e) => {
-//   currentLi.classList.remove('moving')
-// })
 
 
 // 定义一个函数来检查全局变量并更新CSS类

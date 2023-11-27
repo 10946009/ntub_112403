@@ -980,7 +980,7 @@ main {
 
 @media (max-width: 920px) {
     .innerlist {
-        width: 70%;
+        width: 90%;
     }
 
     .right {
@@ -1098,18 +1098,6 @@ main {
         font-size: 16px;
     }
 
-    /* .changeToDoneTxt {
-        display: none;
-    }
-
-    .changeToDoneBtn {
-        display: block;
-        padding: 0;
-        width: 50px;
-        height: 40px;
-        line-height: 40px;
-    } */
-
 
     .rec_icon,
     .find_icon,
@@ -1142,8 +1130,13 @@ main {
         font-size: 18px;
     }
 
-    .innerlist {
+    .controlBtn {
         width: 80%;
+        height: 30px;
+    }
+
+    .innerlist {
+        width: 95%;
     }
 }
 
@@ -1173,6 +1166,10 @@ main {
 
     .changeToDone {
         font-size: 16px;
+    }
+
+    .controlBtn {
+        padding: 0;
     }
 }
 
