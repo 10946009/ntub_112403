@@ -123,6 +123,7 @@ def create(request, ct_id):
                 "detail": detail,
                 "co": co,
                 "crowd_list" : f"{min(co.crowd[cl],co.crowd[(cl+1)%24])} ~ {max(co.crowd[cl],co.crowd[(cl+1)%24])}",
+                "crowd_avg": (co.crowd[cl]+co.crowd[(cl+1)%24])//2,
                 "weather": get_weather_data(detail.address,start_day[0:4],start_day[5:7],int(start_day[8:])+index,ct_attractions_data.start_time),
             })
             
@@ -272,7 +273,8 @@ def create(request, ct_id):
                 order_attractions_data.append({
                     'final_result_list': fr,
                     'final_crow_opening_list': fc,
-                    'final_crowd_list' : f"{min(fc['crowd'][f_nt],fc['crowd'][f_nt+1])} ~ {max(fc['crowd'][f_nt],fc['crowd'][f_nt+1])}",  
+                    'final_crowd_list' : f"{min(fc['crowd'][f_nt],fc['crowd'][f_nt+1])} ~ {max(fc['crowd'][f_nt],fc['crowd'][f_nt+1])}",
+                    "final_crowd_avg": (fc['crowd'][f_nt]+fc['crowd'][f_nt+1])//2,  
                     'weather': get_weather_data(fr['address'],start_day[0:4],start_day[5:7],int(start_day[8:])+index,fnowtime),
                 })
             for frr,frc in zip(final_remainder_result_list,final_remainder_crow_opening_list):
