@@ -186,7 +186,7 @@ body {
 
 /* 整個搜尋引擎的位置 */
 .search_body {
-    margin-top: 100px;
+    margin-top: 8%;
     margin-bottom: 20px;
 }
 
@@ -205,6 +205,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.tag-week.focus {
+    background-color: rgb(71, 117, 162);
+    color: #000;
 }
 
 /* (type:search input的樣式) */
