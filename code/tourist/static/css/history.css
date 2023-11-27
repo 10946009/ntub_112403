@@ -510,8 +510,11 @@ body {
     overflow-y:hidden;
 }
 .car_icon {
+    text-align: center;
+    width: 30px;
+    height: 30px;
     line-height: 300px;
-    cursor: pointer;
+    cursor: pointer; 
 }
 .dayContentIntro {
     width: 220px;
