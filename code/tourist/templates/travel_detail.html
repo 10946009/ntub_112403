@@ -362,17 +362,17 @@ header {
     </div>
   </div>
   <section class="main-container">
-  <div class="main-content">
-    <img src="../static/images/attractions/{{ct_detail.get_attractions_picture.0.a__place_id}}_0.jpg">
-  </div>
-  <div class="sub-content">
-    <div class="sub-item">
-      <img src="../static/images/attractions/{% if ct_detail.get_attractions_picture.1.a__place_id %}{{ ct_detail.get_attractions_picture.1.a__place_id }}_0.jpg {% else %}{{ ct_detail.get_attractions_picture.0.a__place_id }}_1.jpg{% endif %}">
+    <div class="main-content">
+      <img src="../static/images/attractions/{{ct_detail.get_attractions_picture.0.a__place_id}}_0.jpg">
     </div>
-    <div class="sub-item">
-      <img src="../static/images/attractions/{% if ct_detail.get_attractions_picture.2.a__place_id %}{{ ct_detail.get_attractions_picture.2.a__place_id }}_0.jpg {% else %}{{ ct_detail.get_attractions_picture.0.a__place_id }}_2.jpg{% endif %}">
+    <div class="sub-content">
+      <div class="sub-item">
+        <img src="../static/images/attractions/{% if ct_detail.get_attractions_picture.1.a__place_id %}{{ ct_detail.get_attractions_picture.1.a__place_id }}_0.jpg {% else %}{{ ct_detail.get_attractions_picture.0.a__place_id }}_1.jpg{% endif %}">
+      </div>
+      <div class="sub-item">
+        <img src="../static/images/attractions/{% if ct_detail.get_attractions_picture.2.a__place_id %}{{ ct_detail.get_attractions_picture.2.a__place_id }}_0.jpg {% else %}{{ ct_detail.get_attractions_picture.0.a__place_id }}_2.jpg{% endif %}">
+      </div>
     </div>
-  </div>
   </section>
   <div class="image-description">
     <h3>關於</h3>
@@ -388,63 +388,45 @@ header {
           {% endfor %}
         </div>
     </div>
-  {% for data in all_data %}
-  <div class = "classDayContent" id="content{{forloop.counter}}" style={% if forloop.counter == 1 %}"display: block;"{% else %}"display: none;"{% endif %}>
-    <div class="dayContent">
-        <div style="height: 250px;min-width:80px;display: flex;justify-content: center;align-items: center;align-content: center;">
-            起始<br>位置
-        </div>
-            {% for a_data in data.ct_attraction %}
-            {{a_data.a_id.start_location_y}}
-              {% if forloop.counter == 1 %}
-                <a href="https://www.google.com/maps/dir/{{a_data.choice_ct.start_location_x}},{{a_data.choice_ct.start_location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;height:300px;line-height:300px;margin:0 10px;">
-                  <i class="fa-solid fa-car-side car_icon"></i>
-                </a>
-              {% else %}
-                <a href="https://www.google.com/maps/dir/{{a_data.get_previous.a.location_x}},{{a_data.get_previous.a.location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;height:300px;line-height:300px;margin:0 10px;">
-                  <i class="fa-solid fa-car-side car_icon"></i>
-                </a>
-              {% endif %}
-              <div class="dayContentIntro" style="text-align: center;">
-                  <p style="font-size: 20px;"><b>{{a_data.a.a_name}}</b></p>
-                  <p>營業時間<br>{% for open in a_data.opening.opening %} {% if forloop.counter != 1  %} <br> {% endif %}{{open}} {% endfor %}</p>
-                  <p>停留時間：{{a_data.stay_time}}分鐘</p>
-              </div>
-            {% endfor %}
-    </div>
-  </div>
-  {% endfor %}
-
-  <div id="content2" style="display: none;">
-      <div class="dayContent">
-          <div
-              style="height: 250px;display: flex;justify-content: center;align-items: center;align-content: center;">
-              起始<br>位置</div>
-          <a href="" style="text-decoration: none;color: black;">
-              <i class="fa-solid fa-car-side car_icon"></i>
-          </a>
-          <div class="dayContentIntro">
-              <p>景點名稱</p>
-              <p>營業時間</p>
-              <p>停留時間</p>
-                        </div>
-                      </div>
+    {% for data in all_data %}
+      <div class = "classDayContent" id="content{{forloop.counter}}" style={% if forloop.counter == 1 %}"display: block;"{% else %}"display: none;"{% endif %}>
+        <div class="dayContent">
+            <div style="height: 250px;min-width:80px;display: flex;justify-content: center;align-items: center;align-content: center;">
+                起始<br>位置
+            </div>
+                {% for a_data in data.ct_attraction %}
+                {{a_data.a_id.start_location_y}}
+                  {% if forloop.counter == 1 %}
+                    <a href="https://www.google.com/maps/dir/{{a_data.choice_ct.start_location_x}},{{a_data.choice_ct.start_location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;height:300px;line-height:300px;margin:0 10px;">
+                      <i class="fa-solid fa-car-side car_icon"></i>
+                    </a>
+                  {% else %}
+                    <a href="https://www.google.com/maps/dir/{{a_data.get_previous.a.location_x}},{{a_data.get_previous.a.location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;height:300px;line-height:300px;margin:0 10px;">
+                      <i class="fa-solid fa-car-side car_icon"></i>
+                    </a>
+                  {% endif %}
+                  <div class="dayContentIntro" style="text-align: center;">
+                      <p style="font-size: 20px;"><b>{{a_data.a.a_name}}</b></p>
+                      <p>營業時間<br>{% for open in a_data.opening.opening %} {% if forloop.counter != 1  %} <br> {% endif %}{{open}} {% endfor %}</p>
+                      <p>停留時間：{{a_data.stay_time}}分鐘</p>
                   </div>
-              </div>
-          </div>
+                {% endfor %}
+        </div>
       </div>
-  </section>
+    {% endfor %}
+  </div>
+
   <section class="review-container">
-    <section>
-      <div class="row">
-        <h5 style="font-size: 24px;">
-            <i class="fa-solid fa-pen" style="color: gray;"></i>
-            評論
-        </h5>
-      </div>
+    <div class="row">
+      <h5 style="font-size: 24px;">
+          <i class="fa-solid fa-pen" style="color: gray;"></i>
+          評論
+      </h5>
+    </div>
     <div>
       {% comment %} <button class="btn-style-1">發表評論</button> {% endcomment %}
     </div>
+
     <form class="ask-content" id="ask-content" action="/comment/{{detail.id}}/" method="POST">
       <div class="out_share_comment" id="out_share_comment">
           <div id="share_comment_container" class="share_comment_container">
@@ -483,44 +465,35 @@ header {
               </form>
           </div>
       </div>
-  </form>
-  </section>
-  <section class="review">
-    <div class="review-wrap">
-      <h2>所有評論</h2>
-      {% comment %} <div>
-      <button class="btn-style-2">篩選條件</button>
-      <button class="btn-style-2">最新評論</button>
-      <button class="btn-style-2">最舊評論</button>
-      </div> {% endcomment %}
-    </div>
-    {% comment %} <div>
-      <span class="tag active">全部</span>
-      <span class="tag">停車場</span>
-      <span class="tag">用餐</span>
-      <span class="tag">早餐</span>
-    </div> {% endcomment %}
-  </section>
-  <hr>
-  <section>
-    {% for comment in ct_detail.get_comment %}
-      <div class="review-content">
-        <div class="head">
-          <div class="info">
-            <img class="user-img" src="{{comment.u.get_photo}}" alt="">
-            <p class="user-name">{{comment.u.username}}<br>{{comment.comment_date}}</p>
-            <p></p>
-          </div>
-          {% comment %} <div>
-            <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
-          </div> {% endcomment %}
-        </div>
-        <div class="body">
-          <p>{{comment.content}}</p>
-        </div>
-        </div>
+    </form>
+  
+
+    <section class="review">
+      <div class="review-wrap">
+        <h2>所有評論</h2>
       </div>
-    {% endfor %}
+
+    </section>
+    <hr>
+    <section>
+      {% for comment in ct_detail.get_comment %}
+        <div class="review-content">
+          <div class="head">
+            <div class="info">
+              <img class="user-img" src="{{comment.u.get_photo}}" alt="">
+              <p class="user-name">{{comment.u.username}}<br>{{comment.comment_date}}</p>
+              <p></p>
+            </div>
+            {% comment %} <div>
+              <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
+            </div> {% endcomment %}
+          </div>
+          <div class="body">
+            <p>{{comment.content}}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </section>
   </section>
 </div>
 <script>
