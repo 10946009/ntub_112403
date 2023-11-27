@@ -1330,7 +1330,7 @@ img {
 
 .icon_name {
     display: inline-block;
-    border: solid black;
+    border: 1px solid gray;
     border-radius: 50%;
     padding: 2px 8px 2px 8px;
     background-color: white;

@@ -30,10 +30,10 @@ header {
     padding: 10px;
 }
 
-.title-buttons {
+{% comment %} .title-buttons {
     display: flex;
     align-items: center;
-}
+} {% endcomment %}
 
 .like-button, .share-button {
     margin-left: 10px;
@@ -303,6 +303,27 @@ header {
   border-radius: 4px;
   cursor: pointer;
 }
+
+.icon_add {
+  text-align: right;
+  font-size: 24px;
+
+  right: 10%;
+}
+
+.icon_name {
+  display: inline-block;
+  border: 1px solid gray;
+  border-radius: 50%;
+  padding: 2px 8px 2px 8px;
+  background-color: white;
+}
+
+.icon_name:hover {
+  background-color: #000;
+  color: white;
+}
+
 </style>
 {% endblock %}
 
@@ -311,206 +332,222 @@ header {
 {% block body %}
 {% comment %} 內容在這~~~ {% endcomment %}
 <div class="container">
-<header>
-  <h1 class="page-title">{{ct_detail.ct_name}}</h1>
-  <div class="title-buttons">
+  <header class="row" style="padding: 0px;margin: 0px;">
+    <h1 class="col-6 page-title">{{ct_detail.ct_name}}</h1>
+    
     {% comment %} <div class="share-button" id="share-button"><i class="fa-solid fa-arrow-up-from-bracket"></i></div> {% endcomment %}
     {% comment %} <div class="like-button" id="like-button"><i class="fa-solid fa-heart"></i></div> {% endcomment %}
-</div>
-</header>
-<div class="title-info-container">
-  <div class="title-info">
-      <p class="provider">提供者：{{ct_detail.u.username}}</p>
-      {% comment %} <p class="reviews-count">有幾則評論：</p> {% endcomment %}
-  </div>
-</div>
-<section class="main-container">
-<div class="main-content">
-  <img src="../static/images/attractions/{{ct_detail.get_attractions_picture.0.a__place_id}}_0.jpg">
-</div>
-<div class="sub-content">
-  <div class="sub-item">
-    <img src="../static/images/attractions/{% if ct_detail.get_attractions_picture.1.a__place_id %}{{ ct_detail.get_attractions_picture.1.a__place_id }}_0.jpg {% else %}{{ ct_detail.get_attractions_picture.0.a__place_id }}_1.jpg{% endif %}">
-  </div>
-  <div class="sub-item">
-    <img src="../static/images/attractions/{% if ct_detail.get_attractions_picture.2.a__place_id %}{{ ct_detail.get_attractions_picture.2.a__place_id }}_0.jpg {% else %}{{ ct_detail.get_attractions_picture.0.a__place_id }}_2.jpg{% endif %}">
-  </div>
-</div>
-</section>
-<div class="image-description">
-  <h3>關於</h3>
-  <p style="margin:5px 0px 20px 0px">{% if ct_detail.detail == "" %}目前還沒有內容{% else %}{{ct_detail.detail}}{% endif %}</p>
-</div>
-<div class="dayDoneSection">
-  <div class="dayDone">
-      <div class="dayDoneBtn">
-        {% for day in ct_detail.get_choice_day %}
-          <div class="dayDiv" id="dayDiv{{forloop.counter}}" data-day="{{forloop.counter}}" style="float: left; {% if forloop.counter == 1 %}color:orange;{% endif %}" onclick="clickDay({{forloop.counter}})">
-              <i class="fa-regular fa-calendar"></i> DAY {{forloop.counter}}
-          </div>
-        {% endfor %}
+    <div class="col-6 detail_name__headerGrid icon_add">
+      {% comment %} <i class="fa-solid fa-arrow-up-from-bracket icon_name" id="share_icon"
+          onclick=" showShareLoaderAndContent()" title="分享"
+          style="border: black solid; border-radius: 60px;padding:8px 10px 8px 10px;"></i> {% endcomment %}
+      {% if ct_detail.is_favorite == "1" %}
+      <div class="icon_name" id="submitfavorite{{ct_detail.id}}"
+          onclick="addFavorite_travel(this,{{ct_detail.id}})">
+          <i class="fas fa-regular fa-heart" title="已收藏" style="color: rgb(202, 13, 13);"></i>
       </div>
-  </div>
-{% for data in all_data %}
-<div class = "classDayContent" id="content{{forloop.counter}}" style={% if forloop.counter == 1 %}"display: block;"{% else %}"display: none;"{% endif %}>
-  <div class="dayContent">
-      <div style="height: 250px;min-width:80px;display: flex;justify-content: center;align-items: center;align-content: center;">
-          起始<br>位置
+      {% else %}
+      <div class="icon_name" id="submitfavorite{{ct_detail.id}}"
+          onclick="addFavorite_travel(this,{{ct_detail.id}})">
+          <i class="fas fa-regular fa-heart" title="收藏" style="color: rgb(111, 110, 110);"></i>
       </div>
-          {% for a_data in data.ct_attraction %}
-          {{a_data.a_id.start_location_y}}
-            {% if forloop.counter == 1 %}
-              <a href="https://www.google.com/maps/dir/{{a_data.choice_ct.start_location_x}},{{a_data.choice_ct.start_location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;height:300px;line-height:300px;margin:0 10px;">
-                <i class="fa-solid fa-car-side car_icon"></i>
-              </a>
-            {% else %}
-              <a href="https://www.google.com/maps/dir/{{a_data.get_previous.a.location_x}},{{a_data.get_previous.a.location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;height:300px;line-height:300px;margin:0 10px;">
-                <i class="fa-solid fa-car-side car_icon"></i>
-              </a>
-            {% endif %}
-            <div class="dayContentIntro" style="text-align: center;">
-                <p style="font-size: 20px;"><b>{{a_data.a.a_name}}</b></p>
-                <p>營業時間<br>{% for open in a_data.opening.opening %} {% if forloop.counter != 1  %} <br> {% endif %}{{open}} {% endfor %}</p>
-                <p>停留時間：{{a_data.stay_time}}分鐘</p>
+      {% endif %}
+    </div>
+
+  </header>
+  <div class="title-info-container">
+    <div class="title-info">
+        <p class="provider">作者：{{ct_detail.u.username}}</p>
+        {% comment %} <p class="reviews-count">有幾則評論：</p> {% endcomment %}
+    </div>
+  </div>
+  <section class="main-container">
+  <div class="main-content">
+    <img src="../static/images/attractions/{{ct_detail.get_attractions_picture.0.a__place_id}}_0.jpg">
+  </div>
+  <div class="sub-content">
+    <div class="sub-item">
+      <img src="../static/images/attractions/{% if ct_detail.get_attractions_picture.1.a__place_id %}{{ ct_detail.get_attractions_picture.1.a__place_id }}_0.jpg {% else %}{{ ct_detail.get_attractions_picture.0.a__place_id }}_1.jpg{% endif %}">
+    </div>
+    <div class="sub-item">
+      <img src="../static/images/attractions/{% if ct_detail.get_attractions_picture.2.a__place_id %}{{ ct_detail.get_attractions_picture.2.a__place_id }}_0.jpg {% else %}{{ ct_detail.get_attractions_picture.0.a__place_id }}_2.jpg{% endif %}">
+    </div>
+  </div>
+  </section>
+  <div class="image-description">
+    <h3>關於</h3>
+    <p style="margin:5px 0px 20px 0px">{% if ct_detail.detail == "" %}目前還沒有內容{% else %}{{ct_detail.detail}}{% endif %}</p>
+  </div>
+  <div class="dayDoneSection">
+    <div class="dayDone">
+        <div class="dayDoneBtn">
+          {% for day in ct_detail.get_choice_day %}
+            <div class="dayDiv" id="dayDiv{{forloop.counter}}" data-day="{{forloop.counter}}" style="float: left; {% if forloop.counter == 1 %}color:orange;{% endif %}" onclick="clickDay({{forloop.counter}})">
+                <i class="fa-regular fa-calendar"></i> DAY {{forloop.counter}}
             </div>
           {% endfor %}
-  </div>
-</div>
-{% endfor %}
-
-<div id="content2" style="display: none;">
+        </div>
+    </div>
+  {% for data in all_data %}
+  <div class = "classDayContent" id="content{{forloop.counter}}" style={% if forloop.counter == 1 %}"display: block;"{% else %}"display: none;"{% endif %}>
     <div class="dayContent">
-        <div
-            style="height: 250px;display: flex;justify-content: center;align-items: center;align-content: center;">
-            起始<br>位置</div>
-        <a href="" style="text-decoration: none;color: black;">
-            <i class="fa-solid fa-car-side car_icon"></i>
-        </a>
-        <div class="dayContentIntro">
-            <p>景點名稱</p>
-            <p>營業時間</p>
-            <p>停留時間</p>
-                       </div>
-                    </div>
-                </div>
-            </div>
+        <div style="height: 250px;min-width:80px;display: flex;justify-content: center;align-items: center;align-content: center;">
+            起始<br>位置
         </div>
-    </div>
-</section>
-<section class="review-container">
-  <section>
-    <div class="row">
-      <h5 style="font-size: 24px;">
-          <i class="fa-solid fa-pen" style="color: gray;"></i>
-          評論
-      </h5>
-    </div>
-  <div>
-    {% comment %} <button class="btn-style-1">發表評論</button> {% endcomment %}
-  </div>
-  <form class="ask-content" id="ask-content" action="/comment/{{detail.id}}/" method="POST">
-    <div class="out_share_comment" id="out_share_comment">
-        <div id="share_comment_container" class="share_comment_container">
-            <form class="share_comment-content" id="share_comment-content" action="">
-                <div class="comment_container" id="comment_container">
-                    <h5 style="font-size: 24px;">
-                        {{ detail.a_name }}
-                    </h5>
-                </div>
-                <div class="share_comment_con" style="padding: 20px;">
-                    <div class="comment">
-                        <div class="avatar">
-                            <img src="{{request.user.get_photo}}" alt="User Avatar">
-                        </div>
-                        <div class="comment-content">
-                            <h6 class="username">
-                                {{request.user.username}}<br>
-                                <span style="color: gray; font-size: 14px; font-style: italic;">公開發佈
-                                    &ensp;</span>
-                                </h6>
-                        </div>
-                    </div>
-                    <div>
-                        <textarea name="user_share_comment" id="user_share_comment" cols="100%" rows="5"
-                            style="resize:none; border-radius: 10px;max-width: 100%;padding: 10px; "
-                            placeholder="詳細說明你在這個地點的親身體驗。"></textarea>
-                    </div>
-                    <div class="image-container_ph">
-                        <div id="imagePreview"></div>
-                    </div>
-                </div>
-                <div class="post_share_comment">
-                    <span class="share_comment_btn_ok" id="share_comment_btn_ok"
-                        onclick="sendComment({{ct_detail.id}})">張貼</span>
-                </div>
-            </form>
-        </div>
-    </div>
-</form>
-</section>
-<section class="review">
-  <div class="review-wrap">
-    <h2>所有評論</h2>
-    {% comment %} <div>
-    <button class="btn-style-2">篩選條件</button>
-    <button class="btn-style-2">最新評論</button>
-    <button class="btn-style-2">最舊評論</button>
-    </div> {% endcomment %}
-  </div>
-  {% comment %} <div>
-    <span class="tag active">全部</span>
-    <span class="tag">停車場</span>
-    <span class="tag">用餐</span>
-    <span class="tag">早餐</span>
-  </div> {% endcomment %}
-</section>
-<hr>
-<section>
-  {% for comment in ct_detail.get_comment %}
-  <div class="review-content">
-    <div class="head">
-      <div class="info">
-        <img class="user-img" src="{{comment.u.get_photo}}" alt="">
-        <p class="user-name">{{comment.u.username}}<br>{{comment.comment_date}}</p>
-        <p></p>
-      </div>
-      {% comment %} <div>
-        <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
-      </div> {% endcomment %}
-    </div>
-    <div class="body">
-      <p>{{comment.content}}</p>
-    </div>
+            {% for a_data in data.ct_attraction %}
+            {{a_data.a_id.start_location_y}}
+              {% if forloop.counter == 1 %}
+                <a href="https://www.google.com/maps/dir/{{a_data.choice_ct.start_location_x}},{{a_data.choice_ct.start_location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;height:300px;line-height:300px;margin:0 10px;">
+                  <i class="fa-solid fa-car-side car_icon"></i>
+                </a>
+              {% else %}
+                <a href="https://www.google.com/maps/dir/{{a_data.get_previous.a.location_x}},{{a_data.get_previous.a.location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;height:300px;line-height:300px;margin:0 10px;">
+                  <i class="fa-solid fa-car-side car_icon"></i>
+                </a>
+              {% endif %}
+              <div class="dayContentIntro" style="text-align: center;">
+                  <p style="font-size: 20px;"><b>{{a_data.a.a_name}}</b></p>
+                  <p>營業時間<br>{% for open in a_data.opening.opening %} {% if forloop.counter != 1  %} <br> {% endif %}{{open}} {% endfor %}</p>
+                  <p>停留時間：{{a_data.stay_time}}分鐘</p>
+              </div>
+            {% endfor %}
     </div>
   </div>
   {% endfor %}
-</section>
+
+  <div id="content2" style="display: none;">
+      <div class="dayContent">
+          <div
+              style="height: 250px;display: flex;justify-content: center;align-items: center;align-content: center;">
+              起始<br>位置</div>
+          <a href="" style="text-decoration: none;color: black;">
+              <i class="fa-solid fa-car-side car_icon"></i>
+          </a>
+          <div class="dayContentIntro">
+              <p>景點名稱</p>
+              <p>營業時間</p>
+              <p>停留時間</p>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <section class="review-container">
+    <section>
+      <div class="row">
+        <h5 style="font-size: 24px;">
+            <i class="fa-solid fa-pen" style="color: gray;"></i>
+            評論
+        </h5>
+      </div>
+    <div>
+      {% comment %} <button class="btn-style-1">發表評論</button> {% endcomment %}
     </div>
-    <script>
-      // 獲取按鈕元素
-      var newestButton = document.querySelector('.btn-style-2:nth-child(2)');
-      var oldestButton = document.querySelector('.btn-style-2:nth-child(3)');
-    
-      // 添加點擊事件監聽器
-      newestButton.addEventListener('click', function() {
-        // 添加藍色樣式
-        newestButton.style.backgroundColor = '#0066DB';
-        // 移除其他按鈕的藍色樣式
-        oldestButton.style.backgroundColor = '';
-      });
-    
-      oldestButton.addEventListener('click', function() {
-        // 添加藍色樣式
-        oldestButton.style.backgroundColor = '#0066DB';
-        // 移除其他按鈕的藍色樣式
-        newestButton.style.backgroundColor = '';
-      });
-      function like(){
-        alert('已按讚');
-      }
-    const contentMap = {
-      1: document.getElementById('content1'),
-      2: document.getElementById('content2')
+    <form class="ask-content" id="ask-content" action="/comment/{{detail.id}}/" method="POST">
+      <div class="out_share_comment" id="out_share_comment">
+          <div id="share_comment_container" class="share_comment_container">
+              <form class="share_comment-content" id="share_comment-content" action="">
+                  <div class="comment_container" id="comment_container">
+                      <h5 style="font-size: 24px;">
+                          {{ detail.a_name }}
+                      </h5>
+                  </div>
+                  <div class="share_comment_con" style="padding: 20px;">
+                      <div class="comment">
+                          <div class="avatar">
+                              <img src="{{request.user.get_photo}}" alt="User Avatar">
+                          </div>
+                          <div class="comment-content">
+                              <h6 class="username">
+                                  {{request.user.username}}<br>
+                                  <span style="color: gray; font-size: 14px; font-style: italic;">公開發佈
+                                      &ensp;</span>
+                                  </h6>
+                          </div>
+                      </div>
+                      <div>
+                          <textarea name="user_share_comment" id="user_share_comment" cols="100%" rows="5"
+                              style="resize:none; border-radius: 10px;max-width: 100%;padding: 10px; "
+                              placeholder="詳細說明你在這個地點的親身體驗。"></textarea>
+                      </div>
+                      <div class="image-container_ph">
+                          <div id="imagePreview"></div>
+                      </div>
+                  </div>
+                  <div class="post_share_comment">
+                      <span class="share_comment_btn_ok" id="share_comment_btn_ok"
+                          onclick="sendComment({{ct_detail.id}})">張貼</span>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </form>
+  </section>
+  <section class="review">
+    <div class="review-wrap">
+      <h2>所有評論</h2>
+      {% comment %} <div>
+      <button class="btn-style-2">篩選條件</button>
+      <button class="btn-style-2">最新評論</button>
+      <button class="btn-style-2">最舊評論</button>
+      </div> {% endcomment %}
+    </div>
+    {% comment %} <div>
+      <span class="tag active">全部</span>
+      <span class="tag">停車場</span>
+      <span class="tag">用餐</span>
+      <span class="tag">早餐</span>
+    </div> {% endcomment %}
+  </section>
+  <hr>
+  <section>
+    {% for comment in ct_detail.get_comment %}
+      <div class="review-content">
+        <div class="head">
+          <div class="info">
+            <img class="user-img" src="{{comment.u.get_photo}}" alt="">
+            <p class="user-name">{{comment.u.username}}<br>{{comment.comment_date}}</p>
+            <p></p>
+          </div>
+          {% comment %} <div>
+            <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
+          </div> {% endcomment %}
+        </div>
+        <div class="body">
+          <p>{{comment.content}}</p>
+        </div>
+        </div>
+      </div>
+    {% endfor %}
+  </section>
+</div>
+<script>
+  // 獲取按鈕元素
+  /*var newestButton = document.querySelector('.btn-style-2:nth-child(2)');
+  var oldestButton = document.querySelector('.btn-style-2:nth-child(3)');
+
+  // 添加點擊事件監聽器
+  newestButton.addEventListener('click', function() {
+    // 添加藍色樣式
+    newestButton.style.backgroundColor = '#0066DB';
+    // 移除其他按鈕的藍色樣式
+    oldestButton.style.backgroundColor = '';
+  });
+
+  oldestButton.addEventListener('click', function() {
+    // 添加藍色樣式
+    oldestButton.style.backgroundColor = '#0066DB';
+    // 移除其他按鈕的藍色樣式
+    newestButton.style.backgroundColor = '';
+  });*/
+  function like(){
+    alert('已按讚');
+  }
+  const contentMap = {
+    1: document.getElementById('content1'),
+    2: document.getElementById('content2')
   };
   {% comment %} function clickDay(dayNumber){
     const dayDiv1 = document.getElementById('dayDiv'+dayNumber);
@@ -567,20 +604,21 @@ header {
     } else {
         alert("已取消張貼");
     }
-}
+  }
 
-document.getElementById('share_comment_btn_cancel').addEventListener('click', function () {
-    var isCancelConfirmed = confirm("確定要取消嗎？");
+  /*document.getElementById('share_comment_btn_cancel').addEventListener('click', function () {
+      var isCancelConfirmed = confirm("確定要取消嗎？");
 
-    if (isCancelConfirmed) {
-        // 在這裡執行取消的相關操作
-        alert("取消成功");
-    } else {
-        alert("已取消取消");
-    }
-});
-    </script>
-    <script src="/static/js/travel_detail.js"></script>
+      if (isCancelConfirmed) {
+          // 在這裡執行取消的相關操作
+          alert("取消成功");
+      } else {
+          alert("已取消取消");
+      }
+  });*/
+</script>
+<script src="/static/js/travel_detail.js"></script>
+<script src="/static/js/addFavorite.js"></script>
     {% comment %} {{u_id}}
     <p>{{ ct_id }}</p>
     <p>{{ ct_detail }}</p>
