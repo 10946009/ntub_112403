@@ -63,19 +63,19 @@
                     <h4 class="c_title">
                       {{item.a_name}}
                     </h4>
-                      <div class="rating" style="text-align: center;">
-                        {% for i in "12345" %}
-                          {% if i|add:0 <= item.rating %} 
-                            <i class="fa-solid fa-star" style="color:rgb(226, 185, 2);"></i>
-                          {% else %}
-                            <!-- <i class="fa-regular fa-star"></i> -->
-                            <!-- <i class="fa-regular fa-star-half-stroke" style="color:rgb(226, 185, 2);"></i> -->
-                            <i class="fa-solid fa-star" style="color:rgb(185, 184, 184);"></i>
-                          {% endif %}
-                        {% endfor %}
-                        <br>
-                        <span id="selectedRating">{{item.rating}} / 5 ({{ item.rating_total }}則) </span>
-                      </div>
+                    <div class="rating" style="text-align: center;">
+                      {% for i in "12345" %}
+                        {% if i|add:0 <= item.rating %} 
+                          <i class="fa-solid fa-star" style="color:rgb(226, 185, 2);"></i>
+                        {% else %}
+                          <!-- <i class="fa-regular fa-star"></i> -->
+                          <!-- <i class="fa-regular fa-star-half-stroke" style="color:rgb(226, 185, 2);"></i> -->
+                          <i class="fa-solid fa-star" style="color:rgb(185, 184, 184);"></i>
+                        {% endif %}
+                      {% endfor %}
+                      <br>
+                      <span id="selectedRating">{{item.rating}} / 5 ({{ item.rating_total }}則) </span>
+                    </div>
                         
                     </p>
                   </div>
@@ -159,7 +159,7 @@
 
             </div>
             <div class="spot_txt">
-              <h4>
+              <h4 class="c_title">
                 {{ ct.ct_name }}
               </h4>
               <h5>
