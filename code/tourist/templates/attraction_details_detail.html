@@ -1750,7 +1750,17 @@
         }, 3000);
     }
 
-    //人潮分佈圖(有加時間,數量)
+   {% comment %} 星期點擊時有focus css(預設禮拜日) {% endcomment %}
+    var tagWeeks = document.querySelectorAll('.tag-week');
+    tagWeeks.forEach(function(tagWeek) {
+      tagWeek.addEventListener('click', function() {
+        tagWeeks.forEach(function(element) {
+          element.classList.remove('focus');
+        });
+        this.classList.add('focus');
+      });
+    }); 
+     //人潮分佈圖(有加時間,數量)
     var total_data = [];
     var data_crowdlist = [];
     var crowd = JSON.parse('{{crowd | safe}}')
@@ -1821,7 +1831,7 @@
                         legend: {
                             display: false
                         },
-                        responsive: false,
+                        responsive: true,//可以隨RWD變動
                         interaction: {
                             mode: 'point' // 设置交互模式为'point'以禁用点击和悬停
                         },
