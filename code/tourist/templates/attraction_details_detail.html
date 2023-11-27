@@ -151,7 +151,7 @@
                                 <!-- 圖表 -->
                                 <div>
                                     <!-- <canvas id="chart" width="300" height="150"></canvas> -->
-                                    <canvas id="people_if_Chart" width="700%;" height="500%;"></canvas>
+                                    <canvas id="people_if_Chart"  height="200%;"></canvas>
                                 </div>
                             </h6>
                         </div>
@@ -1294,6 +1294,7 @@
 <script src="../static/js/watchQuestions.js"></script>
 <!-- 圖表會用到script -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
     var username = "{{request.user.username}}";
@@ -1812,6 +1813,7 @@
                         }]
                     },
                     options: {
+                        responsive: true,//可以隨RWD變動
                         scales: {
                             yAxes: [{
                                 ticks: {
@@ -1831,7 +1833,7 @@
                         legend: {
                             display: false
                         },
-                        responsive: true,//可以隨RWD變動
+                        
                         interaction: {
                             mode: 'point' // 设置交互模式为'point'以禁用点击和悬停
                         },
