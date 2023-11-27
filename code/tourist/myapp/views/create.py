@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from datetime import datetime
+
+import googlemaps
 from myapp.models import *
 from django.http import JsonResponse
 from django.db.models import Q
@@ -57,7 +59,10 @@ def create(request, ct_id):
         
     user_favorite_type = [4, 6, 9, 10, 15, 16, 18] #需修改新增的部分
     ct_data = Create_Travel.objects.get(id=ct_id)
-    # apikey = GOOGLE_PLACES_API_KEY   #記得一定要打開!!!!!!!!!!!!!!!!!!!!!!!!!(API在這!)
+    try:
+        apikey = GOOGLE_PLACES_API_KEY   #記得一定要打開!!!!!!!!!!!!!!!!!!!!!!!!!(API在這!)
+    except:
+        apikey = None
     travelday = range(1, ct_data.travel_day + 1)
     name = ct_data.ct_name
     start_day = ct_data.start_day
@@ -123,6 +128,7 @@ def create(request, ct_id):
                 "detail": detail,
                 "co": co,
                 "crowd_list" : f"{min(co.crowd[cl],co.crowd[(cl+1)%24])} ~ {max(co.crowd[cl],co.crowd[(cl+1)%24])}",
+                "crowd_avg": (co.crowd[cl]+co.crowd[(cl+1)%24])//2,
                 "weather": get_weather_data(detail.address,start_day[0:4],start_day[5:7],int(start_day[8:])+index,ct_attractions_data.start_time),
             })
             
@@ -272,7 +278,8 @@ def create(request, ct_id):
                 order_attractions_data.append({
                     'final_result_list': fr,
                     'final_crow_opening_list': fc,
-                    'final_crowd_list' : f"{min(fc['crowd'][f_nt],fc['crowd'][f_nt+1])} ~ {max(fc['crowd'][f_nt],fc['crowd'][f_nt+1])}",  
+                    'final_crowd_list' : f"{min(fc['crowd'][f_nt],fc['crowd'][f_nt+1])} ~ {max(fc['crowd'][f_nt],fc['crowd'][f_nt+1])}",
+                    "final_crowd_avg": (fc['crowd'][f_nt]+fc['crowd'][f_nt+1])//2,  
                     'weather': get_weather_data(fr['address'],start_day[0:4],start_day[5:7],int(start_day[8:])+index,fnowtime),
                 })
             for frr,frc in zip(final_remainder_result_list,final_remainder_crow_opening_list):
@@ -325,24 +332,33 @@ def create(request, ct_id):
                 Attractions_Ct.objects.filter(choice_ct_id=choice_ct_id).delete() #刪除舊資料
                 for index, id in enumerate(all_id):
                     id_db = Attractions.objects.get(id=id)
-                    if index == len(all_id) - 1:
-                        distance = 0
-                        duration = 0
+                    if apikey: # 第一個景點
+                        client = googlemaps.Client(key=apikey)
+                        if index == 0:
+                            response = client.distance_matrix(
+                                origins=(get_user_address[0],get_user_address[1]), #使用者位置
+                                destinations = (id_db.location_x,id_db.location_y), #目的地
+                                mode="driving", #開車
+                                units="metric", #公里
+                                avoid="highways", #限制沒有高速公路
+                                language="zh-TW",
+                            )
+                        else :
+                            id2_db = Attractions.objects.get(id=all_id[index-1])
+                            response = client.distance_matrix(
+                                origins=(id_db.location_x,id_db.location_y), #使用者位置
+                                destinations = (id2_db.location_x,id2_db.location_y), #目的地
+                                mode="driving", #開車
+                                units="metric", #公里
+                                avoid="highways", #限制沒有高速公路
+                                language="zh-TW",
+                            )
+                        distance = response["rows"][0]["elements"][0]["distance"]["value"]
+                        duration = response["rows"][0]["elements"][0]["duration"]["value"]//60
                     else:
-                        id2_db = Attractions.objects.get(id=all_id[index + 1])
                         distance = 2200  # 距離(公尺)
                         duration = 10  # 時間(分鐘)
-                        # client = googlemaps.Client(key=GOOGLE_PLACES_API_KEY)
-                        # response = client.distance_matrix(
-                        #     origins=(id_db.location_x,id_db.location_y), #使用者位置
-                        #     destinations = (id2_db.location_x,id2_db.location_y), #目的地
-                        #     mode="driving", #開車
-                        #     units="metric", #公里
-                        #     avoid="highways", #限制沒有高速公路
-                        #     language="zh-TW",
-                        # )
-                        # distance = response["rows"][0]["elements"][0]["distance"]["value"]
-                        # duration = response["rows"][0]["elements"][0]["duration"]["value"]//60
+                        print(index,distance,duration)
                     staytime = id_db.stay_time
                     ct = Attractions_Ct.objects.create(
                         a_start_time=new_nowtime,

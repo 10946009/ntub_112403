@@ -140,9 +140,9 @@
             <div class="share" id="ct_share">
               {% if item.my_history.status == True %}
               <span class="fa-solid fa-unlock share_icon" title="公開" id="submitfavorite_share{{ item.my_history.id }}"
-                data-isfavorite="1" onclick="add_favorite_share({{ item.my_history.id }})"> <!--圖案改這裡的class-->
+                data-isfavorite="1" style="color: orange;" onclick="add_favorite_share({{ item.my_history.id }})"> <!--圖案改這裡的class-->
                 <br>
-                <span class="icontxt" id="icontxt{{ item.my_history.id }}">公開</span> <!--文字放這-->
+                <span class="icontxt" style="color: orange;" id="icontxt{{ item.my_history.id }}">公開</span> <!--文字放這-->
               </span>
     
               {% else %}

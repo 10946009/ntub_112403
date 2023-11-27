@@ -7,12 +7,14 @@ from myapp.models import *
 from .viewsConst import GOOGLE_PLACES_API_KEY
 from .check_opening import check_opening
 from .check_distance import check_distance
-
+from django.db.models import F, ExpressionWrapper, fields
 
 # ------------------------------------第1步驟(推薦周遭景點)
 def recommend(user_favorite, now_time, get_user_address, day, stay_time):
-    client = None
-    # client = googlemaps.Client(key=GOOGLE_PLACES_API_KEY)
+    try:
+        client = googlemaps.Client(key=GOOGLE_PLACES_API_KEY)
+    except:
+        client = None
     week = datetime(int(day[0:4]), int(day[5:7]), int(day[8:])).weekday() + 1
 
     # # 1.先選擇固定的5個景點作為M集合（正常為我們根據使用者輸入的位置去進行推薦。大約為開車30分鐘內會到且有營業的地點）
@@ -25,13 +27,10 @@ def recommend(user_favorite, now_time, get_user_address, day, stay_time):
     )
     # print("get_all_attractions",len(get_all_attractions))
     m_attractions_list = []
-    if not len(get_all_attractions) or client == None:  # 抓不到資料的話就回傳固定的5個景點
+    if len(get_all_attractions) == 0 or client == None:  # 抓不到資料的話就回傳熱門景點
+        print("回傳熱門景點")
         m_attractions_list = [
-            "ChIJFZPS7xyrQjQRQuUZYgdk3SA",
-            "ChIJXcZNw26yQjQRk-ovoSxin1g",
-            "ChIJe7yJbYSpQjQRWKgqXWSDg7w",
-            "ChIJQev3766vQjQR_R7YpgCRhLk",
-            "ChIJTeIZgaCvQjQRlMvYvVAE6WE",
+            x.place_id for x in Attractions.objects.annotate(result=F('rating') * F('rating_total')).order_by('result')[:20]
         ]
         return m_attractions_list
     locations = {"lat": get_user_address[0], "lng": get_user_address[1]}
@@ -143,9 +142,13 @@ def recommend_maybe(userid):  # 會回傳可能喜歡的使用者id和該使用�
                 maybe_aid_list = UserClick.objects.filter(u_id=maybe_user_id).values_list(
                     "a_id", flat=True
                 )
-                return Attractions.objects.filter(id__in=maybe_aid_list)
+                return Attractions.objects.filter(id__in=maybe_aid_list)[:3] #回傳可能喜歡的景點
 
-        return Attractions.objects.filter(id__in=user_click)
+        return Attractions.objects.filter(id__in=user_click) #回傳使用者點擊過的景點
     else:
-        return Attractions.objects.all().order_by("hit")[:10]
+        return Attractions.objects.all().order_by("hit")[:10] #回傳熱門景點
     # 找出和其他使用者瀏覽相似的景點
+
+def recommend_user_favorite(userid):
+    user_favorite_tag = User.objects.get(id=userid).favorite_tag
+    user_favorite = []
