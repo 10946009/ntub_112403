@@ -444,7 +444,7 @@ function updateBlockPositions(updivID,downdivID) { //移動動畫往上
       return;
     }
     // draw the animation at the moment timePassed
-    draw(timePassed**0.5*23); //有曲線的移動
+    draw(timePassed**0.5*25); //有曲線的移動
   }, 20);
 
   setTimeout(reset, 1000);
