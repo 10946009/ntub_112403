@@ -1,4 +1,6 @@
 from datetime import datetime
+from functools import reduce
+from operator import itemgetter
 from django.shortcuts import render
 import googlemaps
 import pandas as pd
@@ -7,7 +9,7 @@ from myapp.models import *
 from .viewsConst import GOOGLE_PLACES_API_KEY
 from .check_opening import check_opening
 from .check_distance import check_distance
-from django.db.models import F, ExpressionWrapper, fields
+from django.db.models import F,Q,Count
 
 # ------------------------------------第1步驟(推薦周遭景點)
 def recommend(user_favorite, now_time, get_user_address, day, stay_time):
@@ -107,7 +109,7 @@ def recommend(user_favorite, now_time, get_user_address, day, stay_time):
         Attractions.objects.get(place_id=x).a_name for x in m_attractions_list
     ]  # name的List
 
-    return m_attractions_list
+    return m_attractions_list[:10]
 
 
 # ------------------------------------第1.5步驟(推薦使用者可能喜歡的景點)
@@ -142,13 +144,31 @@ def recommend_maybe(userid):  # 會回傳可能喜歡的使用者id和該使用�
                 maybe_aid_list = UserClick.objects.filter(u_id=maybe_user_id).values_list(
                     "a_id", flat=True
                 )
-                return Attractions.objects.filter(id__in=maybe_aid_list)[:3] #回傳可能喜歡的景點
+                return Attractions.objects.filter(id__in=maybe_aid_list)[:5] #回傳可能喜歡的景點
 
-        return Attractions.objects.filter(id__in=user_click) #回傳使用者點擊過的景點
+        return Attractions.objects.filter(id__in=user_click)[:5] #回傳使用者點擊過的景點
     else:
-        return Attractions.objects.all().order_by("hit")[:10] #回傳熱門景點
+        return Attractions.objects.all().order_by("hit")[:5] #回傳熱門景點
     # 找出和其他使用者瀏覽相似的景點
 
 def recommend_user_favorite(userid):
-    user_favorite_tag = User.objects.get(id=userid).favorite_tag
-    user_favorite = []
+    # 使用者喜歡的標籤
+    user_favorite_tag = User.objects.get(id=userid).user_favorite_tag
+    if user_favorite_tag:
+        user_favorite_set = set(user_favorite_tag)
+
+        # 獲取每個景點的標籤
+        attractions = Attractions.objects.all()
+        # 計算每個景點標籤與使用者喜歡的標籤的交集長度
+        intersections = [(a.id, len(set(a.att_type) & user_favorite_set)) for a in attractions]
+
+        # 按照交集長度降序排序
+        sorted_intersections = sorted(intersections, key=itemgetter(1), reverse=True)
+
+        # 取前五個
+        top_five_recommendations = sorted_intersections[:5]
+        recommended_ids = [x[0] for x in top_five_recommendations]
+        top_five = Attractions.objects.filter(id__in=recommended_ids)
+    else:
+        top_five = Attractions.objects.all().order_by("hit")[:5]
+    return top_five #回傳使用者喜歡的標籤的景點

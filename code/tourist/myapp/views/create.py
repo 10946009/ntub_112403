@@ -7,7 +7,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .viewsConst import ATT_TYPE_CHINESE
-from .recommend import recommend,recommend_maybe
+from .recommend import recommend,recommend_maybe,recommend_user_favorite
 from .recommend_near import recommend_near
 from .final_order import final_order
 import requests
@@ -56,7 +56,6 @@ def format_minutes_as_time(minutes):
 def create(request, ct_id):
     # 抓使用者收藏的景點
     uid = request.user.id
-        
     user_favorite_type = [4, 6, 9, 10, 15, 16, 18] #需修改新增的部分
     ct_data = Create_Travel.objects.get(id=ct_id)
     try:
@@ -152,7 +151,7 @@ def create(request, ct_id):
             m = recommend(
                 user_favorite_type, new_nowtime, get_user_address, start_day, stay_time
             )
-            m_list = (Attractions.objects.filter(place_id__in=m) | recommend_maybe(uid)).distinct()
+            m_list = (Attractions.objects.filter(place_id__in=m) | recommend_maybe(uid)|recommend_user_favorite(uid)).distinct()
             crow_opening_list = []
             for i in m_list:
                 m_db = (
