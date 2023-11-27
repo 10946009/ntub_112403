@@ -72,7 +72,8 @@
                     {% if forloop.counter == 1 %}
                     <div class="car_time">
                       <a href="https://www.google.com/maps/dir/{{a_data.choice_ct.start_location_x}},{{a_data.choice_ct.start_location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;">
-                        <i class="fa-solid fa-car-side car_icon"></i>
+                        {% comment %} <i class="fa-solid fa-car-side car_icon"></i> {% endcomment %}
+                        <img src="/static/images/New Project.jpg" alt="" class="car_icon">
                       </a>
                       <p>約<br> {{ a_data.distance_time }}<br>分鐘</p>
                     </div>
@@ -80,7 +81,8 @@
                     {% else %}
                       <div class="car_time">
                         <a href="https://www.google.com/maps/dir/{{a_data.get_previous.a.location_x}},{{a_data.get_previous.a.location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;">
-                          <i class="fa-solid fa-car-side car_icon"></i>
+                          {% comment %} <i class="fa-solid fa-car-side car_icon"></i> {% endcomment %}
+                          <img src="/static/images/New Project.jpg" alt="" class="car_icon">
                         </a>
                         <p>約<br> {{ a_data.distance_time }}<br>分鐘</p>
                       </div>
