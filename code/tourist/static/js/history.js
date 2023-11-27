@@ -360,3 +360,22 @@ function carouInit(){
 
   carouselInstance.update();
 }
+
+function clickDay(dayNumber) {
+  let content = document.querySelectorAll('.classDayContent');
+  let clickContent = document.getElementById('content' + dayNumber);
+  const dayDiv = document.querySelectorAll('.dayDiv');
+  const dayDiv1 = document.getElementById('dayDiv'+dayNumber);
+  if (clickContent.style.display == 'block') {
+      // 如果連續點擊同一天，則關閉對應內容
+      clickContent.style.display = 'none';
+      dayDiv1.style.color="";
+  } else {
+    for (let i = 0; i < content.length; i++) {
+      content[i].style.display = 'none';
+      dayDiv[i].style.color="";
+    }
+      clickContent.style.display = 'block';
+      dayDiv1.style.color = 'orange';
+  }
+}
