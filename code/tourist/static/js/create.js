@@ -408,13 +408,59 @@ function moveBlock(blockDoneId, direction) {
     console.log('temp'+temp);
     blocksOrder[globalDay][currentIndex] = blocksOrder[globalDay][currentIndex - 1];
     blocksOrder[globalDay][currentIndex - 1] = temp;
+    updateBlockPositions("blockDone"+temp,"blockDone"+blocksOrder[globalDay][currentIndex]);
   } else if (direction === 'down' && currentIndex < blocksOrder[globalDay].length - 1) {
     let temp = blocksOrder[globalDay][currentIndex];
-    console.log('temp'+temp);
     blocksOrder[globalDay][currentIndex] = blocksOrder[globalDay][currentIndex + 1];
     blocksOrder[globalDay][currentIndex + 1] = temp;
+    console.log("上blockDone"+blocksOrder[globalDay][currentIndex]+"下blockDone"+blockDoneId);
+    
+    updateBlockPositions("blockDone"+blocksOrder[globalDay][currentIndex],"blockDone"+blockDoneId);
   }
-  rearrangeBlocks();
+  
+  
+}
+
+function updateBlockPositions(updivID,downdivID) { //移動動畫往上
+  // Get all block elements
+  console.log(downdivID);
+  //哪一個區塊進行的移動
+  let parent = document.getElementById('orderAttractions-' + globalDay);
+  
+  let upElements = parent.querySelector("#"+updivID);
+  let downElements = parent.querySelector("#"+downdivID);
+  
+  console.log(upElements);
+  console.log("上去");
+  console.log(downElements);
+  console.log("下來");
+  let start = Date.now(); // remember start time
+
+  let timer = setInterval(function() { //重複呼叫
+    // how much time passed from the start?
+    let timePassed = Date.now() - start;
+    if (timePassed >= 1000) {
+      clearInterval(timer); // finish the animation after 2 seconds
+      return;
+    }
+    // draw the animation at the moment timePassed
+    draw(timePassed**0.5*23); //有曲線的移動
+  }, 20);
+
+  setTimeout(reset, 1000);
+  
+  // as timePassed goes from 0 to 2000
+  // left gets values from 0px to 400px
+  function reset(){
+    upElements.style.bottom = '';
+    downElements.style.top = '';
+    rearrangeBlocks();
+  }
+
+  function draw(timePassed) {
+    upElements.style.bottom = timePassed / 3 + 'px';
+    downElements.style.top = timePassed / 3 + 'px';
+  }
 }
 // // move to top
 // function moveFirst(blockDoneId) {
