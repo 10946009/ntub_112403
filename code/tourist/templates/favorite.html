@@ -40,7 +40,17 @@
             </div>
             <div class="card-body text-center">
               <h4 class="card-title">{{item.a_name}}</h4>
-              <p>{{item.rating}}星 {{item.rating_total}}則評論</p>
+              <div class="rating" style="text-align: center;">
+                {% for i in "12345" %}
+                  {% if i|add:0 <= item.rating %} 
+                    <i class="fa-solid fa-star" style="color:rgb(226, 185, 2);"></i>
+                  {% else %}
+                    <i class="fa-solid fa-star" style="color:rgb(185, 184, 184);"></i>
+                  {% endif %}
+                {% endfor %}
+                <br>
+                <span id="selectedRating">{{item.rating}} / 5 ({{ item.rating_total }}則) </span>
+              </div>
             </div>
           </div>
         </div>
@@ -64,7 +74,7 @@
   </div>
   <!-- 最愛行程的Tab内容 -->
   <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-    <div class="container">
+    <div class="cardContainer">
       <div class="row" style="width: 90%;">
         {% for item in travel_favorite_list %}
           <div class="col-md-4 col-sm-6">
@@ -77,7 +87,7 @@
               </div>
               <div class="card-body text-center">
                 <h4 class="card-title">{{ item.ct_name }}</h4>
-                <h5>user:{{ item.u_id.username }}</h5>
+                <h5>作者：{{ item.u_id.username }}</h5>
                 {% comment %} <p class="description">20230318去平溪玩水一天</p> {% endcomment %}
                 <a href="/travel_detail/{{ item.id }}" class="btn btn-warning spot_data_btn">詳細資料</a><br>
                 {% for tag in item.ct_object.is_fit %}

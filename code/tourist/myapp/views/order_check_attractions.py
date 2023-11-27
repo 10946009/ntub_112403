@@ -28,6 +28,10 @@ def order_check_attractions(
                 ) and now_time + stay_time <= int(op[6:8]) * 60 + int(op[9:]):
                     ok_a_list.append(o_db.id)
                     break
+                elif str(op[6:8]) == "00" and now_time >= int(op[0:2]) * 60 + int(op[3:5]) and now_time <= 1440 + int(op[9:]):
+                    print("ok")
+                    ok_a_list.append(o_db.id)
+                    break
     if ok_a_list == []:
         return ""
     # 4.將使用者所選擇的所有景點
