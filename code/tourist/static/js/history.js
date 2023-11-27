@@ -85,9 +85,11 @@ function clickShow(button,ctid) {
 let isaddCommentSpaceVisible = false;
 let isEdit = false;
 
+const addCommentBtn = document.getElementById('addCommentBtn');
+const addCommentSpace = document.getElementById('addCommentSpace');
 function addComment() {
-  const addCommentBtn = document.getElementById('addCommentBtn');
-  const addCommentSpace = document.getElementById('addCommentSpace');
+  // const addCommentBtn = document.getElementById('addCommentBtn');
+  // const addCommentSpace = document.getElementById('addCommentSpace');
   console.log(addCommentSpace);
   const addCTXT = document.getElementById('addCTXT');
   console.log(1);
@@ -133,11 +135,6 @@ function submitComment(ctid){
     var newComment = document.createElement('div');
     newComment.className = 'row';
 
-    // var avatarDiv = document.createElement('div');
-    // avatarDiv.className = 'col-auto otherCommentAvatar';
-    // avatarDiv.innerHTML = '<img src="../static/images/cloud1.png" class="img-responsive" style="width: 100%;" alt=""><br>';
-    // newComment.appendChild(avatarDiv);
-
     var textDiv = document.createElement('div');
     textDiv.className = 'col otherCommentTxtDiv';
     var textSpan = document.createElement('span');
@@ -157,7 +154,7 @@ function submitComment(ctid){
     var editBtn = document.createElement('button');
     editBtn.className = 'fa-solid fa-pen-to-square c_edit_icon c_icon';
     editBtn.onclick = function () {
-      editComment(textSpan,ctid);
+      editComment(textSpan,ctid, iconDiv);
       // iconDiv.style.display = 'none';
     };
     editBtnDiv.appendChild(editBtn);
@@ -201,7 +198,8 @@ function submitComment(ctid){
 
 }
 // 編輯按鈕
-function editComment(commentSpan,ctid) {
+function editComment(commentSpan,ctid, iconDiv) {
+  console.log(200);
   if (commentSpan === "") {
     var commentSpan = document.getElementById('otherCommentTxt');
   }
@@ -231,6 +229,7 @@ function editComment(commentSpan,ctid) {
     commentSpan.style.display = 'block';
     editBtn.style.display = 'block';
     deleteBtn.style.display = 'block';
+    iconDiv.style.display = 'none';
   };
 
   var cancelEditBtn = document.createElement('button');
@@ -252,7 +251,7 @@ function editComment(commentSpan,ctid) {
   commentSpan.parentNode.appendChild(buttonsContainer); // 將容器插入 DOM 中
 
   var deleteBtn = commentSpan.parentNode.querySelector('.c_delete_icon');
-  deleteBtn.style.display = 'none';
+  // deleteBtn.style.display = 'none';
   var editBtn = commentSpan.parentNode.querySelector('.c_edit_icon');
   editBtn.style.display = 'none';
 }
