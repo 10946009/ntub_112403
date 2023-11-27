@@ -339,7 +339,7 @@ header {
 </section>
 <div class="image-description">
   <h3>關於</h3>
-  <p>{{ct_detail.detail}}</p>
+  <p style="margin:5px 0px 20px 0px">{% if ct_detail.detail == "" %}目前還沒有內容{% else %}{{ct_detail.detail}}{% endif %}</p>
 </div>
 <div class="dayDoneSection">
   <div class="dayDone">

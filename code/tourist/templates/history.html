@@ -45,9 +45,10 @@
 
 .review-content {
   {% comment %} margin: 2rem 1rem; {% endcomment %}
-  margin:10px 0px;
+  
+  margin-bottom:25px;
   padding: 1rem;
-  border-bottom: 2px solid #c2bebe;
+  border-bottom: 1px solid #c2bebe;
 }
 
 .head {
@@ -88,6 +89,13 @@
   padding: 0;
   margin: 0;
 }
+.context-title{
+  line-height:60px;
+  font-size:20px;
+  margin-left:10px;
+  font-weight: bold;
+	{% comment %} text-shadow: 1px 1px 1px rgb(90, 90, 90); {% endcomment %}
+}
 </style>
 
 {% endblock %}
@@ -119,7 +127,7 @@
         <!--行程基本資料-->
         <div class="col-md-7 mytravel_txt">
           <div class="basicTxt">
-            <h4 class="mytravel_txt_title">行程名稱：{{ item.my_history.ct_name }}</h4>
+            <h4 class="mytravel_txt_title">{{ item.my_history.ct_name }}</h4>
             {% if item.my_history.status == True %}
             <h4 class="mytravel_review">喜愛程度：0</h4>
             {% endif %}

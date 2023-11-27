@@ -7,7 +7,7 @@
       </div>
       <hr style="margin-top: 0;">
       <div style="float: right;">
-        <span>分享人：{{data.u.username}}</span>
+        {% comment %} <span>分享人：{{data.u.username}}</span> {% endcomment %}
       </div>
       <div class="aboutDiv">
         <span>相關標籤</span>
@@ -51,7 +51,7 @@
       </div>
     </div>
     <div class="commentArea">
-      <span style="line-height:60px;font-size:20px;margin-left:10px;">行程簡介</span>
+      <span class="context-title">行程簡介</span>
       <div>
 
         <div class="row alreadyComment" id="alreadyComment">
@@ -81,27 +81,32 @@
           
         </div>
 
-        <span style="line-height:60px;font-size:20px;margin-left:10px;">評論</span>
+        <span class="context-title">評論</span>
         <div class="row alreadyComment" style="margin-left:10px">
+          {% if data.get_comment %}
           
-        {% for comment in data.get_comment %}
-          <div class="review-content">
-            <div class="head">
-              <div class="info">
-                <img class="user-img" src="{{comment.u.get_photo}}" alt="">
-                <p class="user-name">{{comment.u.username}}<br>{{comment.comment_date}}</p>
-                <p></p>
+            {% for comment in data.get_comment %}
+              <div class="review-content">
+                <div class="head">
+                  <div class="info">
+                    <img class="user-img" src="{{comment.u.get_photo}}" alt="">
+                    <p class="user-name">{{comment.u.username}}<br>{{comment.comment_date}}</p>
+                    <p></p>
+                  </div>
+                  {% comment %} <div>
+                    <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
+                  </div> {% endcomment %}
+                </div>
+                <div class="body">
+                  <p>{{comment.content}}</p>
+                </div>
               </div>
-              {% comment %} <div>
-                <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
-              </div> {% endcomment %}
-            </div>
-            <div class="body">
-              <p>{{comment.content}}</p>
-            </div>
-            </div>
-          </div>
-        {% endfor %}
+            {% endfor %}
+            
+          {% else %}
+            <p>目前暫無評論</p>
+          {% endif %}
+
         </div>
         
       </div>
