@@ -10,7 +10,7 @@ def history(request,select=None):
     my_history = []
     user_id = request.user.id
     print(user_id)
-
+    all_ct = Create_Travel.objects.filter(u_id=user_id).order_by('id')
     if select==0:
         # 抓出此user的未分享行程資料
         my_history = Create_Travel.objects.filter(u_id=user_id,status=False).order_by('id').values()

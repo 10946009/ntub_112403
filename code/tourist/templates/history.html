@@ -256,11 +256,20 @@
         </div>
       </div>
       {% empty %}
-        <div style="text-align:left;margin-left:0px;">
-          <h4 class="mytravel_txt_title" >目前還沒有行程！</h4>
-          {% comment %} <h6><a href="/createindex" class="shareFilter_btn all_travel">建立行程</a><h6> {% endcomment %}
-        </div>
-        <a href="/createindex" class="createbtn">建立行程</a>
+        {% if all_ct %}
+          <div style="text-align:left;margin-left:0px;">
+            {% comment %} <h4 class="mytravel_txt_title" >篩選到0筆資料！</h4> {% endcomment %}
+            <h4 class="mytravel_txt_title" >目前無資料！</h4>
+            {% comment %} <h6><a href="/createindex" class="shareFilter_btn all_travel">建立行程</a><h6> {% endcomment %}
+          </div>
+        {% else %}
+          <div style="text-align:left;margin-left:0px;">
+            <h4 class="mytravel_txt_title" >目前還沒有行程！</h4>
+            {% comment %} <h6><a href="/createindex" class="shareFilter_btn all_travel">建立行程</a><h6> {% endcomment %}
+          </div>
+          <a href="/createindex" class="createbtn">建立行程</a>
+        {% endif %}
+        
       {% endfor %}
     </div>
     <!-- 這邊好像抓不到id名稱所以JS不會動 -->
