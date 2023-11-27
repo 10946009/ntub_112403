@@ -7,10 +7,14 @@ from datetime import datetime
 
 # 行程詳細頁面
 def travel_detail(request,ctid):
-    
     if ctid != None:
         u_id = request.user.id
         ct_detail = Create_Travel.objects.get(id=ctid)
+        if TravelFavorite.objects.filter(u_id=u_id, ct_id=ctid).exists():
+            ct_detail.is_favorite = "1"
+        else:
+            ct_detail.is_favorite = "0"
+
         date_string = ct_detail.start_day
         date_object = datetime.strptime(date_string, '%Y-%m-%d')
         # 使用 %u 取得星期的數字表示（1 表示星期一，2 表示星期二，以此類推，7 表示星期日）
