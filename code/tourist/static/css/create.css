@@ -1192,15 +1192,17 @@ main {
 .order-green-circle {
     color: green;
     text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
-    
+    font-size:25px
   }
 
   .order-orange-circle {
     color: orange;
     text-shadow: 0 0 10px rgba(255, 165, 0, 0.7);
+    font-size:25px
   }
 
   .order-red-circle {
     color: red;
     text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    font-size:25px
   }
