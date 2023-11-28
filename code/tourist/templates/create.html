@@ -92,7 +92,13 @@
         <div class="list" id="orderAttractions-{{ day }}" style="cursor: pointer;overflow-y: auto;">
           {% include 'create_order_attractions.html' %}
         </div>
-        <div id="RemainderAttractions"></div>
+        <div id="RemainderAttractions">
+          <div class="hr_container"><hr></div>
+          <div>
+            <!-- 先放排序的資料進去 -->
+            {% include 'create_order_attractions.html' %}
+          </div>
+        </div>
 
         
       </div>
