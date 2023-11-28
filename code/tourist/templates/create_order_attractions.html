@@ -7,9 +7,10 @@
       <div class="col-4 doneSpotImgDiv">
         <a href="#" class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickeInfo(event,{{ data.detail.id }})"></a> 
         <!-- 抓你們的照片 -->
-        <img src="../static/images/cake01.jpg" class="img-responsive doneSpotImg"  alt="">
+        <img src="../static/images/attractions/{{data.detail.place_id}}_0.jpg" class="img-responsive doneSpotImg"  alt="">
       </div>
-      <div class="col-8 blockTxt"><p class="spotOkName">{{ data.detail.a_name }}</p>
+      <div class="col-8 blockTxt">
+        <p class="spotOkName">{{ data.detail.a_name }}</p>
         <p id="hiddenId" style="display: none;">{{ data.detail.id }}</p>
         <p class="spotOk spotOkCrowd">當下可能的人潮流量：{{ data.crowd_list }}% <span class="order-{% if data.crowd_avg <= 35 %}green{% elif data.crowd_avg <= 65 %}orange{% elif data.crowd_avg <= 100 %}red{% endif %}-circle">●</span><br>
         <p class="spotOk spotOkTime">營業時間：
@@ -39,9 +40,10 @@
       <div class="col-4 doneSpotImgDiv">
         <a href="#" class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickeInfo(event,{{ o.final_result_list.id }})"></a>
         <!-- 抓你們的照片 -->
-        <img src="../static/images/cake01.jpg" class="img-responsive doneSpotImg" alt="">
+        <img src="../static/images/attractions/{{o.detail.place_id}}_0.jpg" class="img-responsive doneSpotImg" alt="">
       </div>
-      <div class="col-8 blockTxt"><p class="spotOkName">{{ o.final_result_list.a_name }}</p>
+      <div class="col-8 blockTxt">
+        <p class="spotOkName">{{ o.final_result_list.a_name }}</p>
         <p id="hiddenId" style="display: none;">{{ o.final_result_list.id }}</p>
         <p class="spotOk spotOkCrowd">當下可能的人潮流量：{{ o.final_crowd_list }}% <span class="order-{% if o.final_crowd_avg <= 35 %}green{% elif o.final_crowd_avg <= 65 %}orange{% elif o.final_crowd_avg <= 100 %}red{% endif %}-circle">●</span><br>
         <p class="spotOk spotOkTime">營業時間：
