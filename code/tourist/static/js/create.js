@@ -471,10 +471,9 @@ function InputRemainderOrder(num){
   blocksOrder[globalDay].push(blocksOrder[globalDay].length+1);
   remainder_attractions.id = 'blockDone'+blocksOrder[globalDay].length;
   const originalButtonLayout = remainder_attractions.querySelector('.blockBtnLayout');
-  originalButtonLayout.innerHTML = `      <div class="blockBtnLayout">
+  originalButtonLayout.innerHTML = `
   <button class="controlBtn btn_up" onclick="moveBlock('${blocksOrder[globalDay].length}', 'up')"><i class="fa-solid fa-angle-up"></i></button>
-  <button class="controlBtn btn_down" onclick="moveBlock('${blocksOrder[globalDay].length}', 'down')"><i class="fa-solid fa-angle-up fa-rotate-180"></i></button>
-</div>`
+  <button class="controlBtn btn_down" onclick="moveBlock('${blocksOrder[globalDay].length}', 'down')"><i class="fa-solid fa-angle-up fa-rotate-180"></i></button>`
   order_attractions_detail_div.appendChild(remainder_attractions);
   rearrangeBlocks();
 };
