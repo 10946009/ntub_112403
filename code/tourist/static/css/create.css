@@ -504,6 +504,7 @@ main {
     margin: 10px auto;
     display: flex;
     position: relative;
+    transition: all 0.3s ease; /* 使用 CSS transition 實現動畫效果 */
 }
 
 .spotOkName {
