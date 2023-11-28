@@ -8,6 +8,7 @@ function startRecommend(user_location,day){
       data: {
           user_location: user_location,
           nowtime: nowtime.value,
+          globalDay: globalDay,
           ct_status: 0,
       },
       success: function (response) {
@@ -37,6 +38,7 @@ function similarRecommend(){
         data: {
             aid_list: aid_list,
             nowtime: nowtime.value,
+            globalDay: globalDay,
             ct_status: 1,
         },
         beforeSend: function () {
@@ -71,6 +73,7 @@ function submitRecommend(){
       data: {
           total_aid_list: total_aid_list,
           nowtime: nowtime.value,
+          globalDay: globalDay,
           ct_status: 2,
       },
       beforeSend: function () {
