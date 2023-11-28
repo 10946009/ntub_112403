@@ -1,7 +1,7 @@
 
 
 <div class="openDetailDiv" id="details{{ item.my_history.id }}">
-    <div style="padding: 0 5px;">
+    <div class="openDetailDivBasic">
       <div style="height: 40px;">
         <span style="font-size: 18px;line-height: 40px;font-weight: bold;">{{data.ct_name}}</span>
       </div>
@@ -15,39 +15,37 @@
         
       </div>
     </div>
-    <div>
-      <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
-        <div class="carousel-inner">
-          <!-- 圖片要幫忙抓他選到景點的圖 -->
-          {% for img in data.get_attractions_picture %}
-          {% if forloop.counter == 1 %}
-          <div class="carousel-item active historyCarousel">
-            <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="img-responsive historyCarouselImg" width="100%" alt="">
-          </div>
-          {% else %}
-          <div class="carousel-item historyCarousel">
-            <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="img-responsive historyCarouselImg" width="100%" alt="">
-          </div>
-          {% endif %}
-          {% empty %}
-          <div class="carousel-item active historyCarousel">
-            <img src="/static/images/att_picture.png" class="img-responsive historyCarouselImg" width="100%" alt="">
-          </div>
-          {% endfor %}
+    <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
+      <div class="carousel-inner">
+        <!-- 圖片要幫忙抓他選到景點的圖 -->
+        {% for img in data.get_attractions_picture %}
+        {% if forloop.counter == 1 %}
+        <div class="carousel-item active historyCarousel">
+          <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="img-responsive historyCarouselImg" width="100%" alt="">
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide"
-          data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide"
-          data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-        <div class="imgCounter" id="imgCounter">
-          <!-- JS裡面顯示目前是第幾張 -->
+        {% else %}
+        <div class="carousel-item historyCarousel">
+          <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="img-responsive historyCarouselImg" width="100%" alt="">
         </div>
+        {% endif %}
+        {% empty %}
+        <div class="carousel-item active historyCarousel">
+          <img src="/static/images/att_picture.png" class="img-responsive historyCarouselImg" width="100%" alt="">
+        </div>
+        {% endfor %}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+      <div class="imgCounter" id="imgCounter">
+        <!-- JS裡面顯示目前是第幾張 -->
       </div>
     </div>
 

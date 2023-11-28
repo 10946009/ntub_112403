@@ -106,9 +106,9 @@
   </div>
   <!--資料庫有東西就會顯示-->
 
-  <div class="row" style="width: 100%;margin: 0 auto;">
-    <div class="col-lg-6" style="padding: 0 5px;">
-      {% for item in all_data %}
+  <div class="contentContainer" style="width: 100%;margin: 0 auto;">
+    <div class="detailLeft">
+    {% for item in all_data %}
       <div class="row mytravel">
         <!--照片(先預設為第一個景點的照片)-->
         <div class="col-md-5 mytravel_img">
@@ -252,24 +252,24 @@
         </div>
       </div>
       {% empty %}
-        {% if all_ct %}
-          <div style="text-align:left;margin-left:0px;">
-            <h4 class="mytravel_txt_title" >篩選到0筆資料！</h4>
-            {% comment %} <h4 class="mytravel_txt_title" >目前無資料！</h4> {% endcomment %}
-            {% comment %} <h6><a href="/createindex" class="shareFilter_btn all_travel">建立行程</a><h6> {% endcomment %}
-          </div>
-        {% else %}
-          <div style="text-align:left;margin-left:0px;">
-            <h4 class="mytravel_txt_title" >目前還沒有行程！</h4>
-            {% comment %} <h6><a href="/createindex" class="shareFilter_btn all_travel">建立行程</a><h6> {% endcomment %}
-          </div>
-          <a href="/createindex" class="createbtn">建立行程</a>
-        {% endif %}
+      {% if all_ct %}
+        <div style="text-align:left;margin-left:0px;">
+          <h4 class="mytravel_txt_title" >篩選到0筆資料！</h4>
+          {% comment %} <h4 class="mytravel_txt_title" >目前無資料！</h4> {% endcomment %}
+          {% comment %} <h6><a href="/createindex" class="shareFilter_btn all_travel">建立行程</a><h6> {% endcomment %}
+        </div>
+      {% else %}
+        <div style="text-align:left;margin-left:0px;">
+          <h4 class="mytravel_txt_title" >目前還沒有行程！</h4>
+          {% comment %} <h6><a href="/createindex" class="shareFilter_btn all_travel">建立行程</a><h6> {% endcomment %}
+        </div>
+        <a href="/createindex" class="createbtn">建立行程</a>
+      {% endif %}
         
-      {% endfor %}
+    {% endfor %}
     </div>
     <!-- 這邊好像抓不到id名稱所以JS不會動 -->
-    <div class="col-lg-6" style="margin-top: 10px;" id="changeHistory">
+    <div class="detailRight" id="changeHistory">
       {% comment %} 拆分到histry_detail了 {% endcomment %}
     </div>
 
