@@ -10,7 +10,7 @@
       <div class="checkspottxt" style="border: 1px solid #ccc;">
         <p style="text-align: center;padding: 5px;margin-bottom: 5px;">{{ item.a_name }}</p>
         <span>評價：{{ item.rating}}</span><br>
-        {% comment %} <span>營業時間：{{r.crow_opening_list.opening.0}}</span> {% endcomment %}
+        <span>營業時間： {% for open in item.opening %}{% if forloop.counter == 1 %}{{open}}{% else %},{{open}}{% endif %}{% endfor %}</span>
       </div>
 
     </label>

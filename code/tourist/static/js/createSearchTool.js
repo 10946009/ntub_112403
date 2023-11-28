@@ -127,6 +127,7 @@ function autocomplete(inp, arr) {
 
 // 用來刷新搜尋結果的function
 function searchText(search_text, data_type) {
+  week = document.getElementById("week"+globalDay).value;
   const day_label = document.getElementsByClassName("tab-pane fade active show");
   const day = day_label[0].getAttribute('dataset');
   // data_type= keyword_search,tag_search,popular_search
@@ -138,6 +139,7 @@ function searchText(search_text, data_type) {
       data: {
           search_text: search_text,  // 傳遞給伺服器的參數，以 a_id 為名
           data_type: data_type,
+          week: week,
       },
       success: function (response) {
         console.log(response);
