@@ -251,6 +251,9 @@ function pickspotBottom(aid) {
     console.log(e);
   }
 
+  const done_div = document.getElementById('done-' + globalDay);
+  const order_element = done_div.querySelector('.spot[data-id="' + aid + '"]');
+  order_element.remove();
   inputBottom();
 }
 var heart = document.getElementsByClassName('heart_icon');
