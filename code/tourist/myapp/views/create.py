@@ -62,6 +62,8 @@ def create(request, ct_id):
         apikey = GOOGLE_PLACES_API_KEY   #記得一定要打開!!!!!!!!!!!!!!!!!!!!!!!!!(API在這!)
     except:
         apikey = None
+    apikey = None
+    print("apikey",apikey)
     travelday = range(1, ct_data.travel_day + 1)
     name = ct_data.ct_name
     start_day = ct_data.start_day
