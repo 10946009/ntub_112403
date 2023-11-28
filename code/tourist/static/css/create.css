@@ -43,6 +43,9 @@
     color: black;
     text-shadow: 3px 3px 3px rgb(91, 91, 91);
 }
+#createDate{
+    width: 100%;
+}
 
 .enterbtn {
     display: block;
