@@ -193,6 +193,20 @@
                 transform: scale(1);
             }
         }
+        /* CSS for screens less than 768px */
+@media screen and (max-width: 767px) {
+    .rowContainer .col-6 {
+        width: 100% !important;
+    }
+}
+
+/* CSS for screens 768px and above */
+@media screen and (min-width: 768px) {
+    .rowContainer .col-6 {
+        width: 50% !important;
+    }
+}
+
     </style>
 </head>
 
@@ -349,9 +363,9 @@
         <div class="modal" id="myModal">
             <div class="modal-content">
                 <span class="close" onclick="clickClose()">&times;</span>
-                <div id = "changeInfo">
+                <div id="changeInfo">
                     {% include "attractions_info.html" %}
-                  </div>
+                </div>
             </div>
         </div>
     </main>
@@ -372,10 +386,170 @@
         </div>
     </div>
     <div class="overlay" id="overlay"></div>
+
+
+    <div class="rowContainer" style="width: 85%;margin: 0 auto;">
+        <div class="row">
+            <div class="col-6" style="border: 1px solid black;padding: 0;height: 250px;">
+                i am left block
+                <button class="openRight" id="openRight1" onclick="openRight(this)">詳細行程</button>
+                <button class="closeRight" id="closeRight1" onclick="closeRight(this)"
+                    style="display: none;">關閉行程</button>
+            </div>
+            <div class="col-6 rightsection" id="right1"
+                style="border: 1px solid black;padding: 0;height: 250px;display: none;">
+                i am right block
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6" style="border: 1px solid black;padding: 0;height: 250px;">
+                i am left block2
+                <button class="openRight" id="openRight2" onclick="openRight(this)">詳細行程</button>
+                <button class="closeRight" id="closeRight2" onclick="closeRight(this)"
+                    style="display: none;">關閉行程</button>
+            </div>
+            <div class="col-6 rightsection" id="right2"
+                style="border: 1px solid black;padding: 0;height: 250px;display: none;">
+                i am right block
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="clickClose()">&times;</span>
+            <div class="modal-body">
+                <!-- 这里是用于显示内容的容器 -->
+            </div>
+        </div>
+    </div>
     <script src="../static/js/jquery-3.7.0.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
     <script src="../static/js/owl.carousel.min.js"></script>
     <script>
+// function openRight(button) {
+//     var buttonId = button.id;
+//     var rightId = buttonId.replace("openRight", "right");
+//     var specificRightBlock = document.getElementById(rightId);
+
+//     if (specificRightBlock) {
+//         var allRightBlocks = document.querySelectorAll('.rightsection');
+//         allRightBlocks.forEach(function (block) {
+//             if (block.id !== rightId) {
+//                 block.style.display = 'none';
+//                 var relatedOpenButtonId = block.id.replace("right", "openRight");
+//                 var relatedOpenButton = document.getElementById(relatedOpenButtonId);
+//                 if (relatedOpenButton) {
+//                     relatedOpenButton.style.display = 'inline-block';
+//                     var relatedCloseButtonId = block.id.replace("right", "closeRight");
+//                     var relatedCloseButton = document.getElementById(relatedCloseButtonId);
+//                     if (relatedCloseButton) {
+//                         relatedCloseButton.style.display = 'none';
+//                     }
+//                 }
+//             }
+//         });
+
+//         var otherOpenButtons = document.querySelectorAll('.openRight:not(#' + buttonId + ')');
+//         otherOpenButtons.forEach(function (btn) {
+//             btn.style.display = 'inline-block';
+//         });
+
+//         button.style.display = 'none';
+//         specificRightBlock.style.display = 'block';
+
+//         var closeButtonId = buttonId.replace("openRight", "closeRight");
+//         var closeButton = document.getElementById(closeButtonId);
+//         if (closeButton) {
+//             closeButton.style.display = 'inline-block';
+//         }
+//     }
+// }
+
+function openRight(button) {
+    var buttonId = button.id;
+    var rightId = buttonId.replace("openRight", "right");
+    var specificRightBlock = document.getElementById(rightId);
+
+    if (specificRightBlock) {
+        var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        
+
+        if (screenWidth < 768) {
+            var modalContent = specificRightBlock.innerHTML; // 获取右侧区块的内容
+
+            var modal = document.getElementById('myModal');
+            var modalBody = document.querySelector('.modal-body');
+            modalBody.innerHTML = modalContent;
+
+            modal.classList.add('active');
+        } else {
+            var allRightBlocks = document.querySelectorAll('.rightsection');
+            allRightBlocks.forEach(function (block) {
+                if (block.id !== rightId) {
+                    block.style.display = 'none';
+                    var relatedOpenButtonId = block.id.replace("right", "openRight");
+                    var relatedOpenButton = document.getElementById(relatedOpenButtonId);
+                    if (relatedOpenButton) {
+                        relatedOpenButton.style.display = 'inline-block';
+                        var relatedCloseButtonId = block.id.replace("right", "closeRight");
+                        var relatedCloseButton = document.getElementById(relatedCloseButtonId);
+                        if (relatedCloseButton) {
+                            relatedCloseButton.style.display = 'none';
+                        }
+                    }
+                }
+            });
+
+            var otherOpenButtons = document.querySelectorAll('.openRight:not(#' + buttonId + ')');
+            otherOpenButtons.forEach(function (btn) {
+                btn.style.display = 'inline-block';
+            });
+
+            button.style.display = 'none';
+            specificRightBlock.style.display = 'block';
+
+            var closeButtonId = buttonId.replace("openRight", "closeRight");
+            var closeButton = document.getElementById(closeButtonId);
+            if (closeButton) {
+                closeButton.style.display = 'inline-block';
+            }
+        }
+    }
+}
+
+
+
+
+function closeRight(button) {
+    var buttonId = button.id;
+    var rightId = buttonId.replace("closeRight", "right");
+    var specificRightBlock = document.getElementById(rightId);
+
+    if (specificRightBlock) {
+        specificRightBlock.style.display = 'none';
+
+        var openButtonId = buttonId.replace("closeRight", "openRight");
+        var openButton = document.getElementById(openButtonId);
+        if (openButton) {
+            openButton.style.display = 'inline-block';
+        }
+
+        button.style.display = 'none';
+
+        // 重置其他"詳細行程"按鈕的顯示狀態
+        var otherOpenButtons = document.querySelectorAll('.openRight');
+        otherOpenButtons.forEach(function (btn) {
+            btn.style.display = 'inline-block';
+        });
+    }
+}
+
+
+
+
+
+
+
 
         const rightBtn = document.getElementById('showRight');
         const rightDiv = document.getElementById('rightDiv');
