@@ -370,7 +370,7 @@ def create(request, ct_id):
                         choice_ct_id=choice_ct_id,
                     )
                     ct.save()
-                    new_nowtime += 150
+                    new_nowtime += duration + staytime
             else:
                 Attractions_Ct.objects.filter(choice_ct_id=choice_ct_id).delete() #為空就刪除資料
 

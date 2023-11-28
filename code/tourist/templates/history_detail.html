@@ -70,13 +70,20 @@
                   {% for a_data in data.ct_attraction %}
                   {{a_data.a_id.start_location_y}}
                     {% if forloop.counter == 1 %}
-                      <a href="https://www.google.com/maps/dir/{{a_data.choice_ct.start_location_x}},{{a_data.choice_ct.start_location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;height:300px;line-height:300px;margin:0 10px;">
+                    <div class="car_time">
+                      <a href="https://www.google.com/maps/dir/{{a_data.choice_ct.start_location_x}},{{a_data.choice_ct.start_location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;">
                         <i class="fa-solid fa-car-side car_icon"></i>
                       </a>
+                      <p>約<br> {{ a_data.distance_time }}<br>分鐘</p>
+                    </div>
+                    
                     {% else %}
-                      <a href="https://www.google.com/maps/dir/{{a_data.get_previous.a.location_x}},{{a_data.get_previous.a.location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;height:300px;line-height:300px;margin:0 10px;">
-                        <i class="fa-solid fa-car-side car_icon"></i>
-                      </a>
+                      <div class="car_time">
+                        <a href="https://www.google.com/maps/dir/{{a_data.get_previous.a.location_x}},{{a_data.get_previous.a.location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;">
+                          <i class="fa-solid fa-car-side car_icon"></i>
+                        </a>
+                        <p>約<br> {{ a_data.distance_time }}<br>分鐘</p>
+                      </div>
                     {% endif %}
                     <div class="dayContentIntro" style="text-align: center;">
                         <p style="font-size: 20px;"><b>{{a_data.a.a_name}}</b></p>
