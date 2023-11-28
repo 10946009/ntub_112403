@@ -76,6 +76,7 @@ function submitRecommend(){
       beforeSend: function () {
         console.log("请求发送中...");
         order_attractions_detail_div.html("<div>正在排序中...</div>");
+        remainder_attractions_detail_div.html("");
     },
       success: function (response) {
         console.log(response);
