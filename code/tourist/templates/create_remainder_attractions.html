@@ -1,0 +1,31 @@
+{% for o in remainder_attractions_data %}
+  {% if forloop.counter == 1 %}
+  <div class="hr_container"><hr></div>
+  {% endif %}
+  <div class="spot innerlist" id="remainder-{{forloop.counter}}" data-id="{{ o.final_result_list.id }}" data-stay="{% if o.final_result_list.stay_time == 0 %}150{% else %}{{ o.final_result_list.stay_time }}{% endif %}">
+    <div class="tempXdiv" onclick="pickspotBottom({{ o.final_result_list.id }})"><i class="fa-solid fa-xmark tempX_icon"></i></div>
+    <div class="row doneSpotDiv">
+      <div class="col-4 doneSpotImgDiv">
+        <a href="#" class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickeInfo(event,{{ o.final_result_list.id }})"></a>
+        <!-- 抓你們的照片 -->
+        <img src="../static/images/attractions/{{o.final_result_list.place_id}}_0.jpg" class="img-responsive doneSpotImg" alt="">
+      </div>
+      <div class="col-8 blockTxt">
+        <p class="spotOkName">{{ o.final_result_list.a_name }}</p>
+        <p id="hiddenId" style="display: none;">{{ o.final_result_list.id }}</p>
+        <p class="spotOk spotOkTime">營業時間：
+          {% for time in o.final_crow_opening_list.opening %}
+            {% if forloop.counter != 1 %},{% endif %}
+            {{ time }}
+          {% endfor %}
+        </p>
+        <p class="spotOk spotOkStay">建議停留時間：{% if o.final_result_list.stay_time == 0 %}150{% else %}{{ o.final_result_list.stay_time }}{% endif %} 分鐘</p>
+        </div>
+    </div>
+    <div class="blockBtn">
+      <div class="blockBtnLayout">
+        <button class="controlBtn btn_up" onclick="InputRemainderOrder({{forloop.counter}})"><i class="fa-solid fa-angle-up"></i></button>
+    </div>
+  </div>
+</div>
+{% endfor %}

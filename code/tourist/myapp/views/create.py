@@ -237,21 +237,18 @@ def create(request, ct_id):
             # ------剩餘的
             final_remainder_result_list = []
             final_remainder_crow_opening_list = []
-            try:
-                for fr in final[1]:
-                    temp_r = Attractions.objects.filter(place_id=fr).values().first()
-                    final_remainder_result_list.append(temp_r)
-
-                for i in final_remainder_result_list:
-                    fr_db = (
-                        Crowd_Opening.objects.filter(Q(week=week) & Q(a_id=i["id"]))
-                        .values()
-                        .first()
-                    )
-                    final_remainder_crow_opening_list.append(fr_db)
-                # final_remainder_result_list = list(final_remainder_result_list)
-            except:
-                pass
+            for fr in final[1]:
+                temp_r = Attractions.objects.filter(id=fr).values().first()
+                final_remainder_result_list.append(temp_r)
+            for i in final_remainder_result_list:
+                print(i)
+                fr_db = (
+                    Crowd_Opening.objects.filter(Q(week=week) & Q(a_id=i["id"]))
+                    .values()
+                    .first()
+                )
+                final_remainder_crow_opening_list.append(fr_db)
+            # final_remainder_result_list = list(final_remainder_result_list)
 
             final_now_time_list = final[2]
             # ------------
@@ -285,15 +282,20 @@ def create(request, ct_id):
                 })
             for frr,frc in zip(final_remainder_result_list,final_remainder_crow_opening_list):
                 remainder_attractions_data.append({
-                'final_remainder_result_list':frr,
-                'final_remainder_crow_opening_list':frc,
+                'final_result_list':frr,
+                'final_crow_opening_list':frc,
             })
             #轉成html
             html = render_to_string(
                 template_name="create_order_attractions.html",
-                context={"order_attractions_data": order_attractions_data,'remainder_attractions_data':remainder_attractions_data,'final_now_time_list':final_now_time_list},
+                context={"order_attractions_data": order_attractions_data,'final_now_time_list':final_now_time_list},
             )
-            data_dict = {"order_attractions": html}
+            html2 = render_to_string(
+                template_name="create_remainder_attractions.html",
+                context={'remainder_attractions_data':remainder_attractions_data},
+            )
+
+            data_dict = {"order_attractions": html,"remainder_attractions":html2}
             
             return JsonResponse(data=data_dict, safe=False)
 

@@ -63,6 +63,8 @@ function submitRecommend(){
 
   const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
   const order_attractions_detail_div = $('#orderAttractions-'+ globalDay );
+  const remainder_attractions_detail_div = $('#RemainderAttractions-'+ globalDay );
+  console.log(remainder_attractions_detail_div);
   $.ajax({
       type: "POST",
       headers: { 'X-CSRFToken': csrftoken },
@@ -78,6 +80,7 @@ function submitRecommend(){
       success: function (response) {
         console.log(response);
         order_attractions_detail_div.html(response['order_attractions']);
+        remainder_attractions_detail_div.html(response['remainder_attractions']);
         checkAndAddClass();
         blocksOrderInit();
       },
