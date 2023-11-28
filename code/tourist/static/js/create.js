@@ -229,6 +229,20 @@ function pickspot(checkbox, aid) {
     inputBottom();
   }
 }
+function order_delete(aid) {
+  const done_div = document.getElementById('done-' + globalDay);
+  const order_element = done_div.querySelector('.spot[data-id="' + aid + '"]');
+  if (order_element.id.includes('blockDone')) {
+    const order_id =parseInt(order_element.id.match(/\d+/)[0]);
+    let index = blocksOrder[globalDay].indexOf(order_id);
+    
+    if (index !== -1) {
+      blocksOrder[globalDay].splice(index, 1);
+    }
+  }
+  order_element.remove();
+  pickspotBottom(aid)
+}
 
 // pick spot 刪除下面戰存的景點時
 function pickspotBottom(aid) {
@@ -251,9 +265,6 @@ function pickspotBottom(aid) {
     console.log(e);
   }
 
-  const done_div = document.getElementById('done-' + globalDay);
-  const order_element = done_div.querySelector('.spot[data-id="' + aid + '"]');
-  order_element.remove();
   inputBottom();
 }
 var heart = document.getElementsByClassName('heart_icon');
@@ -447,7 +458,7 @@ function updateBlockPositions(updivID,downdivID) { //移動動畫往上
       return;
     }
     // draw the animation at the moment timePassed
-    draw(timePassed**0.5*25); //有曲線的移動
+    draw(timePassed**0.5*19); //有曲線的移動
   }, 20);
 
   setTimeout(reset, 1000);

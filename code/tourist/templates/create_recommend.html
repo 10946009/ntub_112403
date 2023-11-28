@@ -1,6 +1,6 @@
 <div class="owl-carousel owl-theme">
 {% for r in recommend_data %}
-  <div class="item checkimg_div" onclick="pickspot(this,{{ r.m_list.id }})">
+  <div class="item checkimg_div" onclick="order_delete(this,{{ r.m_list.id }})">
     <label type="checkbox" name="variety" value="{{r.m_list.id}}" class="imgcheck" style="margin: 0;padding: 0;border: 0;" >
       <span class="checkspot">
         <img src="../static/images/attractions/{{r.m_list.place_id}}_0.jpg" class="img-responsive" width="100%" alt="">

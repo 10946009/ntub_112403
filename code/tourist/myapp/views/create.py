@@ -225,7 +225,7 @@ def create(request, ct_id):
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
             final = final_order(
-                list(map(int,o_attractions_list)), new_nowtime, week, stay_time, user_favorite_type
+                list(map(int,o_attractions_list)), new_nowtime, week, user_favorite_type
             )
             # print('final,我在這!!!!!!!!!!!!!!!!',final)
             # ------主要的
