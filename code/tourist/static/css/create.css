@@ -437,8 +437,28 @@ main {
     position: relative;
 }
 
+.doneSpotDiv{
+    width: 95%;
+}
+.doneSpotImgDiv{
+    /* width: 100%; */
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.doneSpotImgDiv .doneSpotImg {
+    width: 95%; 
+    height: 100%; 
+    object-fit: cover;
+    position: absolute;
+    right: 0;
+    padding: 0;
+    border-radius: 20px;
+    z-index: -1;
+}
+
 .blockTxt {
-    width: 90%;
+    /* width: 90%; */
     position: relative;
 }
 
@@ -1138,7 +1158,14 @@ main {
         height: 30px;
     }
 
+    .doneSpotDiv .doneSpotImgDiv{
+        width: 50% !important;
+    }
+    .doneSpotDiv .blockTxt{
+        width: 50% !important;
+    }
     .innerlist {
+        height: auto;
         width: 95%;
     }
 }
