@@ -208,37 +208,35 @@
 
   <!-- show similar and choosed section -->
   <div class="right" id="rightDiv" >
-      <button id="showRight" class="showRight_btn" onclick="showRightDiv()">
-        <i class="fa-solid fa-chevron-left"></i><br>
-        <!-- 已選擇 -->
-      </button>
-      <div class="rightDiv">
-        <div>
-          <div class="checkDiv">
-            <i class="fa-solid fa-check checked_icon"></i>
-            <span class="checked_txt" >已選景點</span>
+    <button id="showRight" class="showRight_btn" onclick="showRightDiv()">
+      <i class="fa-solid fa-chevron-left"></i><br>
+      <!-- 已選擇 -->
+    </button>
+    <div class="rightDiv">
+      <div>
+        <div class="checkDiv">
+          <i class="fa-solid fa-check checked_icon"></i>
+          <span class="checked_txt" >已選景點</span>
+        </div>
+        <div class="align" id="bottomAttraction">
+            <!-- be choosed -->
+        </div>
+        <hr class="rightHr">
+        <div style="position: relative;">
+          <div class="renew" onclick="similarRecommend()">
+            <span>更新</span>
           </div>
-          <div class="align" id="bottomAttraction">
-              <!-- be choosed -->
+          <div class="s_recDiv">
+            <span class="similar_icon">&asymp;</span>
+            <span class="s_rec_txt" >相似景點推薦</span>
           </div>
-          <hr class="rightHr">
-          <div style="position: relative;">
-            <div class="renew" onclick="similarRecommend()">
-              <span>更新</span>
-            </div>
-            <div class="s_recDiv">
-              <span class="similar_icon">&asymp;</span>
-              <span class="s_rec_txt" >相似景點推薦</span>
-            </div>
-            <div class="openSimilar"id="SimilarRecommend">
-              {% include "create_similar_recommend.html" %}
-            </div>
-            <!-- <a href="#recommend-tab" class="tab_a submit1" id="clickLikeAttractions"> -->
-              <button class="recommend_submit1" id="clickLikeAttractions" onclick="submitAction2()" value="送出">送出</button>
-            <!-- </a> -->
+          <div class="openSimilar"id="SimilarRecommend">
+            {% include "create_similar_recommend.html" %}
           </div>
         </div>
       </div>
+    </div>
+    <button class="recommend_submit1" id="clickLikeAttractions" onclick="submitAction2()" value="送出">送出</button>
   </div>
   <div class="overlayBg" id="overlayBg"></div>
 </main>
