@@ -790,7 +790,7 @@ main {
 
 .pickimg {
     padding: 0;
-    border: 2px solid red;
+    border: 3px solid red;
     /* transform: scale(0.9); */
 }
 
