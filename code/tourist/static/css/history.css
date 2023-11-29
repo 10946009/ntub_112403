@@ -4,7 +4,9 @@ body {
     background-size: cover;
     background-attachment: fixed;
 }
-
+/* .noScroll{
+    overflow: hidden !important;
+} */
 .container {
     width: 95%;
     margin: 80px auto;
@@ -258,6 +260,12 @@ body {
     display: none;
 }
 
+.dayDoneSection{
+    height: auto;
+}
+.commentArea{
+    clear: both;
+}
 .closeDetail_icon {
     display: block;
     position: sticky;
@@ -283,6 +291,7 @@ body {
 
 .aboutDiv {
     padding-bottom: 10px;
+    user-select: none;
 }
 
 .filter {
@@ -290,6 +299,8 @@ body {
     padding: 5px 10px;
     background-color: rgb(51, 125, 254);
     border-radius: 30px;
+    margin: 5px;
+    white-space: nowrap;
 }
 
 .addCommentBtn {
