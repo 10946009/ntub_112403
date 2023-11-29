@@ -258,11 +258,26 @@ body {
     display: none;
 }
 
+.closeDetail_icon {
+    display: block;
+    position: sticky;
+    padding: 10px;
+    float: right;
+    z-index: 5;
+    cursor: pointer;
+}
+
+.closeDetail_icon:hover {
+    color: red;
+}
+
 .openDetailDivBasic {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     padding: 0 5px;
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 4;
     background-color: rgba(245, 245, 220, 0.5);
 }
 
@@ -622,9 +637,15 @@ body {
     .basicButton {
         width: 20%;
     }
-    .detailLeft{
+
+    .detailLeft {
         width: 100% !important;
     }
+
+    .openDetailDiv {
+        width: 85% !important;
+    }
+
 }
 
 @media (max-width: 576px) {
