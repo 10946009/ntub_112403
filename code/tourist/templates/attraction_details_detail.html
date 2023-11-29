@@ -1,3 +1,4 @@
+{% if detail %}
 <div class="row">
     <div class="col-1"></div>
     <div class="col-10">
@@ -275,8 +276,8 @@
                             </div>
                             <div class="detail_near__headerGrid">
                                 <h4 data-bottom-top="transform: translateY(-20px);opacity: 0"
-                                    data-center="transform: translateY(0px);opacity: 1" data-a-Id="{{ item.id }}"
-                                    onclick="showInfo({{ item.id }})">
+                                    data-center="transform: translateY(0px);opacity: 1" data-a-Id="{{ detail.id }}"
+                                    onclick="showInfo({{ detail.id }})">
                                     {{item.a_name }}</h3>
                                     <!-- 星星數 -->
                                     <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
@@ -1867,3 +1868,4 @@
         }
     });
 </script>
+{% endif %}

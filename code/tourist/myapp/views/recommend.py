@@ -8,7 +8,7 @@ from sklearn.preprocessing import MinMaxScaler
 from myapp.models import *
 from .viewsConst import GOOGLE_PLACES_API_KEY
 from .check_opening import check_opening
-from .check_distance import check_distance
+from .check_distance import check_distance_placeid
 from django.db.models import F,Q,Count
 
 # ------------------------------------第1步驟(推薦周遭景點)
@@ -24,7 +24,7 @@ def recommend(user_favorite, now_time, get_user_address, day, stay_time):
     # o_db = Attractions.objects.get(place_id=o)
     # o_crowd_opening = o_db.crowd_opening_set.filter(week=week).values()
 
-    get_all_attractions = check_distance(
+    get_all_attractions = check_distance_placeid(
         get_user_address, check_opening(now_time, week, stay_time)
     )
     # print("get_all_attractions",len(get_all_attractions))
@@ -37,21 +37,21 @@ def recommend(user_favorite, now_time, get_user_address, day, stay_time):
         return m_attractions_list
     locations = {"lat": get_user_address[0], "lng": get_user_address[1]}
     # -------------------------------------發送距離矩陣請求
-    for a_id in get_all_attractions:
-        response = client.distance_matrix(
-            origins=locations,  # 使用者位置
-            destinations=(a_id[1], a_id[2]),  # 目的地
-            mode="driving",  # 開車
-            units="metric",  # 公里
-            avoid="highways",  # 限制沒有高速公路
-            language="zh-TW",
-        )
-        distance = response["rows"][0]["elements"][0]["distance"]["text"]
-        duration = response["rows"][0]["elements"][0]["duration"]["text"]
-        duration_value = response["rows"][0]["elements"][0]["duration"]["value"]
-        if duration_value <= 1800:  # 30分鐘
-            m_attractions_list.append([a_id[0], distance, duration])
-
+    # for a_id in get_all_attractions:
+    #     response = client.distance_matrix(
+    #         origins=locations,  # 使用者位置
+    #         destinations=(a_id[1], a_id[2]),  # 目的地
+    #         mode="driving",  # 開車
+    #         units="metric",  # 公里
+    #         avoid="highways",  # 限制沒有高速公路
+    #         language="zh-TW",
+    #     )
+    #     distance = response["rows"][0]["elements"][0]["distance"]["text"]
+    #     duration = response["rows"][0]["elements"][0]["duration"]["text"]
+    #     duration_value = response["rows"][0]["elements"][0]["duration"]["value"]
+    #     if duration_value <= 1800:  # 30分鐘
+    #         m_attractions_list.append([a_id[0], distance, duration])
+    m_attractions_list = [[x] for x in get_all_attractions]
     m_id = [
         Attractions.objects.get(place_id=x[0]).id for x in m_attractions_list
     ]  # name的List
@@ -144,7 +144,7 @@ def recommend_maybe(userid):  # 會回傳可能喜歡的使用者id和該使用�
                 maybe_aid_list = UserClick.objects.filter(u_id=maybe_user_id).values_list(
                     "a_id", flat=True
                 )
-                return Attractions.objects.filter(id__in=maybe_aid_list)[:5] #回傳可能喜歡的景點
+                return Attractions.objects.filter(id__in=maybe_aid_list).annotate(result=F('rating') * F('rating_total')).order_by('-result')[:5] #回傳可能喜歡的景點
 
         return Attractions.objects.filter(id__in=user_click)[:5] #回傳使用者點擊過的景點
     else:
