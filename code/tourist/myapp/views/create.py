@@ -56,7 +56,7 @@ def format_minutes_as_time(minutes):
 def create(request, ct_id):
     # 抓使用者收藏的景點
     uid = request.user.id
-    user_favorite_type = [4, 6, 9, 10, 15, 16, 18] #需修改新增的部分
+    user_favorite_type = request.user.user_favorite_tag #需修改新增的部分
     ct_data = Create_Travel.objects.get(id=ct_id)
     try:
         apikey = GOOGLE_PLACES_API_KEY   #記得一定要打開!!!!!!!!!!!!!!!!!!!!!!!!!(API在這!)

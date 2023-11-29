@@ -84,13 +84,13 @@ def recommend_near(o_attractions_list, now_time, week, stay_time):
     for index, i in enumerate(tags_same_score_total):
         max_i_list.append([index, i])
     # print("max_i_list:",max_i_list)
-    f_max_i_list = sorted(max_i_list, key=lambda x: x[1], reverse=True)[0:11]
+    f_max_i_list = sorted(max_i_list, key=lambda x: x[1], reverse=True)[0:10]
     # print("f_max_i_list:",f_max_i_list)
-    if len(near_o) < 11:
+    if len(near_o) < 10:
         for i in range(len(near_o)):
             p_attractions_list.append(near_o[f_max_i_list[i][0]])
     else:
-        for i in range(11):
+        for i in range(10):
             p_attractions_list.append(near_o[f_max_i_list[i][0]])
     print("推薦相似景點的順序:", p_attractions_list)
     p_attractions_list = [
