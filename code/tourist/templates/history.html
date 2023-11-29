@@ -92,6 +92,33 @@
   margin-left:10px;
   font-weight: bold;
 }
+  .modalHistory {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      animation: fadeIn 0.3s forwards;
+  }
+
+  .modalHistory.active {
+      display: flex;
+  }
+
+  .modalHistory-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: auto;
+      width: 80%;
+      height: 80%;
+      background: #fefefe;
+      animation: slideIn 0.3s forwards;
+  }
 </style>
 
 {% endblock %}
@@ -274,9 +301,134 @@
     </div>
 
   </div>
+  
+  <!-- 範例 -->
+    <div class="rowContainer" style="width: 85%;margin: 0 auto;">
+      <div class="row">
+          <div class="col-6" style="border: 1px solid black;padding: 0;height: 250px;">
+              i am left block
+              <button class="openRight" id="openRight1" onclick="openRight(this)">詳細行程</button>
+              <button class="closeRight" id="closeRight1" onclick="closeRight(this)"
+                  style="display: none;">關閉行程</button>
+          </div>
+          <div class="col-6 rightsection" id="right1"
+              style="border: 1px solid black;padding: 0;height: 250px;display: none;">
+              i am right block
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-6" style="border: 1px solid black;padding: 0;height: 250px;">
+              i am left block2
+              <button class="openRight" id="openRight2" onclick="openRight(this)">詳細行程</button>
+              <button class="closeRight" id="closeRight2" onclick="closeRight(this)"
+                  style="display: none;">關閉行程</button>
+          </div>
+          <div class="col-6 rightsection" id="right2"
+              style="border: 1px solid black;padding: 0;height: 250px;display: none;">
+              i am right block
+          </div>
+      </div>
+  </div>
+  <div id="myModalHistory" class="modalHistory">
+      <div class="modalHistory-content">
+          <span class="close" onclick="clickCloseHistory()">&times;</span>
+          <div class="modalHistory-body">
+              <!-- 这里是用于显示内容的容器 -->
+          </div>
+      </div>
+  </div>
 {% endblock body %}
 {% block content_script %}
-<script src="/static/js/history.js"></script>{% endblock %}
+<script src="/static/js/history.js"></script>
+<script>
+
+  // 範例 
+  function openRight(button) {
+      var buttonId = button.id;
+      var rightId = buttonId.replace("openRight", "right");
+      var specificRightBlock = document.getElementById(rightId);
+  
+      if (specificRightBlock) {
+          var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+          
+  
+          if (screenWidth < 768) {
+              var modalContent = specificRightBlock.innerHTML; // 获取右侧区块的内容
+  
+              var modalHistory = document.getElementById('myModalHistory');
+              var modalHistoryBody = document.querySelector('.modalHistory-body');
+              modalHistoryBody.innerHTML = modalContent;
+  
+              modalHistory.classList.add('active');
+          } else {
+              var allRightBlocks = document.querySelectorAll('.rightsection');
+              allRightBlocks.forEach(function (block) {
+                  if (block.id !== rightId) {
+                      block.style.display = 'none';
+                      var relatedOpenButtonId = block.id.replace("right", "openRight");
+                      var relatedOpenButton = document.getElementById(relatedOpenButtonId);
+                      if (relatedOpenButton) {
+                          relatedOpenButton.style.display = 'inline-block';
+                          var relatedCloseButtonId = block.id.replace("right", "closeRight");
+                          var relatedCloseButton = document.getElementById(relatedCloseButtonId);
+                          if (relatedCloseButton) {
+                              relatedCloseButton.style.display = 'none';
+                          }
+                      }
+                  }
+              });
+  
+              var otherOpenButtons = document.querySelectorAll('.openRight:not(#' + buttonId + ')');
+              otherOpenButtons.forEach(function (btn) {
+                  btn.style.display = 'inline-block';
+              });
+  
+              button.style.display = 'none';
+              specificRightBlock.style.display = 'block';
+  
+              var closeButtonId = buttonId.replace("openRight", "closeRight");
+              var closeButton = document.getElementById(closeButtonId);
+              if (closeButton) {
+                  closeButton.style.display = 'inline-block';
+              }
+          }
+      }
+  }
+  
+  function clickCloseHistory() {
+    var modalHistory = document.getElementById('myModalHistory');
+    modalHistory.classList.remove('active');
+  }
+  
+  
+  
+  function closeRight(button) {
+      var buttonId = button.id;
+      var rightId = buttonId.replace("closeRight", "right");
+      var specificRightBlock = document.getElementById(rightId);
+  
+      if (specificRightBlock) {
+          specificRightBlock.style.display = 'none';
+  
+          var openButtonId = buttonId.replace("closeRight", "openRight");
+          var openButton = document.getElementById(openButtonId);
+          if (openButton) {
+              openButton.style.display = 'inline-block';
+          }
+  
+          button.style.display = 'none';
+  
+          // 重置其他"詳細行程"按鈕的顯示狀態
+          var otherOpenButtons = document.querySelectorAll('.openRight');
+          otherOpenButtons.forEach(function (btn) {
+              btn.style.display = 'inline-block';
+          });
+      }
+  }
+  
+  </script>
+
+{% endblock %}
 
 
 
