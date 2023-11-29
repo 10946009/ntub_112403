@@ -260,12 +260,14 @@ body {
     display: none;
 }
 
+
 .dayDoneSection{
     height: auto;
 }
 .commentArea{
     clear: both;
 }
+
 .closeDetail_icon {
     display: block;
     position: sticky;

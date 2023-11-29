@@ -91,17 +91,14 @@
                 <p>營業時間<br>{% for open in a_data.opening.opening %} {% if forloop.counter != 1  %} <br> {% endif %}{{open}} {% endfor %}</p>
                 <p>停留時間：{{a_data.stay_time}}分鐘</p>
             </div>
-          {% endfor %}
         </div>
       </div>
     {% endfor %}
   </div>
 
-
-  <div class="commentArea" >
+  <div class="commentArea">
     <span class="context-title">行程簡介</span>
     <div>
-
       <div class="row alreadyComment" id="alreadyComment">
         {% comment %} <div class="col-auto otherCommentAvatar">
           <img src="../static/images/cloud1.png" class="img-responsive" style="width: 100%;" alt=""><br>
