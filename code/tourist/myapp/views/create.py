@@ -184,7 +184,7 @@ def create(request, ct_id):
 
         if ct_status == "1":
             globalDay = int(request.POST["globalDay"])
-            week = (start_week + globalDay - 1) % 7
+            week = (start_week + globalDay - 1) % 8
             
             o_attractions_list = request.POST.getlist("aid_list[]")
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
@@ -219,7 +219,7 @@ def create(request, ct_id):
 
         if ct_status == "2":
             globalDay = int(request.POST["globalDay"])
-            week = (start_week + globalDay - 1) % 7
+            week = (start_week + globalDay - 1) % 8
             o_attractions_list = request.POST.getlist("total_aid_list[]")
             # print('o_attractions_list我在這!!!!!!!!!!!!!!!!!!',o_attractions_list)
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
