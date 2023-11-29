@@ -78,7 +78,6 @@ function addFavorite_attractions(element,id) {
                 alert("請先登入!")
                 window.location.href = "/login";
             } else {
-                changeFavorite(id);
                 if (favorite_heart.style.color === "rgb(202, 13, 13)") {
                     favorite_heart.style.color = "rgb(111, 110, 110)";
                 } else {
