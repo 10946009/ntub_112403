@@ -2642,6 +2642,19 @@ img {
     margin-left: 10px;
 }
 
+.clear_1 {
+    margin-left: -20px;
+    font-size: 18px;
+}
+
+.new_week_tag {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+    /* display: none; */
+}
+
 @media screen and (max-width:768px) {
 
     /* 檢舉框框 */

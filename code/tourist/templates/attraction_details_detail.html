@@ -139,7 +139,7 @@
                             <h6 style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-person-circle-exclamation" style="color: rgb(67, 1, 159);"></i>
                                 人潮資訊：
-                                <!-- 星期 -->
+                                <!-- 星期(這個不要) -->
                                 <div class="week_number">
                                     <span class="tag-week" data-set="0">星期一</span>
                                     <span class="tag-week" data-set="1">星期二</span>
@@ -148,6 +148,18 @@
                                     <span class="tag-week" data-set="4">星期五</span>
                                     <span class="tag-week" data-set="5">星期六</span>
                                     <span class="tag-week" data-set="6">星期日</span>
+                                </div>
+                                {% comment %} 新的星期按鈕 {% endcomment %}
+                                <div class="new_week_tag">
+                                    <select style="width:95%;padding:5px;">
+                                        <option data-set="0">星期一</option>
+                                        <option data-set="1">星期二</option>
+                                        <option data-set="2">星期三</option>
+                                        <option data-set="3">星期四</option>
+                                        <option data-set="4">星期五</option>
+                                        <option data-set="5">星期六</option>
+                                        <option data-set="6">星期日</option>
+                                    </select>
                                 </div>
                                 <!-- 圖表 -->
                                 <div>
