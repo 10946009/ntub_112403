@@ -32,7 +32,7 @@ def recommend(user_favorite, now_time, get_user_address, day, stay_time):
     if len(get_all_attractions) == 0 or client == None:  # 抓不到資料的話就回傳熱門景點
         print("回傳熱門景點")
         m_attractions_list = [
-            x.place_id for x in Attractions.objects.annotate(result=F('rating') * F('rating_total')).order_by('result')[:20]
+            x.place_id for x in Attractions.objects.annotate(result=F('rating') * F('rating_total')).order_by('result')[:10]
         ]
         return m_attractions_list
     locations = {"lat": get_user_address[0], "lng": get_user_address[1]}
