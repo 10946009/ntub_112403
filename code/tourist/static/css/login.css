@@ -1,6 +1,6 @@
 .login {
     max-width: 500px;
-    margin: 30px auto;
+    margin: 80px auto;
     margin-bottom: 30px;
     background-color: #fff;
     border-radius: 5px;
@@ -90,12 +90,16 @@ input[type="text"] {
     color: #5726ec
 }
 
-@media screen and (max-width: 480px) {
+#show_pwd {
+    margin-top: -2px;
+}
+
+/* @media screen and (max-width: 480px) {
     .login {
         padding: 50px;
     }
-}
-
+} */
+/* 
 @media only screen and (min-width: 500px) {
     .login {
         margin: 100px auto;
@@ -128,17 +132,13 @@ input[type="text"] {
     .submit {
         border-radius: 3px;
     }
+} */
 
-    /* .logo {
-        width: 100px;
-        height: 100px;
-    } */
-}
-
-@media(max-width: 500px) {
+@media(max-width: 768px) {
     .login {
+        margin: 100px 0;
         max-width: 100%;
-        margin: 0px;
+        /* margin: 0px; */
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         padding: 20px;
     }
@@ -154,6 +154,11 @@ input[type="text"] {
         display: block;
         margin: 10px 0;
     }
+
+    #show_pwd {
+        margin-top: 5px;
+    }
+
 
     .login span {
         margin: 10px 0;
@@ -175,7 +180,7 @@ input[type="text"] {
     }
 }
 
-@media(max-width: 425px) {
+/* @media(max-width: 425px) {
     .login {
         max-width: 100%;
         max-height: 100%;
@@ -214,9 +219,9 @@ input[type="text"] {
     .submit {
         border-radius: 3px;
     }
-}
+} */
 
-@media(max-width: 375px) {
+/* @media(max-width: 375px) {
     .login {
         max-width: 100%;
         max-height: 100%;
@@ -255,7 +260,7 @@ input[type="text"] {
     .submit {
         border-radius: 3px;
     }
-}
+} */
 
 #code {
     cursor: pointer;

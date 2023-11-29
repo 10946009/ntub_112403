@@ -68,7 +68,7 @@ body {
     background-image: url(../images/flooter_img.jpeg);
     background-size: cover;
     background-attachment: fixed;
-    margin: 0;
+    /* margin: 0; */
 }
 
 /* Parallax Scrolling背景size */
@@ -2533,6 +2533,8 @@ img {
     height: 400px;
     width: 100%;
     box-sizing: border-box;
+    margin-left: 5px;
+    /* 白條 */
 }
 
 .new_fifliter {
@@ -2653,6 +2655,11 @@ img {
     width: 100%;
     margin-top: 20px;
     /* display: none; */
+}
+
+/* 改了不會有白條（？ */
+body {
+    margin-right: 12px;
 }
 
 @media screen and (max-width:768px) {
