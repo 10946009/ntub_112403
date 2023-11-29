@@ -7,12 +7,12 @@
     <div class="row doneSpotDiv">
       <div class="col-4 doneSpotImgDiv">
         <a class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickInfo({{o.final_result_list.id}})"></a>
-        <!-- 抓你們的照片 -->
         <img src="../static/images/attractions/{{o.final_result_list.place_id}}_0.jpg" class="img-responsive doneSpotImg" alt="">
       </div>
       <div class="col-8 blockTxt">
         <p class="spotOkName">{{ o.final_result_list.a_name }}</p>
         <p id="hiddenId" style="display: none;">{{ o.final_result_list.id }}</p>
+        <p class="spotOk spotOkCrowd">當下可能的人潮流量：暫無資料<span class="order-black-circle">●</span><br>
         <p class="spotOk spotOkTime">營業時間：
           {% for time in o.final_crow_opening_list.opening %}
             {% if forloop.counter != 1 %},{% endif %}
@@ -20,11 +20,12 @@
           {% endfor %}
         </p>
         <p class="spotOk spotOkStay">建議停留時間：{% if o.final_result_list.stay_time == 0 %}150{% else %}{{ o.final_result_list.stay_time }}{% endif %} 分鐘</p>
-        </div>
+        <p class="spotOk spotOkweather">天氣狀況：暫無資料<br>  
+      </div>
     </div>
     <div class="blockBtn">
       <div class="blockBtnLayout">
-        <button class="controlBtn btn_up" onclick="InputRemainderOrder({{forloop.counter}})"><i class="fa-solid fa-angle-up"></i></button>
+        <button class="controlBtn addToOrder" onclick="InputRemainderOrder({{forloop.counter}})"><i class="fa-solid fa-angles-up"></i></button>
     </div>
   </div>
 </div>

@@ -5,7 +5,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 # ------------------------------------景點排序(根據使用者喜好、擁擠、營業時間)
 def order_check_attractions(
-    o_attractions_list, now_time, week, stay_time, user_favorite
+    o_attractions_list, now_time, week, user_favorite
 ):
     print("now_time", now_time)
     # 判斷當下有沒有營業，沒有就不放進陣列
@@ -25,7 +25,7 @@ def order_check_attractions(
                 op = op.replace(" ", "")
                 if now_time >= int(op[0:2]) * 60 + int(
                     op[3:5]
-                ) and now_time + stay_time <= int(op[6:8]) * 60 + int(op[9:]):
+                ) and now_time + o_db.stay_time <= int(op[6:8]) * 60 + int(op[9:]):
                     ok_a_list.append(o_db.id)
                     break
                 elif str(op[6:8]) == "00" and now_time >= int(op[0:2]) * 60 + int(op[3:5]) and now_time <= 1440 + int(op[9:]):
@@ -68,14 +68,7 @@ def order_check_attractions(
             if op == "24小時營業":
                 o_opening_list.append(1440)
             else:
-                op = op.replace(" ", "")
-                # 超過150分鐘就減自己，沒有的話就減150
-                if o_db.stay_time > stay_time:
-                    o_opening_list.append(
-                        int(op[6:8]) * 60 + int(op[9:]) - o_db.stay_time
-                    )
-                else:
-                    o_opening_list.append(int(op[6:8]) * 60 + int(op[9:]) - stay_time)
+                o_opening_list.append(o_db.stay_time)
             break
         # o_opening_list.append(temp_o_opening_list)
         temp_o_opening_list = []

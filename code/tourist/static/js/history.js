@@ -33,7 +33,8 @@ function add_favorite_share(ctid) {
   });
 };
 
-function clickShow(button,ctid) {
+// 打開詳細行程
+function clickShow(button, ctid) {
   // 更改其他按鈕的文字狀態
   const allButtons = document.querySelectorAll("[class^='more_btn']");
   console.log(ctid);
@@ -73,12 +74,13 @@ function clickShow(button,ctid) {
         console.error("Error:", textStatus, errorThrown);
       }
     });
-
-    
   }
-
 }
 
+function closeDetail(id) {
+  const button = document.getElementById("details" + id + "btn");
+  button.click();
+}
 
 // 點新增評論按鈕
 
@@ -97,7 +99,7 @@ function addComment() {
   if (addCommentBtn.textContent === '新增簡介') {
     addCommentSpace.style.display = 'block';
     addCommentBtn.textContent = '取消簡介';
-  } else if(addCommentBtn.textContent === '取消簡介') {
+  } else if (addCommentBtn.textContent === '取消簡介') {
     addCommentSpace.style.display = 'none';
     addCommentBtn.textContent = '新增簡介';
   }
@@ -105,7 +107,7 @@ function addComment() {
 }
 
 // 發送評論
-function submitComment(ctid){
+function submitComment(ctid) {
   var commentText = document.getElementById('addCTXT').value;
   console.log(commentText);
   //傳送簡介
@@ -154,7 +156,7 @@ function submitComment(ctid){
     var editBtn = document.createElement('button');
     editBtn.className = 'fa-solid fa-pen-to-square c_edit_icon c_icon';
     editBtn.onclick = function () {
-      editComment(textSpan,ctid, iconDiv);
+      editComment(textSpan, ctid, iconDiv);
       // iconDiv.style.display = 'none';
     };
     editBtnDiv.appendChild(editBtn);
@@ -198,7 +200,7 @@ function submitComment(ctid){
 
 }
 // 編輯按鈕
-function editComment(commentSpan,ctid, iconDiv) {
+function editComment(commentSpan, ctid, iconDiv) {
   console.log(200);
   if (commentSpan === "") {
     var commentSpan = document.getElementById('otherCommentTxt');
@@ -221,11 +223,11 @@ function editComment(commentSpan,ctid, iconDiv) {
   saveEditBtn.textContent = '儲存';
   saveEditBtn.classList.add('saveBtn');
   saveEditBtn.onclick = function () {
-    
-    submitCommentNew(ctid,editTextArea.value);
+
+    submitCommentNew(ctid, editTextArea.value);
     commentSpan.innerText = editTextArea.value;
     commentSpan.parentNode.removeChild(editTextArea);
-    commentSpan.parentNode.removeChild(buttonsContainer); 
+    commentSpan.parentNode.removeChild(buttonsContainer);
     commentSpan.style.display = 'block';
     editBtn.style.display = 'block';
     deleteBtn.style.display = 'block';
@@ -239,13 +241,13 @@ function editComment(commentSpan,ctid, iconDiv) {
     commentSpan.innerText = originalText;
     commentSpan.style.display = 'block';
     commentSpan.parentNode.removeChild(editTextArea);
-    commentSpan.parentNode.removeChild(buttonsContainer); 
+    commentSpan.parentNode.removeChild(buttonsContainer);
     editBtn.style.display = 'inline-block';
     deleteBtn.style.display = 'inline-block';
   };
 
   buttonsContainer.appendChild(saveEditBtn);
-  buttonsContainer.appendChild(cancelEditBtn); 
+  buttonsContainer.appendChild(cancelEditBtn);
 
   commentSpan.parentNode.insertBefore(editTextArea, commentSpan);
   commentSpan.parentNode.appendChild(buttonsContainer); // 將容器插入 DOM 中
@@ -256,7 +258,7 @@ function editComment(commentSpan,ctid, iconDiv) {
   editBtn.style.display = 'none';
 }
 
-function submitCommentNew(ctid,value){
+function submitCommentNew(ctid, value) {
   // var commentText = document.getElementById('addCTXT').value;
   // var commentSpan = document.getElementById('otherCommentTxt').textContent;
   console.log(value);
@@ -322,7 +324,7 @@ function deleteTravel(id) {
   const deleteCheck = confirm("確定要刪除嗎?");
   if (deleteCheck == false) {
     return;
-  }else{
+  } else {
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     $.ajax({
       headers: { 'X-CSRFToken': csrftoken },
@@ -339,7 +341,7 @@ function deleteTravel(id) {
 }
 
 // 顯示目前是第幾張圖
-function carouInit(){
+function carouInit() {
   var carousel = document.getElementById('carouselExampleRide');
   var counter = document.getElementById('imgCounter');
   var totalItems = carousel.querySelectorAll('.carousel-item').length; // 定義 totalItems 變數，表示總共有幾張圖片
@@ -364,17 +366,17 @@ function clickDay(dayNumber) {
   let content = document.querySelectorAll('.classDayContent');
   let clickContent = document.getElementById('content' + dayNumber);
   const dayDiv = document.querySelectorAll('.dayDiv');
-  const dayDiv1 = document.getElementById('dayDiv'+dayNumber);
+  const dayDiv1 = document.getElementById('dayDiv' + dayNumber);
   if (clickContent.style.display == 'block') {
-      // 如果連續點擊同一天，則關閉對應內容
-      clickContent.style.display = 'none';
-      dayDiv1.style.color="";
+    // 如果連續點擊同一天，則關閉對應內容
+    clickContent.style.display = 'none';
+    dayDiv1.style.color = "";
   } else {
     for (let i = 0; i < content.length; i++) {
       content[i].style.display = 'none';
-      dayDiv[i].style.color="";
+      dayDiv[i].style.color = "";
     }
-      clickContent.style.display = 'block';
-      dayDiv1.style.color = 'orange';
+    clickContent.style.display = 'block';
+    dayDiv1.style.color = 'orange';
   }
 }

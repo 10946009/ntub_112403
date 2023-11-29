@@ -78,27 +78,28 @@ body {
 }
 
 
-.createbtn{
-	font-family: Microsoft JhengHei;
-	font-size: 32px;
+.createbtn {
+    font-family: Microsoft JhengHei;
+    font-size: 32px;
     font-weight: bold;
-	text-decoration-line: none;
-	color: white;
-	box-shadow: 4px 4px 2px rgba(69, 69, 69, 0.7);
-	text-shadow: 2px 2px 2px rgba(207, 207, 207, 0.5);
-	display: block;
-	width: 200px;
-	line-height: 80px;
-	padding: 0 10px;
+    text-decoration-line: none;
+    color: white;
+    box-shadow: 4px 4px 2px rgba(69, 69, 69, 0.7);
+    text-shadow: 2px 2px 2px rgba(207, 207, 207, 0.5);
+    display: block;
+    width: 200px;
+    line-height: 80px;
+    padding: 0 10px;
     text-align: center;
-	border-radius: 20px;
-	background-color: rgba(34, 34, 34,.8);
-	transition: background-color 0.3s ,color 0.3s;
+    border-radius: 20px;
+    background-color: rgba(34, 34, 34, .8);
+    transition: background-color 0.3s, color 0.3s;
 }
-.createbtn:hover{
-	background-color: #ff473d;
-	/* color: black; */
-	text-shadow: 2px 2px 2px rgba(86, 86, 86, 0.5);
+
+.createbtn:hover {
+    background-color: #ff473d;
+    /* color: black; */
+    text-shadow: 2px 2px 2px rgba(86, 86, 86, 0.5);
 }
 
 .mytravel_txt_title {
@@ -156,7 +157,7 @@ body {
 
 
 .share_icon {
-    font-size: 28px;
+    font-size: 20px;
     color: black;
     text-shadow: 2px 2px 1px #FFF;
     cursor: pointer;
@@ -169,7 +170,7 @@ body {
 }
 
 .edita {
-    font-size: 28px;
+    font-size: 20px;
     text-decoration: none;
     color: black;
     font-weight: bold;
@@ -183,7 +184,7 @@ body {
 }
 
 .icontxt {
-    font-size: 16px;
+    font-size: 14px;
     text-shadow: 2px 2px 1px #ccc;
     font-weight: bolder;
     user-select: none;
@@ -231,14 +232,57 @@ body {
 
 
 /* 打開右半邊詳細行程 */
+.detailLeft {
+    padding: 0 5px;
+    width: 50%;
+}
+
+.detailRight {
+    width: 50%;
+}
+
 .openDetailDiv {
-    /* display: none; */
+    position: fixed;
+    top: 10%;
+    right: 8%;
+    background-color: #f9f9f9;
+    width: 42%;
+    height: 80%;
     border: 1px solid black;
     border-radius: 20px;
+    margin-top: 50px;
+    overflow-y: auto;
+}
+
+.openDetailDiv::-webkit-scrollbar {
+    display: none;
+}
+
+.closeDetail_icon {
+    display: block;
+    position: sticky;
+    padding: 10px;
+    float: right;
+    z-index: 5;
+    cursor: pointer;
+}
+
+.closeDetail_icon:hover {
+    color: red;
+}
+
+.openDetailDivBasic {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 0 5px;
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    background-color: rgba(245, 245, 220, 0.5);
 }
 
 .aboutDiv {
-    margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 .filter {
@@ -498,6 +542,7 @@ body {
     cursor: pointer;
     margin-top: 10px;
 }
+
 .dayContent {
     user-select: none;
     width: 100%;
@@ -507,15 +552,17 @@ body {
     align-items: center;
     align-content: center;
     overflow-x: scroll;
-    overflow-y:hidden;
+    overflow-y: hidden;
 }
+
 .car_icon {
     text-align: center;
     width: 30px;
     height: 30px;
     line-height: 300px;
-    cursor: pointer; 
+    cursor: pointer;
 }
+
 .dayContentIntro {
     width: 220px;
     min-width: 220px;
@@ -529,12 +576,14 @@ body {
     justify-content: center;
     align-items: center;
 }
-.car_time{
+
+.car_time {
     width: 30px;
-    min-width: 30px; 
-    text-align: center; 
+    min-width: 30px;
+    text-align: center;
     margin: 0px 10px;
-  }
+}
+
 @media (max-width:1024px) {
     .content {
         margin: 5px auto;
@@ -559,10 +608,12 @@ body {
 }
 
 @media (max-width: 950px) {
-    /* .icontxt {
-        font-size: 16px;
-    } */
+    .more_btn {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
 }
+
 @media (max-width: 768px) {
     .mytravel_img {
         border-top-right-radius: 20px;
@@ -586,6 +637,15 @@ body {
     .basicButton {
         width: 20%;
     }
+
+    .detailLeft {
+        width: 100% !important;
+    }
+
+    .openDetailDiv {
+        width: 85% !important;
+    }
+
 }
 
 @media (max-width: 576px) {
@@ -612,4 +672,3 @@ body {
     }
 
 }
-

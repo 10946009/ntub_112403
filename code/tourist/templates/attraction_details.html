@@ -7,21 +7,13 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" /> {% endcomment %}
 <link rel="stylesheet" href="../static/css/att.css">
 <link rel="stylesheet" href="../static/css/comment.css">
-<link rel="stylesheet" href="/lib/w3.css">
-{% comment %}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> 主要影響toolbar的原因 {%
-endcomment %}
-{% comment %}
-<script src="../static/js/jquery-3.7.0.min.js"></script> {% endcomment %}
-{% comment %}
-<script src="../static/js/bootstrap.js"></script> {% endcomment %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 {% comment %}
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> {% endcomment %}
 {% endblock %}
 
 {% block body %}
-<!-- 動態大標 景點資訊 -->
+<!-- 動態大標 景點資訊(沒事) -->
 <div class="row jumbotron">
     <div class="container_info">
         <div class="active_tit1">
@@ -78,99 +70,6 @@ endcomment %}
     </div>
 </div>
 
-<!-- 人拖行李棟動圖（左） -->
-<!-- <div class="row" id="filiter_about">
-    <div class="col-5 car_trip">
-        <div class="cloud" data-0="transform: translateX(-20%); opacity: 0;"
-            data-500="transform: translateX(10%); opacity: 0.8">
-            <img src="../static/images/sun.png" alt="" style="width: 80px; z-index: 2;margin-right: 80px;">
-            <img src="../static/images/cloud1.png" alt=""
-                style="width: 80px; margin-top: 50px; margin-right: 50px; z-index: 2;">
-            <img src="../static/images/cloud1.png" alt=""
-                style="width: 80px; margin-top: 0px; margin-right: 50px; z-index: 2;">
-            <img src="../static/images/cloud1.png" alt="" style="width: 80px; margin-top: 30px; z-index: 2;">
-        </div>
-        <div class="img_trip" data-0="transform: translateX(-520%); opacity: 0;"
-            data-500="transform: translateX(120%); opacity: 0.8">
-            <img src="../static/images/TripFun.png" alt="" style="width: 500px; z-index: 2;">
-        </div>
-        <div class="img_trip" data-0="transform: translateX(-1120%); opacity: 0;"
-            data-500="transform: translateX(1060%); opacity: 0.8">
-            <img src="../static/images/travel.png" alt="" style="width: 100px; z-index: 2;margin-top: -30px;">
-        </div>
-    </div>
-    篩選工具（右）
-    <div class="col-7">
-        <div class="container_filiter">
-            <div class="col-sm-7" style="text-align: center;padding-right: 20px;">
-                <h2 data-300="opacity: 0" data-500="opacity: 1"><i class="fa-solid fa-face-smile"
-                        style="margin-right: 5px; color: rgb(119, 119, 119);"></i>篩選工具</h2>
-                <hr style="margin: 0 auto;">
-                <div class="row three_choice">
-                    <div class="column" data-400="transform: scale(1.5); opacity: 0"
-                        data-500="transform: scale(1); opacity: 1"
-                        onclick="document.getElementById('show_filiter').style.display='block'">
-                        <div style="cursor: pointer;">
-                            <i class="fa-solid fa-plane" style="font-size: 60px;"></i><br>
-                            <h3 class="filiter_btn">景點主題</h3>
-                        </div>
-                    </div>
-                    <div class="column" data-400="transform: scale(1.5); opacity: 0"
-                        data-500="transform: scale(1); opacity: 1"
-                        onclick="document.getElementById('show_condition').style.display='block'">
-                        當有篩選條件時右上跳出1 2...等(ribbon)
-                        <div style="cursor: pointer; position: relative;">
-                            <i class="fa-solid fa-list" style="font-size: 60px;"></i> <span class="ribbon">1</span><br>
-                            <h3 class="filiter_btn">條件篩選</h3>
-                        </div>
-                    </div>
-                    <div class="column" data-400="transform: scale(1.5); opacity: 0"
-                        data-500="transform: scale(1); opacity: 1"
-                        onclick="document.getElementById('show_userfavorite').style.display='block'">
-                        <div style="cursor: pointer;">
-                            <i class="fa-solid fa-thumbs-up" style="font-size: 60px;"></i><br>
-                            <h3 class="filiter_btn">最受歡迎</h3>
-                        </div>
-                    </div>
-                    <div class="col-4 text-center topic_filiter" data-400="transform: scale(1.5); opacity: 0"
-                        data-500="transform: scale(1); opacity: 1"
-                        onclick="document.getElementById('show_filiter').style.display='block'">
-                        <div style="cursor: pointer;">
-                            <i class="fa-solid fa-plane" style="font-size: 60px;"></i><br>
-                            <h3 class="filiter_btn">景點主題</h3>
-                        </div>
-                    </div>
-                    <div class="col-4 text-center topic_filiter" data-400="transform: scale(1.5); opacity: 0"
-                        data-500="transform: scale(1); opacity: 1"
-                        onclick="document.getElementById('show_condition').style.display='block'">
-                        當有篩選條件時右上跳出1 2...等(ribbon)
-                        <div style="cursor: pointer; position: relative;">
-                            <i class="fa-solid fa-list" style="font-size: 60px;"></i> <span class="ribbon">1</span><br>
-                            <h3 class="filiter_btn">條件篩選</h3>
-                        </div>
-                    </div>
-                    <div class="col-4 text-center topic_filiter" data-400="transform: scale(1.5); opacity: 0"
-                        data-500="transform: scale(1); opacity: 1"
-                        onclick="document.getElementById('show_userfavorite').style.display='block'">
-                        <div style="cursor: pointer;">
-                            <i class="fa-solid fa-thumbs-up" style="font-size: 60px;"></i><br>
-                            <h3 class="filiter_btn">最受歡迎</h3>
-                        </div>
-                    </div>
-                </div>
-                清除所有篩選按鈕
-                <div class="text-center row" style="margin:20px auto;" data-400="transform: scale(1.5); opacity: 0"
-                    data-500="transform: scale(1); opacity: 1">
-                    <span class="clear_btn" id="clear_btn" style="cursor: pointer;">清除所有篩選</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="road">
-        <img src="../static/images/road1.png" alt="" style="width: 100%; height: 50px; z-index: 1;">
-    </div>
-</div> -->
-
 <!-- 景點主題 -->
 <div id="show_filiter" style="display: none;">
     <div class="modal-content_filiter" method="post" style="border-radius: 10px;">
@@ -192,47 +91,7 @@ endcomment %}
     </div>
 </div>
 
-<!-- 條件篩選 -->
-<!-- <div id="show_condition" style="display: none;">
-    <form class="modal-content_filiter" method="post" style="border-radius: 10px;">
-        <div class="att_form">
-            <span onclick="document.getElementById('show_condition').style.display='none'" class="close"
-                title="Close Modal">&times;</span>
-            <h4>條件篩選</h4>
-            <div class="filiter_search" id="filiter_search1">
-                <table style=" width:45%;margin-left: 10px;margin-bottom:5px ;">
-                    <tr>
-                        <td><span class="more_btn">最多人瀏覽</span></td>
-                        <td><span class="more_btn">最多人按讚</span></td>
-                        <td><span class="more_btn">最多人收藏</span></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="sure"><button class="sure_btn">篩選</button></div>
-        </div>
-    </form>
-</div> -->
-
-<!-- 最受歡迎 -->
-<!-- <div id="show_userfavorite" style="display: none;">
-    <form class="modal-content_filiter" method="post" style="border-radius: 10px;">
-        <div class="att_form">
-            <span onclick="document.getElementById('show_userfavorite').style.display='none'" class="close"
-                title="Close Modal">&times;</span>
-            <h4>最受歡迎</h4>
-            <div class="filiter_search" id="filiter_search">
-                <table style=" width:45%;margin-left: 10px;margin-bottom:5px ;">
-                    <tr>
-                        <td><span class="more_btn">最多人瀏覽</span></td>
-                        <td><span class="more_btn">最多人按讚</span></td>
-                        <td><span class="more_btn">最多人收藏</span></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="sure"><button class="sure_btn">篩選</button></div>
-        </div>
-    </form>
-</div> -->
+{% comment %} 篩選部分（沒事 {% endcomment %}
 <div class="row sticky_att">
     <div class="col-1"></div>
     <div class="col-8 clear_8">
@@ -259,7 +118,7 @@ endcomment %}
                 </h5>
                 <div class="row RWD_clear" id="clear-all2">
                     <h5><strong><i class="fa-solid fa-square-xmark"
-                                style="color: rgb(179, 76, 76);margin-right: 5px;"></i>清除所有篩選</strong></h5>
+                                style="color: rgb(179, 76, 76);"></i>清除所有篩選</strong></h5>
                 </div>
                 <div class="dropdown_filiter" id="dropdown_filiter">
                     <div class="dropdown-content">
@@ -293,7 +152,7 @@ endcomment %}
     <!-- <h5>根據<span id="type_key_word"></span>的篩選條件搜尋出以下景點：</h5> -->
 </div>
 
-<!-- 下方景點 -->
+<!-- 下方景點(沒事) -->
 <div class="row" id="attractions_introduction">
     <div class="col-2"></div>
     <!-- 景點資訊主體 -->
@@ -303,78 +162,6 @@ endcomment %}
     </div>
 </div>
 
-<!-- <div class="row Att_Info">
-    <div class="col-2 "></div>
-    景點資訊主體
-    <div class="col-8 ">
-        景點資訊條列
-        {% for item in search_list %}
-        <div class="row Info_item">
-            景點圖片
-            <div class="col-4">
-                <div class="w3-content" style="max-width:800px;position:relative;">
-                    <img data-name="{{ item.id }}" class="slide"
-                        src="/static/images/attractions/{{item.place_id}}_0.jpg"
-                        style="width:100%;max-width: 100%; cursor: pointer;" onclick="showInfo(this)"
-                        data-a-Id="{{ item.id }}">
-                    <img data-name="{{ item.id }}" class="slide"
-                        src="/static/images/attractions/{{item.place_id}}_0.jpg"
-                        style="width:100%;max-width: 100%; cursor: pointer;" onclick="showInfo(this)"
-                        data-a-Id="{{ item.id }}">
-                    <img data-name="{{ item.id }}" class="slide"
-                        src="/static/images/attractions/{{item.place_id}}_0.jpg"
-                        style="width:100%;max-width: 100%; cursor: pointer;" onclick="showInfo(this)"
-                        data-a-Id="{{ item.id }}">
-                    收藏按鈕
-                    {% if item.is_favorite == "0" %}
-                    <button class="col_btn" name="submitfavorite" id="submitfavorite{{item.id}}"
-                        data-isfavorite="{{item.is_favorite}}" onclick="addFavorite({{item.id}})">
-                        <i class="fa-regular fa-bookmark"></i></button>
-                    {% else %}
-                    <button class="col_btn" name="submitfavorite" id="submitfavorite{{item.id}}"
-                        data-isfavorite="{{item.is_favorite}}" onclick="addFavorite({{ item.id }})">
-                        <i class="fa-solid fa-bookmark"></i></button>
-                    {% endif %}
-                    圖片滑動按鈕箭頭
-                    <a class=" w3-btn-floating_left" onclick="plusDivs(-1,'{{ item.id }}')">❮</a>
-                    <a class="w3-btn-floating_right" onclick="plusDivs(1,'{{ item.id }}')">❯</a>
-                </div>
-            </div>
-            景點相關簡短資訊
-            <div class="col-8 short_info" style="width:auto;">
-                景點名稱
-                <h5 class="info_tit" onclick="showInfo(this)" data-a-Id="{{ item.id }}">
-                    {{item.a_name }}</h5>
-                星星數
-                <div class="rating">
-                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                    <span class="rating-star" style="color:rgb(241, 226, 62) ;">&#9733;</span>
-                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                    <span class="rating-star" style="color: rgb(241, 226, 62);">&#9733;</span>
-                    <span class="rating-star">&#9733;</span>
-                </div>
-                地址
-                <h6 style="margin-top:5px;">
-                    地址：<span id="list-address">{{ item.address }}</span>
-                </h6>
-                評分
-                <h6 style="margin-top:5px;">
-                    綜合評分： <span id="list-selectedRating">{{ item.rating }}</span> / 5 (2.1萬)
-                </h6>
-                營業時間
-                <h6>
-                    營業時間：<span>24小時營業</span>
-                </h6>
-                總瀏覽人數
-                <h6 style="color:#8b8a8a;">
-                    <i class="fa-regular fa-eye"></i>&thinsp;瀏覽人數：<span>１</span>人
-                </h6>
-            </div>
-        </div>
-        <hr>
-        {% endfor %}
-    </div>
-</div> -->
 <!-- 景點詳細資料隱藏點擊 -->
 <div id="id01" class="row" style="display:none;">
     {% include 'attraction_details_detail.html' %}
@@ -391,9 +178,6 @@ endcomment %}
 </footer>
 
 <script src="../static/js/addFavorite.js"></script>
-{% comment %}
-<script src="../static/js/slideshow.js"></script> {% endcomment %}
-<script src="../static/js/attractions.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>

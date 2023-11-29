@@ -68,7 +68,7 @@ body {
     background-image: url(../images/flooter_img.jpeg);
     background-size: cover;
     background-attachment: fixed;
-    margin: 0;
+    /* margin: 0; */
 }
 
 /* Parallax Scrolling背景size */
@@ -851,7 +851,7 @@ img {
 
 
 .jumbotron1 {
-    height: 40vh;
+    height: 38vh;
     text-align: center;
     background-image: url(../images/flooter_bg.jpeg);
     background-size: cover;
@@ -2069,6 +2069,7 @@ img {
 
 /* 人潮星期 */
 .week_number {
+    margin-top: 15px;
     padding-left: 5px;
     margin-bottom: 10px;
 }
@@ -2078,7 +2079,7 @@ img {
     font-size: 14px;
     display: inline-block;
     color: rgb(255, 255, 255);
-    padding: 8px 20px;
+    padding: 8px 15px;
     background-color: #628eb9;
     margin-left: 6px;
     margin-top: 10px;
@@ -2532,6 +2533,8 @@ img {
     height: 400px;
     width: 100%;
     box-sizing: border-box;
+    margin-left: 5px;
+    /* 白條 */
 }
 
 .new_fifliter {
@@ -2639,6 +2642,24 @@ img {
 #emptyQuestion {
     font-size: 16px;
     margin-left: 10px;
+}
+
+.clear_1 {
+    margin-left: -20px;
+    font-size: 18px;
+}
+
+.new_week_tag {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+    /* display: none; */
+}
+
+/* 改了不會有白條（？ */
+body {
+    margin-right: 12px;
 }
 
 @media screen and (max-width:768px) {
@@ -2907,7 +2928,7 @@ img {
 
     .RWD_clear {
         position: absolute;
-        right: 10px;
+        /* right: 10px; */
         margin-top: 15px;
         display: block;
         display: inline-block;
@@ -2936,12 +2957,12 @@ img {
     /* filiter div */
     .in_filiter {
         text-align: left;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
     /* 主題filiter */
     #new_fifliter_topic {
-        margin-right: 10px;
+        margin-right: 5px;
     }
 
     /* 相片集 */

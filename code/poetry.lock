@@ -427,6 +427,20 @@ files = [
 Django = ">=3.2"
 
 [[package]]
+name = "django-sslserver"
+version = "0.22"
+description = "An SSL-enabled development server for Django"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "django_sslserver-0.22-py3-none-any.whl", hash = "sha256:c598a363d2ccdc2421c08ddb3d8b0973f80e8e47a3a5b74e4a2896f21c2947c5"},
+]
+
+[package.dependencies]
+Django = ">=1.8"
+
+[[package]]
 name = "djlint"
 version = "1.23.0"
 description = "HTML Template Linter and Formatter"
@@ -512,6 +526,27 @@ files = [
 
 [package.dependencies]
 requests = ">=2.20.0,<3.0"
+
+[[package]]
+name = "gunicorn"
+version = "21.2.0"
+description = "WSGI HTTP Server for UNIX"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+files = [
+    {file = "gunicorn-21.2.0-py3-none-any.whl", hash = "sha256:3213aa5e8c24949e792bcacfc176fef362e7aac80b76c56f6b5122bf350722f0"},
+    {file = "gunicorn-21.2.0.tar.gz", hash = "sha256:88ec8bff1d634f98e61b9f65bc4bf3cd918a90806c6f5c48bc5603849ec81033"},
+]
+
+[package.dependencies]
+packaging = "*"
+
+[package.extras]
+eventlet = ["eventlet (>=0.24.1)"]
+gevent = ["gevent (>=1.4.0)"]
+setproctitle = ["setproctitle"]
+tornado = ["tornado (>=0.2)"]
 
 [[package]]
 name = "html-tag-names"
@@ -754,7 +789,7 @@ files = [
 name = "packaging"
 version = "23.1"
 description = "Core utilities for Python packages"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -1351,4 +1386,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "fa0a76e347b7703ddc6b9bcbdb4f6081ea218086f62032c65c26ece5144e344d"
+content-hash = "31533de832ed49d15c6d639ddd35a08166c2730715a2e6dfda814c8be96c4a90"

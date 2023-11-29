@@ -1,165 +1,164 @@
 
 
-<div class="openDetailDiv" id="details{{ item.my_history.id }}">
-    <div style="padding: 0 5px;">
-      <div style="height: 40px;">
-        <span style="font-size: 18px;line-height: 40px;font-weight: bold;">{{data.ct_name}}</span>
-      </div>
-      <hr style="margin-top: 0;">
-      <div style="float: right;">
-        {% comment %} <span>分享人：{{data.u.username}}</span> {% endcomment %}
-      </div>
-      <div class="aboutDiv">
-        <span>相關標籤</span>
-        {% for type in data.is_fit %}<span class="filter">{{type}}</span>{% endfor %}
-        
-      </div>
+<div class="openDetailDiv" id="details{{ data.id }}">
+  <div class="openDetailDivBasic">
+    <div class="fa-solid fa-xmark closeDetail_icon" onclick="closeDetail({{data.id}})"></div>
+    <div style="height: 40px;">
+      <span style="font-size: 18px;line-height: 40px;font-weight: bold;">{{data.ct_name}}</span>
     </div>
-    <div>
-      <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
-        <div class="carousel-inner">
-          <!-- 圖片要幫忙抓他選到景點的圖 -->
-          {% for img in data.get_attractions_picture %}
-          {% if forloop.counter == 1 %}
-          <div class="carousel-item active historyCarousel">
-            <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="img-responsive historyCarouselImg" width="100%" alt="">
-          </div>
-          {% else %}
-          <div class="carousel-item historyCarousel">
-            <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="img-responsive historyCarouselImg" width="100%" alt="">
-          </div>
-          {% endif %}
-          {% empty %}
-          <div class="carousel-item active historyCarousel">
-            <img src="/static/images/att_picture.png" class="img-responsive historyCarouselImg" width="100%" alt="">
-          </div>
+    <hr style="margin-top: 0;">
+    <div style="float: right;">
+      {% comment %} <span>分享人：{{data.u.username}}</span> {% endcomment %}
+    </div>
+    <div class="aboutDiv">
+      <span>相關標籤</span>
+      {% for type in data.is_fit %}<span class="filter">{{type}}</span>{% endfor %}
+      
+    </div>
+  </div>
+  <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
+    <div class="carousel-inner">
+      <!-- 圖片要幫忙抓他選到景點的圖 -->
+      {% for img in data.get_attractions_picture %}
+      {% if forloop.counter == 1 %}
+      <div class="carousel-item active historyCarousel">
+        <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="img-responsive historyCarouselImg" width="100%" alt="">
+      </div>
+      {% else %}
+      <div class="carousel-item historyCarousel">
+        <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="img-responsive historyCarouselImg" width="100%" alt="">
+      </div>
+      {% endif %}
+      {% empty %}
+      <div class="carousel-item active historyCarousel">
+        <img src="/static/images/att_picture.png" class="img-responsive historyCarouselImg" width="100%" alt="">
+      </div>
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide"
+      data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide"
+      data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+    <div class="imgCounter" id="imgCounter">
+      <!-- JS裡面顯示目前是第幾張 -->
+    </div>
+  </div>
+
+  <div class="dayDoneSection">
+    <div class="dayDone">
+        <div class="dayDoneBtn">
+          {% for day in data.get_choice_day %}
+            <div class="dayDiv" id="dayDiv{{forloop.counter}}" data-day="{{forloop.counter}}" style="float: left; {% if forloop.counter == 1 %}color:orange;{% endif %}" onclick="clickDay({{forloop.counter}})">
+                <i class="fa-regular fa-calendar"></i> DAY {{forloop.counter}}
+            </div>
           {% endfor %}
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide"
-          data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide"
-          data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-        <div class="imgCounter" id="imgCounter">
-          <!-- JS裡面顯示目前是第幾張 -->
-        </div>
-      </div>
     </div>
-
-    <div class="dayDoneSection">
-      <div class="dayDone">
-          <div class="dayDoneBtn">
-            {% for day in data.get_choice_day %}
-              <div class="dayDiv" id="dayDiv{{forloop.counter}}" data-day="{{forloop.counter}}" style="float: left; {% if forloop.counter == 1 %}color:orange;{% endif %}" onclick="clickDay({{forloop.counter}})">
-                  <i class="fa-regular fa-calendar"></i> DAY {{forloop.counter}}
-              </div>
-            {% endfor %}
-          </div>
-      </div>
-      {% for data in all_data %}
-        <div class = "classDayContent" id="content{{forloop.counter}}" style={% if forloop.counter == 1 %}"display: block;"{% else %}"display: none;"{% endif %}>
-          <div class="dayContent">
-              <div style="height: 250px;min-width:80px;display: flex;justify-content: center;align-items: center;align-content: center;">
-                  起始<br>位置
-              </div>
-                  {% for a_data in data.ct_attraction %}
-                  {{a_data.a_id.start_location_y}}
-                    {% if forloop.counter == 1 %}
+    {% for data in all_data %}
+      <div class = "classDayContent" id="content{{forloop.counter}}" style={% if forloop.counter == 1 %}"display: block;"{% else %}"display: none;"{% endif %}>
+        <div class="dayContent">
+            <div style="height: 250px;min-width:80px;display: flex;justify-content: center;align-items: center;align-content: center;">
+                起始<br>位置
+            </div>
+                {% for a_data in data.ct_attraction %}
+                {{a_data.a_id.start_location_y}}
+                  {% if forloop.counter == 1 %}
+                  <div class="car_time">
+                    <a href="https://www.google.com/maps/dir/{{a_data.choice_ct.start_location_x}},{{a_data.choice_ct.start_location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;">
+                      {% comment %} <i class="fa-solid fa-car-side car_icon"></i> {% endcomment %}
+                      <img src="/static/images/New Project.jpg" alt="" class="car_icon">
+                    </a>
+                    <p>約<br> {{ a_data.distance_time }}<br>分鐘</p>
+                  </div>
+                  
+                  {% else %}
                     <div class="car_time">
-                      <a href="https://www.google.com/maps/dir/{{a_data.choice_ct.start_location_x}},{{a_data.choice_ct.start_location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;">
+                      <a href="https://www.google.com/maps/dir/{{a_data.get_previous.a.location_x}},{{a_data.get_previous.a.location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;">
                         {% comment %} <i class="fa-solid fa-car-side car_icon"></i> {% endcomment %}
                         <img src="/static/images/New Project.jpg" alt="" class="car_icon">
                       </a>
                       <p>約<br> {{ a_data.distance_time }}<br>分鐘</p>
                     </div>
-                    
-                    {% else %}
-                      <div class="car_time">
-                        <a href="https://www.google.com/maps/dir/{{a_data.get_previous.a.location_x}},{{a_data.get_previous.a.location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;">
-                          {% comment %} <i class="fa-solid fa-car-side car_icon"></i> {% endcomment %}
-                          <img src="/static/images/New Project.jpg" alt="" class="car_icon">
-                        </a>
-                        <p>約<br> {{ a_data.distance_time }}<br>分鐘</p>
-                      </div>
-                    {% endif %}
-                    <div class="dayContentIntro" style="text-align: center;">
-                        <p style="font-size: 20px;"><b>{{a_data.a.a_name}}</b></p>
-                        <p>營業時間<br>{% for open in a_data.opening.opening %} {% if forloop.counter != 1  %} <br> {% endif %}{{open}} {% endfor %}</p>
-                        <p>停留時間：{{a_data.stay_time}}分鐘</p>
-                    </div>
-                  {% endfor %}
-          </div>
-        </div>
-      {% endfor %}
-    </div>
-
-    <div class="commentArea">
-      <span class="context-title">行程簡介</span>
-      <div>
-
-        <div class="row alreadyComment" id="alreadyComment">
-          {% comment %} <div class="col-auto otherCommentAvatar">
-            <img src="../static/images/cloud1.png" class="img-responsive" style="width: 100%;" alt=""><br>
-          </div> {% endcomment %}
-          {% if data.detail %}
-          <div class="col otherCommentTxtDiv">
-            <span class="otherCommentTxt" id="otherCommentTxt" data-set="{{data.id}}">
-              {{data.detail}}
-            </span>
-            <div class="c_editDiv">
-              <div class="c_edit_iconDiv">
-                <button class="fa-solid fa-pen-to-square c_edit_icon c_icon" id="c_edit_icon" onclick="editComment('',{{data.id}})"></button>
-              </div>
-            </div>
-          </div>
-          {% else %}
-          <div class="addCommentDiv">
-            <button class="addCommentBtn" id="addCommentBtn" onclick="addComment()">新增簡介</button>
-            <div class="addCommentSpace" id="addCommentSpace" style="display: none;">
-              <textarea class="addCTXT" id="addCTXT" placeholder="留下你的印記吧"></textarea>
-              <button class="commentSubmit" id="commentSubmit" onclick="submitComment({{data.id}})">送出</button>
-            </div>
-          </div>
-          {% endif %}
-          
-        </div>
-
-        <span class="context-title">評論</span>
-        <div class="row alreadyComment" style="margin-left:10px">
-          {% if data.get_comment %}
-          
-            {% for comment in data.get_comment %}
-              <div class="review-content">
-                <div class="head">
-                  <div class="info">
-                    <img class="user-img" src="{{comment.u.get_photo}}" alt="">
-                    <p class="user-name">{{comment.u.username}}<br>{{comment.comment_date}}</p>
-                    <p></p>
+                  {% endif %}
+                  <div class="dayContentIntro" style="text-align: center;">
+                      <p style="font-size: 20px;"><b>{{a_data.a.a_name}}</b></p>
+                      <p>營業時間<br>{% for open in a_data.opening.opening %} {% if forloop.counter != 1  %} <br> {% endif %}{{open}} {% endfor %}</p>
+                      <p>停留時間：{{a_data.stay_time}}分鐘</p>
                   </div>
-                  {% comment %} <div>
-                    <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
-                  </div> {% endcomment %}
-                </div>
-                <div class="body">
-                  <p>{{comment.content}}</p>
-                </div>
-              </div>
-            {% endfor %}
-            
-          {% else %}
-            <p>目前暫無評論</p>
-          {% endif %}
-
+                {% endfor %}
         </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="commentArea">
+    <span class="context-title">行程簡介</span>
+    <div>
+
+      <div class="row alreadyComment" id="alreadyComment">
+        {% comment %} <div class="col-auto otherCommentAvatar">
+          <img src="../static/images/cloud1.png" class="img-responsive" style="width: 100%;" alt=""><br>
+        </div> {% endcomment %}
+        {% if data.detail %}
+        <div class="col otherCommentTxtDiv">
+          <span class="otherCommentTxt" id="otherCommentTxt" data-set="{{data.id}}">
+            {{data.detail}}
+          </span>
+          <div class="c_editDiv">
+            <div class="c_edit_iconDiv">
+              <button class="fa-solid fa-pen-to-square c_edit_icon c_icon" id="c_edit_icon" onclick="editComment('',{{data.id}})"></button>
+            </div>
+          </div>
+        </div>
+        {% else %}
+        <div class="addCommentDiv">
+          <button class="addCommentBtn" id="addCommentBtn" onclick="addComment()">新增簡介</button>
+          <div class="addCommentSpace" id="addCommentSpace" style="display: none;">
+            <textarea class="addCTXT" id="addCTXT" placeholder="留下你的印記吧"></textarea>
+            <button class="commentSubmit" id="commentSubmit" onclick="submitComment({{data.id}})">送出</button>
+          </div>
+        </div>
+        {% endif %}
         
       </div>
+
+      <span class="context-title">評論</span>
+      <div class="row alreadyComment" style="margin-left:10px">
+        {% if data.get_comment %}
+        
+          {% for comment in data.get_comment %}
+            <div class="review-content">
+              <div class="head">
+                <div class="info">
+                  <img class="user-img" src="{{comment.u.get_photo}}" alt="">
+                  <p class="user-name">{{comment.u.username}}<br>{{comment.comment_date}}</p>
+                  <p></p>
+                </div>
+                {% comment %} <div>
+                  <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
+                </div> {% endcomment %}
+              </div>
+              <div class="body">
+                <p>{{comment.content}}</p>
+              </div>
+            </div>
+          {% endfor %}
+          
+        {% else %}
+          <p>目前暫無評論</p>
+        {% endif %}
+
+      </div>
+      
     </div>
   </div>
+</div>
 
 
   <script src="/static/js/history.js"></script>
