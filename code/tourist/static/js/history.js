@@ -60,6 +60,7 @@ function clickShow(button, ctid) {
     targetDiv.style.display = 'block';
     button.textContent = '關閉閱覽';
     button.style.backgroundColor = "#F55";
+    // document.body.classList.add('noScroll');
     $.ajax({
       type: "GET",
       url: "/history/info/",
