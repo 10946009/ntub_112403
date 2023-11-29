@@ -157,7 +157,7 @@ body {
 
 
 .share_icon {
-    font-size: 28px;
+    font-size: 20px;
     color: black;
     text-shadow: 2px 2px 1px #FFF;
     cursor: pointer;
@@ -170,7 +170,7 @@ body {
 }
 
 .edita {
-    font-size: 28px;
+    font-size: 20px;
     text-decoration: none;
     color: black;
     font-weight: bold;
@@ -184,7 +184,7 @@ body {
 }
 
 .icontxt {
-    font-size: 16px;
+    font-size: 14px;
     text-shadow: 2px 2px 1px #ccc;
     font-weight: bolder;
     user-select: none;
@@ -246,7 +246,7 @@ body {
     top: 10%;
     right: 8%;
     background-color: #f9f9f9;
-    width: 40%;
+    width: 42%;
     height: 80%;
     border: 1px solid black;
     border-radius: 20px;
@@ -263,7 +263,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 1;
-    background-color: rgba(245, 245, 220, 0.767);
+    background-color: rgba(245, 245, 220, 0.5);
 }
 
 .aboutDiv {
@@ -593,9 +593,10 @@ body {
 }
 
 @media (max-width: 950px) {
-    /* .icontxt {
-        font-size: 16px;
-    } */
+    .more_btn {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -620,6 +621,9 @@ body {
 
     .basicButton {
         width: 20%;
+    }
+    .detailLeft{
+        width: 100% !important;
     }
 }
 

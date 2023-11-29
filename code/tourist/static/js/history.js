@@ -33,6 +33,7 @@ function add_favorite_share(ctid) {
   });
 };
 
+// 打開詳細行程
 function clickShow(button,ctid) {
   // 更改其他按鈕的文字狀態
   const allButtons = document.querySelectorAll("[class^='more_btn']");
@@ -73,10 +74,7 @@ function clickShow(button,ctid) {
         console.error("Error:", textStatus, errorThrown);
       }
     });
-
-    
   }
-
 }
 
 
