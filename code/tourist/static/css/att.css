@@ -2921,7 +2921,7 @@ img {
 
     .RWD_clear {
         position: absolute;
-        right: 10px;
+        /* right: 10px; */
         margin-top: 15px;
         display: block;
         display: inline-block;
@@ -2950,12 +2950,12 @@ img {
     /* filiter div */
     .in_filiter {
         text-align: left;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
     /* 主題filiter */
     #new_fifliter_topic {
-        margin-right: 10px;
+        margin-right: 5px;
     }
 
     /* 相片集 */
