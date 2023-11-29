@@ -473,6 +473,7 @@ main {
 .blockBtnLayout {
     position: absolute;
     bottom: 0;
+    width: 80%;
 }
 
 .controlBtn {
@@ -1246,5 +1247,11 @@ main {
   .order-red-circle {
     color: red;
     text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    font-size:25px
+  }
+
+  .order-black-circle {
+    color: black;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     font-size:25px
   }
