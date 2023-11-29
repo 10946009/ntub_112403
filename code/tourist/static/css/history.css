@@ -593,6 +593,7 @@ body {
     min-width: 30px;
     text-align: center;
     margin: 0px 10px;
+    cursor: pointer;
 }
 
 @media (max-width:1024px) {
