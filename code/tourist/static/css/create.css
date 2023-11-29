@@ -193,7 +193,9 @@ main {
 
 
 .recommend_submit1 {
-    float: right;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
     margin-top: 10px;
     display: block;
     width: 80px;
@@ -465,6 +467,7 @@ main {
 .blockBtn {
     width: 10%;
     position: relative;
+    margin: 0 auto;
 }
 
 .blockBtnLayout {
@@ -479,6 +482,13 @@ main {
     height: 30px;
     border-radius: 20px;
 }
+/* .addToOrder{
+    float: right;
+    display: block;
+    width: 50%;
+    height: 30px;
+    border-radius: 30px;
+} */
 
 .list {
     width: 80%;
@@ -490,10 +500,11 @@ main {
     border-radius: 20px;
     padding: 5px;
     width: 80%;
-    height: 250px;
+    height: auto;
     margin: 10px auto;
     display: flex;
     position: relative;
+    transition: all 0.3s ease; /* 使用 CSS transition 實現動畫效果 */
 }
 
 .spotOkName {
@@ -790,7 +801,7 @@ main {
 
 .pickimg {
     padding: 0;
-    border: 2px solid red;
+    border: 3px solid red;
     /* transform: scale(0.9); */
 }
 
@@ -1101,6 +1112,16 @@ main {
     .recommend_next {
         font-size: 18px;
     }
+
+    .spot{
+        height: auto;
+    }
+    .doneSpotDiv .doneSpotImgDiv{
+        width: 50% !important;
+    }
+    .doneSpotDiv .blockTxt{
+        width: 50% !important;
+    }
 }
 
 @media(max-width: 576px) {
@@ -1158,12 +1179,6 @@ main {
         height: 30px;
     }
 
-    .doneSpotDiv .doneSpotImgDiv{
-        width: 50% !important;
-    }
-    .doneSpotDiv .blockTxt{
-        width: 50% !important;
-    }
     .innerlist {
         height: auto;
         width: 95%;

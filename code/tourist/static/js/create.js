@@ -229,6 +229,20 @@ function pickspot(checkbox, aid) {
     inputBottom();
   }
 }
+function order_delete(aid) {
+  const done_div = document.getElementById('done-' + globalDay);
+  const order_element = done_div.querySelector('.spot[data-id="' + aid + '"]');
+  if (order_element.id.includes('blockDone')) {
+    const order_id =parseInt(order_element.id.match(/\d+/)[0]);
+    let index = blocksOrder[globalDay].indexOf(order_id);
+    
+    if (index !== -1) {
+      blocksOrder[globalDay].splice(index, 1);
+    }
+  }
+  order_element.remove();
+  pickspotBottom(aid)
+}
 
 // pick spot 刪除下面戰存的景點時
 function pickspotBottom(aid) {
@@ -251,9 +265,6 @@ function pickspotBottom(aid) {
     console.log(e);
   }
 
-  const done_div = document.getElementById('done-' + globalDay);
-  const order_element = done_div.querySelector('.spot[data-id="' + aid + '"]');
-  order_element.remove();
   inputBottom();
 }
 var heart = document.getElementsByClassName('heart_icon');
@@ -430,40 +441,28 @@ function updateBlockPositions(updivID,downdivID) { //移動動畫往上
   //哪一個區塊進行的移動
   let parent = document.getElementById('orderAttractions-' + globalDay);
   
-  let upElements = parent.querySelector("#"+updivID);
-  let downElements = parent.querySelector("#"+downdivID);
-  
-  console.log(upElements);
-  console.log("上去");
-  console.log(downElements);
-  console.log("下來");
-  let start = Date.now(); // remember start time
+  let block1 = parent.querySelector("#"+updivID);
+  let block2 = parent.querySelector("#"+downdivID);
 
-  let timer = setInterval(function() { //重複呼叫
-    // how much time passed from the start?
-    let timePassed = Date.now() - start;
-    if (timePassed >= 1000) {
-      clearInterval(timer); // finish the animation after 2 seconds
-      return;
-    }
-    // draw the animation at the moment timePassed
-    draw(timePassed**0.5*25); //有曲線的移動
-  }, 20);
+  // Get the positions of the blocks
+  let block1Rect = block1.getBoundingClientRect();
+  let block2Rect = block2.getBoundingClientRect();
 
-  setTimeout(reset, 1000);
-  
-  // as timePassed goes from 0 to 2000
-  // left gets values from 0px to 400px
-  function reset(){
-    upElements.style.bottom = '';
-    downElements.style.top = '';
+  // Calculate the difference in positions
+  let dx = block2Rect.left - block1Rect.left;
+  let dy = block2Rect.top - block1Rect.top;
+
+  // Apply the transition to move the blocks
+  block1.style.transform = `translate(${dx}px, ${dy}px)`;
+  block2.style.transform = `translate(${-dx}px, ${-dy}px)`;
+
+  // Reset the transformation after the transition ends
+  setTimeout(() => {
+    block1.style.transform = '';
+    block2.style.transform = '';
     rearrangeBlocks();
-  }
-
-  function draw(timePassed) {
-    upElements.style.bottom = timePassed / 3 + 'px';
-    downElements.style.top = timePassed / 3 + 'px';
-  }
+  }, 300);
+  
 }
 
 function InputRemainderOrder(num){

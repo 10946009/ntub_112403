@@ -56,7 +56,7 @@ def format_minutes_as_time(minutes):
 def create(request, ct_id):
     # 抓使用者收藏的景點
     uid = request.user.id
-    user_favorite_type = [4, 6, 9, 10, 15, 16, 18] #需修改新增的部分
+    user_favorite_type = request.user.user_favorite_tag #需修改新增的部分
     ct_data = Create_Travel.objects.get(id=ct_id)
     try:
         apikey = GOOGLE_PLACES_API_KEY   #記得一定要打開!!!!!!!!!!!!!!!!!!!!!!!!!(API在這!)
@@ -225,7 +225,7 @@ def create(request, ct_id):
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
             final = final_order(
-                list(map(int,o_attractions_list)), new_nowtime, week, stay_time, user_favorite_type
+                list(map(int,o_attractions_list)), new_nowtime, week, user_favorite_type
             )
             # print('final,我在這!!!!!!!!!!!!!!!!',final)
             # ------主要的
@@ -281,11 +281,13 @@ def create(request, ct_id):
             remainder_attractions_data = []
             for fr, fc, fnowtime in zip(final_result_list, final_crow_opening_list,final_now_time_list):
                 f_nt = (fnowtime//60)%24
+                f_nt_next = (f_nt +1) % 24 
+                print(f_nt)
                 order_attractions_data.append({
                     'final_result_list': fr,
                     'final_crow_opening_list': fc,
-                    'final_crowd_list' : f"{min(fc['crowd'][f_nt],fc['crowd'][f_nt+1])} ~ {max(fc['crowd'][f_nt],fc['crowd'][f_nt+1])}",
-                    "final_crowd_avg": (fc['crowd'][f_nt]+fc['crowd'][f_nt+1])//2,  
+                    'final_crowd_list' : f"{min(fc['crowd'][f_nt],fc['crowd'][f_nt_next])} ~ {max(fc['crowd'][f_nt],fc['crowd'][f_nt_next])}",
+                    "final_crowd_avg": (fc['crowd'][f_nt]+fc['crowd'][f_nt_next])//2,  
                     'weather': get_weather_data(fr['address'],start_day[0:4],start_day[5:7],int(start_day[8:])+index,fnowtime),
                 })
             for frr,frc in zip(final_remainder_result_list,final_remainder_crow_opening_list):

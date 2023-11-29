@@ -1,27 +1,27 @@
-//詳細景點資訊幻燈片圖
-var slideIndex1 = 1;
-showSlides(slideIndex1);
-function plusSlides(n) {
-  showSlides((slideIndex1 += n));
-}
-function currentSlide(n) {
-  showSlides((slideIndex1 = n));
-}
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides"); // 取得所有幻燈片元素
-  if (n > slides.length) {
-    slideIndex1 = 1;
-  } // 當索引超出最大值時，將索引設為第一張幻燈片
-  if (n < 1) {
-    slideIndex1 = slides.length;
-  } // 當索引小於1時，將索引設為最後一張幻燈片
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none"; // 隱藏所有幻燈片
-  }
+// //詳細景點資訊幻燈片圖
+// var slideIndex1 = 1;
+// showSlides(slideIndex1);
+// function plusSlides(n) {
+//   showSlides((slideIndex1 += n));
+// }
+// function currentSlide(n) {
+//   showSlides((slideIndex1 = n));
+// }
+// function showSlides(n) {
+//   let i;
+//   let slides = document.getElementsByClassName("mySlides"); // 取得所有幻燈片元素
+//   if (n > slides.length) {
+//     slideIndex1 = 1;
+//   } // 當索引超出最大值時，將索引設為第一張幻燈片
+//   if (n < 1) {
+//     slideIndex1 = slides.length;
+//   } // 當索引小於1時，將索引設為最後一張幻燈片
+//   for (i = 0; i < slides.length; i++) {
+//     slides[i].style.display = "none"; // 隱藏所有幻燈片
+//   }
 
-  slides[slideIndex1 - 1].style.display = "block"; // 顯示目前索引對應的幻燈片
-}
+//   slides[slideIndex1 - 1].style.display = "block"; // 顯示目前索引對應的幻燈片
+// }
 
 //簡單景點介紹js幻燈片
 var slideIndex = 1;

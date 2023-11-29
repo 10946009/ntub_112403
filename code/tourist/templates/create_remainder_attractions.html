@@ -3,11 +3,10 @@
   <div class="hr_container"><hr></div>
   {% endif %}
   <div class="spot innerlist" id="remainder-{{forloop.counter}}" data-id="{{ o.final_result_list.id }}" data-stay="{% if o.final_result_list.stay_time == 0 %}150{% else %}{{ o.final_result_list.stay_time }}{% endif %}">
-    <div class="tempXdiv" onclick="pickspotBottom({{ o.final_result_list.id }})"><i class="fa-solid fa-xmark tempX_icon"></i></div>
+    <div class="tempXdiv" onclick="order_delete({{ o.final_result_list.id }})"><i class="fa-solid fa-xmark tempX_icon"></i></div>
     <div class="row doneSpotDiv">
       <div class="col-4 doneSpotImgDiv">
         <a class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickInfo({{o.final_result_list.id}})"></a>
-        <!-- 抓你們的照片 -->
         <img src="../static/images/attractions/{{o.final_result_list.place_id}}_0.jpg" class="img-responsive doneSpotImg" alt="">
       </div>
       <div class="col-8 blockTxt">
@@ -23,8 +22,8 @@
         </div>
     </div>
     <div class="blockBtn">
-      <div class="blockBtnLayout">
-        <button class="controlBtn btn_up" onclick="InputRemainderOrder({{forloop.counter}})"><i class="fa-solid fa-angle-up"></i></button>
+      <div class="blockBtnLayout" style="width: 80%;">
+        <button class="controlBtn addToOrder" onclick="InputRemainderOrder({{forloop.counter}})"><i class="fa-solid fa-angles-up"></i></button>
     </div>
   </div>
 </div>

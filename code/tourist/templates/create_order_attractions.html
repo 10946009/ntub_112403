@@ -2,7 +2,7 @@
   {% if key == day %}
   {% for data in datalist %}
   <div class="spot innerlist" id="blockDone{{forloop.counter}}" data-id="{{ data.detail.id }}" data-stay="{% if data.detail.stay_time == 0 %}150{% else %}{{ data.detail.stay_time }}{% endif %}">
-    <div class="tempXdiv" onclick="pickspotBottom({{ data.detail.id }})"><i class="fa-solid fa-xmark tempX_icon"></i></div>
+    <div class="tempXdiv" onclick="order_delete({{ data.detail.id }})"><i class="fa-solid fa-xmark tempX_icon"></i></div>
     <div class="row doneSpotDiv">
       <div class="col-4 doneSpotImgDiv">
         {% comment %} <a href="#" class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickeInfo(event,{{ data.detail.id }})"></a>  {% endcomment %}
@@ -36,7 +36,7 @@
   {% empty %}
   {% for o in order_attractions_data %}
   <div class="spot innerlist" id="blockDone{{forloop.counter}}" data-id="{{ o.final_result_list.id }}" data-stay="{% if o.final_result_list.stay_time == 0 %}150{% else %}{{ o.final_result_list.stay_time }}{% endif %}">
-    <div class="tempXdiv" onclick="pickspotBottom({{ o.final_result_list.id }})"><i class="fa-solid fa-xmark tempX_icon"></i></div>
+    <div class="tempXdiv" onclick="order_delete({{ o.final_result_list.id }})"><i class="fa-solid fa-xmark tempX_icon"></i></div>
     <div class="row doneSpotDiv">
       <div class="col-4 doneSpotImgDiv">
         <a class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickInfo({{o.final_result_list.id}})"></a>
