@@ -427,6 +427,20 @@ files = [
 Django = ">=3.2"
 
 [[package]]
+name = "django-sslserver"
+version = "0.22"
+description = "An SSL-enabled development server for Django"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "django_sslserver-0.22-py3-none-any.whl", hash = "sha256:c598a363d2ccdc2421c08ddb3d8b0973f80e8e47a3a5b74e4a2896f21c2947c5"},
+]
+
+[package.dependencies]
+Django = ">=1.8"
+
+[[package]]
 name = "djlint"
 version = "1.23.0"
 description = "HTML Template Linter and Formatter"
@@ -1351,4 +1365,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "fa0a76e347b7703ddc6b9bcbdb4f6081ea218086f62032c65c26ece5144e344d"
+content-hash = "ff7fd0908f876994c3e305728a4a18c57a9d8342b573720247019acc4d5e6ffe"
