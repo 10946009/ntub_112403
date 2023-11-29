@@ -87,7 +87,7 @@ def create(request, ct_id):
     # 抓目前位置
     for index,ct_attractions_data in enumerate(ct_attractions_data_total):
             
-        chinese_week = ["","一","二","三","四","五","六","日"]
+        # chinese_week = ["","一","二","三","四","五","六","日"]
         week = (start_week + index) % 8
         if week == 0: week = 1
         user_favorite_list = Crowd_Opening.objects.filter(week=week, a_id__in=user_favorite_id_list)
@@ -106,7 +106,8 @@ def create(request, ct_id):
             "location_name": location_name,
             "user_nowtime": user_nowtime,
             "date": f"{start_day[5:7]}月{int(start_day[8:])+index}日",
-            "week": chinese_week[week],
+            # "week": chinese_week[week],
+            "week": week,
             "user_favorite_list": user_favorite_list,
         }
         # 抓出這筆行程中的所有景點
@@ -144,6 +145,8 @@ def create(request, ct_id):
         ct_status = request.POST["ct_status"]
         #這是推薦景點~
         if ct_status == "0":
+            globalDay = int(request.POST["globalDay"])
+            week = (start_week + globalDay - 1) % 7
             get_user_address = list(map(float, request.POST["user_location"].split(",")))
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
@@ -180,6 +183,9 @@ def create(request, ct_id):
             return JsonResponse(data=data_dict, safe=False)
 
         if ct_status == "1":
+            globalDay = int(request.POST["globalDay"])
+            week = (start_week + globalDay - 1) % 7
+            
             o_attractions_list = request.POST.getlist("aid_list[]")
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
@@ -212,6 +218,8 @@ def create(request, ct_id):
             return JsonResponse(data=data_dict, safe=False)
 
         if ct_status == "2":
+            globalDay = int(request.POST["globalDay"])
+            week = (start_week + globalDay - 1) % 7
             o_attractions_list = request.POST.getlist("total_aid_list[]")
             # print('o_attractions_list我在這!!!!!!!!!!!!!!!!!!',o_attractions_list)
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
@@ -237,21 +245,18 @@ def create(request, ct_id):
             # ------剩餘的
             final_remainder_result_list = []
             final_remainder_crow_opening_list = []
-            try:
-                for fr in final[1]:
-                    temp_r = Attractions.objects.filter(place_id=fr).values().first()
-                    final_remainder_result_list.append(temp_r)
-
-                for i in final_remainder_result_list:
-                    fr_db = (
-                        Crowd_Opening.objects.filter(Q(week=week) & Q(a_id=i["id"]))
-                        .values()
-                        .first()
-                    )
-                    final_remainder_crow_opening_list.append(fr_db)
-                # final_remainder_result_list = list(final_remainder_result_list)
-            except:
-                pass
+            for fr in final[1]:
+                temp_r = Attractions.objects.filter(id=fr).values().first()
+                final_remainder_result_list.append(temp_r)
+            for i in final_remainder_result_list:
+                print(i)
+                fr_db = (
+                    Crowd_Opening.objects.filter(Q(week=week) & Q(a_id=i["id"]))
+                    .values()
+                    .first()
+                )
+                final_remainder_crow_opening_list.append(fr_db)
+            # final_remainder_result_list = list(final_remainder_result_list)
 
             final_now_time_list = final[2]
             # ------------
@@ -285,15 +290,20 @@ def create(request, ct_id):
                 })
             for frr,frc in zip(final_remainder_result_list,final_remainder_crow_opening_list):
                 remainder_attractions_data.append({
-                'final_remainder_result_list':frr,
-                'final_remainder_crow_opening_list':frc,
+                'final_result_list':frr,
+                'final_crow_opening_list':frc,
             })
             #轉成html
             html = render_to_string(
                 template_name="create_order_attractions.html",
-                context={"order_attractions_data": order_attractions_data,'remainder_attractions_data':remainder_attractions_data,'final_now_time_list':final_now_time_list},
+                context={"order_attractions_data": order_attractions_data,'final_now_time_list':final_now_time_list},
             )
-            data_dict = {"order_attractions": html}
+            html2 = render_to_string(
+                template_name="create_remainder_attractions.html",
+                context={'remainder_attractions_data':remainder_attractions_data},
+            )
+
+            data_dict = {"order_attractions": html,"remainder_attractions":html2}
             
             return JsonResponse(data=data_dict, safe=False)
 

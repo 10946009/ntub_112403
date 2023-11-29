@@ -3,8 +3,14 @@
   {% for data in datalist %}
   <div class="spot innerlist" id="blockDone{{forloop.counter}}" data-id="{{ data.detail.id }}" data-stay="{% if data.detail.stay_time == 0 %}150{% else %}{{ data.detail.stay_time }}{% endif %}">
     <div class="tempXdiv" onclick="pickspotBottom({{ data.detail.id }})"><i class="fa-solid fa-xmark tempX_icon"></i></div>
-      <div class="blockTxt">
-        <a href="#" class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickeInfo(event,{{ data.detail.id }})"></a>
+    <div class="row doneSpotDiv">
+      <div class="col-4 doneSpotImgDiv">
+        {% comment %} <a href="#" class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickeInfo(event,{{ data.detail.id }})"></a>  {% endcomment %}
+        <a class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickInfo({{data.detail.id}})"></a>
+        <!-- 抓你們的照片 -->
+        <img src="../static/images/attractions/{{data.detail.place_id}}_0.jpg" class="img-responsive doneSpotImg"  alt="">
+      </div>
+      <div class="col-8 blockTxt">
         <p class="spotOkName">{{ data.detail.a_name }}</p>
         <p id="hiddenId" style="display: none;">{{ data.detail.id }}</p>
         <p class="spotOk spotOkCrowd">當下可能的人潮流量：{{ data.crowd_list }}% <span class="order-{% if data.crowd_avg <= 35 %}green{% elif data.crowd_avg <= 65 %}orange{% elif data.crowd_avg <= 100 %}red{% endif %}-circle">●</span><br>
@@ -17,6 +23,7 @@
         <p class="spotOk spotOkStay">建議停留時間：{% if data.detail.stay_time == 0 %}150{% else %}{{ data.detail.stay_time }}{% endif %} 分鐘</p>
         <p class="spotOk spotOkweather">天氣狀況：{% if data.weather %} {{ data.weather }} {% else %} 尚無資料 {% endif %} <br>
       </div>
+    </div>
     <div class="blockBtn">
       <div class="blockBtnLayout">
         <button class="controlBtn btn_up" onclick="moveBlock('{{forloop.counter}}', 'up')"><i class="fa-solid fa-angle-up"></i></button>
@@ -30,8 +37,13 @@
   {% for o in order_attractions_data %}
   <div class="spot innerlist" id="blockDone{{forloop.counter}}" data-id="{{ o.final_result_list.id }}" data-stay="{% if o.final_result_list.stay_time == 0 %}150{% else %}{{ o.final_result_list.stay_time }}{% endif %}">
     <div class="tempXdiv" onclick="pickspotBottom({{ o.final_result_list.id }})"><i class="fa-solid fa-xmark tempX_icon"></i></div>
-      <div class="blockTxt">
-        <a href="#" class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickeInfo(event,{{ o.final_result_list.id }})"></a>
+    <div class="row doneSpotDiv">
+      <div class="col-4 doneSpotImgDiv">
+        <a class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickInfo({{o.final_result_list.id}})"></a>
+        <!-- 抓你們的照片 -->
+        <img src="../static/images/attractions/{{o.final_result_list.place_id}}_0.jpg" class="img-responsive doneSpotImg" alt="">
+      </div>
+      <div class="col-8 blockTxt">
         <p class="spotOkName">{{ o.final_result_list.a_name }}</p>
         <p id="hiddenId" style="display: none;">{{ o.final_result_list.id }}</p>
         <p class="spotOk spotOkCrowd">當下可能的人潮流量：{{ o.final_crowd_list }}% <span class="order-{% if o.final_crowd_avg <= 35 %}green{% elif o.final_crowd_avg <= 65 %}orange{% elif o.final_crowd_avg <= 100 %}red{% endif %}-circle">●</span><br>
@@ -44,6 +56,7 @@
         <p class="spotOk spotOkStay">建議停留時間：{% if o.final_result_list.stay_time == 0 %}150{% else %}{{ o.final_result_list.stay_time }}{% endif %} 分鐘</p>
         <p class="spotOk spotOkweather">天氣狀況：{% if o.weather %} {{ o.weather }} {% else %} 尚無資料 {% endif %} <br>
       </div>
+    </div>
     <div class="blockBtn">
       <div class="blockBtnLayout">
         <button class="controlBtn btn_up" onclick="moveBlock('{{forloop.counter}}', 'up')"><i class="fa-solid fa-angle-up"></i></button>

@@ -7,6 +7,7 @@ from django.template.loader import render_to_string  # 頁面轉成html
 from django.forms.models import model_to_dict
 from .viewsConst import ATT_TYPE_CHINESE
 from .findpicture import get_picture_list
+from datetime import datetime
 
 def keyword_search(search_text, filter_condition_and, filter_condition_or, method):
     # Q物件可以用&和|來串接，串接後的Q物件可以用來過濾資料
@@ -33,7 +34,11 @@ TEX_CALL = {
 }
 
 def search(request):
+    print(request)
     if request.method == "GET" and request.GET.get("search_text") != None:
+
+        week = request.GET.get("week")
+
         # 初始化一个Q对象，表示没有过滤条件
         filter_condition_and = Q()
         filter_condition_or = Q()
@@ -53,7 +58,9 @@ def search(request):
             .values()
         )
         search_list = search_list_and + search_list_or
-
+        
+        for data in search_list:
+            data['opening'] = Crowd_Opening.objects.get(a_id=data['id'],week=week).opening
         html = render_to_string(
             template_name="create_search.html",
             context={"search_list": search_list},

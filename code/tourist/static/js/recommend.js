@@ -8,6 +8,7 @@ function startRecommend(user_location,day){
       data: {
           user_location: user_location,
           nowtime: nowtime.value,
+          globalDay: globalDay,
           ct_status: 0,
       },
       success: function (response) {
@@ -37,6 +38,7 @@ function similarRecommend(){
         data: {
             aid_list: aid_list,
             nowtime: nowtime.value,
+            globalDay: globalDay,
             ct_status: 1,
         },
         beforeSend: function () {
@@ -63,12 +65,15 @@ function submitRecommend(){
 
   const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
   const order_attractions_detail_div = $('#orderAttractions-'+ globalDay );
+  const remainder_attractions_detail_div = $('#RemainderAttractions-'+ globalDay );
+  console.log(remainder_attractions_detail_div);
   $.ajax({
       type: "POST",
       headers: { 'X-CSRFToken': csrftoken },
       data: {
           total_aid_list: total_aid_list,
           nowtime: nowtime.value,
+          globalDay: globalDay,
           ct_status: 2,
       },
       beforeSend: function () {
@@ -78,6 +83,7 @@ function submitRecommend(){
       success: function (response) {
         console.log(response);
         order_attractions_detail_div.html(response['order_attractions']);
+        remainder_attractions_detail_div.html(response['remainder_attractions']);
         checkAndAddClass();
         blocksOrderInit();
       },

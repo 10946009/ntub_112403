@@ -32,6 +32,7 @@
         <button class="create-nav-link {% if forloop.counter == 1 %}active{% endif %}" id="{{ day }}-tab"
         data-bs-toggle="tab" data-bs-target="#ch-{{ day }}" type="button" role="tab" aria-controls="ch-{{ day }}"
         onclick="saveTabState('ch-{{ day }}',{{ day }})" aria-selected="true">DAY {{ day }}</button>
+        <input type="hidden" value="{{ data.week }}" class="week" id="week{{ day }}">
         <!-- <div>{{data.date}}({{data.week}})</div>  -->
       </li>
       <!--aria-controls="ch-{{ day }}"變數名稱要改一下-->
@@ -92,12 +93,9 @@
         <div class="list" id="orderAttractions-{{ day }}" style="cursor: pointer;overflow-y: auto;">
           {% include 'create_order_attractions.html' %}
         </div>
-        <div id="RemainderAttractions">
-          <div class="hr_container"><hr></div>
-          <div>
+        <div class="list" id="RemainderAttractions-{{ day }}">
             <!-- 先放排序的資料進去 -->
-            {% include 'create_order_attractions.html' %}
-          </div>
+            {% include 'create_remainder_attractions.html' %}
         </div>
 
         

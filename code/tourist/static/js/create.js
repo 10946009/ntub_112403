@@ -251,6 +251,9 @@ function pickspotBottom(aid) {
     console.log(e);
   }
 
+  const done_div = document.getElementById('done-' + globalDay);
+  const order_element = done_div.querySelector('.spot[data-id="' + aid + '"]');
+  order_element.remove();
   inputBottom();
 }
 var heart = document.getElementsByClassName('heart_icon');
@@ -462,6 +465,21 @@ function updateBlockPositions(updivID,downdivID) { //移動動畫往上
     downElements.style.top = timePassed / 3 + 'px';
   }
 }
+
+function InputRemainderOrder(num){
+  const remainder_attractions_detail_div = document.getElementById('RemainderAttractions-' + globalDay)
+  const remainder_attractions = remainder_attractions_detail_div.querySelector('#remainder-' + num);
+  const order_attractions_detail_div = document.getElementById('orderAttractions-'+ globalDay);
+  console.log(remainder_attractions);
+  blocksOrder[globalDay].push(blocksOrder[globalDay].length+1);
+  remainder_attractions.id = 'blockDone'+blocksOrder[globalDay].length;
+  const originalButtonLayout = remainder_attractions.querySelector('.blockBtnLayout');
+  originalButtonLayout.innerHTML = `
+  <button class="controlBtn btn_up" onclick="moveBlock('${blocksOrder[globalDay].length}', 'up')"><i class="fa-solid fa-angle-up"></i></button>
+  <button class="controlBtn btn_down" onclick="moveBlock('${blocksOrder[globalDay].length}', 'down')"><i class="fa-solid fa-angle-up fa-rotate-180"></i></button>`
+  order_attractions_detail_div.appendChild(remainder_attractions);
+  rearrangeBlocks();
+};
 // // move to top
 // function moveFirst(blockDoneId) {
 //   let index = blocksOrder[globalDay].indexOf(parseInt(blockDoneId.slice(-1)));
@@ -487,8 +505,9 @@ function rearrangeBlocks() {
   let blocks = parent.querySelectorAll('.spot');
   console.log(blocks);
   let orderedBlocks = Array.from(blocks).sort((a, b) => {
-    let indexA = parseInt(a.id.slice(-1));
-    let indexB = parseInt(b.id.slice(-1));
+    let indexA = parseInt(a.id.match(/\d+/)[0]);
+    let indexB = parseInt(b.id.match(/\d+/)[0]);
+    console.log(indexA,indexB);
     return blocksOrder[globalDay].indexOf(indexA) - blocksOrder[globalDay].indexOf(indexB);
   });
 
