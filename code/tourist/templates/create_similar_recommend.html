@@ -2,7 +2,7 @@
   {% for n in near_recommend_data %}
       <div class="item S_checkimg_div" onclick="pickspot(this,{{ n.o_list.id }})">
         <label type="checkbox" name="variety" value="{{n.o_list.id}}" class="imgcheck" style="margin: 0;padding: 0;border: 0;">
-          <span class="checkspot" style="height: 180px;">
+          <span class="checkspot checkspotSimilar">
             <img src="../static/images/attractions/{{n.o_list.place_id}}_0.jpg" class="img-responsive " width="100%" alt="">
           </span>
           <div class="overlay" style="cursor: pointer;">
@@ -18,7 +18,7 @@
     {%empty%}
   {% endfor %}
 </div>
-<script src="/static/js/owlStart.js"></script>
+<script src="/static/js/similarOwl.js"></script>
 <script>
-  owlStart();
+  similarOwl();
 </script>
