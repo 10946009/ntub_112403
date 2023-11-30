@@ -337,8 +337,12 @@
     });
 
     function clearTag() {
+        const more_btn = document.querySelectorAll('.more_btn.active');
+        for(var i = 0; i < more_btn.length; i++){
+            more_btn[i].classList.remove('active');
+        }
         var search_type_key_word = document.getElementById('type_key_word');
-        console.log(search_type_key_word);
+        // console.log(search_type_key_word);
         while (search_type_key_word.firstChild) {
             search_type_key_word.removeChild(search_type_key_word.firstChild);
         }
@@ -412,7 +416,7 @@
     function searchText(search_text, data_type) {
         loadingpage = 2
         // data_type= keyword_search,tag_search,popular_search
-        console.log(search_text, data_type);
+        // console.log(search_text, data_type);
         var search_type_key_word = document.getElementById('type_key_word');
 
         $.ajax({
