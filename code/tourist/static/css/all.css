@@ -95,6 +95,7 @@
 
 /* 搜尋小icon */
 .base_searchInput .search_icon {
+	background-color: #ffffff00;
 	border: none;
 	position: absolute;
 	padding: 0;
