@@ -20,7 +20,7 @@ function similarOwl(){
                 slideBy:3
                 
             },
-            700: {
+            900: {
                 items: 4,
                 slideBy: 4
             }

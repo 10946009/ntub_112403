@@ -43,7 +43,8 @@
     color: black;
     text-shadow: 3px 3px 3px rgb(91, 91, 91);
 }
-#createDate{
+
+#createDate {
     width: 100%;
 }
 
@@ -132,21 +133,25 @@ main {
     right: 10px;
     margin-top: 10px;
     display: block;
-    width: 50px;
-    height: 40px;
-    line-height: 40px;
+    width: 60px;
+    height: 50px;
+    line-height: 50px;
     text-align: center;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
-    border: 0;
+    border: 1px solid white;
     box-shadow: inset 1px 1px 3px #333;
     border-radius: 30px;
     cursor: pointer;
     color: #fff;
-    background-color: #198754;
+    background-color: orange;
     text-shadow: 2px 2px 3px #333;
+    transition: background-color 0.5s ,transform 0.5s;
 }
-
+.recommend_next:hover{
+    transform: scale(1.2);
+    background-color: rgb(255, 70, 70);
+}
 .saveIcon_btn::before {
     content: '\f0c7';
     font-family: 'Font Awesome 5 Free';
@@ -361,6 +366,9 @@ main {
 }
 
 .rightHr {
+    border: 1px solid #333;
+    padding: 0 5px;
+    margin-top: 10px;
     margin-bottom: 5px;
 }
 
@@ -439,18 +447,20 @@ main {
     position: relative;
 }
 
-.doneSpotDiv{
+.doneSpotDiv {
     width: 95%;
 }
-.doneSpotImgDiv{
+
+.doneSpotImgDiv {
     /* width: 100%; */
     height: 100%;
     overflow: hidden;
     position: relative;
 }
+
 .doneSpotImgDiv .doneSpotImg {
-    width: 95%; 
-    height: 100%; 
+    width: 95%;
+    height: 100%;
     object-fit: cover;
     position: absolute;
     right: 0;
@@ -483,6 +493,7 @@ main {
     height: 30px;
     border-radius: 20px;
 }
+
 /* .addToOrder{
     float: right;
     display: block;
@@ -505,7 +516,8 @@ main {
     margin: 10px auto;
     display: flex;
     position: relative;
-    transition: all 0.3s ease; /* 使用 CSS transition 實現動畫效果 */
+    transition: all 0.3s ease;
+    /* 使用 CSS transition 實現動畫效果 */
 }
 
 .spotOkName {
@@ -844,6 +856,9 @@ main {
     cursor: pointer;
 }
 
+.checkspotSimilar {
+    height: 150px;
+}
 
 .info_icon_left {
     position: absolute;
@@ -899,6 +914,12 @@ main {
     text-align: center;
     padding: 0;
     background-color: cadetblue;
+    color: white;
+    transition: background-color 0.5s;
+}
+.showRight_btn:hover{
+    background-color: orange;
+    color: black;
 }
 
 .right {
@@ -1009,6 +1030,7 @@ main {
 
 
 .overlay .text {
+    font-weight: bold;
     font-size: 24px;
 }
 
@@ -1044,9 +1066,9 @@ main {
         font-size: 20px;
     }
 
-    .rightHr {
+    /* .rightHr {
         margin-top: 5px;
-    }
+    } */
 
     .recommend_submit1 {
         font-size: 20px;
@@ -1111,16 +1133,21 @@ main {
     }
 
     .recommend_next {
+        width: 50px;
+        height: 40px;
+        line-height: 40px;
         font-size: 18px;
     }
 
-    .spot{
+    .spot {
         height: auto;
     }
-    .doneSpotDiv .doneSpotImgDiv{
+
+    .doneSpotDiv .doneSpotImgDiv {
         width: 50% !important;
     }
-    .doneSpotDiv .blockTxt{
+
+    .doneSpotDiv .blockTxt {
         width: 50% !important;
     }
 }
@@ -1172,7 +1199,9 @@ main {
     }
 
     .recommend_next {
-        font-size: 18px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
     }
 
     .controlBtn {
@@ -1183,6 +1212,15 @@ main {
     .innerlist {
         height: auto;
         width: 95%;
+    }
+
+    .checkspotSimilar {
+        height: 160px;
+    }
+
+
+    .overlay .text {
+        font-size: 20px;
     }
 }
 
@@ -1217,6 +1255,13 @@ main {
     .controlBtn {
         padding: 0;
     }
+
+    .checkspotSimilar {
+        height: 180px;
+    }
+    .recommend_submit1 {
+        bottom: 15px;
+    }
 }
 
 @media(max-width: 376px) {
@@ -1228,30 +1273,32 @@ main {
         margin-left: 0;
         font-size: 16px;
     }
+
+
 }
 
-
+/* 
 
 .order-green-circle {
     color: green;
     text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
-    font-size:25px
-  }
+    font-size: 25px
+}
 
-  .order-orange-circle {
+.order-orange-circle {
     color: orange;
     text-shadow: 0 0 10px rgba(255, 165, 0, 0.7);
-    font-size:25px
-  }
+    font-size: 25px
+}
 
-  .order-red-circle {
+.order-red-circle {
     color: red;
     text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
-    font-size:25px
-  }
+    font-size: 25px
+}
 
-  .order-black-circle {
+.order-black-circle {
     color: black;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-    font-size:25px
-  }
+    font-size: 25px
+} */
