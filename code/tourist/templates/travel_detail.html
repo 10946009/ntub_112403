@@ -443,7 +443,7 @@ header {
     <div>
       {% comment %} <button class="btn-style-1">發表評論</button> {% endcomment %}
     </div>
-
+    {% if request.user.is_authenticated %}
     <form class="ask-content" id="ask-content" action="/comment/{{detail.id}}/" method="POST">
       <div class="out_share_comment" id="out_share_comment">
           <div id="share_comment_container" class="share_comment_container">
@@ -483,6 +483,15 @@ header {
           </div>
       </div>
     </form>
+    {% else %}
+    <div style="width:100%;text-align:center;">
+      <a href = "\login">
+      <h5 style="font-size: 24px;">
+          登入後即可發表評論
+      </h5>
+    </a>
+    <div>
+    {% endif %}
   
 
     <section class="review">

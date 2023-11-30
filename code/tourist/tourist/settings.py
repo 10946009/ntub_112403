@@ -36,7 +36,7 @@ SECRET_KEY = "django-insecure-yuv&)7t=lclr@8_e%n1myhkuez-)b2q@gw38rkp#ygx-w7uws!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*","0.0.0.0"]
 
 
 # Application definition
@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # "sslserver",
+    "sslserver",
     "bootstrap5",
     
 
@@ -63,6 +63,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "tourist.urls"
@@ -139,8 +141,10 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = [ #加入static路徑
-    BASE_DIR / 'static',
+    os.path.join(BASE_DIR,"static/"),
 ]
+STATIC_ROOT = os.path.join(BASE_DIR,"static_new/")
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -165,3 +169,6 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Taipei'
 
 SECURE_SSL_REDIRECT = False
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+CSRF_TRUSTED_ORIGINS = ["https://tripfunchill.wthtech.tw","http://tripfunchill.wthtech.tw"]
