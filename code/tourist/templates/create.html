@@ -230,13 +230,16 @@
             <span class="similar_icon">&asymp;</span>
             <span class="s_rec_txt" >相似景點推薦</span>
           </div>
-          <div class="openSimilar"id="SimilarRecommend">
+          <div class="openSimilar" id="SimilarRecommend">
             {% include "create_similar_recommend.html" %}
           </div>
         </div>
       </div>
+      
+      <div style="display: block;">
+        <button class="recommend_submit1" id="clickLikeAttractions" onclick="submitAction2()" value="送出">送出</button>
+      </div>
     </div>
-    <button class="recommend_submit1" id="clickLikeAttractions" onclick="submitAction2()" value="送出">送出</button>
   </div>
   <div class="overlayBg" id="overlayBg"></div>
 </main>
