@@ -198,9 +198,10 @@ main {
 
 
 .recommend_submit1 {
-    position: absolute;
+    float: right;
+    /* position: absolute;
     bottom: 5px;
-    right: 5px;
+    right: 5px; */
     margin-top: 10px;
     display: block;
     width: 80px;
@@ -335,6 +336,9 @@ main {
     align-content: center;
     padding: 10px 0;
     user-select: none;
+}
+.openSimilar{
+    height: 180px;
 }
 
 .done_icon,
@@ -932,9 +936,9 @@ main {
     border-bottom-left-radius: 10px;
     max-width: 90%;
     width: 90%;
-    height: 85%;
+    height: auto;
     transition: right 0.3s ease;
-    z-index: 5;
+    z-index: 6;
     background-color: white;
     padding: 5px;
 }
@@ -951,7 +955,7 @@ main {
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     display: none;
-    z-index: 2;
+    z-index: 5;
 }
 
 .align {
@@ -1040,9 +1044,9 @@ main {
         width: 90%;
     }
 
-    .right {
+    /* .right {
         height: 88%;
-    }
+    } */
 }
 
 @media (max-width: 850px) {
