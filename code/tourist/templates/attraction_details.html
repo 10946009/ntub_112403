@@ -183,6 +183,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script>
+    let loadingpage = 2;  // 初始页面
+    let waitload = false;  // 等待加载标志
     // 當頁面載入完成後執行
     document.addEventListener('DOMContentLoaded', function () {
         var dropdown_filiter = document.getElementById('dropdown_filiter');
@@ -337,8 +339,12 @@
     });
 
     function clearTag() {
+        const more_btn = document.querySelectorAll('.more_btn.active');
+        for(var i = 0; i < more_btn.length; i++){
+            more_btn[i].classList.remove('active');
+        }
         var search_type_key_word = document.getElementById('type_key_word');
-        console.log(search_type_key_word);
+        // console.log(search_type_key_word);
         while (search_type_key_word.firstChild) {
             search_type_key_word.removeChild(search_type_key_word.firstChild);
         }
@@ -412,7 +418,7 @@
     function searchText(search_text, data_type) {
         loadingpage = 2
         // data_type= keyword_search,tag_search,popular_search
-        console.log(search_text, data_type);
+        // console.log(search_text, data_type);
         var search_type_key_word = document.getElementById('type_key_word');
 
         $.ajax({
@@ -635,8 +641,7 @@
             console.log(attractionsDetailName);
         }
     }); {% endcomment %}
-    let loadingpage = 2;  // 初始页面
-    let waitload = false;  // 等待加载标志
+
     // 当滚动到底部时触发加载更多数据
     $(window).scroll(function () {
         if ($(window).scrollTop() + $(window).height() >= $(document).height() * 0.9 && !waitload) {
