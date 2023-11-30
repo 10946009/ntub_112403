@@ -183,6 +183,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script>
+    let loadingpage = 2;  // 初始页面
+    let waitload = false;  // 等待加载标志
     // 當頁面載入完成後執行
     document.addEventListener('DOMContentLoaded', function () {
         var dropdown_filiter = document.getElementById('dropdown_filiter');
@@ -639,8 +641,7 @@
             console.log(attractionsDetailName);
         }
     }); {% endcomment %}
-    let loadingpage = 2;  // 初始页面
-    let waitload = false;  // 等待加载标志
+
     // 当滚动到底部时触发加载更多数据
     $(window).scroll(function () {
         if ($(window).scrollTop() + $(window).height() >= $(document).height() * 0.9 && !waitload) {
