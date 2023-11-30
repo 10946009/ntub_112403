@@ -131,7 +131,7 @@
 
     navLinks.forEach((link, index) => {
       link.addEventListener('click', function() {
-        localStorage.setItem('activeLink', index); // 存储被点击链接的索引
+        localStorage.setItem('activeLink', index); // 儲存被點擊連結索引直
 
         navLinks.forEach(link => {
           link.classList.remove('active');
@@ -141,7 +141,7 @@
       });
     });
 
-    // 检查本地存储中是否有保存的索引
+    // 檢查連結索引直
     const activeIndex = localStorage.getItem('activeLink');
 
     if (activeIndex !== null) {
@@ -156,7 +156,7 @@
 
   // popup info
   function clickInfo(aId) {
-    event.stopPropagation(); // 阻止事件传播
+    event.stopPropagation(); // 防止父元素執行
     var modal = document.getElementById('myModal');
     modal.classList.add('modal_active');
     document.body.classList.add('body_noScroll');
@@ -208,7 +208,7 @@
 
   //不在index.html的時候隱藏systemname
   window.onload = function () {
-    var isIndexPage = window.location.pathname === "/"; // 假设首页的路径是 "/"
+    var isIndexPage = window.location.pathname === "/"; 
     var systemNameElement = document.getElementById("systemname");
     // var navbgcolor = document.querySelector(".toolbar");
     var downicon = document.getElementById("downicon");

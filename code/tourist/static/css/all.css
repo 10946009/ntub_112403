@@ -57,7 +57,9 @@
 }
 
 .nav-link.active {
-	color: red !important;
+	font-size: 20px;
+	color: rgb(44, 43, 43) !important;
+	text-shadow: 2px 2px 2px #ccc;
 }
 
 /* 整個搜尋引擎那條 */
