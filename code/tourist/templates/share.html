@@ -4,9 +4,6 @@
 
 {% block content %}
 <link rel="stylesheet" href="../static/css/share.css">
-<link rel="stylesheet" href="../static/css/bootstrap2023.css">
-{% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> 主要影響toolbar的原因 {% endcomment %}
-{% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> {% endcomment %}
 <style>
   .justify-content-center{
     margin-top: 15px;
@@ -78,7 +75,7 @@
 
       {% for item in all_share_list %}
       
-        <div class="col-md-4 d-flex justify-content-center">
+        <div class="col-lg-4 col-sm-6 d-flex justify-content-center">
           <div class="card">
             <div class="location-wrap" style="position: relative;">
               <img src="/static/images/attractions/{{ item.img }}_0.jpg" class="img-responsive custom-image">
@@ -93,16 +90,19 @@
                 data-id="{{item.id}}" data-type="/add_travel_favorite/"></button>
             {% endif %}
 
-            <div class="card-body text-center">
+            <div class="card-body text-center" style="padding-top: 5px;">
+              <div style="float: right;user-select: none;">
+                {% for tag in item.object.is_fit %}
+                  <span class="badge rounded-pill bg-success">{{ tag }}</span>
+                {% endfor %}
+              </div>
+              <br>
               <h4 class="card-title">{{item.ct_name}}</h4>
-              <h5>使用者:{{ item.u_id.username }}</h5>
+              <h5 style="word-wrap: normal;">作者： {{ item.u_id.username }}</h5>
               {% comment %} <p class="description">20230318去平溪玩水一天</p> {% endcomment %}
               <div class = "container">
               <a href="/travel_detail/{{ item.id }}" class="btn btn-warning spot_data_btn">詳細資料</a>
               <br>
-              {% for tag in item.object.is_fit %}
-                <span class="badge rounded-pill bg-success">{{ tag }}</span>
-              {% endfor %}
               {% comment %} <span class="delete-icon" style="color: black;"><i class="fas fa-trash-alt"></i></span> {% endcomment %}
               </div>
             </div>

@@ -193,24 +193,60 @@
                 transform: scale(1);
             }
         }
+
+        .nav-link {
+            color: rgb(224, 224, 224);
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 2px 2px 2px #000000;
+        }
+
+        .nav-link.active {
+            color: red;
+        }
+
         /* CSS for screens less than 768px */
-@media screen and (max-width: 767px) {
-    .rowContainer .col-6 {
-        width: 100% !important;
-    }
-}
+        @media screen and (max-width: 767px) {
+            .rowContainer .col-6 {
+                width: 100% !important;
+            }
+        }
 
-/* CSS for screens 768px and above */
-@media screen and (min-width: 768px) {
-    .rowContainer .col-6 {
-        width: 50% !important;
-    }
-}
-
+        /* CSS for screens 768px and above */
+        @media screen and (min-width: 768px) {
+            .rowContainer .col-6 {
+                width: 50% !important;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg toolbar" style="z-index: 100;">
+        <div class="container-fluid">
+            <button class="navbar-toggler ms-auto rwd_icon" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">建立行程</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">景點資訊</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">分享空間</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <main style="width: 85%;margin: 0 auto;">
         <div class="pageedit">
             <ul class="nav nav-tabs">
@@ -426,123 +462,94 @@
     <script src="../static/js/bootstrap.min.js"></script>
     <script src="../static/js/owl.carousel.min.js"></script>
     <script>
-// function openRight(button) {
-//     var buttonId = button.id;
-//     var rightId = buttonId.replace("openRight", "right");
-//     var specificRightBlock = document.getElementById(rightId);
+        const navLinks = document.querySelectorAll('.nav-link');
 
-//     if (specificRightBlock) {
-//         var allRightBlocks = document.querySelectorAll('.rightsection');
-//         allRightBlocks.forEach(function (block) {
-//             if (block.id !== rightId) {
-//                 block.style.display = 'none';
-//                 var relatedOpenButtonId = block.id.replace("right", "openRight");
-//                 var relatedOpenButton = document.getElementById(relatedOpenButtonId);
-//                 if (relatedOpenButton) {
-//                     relatedOpenButton.style.display = 'inline-block';
-//                     var relatedCloseButtonId = block.id.replace("right", "closeRight");
-//                     var relatedCloseButton = document.getElementById(relatedCloseButtonId);
-//                     if (relatedCloseButton) {
-//                         relatedCloseButton.style.display = 'none';
-//                     }
-//                 }
-//             }
-//         });
+        navLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
 
-//         var otherOpenButtons = document.querySelectorAll('.openRight:not(#' + buttonId + ')');
-//         otherOpenButtons.forEach(function (btn) {
-//             btn.style.display = 'inline-block';
-//         });
+                this.classList.add('active');
+            });
+        });
 
-//         button.style.display = 'none';
-//         specificRightBlock.style.display = 'block';
+        function openRight(button) {
+            var buttonId = button.id;
+            var rightId = buttonId.replace("openRight", "right");
+            var specificRightBlock = document.getElementById(rightId);
 
-//         var closeButtonId = buttonId.replace("openRight", "closeRight");
-//         var closeButton = document.getElementById(closeButtonId);
-//         if (closeButton) {
-//             closeButton.style.display = 'inline-block';
-//         }
-//     }
-// }
+            if (specificRightBlock) {
+                var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
-function openRight(button) {
-    var buttonId = button.id;
-    var rightId = buttonId.replace("openRight", "right");
-    var specificRightBlock = document.getElementById(rightId);
 
-    if (specificRightBlock) {
-        var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        
+                if (screenWidth < 768) {
+                    var modalContent = specificRightBlock.innerHTML; // 获取右侧区块的内容
 
-        if (screenWidth < 768) {
-            var modalContent = specificRightBlock.innerHTML; // 获取右侧区块的内容
+                    var modal = document.getElementById('myModal');
+                    var modalBody = document.querySelector('.modal-body');
+                    modalBody.innerHTML = modalContent;
 
-            var modal = document.getElementById('myModal');
-            var modalBody = document.querySelector('.modal-body');
-            modalBody.innerHTML = modalContent;
-
-            modal.classList.add('active');
-        } else {
-            var allRightBlocks = document.querySelectorAll('.rightsection');
-            allRightBlocks.forEach(function (block) {
-                if (block.id !== rightId) {
-                    block.style.display = 'none';
-                    var relatedOpenButtonId = block.id.replace("right", "openRight");
-                    var relatedOpenButton = document.getElementById(relatedOpenButtonId);
-                    if (relatedOpenButton) {
-                        relatedOpenButton.style.display = 'inline-block';
-                        var relatedCloseButtonId = block.id.replace("right", "closeRight");
-                        var relatedCloseButton = document.getElementById(relatedCloseButtonId);
-                        if (relatedCloseButton) {
-                            relatedCloseButton.style.display = 'none';
+                    modal.classList.add('active');
+                } else {
+                    var allRightBlocks = document.querySelectorAll('.rightsection');
+                    allRightBlocks.forEach(function (block) {
+                        if (block.id !== rightId) {
+                            block.style.display = 'none';
+                            var relatedOpenButtonId = block.id.replace("right", "openRight");
+                            var relatedOpenButton = document.getElementById(relatedOpenButtonId);
+                            if (relatedOpenButton) {
+                                relatedOpenButton.style.display = 'inline-block';
+                                var relatedCloseButtonId = block.id.replace("right", "closeRight");
+                                var relatedCloseButton = document.getElementById(relatedCloseButtonId);
+                                if (relatedCloseButton) {
+                                    relatedCloseButton.style.display = 'none';
+                                }
+                            }
                         }
+                    });
+
+                    var otherOpenButtons = document.querySelectorAll('.openRight:not(#' + buttonId + ')');
+                    otherOpenButtons.forEach(function (btn) {
+                        btn.style.display = 'inline-block';
+                    });
+
+                    button.style.display = 'none';
+                    specificRightBlock.style.display = 'block';
+
+                    var closeButtonId = buttonId.replace("openRight", "closeRight");
+                    var closeButton = document.getElementById(closeButtonId);
+                    if (closeButton) {
+                        closeButton.style.display = 'inline-block';
                     }
                 }
-            });
-
-            var otherOpenButtons = document.querySelectorAll('.openRight:not(#' + buttonId + ')');
-            otherOpenButtons.forEach(function (btn) {
-                btn.style.display = 'inline-block';
-            });
-
-            button.style.display = 'none';
-            specificRightBlock.style.display = 'block';
-
-            var closeButtonId = buttonId.replace("openRight", "closeRight");
-            var closeButton = document.getElementById(closeButtonId);
-            if (closeButton) {
-                closeButton.style.display = 'inline-block';
             }
         }
-    }
-}
 
 
+        function closeRight(button) {
+            var buttonId = button.id;
+            var rightId = buttonId.replace("closeRight", "right");
+            var specificRightBlock = document.getElementById(rightId);
 
+            if (specificRightBlock) {
+                specificRightBlock.style.display = 'none';
 
-function closeRight(button) {
-    var buttonId = button.id;
-    var rightId = buttonId.replace("closeRight", "right");
-    var specificRightBlock = document.getElementById(rightId);
+                var openButtonId = buttonId.replace("closeRight", "openRight");
+                var openButton = document.getElementById(openButtonId);
+                if (openButton) {
+                    openButton.style.display = 'inline-block';
+                }
 
-    if (specificRightBlock) {
-        specificRightBlock.style.display = 'none';
+                button.style.display = 'none';
 
-        var openButtonId = buttonId.replace("closeRight", "openRight");
-        var openButton = document.getElementById(openButtonId);
-        if (openButton) {
-            openButton.style.display = 'inline-block';
+                // 重置其他"詳細行程"按鈕的顯示狀態
+                var otherOpenButtons = document.querySelectorAll('.openRight');
+                otherOpenButtons.forEach(function (btn) {
+                    btn.style.display = 'inline-block';
+                });
+            }
         }
-
-        button.style.display = 'none';
-
-        // 重置其他"詳細行程"按鈕的顯示狀態
-        var otherOpenButtons = document.querySelectorAll('.openRight');
-        otherOpenButtons.forEach(function (btn) {
-            btn.style.display = 'inline-block';
-        });
-    }
-}
 
 
 

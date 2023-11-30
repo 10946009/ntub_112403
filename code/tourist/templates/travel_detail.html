@@ -15,11 +15,11 @@ body {
 }
 
 .container {
-    width: 100%;
+    width: 95%;
     margin: 80px auto 0;
     display:flex;
     flex-direction: column;
-    max-width: 1200px;
+    max-width: 100%;
 }
 
 header {
@@ -84,10 +84,10 @@ header {
 }
 .review-container{
     margin: 80px auto;
-    max-width: 1000px;
+    width: 100%;
+    max-width: 100%;
 }
 .review-container .btn-style-1 {
-    background-color: ;
     border-radius: 50px;
     padding: 0.5rem 1rem;
     border: 2px solid #000;
@@ -318,6 +318,7 @@ header {
   border-radius: 50%;
   padding: 2px 8px 2px 8px;
   background-color: white;
+  cursor: pointer;
 }
 
 .icon_name:hover {
@@ -408,8 +409,8 @@ header {
                       <a href="https://www.google.com/maps/dir/{{a_data.choice_ct.start_location_x}},{{a_data.choice_ct.start_location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;">
                         {% comment %} <i class="fa-solid fa-car-side car_icon"></i> {% endcomment %}
                         <img src="/static/images/New Project.jpg" alt="" class="car_icon">
+                        <p>約<br> {{ a_data.distance_time }}<br>分鐘</p>
                       </a>
-                      <p>約<br> {{ a_data.distance_time }}<br>分鐘</p>
                     </div>
                     
                   {% else %}
@@ -417,8 +418,8 @@ header {
                       <a href="https://www.google.com/maps/dir/{{a_data.get_previous.a.location_x}},{{a_data.get_previous.a.location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;">
                         {% comment %} <i class="fa-solid fa-car-side car_icon"></i> {% endcomment %}
                         <img src="/static/images/New Project.jpg" alt="" class="car_icon">
+                        <p>約<br> {{ a_data.distance_time }}<br>分鐘</p>
                       </a>
-                      <p>約<br> {{ a_data.distance_time }}<br>分鐘</p>
                     </div>
                   {% endif %}
                   <div class="dayContentIntro" style="text-align: center;">
@@ -433,55 +434,62 @@ header {
   </div>
 
   <section class="review-container">
-    <div class="row">
-      <h5 style="font-size: 24px;">
-          <i class="fa-solid fa-pen" style="color: gray;"></i>
-          評論
-      </h5>
-    </div>
-    <div>
-      {% comment %} <button class="btn-style-1">發表評論</button> {% endcomment %}
-    </div>
-
-    <form class="ask-content" id="ask-content" action="/comment/{{detail.id}}/" method="POST">
-      <div class="out_share_comment" id="out_share_comment">
-          <div id="share_comment_container" class="share_comment_container">
-              <form class="share_comment-content" id="share_comment-content" action="">
-                  <div class="comment_container" id="comment_container">
-                      <h5 style="font-size: 24px;">
-                          {{ detail.a_name }}
-                      </h5>
-                  </div>
-                  <div class="share_comment_con" style="padding: 20px;">
-                      <div class="comment">
-                          <div class="avatar">
-                              <img src="{{request.user.get_photo}}" alt="User Avatar">
-                          </div>
-                          <div class="comment-content">
-                              <h6 class="username">
-                                  {{request.user.username}}<br>
-                                  <span style="color: gray; font-size: 14px; font-style: italic;">公開發佈
-                                      &ensp;</span>
-                                  </h6>
-                          </div>
-                      </div>
-                      <div>
-                          <textarea name="user_share_comment" id="user_share_comment" cols="100%" rows="5"
-                              style="resize:none; border-radius: 10px;max-width: 100%;padding: 10px; "
-                              placeholder="詳細說明你在這個地點的親身體驗。"></textarea>
-                      </div>
-                      <div class="image-container_ph">
-                          <div id="imagePreview"></div>
-                      </div>
-                  </div>
-                  <div class="post_share_comment">
-                      <span class="share_comment_btn_ok" id="share_comment_btn_ok"
-                          onclick="sendComment({{ct_detail.id}})">張貼</span>
-                  </div>
-              </form>
-          </div>
+    {% if request.user.is_authenticated %}
+      <div class="row">
+        <h5 style="font-size: 24px;">
+            <i class="fa-solid fa-pen" style="color: gray;"></i>
+            評論
+        </h5>
       </div>
-    </form>
+    
+      <form class="ask-content" id="ask-content" action="/comment/{{detail.id}}/" method="POST">
+        <div class="out_share_comment" id="out_share_comment">
+            <div id="share_comment_container" class="share_comment_container">
+                <form class="share_comment-content" id="share_comment-content" action="">
+                    <div class="comment_container" id="comment_container">
+                        <h5 style="font-size: 24px;">
+                            {{ detail.a_name }}
+                        </h5>
+                    </div>
+                    <div class="share_comment_con" style="padding: 20px;">
+                        <div class="comment">
+                            <div class="avatar">
+                                <img src="{{request.user.get_photo}}" alt="User Avatar">
+                            </div>
+                            <div class="comment-content">
+                                <h6 class="username">
+                                    {{request.user.username}}<br>
+                                    <span style="color: gray; font-size: 14px; font-style: italic;">公開發佈
+                                        &ensp;</span>
+                                    </h6>
+                            </div>
+                        </div>
+                        <div>
+                            <textarea name="user_share_comment" id="user_share_comment" cols="100%" rows="5"
+                                style="resize:none; border-radius: 10px;width: 100%;max-width: 100%;padding: 10px; "
+                                placeholder="詳細說明你在這個地點的親身體驗。"></textarea>
+                        </div>
+                        <div class="image-container_ph">
+                            <div id="imagePreview"></div>
+                        </div>
+                        <div class="post_share_comment">
+                            <span class="share_comment_btn_ok" id="share_comment_btn_ok"
+                                onclick="sendComment({{ct_detail.id}})">張貼</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+      </form>
+    {% else %}
+      <div style="width:100%;text-align:center;">
+        <a href = "\login">
+        <h5 style="font-size: 24px;">
+            登入後即可發表評論
+        </h5>
+      </a>
+      <div>
+    {% endif %}
   
 
     <section class="review">

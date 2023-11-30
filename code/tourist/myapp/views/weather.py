@@ -13,7 +13,11 @@ def get_weather_data(address,year,mouth,day,nowtime):#地址、年、月、日�
     mouth = str(mouth).zfill(2) #補0
     day = str(day).zfill(2) #補0
     nowtime =(nowtime // 60) % 24
-    response = requests.get(url, headers=HEADERS)
+    try:
+        response = requests.get(url, headers=HEADERS)
+    except:
+        print("天氣API網路錯誤")
+        return "暫無資料"
     if response.status_code == 200:
         data = response.json()
         for d in data['records']['locations'][0]['location']: #抓區域

@@ -8,6 +8,9 @@ body {
     background-image: url(../images/trip_bg_att.png);
     background-size: cover;
     background-attachment: fixed;
+    /* margin-right: 12px; */
+    height: auto;
+    overflow-x: hidden;
 }
 
 /* 景點動態大標（景點資訊） */
@@ -68,7 +71,7 @@ body {
     background-image: url(../images/flooter_img.jpeg);
     background-size: cover;
     background-attachment: fixed;
-    margin: 0;
+    /* margin: 0; */
 }
 
 /* Parallax Scrolling背景size */
@@ -851,13 +854,15 @@ img {
 
 
 .jumbotron1 {
-    height: 40vh;
+    height: 38vh;
     text-align: center;
     background-image: url(../images/flooter_bg.jpeg);
     background-size: cover;
     background-attachment: fixed;
     margin: 0;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    position: relative;
+    bottom: 0;
 }
 
 .jumbotron1 input {
@@ -874,7 +879,7 @@ img {
 
 .jumbotron1 .container {
     color: #fff;
-    padding: 60px 0;
+    padding: 60px 0 0 0;
 }
 
 .jumbotron1 .container button.btn.btn-default {
@@ -1297,7 +1302,7 @@ img {
 }
 
 .return_2 {
-    width: 100%;
+    width: 98%;
     position: absolute;
     left: 5px;
     /* margin-left: 20px; */
@@ -1512,7 +1517,7 @@ img {
     overflow: auto;
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
-    padding-top: 150px;
+    padding-top: 120px;
 }
 
 .all_ask_qa {
@@ -2069,6 +2074,7 @@ img {
 
 /* 人潮星期 */
 .week_number {
+    margin-top: 15px;
     padding-left: 5px;
     margin-bottom: 10px;
 }
@@ -2078,7 +2084,7 @@ img {
     font-size: 14px;
     display: inline-block;
     color: rgb(255, 255, 255);
-    padding: 8px 20px;
+    padding: 8px 15px;
     background-color: #628eb9;
     margin-left: 6px;
     margin-top: 10px;
@@ -2532,6 +2538,8 @@ img {
     height: 400px;
     width: 100%;
     box-sizing: border-box;
+    margin-left: 5px;
+    /* 白條 */
 }
 
 .new_fifliter {
@@ -2641,6 +2649,20 @@ img {
     margin-left: 10px;
 }
 
+.clear_1 {
+    margin-left: -20px;
+    font-size: 18px;
+}
+
+.new_week_tag {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+    /* display: none; */
+}
+
+
 @media screen and (max-width:768px) {
 
     /* 檢舉框框 */
@@ -2705,7 +2727,7 @@ img {
     }
 
     .total_att {
-        margin-left: 15px;
+        margin: 10px;
     }
 
     .return_pre {
@@ -2826,14 +2848,14 @@ img {
 
     /* search bar位子 */
     .search_body {
-        margin-top: -120px;
-        margin-bottom: 0;
+        margin: -120px auto;
     }
 
     /* Parallax Scrolling背景size */
     .container_info {
         color: #fff;
-        margin: 150px 0;
+        width: 90%;
+        margin: 150px auto;
         text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
     }
 
@@ -2907,7 +2929,7 @@ img {
 
     .RWD_clear {
         position: absolute;
-        right: 10px;
+        /* right: 10px; */
         margin-top: 15px;
         display: block;
         display: inline-block;
@@ -2936,12 +2958,12 @@ img {
     /* filiter div */
     .in_filiter {
         text-align: left;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
     /* 主題filiter */
     #new_fifliter_topic {
-        margin-right: 10px;
+        margin-right: 5px;
     }
 
     /* 相片集 */
@@ -2966,7 +2988,7 @@ img {
         background: rgb(221, 219, 219);
         border: black solid;
         border-radius: 10px;
-        width: 100%;
+        width: 95%;
         margin: 50px auto;
         padding-bottom: 10px;
         /* padding: 20px; */

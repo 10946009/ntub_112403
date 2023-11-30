@@ -92,192 +92,218 @@
   margin-left:10px;
   font-weight: bold;
 }
+  .modalHistory {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      animation: fadeIn 0.3s forwards;
+  }
+
+  .modalHistory.active {
+      display: flex;
+  }
+
+  .modalHistory-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: auto;
+      width: 80%;
+      height: 80%;
+      background: #fefefe;
+      animation: slideIn 0.3s forwards;
+  }
 </style>
 
 {% endblock %}
 
 {% block body %}
+  <div class="container">
+    <div class="row shareFilter_div">
+      <a href="/history" class="shareFilter_btn all_travel">All</a>
+      <a href="/history/1" class="shareFilter_btn already_share">已公開</a>
+      <a href="/history/0" class="shareFilter_btn not_share">未公開</a>
+    </div>
+    <!--資料庫有東西就會顯示-->
 
-<div class="container">
-  <div class="row shareFilter_div">
-    <a href="/history" class="shareFilter_btn all_travel">All</a>
-    <a href="/history/1" class="shareFilter_btn already_share">已公開</a>
-    <a href="/history/0" class="shareFilter_btn not_share">未公開</a>
-  </div>
-  <!--資料庫有東西就會顯示-->
+    <div class="contentContainer" style="width: 100%;margin: 0 auto;">
+      <div class="detailLeft">
+        {% for item in all_data %}
+          <div class="row mytravel">
+            <!--照片(先預設為第一個景點的照片)-->
+            <div class="col-md-5 mytravel_img">
+              {% if item.allAttractions.0.0 %}
+              <img src="/static/images/attractions/{{ item.allAttractions.0.0.a_id.place_id }}_0.jpg" class="img-responsive"
+                width="100%" alt="">
+              {% else %}
+              <img src="/static/images/att_picture.png" class="img-responsive" width="100%" alt="">
+              {% endif %}
+            </div>
 
-  <div class="contentContainer" style="width: 100%;margin: 0 auto;">
-    <div class="detailLeft">
-    {% for item in all_data %}
-      <div class="row mytravel">
-        <!--照片(先預設為第一個景點的照片)-->
-        <div class="col-md-5 mytravel_img">
-          {% if item.allAttractions.0.0 %}
-          <img src="/static/images/attractions/{{ item.allAttractions.0.0.a_id.place_id }}_0.jpg" class="img-responsive"
-            width="100%" alt="">
-          {% else %}
-          <img src="/static/images/att_picture.png" class="img-responsive" width="100%" alt="">
-          {% endif %}
-        </div>
+            <!--行程基本資料-->
+            <div class="col-md-7 mytravel_txt">
+              <div class="basicTxt">
+                <h4 class="mytravel_txt_title">{{ item.my_history.ct_name }}</h4>
+                {% if item.my_history.status == True %}
+                <h4 class="mytravel_review">喜愛程度：0</h4>
+                {% endif %}
+                <h4 class="mytravel_txt_detail">天數：{{ item.my_history.travel_day }}</h4>
+                <h4 class="mytravel_txt_detail">起始日期：{{item.my_history.start_day}}</h4>
+              </div>
+              <div class="basicButton">
+                <!--編輯按紐-->
+                <div class="edit">
+                  <a href="/create/{{ item.my_history.id }}" class="edita">
+                    <span class="fa-solid fa-pen-to-square edit_icon">
+                      <br>
+                      <span class="icontxt">編輯</span>
+                    </span>
+                  </a>
+                </div>
+                <!-- 公開按鈕 -->
+                <div class="share" id="ct_share">
+                  {% if item.my_history.status == True %}
+                  <span class="fa-solid fa-unlock share_icon" title="公開" id="submitfavorite_share{{ item.my_history.id }}"
+                    data-isfavorite="1" style="color: orange;" onclick="add_favorite_share({{ item.my_history.id }})"> <!--圖案改這裡的class-->
+                    <br>
+                    <span class="icontxt" style="color: orange;" id="icontxt{{ item.my_history.id }}">公開</span> <!--文字放這-->
+                  </span>
+        
+                  {% else %}
+                  <!-- <i class="fa-solid fa-lock"></i> -->
+                  <span class="fa-solid fa-lock share_icon" title="公開" id="submitfavorite_share{{ item.my_history.id }}"
+                    data-isfavorite="0" onclick="add_favorite_share({{ item.my_history.id }})"> <!--圖案改這裡的class-->
+                    <br>
+                    <span class="icontxt" id="icontxt{{ item.my_history.id }}">私人</span> <!--文字放這-->
+                  </span>
+        
+                  {% endif %}
+                </div>
+              </div>
+            </div>
 
-        <!--行程基本資料-->
-        <div class="col-md-7 mytravel_txt">
-          <div class="basicTxt">
-            <h4 class="mytravel_txt_title">{{ item.my_history.ct_name }}</h4>
-            {% if item.my_history.status == True %}
-            <h4 class="mytravel_review">喜愛程度：0</h4>
-            {% endif %}
-            <h4 class="mytravel_txt_detail">天數：{{ item.my_history.travel_day }}</h4>
-            <h4 class="mytravel_txt_detail">起始日期：{{item.my_history.start_day}}</h4>
-          </div>
-          <div class="basicButton">
-            <!--編輯按紐-->
-            <div class="edit">
-              <a href="/create/{{ item.my_history.id }}" class="edita">
-                <span class="fa-solid fa-pen-to-square edit_icon">
+            <div class="delete" onclick="deleteTravel({{item.my_history.id}})">
+              <a class="deletea">
+                <span class="fa-solid fa-trash-can delete_icon">
                   <br>
-                  <span class="icontxt">編輯</span>
+                  <span class="deleteicontxt ">刪除</span>
                 </span>
               </a>
             </div>
-            <!-- 公開按鈕 -->
-            <div class="share" id="ct_share">
-              {% if item.my_history.status == True %}
-              <span class="fa-solid fa-unlock share_icon" title="公開" id="submitfavorite_share{{ item.my_history.id }}"
-                data-isfavorite="1" style="color: orange;" onclick="add_favorite_share({{ item.my_history.id }})"> <!--圖案改這裡的class-->
-                <br>
-                <span class="icontxt" style="color: orange;" id="icontxt{{ item.my_history.id }}">公開</span> <!--文字放這-->
-              </span>
-    
-              {% else %}
-              <!-- <i class="fa-solid fa-lock"></i> -->
-              <span class="fa-solid fa-lock share_icon" title="公開" id="submitfavorite_share{{ item.my_history.id }}"
-                data-isfavorite="0" onclick="add_favorite_share({{ item.my_history.id }})"> <!--圖案改這裡的class-->
-                <br>
-                <span class="icontxt" id="icontxt{{ item.my_history.id }}">私人</span> <!--文字放這-->
-              </span>
-    
-              {% endif %}
-            </div>
+            <button class="more_btn details{{ item.my_history.id }}btn" id="details{{ item.my_history.id }}btn"
+              data-target="details{{ item.my_history.id }}" onclick="clickShow(this,{{item.my_history.id}})">詳細行程</button>
           </div>
-        </div>
-
-        <div class="delete" onclick="deleteTravel({{item.my_history.id}})">
-          <a class="deletea">
-            <span class="fa-solid fa-trash-can delete_icon">
-              <br>
-              <span class="deleteicontxt ">刪除</span>
-            </span>
-          </a>
-        </div>
-        <button class="more_btn details{{ item.my_history.id }}btn" id="details{{ item.my_history.id }}btn"
-          data-target="details{{ item.my_history.id }}" onclick="clickShow(this,{{item.my_history.id}})">詳細行程</button>
-      </div>
-      <!--開啟詳細資料顯示的內容(要拿掉 看UC有沒有需要)-->
-      <div class="openmore more-content">
-        <div id="details{{ item.my_history.id }}" class="col-lg-12 col-md-12 more hidden-details">
-          <ul class="nav nav-tabs flex my-nav-tabs" id="myTab{{ item.my_history.id }}" role="tablist">
-            {% for i in "x"|rjust:item.my_history.travel_day %}
-            <li class="nav-item" role="presentation">
-              {% if forloop.counter == 1 %}
-              <button class="nav-link tab_a active" id="ct{{ item.my_history.id }}-{{ forloop.counter }}-tab"
-                data-bs-toggle="tab" data-bs-target="#ct{{ item.my_history.id }}-{{ forloop.counter }}" type="button"
-                role="tab" aria-controls="ct{{ item.my_history.id }}-{{ forloop.counter }}" aria-selected="true">Day {{
-                forloop.counter }}</button>
-              {% else %}
-              <button class="nav-link tab_a" id="ct{{ item.my_history.id }}-{{ forloop.counter }}-tab"
-                data-bs-toggle="tab" data-bs-target="#ct{{ item.my_history.id }}-{{ forloop.counter }}" type="button"
-                role="tab" aria-controls="ct{{ item.my_history.id }}-{{ forloop.counter }}" aria-selected="false">Day {{
-                forloop.counter }}</button>
-              {% endif %}
-            </li>
-            {% endfor %}
-          </ul>
-          <div class="tab-content" id="myTabContent{{ item.my_history.id }}">
-            {% for details in item.allAttractions %}
-            {% with counter=forloop.counter0 %}
-            <div class="tab-pane fade{% if forloop.counter == 1 %} show active {% endif %} "
-              id="ct{{ item.my_history.id }}-{{ forloop.counter }}" role="tabpanel"
-              aria-labelledby="ct{{ item.my_history.id }}-{{ forloop.counter }}-tab">
-
-              <div class="content_align">
-                {% for detail in details %}
-                {% if forloop.counter0 == 0 %}
-
-                {% for location in item.choiceday_ct %}
-                {% if forloop.counter0 == counter %}
-
-                <div class="content_detail_start">
-                  <span class="content_detail_startTXT">
-                    <i class="fa-solid fa-house"></i><br>起始位置
-                  </span>
-                </div>
-                <div class="gonext">
-
-                  <a href="https://www.google.com/maps/dir/?api=1&origin={{ location.start_location_x }},{{ location.start_location_y }}&destination={{ detail.a_id.location_x }},{{ detail.a_id.location_y }}&travelmode=driving"
-                    class="gonexta" target="_blank">
-                    <i class="fa-solid fa-car-side"></i>
-                    <p class="gonextbtn">導航</p>
-                  </a>
-                </div>
-                {% endif %}
+          <!--開啟詳細資料顯示的內容(要拿掉 看UC有沒有需要)-->
+          <div class="openmore more-content">
+            <div id="details{{ item.my_history.id }}" class="col-lg-12 col-md-12 more hidden-details">
+              <ul class="nav nav-tabs flex my-nav-tabs" id="myTab{{ item.my_history.id }}" role="tablist">
+                {% for i in "x"|rjust:item.my_history.travel_day %}
+                <li class="nav-item" role="presentation">
+                  {% if forloop.counter == 1 %}
+                  <button class="nav-link tab_a active" id="ct{{ item.my_history.id }}-{{ forloop.counter }}-tab"
+                    data-bs-toggle="tab" data-bs-target="#ct{{ item.my_history.id }}-{{ forloop.counter }}" type="button"
+                    role="tab" aria-controls="ct{{ item.my_history.id }}-{{ forloop.counter }}" aria-selected="true">Day {{
+                    forloop.counter }}</button>
+                  {% else %}
+                  <button class="nav-link tab_a" id="ct{{ item.my_history.id }}-{{ forloop.counter }}-tab"
+                    data-bs-toggle="tab" data-bs-target="#ct{{ item.my_history.id }}-{{ forloop.counter }}" type="button"
+                    role="tab" aria-controls="ct{{ item.my_history.id }}-{{ forloop.counter }}" aria-selected="false">Day {{
+                    forloop.counter }}</button>
+                  {% endif %}
+                </li>
                 {% endfor %}
+              </ul>
+              <div class="tab-content" id="myTabContent{{ item.my_history.id }}">
+                {% for details in item.allAttractions %}
+                {% with counter=forloop.counter0 %}
+                <div class="tab-pane fade{% if forloop.counter == 1 %} show active {% endif %} "
+                  id="ct{{ item.my_history.id }}-{{ forloop.counter }}" role="tabpanel"
+                  aria-labelledby="ct{{ item.my_history.id }}-{{ forloop.counter }}-tab">
 
-                {% else %}
+                  <div class="content_align">
+                    {% for detail in details %}
+                    {% if forloop.counter0 == 0 %}
 
-                {% with previous_detail=details|get_previous_item:forloop.counter0 %}
-                <div class="gonext">
-                  <a href="https://www.google.com/maps/dir/?api=1&origin={{ previous_detail.a_id.a_name }}&destination={{ detail.a_id.a_name }}&travelmode=driving"
-                    class="gonexta" target="_blank">
-                    <i class="fa-solid fa-car-side"></i>
-                    <p class="gonextbtn">導航</p>
-                  </a>
+                    {% for location in item.choiceday_ct %}
+                    {% if forloop.counter0 == counter %}
+
+                    <div class="content_detail_start">
+                      <span class="content_detail_startTXT">
+                        <i class="fa-solid fa-house"></i><br>起始位置
+                      </span>
+                    </div>
+                    <div class="gonext">
+
+                      <a href="https://www.google.com/maps/dir/?api=1&origin={{ location.start_location_x }},{{ location.start_location_y }}&destination={{ detail.a_id.location_x }},{{ detail.a_id.location_y }}&travelmode=driving"
+                        class="gonexta" target="_blank">
+                        <i class="fa-solid fa-car-side"></i>
+                        <p class="gonextbtn">導航</p>
+                      </a>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% else %}
+
+                    {% with previous_detail=details|get_previous_item:forloop.counter0 %}
+                    <div class="gonext">
+                      <a href="https://www.google.com/maps/dir/?api=1&origin={{ previous_detail.a_id.a_name }}&destination={{ detail.a_id.a_name }}&travelmode=driving"
+                        class="gonexta" target="_blank">
+                        <i class="fa-solid fa-car-side"></i>
+                        <p class="gonextbtn">導航</p>
+                      </a>
+                    </div>
+                    {% endwith %}
+                    {% endif %}
+
+                    <div class="content_detail">
+                      <span class="spotnum"><span class="spot">{{ detail.a_id.a_name }}</span></span>
+                      <p>日期：yyyy/mm/dd</p>
+                      <p>抵達時間：早上</p>
+                      <p>停留時間：{{ detail.a_id.stay_time }}</p>
+                    </div>
+                    {% endfor %}
+                  </div>
+
                 </div>
                 {% endwith %}
-                {% endif %}
-
-                <div class="content_detail">
-                  <span class="spotnum"><span class="spot">{{ detail.a_id.a_name }}</span></span>
-                  <p>日期：yyyy/mm/dd</p>
-                  <p>抵達時間：早上</p>
-                  <p>停留時間：{{ detail.a_id.stay_time }}</p>
-                </div>
                 {% endfor %}
               </div>
-
             </div>
-            {% endwith %}
-            {% endfor %}
           </div>
-        </div>
+          {% empty %}
+          {% if all_ct %}
+            <div style="text-align:left;margin-left:0px;">
+              <h4 class="mytravel_txt_title" >篩選到0筆資料！</h4>
+              {% comment %} <h4 class="mytravel_txt_title" >目前無資料！</h4> {% endcomment %}
+              {% comment %} <h6><a href="/createindex" class="shareFilter_btn all_travel">建立行程</a><h6> {% endcomment %}
+            </div>
+          {% else %}
+            <div style="text-align:left;margin-left:0px;">
+              <h4 class="mytravel_txt_title" >目前還沒有行程！</h4>
+              {% comment %} <h6><a href="/createindex" class="shareFilter_btn all_travel">建立行程</a><h6> {% endcomment %}
+            </div>
+            <a href="/createindex" class="createbtn">建立行程</a>
+          {% endif %}
+          
+        {% endfor %}
       </div>
-      {% empty %}
-      {% if all_ct %}
-        <div style="text-align:left;margin-left:0px;">
-          <h4 class="mytravel_txt_title" >篩選到0筆資料！</h4>
-          {% comment %} <h4 class="mytravel_txt_title" >目前無資料！</h4> {% endcomment %}
-          {% comment %} <h6><a href="/createindex" class="shareFilter_btn all_travel">建立行程</a><h6> {% endcomment %}
-        </div>
-      {% else %}
-        <div style="text-align:left;margin-left:0px;">
-          <h4 class="mytravel_txt_title" >目前還沒有行程！</h4>
-          {% comment %} <h6><a href="/createindex" class="shareFilter_btn all_travel">建立行程</a><h6> {% endcomment %}
-        </div>
-        <a href="/createindex" class="createbtn">建立行程</a>
-      {% endif %}
-        
-    {% endfor %}
-    </div>
-    <!-- 這邊好像抓不到id名稱所以JS不會動 -->
-    <div class="detailRight" id="changeHistory">
-      {% comment %} 拆分到histry_detail了 {% endcomment %}
-    </div>
+      <!-- 這邊好像抓不到id名稱所以JS不會動 -->
+      <div class="detailRight" id="changeHistory">
+        {% comment %} 拆分到histry_detail了 {% endcomment %}
+      </div>
 
   </div>
 {% endblock body %}
 {% block content_script %}
-<script src="/static/js/history.js"></script>{% endblock %}
+<script src="/static/js/history.js"></script>
 
-
+{% endblock %}
 
 </html>

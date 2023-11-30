@@ -43,7 +43,8 @@
     color: black;
     text-shadow: 3px 3px 3px rgb(91, 91, 91);
 }
-#createDate{
+
+#createDate {
     width: 100%;
 }
 
@@ -132,21 +133,25 @@ main {
     right: 10px;
     margin-top: 10px;
     display: block;
-    width: 50px;
-    height: 40px;
-    line-height: 40px;
+    width: 60px;
+    height: 50px;
+    line-height: 50px;
     text-align: center;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
-    border: 0;
+    border: 1px solid white;
     box-shadow: inset 1px 1px 3px #333;
     border-radius: 30px;
     cursor: pointer;
     color: #fff;
-    background-color: #198754;
+    background-color: orange;
     text-shadow: 2px 2px 3px #333;
+    transition: background-color 0.5s ,transform 0.5s;
 }
-
+.recommend_next:hover{
+    transform: scale(1.2);
+    background-color: rgb(255, 70, 70);
+}
 .saveIcon_btn::before {
     content: '\f0c7';
     font-family: 'Font Awesome 5 Free';
@@ -193,9 +198,10 @@ main {
 
 
 .recommend_submit1 {
-    position: absolute;
+    float: right;
+    /* position: absolute;
     bottom: 5px;
-    right: 5px;
+    right: 5px; */
     margin-top: 10px;
     display: block;
     width: 80px;
@@ -331,6 +337,9 @@ main {
     padding: 10px 0;
     user-select: none;
 }
+.openSimilar{
+    height: 180px;
+}
 
 .done_icon,
 .find_icon {
@@ -361,6 +370,9 @@ main {
 }
 
 .rightHr {
+    border: 1px solid #333;
+    padding: 0 5px;
+    margin-top: 10px;
     margin-bottom: 5px;
 }
 
@@ -439,18 +451,20 @@ main {
     position: relative;
 }
 
-.doneSpotDiv{
+.doneSpotDiv {
     width: 95%;
 }
-.doneSpotImgDiv{
+
+.doneSpotImgDiv {
     /* width: 100%; */
     height: 100%;
     overflow: hidden;
     position: relative;
 }
+
 .doneSpotImgDiv .doneSpotImg {
-    width: 95%; 
-    height: 100%; 
+    width: 95%;
+    height: 100%;
     object-fit: cover;
     position: absolute;
     right: 0;
@@ -473,6 +487,7 @@ main {
 .blockBtnLayout {
     position: absolute;
     bottom: 0;
+    width: 80%;
 }
 
 .controlBtn {
@@ -482,6 +497,7 @@ main {
     height: 30px;
     border-radius: 20px;
 }
+
 /* .addToOrder{
     float: right;
     display: block;
@@ -504,6 +520,8 @@ main {
     margin: 10px auto;
     display: flex;
     position: relative;
+    transition: all 0.3s ease;
+    /* 使用 CSS transition 實現動畫效果 */
 }
 
 .spotOkName {
@@ -842,6 +860,9 @@ main {
     cursor: pointer;
 }
 
+.checkspotSimilar {
+    height: 150px;
+}
 
 .info_icon_left {
     position: absolute;
@@ -897,6 +918,12 @@ main {
     text-align: center;
     padding: 0;
     background-color: cadetblue;
+    color: white;
+    transition: background-color 0.5s;
+}
+.showRight_btn:hover{
+    background-color: orange;
+    color: black;
 }
 
 .right {
@@ -909,9 +936,9 @@ main {
     border-bottom-left-radius: 10px;
     max-width: 90%;
     width: 90%;
-    height: 85%;
+    height: auto;
     transition: right 0.3s ease;
-    z-index: 5;
+    z-index: 6;
     background-color: white;
     padding: 5px;
 }
@@ -928,7 +955,7 @@ main {
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     display: none;
-    z-index: 2;
+    z-index: 5;
 }
 
 .align {
@@ -1007,6 +1034,7 @@ main {
 
 
 .overlay .text {
+    font-weight: bold;
     font-size: 24px;
 }
 
@@ -1016,9 +1044,9 @@ main {
         width: 90%;
     }
 
-    .right {
+    /* .right {
         height: 88%;
-    }
+    } */
 }
 
 @media (max-width: 850px) {
@@ -1042,9 +1070,9 @@ main {
         font-size: 20px;
     }
 
-    .rightHr {
+    /* .rightHr {
         margin-top: 5px;
-    }
+    } */
 
     .recommend_submit1 {
         font-size: 20px;
@@ -1098,9 +1126,9 @@ main {
         font-size: 18px;
     }
 
-    .right {
+    /* .right {
         height: 85%;
-    }
+    } */
 
     .image-container {
         width: 280px;
@@ -1109,16 +1137,21 @@ main {
     }
 
     .recommend_next {
+        width: 50px;
+        height: 40px;
+        line-height: 40px;
         font-size: 18px;
     }
 
-    .spot{
+    .spot {
         height: auto;
     }
-    .doneSpotDiv .doneSpotImgDiv{
+
+    .doneSpotDiv .doneSpotImgDiv {
         width: 50% !important;
     }
-    .doneSpotDiv .blockTxt{
+
+    .doneSpotDiv .blockTxt {
         width: 50% !important;
     }
 }
@@ -1170,7 +1203,9 @@ main {
     }
 
     .recommend_next {
-        font-size: 18px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
     }
 
     .controlBtn {
@@ -1181,6 +1216,15 @@ main {
     .innerlist {
         height: auto;
         width: 95%;
+    }
+
+    .checkspotSimilar {
+        height: 160px;
+    }
+
+
+    .overlay .text {
+        font-size: 20px;
     }
 }
 
@@ -1215,6 +1259,13 @@ main {
     .controlBtn {
         padding: 0;
     }
+
+    .checkspotSimilar {
+        height: 180px;
+    }
+    .recommend_submit1 {
+        bottom: 15px;
+    }
 }
 
 @media(max-width: 376px) {
@@ -1226,6 +1277,8 @@ main {
         margin-left: 0;
         font-size: 16px;
     }
+
+
 }
 
 
@@ -1233,17 +1286,23 @@ main {
 .order-green-circle {
     color: green;
     text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
-    font-size:25px
-  }
+    font-size: 25px
+}
 
-  .order-orange-circle {
+.order-orange-circle {
     color: orange;
     text-shadow: 0 0 10px rgba(255, 165, 0, 0.7);
-    font-size:25px
-  }
+    font-size: 25px
+}
 
-  .order-red-circle {
+.order-red-circle {
     color: red;
     text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
-    font-size:25px
-  }
+    font-size: 25px
+}
+
+.order-black-circle {
+    color: black;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    font-size: 25px
+}
