@@ -41,6 +41,7 @@ function clickShow(button, ctid) {
   const targetDivId = button.getAttribute('data-target');
   const targetDiv = document.getElementById(targetDivId);
   const changeHistory = document.getElementById('changeHistory');
+
   allButtons.forEach(btn => {
     if (btn !== button) {
       btn.textContent = '詳細行程';
@@ -55,12 +56,13 @@ function clickShow(button, ctid) {
     targetDiv.style.display = 'none';
     button.textContent = '詳細行程';
     button.style.backgroundColor = "rgb(255, 240, 126)";
+    document.body.classList.add('overlay');
   } else {
     // 顯示目標詳細資訊 div
     targetDiv.style.display = 'block';
     button.textContent = '關閉閱覽';
     button.style.backgroundColor = "#F55";
-    // document.body.classList.add('noScroll');
+    document.body.classList.remove('overlay');
     $.ajax({
       type: "GET",
       url: "/history/info/",

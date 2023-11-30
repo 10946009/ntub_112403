@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "sslserver",
+    # "sslserver",
     "bootstrap5",
     
 
@@ -164,4 +164,4 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Taipei'
 
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False

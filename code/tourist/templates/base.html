@@ -11,18 +11,13 @@
   <link rel="stylesheet" href="../static/css/bootstrap2023.css">
   <link rel="stylesheet" href="../static/css/all.css">
   <link rel="stylesheet" href="/static/css/attractions_info.css">
+  <link rel="icon" type="image/x-icon" href="../static/images/logo1.png">
   {% block content %}{% endblock %}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
   <style>
-    .nav-link {
-      color: rgb(224, 224, 224);
-      font-size: 18px;
-      font-weight: bold;
-      text-shadow: 2px 2px 2px #000000;
-    }
   </style>
 </head>
 
@@ -112,7 +107,7 @@
         <span class="tfc">Trip Fun Chill
           <br>
         </span>
-        <span class="systxt">來一趟chill的旅程吧</span>
+        <span class="systxt">來一趟chill的旅程吧</span><br>
         <a href="/createindex" class="createbtn">建立行程</a>
       </div>
     </div>
@@ -129,9 +124,39 @@
 <script src="../static/js/bootstrap.min.js"></script>
 {% block content_script %}{% endblock %}
 <script>
+  
+  // 解決繼承toolbar重整不會顯示對應的active
+  document.addEventListener("DOMContentLoaded", function() {
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    navLinks.forEach((link, index) => {
+      link.addEventListener('click', function() {
+        localStorage.setItem('activeLink', index); // 儲存被點擊連結索引直
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+        });
+
+        this.classList.add('active');
+      });
+    });
+
+    // 檢查連結索引直
+    const activeIndex = localStorage.getItem('activeLink');
+
+    if (activeIndex !== null) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+      });
+
+      navLinks[activeIndex].classList.add('active');
+    }
+  });
+
+
   // popup info
   function clickInfo(aId) {
-    event.stopPropagation(); // 阻止事件传播
+    event.stopPropagation(); // 防止父元素執行
     var modal = document.getElementById('myModal');
     modal.classList.add('modal_active');
     document.body.classList.add('body_noScroll');
@@ -183,7 +208,7 @@
 
   //不在index.html的時候隱藏systemname
   window.onload = function () {
-    var isIndexPage = window.location.pathname === "/"; // 假设首页的路径是 "/"
+    var isIndexPage = window.location.pathname === "/"; 
     var systemNameElement = document.getElementById("systemname");
     // var navbgcolor = document.querySelector(".toolbar");
     var downicon = document.getElementById("downicon");
