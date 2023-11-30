@@ -198,6 +198,9 @@ html{
 	text-align: left;
 	position: relative;
 }
+.heart_icon_img{
+	position: relative;
+}
 .imgcontainer{
 	position: relative;
 	height: 300px;
