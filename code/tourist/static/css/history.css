@@ -202,6 +202,7 @@ body {
     left: 15px;
     padding: 0;
     background-color: #f3f3f3;
+    box-shadow: 1px 1px 5px #333;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     cursor: pointer;
@@ -655,7 +656,11 @@ body {
     }
 
     .openDetailDiv {
-        width: 85% !important;
+        height: 85%;
+        right: 5%;
+        top: 5%;
+        box-shadow: 3px 3px 8px #333;
+        width: 90% !important;
     }
 
 }
