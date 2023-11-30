@@ -861,6 +861,8 @@ img {
     background-attachment: fixed;
     margin: 0;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    position: relative;
+    bottom: 0;
 }
 
 .jumbotron1 input {
@@ -877,7 +879,7 @@ img {
 
 .jumbotron1 .container {
     color: #fff;
-    padding: 60px 0;
+    padding: 60px 0 0 0;
 }
 
 .jumbotron1 .container button.btn.btn-default {
