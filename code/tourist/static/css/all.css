@@ -49,6 +49,17 @@
 	z-index: 100;
 }
 
+.nav-link {
+	color: rgb(224, 224, 224);
+	font-size: 18px;
+	font-weight: bold;
+	text-shadow: 2px 2px 2px #000000;
+}
+
+.nav-link.active {
+	color: red !important;
+}
+
 /* 整個搜尋引擎那條 */
 .base_search {
 	width: 100%;
