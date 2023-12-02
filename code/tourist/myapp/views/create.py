@@ -146,7 +146,7 @@ def create(request, ct_id):
         #這是推薦景點~
         if ct_status == "0":
             globalDay = int(request.POST["globalDay"])
-            week = (start_week + globalDay - 1) % 7
+            week = (start_week + globalDay - 1) % 8
             get_user_address = list(map(float, request.POST["user_location"].split(",")))
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
