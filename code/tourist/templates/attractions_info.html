@@ -273,6 +273,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="../static/css/comment.css">
+{% if detail %}
 <script>
     //人潮分佈圖(有加時間,數量)
     var total_data = [];
@@ -383,7 +384,7 @@
         x[slideIndextotal - 1].style.display = "block";
     }
     // 評論公開顯示tips
-    var comment_info = document.getElementById("comment_info");
+    {% comment %} var comment_info = document.getElementById("comment_info");
     var show_comment_info = document.getElementById("show_comment_info");
     comment_info.addEventListener("click", function () {
         if (show_comment_info.style.display === "block") {
@@ -391,7 +392,7 @@
         } else {
             show_comment_info.style.display = "block";
         }
-    });
+    }); {% endcomment %}
 
     // 評論刪除三個小點點
     function Del_comment(icon) {
@@ -407,3 +408,4 @@
 
     
 </script>
+{% endif %}
