@@ -43,7 +43,6 @@ def get_picture():
     all_photo_list = tool.read("SELECT place_id,photo,detail FROM myapp_attractions")
     for photo in all_photo_list:
         if photo[2] != "酒吧": continue
-        print(photo[2])
         if check_file_in_folder(f'{os.getcwd()}\\酒吧\\',f'{photo[0]}.jpg'): continue
         max_width = 1024  # 设置所需的最大宽度
         max_height = 1024  # 设置所需的最大高度
@@ -56,7 +55,7 @@ def get_picture():
         response = requests.get(url)
 
         # # 将照片保存到文件
-        with open(f"{os.getcwd()}\\照片\\{photo[0]}.jpg", "wb") as file:
+        with open(f"{os.getcwd()}\\酒吧\\{photo[0]}.jpg", "wb") as file:
             file.write(response.content)
 
 get_picture()
