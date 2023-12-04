@@ -3,17 +3,17 @@ from myapp.models import *
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 
-def delete_none_crowd(requests):
-    bar = Attractions.objects.filter(detail="酒吧")
-    for i in bar:
-        crowd = i.get_crowd_opening()
-        for c in crowd:
-            print(c)
-            # c.delete()
-        # i.delete()
-    return JsonResponse({"status": "ok"})
+# 刪除酒吧
+# def delete_none_crowd(requests):
+#     bar = Attractions.objects.filter(detail="酒吧")
+#     for i in bar:
+#         crowd = i.get_crowd_opening()
+#         for c in crowd:
+#             c.delete()
+#         i.delete()
+#     return JsonResponse({"status": "ok"})
 
-
+# 轉移至酒吧資料庫
 # def delete_none_crowd(requests):
 #     bar = Attractions.objects.filter(detail="酒吧")
 #     for i in bar:
