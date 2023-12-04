@@ -620,12 +620,11 @@ input[type = 'time']{
     padding: 10px;
 }
 .dayContentIntro {
-    width: 100%;
-    min-width: 250px;
+    width: 70%;
+    min-width: 200px;
     height: 200px;
     padding: 10px 5px;
     margin-bottom: 10px;
-    flex-direction: column;
     text-align: left;
 }
 .dayContentIntrotxt{
@@ -666,6 +665,14 @@ input[type = 'time']{
 
     .gonextbtn {
         margin: 0;
+    }
+
+    input[type = 'time']{
+        width: 90px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        font-size: 16px;
     }
 }
 
