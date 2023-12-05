@@ -2,6 +2,7 @@
 .week_number {
     padding-left: 5px;
     margin-bottom: 10px;
+    margin-left: 20px;
 }
 
 .tag-week {
@@ -9,9 +10,9 @@
     font-size: 14px;
     display: inline-block;
     color: rgb(255, 255, 255);
-    padding: 8px 20px;
+    padding: 8px 12px;
     background-color: #628eb9;
-    margin-left: 6px;
+    margin-left: 8px;
     margin-top: 10px;
 }
 
