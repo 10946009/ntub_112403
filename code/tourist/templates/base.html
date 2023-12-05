@@ -24,7 +24,7 @@
 <body>
   {% block toolbar %}
   <div class="banner" id="randomBanner">
-    <nav class="navbar navbar-expand-lg toolbar" style="z-index: 100;">
+    <nav class="navbar navbar-expand-lg toolbar" style="z-index: 1000;">
       <div class="container-fluid">
         <a class="navbar-brand" href="/" style="padding: 0;">
           <img src="../static/images/logo_square1.png" class="logo_square1" id="logo_icon" alt="">
@@ -119,7 +119,7 @@
     </a>
   </div>
   {% endblock %}
-  <main id="rainyMain" style="position: relative;">
+  <main id="rainyMain">
   {% block body %}
   {% endblock body %}
   </main>

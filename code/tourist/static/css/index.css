@@ -23,11 +23,11 @@ body {
 }
 
 .explore, .more_span {
-	background-color: rgb(0, 166, 255);
-	height: 70px;
+	background-color: rgb(238, 154, 0);
+	height: 50px;
 	width: 150px;
-	margin: 50px auto;
-	line-height: 70px;
+	margin: 20px 0;
+	line-height: 50px;
 	position: relative;
 	clear: both;
 }
@@ -40,11 +40,10 @@ body {
 	text-decoration-line: none;
 	color: white;
 	position: absolute;
-	left: 10%;
+	left: 15%;
 	transition: left 0.3s;
-	text-shadow: 3px 3px 5px #333;
+	/* text-shadow: 3px 3px 5px #333; */
 	word-break: break-word;
-	/* 确保文本断行 */
 }
 
 .explorea:hover ,.more_a:hover {
@@ -220,10 +219,11 @@ body {
 } */
 
 .hot_spot_title {
-	/* font-size: 48px; */
 	font-weight: bolder;
 	text-shadow: 3px 3px 2px gray;
-	/* text-align: left; */
+}
+.hot_spot_content{
+	font-size: 18px;
 }
 
 .hot_icon {
@@ -231,11 +231,6 @@ body {
 }
 
 /*輪播區塊css*/
-.carousel_block {
-	position: relative;
-	padding: 0 5px;
-}
-
 /*輪播文字css*/
 .carousel_txt {
 	/* padding-left: 5px; */
@@ -251,7 +246,7 @@ body {
 
 .imgcontainer {
 	position: relative;
-	height: 300px;
+	height: 200px;
 	overflow: hidden;
 }
 
@@ -265,10 +260,6 @@ body {
 	-moz-transition: opacity 0.5s ease-in-out;
 	-o-transition: opacity 0.5s ease-in-out;
 	transition: opacity 0.5s ease-in-out;
-}
-
-.imgcontainer img.top:hover {
-	opacity: 0;
 }
 
 
@@ -428,21 +419,20 @@ body {
 
 .hidemehot {
 	position: relative;
-	margin-bottom: 10px;
 }
 
-/* .more_span {
-	position: absolute;
-	right: 0;
-	border-radius: 30px;
-	padding: 10px;
-} */
+.owl-prev {
+    left: 0;
+}
 
-/* .more_a {
-	padding: 10px 5px;
-	font-weight: bold;
-	font-size: 24px;
-} */
+.owl-next {
+    right: 0;
+}
+
+.owl-next span,
+.owl-prev span {
+    font-size: 28px;
+}
 
 .hot_txt {
 	text-align: left;
@@ -606,14 +596,20 @@ body {
 	#imageContainer {
 		height: 250px;
 	}
-
-	.explore {
-		height: 100px;
-		width: 500px;
+	.hidemehot{
+		text-align: center;
+	}
+	.explore{
+		width: 150px;
+		margin: 5px auto;
 	}
 
 	.explorea {
-		font-size: 28px;
+		left: 5%;
+		font-size: 20px;
+	}
+	.explorea:hover {
+		left: 1%;
 	}
 }
 
@@ -631,14 +627,6 @@ body {
 		font-size: 40px;
 	}
 
-	.carousel-control-prev,
-	.carousel-control-next {
-		position: absolute;
-		top: 90px;
-		width: 40px;
-		height: 90px;
-	}
-
 	.c_title {
 		margin-bottom: 2px;
 		font-size: 18px;
@@ -654,7 +642,6 @@ body {
 	}
 
 	.carousel_txt {
-		/* padding-left: 10px; */
 		border: 1px solid #ccc;
 	}
 
@@ -667,10 +654,6 @@ body {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-	}
-
-	#imageContainer {
-		/* height: 150px; */
 	}
 
 	.heart_icon {
@@ -707,24 +690,6 @@ body {
 		border-radius: 10%;
 	}
 
-	.explore {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		align-content: center;
-		height: 120px;
-		width: 90%;
-	}
-
-	.explorea {
-		font-size: 28px;
-		left: 8%;
-	}
-
-	.explorea:hover {
-		left: 6%;
-	}
-
 	.arrow {
 		right: 10px;
 	}
@@ -743,16 +708,8 @@ body {
 		font-size: 32px;
 	}
 
-	.hot_spot_title {
-		/* font-size: 28px; */
-	}
-
 	.hot_icon {
 		width: 28px;
-	}
-
-	.explorea {
-		font-size: 26px;
 	}
 
 	.arrow {
@@ -775,7 +732,6 @@ body {
 	}
 
 	.carousel_txt {
-		/* padding-left: 10px; */
 		font-size: 14px;
 		border: 1px solid #ccc;
 	}
@@ -822,10 +778,6 @@ body {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-	}
-
-	#imageContainer {
-		/* height: 100px; */
 	}
 
 	.c_title {

@@ -46,9 +46,9 @@ function startSlideshow(container) {
 
   // 启动定时器，每2秒切换一次图片
   container.slideshowInterval = setInterval(() => {
-      images[currentImageIndex].classList.remove('changeImg_show');
-      currentImageIndex = (currentImageIndex + 1) % images.length;
-      images[currentImageIndex].classList.add('changeImg_show');
+    images[currentImageIndex].classList.remove('changeImg_show');
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    images[currentImageIndex].classList.add('changeImg_show');
   }, 2000);
 }
 
@@ -224,34 +224,16 @@ $(document).ready(function () {
   });
 });
 
-// 計算輪播圖最大高度 高度一致
-$(document).ready(function () {
-  // 在文件載入時和視窗尺寸改變時調整高度
-  adjustTextHeightOnResize('.carousel_block .carousel_txt');
+// 高度一致
+$(function () {
+  var h = 0;
+  $('.item .carousel_txt').each(function () {
+
+    if ($(this).height() > h) {
+      h = $(this).height();
+    }
+
+  });
+  $('.item .carousel_txt').css('height', h + 'px');
 });
 
-function adjustTextHeightOnResize(selector) {
-  // 初始化高度
-  adjustTextHeight(selector);
-
-  // 監聽視窗大小改變事件
-  $(window).on('resize', function () {
-    adjustTextHeight(selector);
-  });
-}
-
-function adjustTextHeight(selector) {
-  $(selector).height('auto'); // 先重置高度以便重新計算
-  var maxHeight = 0;
-
-  // 找出最大高度
-  $(selector).each(function () {
-    var textHeight = $(this).outerHeight();
-    if (textHeight > maxHeight) {
-      maxHeight = textHeight;
-    }
-  });
-
-  // 將所有文字區塊設置為最大高度
-  $(selector).height(maxHeight);
-}
