@@ -1,23 +1,3 @@
-// 下雨效果(根據使用時當日天氣判斷)
-function createRainEffect() {
-  const rainyMain = document.getElementById('rainyMain');
-
-  for (let i = 0; i < 150; i++) { // 改變這個數字以增加或減少雨滴數量
-      const rainDrop = document.createElement('div');
-      rainDrop.classList.add('rain-drop');
-      rainDrop.style.left = `${Math.random() * 100}vw`; // 隨機X座標
-      rainDrop.style.animationDuration = `${1 + Math.random() * 2}s`; // 隨機下落速度
-      rainDrop.style.animationDelay = `${Math.random()}s`; // 隨機延遲時間
-      rainyMain.appendChild(rainDrop);
-  }
-}
-
-// 啟動下雨效果
-createRainEffect();
-
-
-
-
 //圖片等於螢幕高度
 window.onload = function () {
   var bannerbgimg = document.getElementsByClassName('banner');
