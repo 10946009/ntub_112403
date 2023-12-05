@@ -63,8 +63,15 @@
     {% for data in all_data %}
       <div class = "classDayContent" id="content{{forloop.counter}}" style={% if forloop.counter == 1 %}"display: block;"{% else %}"display: none;"{% endif %}>
         <div class="dayContent">
-          <div style="height: 250px;min-width:80px;display: flex;justify-content: center;align-items: center;align-content: center;">
-              起始<br>位置
+          <div class="time_position">
+            <div class="startTime">
+              <form action="">
+                <input type="time">
+              </form>
+            </div>
+            <div class="startPosition">
+              <span style="width: 90%;text-align: center;">起始位置</span>
+            </div>
           </div>
           {% for a_data in data.ct_attraction %}
             {{a_data.a_id.start_location_y}}
@@ -72,22 +79,31 @@
               <div class="car_time">
                 <a href="https://www.google.com/maps/dir/{{a_data.choice_ct.start_location_x}},{{a_data.choice_ct.start_location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;">
                   <img src="/static/images/New Project.jpg" alt="" class="car_icon">
-                  <p>約<br> {{ a_data.distance_time }}<br>分鐘</p>
+                  <span>約 {{ a_data.distance_time }}分鐘</span>
                 </a>
               </div>
                 
             {% else %}
-              <div class="car_time">
+              <div class="car_time" style="height: 50px;">
                 <a href="https://www.google.com/maps/dir/{{a_data.get_previous.a.location_x}},{{a_data.get_previous.a.location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;">
                   <img src="/static/images/New Project.jpg" alt="" class="car_icon">
-                  <p>約<br> {{ a_data.distance_time }}<br>分鐘</p>
+                  <span>約 {{ a_data.distance_time }}分鐘</span>
                 </a>
               </div>
             {% endif %}
-            <div class="dayContentIntro" style="text-align: center;">
-                <p style="font-size: 20px;"><b>{{a_data.a.a_name}}</b></p>
-                <p>營業時間<br>{% for open in a_data.opening.opening %} {% if forloop.counter != 1  %} <br> {% endif %}{{open}} {% endfor %}</p>
-                <p>停留時間：{{a_data.stay_time}}分鐘</p>
+            <div class="time_ContentIntro">
+              <div class="startTime">
+                <form action="">
+                  <input type="time">
+                </form>
+              </div>
+              <div class="dayContentIntroDiv">
+                <div class="dayContentIntro">
+                    <span class="dayContentIntroName" style="font-size: 20px;text-align: left;"><b>{{a_data.a.a_name}}</b></span><br>
+                    <span class="dayContentIntrotxt dayContentIntrotime">營業時間：<br>{% for open in a_data.opening.opening %} {% if forloop.counter != 1  %} <br> {% endif %}{{open}} {% endfor %}</span><br>
+                    <span class="dayContentIntrotxt dayContentIntrostayTime">停留時間：{{a_data.stay_time}}分鐘</span>
+                </div>
+              </div>
             </div>
           {% endfor %}
         </div>

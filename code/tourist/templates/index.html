@@ -6,32 +6,38 @@
 
 
 {% block body %}
-<div id="main">
-  <div class="triangle hideme"></div>
-  <div class="container_carousel container">
-    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div id="main" class="row" style="z-index: 2;width: 90%;margin: 20px auto;padding: 20px 0;border: 1px solid;">
+    <!-- <div class="hideme" style="position: relative;">
+      <div class="incomplete-circle "></div>
+    </div> -->
+    <div class="col-sm-2 hidemehot" style="border: 1px solid;">
       <div>
-        <span class="hidemehot" style="display: flex;align-items: center;margin-bottom: 10px;">
-          <img src="../static/images/hot_icon.png" class="hot_icon">
-          <span class="hot_spot_title">熱門景點</span>
-        </span>
+        <h1 class="hot_spot_title" style="font-family: HanyiSentyTea Regular;">HOT&ensp;&ensp;SPOT</h1>
+        <h3 class="hot_spot_title">熱&ensp;門&ensp;景&ensp;點</h3>
       </div>
-      <div class="carousel-inner hidemehottoleft">
+      <div>
+        掌握台北最熱門的景點，讓你無須煩惱去哪裡
+        趣放假帶你趣遊 !
+      </div>
+      <div class="explore hidemeexplore">
+        <a href="/attraction_details" class="explorea">VIEW ALL
+          <!-- <span class="arrow"><i class="fa-solid fa-arrow-right arrowi"></i></span> -->
+        </a>
+      </div>
+    </div>
+    <div id="myCarousel" class="carousel slide col-sm-10 hidemehottoleft" data-bs-ride="carousel">
+      <div class="carousel-inner  ">
         {% for i in hotAttractionsList %}
-
         {% if forloop.first %}
         <div class="carousel-item active">
           {% else %}
           <div class="carousel-item">
             {% endif %}
-
             <div class="row">
-
               {% for item in i %}
                 <div class="col-4 carousel_block">
                   <div class="imgcontainer">
                     <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)" onmouseout="stopSlideShow(this)">
-                      
                       {% for  img in item.imglist %}
                       {% if forloop.counter == 1 %} 
                       <img src="/static/images/attractions/{{img}}" class="changeImg changeImg_show">
@@ -81,7 +87,6 @@
                   </div>
                 </div>
               {% endfor %}
-              
             </div>
           </div>
           {% endfor %}
@@ -96,58 +101,32 @@
         </button>
       </div>
     </div>
-    <!-- 彈跳視窗 -->
-    <div class="modal" id="myModal">
-      <div class="modal-content_att_info">
-        <div class="close_att_info"><span class="fa-solid fa-xmark " onclick="clickClose()"></span></div>
-          <div id = "changeInfo">
-            {% include "attractions_info.html" %}
-          </div>
-      </div>
-    </div>
-    <div class="explore hidemeexplore">
-      <a href="/attraction_details" class="explorea">探索更多相關景點資訊
-        <span class="arrow"><i class="fa-solid fa-arrow-right arrowi"></i></span>
-      </a>
-    </div>
-
-
-    <div id="container" class="container">
-      <div>
-        <span class="hidemehot" style="display: flex;align-items: center;margin-bottom: 10px;">
-          <img src="../static/images/hot_icon.png" class="hot_icon">
-          <span class="hot_spot_title">熱門行程</span>
-          <span class="more_span"><a href="/share/" class="more_a">MORE</a></span>
-        </span>
-      </div>
-      
+  </div>
+  <div id="container" class="row" style="clear: both;width: 90%;border: 1px solid;margin: 0 auto;">
+    <div class="col-sm-10" style="float: left;width: 80%;">
       <div class="row">
-
         {% for ct in top_hot_travel %}
           <div class="col-md-4 col-sm-6 hot_spot_block hidemespot" style="padding: 5px;">
             <div class="heart_icon_img">
-                <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)" onmouseout="stopSlideShow(this)">
-                  
-                
-                  {% for  img in ct.imglist %}
-                  {% if forloop.counter == 1 %} 
-                  <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="changeImg changeImg_show">
-                  {% else %}
-                  <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="changeImg">
-                  {% endif %}
-                  {%empty%}
-                  <img src="/static/images/attractions/default_0.jpg" class="changeImg changeImg_show">
-                  {% endfor %}
-                </div>
-                <!-- 加入最愛 -->
-                {% if ct.is_favorite == "1" %}
-                  <button class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="{{ct.is_favorite}}"
-                    data-id="{{ct.id}}" data-type="/add_travel_favorite/"></button>
+              <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)" onmouseout="stopSlideShow(this)">
+                {% for  img in ct.imglist %}
+                {% if forloop.counter == 1 %} 
+                <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="changeImg changeImg_show">
                 {% else %}
-                  <button class="fa-solid fa-heart heart_icon" data-isfavorite="{{ct.is_favorite}}"
-                    data-id="{{ct.id}}" data-type="/add_travel_favorite/"></button>
+                <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="changeImg">
                 {% endif %}
-
+                {%empty%}
+                <img src="/static/images/attractions/default_0.jpg" class="changeImg changeImg_show">
+                {% endfor %}
+              </div>
+              <!-- 加入最愛 -->
+              {% if ct.is_favorite == "1" %}
+                <button class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="{{ct.is_favorite}}"
+                  data-id="{{ct.id}}" data-type="/add_travel_favorite/"></button>
+              {% else %}
+                <button class="fa-solid fa-heart heart_icon" data-isfavorite="{{ct.is_favorite}}"
+                  data-id="{{ct.id}}" data-type="/add_travel_favorite/"></button>
+              {% endif %}
             </div>
             <div class="spot_txt">
               <h4 class="c_title">
@@ -162,18 +141,49 @@
             </div>
           </div>
         {% endfor %}
-
       </div>
-
     </div>
 
+    
+    <!-- <div class="col-sm-2 hidemehot" style="border: 1px solid;">
+      <div>
+        <h1 class="hot_spot_title" style="font-family: HanyiSentyTea Regular;">HOT&ensp;&ensp;SPOT</h1>
+        <h3 class="hot_spot_title">熱&ensp;門&ensp;景&ensp;點</h3>
+      </div>
+      <div>
+        掌握台北最熱門的景點，讓你無須煩惱去哪裡
+        趣放假帶你趣遊 !
+      </div>
+      <div class="explore hidemeexplore">
+        <a href="/attraction_details" class="explorea">VIEW ALL
+        </a>
+      </div>
+    </div> -->
+    <div class="col-sm-2 hidemehot" style="float: right;width: 20%;">
+      <div>
+        <h1 class="hot_spot_title" style="font-family: HanyiSentyTea Regular;">HOT&ensp;JOURNEY</h1>
+        <h3 class="hot_spot_title">熱&ensp;門&ensp;行&ensp;程</h3>
+      </div>
+      <div class="more_span hidemeexplore">
+        <a href="/share/" class="more_a">MORE</a>
+      </div>
+    </div>
+  </div>
+  <!-- 彈跳視窗 -->
+  <div class="modal" id="myModal">
+    <div class="modal-content_att_info">
+      <div class="close_att_info"><span class="fa-solid fa-xmark " onclick="clickClose()"></span></div>
+        <div id = "changeInfo">
+          {% include "attractions_info.html" %}
+        </div>
+    </div>
+  </div>
+{% endblock body %}
 
-    {% endblock body %}
+{% block content_script %}
+<script src="../static/js/index.js"></script>
+<script src="../static/js/addFavorite.js"></script>
 
-    {% block content_script %}
-    <script src="../static/js/index.js"></script>
-    <script src="../static/js/addFavorite.js"></script>
-
-    {% endblock %}
+{% endblock %}
 
     </html>
