@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="../static/css/travel_detail.css">
 {% comment %} CSS放這~~ {% endcomment %}
 <style>
-<style>
 body {
   margin: 0;
   display: flex;
@@ -348,6 +347,34 @@ header {
 
 {% block body %}
 {% comment %} 內容在這~~~ {% endcomment %}
+<div class="row">
+  <div class="col-1"></div>
+  <div class="col-10 total_travel_detail">
+    <div class="detail_travel_name">
+      <div class="detail_travel_name__header">
+          <div class="detail_travel_name__headerGrid">
+              <h2 style="color: rgb(172, 78, 1)" id="attractions-detail-name"><strong>{{ct_detail.ct_name}}</strong>
+              </h2>
+          </div>
+          <div class="detail_travel_name__headerGrid icon_add">
+            {% if ct_detail.is_favorite == "1" %}
+            <div class="travel_icon_name" id="submitfavorite{{ct_detail.id}}"
+                onclick="addFavorite_travel(this,{{ct_detail.id}})">
+                <i class="fas fa-regular fa-heart" title="已收藏" style="color: rgb(202, 13, 13);"></i>
+            </div>
+            {% else %}
+            <div class="travel_icon_name" id="submitfavorite{{ct_detail.id}}"
+                onclick="addFavorite_travel(this,{{ct_detail.id}})">
+                <i class="fas fa-regular fa-heart" title="收藏" style="color: rgb(111, 110, 110);"></i>
+            </div>
+            {% endif %}
+          </div>
+      </div>
+  </div>
+  <div>
+    <h5 class="provider">分享人：{{ct_detail.u.username}}</h5>
+  </div>
+</div>
 <div class="container">
   <header class="row" style="padding: 0px;margin: 0px;">
     <h1 class="col-6 page-title">{{ct_detail.ct_name}}</h1>
