@@ -1,3 +1,23 @@
+/* 下雨效果 */
+.rain-drop {
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background-color: rgb(183, 183, 229);
+    animation: fall 0.5s linear infinite;
+	z-index: -1;
+}
+
+/* 下雨的動畫 */
+@keyframes fall {
+    from {
+        top: -10px; /* 設定起始位置 */
+    }
+    to {
+        top: 100%; /* 滴落到底部 */
+    }
+}
+
 
 body{
 	font-family: Microsoft JhengHei;

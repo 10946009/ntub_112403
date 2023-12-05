@@ -6,174 +6,164 @@
 
 
 {% block body %}
-<div id="main">
-  <div class="triangle hideme"></div>
-  <div class="container_carousel container">
-    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-      <div>
-        <span class="hidemehot" style="display: flex;align-items: center;margin-bottom: 10px;">
-          <img src="../static/images/hot_icon.png" class="hot_icon">
-          <span class="hot_spot_title">熱門景點</span>
-        </span>
-      </div>
-      <div class="carousel-inner hidemehottoleft">
-        {% for i in hotAttractionsList %}
-
-        {% if forloop.first %}
-        <div class="carousel-item active">
-          {% else %}
-          <div class="carousel-item">
-            {% endif %}
-
-            <div class="row">
-
-              {% for item in i %}
-                <div class="col-4 carousel_block">
-                  <div class="imgcontainer">
-                    <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)" onmouseout="stopSlideShow(this)">
-                      
-                      {% for  img in item.imglist %}
-                      {% if forloop.counter == 1 %} 
-                      <img src="/static/images/attractions/{{img}}" class="changeImg changeImg_show">
-                      {% else %}
-                      <img src="/static/images/attractions/{{img}}" class="changeImg">
-                      {% endif %}
-                      {% endfor %}
-                    </div>
-
-                    <a class="fa-solid fa-circle-info info_icon_left" onclick="clickInfo({{item.id}})"></a>
-                    
-                    {% if item.is_favorite == "1" %}
-                    <button class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="{{item.is_favorite}}"
-                      data-id="{{item.id}}" data-type="/add_favorite/"></button>
-                    {% else %}
-                    <button class="fa-solid fa-heart heart_icon" data-isfavorite="{{item.is_favorite}}"
-                      data-id="{{item.id}}" data-type="/add_favorite/"></button>
-                    {% endif %}
-                  </div>
-                  <div class="group">
-                    {% comment %} <i class="fa-solid fa-plus add_icon"></i> {% endcomment %}
-                    <div class="dropdown_menu">
-                      <div><a class="dropdown_item" href="/createindex">新增行程</a></div>
-                      <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
-                      <div><a class="dropdown_item" href="#">開車一日遊</a></div>
-                    </div>
-                  </div>
-                  <div class="carousel_txt">
-                    <h4 class="c_title">
-                      {{item.a_name}}
-                    </h4>
-                    <div class="rating" style="text-align: center;">
-                      {% for i in "12345" %}
-                        {% if i|add:0 <= item.rating %} 
-                          <i class="fa-solid fa-star" style="color:rgb(226, 185, 2);"></i>
-                        {% else %}
-                          <!-- <i class="fa-regular fa-star"></i> -->
-                          <!-- <i class="fa-regular fa-star-half-stroke" style="color:rgb(226, 185, 2);"></i> -->
-                          <i class="fa-solid fa-star" style="color:rgb(185, 184, 184);"></i>
-                        {% endif %}
-                      {% endfor %}
-                      <br>
-                      <span id="selectedRating">{{item.rating}} / 5 ({{ item.rating_total }}則) </span>
-                    </div>
-                        
-                    </p>
-                  </div>
-                </div>
-              {% endfor %}
-              
-            </div>
-          </div>
-          {% endfor %}
+<main id="rainyMain" style="position: relative;">
+  <div id="main">
+    <div class="triangle hideme"></div>
+    <div class="container_carousel container">
+      <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div>
+          <span class="hidemehot" style="display: flex;align-items: center;margin-bottom: 10px;">
+            <img src="../static/images/hot_icon.png" class="hot_icon">
+            <span class="hot_spot_title">熱門景點</span>
+          </span>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    </div>
-    <!-- 彈跳視窗 -->
-    <div class="modal" id="myModal">
-      <div class="modal-content_att_info">
-        <div class="close_att_info"><span class="fa-solid fa-xmark " onclick="clickClose()"></span></div>
-          <div id = "changeInfo">
-            {% include "attractions_info.html" %}
-          </div>
-      </div>
-    </div>
-    <div class="explore hidemeexplore">
-      <a href="/attraction_details" class="explorea">探索更多相關景點資訊
-        <span class="arrow"><i class="fa-solid fa-arrow-right arrowi"></i></span>
-      </a>
-    </div>
+        <div class="carousel-inner hidemehottoleft">
+          {% for i in hotAttractionsList %}
+          {% if forloop.first %}
+          <div class="carousel-item active">
+            {% else %}
+            <div class="carousel-item">
+              {% endif %}
+              <div class="row">
+                {% for item in i %}
+                  <div class="col-4 carousel_block">
+                    <div class="imgcontainer">
+                      <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)" onmouseout="stopSlideShow(this)">
+                        {% for  img in item.imglist %}
+                        {% if forloop.counter == 1 %} 
+                        <img src="/static/images/attractions/{{img}}" class="changeImg changeImg_show">
+                        {% else %}
+                        <img src="/static/images/attractions/{{img}}" class="changeImg">
+                        {% endif %}
+                        {% endfor %}
+                      </div>
 
-
-    <div id="container" class="container">
-      <div>
-        <span class="hidemehot" style="display: flex;align-items: center;margin-bottom: 10px;">
-          <img src="../static/images/hot_icon.png" class="hot_icon">
-          <span class="hot_spot_title">熱門行程</span>
-          <span class="more_span"><a href="/share/" class="more_a">MORE</a></span>
-        </span>
-      </div>
-      
-      <div class="row">
-
-        {% for ct in top_hot_travel %}
-          <div class="col-md-4 col-sm-6 hot_spot_block hidemespot" style="padding: 5px;">
-            <div class="heart_icon_img">
-                <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)" onmouseout="stopSlideShow(this)">
-                  
-                
-                  {% for  img in ct.imglist %}
-                  {% if forloop.counter == 1 %} 
-                  <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="changeImg changeImg_show">
-                  {% else %}
-                  <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="changeImg">
-                  {% endif %}
-                  {%empty%}
-                  <img src="/static/images/attractions/default_0.jpg" class="changeImg changeImg_show">
-                  {% endfor %}
-                </div>
-                <!-- 加入最愛 -->
-                {% if ct.is_favorite == "1" %}
-                  <button class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="{{ct.is_favorite}}"
-                    data-id="{{ct.id}}" data-type="/add_travel_favorite/"></button>
-                {% else %}
-                  <button class="fa-solid fa-heart heart_icon" data-isfavorite="{{ct.is_favorite}}"
-                    data-id="{{ct.id}}" data-type="/add_travel_favorite/"></button>
-                {% endif %}
-
+                      <a class="fa-solid fa-circle-info info_icon_left" onclick="clickInfo({{item.id}})"></a>
+                      
+                      {% if item.is_favorite == "1" %}
+                      <button class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="{{item.is_favorite}}"
+                        data-id="{{item.id}}" data-type="/add_favorite/"></button>
+                      {% else %}
+                      <button class="fa-solid fa-heart heart_icon" data-isfavorite="{{item.is_favorite}}"
+                        data-id="{{item.id}}" data-type="/add_favorite/"></button>
+                      {% endif %}
+                    </div>
+                    <div class="group">
+                      {% comment %} <i class="fa-solid fa-plus add_icon"></i> {% endcomment %}
+                      <div class="dropdown_menu">
+                        <div><a class="dropdown_item" href="/createindex">新增行程</a></div>
+                        <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
+                        <div><a class="dropdown_item" href="#">開車一日遊</a></div>
+                      </div>
+                    </div>
+                    <div class="carousel_txt">
+                      <h4 class="c_title">
+                        {{item.a_name}}
+                      </h4>
+                      <div class="rating" style="text-align: center;">
+                        {% for i in "12345" %}
+                          {% if i|add:0 <= item.rating %} 
+                            <i class="fa-solid fa-star" style="color:rgb(226, 185, 2);"></i>
+                          {% else %}
+                            <!-- <i class="fa-regular fa-star"></i> -->
+                            <!-- <i class="fa-regular fa-star-half-stroke" style="color:rgb(226, 185, 2);"></i> -->
+                            <i class="fa-solid fa-star" style="color:rgb(185, 184, 184);"></i>
+                          {% endif %}
+                        {% endfor %}
+                        <br>
+                        <span id="selectedRating">{{item.rating}} / 5 ({{ item.rating_total }}則) </span>
+                      </div>
+                          
+                      </p>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
             </div>
-            <div class="spot_txt">
-              <h4 class="c_title">
-                {{ ct.ct_name }}
-              </h4>
-              <h5>
-                作者：{{ ct.u_id.username }}
-              </h5>
-              <p>收藏人數：{{ ct.like }}</p>
-              {% comment %} <button class="btn btn-warning spot_data_btn more_data" id="more_data">詳細資料</button> {% endcomment %}
-              <a href="/travel_detail/{{ ct.id }}" class="btn btn-warning spot_data_btn more_data" id="more_data">詳細資料</a>
-            </div>
+            {% endfor %}
           </div>
-        {% endfor %}
-
+          <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
       </div>
-
     </div>
+  </div>
+  <!-- 彈跳視窗 -->
+  <div class="modal" id="myModal">
+    <div class="modal-content_att_info">
+      <div class="close_att_info"><span class="fa-solid fa-xmark " onclick="clickClose()"></span></div>
+        <div id = "changeInfo">
+          {% include "attractions_info.html" %}
+        </div>
+    </div>
+  </div>
+  <div class="explore hidemeexplore">
+    <a href="/attraction_details" class="explorea">探索更多相關景點資訊
+      <span class="arrow"><i class="fa-solid fa-arrow-right arrowi"></i></span>
+    </a>
+  </div>
 
 
-    {% endblock body %}
+  <div id="container" class="container">
+    <div>
+      <span class="hidemehot" style="display: flex;align-items: center;margin-bottom: 10px;">
+        <img src="../static/images/hot_icon.png" class="hot_icon">
+        <span class="hot_spot_title">熱門行程</span>
+        <span class="more_span"><a href="/share/" class="more_a">MORE</a></span>
+      </span>
+    </div>
+    <div class="row">
+      {% for ct in top_hot_travel %}
+        <div class="col-md-4 col-sm-6 hot_spot_block hidemespot" style="padding: 5px;">
+          <div class="heart_icon_img">
+            <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)" onmouseout="stopSlideShow(this)">
+              {% for  img in ct.imglist %}
+              {% if forloop.counter == 1 %} 
+              <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="changeImg changeImg_show">
+              {% else %}
+              <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="changeImg">
+              {% endif %}
+              {%empty%}
+              <img src="/static/images/attractions/default_0.jpg" class="changeImg changeImg_show">
+              {% endfor %}
+            </div>
+            <!-- 加入最愛 -->
+            {% if ct.is_favorite == "1" %}
+              <button class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="{{ct.is_favorite}}"
+                data-id="{{ct.id}}" data-type="/add_travel_favorite/"></button>
+            {% else %}
+              <button class="fa-solid fa-heart heart_icon" data-isfavorite="{{ct.is_favorite}}"
+                data-id="{{ct.id}}" data-type="/add_travel_favorite/"></button>
+            {% endif %}
+          </div>
+          <div class="spot_txt">
+            <h4 class="c_title">
+              {{ ct.ct_name }}
+            </h4>
+            <h5>
+              作者：{{ ct.u_id.username }}
+            </h5>
+            <p>收藏人數：{{ ct.like }}</p>
+            {% comment %} <button class="btn btn-warning spot_data_btn more_data" id="more_data">詳細資料</button> {% endcomment %}
+            <a href="/travel_detail/{{ ct.id }}" class="btn btn-warning spot_data_btn more_data" id="more_data">詳細資料</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock body %}
 
-    {% block content_script %}
-    <script src="../static/js/index.js"></script>
-    <script src="../static/js/addFavorite.js"></script>
+{% block content_script %}
+<script src="../static/js/index.js"></script>
+<script src="../static/js/addFavorite.js"></script>
 
-    {% endblock %}
+{% endblock %}
 
     </html>
