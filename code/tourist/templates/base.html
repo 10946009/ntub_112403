@@ -119,7 +119,7 @@
     </a>
   </div>
   {% endblock %}
-  <main id="rainyMain">
+  <main id="rainyMain" style="position: relative;">
   {% block body %}
   {% endblock body %}
   </main>
@@ -156,8 +156,10 @@
 
   // 啟動下雨效果
   rain = JSON.parse('{{ get_now_weather_json|safe }}');
-  if (rain['get_now_weather_json'] == 'rain') {
-    createRainEffect();
+  const currentPagePath = window.location.pathname;
+
+  if (rain['get_now_weather_json'] === 'rain' && currentPagePath !== '/createindex.html') {
+      createRainEffect();
   }
 
   // 解決繼承toolbar重整不會顯示對應的active

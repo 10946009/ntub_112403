@@ -1,4 +1,7 @@
 /* create_index的 */
+body{
+    overflow: hidden;
+}
 #rainyMain{
     z-index: 1;
     margin: 0;

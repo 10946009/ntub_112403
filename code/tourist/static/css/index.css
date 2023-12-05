@@ -22,17 +22,36 @@ body {
 	z-index: 100;
 }
 
-.explore, .more_span {
+.explore {
+	display: block;
 	background-color: rgb(238, 154, 0);
 	height: 50px;
 	width: 150px;
 	margin: 20px 0;
 	line-height: 50px;
 	position: relative;
+	cursor: pointer;
 	clear: both;
+	transition: background-color 0.3s;
+}
+.more_span{
+	display: block;
+	float: right;
+	background-color: rgb(238, 154, 0);
+	height: 50px;
+	width: 150px;
+	margin: 20px 0;
+	line-height: 50px;
+	position: relative;
+	cursor: pointer;
+	clear: both;
+	transition: background-color 0.3s;
+}
+.more_span:hover ,.explore:hover{
+	background-color: teal;
 }
 
-.explorea, .more_a {
+.explorea {
 	display: block;
 	width: 100%;
 	font-size: 20px;
@@ -42,12 +61,26 @@ body {
 	position: absolute;
 	left: 15%;
 	transition: left 0.3s;
-	/* text-shadow: 3px 3px 5px #333; */
 	word-break: break-word;
 }
+.more_a{
+	display: block;
+	width: 100%;
+	font-size: 20px;
+	font-weight: bolder;
+	text-decoration-line: none;
+	color: white;
+	position: absolute;
+	left: 30%;
+	transition: left 0.3s;
+}
 
-.explorea:hover ,.more_a:hover {
+.explorea:hover {
 	left: 8%;
+}
+
+.more_a:hover{
+	left: 15%;
 }
 
 .arrow {
@@ -218,11 +251,16 @@ body {
   border-radius: 10px 10px 50% 10%;
 } */
 
+.hot_spotTxt {
+	text-align: right;
+	padding-right: 10px;
+}
 .hot_spot_title {
 	font-weight: bolder;
 	text-shadow: 3px 3px 2px gray;
 }
-.hot_spot_content{
+
+.hot_spot_content {
 	font-size: 18px;
 }
 
@@ -402,12 +440,11 @@ body {
 	z-index: 2;
 }
 
-#container DIV {
+/* #container DIV {
 	text-align: center;
 	margin: 0px;
 	padding: 0px;
-	/* background-color:rgb(255, 255, 255);  */
-}
+} */
 
 .hideme,
 .hidemehot,
@@ -422,16 +459,16 @@ body {
 }
 
 .owl-prev {
-    left: 0;
+	left: 0;
 }
 
 .owl-next {
-    right: 0;
+	right: 0;
 }
 
 .owl-next span,
 .owl-prev span {
-    font-size: 28px;
+	font-size: 28px;
 }
 
 .hot_txt {
@@ -596,10 +633,12 @@ body {
 	#imageContainer {
 		height: 250px;
 	}
-	.hidemehot{
+
+	.hidemehot {
 		text-align: center;
 	}
-	.explore{
+
+	.explore {
 		width: 150px;
 		margin: 5px auto;
 	}
@@ -608,8 +647,22 @@ body {
 		left: 5%;
 		font-size: 20px;
 	}
+
 	.explorea:hover {
 		left: 1%;
+	}
+	.hot_spotTxt{
+		text-align: center;
+	}
+	.more_span{
+		float: unset;
+		margin: 20px auto;
+	}
+	.more_a{
+		left: 0;
+	}
+	.more_a:hover{
+		left: -5%;
 	}
 }
 
