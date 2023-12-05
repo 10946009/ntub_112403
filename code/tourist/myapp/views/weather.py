@@ -12,7 +12,7 @@ def get_weather_data(address,year,mouth,day,nowtime):#地址、年、月、日�
     weather_data = {}
     mouth = str(mouth).zfill(2) #補0
     day = str(day).zfill(2) #補0
-    nowtime =(nowtime // 60) % 24
+    nowtime =int(nowtime) // 60 % 24
     try:
         response = requests.get(url, headers=HEADERS)
     except:

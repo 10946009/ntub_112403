@@ -155,7 +155,10 @@
   }
 
   // 啟動下雨效果
-  createRainEffect();
+  rain = JSON.parse('{{ get_now_weather_json|safe }}');
+  if (rain['get_now_weather_json'] == 'rain') {
+    createRainEffect();
+  }
 
   // 解決繼承toolbar重整不會顯示對應的active
   document.addEventListener("DOMContentLoaded", function() {
