@@ -303,7 +303,36 @@
   checkHasLocationData();//如果使用者已經有選擇位置
   checkHasData();//如果使用者是否有資料顯示排序景點
   // 放入景點名稱
-  autocomplete(create_searchInput, JSON.parse('{{ attractions_search_json|safe }}'));
+  const done = document.querySelectorAll(".changeInitial")
+    done.forEach(element => {
+      const create_searchInput = element.querySelector("#create_myInput");
+      autocomplete(create_searchInput, JSON.parse('{{ attractions_search_json|safe }}'));
+      const create_searchBox = element.querySelector("#create_searchBox");
+      const create_enter = element.querySelector("#create_enter");
+      
+      //點不是input裡的元素就關起來
+      document.addEventListener("click", function (event) {
+          if (!create_searchBox.contains(event.target)) {
+              create_searchBox.style.display = "none";
+          }
+      });
+  
+      // 如果input裡有東西的話就關起來，沒有就打開歷史紀錄畫面
+      create_searchInput.addEventListener("input", function () {
+          const inputValue = create_searchInput.value;
+          if (inputValue.trim() !== "") {
+              create_searchBox.style.display = "none";
+          } else {
+              create_searchBox.style.display = "block";
+          }
+      });
+  
+      // 點一下input內框跳出來歷史紀錄畫面
+      create_searchInput.addEventListener("click", function (event) {
+          event.stopPropagation();// 防止觸發 document 上的點擊事件
+          create_searchBox.style.display = "block";
+      });
+      });
   //console.log('hi'+JSON.parse('{{ attractions_search_json|safe }}')) 顯示景點搜尋列
   /*window.addEventListener = function () {
     geoFindMe();
