@@ -13,6 +13,9 @@
 {% endblock %}
 
 {% block body %}
+<div class="topDiv" onclick="scrollTosearch_body('.search_body')">
+    <span>TOP</span>
+</div>
 <!-- 動態大標 景點資訊(沒事) -->
 <div class="row jumbotron">
     <div class="container_info">
@@ -183,6 +186,35 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script>
+    
+    // scrollToTop
+    function scrollTosearch_body(selector) {
+        const element = document.querySelector(selector); 
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' }); 
+        }
+    }
+
+    window.addEventListener('scroll', function() {
+        var jumbotron = document.querySelector('.jumbotron');
+        var topDiv = document.querySelector('.topDiv');
+
+        var jumbotronRect = jumbotron.getBoundingClientRect();
+
+        // 設定域值：在這裡我使用了 jumbotron 的底部
+        var threshold = jumbotronRect.bottom;
+
+        if (window.scrollY > threshold) {
+            topDiv.style.opacity = 1;
+            topDiv.style.pointerEvents = 'auto';
+        } else {
+            topDiv.style.opacity = 0;
+            topDiv.style.pointerEvents = 'none';
+        }
+    });
+
+
+
     let loadingpage = 2;  // 初始页面
     let waitload = false;  // 等待加载标志
     // 當頁面載入完成後執行
@@ -270,10 +302,10 @@
     // });
 
     // skrollr滑鼠滾動
-    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    if (!isMobile) {
-        var s = skrollr.init();
-    }
+    // var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    // if (!isMobile) {
+    //     var s = skrollr.init();
+    // }
 
     //進階的部分
     var filiter_win = document.getElementById('show_condition');//條件篩選
