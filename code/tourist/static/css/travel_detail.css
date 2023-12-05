@@ -43,5 +43,24 @@ body {
 }
 
 .provider {
-    margin-top: 20px;
+    margin-top: 15px;
+    text-align: right;
+}
+
+/* grid景點圖片 */
+.travel_detail_img {
+    max-width: 100%;
+    margin: 50px auto;
+    /* cursor: pointer; */
+}
+
+.travel_detail_img__header {
+    display: grid;
+    grid-template-columns: 8fr 4fr;
+    grid-gap: 2px;
+    margin-bottom: 2px;
+}
+
+.travel_detail_img__headerGrid {
+    text-align: center;
 }
