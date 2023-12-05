@@ -1,4 +1,3 @@
-
 //圖片等於螢幕高度
 window.onload = function () {
   var bannerbgimg = document.getElementsByClassName('banner');

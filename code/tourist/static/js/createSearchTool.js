@@ -89,33 +89,39 @@ function autocomplete(inp, arr) {
     });
   }
 
-    //歷史紀錄（點一下input跳出來）
-    const create_searchInput = document.getElementById("create_myInput");
-    const create_searchBox = document.getElementById("create_searchBox");
-    const create_enter = document.getElementById("create_enter");
-
-    //點不是input裡的元素就關起來
-    document.addEventListener("click", function (event) {
-        if (!create_searchBox.contains(event.target)) {
-            create_searchBox.style.display = "none";
-        }
-    });
-
-    // 如果input裡有東西的話就關起來，沒有就打開歷史紀錄畫面
-    create_searchInput.addEventListener("input", function () {
-        const inputValue = create_myInput.value;
-        if (inputValue.trim() !== "") {
-            create_searchBox.style.display = "none";
-        } else {
-            create_searchBox.style.display = "block";
-        }
-    });
-
-    // 點一下input內框跳出來歷史紀錄畫面
-    create_searchInput.addEventListener("click", function (event) {
-        event.stopPropagation();// 防止觸發 document 上的點擊事件
-        create_searchBox.style.display = "block";
-    });
+    // //歷史紀錄（點一下input跳出來）
+    // const done = document.querySelectorAll(".changeInitial")
+    // done.forEach(element => {
+      
+    //   console.log(element);
+    //   const create_searchInput = element.querySelector("#create_myInput");
+    //   const create_searchBox = element.querySelector("#create_searchBox");
+    //   const create_enter = element.querySelector("#create_enter");
+      
+    //   //點不是input裡的元素就關起來
+    //   document.addEventListener("click", function (event) {
+    //       if (!create_searchBox.contains(event.target)) {
+    //           create_searchBox.style.display = "none";
+    //       }
+    //   });
+  
+    //   // 如果input裡有東西的話就關起來，沒有就打開歷史紀錄畫面
+    //   create_searchInput.addEventListener("input", function () {
+    //       const inputValue = create_searchInput.value;
+    //       if (inputValue.trim() !== "") {
+    //           create_searchBox.style.display = "none";
+    //       } else {
+    //           create_searchBox.style.display = "block";
+    //       }
+    //   });
+  
+    //   // 點一下input內框跳出來歷史紀錄畫面
+    //   create_searchInput.addEventListener("click", function (event) {
+    //       event.stopPropagation();// 防止觸發 document 上的點擊事件
+    //       create_searchBox.style.display = "block";
+    //   });
+      
+    // });
 
     //delete歷史紀錄
     function deleteFunction(element) {
