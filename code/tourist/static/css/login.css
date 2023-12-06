@@ -1,4 +1,5 @@
 .login {
+    position: relative;
     max-width: 500px;
     margin: 80px auto;
     margin-bottom: 30px;
@@ -136,8 +137,8 @@ input[type="text"] {
 
 @media(max-width: 768px) {
     .login {
-        margin: 100px 0;
-        max-width: 100%;
+        margin: 100px auto;
+        max-width: 80%;
         /* margin: 0px; */
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         padding: 20px;

@@ -20,7 +20,7 @@
 
 
 {% block body %}
-  <div id="main" class="row" style="z-index: 2;width: 90%;margin: 20px auto;margin-top: 0;padding: 20px 0;">
+  <div id="main" class="row" style="width: 90%;margin: 20px auto;margin-top: 0;padding: 20px 0;padding-top: 50px;">
     <!-- <div class="hideme" style="position: relative;">
       <div class="incomplete-circle "></div>
     </div> -->
@@ -30,7 +30,7 @@
         <h3 class="hot_spot_title">熱&ensp;門&ensp;景&ensp;點</h3>
       </div>
       <div class="hot_spot_content">
-        掌握台北最熱門的景點，讓你無須煩惱去哪裡～趣放假帶你趣遊 !
+        掌握台北最熱門的景點，讓你無須煩惱去哪裡～趣放假帶你趣遊(chill) !
       </div>
       <a class="explore " href="/attraction_details">
         <div class="explorea">VIEW ALL</div>
@@ -130,7 +130,7 @@
         <h3 class="hot_spot_title">熱&ensp;門&ensp;行&ensp;程</h3>
       </div>
       <div class="hot_spot_content">
-        每個行程都充滿新奇的體驗、獨特的玩法～趣放假，帶您展開不同的冒險！
+        每個行程都有獨特的玩法、新奇的體驗～趣放假，帶您展開不同的冒險！
       </div>
       <a class="more_span"  href="/share/">
         <div class="more_a">MORE</div>
@@ -146,18 +146,6 @@
         </div>
     </div>
   </div>
-  <div class="rellax rellax1" data-rellax-speed="5" style="left: -15px;">
-      <i class="fa-solid fa-circle circle1" style="font-size: 36px;color: #E3BCB5;"></i>
-  </div>
-  <div class="rellax rellax2" data-rellax-speed="6" style="left: calc(100vw / 4);">
-      <i class="fa-solid fa-circle circle2" style="font-size: 60px;color: #EBC1A8;"></i>
-  </div>
-  <div class="rellax rellax3" data-rellax-speed="1" style="right: calc(100vw / 4);">
-      <i class="fa-solid fa-circle circle3" style="font-size: 60px;color: #E7ADAC;"></i>
-  </div>
-  <div class="rellax rellax4" data-rellax-speed="3" style="right: -10px;">
-      <i class="fa-solid fa-circle circle4" style="font-size: 120px;color: rgb(199, 171, 245);"></i>
-  </div>
 {% endblock body %}
 
 {% block content_script %}
@@ -165,18 +153,9 @@
 <script src="../static/js/addFavorite.js"></script>
 <script src="../static/js/owl.carousel.min.js"></script>
 <script src="../static/js/indexOwl.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
 <script>
   indexOwl();
   
-  var rellax = new Rellax('.rellax', {
-    speed: -2,
-    center: false,
-    wrapper: null,
-    round: true,
-    vertical: true,
-    horizontal: false
-  });
 </script>
 
 {% endblock %}
