@@ -5,38 +5,12 @@ from django.contrib.auth.decorators import login_required
 # 我的最愛
 @login_required(login_url="/login")
 def favorite(request):
-    favorite_list = []
-    travel_favorite_list = []
-
     user_id = request.user.id
 
-    # project = Project.objects.get(id=project_id)
     # 找出user的最愛清單的a.id、ct.id
-    attrations_favorite = Favorite.objects.filter(u_id=user_id).values()
-    travel_favorite = TravelFavorite.objects.filter(u_id=user_id).values()
-    travel_favorite_fit =TravelFavorite.objects.filter(u_id=user_id)
-    print('attrations_favorite',attrations_favorite)
-    print('travel_favorite',travel_favorite)
-    # a.id取出
-    for a_id in attrations_favorite:
-        favorite_list.append(Attractions.objects.get(id=a_id["a_id"]))
-    # ct.id取出
+    favorite_list = Favorite.objects.filter(u_id=user_id)
+    travel_favorite_list = TravelFavorite.objects.filter(u_id=user_id)
 
-
-    for ct_id in travel_favorite:
-        ct_list = Create_Travel.objects.filter(id=ct_id["ct_id"]).values().first()
-        #抓user資料庫
-        ct_list['u_id'] = User.objects.get(id=ct_list['u_id']) 
-        ct_list['ct_object'] = Create_Travel.objects.get(id=ct_list['id'])
-        # 抓place_id
-        choiceid= ChoiceDay_Ct.objects.filter(ct_id=ct_list['id']).values().first()
-        ctaid = Attractions_Ct.objects.filter(choice_ct_id=choiceid['id']).values().first()
-        place_id = Attractions.objects.get(id=ctaid['a_id']).place_id
-        ct_list['img']=place_id
-        travel_favorite_list.append(ct_list)
-    print('travel_favorite_list',travel_favorite_list)
-    print('favorite_list',favorite_list)
-    
     return render(request, "favorite.html", locals())
 
 #景點刪除最愛
