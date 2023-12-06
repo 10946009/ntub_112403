@@ -1,8 +1,9 @@
 body {
-    background: url(../images/trip_bg_att.png);
+    /* background: url(../images/trip_bg_att.png);
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: fixed; */
+	background-color: rgba(247, 255, 221, 0.1);
 }
 
 /* .noScroll{
@@ -10,7 +11,9 @@ body {
 } */
 .container {
     width: 95%;
-    margin: 80px auto;
+    margin: 70px auto;
+    margin-bottom: 0;
+    padding-bottom: 20px;
 }
 
 .shareFilter_div {
@@ -19,6 +22,8 @@ body {
     text-align: center;
     margin-bottom: 10px;
     display: block;
+    position: relative;
+    z-index: 2;
 }
 
 .shareFilter_btn {
@@ -48,10 +53,10 @@ body {
 
 .mytravel {
     width: 100%;
-    /* border: 1px solid black; */
     margin: 10px 0 0 0;
     position: relative;
-    /* border-radius: 20%; */
+    border-radius: 20px;
+    box-shadow: 2px 2px 3px #ccc;
 }
 
 .mytravel_img {
@@ -78,6 +83,8 @@ body {
     border: 1px solid black;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+	background-color: rgba(247, 255, 221);
+    color: black;
 }
 
 
