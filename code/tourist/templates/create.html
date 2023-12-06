@@ -23,7 +23,7 @@
 </style>
 {% endblock %}
 {% block body %}
-<main>  
+<container>  
   <div class="pageedit">
     <ul class="nav nav-tabs flex justify-content-start my-nav-tabs" id="myTab" role="tablist">
       {% for day,data in travel_datas.items %}
@@ -242,7 +242,7 @@
     </div>
   </div>
   <div class="overlayBg" id="overlayBg"></div>
-</main>
+</container>
 <script src="../static/js/testGPS.js"></script>
 {% endblock body %}
 {% block content_script %}
