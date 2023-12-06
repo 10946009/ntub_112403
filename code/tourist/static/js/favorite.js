@@ -1,6 +1,11 @@
 //收藏
 var heart = document.getElementsByClassName('heart_icon');
 
+$(document).ready(function () {
+  // 點擊 id 為 home-tab 的按鈕
+  $('#home-tab').click();
+});
+
 // var span = document.getElementsByClassName('count');
 for(var i = 0;i < heart.length; i++){
     // var count;

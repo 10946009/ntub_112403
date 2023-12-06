@@ -28,6 +28,7 @@
     box-shadow: none;
     outline: none;
     width: 350px;
+    box-shadow: 1px 1px 3px #333;
   }
   .card .toggle-switch {
     z-index: 1;
@@ -86,8 +87,8 @@
 
 /* 背景顏色 */
 body {
-  /* background-color: #d5d5d5bf; */
-  background-image: url(../images/trip_bg_att.png);
-  background-size: cover;
-  background-attachment: fixed;
+  height: auto;
+  margin-top: 70px;
+	background-color: rgba(247, 255, 221, 0.1);
 }
+

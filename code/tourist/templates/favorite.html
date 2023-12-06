@@ -31,29 +31,31 @@
         <div class="col-md-4 col-sm-6">
           <div class="card">
             <div class="location-wrap text-center">
-              <img src="/static/images/attractions/{{item.place_id}}_0.jpg" class="img-responsive custom-image"
+              <img src="/static/images/attractions/{{item.a.place_id}}_0.jpg" class="img-responsive custom-image"
                 width="100%">
-                <a class="fa-solid fa-circle-info info_icon_left" onclick="clickInfo({{item.id}})"></a>
+                <a class="fa-solid fa-circle-info info_icon_left" onclick="clickInfo({{item.a.id}})"></a>
               {% comment %} <i class="fa-solid fa-heart location-heart" onclick="toggleFavorite(this,{{item.id}})"
                 id="heart-icon"></i> {% endcomment %}
-              <i class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="1" data-id="{{item.id}}" data-type="/add_favorite/"></i>
+              <i class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="1" data-id="{{item.a.id}}" data-type="/add_favorite/"></i>
             </div>
             <div class="card-body text-center">
-              <h4 class="card-title">{{item.a_name}}</h4>
+              <h4 class="card-title">{{item.a.a_name}}</h4>
               <div class="rating" style="text-align: center;">
                 {% for i in "12345" %}
-                  {% if i|add:0 <= item.rating %} 
+                  {% if i|add:0 <= item.a.rating %} 
                     <i class="fa-solid fa-star" style="color:rgb(226, 185, 2);"></i>
                   {% else %}
                     <i class="fa-solid fa-star" style="color:rgb(185, 184, 184);"></i>
                   {% endif %}
                 {% endfor %}
                 <br>
-                <span id="selectedRating">{{item.rating}} / 5 ({{ item.rating_total }}則) </span>
+                <span id="selectedRating">{{item.a.rating}} / 5 ({{ item.a.rating_total }}則) </span>
               </div>
             </div>
           </div>
         </div>
+        {% empty %}
+          <h3 style="text-align: center; line-height: 100px;">目前還沒有最愛景點，快去收藏吧!</h3>
         {% endfor %}
         {% comment %}
         <div class="col-md-4 d-flex justify-content-center">
@@ -80,22 +82,24 @@
           <div class="col-md-4 col-sm-6">
             <div class="card">
               <div class="location-wrap text-center">
-                <img src="/static/images/attractions/{{ item.img }}_0.jpg" class="img-responsive custom-image" width="100%"> <!--放照片-->
-                <i class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="1" data-id="{{item.id}}" data-type="/add_travel_favorite/"></i>
+                <img src="/static/images/attractions/{{ item.ct.get_choice_day.0.get_attractions.0.a.place_id }}_0.jpg" class="img-responsive custom-image" width="100%"> <!--放照片-->
+                <i class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="1" data-id="{{item.ct.id}}" data-type="/add_travel_favorite/"></i>
                 
                 {% comment %} <i class="fa-solid fa-heart location-heart" onclick="delTravelFavorite(this,{{ item.id }})" id="heart-icon"></i> {% endcomment %}
               </div>
               <div class="card-body text-center">
-                <h4 class="card-title">{{ item.ct_name }}</h4>
-                <h5>作者：{{ item.u_id.username }}</h5>
+                <h4 class="card-title">{{ item.ct.ct_name }}</h4>
+                <h5>作者：{{ item.u.username }}</h5>
                 {% comment %} <p class="description">20230318去平溪玩水一天</p> {% endcomment %}
-                <a href="/travel_detail/{{ item.id }}" class="btn btn-warning spot_data_btn">詳細資料</a><br>
-                {% for tag in item.ct_object.is_fit %}
+                <a href="/travel_detail/{{ item.ct.id }}" class="btn btn-warning spot_data_btn">詳細資料</a><br>
+                {% for tag in item.ct.is_fit %}
                 <span class="badge rounded-pill bg-success">{{ tag }}</span>
                 {% endfor %}
               </div>
             </div>
           </div>
+        {% empty %}
+          <h3 style="text-align: center; line-height: 100px;">目前還沒有最愛行程，快去收藏吧!</h3>
         {% endfor %}
         
 
@@ -153,10 +157,9 @@
         </div>
     </div>
   </div>
-  
-  {% comment %} <script>
-  
-  </script> {% endcomment %}
+  {% endblock body %}
+
+  {% block content_script %}
   <script src="/static/js/favorite.js"></script>
   <script src="/static/js/addFavorite.js"></script>
-  {% endblock body %}
+  {% endblock %}
