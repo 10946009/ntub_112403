@@ -56,10 +56,6 @@
   input[type="checkbox"] {
     display: none;
   }
-  body {
-    margin-top: 70px; /* 調整這裡的數值以達到適當的下移效果 */
-  }
-
 </style>
 {% endblock %}
 
@@ -67,7 +63,7 @@
 
 
 <!-- Tabs navs -->
-<div class="text-center mt-5" style="margin:10%; padding-top:5%;">
+<div class="text-center mt-5" style="margin:10%; padding-top:5%;margin-bottom: 0;padding-bottom: 10px;">
   <h1 style="text-align:left;"><i class="fas fa-heart text-danger"></i> 已公開行程</h2>
   <hr>
   <div class="container">
@@ -75,7 +71,7 @@
 
       {% for item in all_share_list %}
       
-        <div class="col-lg-4 col-sm-6 d-flex justify-content-center">
+        <div class="col-lg-4 col-sm-6 d-flex justify-content-center"  style="z-index: 2;">
           <div class="card">
             <div class="location-wrap" style="position: relative;">
               <img src="/static/images/attractions/{{ item.img }}_0.jpg" class="img-responsive custom-image">
@@ -109,60 +105,38 @@
           </div>
         </div>
       {% endfor %}
-      <!-- 以下為範例 -->
-      <!-- <div class="col-md-4 d-flex justify-content-center">
-        <div class="card">
-          <div class="location-wrap" style="position: relative;">
-            <img src="../static/images/pingxi.jpg" class="img-responsive custom-image">
-          </div>
-          <div class="card-body text-center">
-            <h4 class="card-title">阿亮</h4>
-            <h5>0318台北平溪</h5>
-            <p class="description">20230318去平溪玩水一天</p>
-            <div class = "container">
-            <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
-            <span class="delete-icon" style="color: black;"><i class="fas fa-trash-alt"></i></span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4 d-flex justify-content-center">
-        <div class="card">
-          <div class="location-wrap" style="position: relative;">
-            <img src="../static/images/Daan.jpeg" class="img-responsive custom-image">
-          </div>
-          <div class="card-body text-center">
-            <h4 class="card-title">小灣</h4>
-            <h5>0528台北大安</h5>
-            <p class="description">20230528大安自駕自由行</p> 
-            <div class = "container">
-              <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
-              <span class="delete-icon" style="color: black;"><i class="fas fa-trash-alt"></i></span>
-              </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4 d-flex justify-content-center">
-        <div class="card">
-          <div class="location-wrap" style="position: relative;">
-            <img src="../static/images/Datong.jpeg" class="img-responsive custom-image">
-          </div>
-          <div class="card-body text-center">
-            <h4 class="card-title">奇美</h4>
-            <h5>0713大同區</h5>
-            <p class="description">20230713大同一日遊</p>
-            <div class = "container">
-              <a href="./attraction_details" class="btn btn-warning spot_data_btn">詳細資料</a>
-              <span class="delete-icon" style="color: black;"><i class="fas fa-trash-alt"></i></span>
-              </div>
-          </div>
-        </div>
-      </div> -->
-
     </div>
   </div>
+</div>
+
+<div class="rellax rellax1" data-rellax-speed="5" style="left: -15px;bottom: 8%;">
+    <i class="fa-solid fa-circle circle1" style="font-size: 36px;color: #E3BCB5;"></i>
+</div>
+<div class="rellax rellax2" data-rellax-speed="6" style="left: calc(100vw / 4);bottom: 5%;">
+    <i class="fa-solid fa-circle circle2" style="font-size: 60px;color: #EBC1A8;"></i>
+</div>
+<div class="rellax rellax3" data-rellax-speed="1" style="right: calc(100vw / 4);bottom: 0.5%;">
+    <i class="fa-solid fa-circle circle3" style="font-size: 60px;color: #E7ADAC;"></i>
+</div>
+<div class="rellax rellax4" data-rellax-speed="3" style="right: -10px;bottom: 25%;">
+    <i class="fa-solid fa-circle circle4" style="font-size: 120px;color: rgb(199, 171, 245);"></i>
+</div>
+<div class="rellax rellax5" data-rellax-speed="3" style="right: calc(100vw / 4);top: -5%;">
+    <i class="fa-solid fa-circle circle4" style="font-size: 120px;color: #F1E2DB;"></i>
+</div>
+<div class="rellax rellax6" data-rellax-speed="3" style="left: calc(100vw / 6);top: 10%;">
+    <i class="fa-solid fa-circle circle4" style="font-size: 120px;color: #CEAEB9"></i>
+</div>
+
+
+<div class="rellax rellaxStar" data-rellax-speed="5" style="right: calc(100vw / 12);transform: rotate(45deg);display: none;">
+  <i class="fas fa-star" style="font-size: 60px;color: #fff;"></i>
+</div>
+<div class="rellax rellaxStar" data-rellax-speed="1" style="right: calc(100vw / 10);bottom: 20%;display: none;">
+    <i class="far fa-star" style="font-size: 60px;color: #fff;"></i>
+</div>
+<div class="rellax rellaxStar" data-rellax-speed="7" style="left: calc(100vw / 10);bottom: calc(100vh / 4);transform: rotate(60deg);display: none;">
+    <i class="fas fa-star" style="font-size: 100px;color: #ffd6d69c;"></i>
 </div>
 <script src="/static/js/share.js"></script>
 <script src="../static/js/addFavorite.js"></script>
