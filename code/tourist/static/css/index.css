@@ -82,7 +82,10 @@ body {
 .more_a:hover{
 	left: 15%;
 }
-
+.rellax{
+	position: absolute;
+	z-index: -1;
+}
 .arrow {
 	position: absolute;
 	right: 30px;
@@ -303,7 +306,7 @@ body {
 
 #imageContainer {
 	position: relative;
-	height: 300px;
+	height: 200px;
 	overflow: hidden;
 }
 
@@ -476,7 +479,6 @@ body {
 }
 
 .hot_spot_block {
-	/* padding: 5px; */
 	margin-bottom: 10px;
 	text-align: center;
 }
@@ -495,7 +497,7 @@ body {
 
 .spot_txt {
 	border: 1px solid #ccc;
-	padding: 10px 0px;
+	padding: 0px;
 }
 
 /*btn詳細資料*/
