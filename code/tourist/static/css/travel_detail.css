@@ -63,3 +63,17 @@ body {
 .travel_detail_img__headerGrid {
     text-align: center;
 }
+
+.dayDiv {
+    user-select: none;
+    display: block;
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid rgba(128, 128, 128, 0.46);
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 10px;
+}
