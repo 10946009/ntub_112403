@@ -3,7 +3,8 @@ from myapp.models import *
 from .findpicture import get_picture_list
 def index(request):
     # 抓熱門資料
-    hot_result = Attractions.objects.order_by('hit').values()[:9]
+    hot_result = Attractions.objects.order_by('hit').values()[:12]
+    print(hot_result)
     # hot =[57,79,100,199,216,421,450,454,713]
     # hot_result = Attractions.objects.filter(id__in=hot_result).values()
     user = request.user.id
@@ -15,18 +16,18 @@ def index(request):
         else:
             hot_result[index].setdefault("is_favorite", "0")
     # 讓資料3個一組
-    temp_hot=[]
-    hotAttractionsList=[]
-    for i in hot_result:
-        temp_hot.append(i)
-        if len(temp_hot)==3:
-            hotAttractionsList.append(temp_hot)
-            temp_hot=[]
-    if len(temp_hot) !=0:
-        hotAttractionsList.append(temp_hot)
-        temp_hot=[]
+    # temp_hot=[]
+    # hotAttractionsList=[]
+    # for i in hot_result:
+    #     temp_hot.append(i)
+    #     if len(temp_hot)==3:
+    #         hotAttractionsList.append(temp_hot)
+    #         temp_hot=[]
+    # if len(temp_hot) !=0:
+    #     hotAttractionsList.append(temp_hot)
+    #     temp_hot=[]
 
-    print(hotAttractionsList)
+    # print(hotAttractionsList)
     
     # hot =[57,79,100,199,216,421,450,454,713]
     # for a o in hot:
