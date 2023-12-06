@@ -4,7 +4,7 @@ from .viewsConst import ATT_TYPE_LIST
 from .check_opening import check_opening
 from .check_distance import check_distance_id
 # ------------------------------------第2步驟(推薦相似景點)
-def recommend_near(o_attractions_list, now_time, week, stay_time):
+def recommend_near(o_attractions_list, now_time, week, stay_time,ispet):
     # 2.選擇一些景點做為O（使用者選擇的景點）
     # 抓取使用者所選的景點ID
 
@@ -21,7 +21,7 @@ def recommend_near(o_attractions_list, now_time, week, stay_time):
         o_x = o_db.location_x
         o_y = o_db.location_y
         near_o += check_distance_id(
-            (o_x, o_y), check_opening(now_time, week, stay_time)
+            (o_x, o_y), check_opening(now_time, week, stay_time),ispet
         )
 
     # 去掉o_attractions_list本身

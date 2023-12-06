@@ -4,7 +4,7 @@ import json
 from .views.weather import get_weather_data
 
 def get_all_attractions(request):
-    attractions_search = list(Attractions.objects.values_list("a_name", flat=True))
+    attractions_search = list(Attractions.objects.filter(ispet=False).values_list("a_name", flat=True))
     attractions_search_json = json.dumps(attractions_search)
     return {"attractions_search_json":attractions_search_json}
 
