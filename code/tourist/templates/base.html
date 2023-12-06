@@ -122,45 +122,101 @@
   <main id="rainyMain" style="position: relative;">
   {% block body %}
   {% endblock body %}
+    <!-- <div class="rellax rellax1" data-rellax-speed="5" style="left: -15px;bottom: 8%;">
+        <i class="fa-solid fa-circle circle1" style="font-size: 36px;color: #E3BCB5;"></i>
+    </div>
+    <div class="rellax rellax2" data-rellax-speed="6" style="left: calc(100vw / 4);bottom: 5%;">
+        <i class="fa-solid fa-circle circle2" style="font-size: 60px;color: #EBC1A8;"></i>
+    </div>
+    <div class="rellax rellax3" data-rellax-speed="1" style="right: calc(100vw / 4);bottom: 0.5%;">
+        <i class="fa-solid fa-circle circle3" style="font-size: 60px;color: #E7ADAC;"></i>
+    </div>
+    <div class="rellax rellax4" data-rellax-speed="3" style="right: -10px;bottom: 1%;">
+        <i class="fa-solid fa-circle circle4" style="font-size: 120px;color: rgb(199, 171, 245);"></i>
+    </div>
+    <div class="rellax rellax5" data-rellax-speed="3" style="right: calc(100vw / 4);top: 20%;">
+        <i class="fa-solid fa-circle circle4" style="font-size: 120px;color: #F1E2DB;"></i>
+    </div>
+    <div class="rellax rellax6" data-rellax-speed="3" style="left: calc(100vw / 3);top: 50%;">
+        <i class="fa-solid fa-circle circle4" style="font-size: 120px;color: #CEAEB9"></i>
+    </div>
+
+    
+    <div class="rellax rellaxStar" data-rellax-speed="5" style="right: calc(100vw / 12);transform: rotate(45deg);display: none;">
+      <i class="fas fa-star" style="font-size: 60px;color: #fff;"></i>
+    </div>
+    <div class="rellax rellaxStar" data-rellax-speed="1" style="right: calc(100vw / 10);;display: none;">
+        <i class="far fa-star" style="font-size: 60px;color: #fff;"></i>
+    </div>
+    <div class="rellax rellaxStar" data-rellax-speed="7" style="left: calc(100vw / 10);bottom: calc(100vh / 4);transform: rotate(60deg);display: none;">
+        <i class="fas fa-star" style="font-size: 100px;color: #ffd6d69c;"></i>
+    </div> -->
   </main>
 </body>
 <script src="../static/js/jquery-3.7.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
 {% block content_script %}{% endblock %}
 <script>
+  //不在index.html的時候隱藏systemname
+  window.onload = function () {
+    var isIndexPage = window.location.pathname === "/"; 
+    var systemNameElement = document.getElementById("systemname");
+    // var navbgcolor = document.querySelector(".toolbar");
+    var downicon = document.getElementById("downicon");
+
+    if (!isIndexPage) {
+      if (systemNameElement) {
+        systemNameElement.style.display = "none";
+        downicon.style.display = "none";
+      }
+    }
+  };
   
+  var rellax = new Rellax('.rellax', {
+    speed: -2,
+    center: false,
+    wrapper: null,
+    round: true,
+    vertical: true,
+    horizontal: false
+  });
   // 暗色模式
   function changeColor() {
     const dark_light = document.querySelector('.dark_light');
     const main = document.getElementById('rainyMain');
+    const rellaxStar = document.querySelectorAll('.rellaxStar');
     main.classList.toggle("dark-mode");
-    document.body.classList.toggle("dark-mode-bg");
+    document.documentElement.classList.toggle("dark-mode-bg");
     dark_light.textContent = '亮色模式';
+    rellaxStar.forEach((star) => {
+        star.style.display = "block";
+    });
   }
 
 
-  // 下雨效果(根據使用時當日天氣判斷)
-  function createRainEffect() {
-    const rainyMain = document.getElementById('rainyMain');
+  // // 下雨效果(根據使用時當日天氣判斷)
+  // function createRainEffect() {
+  //   const rainyMain = document.getElementById('rainyMain');
 
-    for (let i = 0; i < 150; i++) { // 改變這個數字以增加或減少雨滴數量
-        const rainDrop = document.createElement('div');
-        rainDrop.classList.add('rain-drop');
-        rainDrop.style.left = `${Math.random() * 100}vw`; // 隨機X座標
-        rainDrop.style.animationDuration = `${1 + Math.random() * 2}s`; // 隨機下落速度
-        rainDrop.style.animationDelay = `${Math.random()}s`; // 隨機延遲時間
-        rainyMain.appendChild(rainDrop);
-    }
-  }
+  //   for (let i = 0; i < 150; i++) { // 改變這個數字以增加或減少雨滴數量
+  //       const rainDrop = document.createElement('div');
+  //       rainDrop.classList.add('rain-drop');
+  //       rainDrop.style.left = `${Math.random() * 100}vw`; // 隨機X座標
+  //       rainDrop.style.animationDuration = `${1 + Math.random() * 2}s`; // 隨機下落速度
+  //       rainDrop.style.animationDelay = `${Math.random()}s`; // 隨機延遲時間
+  //       rainyMain.appendChild(rainDrop);
+  //   }
+  // }
 
-  // 啟動下雨效果
-  rain = JSON.parse('{{ get_now_weather_json|safe }}');
-  const currentPagePath = window.location.pathname;
+  // // 啟動下雨效果
+  // rain = JSON.parse('{{ get_now_weather_json|safe }}');
+  // const currentPagePath = window.location.pathname;
 
-  if (rain['get_now_weather_json'] === 'rain' && currentPagePath !== '/createindex.html') {
-      createRainEffect();
-  }
+  // if (rain['get_now_weather_json'] === 'rain' && currentPagePath !== '/createindex.html') {
+  //     createRainEffect();
+  // }
 
   // 解決繼承toolbar重整不會顯示對應的active
   document.addEventListener("DOMContentLoaded", function() {
@@ -242,21 +298,6 @@
   window.addEventListener('load', changebgimg);
   window.addEventListener('resize', changebgimg);
 
-
-  //不在index.html的時候隱藏systemname
-  window.onload = function () {
-    var isIndexPage = window.location.pathname === "/"; 
-    var systemNameElement = document.getElementById("systemname");
-    // var navbgcolor = document.querySelector(".toolbar");
-    var downicon = document.getElementById("downicon");
-
-    if (!isIndexPage) {
-      if (systemNameElement) {
-        systemNameElement.style.display = "none";
-        downicon.style.display = "none";
-      }
-    }
-  };
 
   //搜尋景點的部分
   function autocomplete(inp, arr) {
