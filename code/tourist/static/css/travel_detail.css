@@ -77,3 +77,13 @@ body {
     cursor: pointer;
     margin-top: 10px;
 }
+
+.comment_text {
+    text-align: left;
+}
+
+.user-name {
+    margin: 0px;
+    text-align: left;
+}
+/* 新增 */
