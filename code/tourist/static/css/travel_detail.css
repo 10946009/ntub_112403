@@ -80,6 +80,9 @@ body {
 
 .comment_text {
     text-align: left;
+    margin-left: 85px;
+    margin-bottom: 10px;
+    font-size: 15px;
 }
 
 .user-name {
@@ -158,26 +161,25 @@ body {
 
 .comment_travel_detail .review-content {
     margin: 10px 0 0 0;
-    padding: 1rem;
-    border-bottom: 1px solid #eee;
+    padding-left: 30px;
+    display: flex;
+    align-items: flex-start;
 }
 
-.comment_travel_detail .head {
+/* .comment_travel_detail .head {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
+} */
+.comment-content {
+    flex: 1;
 }
 
-.comment_travel_detail .head .info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
+/* 
 .comment_travel_detail .user-name {
     font-weight: bold;
-}
+} */
 
 .comment_travel_detail .user-img {
     height: 40px;
@@ -366,4 +368,14 @@ body {
     margin: 0px 10px;
 }
 
-.comment_travel_detail {}
+.travel_delete-box {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    right: 0;
+    top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}

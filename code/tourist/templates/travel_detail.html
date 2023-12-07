@@ -123,6 +123,7 @@ body {
       <h5 style="font-size: 24px;"> <i class="fa-solid fa-book-open" style="margin-right:5px;"></i>行程簡介</h5>
       <h6 style="margin:15px 0px 30px 35px;"><span style="color:blue;">{% if ct_detail.detail == "" %}目前還沒有內容{% else %}{{ct_detail.detail}}{% endif %}</span></h6>
     </div>
+    {% comment %} <hr style="border:2px solid #777777; margin-bottom:20px"> {% endcomment %}
     {% comment %}  行程規劃(DAY) {% endcomment %}
     <div>
       <h5 style="margin:0px 0px 20px 0px;font-size: 24px;"> <i class="fa-solid fa-calendar-check" style="margin-right:5px;color: rgb(221, 180, 85);"></i>行程規劃</h5>
@@ -303,23 +304,27 @@ body {
       <section>
         {% for comment in ct_detail.get_comment %}
           <div class="review-content">
-            <div class="head">
-              <div class="info">
                 <img class="user-img" src="{{comment.u.get_photo}}" alt="">
-                <p class="user-name">{{comment.u.username}}<br>{{comment.comment_date}}</p>
-              </div>
+                <div class="comment-content">
+                  <div style="display: flex; justify-content: space-between; position: relative;">
+                    <h6 class="username" style="font-size: 16px;">
+                    {{comment.u.username}}<br>
+                      <span style="color: gray; font-size: 12px; font-style: italic;">{{comment.comment_date}}&ensp;</span>
+                    </h6>
+                    <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer;" onclick="toggleDeleteBox(this)"></i>
+                    <div class="travel_delete-box" style="display: none;" onclick="deleteComment({{comment.id}})">刪除</div>
+                  </div>
+                </div> 
               {% comment %} <div>
                 <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
               </div> {% endcomment %}
-            </div>
-            <div class="comment_text">
-              {{comment.content}}
-            </div>
+          </div>
+          <div class="comment_text">
+            {{comment.content}}
           </div>
         {% endfor %}
       </section>
       {% if request.user.is_authenticated %}
-      
         <form class="ask-content" id="ask-content" action="/comment/{{detail.id}}/" method="POST">
               <div id="share_comment_container" class="share_comment_container">
                   <form class="share_comment-content" id="share_comment-content" action="">
@@ -373,6 +378,20 @@ body {
   {% comment %} </div> {% endcomment %}
 </div>
 <script>
+  
+  {% comment %} 刪除小點點 {% endcomment %}
+    function toggleDeleteBox(iconElement) {
+        var deleteBox = iconElement.nextElementSibling; 
+        if (deleteBox.style.display === "none" || deleteBox.style.display === "") {
+            deleteBox.style.display = "block";
+        } else {
+            deleteBox.style.display = "none";
+        }
+    }
+    
+    function deleteComment(commentId) {
+
+    }
   // 獲取按鈕元素
   /*var newestButton = document.querySelector('.btn-style-2:nth-child(2)');
   var oldestButton = document.querySelector('.btn-style-2:nth-child(3)');
