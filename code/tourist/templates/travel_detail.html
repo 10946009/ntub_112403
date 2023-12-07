@@ -378,7 +378,7 @@ body {
   {% comment %} </div> {% endcomment %}
 </div>
 <script>
-  
+
   {% comment %} 刪除小點點 {% endcomment %}
     function toggleDeleteBox(iconElement) {
         var deleteBox = iconElement.nextElementSibling; 
@@ -387,6 +387,11 @@ body {
         } else {
             deleteBox.style.display = "none";
         }
+        document.addEventListener('click', function (event) {
+          if (!deleteBox.contains(event.target) && event.target !== iconElement) {
+              deleteBox.style.display = 'none';
+          }
+      });
     }
     
     function deleteComment(commentId) {
