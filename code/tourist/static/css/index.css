@@ -426,27 +426,15 @@ body {
 	background-color: bisque;
 }
 
-
-/*熱門行程*/
-/* .containerLeft {
-	float: left;
-	width: 20%;
+.halfCircle{
+    width: 700px;
+    height: 150px;
+    border: 1px solid red;
+	border-top: 0;
+    border-radius:  0 0 350px 350px/0 0 150px 150px;
 }
 
-.containerRight {
-	float: right;
-	width: 80%;
-	justify-content: center;
-	margin: 10px auto;
-	margin-bottom: 0;
-	z-index: 2;
-} */
 
-/* #container DIV {
-	text-align: center;
-	margin: 0px;
-	padding: 0px;
-} */
 .hidemehottoright ,.hidemehottoleft{
 	z-index: 2;
 }
