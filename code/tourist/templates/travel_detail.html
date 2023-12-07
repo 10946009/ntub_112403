@@ -387,14 +387,12 @@ body {
   {% comment %} </div> {% endcomment %}
 </div>
 <script>
+  {% comment %} 按讚功能(還沒串後端) {% endcomment %}
   function toggleLike() {
     var likeIcon = document.getElementById('likeIcon');
     var likeCount = document.getElementById('likeCount');
-    
-    // Get the current like count as an integer
     var currentCount = parseInt(likeCount.innerText);
 
-    // Toggle between the classes of the thumbs-up icon
     if (likeIcon.classList.contains('fa-thumbs-up') && likeIcon.classList.contains('fa-solid')) {
         likeIcon.classList.remove('fa-thumbs-up', 'fa-solid');
         likeIcon.classList.add('fa-regular' ,'fa-thumbs-up');
