@@ -321,6 +321,14 @@ body {
           </div>
           <div class="comment_text">
             {{comment.content}}
+            <p></p>
+            <span style="margin-right: 20px;cursor: pointer;" id="likeButton">
+              {% if request.user.id in comment.get_user_favorite %}
+              <i class="fa-thumbs-up fa-solid" style=" color: rgb(0, 102, 255);"></i>
+              {% else %}
+              <i class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i>
+              {% endif %}
+              <span id="likeCount">0（假資料）</span></span>
           </div>
         {% endfor %}
       </section>

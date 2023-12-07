@@ -268,13 +268,13 @@ body {
 }
 
 .fa-regular.fa-thumbs-up {
-    font-size: 20px;
+    font-size: 14px;
     transition: transform 0.3s ease;
 }
 
-.fa-regular.fa-thumbs-up:hover {
+/* .fa-regular.fa-thumbs-up:hover {
     transform: scale(1.2);
-}
+} */
 
 .dayContent {
     user-select: none;
