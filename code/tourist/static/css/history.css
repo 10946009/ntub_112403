@@ -3,7 +3,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed; */
-	background-color: rgba(247, 255, 221, 0.1);
+    background-color: rgba(247, 255, 221, 0.1);
 }
 
 /* .noScroll{
@@ -13,7 +13,7 @@ body {
     width: 95%;
     margin: 70px auto;
     margin-bottom: 0;
-    padding-bottom: 20px;
+    padding: 20px;
 }
 
 .shareFilter_div {
@@ -83,7 +83,7 @@ body {
     border: 1px solid black;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-	background-color: rgba(247, 255, 221);
+    background-color: rgba(247, 255, 221);
     color: black;
 }
 
@@ -242,7 +242,14 @@ body {
 }
 
 
-/* 打開右半邊詳細行程 */
+.contentContainer {
+    width: 100%;
+    margin: 0 auto;
+    z-index: 2;
+    position: relative;
+    display: flex;
+}
+
 .detailLeft {
     padding: 0 5px;
     width: 50%;
@@ -250,19 +257,28 @@ body {
 
 .detailRight {
     width: 50%;
+    height: 120vh;
+    position: absolute;
+    right: 0;
+    top: 10%;
 }
 
 .openDetailDiv {
-    position: fixed;
-    top: 10%;
-    right: 8%;
+    /* position: absolute;
+    top: 0;
+    left: 0; */
     background-color: #f9f9f9;
-    width: 42%;
     height: 80%;
+    width: 0;
+    transition: width 0.5s ease-in-out;
     border: 1px solid black;
     border-radius: 20px;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     overflow-y: auto;
+}
+
+.openDetailDiv.show {
+    width: 50%;
 }
 
 .openDetailDiv::-webkit-scrollbar {
@@ -302,6 +318,7 @@ body {
 
 .aboutDiv {
     padding-bottom: 10px;
+    color: black;
     user-select: none;
 }
 
@@ -565,7 +582,7 @@ body {
     margin-top: 10px;
 }
 
-input[type = 'time']{
+input[type='time'] {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -615,7 +632,7 @@ input[type = 'time']{
     width: 30%;
 }
 
-.dayContentIntroDiv{
+.dayContentIntroDiv {
     float: right;
     width: 70%;
     display: flex;
@@ -626,6 +643,7 @@ input[type = 'time']{
     border-radius: 30px;
     padding: 10px;
 }
+
 .dayContentIntro {
     width: 70%;
     min-width: 200px;
@@ -634,7 +652,8 @@ input[type = 'time']{
     margin-bottom: 10px;
     text-align: left;
 }
-.dayContentIntrotxt{
+
+.dayContentIntrotxt {
     font-size: 20px;
 }
 
@@ -674,7 +693,7 @@ input[type = 'time']{
         margin: 0;
     }
 
-    input[type = 'time']{
+    input[type='time'] {
         width: 90px;
         padding: 5px;
         border: 1px solid #ccc;

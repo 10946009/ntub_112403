@@ -3,13 +3,10 @@
 <div class="openDetailDiv" id="details{{ data.id }}">
   <div class="openDetailDivBasic">
     <div class="fa-solid fa-xmark closeDetail_icon" onclick="closeDetail({{data.id}})"></div>
-    <div style="height: 40px;">
-      <span style="font-size: 18px;line-height: 40px;font-weight: bold;">{{data.ct_name}}</span>
+    <div style="height: 40px;color: brown;">
+      <span style="font-size: 24px;line-height: 40px;font-weight: bold;">{{data.ct_name}}</span>
     </div>
     <hr style="margin-top: 0;">
-    <div style="float: right;">
-      {% comment %} <span>分享人：{{data.u.username}}</span> {% endcomment %}
-    </div>
     <div class="aboutDiv">
       <span>相關標籤</span>
       {% for type in data.is_fit %}<span class="filter">{{type}}</span>{% endfor %}
