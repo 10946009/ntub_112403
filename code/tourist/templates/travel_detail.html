@@ -335,29 +335,49 @@ body {
       </section>
       {% if request.user.is_authenticated %}
         <form class="ask-content" id="ask-content" action="/comment/{{detail.id}}/" method="POST">
-              <div id="share_comment_container" class="share_comment_container">
                   <form class="share_comment-content" id="share_comment-content" action="">
                       <div class="comment_container" id="comment_container">
                           <h5 style="font-size: 24px;">
                               {{ detail.a_name }}
                           </h5>
                       </div>
-                      <div class="share_comment_con" style="padding: 20px;">
+                    <div class="share_comment_con">
+                      {% comment %} <div class="review-content">
                           <div class="comment">
                               <div class="avatar">
                                   <img src="{{request.user.get_photo}}" alt="User Avatar">
                               </div>
                               <div class="comment-content">
+                                <div style="display: flex; justify-content: space-between; position: relative;">
                                   <h6 class="username">
                                       {{request.user.username}}<br>
-                                      <span style="color: gray; font-size: 14px; font-style: italic;">公開發佈
-                                          &ensp;</span>
-                                      </h6>
+                                      <span style="color: gray; font-size: 14px; font-style: italic;">公開發佈&ensp;</span>
+                                  </h6>
+                                </div>
                               </div>
                           </div>
-                          <div>
-                              <textarea name="user_share_comment" id="user_share_comment" cols="100%" rows="5"
-                                  style="resize:none; border-radius: 10px;width: 100%;max-width: 100%;padding: 10px; "
+                      </div> {% endcomment %}
+                      <div class="review-content">
+                        <img class="user-img" src="{{request.user.get_photo}}" alt="">
+                        <div class="comment-content">
+                          <div style="display: flex; justify-content: space-between; position: relative;">
+                            <h6 class="username" style="font-size: 16px;">
+                              {{request.user.username}}<br>
+                              <span style="color: gray; font-size: 12px; font-style: italic;">公開發佈&ensp;</span>
+                              <span class="show_tra_info" onclick="toggleTravelInfo()"><i class="travel_info fa-solid fa-circle-info"
+                                id="travel_info"></i></span>
+                                <div class="show_travel_info" id="show_travel_info" >
+                                  您的貼文會與個人資料名稱及相片一併公開顯示。您的貼文必須遵循政策的規定。</div>
+                            </h6>
+                          </div>
+                        </div> 
+                      {% comment %} <div>
+                        <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
+                      </div> {% endcomment %}
+                  </div>
+                          <div style="margin-left:85px;">
+                              <textarea name="user_share_comment" id="user_share_comment" cols="100%" rows="4"
+                                  style="resize:none; border-radius: 10px;width: 100%;max-width: 100%;padding: 10px;"
                                   placeholder="詳細說明你在這個地點的親身體驗。"></textarea>
                           </div>
                           <div class="image-container_ph">
@@ -367,9 +387,8 @@ body {
                               <span class="share_comment_btn_ok" id="share_comment_btn_ok"
                                   onclick="sendComment({{ct_detail.id}})">張貼</span>
                           </div>
-                      </div>
+                    </div>
                   </form>
-              </div>
         </form>
       {% else %}
         <div style="width:100%;text-align:center;">
@@ -380,13 +399,16 @@ body {
         </a>
         <div>
       {% endif %}
-    
-
-      
     </section>
   {% comment %} </div> {% endcomment %}
 </div>
 <script>
+    {% comment %} 評論公開顯示tips {% endcomment %}
+      function toggleTravelInfo() {
+        var infoDiv = document.getElementById('show_travel_info');
+        infoDiv.style.display = (infoDiv.style.display === 'none' || infoDiv.style.display === '') ? 'block' : 'none';
+    }
+
   {% comment %} 按讚功能(還沒串後端) {% endcomment %}
   function toggleLike() {
     var likeIcon = document.getElementById('likeIcon');

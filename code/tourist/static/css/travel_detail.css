@@ -176,6 +176,21 @@ body {
     flex: 1;
 }
 
+.show_travel_info {
+    width: 300px;
+    display: none;
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.show_tra_info {
+    cursor: pointer;
+}
+
 /* 
 .comment_travel_detail .user-name {
     font-weight: bold;
