@@ -4,32 +4,31 @@
 {% block content %}
 <link rel="stylesheet" href="../static/css/travel_detail.css">
 {% comment %} CSS放這~~ {% endcomment %}
-<style>
-{% comment %} body {
+{% comment %} <style>
+body {
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-} {% endcomment %}
-
-{% comment %} .container {
+} 
+.container {
     width: 95%;
     margin: 80px auto 0;
     display:flex;
     flex-direction: column;
     max-width: 100%;
-} {% endcomment %}
+} 
 
-{% comment %} header {
+ header {
     display: flex;
     justify-content: space-between;
     width: 100%;
     align-items: center;
     padding: 10px;
-} {% endcomment %}
+} 
 
-{% comment %} .like-button, .share-button {
+ .like-button, .share-button {
     margin-left: 10px;
 }
 
@@ -53,275 +52,8 @@
     flex-direction: column;
     align-items: flex-start;
     margin-right: auto;
-} {% endcomment %}
-
-.comment {
-    margin-left: 10px;
-}
-.image-description {
-    margin-top: 10px;
-    text-align: left;
-}
-
-.image-description h3 {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 0;
-}
-
-.image-description p {
-    font-size: 16px;
-    margin: 0;
-}
-.itinerary {
-  margin: 20px 0;
-}
-.review-container{
-    margin: 80px auto;
-    width: 100%;
-    max-width: 100%;
-}
-.review-container .btn-style-1 {
-    border-radius: 50px;
-    padding: 0.5rem 1rem;
-    border: 2px solid #000;
-    font-weight: bold;
-  }
-  
-  .review-container .btn-style-2 {
-    background-color: #fff;
-    border-radius: 50px;
-    padding: 0.5rem 1rem;
-    border: 2px solid #e6e6e6;
-    font-weight: bold;
-  }
-  
-  .review-container .review {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .review-container .review-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .review-container .tag {
-    border: 1px solid #5a9bd5;
-    padding: 5px 10px;
-    border-radius: 50px;
-  }
-  
-  .review-container .tag.active {
-    border: 1px solid rgba(90, 155, 213, 0.2);
-    background-color: rgba(90, 155, 213, 0.2);
-  }
-  
-  .review-container .review-content {
-    margin: 2rem 1rem;
-    padding: 1rem;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .review-container .head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-
-  .review-container .head .info{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  }
-  
-  .review-container .user-name {
-    font-weight: bold;
-  }
-  
-  .review-container .user-img {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    margin-right: 1rem;
-  }
-  
-  .review-container .review-img {
-    width: 100px;
-    height: 100px;
-    overflow: hidden;
-  }
-  
-  .review-container .review-img img {
-      height: 100%;
-      width: auto;
-  }
-  .review-container .title {
-    padding: 0;
-    margin: 0;
-  }
-  .title-buttons .share-button,
-  .title-buttons .like-button {
-      display: inline-flex;
-      align-items: center;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-  }
-  
-  .title-buttons .share-button:hover,
-  .title-buttons .like-button:hover {
-      transform: scale(1.2);
-  }
-
-  .main-container {
-    display: flex;
-  }
-
-  .main-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .main-container .main-content {
-    width: 60%;
-    height: 500px;
-    overflow: hidden;
-  }
-
-  .main-container .sub-content {
-    width: 40%;
-    /* width: calc(100% - 720px); */
-    margin-left: 1rem;
-    height: 500px;
-    box-sizing: border-box;
-  }
-
-  .main-container .sub-item {
-    margin-bottom: 1rem;
-    height: calc(50% - 0.5rem);
-    overflow: hidden;
-  }
-  
-  .main-container .sub-item img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .title-buttons .share-button,
-  .title-buttons .like-button {
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    font-size: 20px;
-  }
-
-  .title-buttons .share-button:hover,
-  .title-buttons .like-button:hover {
-    transform: scale(1.2);
-  }
-  .fa-regular.fa-thumbs-up {
-    font-size: 20px;
-    transition: transform 0.3s ease;
-  }
-
-  .fa-regular.fa-thumbs-up:hover {
-    transform: scale(1.2);
-  }
-
-.dayContent {
-  user-select: none;
-  width: 100%;
-  height: 300px;
-  border: 1px solid rgba(128, 128, 128, 0.46);
-  display: flex;
-  align-items: center;
-  align-content: center;
-  overflow-x: scroll;
-  overflow-y:hidden;
-}
-
-.car_icon {
-  text-align: center;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-}
-
-.dayContentIntro {
-    width: 250px;
-    min-width: 250px;
-    height: 250px;
-    padding: 10px 5px;
-    border: 1px solid black;
-    border-radius: 30px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.avatar img {
-  border-radius: 50%;
-}
-#cancel-success-modal {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  background-color: white;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 999;
-}
-
-#cancel-success-modal h3 {
-  color: #333;
-}
-
-#cancel-success-modal button {
-  margin-top: 10px;
-  padding: 8px 16px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.icon_add {
-  text-align: right;
-  font-size: 24px;
-
-  right: 10%;
-}
-
-.icon_name {
-  display: inline-block;
-  border: 1px solid gray;
-  border-radius: 50%;
-  padding: 2px 8px 2px 8px;
-  background-color: white;
-  cursor: pointer;
-}
-
-.icon_name:hover {
-  background-color: #000;
-  color: white;
-}
-
-.car_time{
-  width: 30px;
-  min-width: 30px; 
-  text-align: center; 
-  margin: 0px 10px;
-}
-</style>
+} 
+</style> {% endcomment %}
 {% endblock %}
 
 
@@ -388,12 +120,12 @@
     </div>
       {% comment %}  關於 {% endcomment %}
     <div>
-      <h5> <i class="fa-solid fa-book-open" style="margin-right:5px;"></i>關於</h5>
-      <h6 style="margin:8px 0px 30px 28px;">{% if ct_detail.detail == "" %}目前還沒有內容{% else %}{{ct_detail.detail}}{% endif %}</h6>
+      <h5 style="font-size: 24px;"> <i class="fa-solid fa-book-open" style="margin-right:5px;"></i>行程簡介</h5>
+      <h6 style="margin:15px 0px 30px 35px;"><span style="color:blue;">{% if ct_detail.detail == "" %}目前還沒有內容{% else %}{{ct_detail.detail}}{% endif %}</span></h6>
     </div>
     {% comment %}  行程規劃(DAY) {% endcomment %}
     <div>
-      <h5 style="margin:0px 0px 20px 0px;"> <i class="fa-solid fa-calendar-check" style="margin-right:5px;color: rgb(221, 180, 85);"></i>行程規劃</h5>
+      <h5 style="margin:0px 0px 20px 0px;font-size: 24px;"> <i class="fa-solid fa-calendar-check" style="margin-right:5px;color: rgb(221, 180, 85);"></i>行程規劃</h5>
     <div class="dayDoneSection">
       <div class="dayDone">
           <div class="dayDoneBtn">
@@ -561,17 +293,34 @@
       {% endfor %}
     </div> {% endcomment %}
 
-    <section class="review-container">
+    <section class="comment_travel_detail">
+      <div class="row">
+        <h5 style="font-size: 24px;">
+            <i class="fa-solid fa-pen" style="color: gray;"></i>
+            評論
+        </h5>
+      </div>
+      <section>
+        {% for comment in ct_detail.get_comment %}
+          <div class="review-content">
+            <div class="head">
+              <div class="info">
+                <img class="user-img" src="{{comment.u.get_photo}}" alt="">
+                <p class="user-name">{{comment.u.username}}<br>{{comment.comment_date}}</p>
+              </div>
+              {% comment %} <div>
+                <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
+              </div> {% endcomment %}
+            </div>
+            <div class="comment_text">
+              {{comment.content}}
+            </div>
+          </div>
+        {% endfor %}
+      </section>
       {% if request.user.is_authenticated %}
-        <div class="row">
-          <h5 style="font-size: 24px;">
-              <i class="fa-solid fa-pen" style="color: gray;"></i>
-              評論
-          </h5>
-        </div>
       
         <form class="ask-content" id="ask-content" action="/comment/{{detail.id}}/" method="POST">
-          <div class="out_share_comment" id="out_share_comment">
               <div id="share_comment_container" class="share_comment_container">
                   <form class="share_comment-content" id="share_comment-content" action="">
                       <div class="comment_container" id="comment_container">
@@ -607,7 +356,6 @@
                       </div>
                   </form>
               </div>
-          </div>
         </form>
       {% else %}
         <div style="width:100%;text-align:center;">
@@ -620,34 +368,7 @@
       {% endif %}
     
 
-      <section class="review">
-        <div class="review-wrap">
-          <h5>
-            <i class="fa-solid fa-pen" style="color: gray;margin:20px 0px 0px 0px;"></i>
-            所有評論
-          </h5>
-        </div>
-      </section>
-
-      <hr>
-      <section>
-        {% for comment in ct_detail.get_comment %}
-          <div class="review-content">
-            <div class="head">
-              <div class="info">
-                <img class="user-img" src="{{comment.u.get_photo}}" alt="">
-                <p class="user-name">{{comment.u.username}}<br>{{comment.comment_date}}</p>
-              </div>
-              {% comment %} <div>
-                <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
-              </div> {% endcomment %}
-            </div>
-            <div class="comment_text">
-              {{comment.content}}
-            </div>
-          </div>
-        {% endfor %}
-      </section>
+      
     </section>
   {% comment %} </div> {% endcomment %}
 </div>
