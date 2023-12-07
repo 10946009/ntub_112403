@@ -70,6 +70,7 @@ class Attractions(models.Model):
     hot_month = ArrayField(models.IntegerField())
     att_type = ArrayField(models.IntegerField())
     detail = models.TextField(max_length=255, null=False, blank=False, default="")
+    ispet = models.BooleanField(null=False, blank=False, default=0) #0為一般景點，1為寵物景點
     # def __str__(self):
     #     return f'{self.id} {self.a_name}'
     def get_favorite_count(self):
@@ -95,6 +96,8 @@ class Create_Travel(models.Model):
     status = models.BooleanField(null=False, blank=False, default=0)
     like = models.IntegerField(default=0, null=False, blank=False)
     detail = models.TextField(max_length=255, null=False, blank=False, default="")
+    ispet = models.BooleanField(null=False, blank=False, default=0) #0為一般景點，1為寵物景點
+    
     def get_choice_day(self):
         return ChoiceDay_Ct.objects.filter(ct=self.id).order_by('day')
     def get_attractions_picture(ctid):
@@ -311,14 +314,17 @@ class Pet(models.Model):
     hit = models.IntegerField(default=0, null=False, blank=False)
     stay_time = models.IntegerField(null=True, blank=False)
     hot_month = ArrayField(models.IntegerField())
-    a_type = ArrayField(models.IntegerField())
+    att_type = ArrayField(models.IntegerField())
     detail = models.TextField(max_length=255, null=False, blank=False, default="")
-
-    def get_bar_crowd_opening(self):
-        return Bar_Crowd_Opening.objects.filter(b_id=self.id).order_by('week')
+    # def __str__(self):
+    #     return f'{self.id} {self.a_name}'
+    def get_favorite_count(self):
+        return Favorite.objects.filter(a_id=self.id).count()
+    def get_crowd_opening(self):
+        return Pet_Crowd_Opening.objects.filter(a_id=self.id).order_by('week')
 
 class Pet_Crowd_Opening(models.Model):
-    p = models.ForeignKey(
+    a = models.ForeignKey(
         to=Pet, on_delete=models.CASCADE, default=-1
     )  # 酒吧沒了會一起被刪掉
     week = models.IntegerField(null=False, blank=False)

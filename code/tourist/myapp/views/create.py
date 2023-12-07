@@ -68,6 +68,7 @@ def create(request, ct_id):
     name = ct_data.ct_name
     start_day = ct_data.start_day
     start_week = (datetime(int(start_day[0:4]), int(start_day[5:7]), int(start_day[8:])).weekday()+ 1)
+    ispet = ct_data.ispet
     # print(start_week)
     # ct_id = ct_data.id
     
@@ -154,9 +155,9 @@ def create(request, ct_id):
             # print("user目前位置",type(get_user_address))
             # print(new_nowtime)
             m = recommend(
-                user_favorite_type, new_nowtime, get_user_address, start_day, stay_time
+                user_favorite_type, new_nowtime, get_user_address, start_day, stay_time,ispet
             )
-            m_list = (Attractions.objects.filter(place_id__in=m) | recommend_maybe(uid)|recommend_user_favorite(uid)).distinct()
+            m_list = (Attractions.objects.filter(place_id__in=m) | recommend_maybe(uid,ispet)|recommend_user_favorite(uid,ispet)).distinct()
             crow_opening_list = []
             for i in m_list:
                 m_db = (
@@ -189,8 +190,8 @@ def create(request, ct_id):
             o_attractions_list = request.POST.getlist("aid_list[]")
             nowtime = list(map(int, request.POST["nowtime"].split(":")))
             new_nowtime = nowtime[0] * 60 + nowtime[1]
-            o = recommend_near(list(map(int,o_attractions_list)), new_nowtime, week, stay_time)
-            o_list = Attractions.objects.filter(id__in=o)
+            o = recommend_near(list(map(int,o_attractions_list)), new_nowtime, week, stay_time,ispet)
+            o_list = Attractions.objects.filter(id__in=o,ispet=ispet)
             o_crow_opening_list = []
             for i in o_list:
                 o_db = (
