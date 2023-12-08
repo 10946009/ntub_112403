@@ -1,19 +1,23 @@
-// 教學視窗
 
+// 教學視窗
 function openTutorial() {
   document.getElementById("tutorialoverlayBg").style.display = "block";
   document.getElementById("tutorialWindow").style.display = "block";
+  document.documentElement.style.overflow = 'hidden';
 }
 
 function closeTutorial() {
   document.getElementById("tutorialoverlayBg").style.display = "none";
   document.getElementById("tutorialWindow").style.display = "none";
+  document.documentElement.style.overflow = 'auto';
 }
 
-// 在页面加载完成后显示小视窗
-window.onload = function() {
+// 一進入頁面就顯示教學視窗
+document.addEventListener("DOMContentLoaded", function() {
   openTutorial();
-};
+});
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
