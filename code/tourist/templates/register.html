@@ -53,10 +53,10 @@
     <div class="register">
         <h1>Trip Fun Chill 趣放假</h1>
         <div style="text-align:center;color:red">{{ message }}</div>
-        <form action="" method="post">
+        <form action="" method="post" name = "registerForm">
             {% csrf_token %}
-            <input type="email" placeholder="e-mail" name="email" required>
-            <input type="text" placeholder="使用者名稱" name="username" required>
+            <input type="email" placeholder="e-mail" name="email" id="email" required>
+            <input type="text" placeholder="使用者名稱" name="username" id="username" required>
             性別：
             <select name="gender" style="padding: 6px;">
                 <option value="1" name="gender">男</option>
@@ -100,7 +100,7 @@
                 <span style="color:rgb(207, 49, 49);">至少包含8個字元符號</span>
                 <br>
                 <p></p>
-                <input class="pure-button-register" type="submit" value="註冊" onclick="checkemail()">
+                <button class="pure-button-register" onclick="checkemail()"><span>註冊</span></button>
             </div>
         </form>
         <div class="message">
@@ -125,7 +125,7 @@
             specialCharIcon.classList.toggle("valid", password.match(/[^a-zA-Z\d]/g));
             lengthIcon.classList.toggle("valid", password.length >= 8);
         }
-        function password_validation1() {
+        {% comment %} function password_validation1() {
             var password = document.getElementById("passwordInput1").value;
 
             var lowercaseIcon = document.getElementById("lowercaseIcon");
@@ -139,7 +139,7 @@
             numberIcon.classList.toggle("valid", password.match(/[0-9]/g));
             specialCharIcon.classList.toggle("valid", password.match(/[^a-zA-Z\d]/g));
             lengthIcon.classList.toggle("valid", password.length >= 8);
-        }
+        } {% endcomment %}
 
         const togglePassword = document.getElementById('checkEye');
         const passwordField = document.getElementById('passwordInput');
@@ -170,8 +170,31 @@
                 togglePassword1.classList.add('fa-eye');
             }
         });
+
         function checkemail(){
-            alert("請到信箱收信完成註冊!");
+            let valid = document.getElementsByClassName("valid");
+            if(valid.length < 5){
+                alert("密碼格式錯誤!");
+            }
+            else{
+                let email = document.getElementById("email").value;
+                let username = document.getElementById("username").value;
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                
+                if (!emailRegex.test(email)) {
+                    return false; // 阻止表單的提交
+                }
+                if (username==="") {
+                    return false; // 阻止表單的提交
+                }
+                if(passwordField1.value === passwordField.value){
+                    alert("請到信箱收信完成註冊!");
+                    document.forms["registerForm"].submit(); // 將 "yourFormName" 替換為實際表單的名稱
+                }
+                else{
+                    alert("密碼不一致!");
+            }
+            }
         }
     </script>
     {% endblock body %}
