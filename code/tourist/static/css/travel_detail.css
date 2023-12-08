@@ -12,7 +12,7 @@ body {
 
 .detail_travel_name__header {
     display: grid;
-    grid-template-columns: 11fr 5fr;
+    grid-template-columns: 11fr 8fr;
     grid-gap: 2px;
     margin-bottom: 2px;
 }
@@ -44,6 +44,11 @@ body {
 .provider {
     margin-top: 15px;
     text-align: left;
+}
+
+.provider1 {
+    margin-top: 15px;
+    text-align: right;
 }
 
 /* grid景點圖片 */
@@ -393,4 +398,20 @@ body {
     top: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+}
+
+.provider1_copy {
+    display: none;
+    margin-top: 15px;
+    text-align: left;
+}
+
+@media screen and (max-width:768px) {
+    .provider1 {
+        display: none;
+    }
+
+    .provider1_copy {
+        display: block;
+    }
 }
