@@ -69,7 +69,11 @@ def create(request, ct_id):
     start_day = ct_data.start_day
     start_week = (datetime(int(start_day[0:4]), int(start_day[5:7]), int(start_day[8:])).weekday()+ 1)
     ispet = ct_data.ispet
-    # print(start_week)
+    if ispet:
+        render_html = "create_pet.html"
+    else:
+        render_html = "create.html"
+    print(render_html)
     # ct_id = ct_data.id
     
     stay_time = 150
@@ -388,4 +392,4 @@ def create(request, ct_id):
             else:
                 Attractions_Ct.objects.filter(choice_ct_id=choice_ct_id).delete() #為空就刪除資料
 
-    return render(request, "create.html", locals())
+    return render(request, render_html, locals())

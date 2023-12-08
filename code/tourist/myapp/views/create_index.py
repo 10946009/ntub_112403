@@ -11,11 +11,18 @@ def create_index(request):
         name = request.POST["createName"]
         start_day = request.POST["createDate"]
         travel_day = request.POST["createDay"]
+        createType = request.POST["createType"]
+        if createType == "1":
+            createType = True
+        else:
+            createType = False
+
         unit = Create_Travel.objects.create(
             ct_name=name,
             start_day=start_day,
             u_id=u_id,
             travel_day=travel_day,
+            ispet = createType,
         )
         unit.save()
         for i in range(int(travel_day)):

@@ -26,6 +26,13 @@
       <div id="tabDL" class="txtdiv"><span class="txt">行程天數</span><br>
         <input type="number" id="createDay" name="createDay" min="1" value="1" required class="inputspace">
       </div>
+      <div id="tabDL" class="txtdiv">
+        <span class="txt">行程類型</span><br>
+        <select name="createType" id="createType" required class="inputspace">
+          <option value="0">一般行程</option>
+          <option value="1">寵物友善行程</option>
+        </select>
+      </div>
       <button class="btn btn-outline-success enterbtn" type="submit">送出</button>
     </form>
   </div>
@@ -33,5 +40,20 @@
 {% endblock body %}
 {% block content_script %}
   <script src="../static/js/create.js"></script>
+  <script>
+    // 获取当前日期
+  var today = new Date();
+
+  // 计算明天的日期
+  var tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+
+  // 将日期格式化为"YYYY-MM-DD"，以适应<input type="date">
+  var formattedTomorrow = tomorrow.toISOString().split('T')[0];
+
+  // 设置输入框的值为明天的日期
+  document.getElementById('createDate').value = formattedTomorrow;
+
+  </script>
 {% endblock %}
 </html>
