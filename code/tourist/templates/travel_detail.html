@@ -89,7 +89,7 @@ body {
             {% endif %}
              {% comment %} 行程發布日期 {% endcomment %}
             <div class="provider"style="text-align:right;">
-              <h5 style=" color:rgb(66, 65, 65);">發布日期：<strong style="color:rgb(110, 109, 109);">xxxx/xx/xx</strong></h5>
+              <h5 style=" color:rgb(66, 65, 65);">發布日期：<strong style="color:rgb(110, 109, 109);">{{ct_detail.create_date|date:"Y年m月d日"}}</strong></h5>
             </div>
           </div>
       </div>
@@ -482,8 +482,8 @@ body {
       const dayDiv1 = document.getElementById('dayDiv'+dayNumber);
       if (clickContent.style.display == 'block') {
           // 如果連續點擊同一天，則關閉對應內容
-          clickContent.style.display = 'none';
-          dayDiv1.style.color="";
+          //clickContent.style.display = 'none';
+          //dayDiv1.style.color="";
       } else {
         for (let i = 0; i < content.length; i++) {
           content[i].style.display = 'none';
