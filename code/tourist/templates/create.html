@@ -23,11 +23,11 @@
 </style>
 {% endblock %}
 {% block body %}
-
-<div id="tutorialoverlayBg" class="tutorialoverlayBg"></div>
-<div id="tutorialWindow" class="tutorialWindow">
-  {% include "tutorialWindow.html" %}
-</div>
+<!-- 這邊要判斷是否已有行程 -->
+  <div id="tutorialoverlayBg" class="tutorialoverlayBg"></div>
+  <div id="tutorialWindow" class="tutorialWindow">
+    {% include "tutorialWindow.html" %}
+  </div>
 <container>  
   <div class="pageedit">
     <ul class="nav nav-tabs flex justify-content-start my-nav-tabs" id="myTab" role="tablist">
