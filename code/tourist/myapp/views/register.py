@@ -1,4 +1,5 @@
 
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from datetime import datetime
 from .send_mail import send_mail_function
@@ -18,6 +19,7 @@ def register(request):
         if u:
             if User.objects.filter(email=u["email"]).exists():
                 message = "e-mail已被使用過"
+                return JsonResponse({"message": message})
             else:
                 if u["passwd"] == u["passwd1"]:
                     email = u["email"]
@@ -43,6 +45,7 @@ def register(request):
                     return redirect("/login")
                 else:
                     message = "密碼輸入不一致"
+                    return JsonResponse({"message": message})
 
     return render(request, "register.html", locals())
 
