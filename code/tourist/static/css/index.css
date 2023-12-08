@@ -456,6 +456,7 @@ body {
 .provideTxt {
 	font-size: 28px;
 	font-weight: bold;
+	text-shadow: 1px 1px 2px #333;
 }
 
 .provideItem {
@@ -474,7 +475,7 @@ body {
 	border: 2px dashed;
 	padding: 10px;
 	display: block;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .provideItemSubLeft {
@@ -514,10 +515,13 @@ body {
 	width: 100%;
 	padding: 5px 10px;
 	font-size: 20px;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px #333;
+	text-decoration: dotted;
 }
 
 .provideItemSubRightIntro,.provideItemSubLeftIntro {
-	z-index: -1;
+	z-index: 1;
 	display: block;
 	opacity: 0;
 	width: 0;
@@ -642,7 +646,19 @@ body {
 	padding: 0 15px 0 0;
 	font-size: 18px;
 }
-
+@media (max-width: 1024px) {
+	#main {
+		margin-bottom: 250px;
+	}
+	.provideItemSubLeftIntro,.provideItemSubRightIntro{
+		left: 50%;
+		transform: translate(-50%, -50%);
+		top: 130%;
+		padding: 10px;
+		padding-top: 22%;
+		text-align: center;
+	}
+}
 @media (max-width:850px) {
 	.sysnamediv {
 		padding: 10px;
@@ -678,7 +694,7 @@ body {
 
 @media(max-width: 768px) {
 	#main {
-		margin-bottom: 100px;
+		margin-bottom: 200px;
 	}
 
 	.halfCircle {
