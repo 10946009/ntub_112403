@@ -23,6 +23,11 @@
 </style>
 {% endblock %}
 {% block body %}
+
+<div id="tutorialoverlayBg" class="tutorialoverlayBg"></div>
+<div id="tutorialWindow" class="tutorialWindow">
+  <button onclick="closeTutorial()">CLOSE</button>
+</div>
 <container>  
   <div class="pageedit">
     <ul class="nav nav-tabs flex justify-content-start my-nav-tabs" id="myTab" role="tablist">
@@ -256,8 +261,6 @@
 <script>
   blocksOrderInit();
   owlStart();
-
-
   // slide rignt section
   const rightBtn = document.getElementById('showRight');
   const rightDiv = document.getElementById('rightDiv');

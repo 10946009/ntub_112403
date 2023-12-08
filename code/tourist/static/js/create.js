@@ -1,3 +1,20 @@
+// 教學視窗
+
+function openTutorial() {
+  document.getElementById("tutorialoverlayBg").style.display = "block";
+  document.getElementById("tutorialWindow").style.display = "block";
+}
+
+function closeTutorial() {
+  document.getElementById("tutorialoverlayBg").style.display = "none";
+  document.getElementById("tutorialWindow").style.display = "none";
+}
+
+// 在页面加载完成后显示小视窗
+window.onload = function() {
+  openTutorial();
+};
+
 document.addEventListener('DOMContentLoaded', function () {
 
   const selectedTab = localStorage.getItem('selectedTab');
