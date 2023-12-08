@@ -22,17 +22,36 @@ body {
 	z-index: 100;
 }
 
-.explore, .more_span {
-	background-color: rgb(0, 166, 255);
-	height: 70px;
+.explore {
+	display: block;
+	background-color: rgb(238, 154, 0);
+	height: 50px;
 	width: 150px;
-	margin: 50px auto;
-	line-height: 70px;
+	margin: 20px 0;
+	line-height: 50px;
 	position: relative;
+	cursor: pointer;
 	clear: both;
+	transition: background-color 0.3s;
+}
+.more_span{
+	display: block;
+	float: right;
+	background-color: rgb(238, 154, 0);
+	height: 50px;
+	width: 150px;
+	margin: 20px 0;
+	line-height: 50px;
+	position: relative;
+	cursor: pointer;
+	clear: both;
+	transition: background-color 0.3s;
+}
+.more_span:hover ,.explore:hover{
+	background-color: teal;
 }
 
-.explorea, .more_a {
+.explorea {
 	display: block;
 	width: 100%;
 	font-size: 20px;
@@ -40,15 +59,28 @@ body {
 	text-decoration-line: none;
 	color: white;
 	position: absolute;
-	left: 10%;
+	left: 15%;
 	transition: left 0.3s;
-	text-shadow: 3px 3px 5px #333;
 	word-break: break-word;
-	/* 确保文本断行 */
+}
+.more_a{
+	display: block;
+	width: 100%;
+	font-size: 20px;
+	font-weight: bolder;
+	text-decoration-line: none;
+	color: white;
+	position: absolute;
+	left: 30%;
+	transition: left 0.3s;
 }
 
-.explorea:hover ,.more_a:hover {
+.explorea:hover {
 	left: 8%;
+}
+
+.more_a:hover{
+	left: 15%;
 }
 
 .arrow {
@@ -219,11 +251,17 @@ body {
   border-radius: 10px 10px 50% 10%;
 } */
 
+.hot_spotTxt {
+	text-align: right;
+	padding-right: 10px;
+}
 .hot_spot_title {
-	/* font-size: 48px; */
 	font-weight: bolder;
 	text-shadow: 3px 3px 2px gray;
-	/* text-align: left; */
+}
+
+.hot_spot_content {
+	font-size: 18px;
 }
 
 .hot_icon {
@@ -231,18 +269,13 @@ body {
 }
 
 /*輪播區塊css*/
-.carousel_block {
-	position: relative;
-	padding: 0 5px;
-}
-
 /*輪播文字css*/
 .carousel_txt {
-	/* padding-left: 5px; */
 	border: 1px solid #ccc;
 	color: black;
 	text-align: left;
 	position: relative;
+	background-color: #e7e7e5c8;
 }
 
 .heart_icon_img {
@@ -251,7 +284,7 @@ body {
 
 .imgcontainer {
 	position: relative;
-	height: 300px;
+	height: 200px;
 	overflow: hidden;
 }
 
@@ -267,14 +300,10 @@ body {
 	transition: opacity 0.5s ease-in-out;
 }
 
-.imgcontainer img.top:hover {
-	opacity: 0;
-}
-
 
 #imageContainer {
 	position: relative;
-	height: 300px;
+	height: 200px;
 	overflow: hidden;
 }
 
@@ -317,8 +346,10 @@ body {
 .c_title {
 	font-weight: bold;
 	text-shadow: 1px 1px 1px rgb(90, 90, 90);
-	margin-top: 5px;
+	margin-top: 0px;
+	padding-top: 5px;
 	text-align: center;
+	color: black;
 }
 
 .c_txt {
@@ -397,7 +428,7 @@ body {
 
 
 /*熱門行程*/
-.containerLeft {
+/* .containerLeft {
 	float: left;
 	width: 20%;
 }
@@ -409,13 +440,15 @@ body {
 	margin: 10px auto;
 	margin-bottom: 0;
 	z-index: 2;
-}
+} */
 
-#container DIV {
+/* #container DIV {
 	text-align: center;
 	margin: 0px;
 	padding: 0px;
-	/* background-color:rgb(255, 255, 255);  */
+} */
+.hidemehottoright ,.hidemehottoleft{
+	z-index: 2;
 }
 
 .hideme,
@@ -428,28 +461,26 @@ body {
 
 .hidemehot {
 	position: relative;
-	margin-bottom: 10px;
 }
 
-/* .more_span {
-	position: absolute;
-	right: 0;
-	border-radius: 30px;
-	padding: 10px;
-} */
+.owl-prev {
+	left: 0;
+}
 
-/* .more_a {
-	padding: 10px 5px;
-	font-weight: bold;
-	font-size: 24px;
-} */
+.owl-next {
+	right: 0;
+}
+
+.owl-next span,
+.owl-prev span {
+	font-size: 28px;
+}
 
 .hot_txt {
 	text-align: left;
 }
 
 .hot_spot_block {
-	/* padding: 5px; */
 	margin-bottom: 10px;
 	text-align: center;
 }
@@ -468,7 +499,10 @@ body {
 
 .spot_txt {
 	border: 1px solid #ccc;
-	padding: 10px 0px;
+	border-top: 0;
+	padding: 0px;
+	background-color: #e7e7e5c8;
+	color: black;
 }
 
 /*btn詳細資料*/
@@ -552,9 +586,6 @@ body {
 		margin-left: 0;
 	}
 
-	.hot_spot_title {
-		/* font-size: 36px; */
-	}
 }
 
 @media(max-width: 768px) {
@@ -587,11 +618,6 @@ body {
 		padding: 0 5px;
 	}
 
-	.carousel_txt {
-		/* padding-left: 10px; */
-		border: 1px solid #ccc;
-	}
-
 	.imgcontainer {
 		height: 200px;
 		overflow: hidden;
@@ -607,13 +633,31 @@ body {
 		height: 250px;
 	}
 
+	.hidemehot {
+		text-align: center;
+	}
+
 	.explore {
-		height: 100px;
-		width: 500px;
+		width: 150px;
+		margin: 5px auto;
 	}
 
 	.explorea {
-		font-size: 28px;
+		font-size: 20px;
+	}
+
+	.hot_spot_title {
+		text-align: center;
+	}
+	.hot_spotTxt{
+		text-align: center;
+	}
+	.hot_spot_content{
+		text-align: center;
+	}
+	.more_span{
+		float: unset;
+		margin: 20px auto;
 	}
 }
 
@@ -631,14 +675,6 @@ body {
 		font-size: 40px;
 	}
 
-	.carousel-control-prev,
-	.carousel-control-next {
-		position: absolute;
-		top: 90px;
-		width: 40px;
-		height: 90px;
-	}
-
 	.c_title {
 		margin-bottom: 2px;
 		font-size: 18px;
@@ -653,11 +689,6 @@ body {
 		padding: 0 2px;
 	}
 
-	.carousel_txt {
-		/* padding-left: 10px; */
-		border: 1px solid #ccc;
-	}
-
 	.imgcontainer {
 		height: 150px;
 		overflow: hidden;
@@ -667,10 +698,6 @@ body {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-	}
-
-	#imageContainer {
-		/* height: 150px; */
 	}
 
 	.heart_icon {
@@ -707,24 +734,6 @@ body {
 		border-radius: 10%;
 	}
 
-	.explore {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		align-content: center;
-		height: 120px;
-		width: 90%;
-	}
-
-	.explorea {
-		font-size: 28px;
-		left: 8%;
-	}
-
-	.explorea:hover {
-		left: 6%;
-	}
-
 	.arrow {
 		right: 10px;
 	}
@@ -743,16 +752,8 @@ body {
 		font-size: 32px;
 	}
 
-	.hot_spot_title {
-		/* font-size: 28px; */
-	}
-
 	.hot_icon {
 		width: 28px;
-	}
-
-	.explorea {
-		font-size: 26px;
 	}
 
 	.arrow {
@@ -775,9 +776,7 @@ body {
 	}
 
 	.carousel_txt {
-		/* padding-left: 10px; */
 		font-size: 14px;
-		border: 1px solid #ccc;
 	}
 
 	.heart_icon {
@@ -822,10 +821,6 @@ body {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-	}
-
-	#imageContainer {
-		/* height: 100px; */
 	}
 
 	.c_title {

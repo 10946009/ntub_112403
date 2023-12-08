@@ -30,7 +30,8 @@ body {
     transition: background-color 0.5s, opacity 0.5s ease-in-out;
     opacity: 0;
 }
-.topDiv:hover{
+
+.topDiv:hover {
     background-color: cadetblue;
     color: white;
 }
@@ -1425,6 +1426,7 @@ img {
 
 /* grid景點問題 */
 .question {
+    background-color: rgb(241, 234, 216);
     border: rgb(148, 145, 145) solid;
     padding: 20px;
     border-radius: 20px;

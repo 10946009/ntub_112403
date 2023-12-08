@@ -1,11 +1,11 @@
 //圖片等於螢幕高度
 window.onload = function () {
-  var bannerbgimg = document.getElementsByClassName('banner');
+  var bannerbgimg = document.getElementsByClassName('banner')[0];
   bannerbgimg.style.height = window.innerHeight + "px";
 }
 //重新計算螢幕高度
 window.onresize = function () {
-  var bannerbgimg = document.getElementsByClassName('banner');
+  var bannerbgimg = document.getElementsByClassName('banner')[0];
   bannerbgimg.style.height = window.innerHeight + "px";
 }
 
@@ -46,9 +46,9 @@ function startSlideshow(container) {
 
   // 启动定时器，每2秒切换一次图片
   container.slideshowInterval = setInterval(() => {
-      images[currentImageIndex].classList.remove('changeImg_show');
-      currentImageIndex = (currentImageIndex + 1) % images.length;
-      images[currentImageIndex].classList.add('changeImg_show');
+    images[currentImageIndex].classList.remove('changeImg_show');
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    images[currentImageIndex].classList.add('changeImg_show');
   }, 2000);
 }
 
@@ -139,119 +139,54 @@ $(function () {
   });
 });
 
-//滑到才顯示
+//滑到才顯示(IntersectionObserver視窗相交功能)
+$('.hidemehottoleft, .hidemehottoright').css('opacity','0')
+var observer = new IntersectionObserver(function(entries, observer) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      var $this = $(entry.target);
+      var animationProperties = {};
 
-$(document).ready(function () {
-  /* Every time the window is scrolled ... */
-  $(window).scroll(function () {
-    /* Check the location of each desired element */
-
-    // For .hideme
-    $('.hideme').each(function (i) {
-      var $this = $(this);
-      var bottom_of_object = $this.offset().top + $this.outerHeight();
-      var bottom_of_window = $(window).scrollTop() + $(window).height();
-
-      if (bottom_of_window > bottom_of_object) {
-        $(this).animate({ 'opacity': '1' }, 500);
+      if ($this.hasClass('hidemehottoleft')) {
+        $this.css('position', 'relative');
+        $this.css('left', '100%');
+        animationProperties = {
+          'opacity': '1',
+          'left': '0'
+        };
+      } else if ($this.hasClass('hidemehottoright')) {
+        $this.css('position', 'relative');
+        $this.css('right', '100%');
+        animationProperties = {
+          'opacity': '1',
+          'right': '0'
+        };
       }
-    });
 
-    // For .hidemespot
-    $('.hidemespot').each(function (i) {
-      var $this = $(this);
-      var bottom_of_object = $this.offset().top + $this.outerHeight();
-      var bottom_of_window = $(window).scrollTop() + $(window).height();
-
-      if (bottom_of_window > bottom_of_object) {
-        $(this).animate({ 'opacity': '1' }, 1000);
-      }
-    });
-
-    // For .hidemehot熱門景點
-    $('.hidemehot').each(function (i) {
-      var $this = $(this);
-      var bottom_of_object = $this.offset().top + $this.outerHeight();
-      var bottom_of_window = $(window).scrollTop() + $(window).height();
-
-      if (bottom_of_window > bottom_of_object) {
-        setTimeout(function () {
-          $this.css('position', 'relative');
-          $this.css('top', '-100%');
-          $this.animate({
-            'opacity': '1',
-            'top': '0'
-          }, 1000); // 不同的延迟时间
-        }, i * 500); // 不同的延迟时间
-      }
-    })
-
-    // For .hidemehottoleft輪播
-    $('.hidemehottoleft').each(function (i) {
-      var $this = $(this);
-      var bottom_of_object = $this.offset().top + $this.outerHeight();
-      var bottom_of_window = $(window).scrollTop() + $(window).height();
-
-      if (bottom_of_window > bottom_of_object) {
-        setTimeout(function () {
-          $this.css('position', 'relative');
-          $this.css('left', '100%');
-          $this.animate({
-            'opacity': '1',
-            'left': '0'
-          }, 1000); // 不同的延迟时间
-        }, i * 500); // 不同的延迟时间
-      }
-    });
-
-    // For .hidemeexplore
-    $('.hidemeexplore').each(function (i) {
-      var $this = $(this);
-      var bottom_of_object = $this.offset().top + $this.outerHeight();
-      var bottom_of_window = $(window).scrollTop() + $(window).height();
-
-      if (bottom_of_window > bottom_of_object) {
-        setTimeout(function () {
-          $this.css('position', 'relative');
-          $this.css('top', '100%');
-          $this.animate({
-            'opacity': '1',
-            'top': '0'
-          }, 1000); // 不同的延迟时间
-        }, i * 500); // 不同的延迟时间
-      }
-    });
-  });
-});
-
-// 計算輪播圖最大高度 高度一致
-$(document).ready(function () {
-  // 在文件載入時和視窗尺寸改變時調整高度
-  adjustTextHeightOnResize('.carousel_block .carousel_txt');
-});
-
-function adjustTextHeightOnResize(selector) {
-  // 初始化高度
-  adjustTextHeight(selector);
-
-  // 監聽視窗大小改變事件
-  $(window).on('resize', function () {
-    adjustTextHeight(selector);
-  });
-}
-
-function adjustTextHeight(selector) {
-  $(selector).height('auto'); // 先重置高度以便重新計算
-  var maxHeight = 0;
-
-  // 找出最大高度
-  $(selector).each(function () {
-    var textHeight = $(this).outerHeight();
-    if (textHeight > maxHeight) {
-      maxHeight = textHeight;
+      $this.animate(animationProperties, 1000);
+      
+      // 停止觀察這個元素
+      observer.unobserve(entry.target);
     }
   });
+}, { threshold: 0.5 }); // 觸發時的閾值
 
-  // 將所有文字區塊設置為最大高度
-  $(selector).height(maxHeight);
-}
+// 選擇所有 .hidemehottoleft 和 .hidemehottoright 元素進行觀察
+$('.hidemehottoleft, .hidemehottoright').each(function() {
+  observer.observe(this);
+});
+
+
+// 高度一致
+$(function () {
+  var h = 0;
+  $('.item .carousel_txt').each(function () {
+
+    if ($(this).height() > h) {
+      h = $(this).height();
+    }
+
+  });
+  $('.item .carousel_txt').css('height', h + 'px');
+});
+

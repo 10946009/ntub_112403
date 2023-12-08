@@ -267,3 +267,60 @@ class Bar_Crowd_Opening(models.Model):
     week = models.IntegerField(null=False, blank=False)
     crowd = ArrayField(models.IntegerField())
     opening = ArrayField(models.TextField(max_length=255))
+
+
+class Sushi(models.Model):
+    place_id = models.TextField(max_length=255, blank=False)
+    photo = models.TextField(max_length=255, null=False, blank=False, default="")
+    a_name = models.TextField(max_length=255, null=False, blank=False)
+    address = models.TextField(max_length=255, null=False, blank=False)
+    location_x = models.FloatField()
+    location_y = models.FloatField()
+    phone = models.TextField(max_length=255, null=False, blank=True)
+    rating = models.FloatField(null=False, blank=False)
+    rating_total = models.IntegerField(null=False, blank=False, default=-1)
+    hit = models.IntegerField(default=0, null=False, blank=False)
+    stay_time = models.IntegerField(null=True, blank=False)
+    hot_month = ArrayField(models.IntegerField())
+    a_type = ArrayField(models.IntegerField())
+    detail = models.TextField(max_length=255, null=False, blank=False, default="")
+
+    def get_bar_crowd_opening(self):
+        return Bar_Crowd_Opening.objects.filter(b_id=self.id).order_by('week')
+
+class Sushi_Crowd_Opening(models.Model):
+    s = models.ForeignKey(
+        to=Sushi, on_delete=models.CASCADE, default=-1
+    )  # 酒吧沒了會一起被刪掉
+    week = models.IntegerField(null=False, blank=False)
+    crowd = ArrayField(models.IntegerField())
+    opening = ArrayField(models.TextField(max_length=255))
+
+
+
+class Pet(models.Model):
+    place_id = models.TextField(max_length=255, blank=False)
+    photo = models.TextField(max_length=255, null=False, blank=False, default="")
+    a_name = models.TextField(max_length=255, null=False, blank=False)
+    address = models.TextField(max_length=255, null=False, blank=False)
+    location_x = models.FloatField()
+    location_y = models.FloatField()
+    phone = models.TextField(max_length=255, null=False, blank=True)
+    rating = models.FloatField(null=False, blank=False)
+    rating_total = models.IntegerField(null=False, blank=False, default=-1)
+    hit = models.IntegerField(default=0, null=False, blank=False)
+    stay_time = models.IntegerField(null=True, blank=False)
+    hot_month = ArrayField(models.IntegerField())
+    a_type = ArrayField(models.IntegerField())
+    detail = models.TextField(max_length=255, null=False, blank=False, default="")
+
+    def get_bar_crowd_opening(self):
+        return Bar_Crowd_Opening.objects.filter(b_id=self.id).order_by('week')
+
+class Pet_Crowd_Opening(models.Model):
+    p = models.ForeignKey(
+        to=Pet, on_delete=models.CASCADE, default=-1
+    )  # 酒吧沒了會一起被刪掉
+    week = models.IntegerField(null=False, blank=False)
+    crowd = ArrayField(models.IntegerField())
+    opening = ArrayField(models.TextField(max_length=255))

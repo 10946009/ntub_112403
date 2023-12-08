@@ -1,112 +1,92 @@
 {% extends 'base.html' %}
 {% block title %}首頁{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="../static/owl/owl.carousel.min.css">
 <link rel="stylesheet" href="../static/css/index.css">
+<style>
+  .owl-carousel .owl-nav button.owl-next,
+  .owl-carousel .owl-nav button.owl-prev {
+      color: white;
+      height: 50px;
+      width: 30px;
+      background: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: background 0.3s;
+  }
+</style>
 {% endblock %}
 
 
 {% block body %}
-  <div id="main" class="row" style="z-index: 2;width: 90%;margin: 20px auto;padding: 20px 0;border: 1px solid;">
+  <div id="main" class="row" style="width: 90%;margin: 20px auto;margin-top: 0;padding: 20px 0;padding-top: 50px;">
     <!-- <div class="hideme" style="position: relative;">
       <div class="incomplete-circle "></div>
     </div> -->
-    <div class="col-sm-2 hidemehot" style="border: 1px solid;">
+    <div class="col-md-3 hidemehottoright">
       <div>
         <h1 class="hot_spot_title" style="font-family: HanyiSentyTea Regular;">HOT&ensp;&ensp;SPOT</h1>
         <h3 class="hot_spot_title">熱&ensp;門&ensp;景&ensp;點</h3>
       </div>
-      <div>
-        掌握台北最熱門的景點，讓你無須煩惱去哪裡
-        趣放假帶你趣遊 !
+      <div class="hot_spot_content">
+        掌握台北最熱門的景點，讓你無須煩惱去哪裡～趣放假帶你趣遊(chill) !
       </div>
-      <div class="explore hidemeexplore">
-        <a href="/attraction_details" class="explorea">VIEW ALL
-          <!-- <span class="arrow"><i class="fa-solid fa-arrow-right arrowi"></i></span> -->
-        </a>
-      </div>
+      <a class="explore " href="/attraction_details">
+        <div class="explorea">VIEW ALL</div>
+      </a>
     </div>
-    <div id="myCarousel" class="carousel slide col-sm-10 hidemehottoleft" data-bs-ride="carousel">
-      <div class="carousel-inner  ">
-        {% for i in hotAttractionsList %}
-        {% if forloop.first %}
-        <div class="carousel-item active">
-          {% else %}
-          <div class="carousel-item">
-            {% endif %}
-            <div class="row">
-              {% for item in i %}
-                <div class="col-4 carousel_block">
-                  <div class="imgcontainer">
-                    <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)" onmouseout="stopSlideShow(this)">
-                      {% for  img in item.imglist %}
-                      {% if forloop.counter == 1 %} 
-                      <img src="/static/images/attractions/{{img}}" class="changeImg changeImg_show">
-                      {% else %}
-                      <img src="/static/images/attractions/{{img}}" class="changeImg">
-                      {% endif %}
-                      {% endfor %}
-                    </div>
 
-                    <a class="fa-solid fa-circle-info info_icon_left" onclick="clickInfo({{item.id}})"></a>
-                    
-                    {% if item.is_favorite == "1" %}
-                    <button class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="{{item.is_favorite}}"
-                      data-id="{{item.id}}" data-type="/add_favorite/"></button>
-                    {% else %}
-                    <button class="fa-solid fa-heart heart_icon" data-isfavorite="{{item.is_favorite}}"
-                      data-id="{{item.id}}" data-type="/add_favorite/"></button>
-                    {% endif %}
-                  </div>
-                  <div class="group">
-                    {% comment %} <i class="fa-solid fa-plus add_icon"></i> {% endcomment %}
-                    <div class="dropdown_menu">
-                      <div><a class="dropdown_item" href="/createindex">新增行程</a></div>
-                      <div><a class="dropdown_item" href="#">捷運一日遊</a></div>
-                      <div><a class="dropdown_item" href="#">開車一日遊</a></div>
-                    </div>
-                  </div>
-                  <div class="carousel_txt">
-                    <h4 class="c_title">
-                      {{item.a_name}}
-                    </h4>
-                    <div class="rating" style="text-align: center;">
-                      {% for i in "12345" %}
-                        {% if i|add:0 <= item.rating %} 
-                          <i class="fa-solid fa-star" style="color:rgb(226, 185, 2);"></i>
-                        {% else %}
-                          <!-- <i class="fa-regular fa-star"></i> -->
-                          <!-- <i class="fa-regular fa-star-half-stroke" style="color:rgb(226, 185, 2);"></i> -->
-                          <i class="fa-solid fa-star" style="color:rgb(185, 184, 184);"></i>
-                        {% endif %}
-                      {% endfor %}
-                      <br>
-                      <span id="selectedRating">{{item.rating}} / 5 ({{ item.rating_total }}則) </span>
-                    </div>
-                        
-                    </p>
-                  </div>
-                </div>
-              {% endfor %}
+    <div class="col-md-9 hidemehottoleft">
+      <div class="owl-carousel owl-theme owl_adjust">
+        {% for item in hot_result %}
+          <div class="item">
+            <div class="imgcontainer">
+              <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)" onmouseout="stopSlideShow(this)">
+                {% for  img in item.imglist %}
+                {% if forloop.counter == 1 %} 
+                <img src="/static/images/attractions/{{img}}" class="changeImg changeImg_show">
+                {% else %}
+                <img src="/static/images/attractions/{{img}}" class="changeImg">
+                {% endif %}
+                {% endfor %}
+              </div>
+              <a class="fa-solid fa-circle-info info_icon_left" onclick="clickInfo(item.id)"></a>
+              {% if item.is_favorite == "1" %}
+              <button class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="{{item.is_favorite}}"
+                data-id="{{item.id}}" data-type="/add_favorite/"></button>
+              {% else %}
+              <button class="fa-solid fa-heart heart_icon" data-isfavorite="{{item.is_favorite}}"
+                data-id="{{item.id}}" data-type="/add_favorite/"></button>
+              {% endif %}
+            </div>
+            <div class="carousel_txt">
+              <h4 class="c_title">
+                {{item.a_name}}
+              </h4>
+              <div class="rating" style="text-align: center;">
+                {% for i in "12345" %}
+                  {% if i|add:0 <= item.rating %} 
+                    <i class="fa-solid fa-star" style="color:rgb(226, 185, 2);"></i>
+                  {% else %}
+                    <i class="fa-solid fa-star" style="color:rgb(185, 184, 184);"></i>
+                  {% endif %}
+                {% endfor %}
+                <br>
+                <span id="selectedRating">{{item.rating}} / 5 ({{ item.rating_total }}則) </span>
+              </div>
             </div>
           </div>
-          {% endfor %}
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+        {% endfor %}
       </div>
     </div>
   </div>
-  <div id="container" class="row" style="clear: both;width: 90%;border: 1px solid;margin: 0 auto;">
-    <div class="col-sm-10" style="float: left;width: 80%;">
-      <div class="row">
+
+  <div id="container" class="row" style="clear: both;width: 90%;margin: 0 auto;">
+    <div class="col-md-9 order-md-1 order-2 hidemehottoright">
+      <div class="owl-carousel owl-theme">
         {% for ct in top_hot_travel %}
-          <div class="col-md-4 col-sm-6 hot_spot_block hidemespot" style="padding: 5px;">
+          <div class="item hot_spot_block ">
             <div class="heart_icon_img">
               <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)" onmouseout="stopSlideShow(this)">
                 {% for  img in ct.imglist %}
@@ -144,29 +124,17 @@
       </div>
     </div>
 
-    
-    <!-- <div class="col-sm-2 hidemehot" style="border: 1px solid;">
-      <div>
-        <h1 class="hot_spot_title" style="font-family: HanyiSentyTea Regular;">HOT&ensp;&ensp;SPOT</h1>
-        <h3 class="hot_spot_title">熱&ensp;門&ensp;景&ensp;點</h3>
-      </div>
-      <div>
-        掌握台北最熱門的景點，讓你無須煩惱去哪裡
-        趣放假帶你趣遊 !
-      </div>
-      <div class="explore hidemeexplore">
-        <a href="/attraction_details" class="explorea">VIEW ALL
-        </a>
-      </div>
-    </div> -->
-    <div class="col-sm-2 hidemehot" style="float: right;width: 20%;">
-      <div>
+    <div class="col-md-3 order-md-2 order-1 hidemehottoleft">
+      <div class="hot_spotTxt">
         <h1 class="hot_spot_title" style="font-family: HanyiSentyTea Regular;">HOT&ensp;JOURNEY</h1>
         <h3 class="hot_spot_title">熱&ensp;門&ensp;行&ensp;程</h3>
       </div>
-      <div class="more_span hidemeexplore">
-        <a href="/share/" class="more_a">MORE</a>
+      <div class="hot_spot_content">
+        每個行程都有獨特的玩法、新奇的體驗～趣放假，帶您展開不同的冒險！
       </div>
+      <a class="more_span"  href="/share/">
+        <div class="more_a">MORE</div>
+      </a>
     </div>
   </div>
   <!-- 彈跳視窗 -->
@@ -178,12 +146,41 @@
         </div>
     </div>
   </div>
+  <div class="rellax rellax1" data-rellax-speed="5" style="left: -15px;bottom: 8%;">
+      <i class="fa-solid fa-circle circle1" style="font-size: 36px;color: #E3BCB5;"></i>
+  </div>
+  <div class="rellax rellax2" data-rellax-speed="6" style="left: calc(100vw / 4);bottom: 5%;">
+      <i class="fa-solid fa-circle circle2" style="font-size: 60px;color: #EBC1A8;"></i>
+  </div>
+  <div class="rellax rellax3" data-rellax-speed="1" style="right: calc(100vw / 4);bottom: 0.5%;">
+      <i class="fa-solid fa-circle circle3" style="font-size: 60px;color: #E7ADAC;"></i>
+  </div>
+  <div class="rellax rellax4" data-rellax-speed="3" style="right: -10px;bottom: 1%;">
+      <i class="fa-solid fa-circle circle4" style="font-size: 120px;color: rgb(199, 171, 245);"></i>
+  </div>
+
+  
+  <div class="rellax rellaxStar" data-rellax-speed="5" style="right: calc(100vw / 12);transform: rotate(45deg);display: none;">
+    <i class="fas fa-star" style="font-size: 60px;color: #fff;"></i>
+  </div>
+  <div class="rellax rellaxStar" data-rellax-speed="1" style="right: calc(100vw / 10);;display: none;">
+      <i class="far fa-star" style="font-size: 60px;color: #fff;"></i>
+  </div>
+  <div class="rellax rellaxStar" data-rellax-speed="4.5" style="left: calc(100vw / 7);transform: rotate(60deg);display: none;">
+      <i class="fas fa-star" style="font-size: 100px;color: #ffd6d69c;"></i>
+  </div>
 {% endblock body %}
 
 {% block content_script %}
 <script src="../static/js/index.js"></script>
 <script src="../static/js/addFavorite.js"></script>
+<script src="../static/js/owl.carousel.min.js"></script>
+<script src="../static/js/indexOwl.js"></script>
+<script>
+  indexOwl();
+  
+</script>
 
 {% endblock %}
 
-    </html>
+</html>
