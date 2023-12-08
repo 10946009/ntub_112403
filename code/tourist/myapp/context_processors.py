@@ -10,8 +10,8 @@ def get_all_attractions(request):
 
 
 def get_now_weather(request):
+    get_now_weather_json = json.dumps({"get_now_weather_json":"sun"})
     current_datetime = datetime.now()
-
     current_year = current_datetime.year
     current_month = current_datetime.month
     current_day = current_datetime.day
