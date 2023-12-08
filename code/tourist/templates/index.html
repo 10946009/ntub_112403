@@ -20,11 +20,45 @@
 
 
 {% block body %}
-  <div style="display: flex;justify-content: center;">
-    <div class="halfCircle"></div>
+  <div id="main">
+    <div class="halfCircle">
+      <div class="provideDiv">
+        <span class="provideTxt">服務項目</span>
+      </div>
+      <div class="provideItem">
+        <div style="margin: 0 auto;">
+          <div class="provideItemSub provideItemSubLeft" onmouseover="showLeftIntro()" onmouseout="closeLeftIntro()">
+            <div style="width: 100%;text-align: center;">
+              <div class="img_txtDiv">
+                <img src="../static/images/travel_img.png" width="100%" alt="">
+                <span class="img_txtDiv_txt">
+                  旅遊行程安排
+                </span>
+              </div>
+            </div>
+            <div id="provideItemSubLeftIntro" class="provideItemSubLeftIntro">
+              <div>左邊文字介紹文字介紹文字介紹文字介紹</div>
+            </div>
+          </div>
+          <div class="provideItemSub provideItemSubRight" onmouseover="showRightIntro()" onmouseout="closeRightIntro()">
+            <div style="width: 100%;text-align: center;">
+              <div class="img_txtDiv">
+                <img src="../static/images/pet.png" width="100%" alt="">
+                <span class="img_txtDiv_txt">
+                  寵物友善行程
+                </span>
+              </div>
+            </div>
+            <div id="provideItemSubRightIntro" class="provideItemSubRightIntro">
+              <div>文字介紹文字介紹文字介紹文字介紹</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div id="main" class="row" style="width: 90%;margin: 20px auto;margin-top: 0;padding: 20px 0;padding-top: 50px;">
+  <div class="row" style="width: 90%;margin: 20px auto;margin-top: 0;padding: 20px 0;padding-top: 50px;">
     <!-- <div class="hideme" style="position: relative;">
       <div class="incomplete-circle "></div>
     </div> -->

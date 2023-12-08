@@ -34,7 +34,8 @@ body {
 	clear: both;
 	transition: background-color 0.3s;
 }
-.more_span{
+
+.more_span {
 	display: block;
 	float: right;
 	background-color: rgb(238, 154, 0);
@@ -47,7 +48,9 @@ body {
 	clear: both;
 	transition: background-color 0.3s;
 }
-.more_span:hover ,.explore:hover{
+
+.more_span:hover,
+.explore:hover {
 	background-color: teal;
 }
 
@@ -63,7 +66,8 @@ body {
 	transition: left 0.3s;
 	word-break: break-word;
 }
-.more_a{
+
+.more_a {
 	display: block;
 	width: 100%;
 	font-size: 20px;
@@ -79,7 +83,7 @@ body {
 	left: 8%;
 }
 
-.more_a:hover{
+.more_a:hover {
 	left: 15%;
 }
 
@@ -255,6 +259,7 @@ body {
 	text-align: right;
 	padding-right: 10px;
 }
+
 .hot_spot_title {
 	font-weight: bolder;
 	text-shadow: 3px 3px 2px gray;
@@ -426,29 +431,124 @@ body {
 	background-color: bisque;
 }
 
-.halfCircle{
-    width: 700px;
-    height: 150px;
-    border: 1px solid red;
-	border-top: 0;
-    border-radius:  0 0 350px 350px/0 0 150px 150px;
+#main {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 150px;
 }
 
+.halfCircle {
+	width: 70%;
+	height: 120px;
+	border: 1px solid brown;
+	border-top: 0;
+	border-radius: 0 0 calc(100% / 2) calc(100% / 2)/0 0 120px 120px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	position: relative;
+	/* overflow: hidden; */
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out; 
+}
 
-.hidemehottoright ,.hidemehottoleft{
+.provideTxt {
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.provideItem {
+	width: 100%;
+	height: 200px;
+	position: absolute;
+	top: 80px;
+	display: flex;
+	align-content: center;
+}
+
+.provideItemSub {
+	width: 180px;
+	height: 180px;
+	border-radius: 50%;
+	border: 2px dashed;
+	padding: 10px;
+	display: block;
+	cursor: pointer;
+}
+
+.provideItemSubLeft {
+	float: left;
+	margin-right: 30px;
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+.provideItemSubRight {
+	float: right;
+	margin-left: 30px;
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+.img_txtDiv {
+	position: relative;
+	display: block;
+}
+
+.img_txtDiv img {
+	border-radius: 50%;
+	background-color: rgba(247, 255, 221);
 	z-index: 2;
 }
 
-.hideme,
-.hidemehot,
-.hidemehottoleft,
-.hidemeexplore,
-.hidemespot {
-	opacity: 0;
+.img_txtDiv_txt {
+	position: absolute;
+	bottom: -30px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: rgb(255, 219, 219);
+	border-radius: 30px;
+	width: 100%;
+	padding: 5px 10px;
+	font-size: 20px;
 }
 
-.hidemehot {
-	position: relative;
+.provideItemSubRightIntro,.provideItemSubLeftIntro {
+	z-index: -1;
+	display: block;
+	opacity: 0;
+	width: 0;
+	height: 120px;
+	border-radius: 20px;
+	background-color: #99f;
+	position: absolute;
+	font-size: 16px;
+	font-weight: bold;
+	overflow: hidden;
+	transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+.provideItemSubRightIntro{
+	left: 80%;
+	padding: 10px;
+	padding-left: 22%;
+}
+.provideItemSubLeftIntro{
+	right: 80%;
+	padding: 10px;
+	padding-right: 22%;
+}
+
+.provideItemSubRightIntro.show,.provideItemSubLeftIntro.show {
+	opacity: 1;
+	width: 300px;
+}
+
+.hidemehottoright,
+.hidemehottoleft {
+	z-index: 2;
 }
 
 .owl-prev {
@@ -577,6 +677,16 @@ body {
 }
 
 @media(max-width: 768px) {
+	#main {
+		margin-bottom: 100px;
+	}
+
+	.halfCircle {
+		width: 100%;
+		height: 150px;
+		border-radius: 0 0 calc(100% / 2) calc(100% / 2)/0 0 150px 150px;
+	}
+
 	.sysnamediv {
 		padding-top: 50px;
 		line-height: 70px;
@@ -637,13 +747,16 @@ body {
 	.hot_spot_title {
 		text-align: center;
 	}
-	.hot_spotTxt{
+
+	.hot_spotTxt {
 		text-align: center;
 	}
-	.hot_spot_content{
+
+	.hot_spot_content {
 		text-align: center;
 	}
-	.more_span{
+
+	.more_span {
 		float: unset;
 		margin: 20px auto;
 	}
@@ -728,6 +841,32 @@ body {
 }
 
 @media (max-width: 488px) {
+	.halfCircle {
+		align-items: unset;
+		padding-top: 20px;
+		height: 120px;
+		border-radius: 0 0 calc(100% / 2) calc(100% / 2)/0 0 120px 120px;
+	}
+
+	.provideItemSub {
+		width: 150px;
+		height: 150px;
+	}
+
+	.provideItemSubLeft {
+		margin-right: 10px;
+	}
+
+	.provideItemSubRight {
+		margin-left: 10px;
+	}
+
+	.img_txtDiv_txt {
+		bottom: -15px;
+		padding: 3px 8px;
+		font-size: 18px;
+	}
+
 	.tfc {
 		font-size: 40px;
 	}
