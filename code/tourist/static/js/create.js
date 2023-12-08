@@ -53,17 +53,17 @@ function saveTabState(tabId, day) {
 
 
 // 高度一致
-$(function () {
-  var h = 0;
-  $('.item .spottxtdiv').each(function () {
+// $(function () {
+//   var h = 0;
+//   $('.item .spottxtdiv').each(function () {
 
-    if ($(this).height() > h) {
-      h = $(this).height();
-    }
+//     if ($(this).height() > h) {
+//       h = $(this).height();
+//     }
 
-  });
-  $('.item .spottxtdiv').css('height', h + 'px');
-});
+//   });
+//   $('.item .spottxtdiv').css('height', h + 'px');
+// });
 
 
 
