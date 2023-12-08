@@ -1,3 +1,24 @@
+
+// 教學視窗
+function openTutorial() {
+  document.getElementById("tutorialoverlayBg").style.display = "block";
+  document.getElementById("tutorialWindow").style.display = "block";
+  document.documentElement.style.overflow = 'hidden';
+}
+
+function closeTutorial() {
+  document.getElementById("tutorialoverlayBg").style.display = "none";
+  document.getElementById("tutorialWindow").style.display = "none";
+  document.documentElement.style.overflow = 'auto';
+}
+
+// 一進入頁面就顯示教學視窗
+document.addEventListener("DOMContentLoaded", function() {
+  openTutorial();
+});
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
 
   const selectedTab = localStorage.getItem('selectedTab');

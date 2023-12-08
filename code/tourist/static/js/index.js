@@ -161,6 +161,13 @@ var observer = new IntersectionObserver(function(entries, observer) {
           'opacity': '1',
           'right': '0'
         };
+      }else if ($this.hasClass('halfCircle')) {
+        $this.css('position', 'relative');
+        $this.css('top', '-100%');
+        animationProperties = {
+          'opacity': '1',
+          'top': '0'
+        };
       }
 
       $this.animate(animationProperties, 1000);
@@ -172,11 +179,12 @@ var observer = new IntersectionObserver(function(entries, observer) {
 }, { threshold: 0.5 }); // 觸發時的閾值
 
 // 選擇所有 .hidemehottoleft 和 .hidemehottoright 元素進行觀察
-$('.hidemehottoleft, .hidemehottoright').each(function() {
+$('.hidemehottoleft, .hidemehottoright, .halfCircle').each(function() {
   observer.observe(this);
 });
 
 
+    
 // 高度一致
 $(function () {
   var h = 0;
@@ -190,3 +198,23 @@ $(function () {
   $('.item .carousel_txt').css('height', h + 'px');
 });
 
+// 滑入出現
+function showRightIntro() {
+  var introRightBlock = document.getElementById("provideItemSubRightIntro");
+  introRightBlock.classList.add('show');
+}
+
+function closeRightIntro() {
+  var introRightBlock = document.getElementById("provideItemSubRightIntro");
+  introRightBlock.classList.remove('show');
+}
+
+function showLeftIntro() {
+  var introLeftBlock = document.getElementById("provideItemSubLeftIntro");
+  introLeftBlock.classList.add('show');
+}
+
+function closeLeftIntro() {
+  var introLeftBlock = document.getElementById("provideItemSubLeftIntro");
+  introLeftBlock.classList.remove('show');
+}
