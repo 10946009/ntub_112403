@@ -139,9 +139,12 @@
     .register span {
         margin: 10px 0;
     }
+    .send_button{
+        text-align: center;
+    }
 
     .register button {
-        width: 46%;
+        width: 40%;
         margin: 0px 1%;
     }
 
