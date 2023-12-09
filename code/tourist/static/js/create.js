@@ -13,9 +13,12 @@ function closeTutorial() {
 }
 
 // 一進入頁面就顯示教學視窗
-document.addEventListener("DOMContentLoaded", function() {
-  openTutorial();
-});
+// if checkHasData{
+
+// }
+// document.addEventListener("DOMContentLoaded", function() {
+//   openTutorial();
+// });
 
 
 
@@ -53,17 +56,17 @@ function saveTabState(tabId, day) {
 
 
 // 高度一致
-$(function () {
-  var h = 0;
-  $('.item .spottxtdiv').each(function () {
+// $(function () {
+//   var h = 0;
+//   $('.item .spottxtdiv').each(function () {
 
-    if ($(this).height() > h) {
-      h = $(this).height();
-    }
+//     if ($(this).height() > h) {
+//       h = $(this).height();
+//     }
 
-  });
-  $('.item .spottxtdiv').css('height', h + 'px');
-});
+//   });
+//   $('.item .spottxtdiv').css('height', h + 'px');
+// });
 
 
 
@@ -482,24 +485,7 @@ function InputRemainderOrder(num){
   order_attractions_detail_div.appendChild(remainder_attractions);
   rearrangeBlocks();
 };
-// // move to top
-// function moveFirst(blockDoneId) {
-//   let index = blocksOrder[globalDay].indexOf(parseInt(blockDoneId.slice(-1)));
-//   if (index > 0) {
-//     blocksOrder[globalDay].splice(index, 1);
-//     blocksOrder[globalDay].unshift(parseInt(blockDoneId.slice(-1)));
-//     rearrangeBlocks();
-//   }
-// }
-// // move to last
-// function moveLast(blockDoneId) {
-//   let index = blocksOrder[globalDay].indexOf(parseInt(blockDoneId.slice(-1)));
-//   if (index < blocksOrder[globalDay].length - 1) {
-//     blocksOrder[globalDay].splice(index, 1);
-//     blocksOrder[globalDay].push(parseInt(blockDoneId.slice(-1)));
-//     rearrangeBlocks();
-//   }
-// }
+
 
 
 function rearrangeBlocks() {
@@ -578,6 +564,8 @@ function checkHasData() {
       const containerID = container.id;
       console.log(containerID);
       flipped(containerID.charAt(containerID.length - 1))
+    }else{
+      openTutorial();
     }
   });
 }
