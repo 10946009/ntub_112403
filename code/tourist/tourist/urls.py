@@ -33,7 +33,7 @@ from myapp.views import (
     search,
     question,
     get_attractions,
-    bar,
+    foodtest,
 )
 
 
@@ -101,5 +101,8 @@ urlpatterns = [
     path('comment/like/', comment.comment_like,name="travel_comment"),
     path('question/<int:aid>/', question.save_question,name="attraction_question"),
     path('question_answer/<int:aqid>/', question.save_question_answer,name="attraction_answer"),
+
+
+    path('foodtest', foodtest.foodtest,name="foodtest"),
     # path('bar',bar.delete_none_crowd) #酒吧測試用資料
 ]
