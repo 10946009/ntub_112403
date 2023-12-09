@@ -87,13 +87,13 @@
             {% endif %}
 
             <div class="card-body text-center" style="padding-top: 5px;">
-              <div style="float: right;user-select: none;">
+              <div style="user-select: none;">
                 {% for tag in item.object.is_fit %}
                   <span class="badge rounded-pill bg-success">{{ tag }}</span>
                 {% endfor %}
               </div>
-              <br>
-              <h4 class="card-title">{{item.ct_name}}</h4>
+              <!-- <br> -->
+              <h4 class="card-title" style="margin: 5px 0;">{{item.ct_name}}</h4>
               <h5 style="word-wrap: normal;">作者： {{ item.u_id.username }}</h5>
               {% comment %} <p class="description">20230318去平溪玩水一天</p> {% endcomment %}
               <div class = "container">
