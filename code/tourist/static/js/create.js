@@ -12,14 +12,50 @@ function closeTutorial() {
   document.documentElement.style.overflow = 'auto';
 }
 
-// 一進入頁面就顯示教學視窗
-// if checkHasData{
 
-// }
-// document.addEventListener("DOMContentLoaded", function() {
-//   openTutorial();
-// });
+// 隨機背景
+document.addEventListener("DOMContentLoaded", function () {
+  var images = [
+    '../static/images/IMG20220125115200.jpg',
+    '../static/images/bg1.jpg',
+    '../static/images/bg2.jpg',
+    '../static/images/bg5.png',
+    '../static/images/bg6.jpeg',
+    '../static/images/bg7.png',
+    '../static/images/bg8.jpg',
+    '../static/images/jp_img.jpg',
+  ]
 
+  var randomIndex = Math.floor(Math.random() * images.length);
+  var randomImg = images[randomIndex];
+
+  var bgimg = document.getElementById("bgimg");
+
+  bgimg.style.background = 'url(' + randomImg + ')';
+  bgimg.style.backgroundRepeat = 'no-repeat';
+  bgimg.style.backgroundSize = 'cover';
+  bgimg.style.backgroundPosition = 'center';
+  bgimg.style.opacity = '0.65';
+  bgimg.style.position = 'relative';
+  bgimg.style.zIndex = '100';
+})
+
+// Step1 單選
+const choiceClassLeft = document.getElementById('choiceClassLeft');
+const choiceClassRight = document.getElementById('choiceClassRight');
+
+function pickClass(element){
+  choiceClassLeft.classList.remove('pickClassColor');
+  choiceClassRight.classList.remove('pickClassColor');
+
+  element.classList.add('pickClassColor')
+}
+choiceClassLeft.addEventListener('click', function(){
+  pickClass(choiceClassLeft);
+})
+choiceClassRight.addEventListener('click', function(){
+  pickClass(choiceClassRight);
+})
 
 
 document.addEventListener('DOMContentLoaded', function () {
