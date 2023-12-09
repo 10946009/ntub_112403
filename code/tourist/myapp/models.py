@@ -330,3 +330,8 @@ class Pet_Crowd_Opening(models.Model):
     week = models.IntegerField(null=False, blank=False)
     crowd = ArrayField(models.IntegerField())
     opening = ArrayField(models.TextField(max_length=255))
+
+class food(models.Model):
+    name = models.TextField(max_length=255, null=False, blank=False)
+    price = models.IntegerField(null=False, blank=False)
+    unit = models.IntegerField(null=False, blank=False)
