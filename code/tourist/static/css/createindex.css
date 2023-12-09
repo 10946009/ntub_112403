@@ -36,18 +36,6 @@ body {
     align-items: center;
     align-content: center;
 }
-.block2 {
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 80%;
-    width: 500px;
-    background-color: rgba(255, 255, 255, 0.497);
-    border-radius: 30px;
-    box-shadow: 6px 6px 8px #000000;
-        
-}
 
 .formcss {
     display: block;
