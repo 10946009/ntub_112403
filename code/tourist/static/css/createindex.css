@@ -66,15 +66,17 @@ body {
     font-weight: bolder;
     color: #000;
     font-size: 20px;
-    padding: 5px 15px;
+    padding: 10px 15px;
+    width: 100px;
     box-shadow: 3px 2px 4px #333;
     background-color: rgb(255, 255, 135);
-    border: 0px;
+    border-radius: 10px;
+    border: 0;
     transition: background-color 0.3s;
 }
 
 .enterbtn:hover {
-    background-color: #0022ff;
+    background-color: #0f9900;
 }
 
 /* step1 */
@@ -131,17 +133,33 @@ body {
     border: 2px dashed red;
     color: red;
 }
-.nextStep {
+.nextStep,.backStep {
     padding: 10px 15px;
     margin: 20px auto;
     border-radius: 10px;
-    background-color: rgb(255, 255, 135);
+    background-color: rgb(202, 202, 202);
+    box-shadow: 3px 2px 4px #333;
     width: 100px;
     clear: both;
     font-weight: bold;
     font-size: 20px;
+    text-align: center;
     cursor: pointer;
     display: block;
+    transition: background-color 1s;
+}
+.nextStep:hover,.backStep:hover{
+    background-color: rgb(255, 255, 135);
+}
+
+.notion{
+    display: none;
+    width: 100%;
+    clear: both;
+    font-weight: bold;
+    color: red;
+    font-size: 18px;
+    text-align: center;
 }
 
 @media (max-width: 768px) {

@@ -44,11 +44,14 @@ document.addEventListener("DOMContentLoaded", function () {
 const choiceClassLeft = document.getElementById('choiceClassLeft');
 const choiceClassRight = document.getElementById('choiceClassRight');
 
+let isPickClass = false;
+
 function pickClass(element){
   choiceClassLeft.classList.remove('pickClassColor');
   choiceClassRight.classList.remove('pickClassColor');
 
-  element.classList.add('pickClassColor')
+  element.classList.add('pickClassColor');
+  isPickClass = true;
 }
 choiceClassLeft.addEventListener('click', function(){
   pickClass(choiceClassLeft);
@@ -56,7 +59,25 @@ choiceClassLeft.addEventListener('click', function(){
 choiceClassRight.addEventListener('click', function(){
   pickClass(choiceClassRight);
 })
-
+// step1 to step2 
+function nextStep(){
+  if(isPickClass){
+    $('#step1').fadeOut(100,function(){
+      $('#step2').fadeIn(500);
+    });
+  }else{
+    $('#notion').css('display','block');
+    // notion.style.display = 'block';
+  }
+}
+// step2 to step1
+function backStep(){
+  if(isPickClass){
+    $('#step2').fadeOut(100,function(){
+      $('#step1').fadeIn(500);
+    });
+  }
+}
 
 document.addEventListener('DOMContentLoaded', function () {
 
