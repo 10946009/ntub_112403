@@ -56,7 +56,10 @@ urlpatterns = [
     path("register/", register.register),
     path("register_verification/<str:token>/", register.register_verification),
     path("search/", old_views.search),
+
+    path("createindex/<int:ispet>", create_index.create_index),
     path("createindex/", create_index.create_index),
+
     # path('create/<int:ct_id>/<int:choiceday>',views.create),
     path("create/<int:ct_id>", create.create),
     path("attractions/", get_attractions.get_attractions_data),
