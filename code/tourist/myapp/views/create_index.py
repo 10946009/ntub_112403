@@ -4,7 +4,7 @@ from myapp.models import *
 from django.contrib.auth.decorators import login_required
 # 建立行程首頁
 @login_required(login_url="/login")
-def create_index(request):
+def create_index(request,ispet=None):
     num = 1
     if request.method == "POST":
         u_id = request.user.id
@@ -35,4 +35,4 @@ def create_index(request):
                 location_name="台北車站",
             )
         return redirect(f"/create/{unit.id}")
-    return render(request, "create_index.html")
+    return render(request, "create_index.html",locals())

@@ -30,7 +30,7 @@
         <span class="txt">行程類型</span><br>
         <select name="createType" id="createType" required class="inputspace">
           <option value="0">一般行程</option>
-          <option value="1">寵物友善行程</option>
+          <option value="1" {% if ispet == 1 %}selected{% endif %}>寵物友善行程</option>
         </select>
       </div>
       <button class="btn btn-outline-success enterbtn" type="submit">送出</button>
