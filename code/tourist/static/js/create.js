@@ -12,12 +12,72 @@ function closeTutorial() {
   document.documentElement.style.overflow = 'auto';
 }
 
-// 一進入頁面就顯示教學視窗
-document.addEventListener("DOMContentLoaded", function() {
-  openTutorial();
-});
 
+// 隨機背景
+document.addEventListener("DOMContentLoaded", function () {
+  var images = [
+    '../static/images/IMG20220125115200.jpg',
+    '../static/images/bg1.jpg',
+    '../static/images/bg2.jpg',
+    '../static/images/bg5.png',
+    '../static/images/bg6.jpeg',
+    '../static/images/bg7.png',
+    '../static/images/bg8.jpg',
+    '../static/images/jp_img.jpg',
+  ]
 
+  var randomIndex = Math.floor(Math.random() * images.length);
+  var randomImg = images[randomIndex];
+
+  var bgimg = document.getElementById("bgimg");
+
+  bgimg.style.background = 'url(' + randomImg + ')';
+  bgimg.style.backgroundRepeat = 'no-repeat';
+  bgimg.style.backgroundSize = 'cover';
+  bgimg.style.backgroundPosition = 'center';
+  bgimg.style.opacity = '0.65';
+  bgimg.style.position = 'relative';
+  bgimg.style.zIndex = '100';
+})
+
+// Step1 單選
+const choiceClassLeft = document.getElementById('choiceClassLeft');
+const choiceClassRight = document.getElementById('choiceClassRight');
+
+let isPickClass = false;
+
+function pickClass(element){
+  choiceClassLeft.classList.remove('pickClassColor');
+  choiceClassRight.classList.remove('pickClassColor');
+
+  element.classList.add('pickClassColor');
+  isPickClass = true;
+}
+choiceClassLeft.addEventListener('click', function(){
+  pickClass(choiceClassLeft);
+})
+choiceClassRight.addEventListener('click', function(){
+  pickClass(choiceClassRight);
+})
+// step1 to step2 
+function nextStep(){
+  if(isPickClass){
+    $('#step1').fadeOut(100,function(){
+      $('#step2').fadeIn(500);
+    });
+  }else{
+    $('#notion').css('display','block');
+    // notion.style.display = 'block';
+  }
+}
+// step2 to step1
+function backStep(){
+  if(isPickClass){
+    $('#step2').fadeOut(100,function(){
+      $('#step1').fadeIn(500);
+    });
+  }
+}
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -53,17 +113,17 @@ function saveTabState(tabId, day) {
 
 
 // 高度一致
-$(function () {
-  var h = 0;
-  $('.item .spottxtdiv').each(function () {
+// $(function () {
+//   var h = 0;
+//   $('.item .spottxtdiv').each(function () {
 
-    if ($(this).height() > h) {
-      h = $(this).height();
-    }
+//     if ($(this).height() > h) {
+//       h = $(this).height();
+//     }
 
-  });
-  $('.item .spottxtdiv').css('height', h + 'px');
-});
+//   });
+//   $('.item .spottxtdiv').css('height', h + 'px');
+// });
 
 
 
@@ -482,24 +542,7 @@ function InputRemainderOrder(num){
   order_attractions_detail_div.appendChild(remainder_attractions);
   rearrangeBlocks();
 };
-// // move to top
-// function moveFirst(blockDoneId) {
-//   let index = blocksOrder[globalDay].indexOf(parseInt(blockDoneId.slice(-1)));
-//   if (index > 0) {
-//     blocksOrder[globalDay].splice(index, 1);
-//     blocksOrder[globalDay].unshift(parseInt(blockDoneId.slice(-1)));
-//     rearrangeBlocks();
-//   }
-// }
-// // move to last
-// function moveLast(blockDoneId) {
-//   let index = blocksOrder[globalDay].indexOf(parseInt(blockDoneId.slice(-1)));
-//   if (index < blocksOrder[globalDay].length - 1) {
-//     blocksOrder[globalDay].splice(index, 1);
-//     blocksOrder[globalDay].push(parseInt(blockDoneId.slice(-1)));
-//     rearrangeBlocks();
-//   }
-// }
+
 
 
 function rearrangeBlocks() {
@@ -578,6 +621,8 @@ function checkHasData() {
       const containerID = container.id;
       console.log(containerID);
       flipped(containerID.charAt(containerID.length - 1))
+    }else{
+      openTutorial();
     }
   });
 }

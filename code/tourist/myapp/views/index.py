@@ -34,18 +34,18 @@ def index(request):
     #     aDb = Attractions.objects.get()
 
     # 抓熱門行程
-    hot_travel = Create_Travel.objects.filter(status=1).order_by('-like').values()
+    hot_travel = Create_Travel.objects.filter(status=1).order_by('-like')
     top_hot_travel = hot_travel[:3]  # 抓前3名
     #加入place_id
-    for index,item in enumerate(top_hot_travel):
+    for item in top_hot_travel:
         # 放入景點照片
-        top_hot_travel[index].setdefault("imglist",list(Create_Travel.get_attractions_picture(item["id"])))
+        item.imglist = Create_Travel.get_attractions_picture(item.id)
         # 判斷此user有沒有收藏過
-        if TravelFavorite.objects.filter(u_id=user, ct_id=item["id"]).exists():
-            item['is_favorite']= "1"
+        if TravelFavorite.objects.filter(u_id=user, ct_id=item.id).exists():
+            item.is_favorite = "1"
         else:
-            item['is_favorite']= "0"
-        item['u_id'] = User.objects.get(id=item['u_id']) 
+            item.is_favorite = "0"
+        
     # print(top_hot_travel)
         # #抓user資料庫
     

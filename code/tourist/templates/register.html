@@ -1,19 +1,17 @@
 {% extends 'base.html' %}
 {% block title %}註冊頁面{% endblock %}
 {% block content %}
-<link rel="stylesheet" href="../static/css/register.css">
-<link rel="stylesheet" href="../static/css/reset_pw.css">
-<link rel="stylesheet" href="../static/css/bootstrap2023.css">
-<link rel="stylesheet" href="../static/css/all.css">
-<link rel="stylesheet" href="../static/js/createT.js">
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/static/js/jquery-3.7.0.min.js"></script>
-<script src="/static/js/bootstrap.js"></script>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/register.css">
+    <link rel="stylesheet" href="../static/css/reset_pw.css">
+    <link rel="stylesheet" href="../static/css/bootstrap2023.css">
+    <link rel="stylesheet" href="../static/css/all.css">
+    <link rel="stylesheet" href="../static/js/createT.js">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/jquery-3.7.0.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 {% endblock %}
-
 {% comment %}
 
 <body>
@@ -48,15 +46,19 @@
                 </ul>
             </div>
         </div>
-    </nav> {% endcomment %}
-    {% block body %}
+</nav> {% endcomment %}
+{% block body %}
     <div class="register">
         <h1>Trip Fun Chill 趣放假</h1>
-        <div style="text-align:center;color:red">{{ message }}</div>
-        <form action="" method="post">
+        <div style="text-align:center;color:red" id ="message">{{ message }}</div>
+        <form action="" method="post" name = "registerForm">
             {% csrf_token %}
-            <input type="email" placeholder="e-mail" name="email" required>
-            <input type="text" placeholder="使用者名稱" name="username" required>
+            <input type="email" placeholder="e-mail" name="email" id="email" required>
+            <input type="text"
+                   placeholder="使用者名稱"
+                   name="username"
+                   id="username"
+                   required>
             性別：
             <select name="gender" style="padding: 6px;">
                 <option value="1" name="gender">男</option>
@@ -66,49 +68,88 @@
             <p></p>
             生日：
             <p></p>
-            <input type="date" placeholder="生日(範例:2000/01/01)" name="birthday" required value="{{ nowday }}"
-                min="1911-01-01" max="{{ nowday }}" style="padding:8px">
+            <input type="date"
+                   placeholder="生日(範例:2000/01/01)"
+                   name="birthday"
+                   required
+                   value="{{ nowday }}"
+                   min="1911-01-01"
+                   max="{{ nowday }}"
+                   style="padding:8px">
             <div class="password-container">
-                <input type="password" id="passwordInput" oninput="password_validation()" placeholder="密碼" name="passwd"
-                    required>
+                <input type="password"
+                       id="passwordInput"
+                       oninput="password_validation()"
+                       placeholder="密碼"
+                       name="passwd"
+                       required>
                 <i id="checkEye" class="toggle-password fas fa-eye"></i>
             </div>
             <div class="password-container">
-                <input type="password" id="passwordInput1" oninput="password_validation1()" placeholder="確認密碼"
-                    name="passwd1" required>
+                <input type="password"
+                       id="passwordInput1"
+                       oninput="password_validation1()"
+                       placeholder="確認密碼"
+                       name="passwd1"
+                       required>
                 <i id="checkEye1" class="toggle-password fas fa-eye"></i>
             </div>
             <div id="validationIcons">
-                <img src="../static/images/check.png" alt="Image 1" class="check" style="width:20px;
-                            height:auto" id="lowercaseIcon">
+                <img src="../static/images/check.png"
+                     alt="Image 1"
+                     class="check"
+                     style="width:20px;
+                            height:auto"
+                     id="lowercaseIcon">
                 <span style="color:rgb(207, 49, 49);">至少包含一個小寫子母</span>
                 <br>
-                <img src="../static/images/check.png" alt="Image 2" class="check" style="width:20px;
-                            height:auto" id="uppercaseIcon">
+                <img src="../static/images/check.png"
+                     alt="Image 2"
+                     class="check"
+                     style="width:20px;
+                            height:auto"
+                     id="uppercaseIcon">
                 <span style="color:rgb(207, 49, 49);">至少包含一個大寫字母</span>
                 <br>
-                <img src="../static/images/check.png" alt="Image 3" class="check" style="width:20px;
-                            height:auto" id="numberIcon">
+                <img src="../static/images/check.png"
+                     alt="Image 3"
+                     class="check"
+                     style="width:20px;
+                            height:auto"
+                     id="numberIcon">
                 <span style="color:rgb(207, 49, 49);">至少包含一個數字符號</span>
                 <br>
-                <img src="../static/images/check.png" alt="Image 4" class="check" style="width:20px;
-                            height:auto" id="specialCharIcon">
+                <img src="../static/images/check.png"
+                     alt="Image 4"
+                     class="check"
+                     style="width:20px;
+                            height:auto"
+                     id="specialCharIcon">
                 <span style="color:rgb(207, 49, 49);">至少包含一個非字母和數字的特殊字符</span>
                 <br>
-                <img src="../static/images/check.png" alt="Image 5" class="check" style="width:20px;
-                            height:auto" id="lengthIcon">
+                <img src="../static/images/check.png"
+                     alt="Image 5"
+                     class="check"
+                     style="width:20px;
+                            height:auto"
+                     id="lengthIcon">
                 <span style="color:rgb(207, 49, 49);">至少包含8個字元符號</span>
                 <br>
-                <p></p>
-                <input class="pure-button-register" type="submit" value="註冊" onclick="checkemail()">
+                <p></p>   
+            </div>
+            <div style="text-align: center;">
+                <button class="btn btn-outline-success pure-button-register" onclick="checkemail()">
+                    <span>註冊</span>
+                </button>
             </div>
         </form>
         <div class="message">
             <a href="/login">已有帳號？</a>
         </div>
     </div>
-    <div>&nbsp;</div>
-
+    {% comment %} <div>
+        &nbsp;
+    </div> {% endcomment %}
     <script>
         function password_validation() {
             var password = document.getElementById("passwordInput").value;
@@ -125,7 +166,7 @@
             specialCharIcon.classList.toggle("valid", password.match(/[^a-zA-Z\d]/g));
             lengthIcon.classList.toggle("valid", password.length >= 8);
         }
-        function password_validation1() {
+        {% comment %} function password_validation1() {
             var password = document.getElementById("passwordInput1").value;
 
             var lowercaseIcon = document.getElementById("lowercaseIcon");
@@ -139,7 +180,7 @@
             numberIcon.classList.toggle("valid", password.match(/[0-9]/g));
             specialCharIcon.classList.toggle("valid", password.match(/[^a-zA-Z\d]/g));
             lengthIcon.classList.toggle("valid", password.length >= 8);
-        }
+        } {% endcomment %}
 
         const togglePassword = document.getElementById('checkEye');
         const passwordField = document.getElementById('passwordInput');
@@ -170,8 +211,47 @@
                 togglePassword1.classList.add('fa-eye');
             }
         });
+
         function checkemail(){
-            alert("請到信箱收信完成註冊!");
-        }
+            event.preventDefault();
+            let valid = document.getElementsByClassName("valid");
+            if(valid.length != 5){
+                document.getElementById("message").innerHTML = "密碼格式錯誤!";
+            }else{
+                let email = document.getElementById("email").value;
+                let username = document.getElementById("username").value;
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                
+                if (!emailRegex.test(email)) {
+                    return false; // 阻止表單的提交
+                }
+                if (username==="") {
+                    return false; // 阻止表單的提交
+                }
+                if(passwordField1.value === passwordField.value){
+                    // 獲取表單數據
+                    var formData = new FormData(document.forms["registerForm"]);
+                    // 使用fetch發送POST請求
+                    $.ajax({
+                        url: "/register/",
+                        type: "POST",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (data) {
+                            document.getElementById("message").innerHTML = data.message;
+                        },
+                        error: function (data) {
+                            alert("註冊失敗!");
+                        }
+                    });
+                }
+                else{
+                    document.getElementById("message").innerHTML = "密碼不一致!";
+                }
+                }
+            }
+
+
     </script>
-    {% endblock body %}
+{% endblock body %}
