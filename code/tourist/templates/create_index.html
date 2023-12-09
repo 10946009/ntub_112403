@@ -11,11 +11,37 @@
   }
 </script>
 {% block body %}
-<div class="bgimg">
-  <div class="block">
+<div class="bgimg" id="bgimg">
+  <div id="step1" class="block">
+    <div id="tabDL" class="txtdiv">
+      <span class="txt">行程類型</span>
+      <div class="choiceClass inputspace" name="createType" id="createType" required>
+        <div id="choiceClassLeft" class="choiceClassDiv choiceClassLeft" value="0">
+          <img src="../static/images/travel_img.png" class="img-responsive" width="100%" alt="">
+          <div class="choiceClassDiv_txt">
+            旅遊行程建立
+          </div>
+        </div>
+        <div id="choiceClassRight" class="choiceClassDiv choiceClassRight" value="1">
+          <img src="../static/images/pet.png" class="img-responsive" width="100%" alt="">
+          <div class="choiceClassDiv_txt">
+            寵物行程建立
+          </div>
+        </div>
+      </div>
+      <div id="notion" class="notion">請先選擇行程類型</div>
+      <div class="nextStep" onclick="nextStep()">下一步</div>
+      <!-- <select name="createType" id="createType" required class="inputspace">
+        <option value="0">一般行程</option>
+        <option value="1">寵物友善行程</option>
+      </select> -->
+      <!-- <button class="btn btn-outline-success enterbtn" type="next">下一步</button> -->
+    </div>
+  </div>
+  <div id="step2" class="block" style="display: none;">
     <form action="" method="post" class="formcss">
       {% csrf_token %}
-      <div id="tabDL" class="txtdiv"><span class="txt">行程名稱</span><br>
+      <div id="tabDL" class="txtdiv" style="clear: both;"><span class="txt">行程名稱</span><br>
         <input type="text" name="createName" id="createName" value="" required class="inputspace">
       </div>
       
@@ -34,6 +60,7 @@
         </select>
       </div>
       <button class="btn btn-outline-success enterbtn" type="submit">送出</button>
+      <div class="backStep" onclick="backStep()">上一步</div>
     </form>
   </div>
 </div>

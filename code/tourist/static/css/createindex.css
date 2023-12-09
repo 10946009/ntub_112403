@@ -1,8 +1,9 @@
 /* create_index的 */
-body{
+body {
     overflow: hidden;
 }
-#rainyMain{
+
+#rainyMain {
     z-index: 1;
     margin: 0;
 }
@@ -14,20 +15,21 @@ body{
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
+    position: relative;
     height: 100vh;
     width: 100vw;
     opacity: 0.65;
 }
 
 .block {
-    height: 500px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 80%;
     width: 500px;
     background-color: rgba(255, 255, 255, 0.497);
-    border-radius: 10%;
+    border-radius: 30px;
     box-shadow: 6px 6px 8px #000000;
     display: flex;
     justify-content: center;
@@ -43,6 +45,7 @@ body{
 .txtdiv {
     text-align: center;
     margin-bottom: 20px;
+    position: relative;
 }
 
 .txt {
@@ -50,6 +53,7 @@ body{
     font-size: 28px;
     color: black;
     text-shadow: 3px 3px 3px rgb(91, 91, 91);
+    margin-bottom: 10px;
 }
 
 #createDate {
@@ -62,13 +66,138 @@ body{
     font-weight: bolder;
     color: #000;
     font-size: 20px;
-    padding: 5px 15px;
+    padding: 10px 15px;
+    width: 100px;
     box-shadow: 3px 2px 4px #333;
     background-color: rgb(255, 255, 135);
-    border: 0px;
+    border-radius: 10px;
+    border: 0;
     transition: background-color 0.3s;
 }
 
 .enterbtn:hover {
-    background-color: #0022ff;
+    background-color: #0f9900;
+}
+
+/* step1 */
+.choiceClass {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.choiceClassDiv {
+    position: relative;
+    width: 45%;
+    margin: 20px auto 50px auto;
+    padding: 10px;
+    border: 2px dashed black;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out, border 0.5s ease-in-out;
+}
+.choiceClassDiv:hover{
+    color: red;
+    border: 2px dotted red;
+}
+.choiceClassDiv img{
+	background-color: rgba(247, 255, 221);
+    border-radius: 50%;
+    box-shadow: 0 0 10px #333;
+}
+.choiceClassDiv_txt{
+    position: absolute;
+	left: 50%;
+    bottom: -30px;
+	transform: translate(-50%, -50%);
+	background-color: rgb(255, 219, 219);
+	border-radius: 30px;
+	width: 100%;
+	padding: 5px 10px;
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px #333;
+	text-decoration: dotted;
+}
+
+.choiceClassLeft {
+    float: left;
+    margin-right: 20px;
+}
+
+.choiceClassRight {
+    float: right;
+    margin-left: 20px;
+}
+.pickClassColor{
+    transform: scale(1.1);
+    border: 2px dashed red;
+    color: red;
+}
+.nextStep,.backStep {
+    padding: 10px 15px;
+    margin: 20px auto;
+    border-radius: 10px;
+    background-color: rgb(202, 202, 202);
+    box-shadow: 3px 2px 4px #333;
+    width: 100px;
+    clear: both;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    display: block;
+    transition: background-color 1s;
+}
+.nextStep:hover,.backStep:hover{
+    background-color: rgb(255, 255, 135);
+}
+
+.notion{
+    display: none;
+    width: 100%;
+    clear: both;
+    font-weight: bold;
+    color: red;
+    font-size: 18px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .block {
+        width: 80%;
+        height: 70%;
+    }
+}
+@media (max-width: 650px) {
+    .block {
+        height: 60%;
+    }
+    .choiceClassDiv{
+        padding: 5px;
+    }
+    .choiceClassLeft {
+        margin-right: 10px;
+    }
+    
+    .choiceClassRight {
+        margin-left: 10px;
+    }
+    
+}
+@media (max-width: 500px) {
+    .choiceClassDiv_txt{
+        padding: 3px 5px;
+        font-size: 16px;
+    }
+    .nextStep {
+        padding: 8px 10px;
+        width: 80px;
+        font-size: 18px;
+    }
+}
+@media (max-width: 385px) {
+    .choiceClassDiv_txt{
+        padding: 2px;
+        font-size: 14px;
+    }
 }
