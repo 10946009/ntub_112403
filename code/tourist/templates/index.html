@@ -128,13 +128,13 @@
             <div class="heart_icon_img">
               <div class="slideshow-container" id="imageContainer" onmouseover="startSlideshow(this)" onmouseout="stopSlideShow(this)">
                 {% for  img in ct.imglist %}
-                {% if forloop.counter == 1 %} 
-                <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="changeImg changeImg_show">
-                {% else %}
-                <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="changeImg">
-                {% endif %}
+                  {% if forloop.counter == 1 %} 
+                  <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="changeImg changeImg_show">
+                  {% else %}
+                  <img src="/static/images/attractions/{{img.a__place_id}}_0.jpg" class="changeImg">
+                  {% endif %}
                 {%empty%}
-                <img src="/static/images/attractions/default_0.jpg" class="changeImg changeImg_show">
+                  <img src="/static/images/attractions/default_0.jpg" class="changeImg changeImg_show">
                 {% endfor %}
               </div>
               <!-- 加入最愛 -->
@@ -147,11 +147,19 @@
               {% endif %}
             </div>
             <div class="spot_txt">
+              <!--我是行程的標籤-->
+              {% for tag in ct.is_fit %}
+                <span class="badge rounded-pill bg-success">{{ tag }}</span>
+              {% endfor %}
+              
+              <!--我是行程的名稱-->
               <h4 class="c_title">
                 {{ ct.ct_name }}
               </h4>
+
+              <!--我是行程的作者-->
               <h5>
-                作者：{{ ct.u_id.username }}
+                作者：{{ ct.u.username }}
               </h5>
               <p>收藏人數：{{ ct.like }}</p>
               {% comment %} <button class="btn btn-warning spot_data_btn more_data" id="more_data">詳細資料</button> {% endcomment %}
