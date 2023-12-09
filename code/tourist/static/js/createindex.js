@@ -40,9 +40,11 @@ document.addEventListener("DOMContentLoaded", function () {
     isPickClass = true;
   }
   choiceClassLeft.addEventListener('click', function(){
+    createType.value = '0';
     pickClass(choiceClassLeft);
   })
   choiceClassRight.addEventListener('click', function(){
+    createType.value = '1';
     pickClass(choiceClassRight);
   })
   // step1 to step2 
