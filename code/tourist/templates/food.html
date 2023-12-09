@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}食物推薦{% endblock %}
+
+{% block content %}
+<style>
+  .main_content{
+    margin: 100px 150px;
+    text-align: center;
+  }
+
+  .txtdiv{
+    margin: 10px;
+  }
+
+  .m3enu{
+    text-align: center;
+  }
+
+  .dishdiv{
+    border: 1px solid #000;
+    margin: 10px 400px;
+    padding: 5px;
+    border-radius: 20px;
+  }
+</style>
+{% endblock %}
+
+
+
+{% block body %}
+<div class="main_content">
+  <form action="" method="POST" class="foodForm">
+    <h3>目前準備中</h3>
+    {% csrf_token %}
+    <div id="tabDL" class="txtdiv"><span class="txt">A</span>
+      <input type="number" id="disha" name="dish" min="0" value="0" required>
+    </div>
+
+    <div id="tabDL" class="txtdiv"><span class="txt">B</span>
+      <input type="number" id="dishb" name="dish" min="0" value="0" required>
+    </div>
+
+    <div id="tabDL" class="txtdiv"><span class="txt">C</span>
+      <input type="number" id="dishc" name="dish" min="0" value="0" required>
+    </div>
+    <p></p>
+    <button class="btn btn-outline-success enterbtn" type="submit">送出</button>
+     
+  </form>
+
+  <hr>
+
+  <h3>菜單</h3>
+  <div class="menu">
+    {% for item in all_dish %}
+      <div id="{{item.id}}" class="dishdiv">
+        <h4>{{ item.name }}</h4>
+        <p>價格：{{ item.price }}</p>
+        <p>平均等待時間：{{ item.wait }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <hr>
+
+  <h3>推薦!</h3>
+  <div class="menu">
+    {% for item in recommend %}
+      <div id="{{item.id}}" class="dishdiv">
+        <h4>{{ item.name }}</h4>
+        <p>價格：{{ item.price }}</p>
+        <p>平均等待時間：{{ item.wait }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+
+{% endblock %}

@@ -220,7 +220,7 @@
 
   // 解決繼承toolbar重整不會顯示對應的active
   document.addEventListener("DOMContentLoaded", function() {
-    const navLinks = document.querySelectorAll('.nav-link');
+    const navLinks = navbarSupportedContent.querySelectorAll('.nav-link');
 
     navLinks.forEach((link, index) => {
       link.addEventListener('click', function() {
