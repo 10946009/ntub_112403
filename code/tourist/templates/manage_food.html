@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% block title %}管理餐點訂單{% endblock %}
+
+{% block content %}
+<style>
+  .main_content{
+    margin: 100px 150px;
+    text-align: center;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+      border: 1px solid #dddddd;
+      text-align: center;
+      padding: 8px;
+  }
+
+  td{
+    height: 63px;
+  }
+
+  th {
+      background-color: #f2f2f2;
+  }
+  
+
+  .button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #1f9f62; /* 按鈕背景色 */
+    border: 1px solid #79c999;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+
+  /* 滑鼠懸停時改變按鈕背景色 */
+  .button-link:hover {
+      background-color: #1d6f48;
+  }
+
+
+  .orderFilter_div{
+    margin: 0px auto;
+    text-align: center;
+    display: block;
+  }
+  .filtertext{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: 18px;
+    margin: 6px 0px 20px 20px;
+  }
+  .orderFilter_btn {
+    display: block;
+    float: left;
+    text-decoration: none;
+    width: 100px;
+    padding: 5px 10px;
+    margin-left: 10px;
+    border-radius: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgb(255 197 41);
+    color: #fff;
+    text-shadow: 2px 2px 3px #333;
+    box-shadow: 4px 4px 4px #ccc;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .orderFilter_btn:hover {
+      background-color: #ff473d;
+  }
+
+  .orderFilter_btn_click {
+      background-color: #ff473d;
+  }
+</style>
+
+{% endblock %}
+
+
+
+{% block body %}
+<div class="main_content">
+  <h2>管理餐點訂單</h2>
+  
+  <dir class="row">
+
+    <!--篩選器-->
+    <div class="col-12 orderFilter_div">
+      <a href="/managefood" class="orderFilter_btn all_order">All</a>
+      <a href="/managefood/1" class="orderFilter_btn already_finish">已完成</a>
+      <a href="/managefood/0" class="orderFilter_btn not_finish">準備中</a>
+    </div>
+    <div class="col-12 filtertext">
+      目前篩選> {{ msg }}
+    </div>
+    <table>
+      <tr>
+          <th>編號</th>
+          <th>菜品</th>
+          <th>數量</th>
+          <th>桌號</th>
+          <th>狀態</th>
+          <th>完成訂單</th>
+      </tr>
+      {% for item in all_order %}
+        <tr>
+          <td>{{item.id}}</td>
+          <td>{{item.dish.name}}</td>
+          <td>{{item.num}}</td>
+          <td>{{item.table_num}}</td>
+          <td>{% if item.status %}已完成訂單{% else %}準備中{% endif %}</td>
+          <td>{% if item.status == 1 %}已完成{% else %}<a href="/managefood_finish/{{item.id}}" class="button-link">完成</a>{% endif %}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="6">暫無資料</td>
+        </tr>
+      {% endfor %}
+      
+  </dir>
+
+</div>
+
+
+{% endblock %}
+
+<script>
+
+  $(document).ready(function () {
+    var currentwin = window.location.pathname;
+  
+    // 给每个链接添加点击事件处理程序
+    $(".orderFilter_btn").click(function (e) {
+      $(".orderFilter_btn").removeClass("orderFilter_btn_click");
+      $(this).addClass("orderFilter_btn_click");
+    });
+  
+    // 设置初始选中链接的样式
+    $(".orderFilter_btn").each(function () {
+      if ($(this).attr("href") === currentwin) {
+        $(this).addClass("orderFilter_btn_click");
+      }
+    });
+  })
+
+</script>
