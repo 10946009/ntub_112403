@@ -89,7 +89,7 @@
                 {% endif %}
                 {% endfor %}
               </div>
-              <a class="fa-solid fa-circle-info info_icon_left" onclick="clickInfo(item.id)"></a>
+              <a class="fa-solid fa-circle-info info_icon_left" onclick="clickInfo({{item.id}})"></a>
               {% if item.is_favorite == "1" %}
               <button class="fa-solid fa-heart heart_icon active_heart" data-isfavorite="{{item.is_favorite}}"
                 data-id="{{item.id}}" data-type="/add_favorite/"></button>
