@@ -63,16 +63,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">首頁</a>
+              <a class="nav-link {% if request.path == "/" %}active{% endif %}" aria-current="page" href="/">首頁</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/createindex">建立行程</a>
+              <a class="nav-link {% if request.path == "/createindex/" %}active{% endif %}" href="/createindex">建立行程</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/attraction_details">景點資訊</a>
+              <a class="nav-link {% if request.path == "/attraction_details/" %}active{% endif %}" href="/attraction_details">景點資訊</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/share">分享空間</a>
+              <a class="nav-link {% if request.path == "/share/" %}active{% endif %}" href="/share">分享空間</a>
             </li>
             {% if request.user.is_authenticated %}
             <li class="nav-item dropdown">
@@ -219,7 +219,7 @@
   // }
 
   // 解決繼承toolbar重整不會顯示對應的active
-  document.addEventListener("DOMContentLoaded", function() {
+  {% comment %} document.addEventListener("DOMContentLoaded", function() {
     const navLinks = navbarSupportedContent.querySelectorAll('.nav-link');
 
     navLinks.forEach((link, index) => {
@@ -244,7 +244,7 @@
 
       navLinks[activeIndex].classList.add('active');
     }
-  });
+  }); {% endcomment %}
 
 
   // popup info
