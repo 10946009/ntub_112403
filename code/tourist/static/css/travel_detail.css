@@ -478,12 +478,13 @@ img {
     font-size: 16px;
     font-weight: 600;
     color: rgb(160, 159, 159);
+    padding-left: 10px;
 }
 
 .travel_att_name_one {
     margin-top: 5px;
     border-left: gray solid;
-    padding-left: 10px;
+    padding-left: 12px;
     color: rgb(120, 118, 118);
     font-size: 16px;
 }
@@ -495,8 +496,14 @@ img {
     font-size: 16px;
 }
 
-.highlight {
-    color: red;
+.sticky {
+    position: fixed;
+    top: 80px;
+    right: 52px;
+}
+
+.day_att a {
+    text-decoration: none;
 }
 
 @media screen and (max-width:980px) {
