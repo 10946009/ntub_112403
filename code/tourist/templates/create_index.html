@@ -33,14 +33,16 @@
         </div>
         <div id="notion" class="notion">請先選擇行程類型</div>
         <div class="nextStep" onclick="nextStep()">下一步</div>
-        <select name="createType" id="createType" required class="inputspace" style="display:none;">
-          <option value="0">一般行程</option>
-          <option value="1">寵物友善行程</option>
-        </select>
       </div>
     </div>
     <div id="step2" class="block" style="display: none;">
       <div>
+        
+        <!--目前選擇的行程類型放在這，從js塞進來-->
+        <div id="tabDL" class="txtdiv" style="clear: both;"><span class="txt" id="nowcreateType"></span>
+          <input type="hidden" name="createType" id="createType" class="inputspace" style="display:none;">
+        </div>
+
         <div id="tabDL" class="txtdiv" style="clear: both;"><span class="txt">行程名稱</span><br>
           <input type="text" name="createName" id="createName" value="" required class="inputspace">
         </div>
