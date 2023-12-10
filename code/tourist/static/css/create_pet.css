@@ -792,6 +792,12 @@ main {
     overflow-y: auto;
     overflow-x: hidden;
 }
+.filterBtn{
+    border: 0;
+    border-radius: 20px;
+    padding: 10px 15px;
+}
+/* 加入不同按鈕的顏色 */
 
 #show_rec input[type="checkbox"] {
     display: none;

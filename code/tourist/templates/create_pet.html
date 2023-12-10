@@ -159,9 +159,16 @@
             </span>
           </div>
           <div id="checkbox-{{ day }}" class="checkboxDiv">
-            <div class="openRec" style="padding: 10px 5px" id="AttractionsContainer-{{ day }}">
-              <h4>請先選擇使用者位置和時間</h4>
-              {% include 'create_recommend_pet.html' %}
+            <div class="openRec">
+              <div class="filterdiv">
+                <button class="filterBtn filterBtnEat">友善餐廳</button>
+                <button class="filterBtn filterBtnSpot">寵物景點</button>
+                <button class="filterBtn filterBtnWash">寵物美容</button>
+              </div>
+              <div style="padding: 10px 5px" id="AttractionsContainer-{{ day }}">
+                <h4>請先選擇使用者位置和時間</h4>
+                {% include 'create_recommend_pet.html' %}
+              </div>
             </div>
           </div>
         </div>
