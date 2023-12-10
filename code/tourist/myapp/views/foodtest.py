@@ -60,30 +60,36 @@ from django.contrib.auth.decorators import login_required
 # 可以推薦A or C
 
 def foodtest(request):
-    unit = 5 #每單位為5分鐘
-    unit_dish = 5 #每5分鐘能處理的單位
+    unit = 5 #每單位為5分鐘(可修改)
+    unit_dish = 5 #每5分鐘能處理的單位(可修改)
+
     all_dish = food.objects.all().order_by('id')
 
     allwait = 0  # 等待單位
+
+    # 需等待的所有單位
     for d in all_dish:
         allwait +=  d.unit * d.order_num
 
-    allwait = allwait / unit_dish # 為input
+    allwait = allwait / unit_dish # 為input (需等待所有的單位 / 每5分鐘能處理的單位)
 
     print('allwait',allwait)
 
+    # 加入將每道菜平均等待時間
     for d in all_dish:
         d.wait = round(((d.unit + allwait) * unit))
 
+    # 推薦的部分
     if allwait > 1:
-        recommend = all_dish.filter(unit__lte=1)  # 推薦<= 1 的部分
+        recommend = all_dish.filter(unit__lte=1)  # 推薦<= 1 的部分 (數字1可修改)
         for d in recommend:
             d.wait = round(((d.unit + allwait) * unit))
     else:
-        recommend = all_dish.filter(unit__gt=1).order_by('unit')  # 推薦<= 1 的部分
+        recommend = all_dish.filter(unit__gt=1).order_by('unit')  # 推薦<= 1 的部分 (數字1可修改)
         for d in recommend:
             d.wait = round(((d.unit + allwait) * unit))
 
+    # 傳送訂單
     if request.method == "POST":
         now_dish = request.POST.getlist('dish') #目前點的菜
         table_num = request.POST['table_num'] #桌號
