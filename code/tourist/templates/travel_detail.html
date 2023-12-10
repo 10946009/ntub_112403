@@ -36,528 +36,538 @@
         {% endif %}
       </div>
     </div>
-    <div class="col-1"></div>
-  </div>
-  <!-- 行程詳細那塊 -->
-  <div class="row">
-    <div class="col-1"></div>
-    <!-- 使用者、行程相關 -->
-    <div class="col-7">
-      <!-- 使用者名稱、頭貼 -->
-      <div class="review-content" style="margin-top:20px;">
-        <div style="display: flex; align-items: center;">
-          <img class="trip_user-img" src="../static/images/an.jpeg" alt="">
+    <!-- 行程詳細那塊 -->
+    <div class="row">
+      <!-- 使用者、行程相關 -->
+      <div class="col-8">
+        <!-- 使用者名稱、頭貼 -->
+        <div class="review-content" style="margin-top:20px;">
+          <div style="display: flex; align-items: center;">
+            <img class="trip_user-img" src="../static/images/an.jpeg" alt="">
+            <div>
+              <h6 class="username" style="font-size: 18px;">
+                {{ct_detail.u.username}}
+              </h6>
+              <h6><strong style="color:rgb(110, 109, 109);">{{ct_detail.create_date|date:"Y年m月d日"}}</strong></h6>
+            </div>
+          </div>
+        </div>
+        <!-- 行程簡介（使用者自己打） -->
+        <div>
+          <h6 style="margin:20px 0px 10px 5px;"><span style="color:blue;">{% if ct_detail.detail == "" %}目前還沒有內容
+              {% else %}{{ct_detail.detail}}{% endif %}</span></h6>
+        </div>
+        <!-- 幾個人收藏 -->
+        <div>
+          <span style="border: black solid;padding: 0 5px 0 5px; background-color: white;font-size: 18px;"> <i
+              class="fas fa-regular fa-heart" style="color: rgb(202, 13, 13);margin-right: 5px;"></i>xx</span>
+        </div>
+        <hr style="margin-bottom:20px;">
+        <div class="day_detail">
+          <!-- 天數 -->
+          <div style="margin-bottom:20px;">
+            <span class="day_name">第1天</span>
+          </div>
+          <!-- 景點名稱 -->
+          <div style="margin-bottom:20px;">
+            <i class="fa-solid fa-location-dot" style="font-size: 24px;margin-right: 10px;"></i><span
+              style="font-size: 22px;font-weight: 600;">101大樓</span><br>
+            <h6 style="margin:10px 0 0 30px;color: rgb(95, 95, 95);font-weight: 600;">停留xx分</h6>
+          </div>
+          <!-- 景點圖片 -->
+          <div class="gallery">
+            <div class="image">
+              <img src="../static/images/bg1.jpg" alt="Image 1">
+            </div>
+            <div class="image">
+              <img src="../static/images/bg2.jpg" alt="Image 2">
+            </div>
+            <div class="image">
+              <img src="../static/images/bg6.jpeg" alt="Image 3">
+            </div>
+          </div>
+          <!-- 景點說明 -->
           <div>
-            <h6 class="username" style="font-size: 18px;">
-              {{ct_detail.u.username}}
-            </h6>
-            <h6><strong style="color:rgb(110, 109, 109);">{{ct_detail.create_date|date:"Y年m月d日"}}</strong></h6>
+            <p>為了購買底片而發現的寶藏照相館-又又美。<br><br>
+              充滿底片和老物的復古相機館，除了有賣底片相機和相關配件外，還有提供輕食與飲品，只要低消100元，就能上樓參觀店內擺設，也能付費請店員拍攝拍立得！</p>
           </div>
-        </div>
-      </div>
-      <!-- 行程簡介（使用者自己打） -->
-      <div>
-        <h6 style="margin:20px 0px 10px 5px;"><span style="color:blue;">{% if ct_detail.detail == "" %}目前還沒有內容
-            {% else %}{{ct_detail.detail}}{% endif %}</span></h6>
-      </div>
-      <!-- 幾個人收藏 -->
-      <div>
-        <span style="border: black solid;padding: 0 5px 0 5px; background-color: white;font-size: 18px;"> <i
-            class="fas fa-regular fa-heart" style="color: rgb(202, 13, 13);margin-right: 5px;"></i>xx</span>
-      </div>
-      <hr style="margin-bottom:20px;">
-      <div class="day_detail">
-        <!-- 天數 -->
-        <div style="margin-bottom:20px;">
-          <span class="day_name">第1天</span>
-        </div>
-        <!-- 景點名稱 -->
-        <div style="margin-bottom:20px;">
-          <i class="fa-solid fa-location-dot" style="font-size: 24px;margin-right: 10px;"></i><span
-            style="font-size: 22px;font-weight: 600;">101大樓</span><br>
-          <h6 style="margin:10px 0 0 30px;color: rgb(95, 95, 95);font-weight: 600;">停留xx分</h6>
-        </div>
-        <!-- 景點圖片 -->
-        <div class="gallery">
-          <div class="image">
-            <img src="../static/images/bg1.jpg" alt="Image 1">
+          <!-- 景點名稱 -->
+          <div style="margin-bottom:20px;">
+            <i class="fa-solid fa-location-dot" style="font-size: 24px;margin-right: 10px;"></i><span
+              style="font-size: 22px;font-weight: 600;">動物園</span><br>
+            <h6 style="margin:10px 0 0 30px;color: rgb(95, 95, 95);font-weight: 600;">停留xx分</h6>
           </div>
-          <div class="image">
-            <img src="../static/images/bg2.jpg" alt="Image 2">
-          </div>
-          <div class="image">
-            <img src="../static/images/bg6.jpeg" alt="Image 3">
-          </div>
-        </div>
-        <!-- 景點說明 -->
-        <div>
-          <p>為了購買底片而發現的寶藏照相館-又又美。<br><br>
-            充滿底片和老物的復古相機館，除了有賣底片相機和相關配件外，還有提供輕食與飲品，只要低消100元，就能上樓參觀店內擺設，也能付費請店員拍攝拍立得！</p>
-        </div>
-        <!-- 景點名稱 -->
-        <div style="margin-bottom:20px;">
-          <i class="fa-solid fa-location-dot" style="font-size: 24px;margin-right: 10px;"></i><span
-            style="font-size: 22px;font-weight: 600;">動物園</span><br>
-          <h6 style="margin:10px 0 0 30px;color: rgb(95, 95, 95);font-weight: 600;">停留xx分</h6>
-        </div>
-        <!-- 景點圖片 -->
-        <div class="gallery">
-          <div class="image">
-            <img src="../static/images/beitou.jpeg" alt="Image 1">
-          </div>
-          <div class="image">
-            <img src="../static/images/chang.jpeg" alt="Image 2">
-          </div>
-          <div class="image">
-            <img src="../static/images/Datong.jpeg" alt="Image 3">
-          </div>
-        </div>
-        <!-- 景點說明 -->
-        <div>
-          <p>設計系學生本人在做作業時，查資料發現的厲害親水空間-河樂廣場！<br><br>
-            蜿蜒的曲線打破台灣大多數的公園設定，配合水域再加入現代感，這樣創新的設計思維讓我佩服萬分！雖然剛好遇到閉館，但閉上眼睛想像景緻，也彷彿自己正融入其中。</p>
-        </div>
-      </div>
-      <hr>
-      <div class="day_detail">
-        <!-- 天數 -->
-        <div style="margin-bottom:20px;margin-top: 20px;">
-          <span class="day_name">第2天</span>
-        </div>
-        <!-- 景點名稱 -->
-        <div style="margin-bottom:20px;">
-          <i class="fa-solid fa-location-dot" style="font-size: 24px;margin-right: 10px;"></i><span
-            style="font-size: 22px;font-weight: 600;">士林夜市</span><br>
-          <h6 style="margin:10px 0 0 30px;color: rgb(95, 95, 95);font-weight: 600;">停留xx分</h6>
-        </div>
-        <!-- 景點圖片 -->
-        <div class="gallery">
-          <div class="image">
-            <img src="../static/images/bg5.png" alt="Image 1">
-          </div>
-          <div class="image">
-            <img src="../static/images/bg7.png" alt="Image 2">
-          </div>
-          <div class="image">
-            <img src="../static/images/bg8.jpg" alt="Image 3">
-          </div>
-        </div>
-        <!-- 景點說明 -->
-        <div>
-          <p>北部人ㄉ早餐-漢堡🍔<br><br>
-            對，我沒吃過，吵著要來吃。我覺得很好吃欸，有肉又有麵線超爽ㄉ🥺（奶茶超讚）但人潮好多，排隊要排好久。</p>
-        </div>
-        <!-- 景點名稱 -->
-        <div style="margin-bottom:20px;">
-          <i class="fa-solid fa-location-dot" style="font-size: 24px;margin-right: 10px;"></i><span
-            style="font-size: 22px;font-weight: 600;">無名米糕</span><br>
-          <h6 style="margin:10px 0 0 30px;color: rgb(95, 95, 95);font-weight: 600;">停留xx分</h6>
-        </div>
-        <!-- 景點圖片 -->
-        <div class="gallery">
-          <div class="image">
-            <img src="../static/images/bg1.jpg" alt="Image 1">
-          </div>
-          <div class="image">
-            <img src="../static/images/bg2.jpg" alt="Image 2">
-          </div>
-          <div class="image">
-            <img src="../static/images/bg6.jpeg" alt="Image 3">
-          </div>
-        </div>
-        <!-- 景點說明 -->
-        <div>
-          <p>巷內的隱藏美食-無名米糕。<br><br>
-            在台南的最後一餐，我們決定在火車站附近解決，因為太晚才入內用餐，所以招牌米糕已經賣完ㄌ，但是我們點的魚鬆飯也很美味，我才花幾秒鐘而已就吃光光ㄌ！（重點是超便宜，這樣三飯三小菜才賣100初）<br><br>
-            吃飽飽，開心回家🌷</p>
-        </div>
-      </div>
-      <hr>
-      <!-- 留言 -->
-      <div style="margin-bottom:20px;">
-        <h5 style="font-weight: 600;">留言（0）</h5>
-      </div>
-      <section class="comment_travel_detail">
-        <section>
-          {% for comment in ct_detail.get_comment %}
-          <div class="review-content">
-            <img class="user-img" src="{{comment.u.get_photo}}" alt="">
-            <div class="comment-content">
-              <div style="display: flex; justify-content: space-between; position: relative;">
-                <h6 class="username" style="font-size: 16px;">
-                  {{comment.u.username}}<br>
-                  <span style="color: gray; font-size: 12px; font-style: italic;">{{comment.comment_date}}&ensp;</span>
-                </h6>
-                <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer;" onclick="toggleDeleteBox(this)"></i>
-                <div class="travel_delete-box" style="display: none;" onclick="deleteComment({{comment.id}})">刪除</div>
-              </div>
+          <!-- 景點圖片 -->
+          <div class="gallery">
+            <div class="image">
+              <img src="../static/images/beitou.jpeg" alt="Image 1">
             </div>
-            {% comment %} <div>
-              <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
-            </div> {% endcomment %}
-          </div>
-          <div class="comment_text">
-            {{comment.content}}
-            <p></p>
-            <span style="margin-right: 20px; cursor: pointer;" id="likeButton" onclick="toggleLike()">
-              {% if request.user.id in comment.get_user_favorite %}
-              <i class="fa-thumbs-up fa-solid" style="color: rgb(0, 102, 255);" id="likeIcon"></i>
-              {% else %}
-              <i class="fa-regular fa-thumbs-up" style="color: rgb(0, 102, 255);" id="likeIcon"></i>
-              {% endif %}
-              <span id="likeCount">0</span>
-            </span>
-          </div>
-          {% endfor %}
-        </section>
-        {% if request.user.is_authenticated %}
-        <form class="ask-content" id="ask-content" action="/comment/{{detail.id}}/" method="POST"
-          style="margin-top:20px;">
-          <form class="share_comment-content" id="share_comment-content" action="">
-            <div class="comment_container" id="comment_container">
-              <h5 style="font-size: 24px;">
-                {{ detail.a_name }}
-              </h5>
+            <div class="image">
+              <img src="../static/images/chang.jpeg" alt="Image 2">
             </div>
-            <div class="share_comment_con">
-              {% comment %} <div class="review-content">
-                <div class="comment">
-                  <div class="avatar">
-                    <img src="{{request.user.get_photo}}" alt="User Avatar">
+            <div class="image">
+              <img src="../static/images/Datong.jpeg" alt="Image 3">
+            </div>
+          </div>
+          <!-- 景點說明 -->
+          <div>
+            <p>設計系學生本人在做作業時，查資料發現的厲害親水空間-河樂廣場！<br><br>
+              蜿蜒的曲線打破台灣大多數的公園設定，配合水域再加入現代感，這樣創新的設計思維讓我佩服萬分！雖然剛好遇到閉館，但閉上眼睛想像景緻，也彷彿自己正融入其中。</p>
+          </div>
+        </div>
+        <hr>
+        <div class="day_detail">
+          <!-- 天數 -->
+          <div style="margin-bottom:20px;margin-top: 20px;">
+            <span class="day_name">第2天</span>
+          </div>
+          <!-- 景點名稱 -->
+          <div style="margin-bottom:20px;">
+            <i class="fa-solid fa-location-dot" style="font-size: 24px;margin-right: 10px;"></i><span
+              style="font-size: 22px;font-weight: 600;">士林夜市</span><br>
+            <h6 style="margin:10px 0 0 30px;color: rgb(95, 95, 95);font-weight: 600;">停留xx分</h6>
+          </div>
+          <!-- 景點圖片 -->
+          <div class="gallery">
+            <div class="image">
+              <img src="../static/images/bg5.png" alt="Image 1">
+            </div>
+            <div class="image">
+              <img src="../static/images/bg7.png" alt="Image 2">
+            </div>
+            <div class="image">
+              <img src="../static/images/bg8.jpg" alt="Image 3">
+            </div>
+          </div>
+          <!-- 景點說明 -->
+          <div>
+            <p>北部人ㄉ早餐-漢堡🍔<br><br>
+              對，我沒吃過，吵著要來吃。我覺得很好吃欸，有肉又有麵線超爽ㄉ🥺（奶茶超讚）但人潮好多，排隊要排好久。</p>
+          </div>
+          <!-- 景點名稱 -->
+          <div style="margin-bottom:20px;">
+            <i class="fa-solid fa-location-dot" style="font-size: 24px;margin-right: 10px;"></i><span
+              style="font-size: 22px;font-weight: 600;">無名米糕</span><br>
+            <h6 style="margin:10px 0 0 30px;color: rgb(95, 95, 95);font-weight: 600;">停留xx分</h6>
+          </div>
+          <!-- 景點圖片 -->
+          <div class="gallery">
+            <div class="image">
+              <img src="../static/images/bg1.jpg" alt="Image 1">
+            </div>
+            <div class="image">
+              <img src="../static/images/bg2.jpg" alt="Image 2">
+            </div>
+            <div class="image">
+              <img src="../static/images/bg6.jpeg" alt="Image 3">
+            </div>
+          </div>
+          <!-- 景點說明 -->
+          <div>
+            <p>巷內的隱藏美食-無名米糕。<br><br>
+              在台南的最後一餐，我們決定在火車站附近解決，因為太晚才入內用餐，所以招牌米糕已經賣完ㄌ，但是我們點的魚鬆飯也很美味，我才花幾秒鐘而已就吃光光ㄌ！（重點是超便宜，這樣三飯三小菜才賣100初）<br><br>
+              吃飽飽，開心回家🌷</p>
+          </div>
+        </div>
+        <hr>
+        <!-- 留言 -->
+        <div style="margin-bottom:20px;">
+          <h5 style="font-weight: 600;">留言（0）</h5>
+        </div>
+        <section class="comment_travel_detail">
+          <section>
+            {% for comment in ct_detail.get_comment %}
+            <div class="review-content">
+              <img class="user-img" src="{{comment.u.get_photo}}" alt="">
+              <div class="comment-content">
+                <div style="display: flex; justify-content: space-between; position: relative;">
+                  <h6 class="username" style="font-size: 16px;">
+                    {{comment.u.username}}<br>
+                    <span
+                      style="color: gray; font-size: 12px; font-style: italic;">{{comment.comment_date}}&ensp;</span>
+                  </h6>
+                  <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer;" onclick="toggleDeleteBox(this)"></i>
+                  <div class="travel_delete-box" style="display: none;" onclick="deleteComment({{comment.id}})">刪除
                   </div>
+                </div>
+              </div>
+              {% comment %} <div>
+                <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
+              </div> {% endcomment %}
+            </div>
+            <div class="comment_text">
+              {{comment.content}}
+              <p></p>
+              <span style="margin-right: 20px; cursor: pointer;" id="likeButton" onclick="toggleLike()">
+                {% if request.user.id in comment.get_user_favorite %}
+                <i class="fa-thumbs-up fa-solid" style="color: rgb(0, 102, 255);" id="likeIcon"></i>
+                {% else %}
+                <i class="fa-regular fa-thumbs-up" style="color: rgb(0, 102, 255);" id="likeIcon"></i>
+                {% endif %}
+                <span id="likeCount">0</span>
+              </span>
+            </div>
+            {% endfor %}
+          </section>
+          {% if request.user.is_authenticated %}
+          <form class="ask-content" id="ask-content" action="/comment/{{detail.id}}/" method="POST"
+            style="margin-top:20px;">
+            <form class="share_comment-content" id="share_comment-content" action="">
+              <div class="comment_container" id="comment_container">
+                <h5 style="font-size: 24px;">
+                  {{ detail.a_name }}
+                </h5>
+              </div>
+              <div class="share_comment_con">
+                {% comment %} <div class="review-content">
+                  <div class="comment">
+                    <div class="avatar">
+                      <img src="{{request.user.get_photo}}" alt="User Avatar">
+                    </div>
+                    <div class="comment-content">
+                      <div style="display: flex; justify-content: space-between; position: relative;">
+                        <h6 class="username">
+                          {{request.user.username}}<br>
+                          <span style="color: gray; font-size: 14px; font-style: italic;">公開發佈&ensp;</span>
+                        </h6>
+                      </div>
+                    </div>
+                  </div>
+                </div> {% endcomment %}
+                <div class="review-content">
+                  <img class="user-img" src="{{request.user.get_photo}}" alt="">
                   <div class="comment-content">
                     <div style="display: flex; justify-content: space-between; position: relative;">
-                      <h6 class="username">
+                      <h6 class="username" style="font-size: 16px;">
                         {{request.user.username}}<br>
-                        <span style="color: gray; font-size: 14px; font-style: italic;">公開發佈&ensp;</span>
+                        <span style="color: gray; font-size: 12px; font-style: italic;">公開發佈&ensp;</span>
+                        <span class="show_tra_info" onclick="toggleTravelInfo()"><i
+                            class="travel_info fa-solid fa-circle-info" id="travel_info"></i></span>
+                        <div class="show_travel_info" id="show_travel_info">
+                          您的貼文會與個人資料名稱及相片一併公開顯示。您的貼文必須遵循政策的規定。</div>
                       </h6>
                     </div>
                   </div>
+                  {% comment %} <div>
+                    <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
+                  </div> {% endcomment %}
                 </div>
-              </div> {% endcomment %}
-              <div class="review-content">
-                <img class="user-img" src="{{request.user.get_photo}}" alt="">
-                <div class="comment-content">
-                  <div style="display: flex; justify-content: space-between; position: relative;">
-                    <h6 class="username" style="font-size: 16px;">
-                      {{request.user.username}}<br>
-                      <span style="color: gray; font-size: 12px; font-style: italic;">公開發佈&ensp;</span>
-                      <span class="show_tra_info" onclick="toggleTravelInfo()"><i
-                          class="travel_info fa-solid fa-circle-info" id="travel_info"></i></span>
-                      <div class="show_travel_info" id="show_travel_info">
-                        您的貼文會與個人資料名稱及相片一併公開顯示。您的貼文必須遵循政策的規定。</div>
-                    </h6>
-                  </div>
+                <div style="margin-left:85px;">
+                  <textarea name="user_share_comment" id="user_share_comment" cols="100%" rows="3"
+                    style="resize:none; border-radius: 10px;width: 100%;max-width: 100%;padding: 10px;"
+                    placeholder="留言..."></textarea>
                 </div>
-                {% comment %} <div>
-                  <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
-                </div> {% endcomment %}
+                <div class="image-container_ph">
+                  <div id="imagePreview"></div>
+                </div>
+                <div class="post_share_comment">
+                  <span class="share_comment_btn_ok" id="share_comment_btn_ok"
+                    onclick="sendComment({{ct_detail.id}})">張貼</span>
+                </div>
               </div>
-              <div style="margin-left:85px;">
-                <textarea name="user_share_comment" id="user_share_comment" cols="100%" rows="3"
-                  style="resize:none; border-radius: 10px;width: 100%;max-width: 100%;padding: 10px;"
-                  placeholder="留言..."></textarea>
-              </div>
-              <div class="image-container_ph">
-                <div id="imagePreview"></div>
-              </div>
-              <div class="post_share_comment">
-                <span class="share_comment_btn_ok" id="share_comment_btn_ok"
-                  onclick="sendComment({{ct_detail.id}})">張貼</span>
-              </div>
-            </div>
+            </form>
           </form>
-        </form>
-        {% else %}
-        <div style="width:100%;text-align:center;">
-          <a href="\login">
-            <h5 style="font-size: 24px;">
-              登入後即可發表評論
-            </h5>
-          </a>
-          <div>
-            {% endif %}
-      </section>
-    </div>
-    <!-- 各個天數內的詳細景點呈現 -->
-    <div class="col-3"></div>
-    <div class="col-1"></div>
-  </div>
-  {% comment %} <div class="row">
-    <div class="col-1"></div>
-    <div class="col-10 total_travel_detail">
-      <div class="detail_travel_name">
-        <div class="detail_travel_name__header">
-
-          <div class="detail_travel_name__headerGrid">
-            <h2 style="color: rgb(172, 78, 1)" id="attractions-detail-name"><strong>{{ct_detail.ct_name}}</strong>
-            </h2>
-
-            <div class="provider">
-              <h5 style=" color:rgb(66, 65, 65);">分享人：<strong
-                  style="color:rgb(110, 109, 109);">{{ct_detail.u.username}}</strong></h5>
-            </div>
-            <div class="provider1_copy">
-              <h5 style=" color:rgb(66, 65, 65);">發布日期：<strong
-                  style="color:rgb(110, 109, 109);">{{ct_detail.create_date|date:"Y年m月d日"}}</strong></h5>
-            </div>
-          </div>
-
-          <div class="detail_travel_name__headerGrid icon_add">
-            {% if ct_detail.is_favorite == "1" %}
-            <div class="travel_icon_name" id="submitfavorite{{ct_detail.id}}"
-              onclick="addFavorite_travel(this,{{ct_detail.id}})">
-              <i class="fas fa-regular fa-heart" title="已收藏" style="color: rgb(202, 13, 13);"></i>
-            </div>
-            {% else %}
-            <div class="travel_icon_name" id="submitfavorite{{ct_detail.id}}"
-              onclick="addFavorite_travel(this,{{ct_detail.id}})">
-              <i class="fas fa-regular fa-heart" title="收藏" style="color: rgb(111, 110, 110);"></i>
-            </div>
-            {% endif %}
-
-            <div class="provider1">
-              <h5 style=" color:rgb(66, 65, 65);">發布日期：<strong
-                  style="color:rgb(110, 109, 109);">{{ct_detail.create_date|date:"Y年m月d日"}}</strong></h5>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="travel_detail_img" style="margin-top: 20px;">
-        <div class="travel_detail_img__header">
-          <div class="travel_detail_img__headerGrid">
-            <img src="../static/images/attractions/{{ct_detail.get_attractions_picture.0.a__place_id}}_0.jpg"
-              style="margin-top: 1px; width:100%;max-width:100%;" alt="">
-          </div>
-          <div class="detail_img__headerGrid">
-            <div class="row">
-              <img
-                src="/static/images/attractions/{% if picture_list.1 %}{{picture_list.1}}{% else %}{{picture_list.0}}{% endif %}"
-                style=" width:100%;" alt="">
-              <div class="image-container">
-                <img
-                  src="../static/images/attractions/{% if ct_detail.get_attractions_picture.1.a__place_id %}{{ ct_detail.get_attractions_picture.1.a__place_id }}_0.jpg {% else %}{{ ct_detail.get_attractions_picture.0.a__place_id }}_1.jpg{% endif %}"
-                  style="width: 100%;" alt="">
-                <img
-                  src="../static/images/attractions/{% if ct_detail.get_attractions_picture.2.a__place_id %}{{ ct_detail.get_attractions_picture.2.a__place_id }}_0.jpg {% else %}{{ ct_detail.get_attractions_picture.0.a__place_id }}_2.jpg{% endif %}"
-                  style="width: 100%;margin-top: 2px;" alt="">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <h5 style="font-size: 24px;"> <i class="fa-solid fa-flag" style="margin-right:5px;color:#4a7ba7;;"></i></i>行程簡介
-        </h5>
-        <h6 style="margin:15px 0px 30px 35px;"><span style="color:blue;">{% if ct_detail.detail == "" %}目前還沒有內容{% else
-            %}{{ct_detail.detail}}{% endif %}</span></h6>
-      </div>
-
-      <div>
-        <h5 style="margin:0px 0px 20px 0px;font-size: 24px;"> <i class="fa-solid fa-calendar-check"
-            style="margin-right:5px;color: rgb(221, 180, 85);"></i>行程規劃</h5>
-        <div class="dayDoneSection">
-          <div class="dayDone">
-            <div class="dayDoneBtn">
-              {% for day in ct_detail.get_choice_day %}
-              <div class="dayDiv" id="dayDiv{{forloop.counter}}" data-day="{{forloop.counter}}"
-                style="float: left; {% if forloop.counter == 1 %}color:orange;{% endif %}"
-                onclick="clickDay({{forloop.counter}})">
-                <i class="fa-regular fa-calendar"></i> DAY {{forloop.counter}}
-              </div>
-              {% endfor %}
-            </div>
-          </div>
-          {% for data in all_data %}
-          <div class="classDayContent" id="content{{forloop.counter}}" style={% if forloop.counter==1 %}"display:
-            block;"{% else %}"display: none;"{% endif %}>
-            <div class="dayContent">
-              <div
-                style="height: 250px;min-width:80px;display: flex;justify-content: center;align-items: center;align-content: center;">
-                起始<br>位置
-              </div>
-              {% for a_data in data.ct_attraction %}
-              {{a_data.a_id.start_location_y}}
-              {% if forloop.counter == 1 %}
-              <div class="car_time">
-                <a href="https://www.google.com/maps/dir/{{a_data.choice_ct.start_location_x}},{{a_data.choice_ct.start_location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/"
-                  target="_blank" style="text-decoration: none;color: black;">
-
-                  <img src="/static/images/New Project.jpg" alt="" class="car_icon">
-                  <p>約<br> {{ a_data.distance_time }}<br>分鐘</p>
-                </a>
-              </div>
-
-              {% else %}
-              <div class="car_time">
-                <a href="https://www.google.com/maps/dir/{{a_data.get_previous.a.location_x}},{{a_data.get_previous.a.location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/"
-                  target="_blank" style="text-decoration: none;color: black;">
-
-                  <img src="/static/images/New Project.jpg" alt="" class="car_icon">
-                  <p>約<br> {{ a_data.distance_time }}<br>分鐘</p>
-                </a>
-              </div>
+          {% else %}
+          <div style="width:100%;text-align:center;">
+            <a href="\login">
+              <h5 style="font-size: 24px;">
+                登入後即可發表評論
+              </h5>
+            </a>
+            <div>
               {% endif %}
-              <div class="dayContentIntro" style="text-align: center;">
-                <p style="font-size: 20px;"><b>{{a_data.a.a_name}}</b></p>
-                <p>營業時間<br>{% for open in a_data.opening.opening %} {% if forloop.counter != 1 %} <br> {% endif
-                  %}{{open}}
-                  {% endfor %}</p>
-                <p>停留時間：{{a_data.stay_time}}分鐘</p>
-              </div>
-              {% endfor %}
-            </div>
+        </section>
+      </div>
+      <!-- 各個天數內的詳細景點呈現 -->
+      <div class="col-4" style="margin-top:20px;">
+        <div class="row">
+          <div class="col-4">
+            <div class="day_num">第1天</div>
           </div>
-          {% endfor %}
-        </div>
-        <div>
-
-
+          <div class="col-8"></div>
         </div>
       </div>
-      <div class="col-1"></div>
-    </div> {% endcomment %}
-    <script>
-      {% comment %} 評論公開顯示tips {% endcomment %}
-      function toggleTravelInfo() {
-        var infoDiv = document.getElementById('show_travel_info');
-        infoDiv.style.display = (infoDiv.style.display === 'none' || infoDiv.style.display === '') ? 'block' : 'none';
-      }
+    </div>
+  </div>
+</div>
+<div class="col-1"></div>
+</div>
 
-      {% comment %} 按讚功能(還沒串後端) {% endcomment %}
-      function toggleLike() {
-        var likeIcon = document.getElementById('likeIcon');
-        var likeCount = document.getElementById('likeCount');
-        var currentCount = parseInt(likeCount.innerText);
+{% comment %} <div class="row">
+  <div class="col-1"></div>
+  <div class="col-10 total_travel_detail">
+    <div class="detail_travel_name">
+      <div class="detail_travel_name__header">
 
-        if (likeIcon.classList.contains('fa-thumbs-up') && likeIcon.classList.contains('fa-solid')) {
-          likeIcon.classList.remove('fa-thumbs-up', 'fa-solid');
-          likeIcon.classList.add('fa-regular', 'fa-thumbs-up');
-          likeCount.innerText = currentCount - 1;
-        } else {
-          likeIcon.classList.remove('fa-regular', 'fa-thumbs-up');
-          likeIcon.classList.add('fa-thumbs-up', 'fa-solid');
-          likeCount.innerText = currentCount + 1;
-        }
+        <div class="detail_travel_name__headerGrid">
+          <h2 style="color: rgb(172, 78, 1)" id="attractions-detail-name"><strong>{{ct_detail.ct_name}}</strong>
+          </h2>
+
+          <div class="provider">
+            <h5 style=" color:rgb(66, 65, 65);">分享人：<strong
+                style="color:rgb(110, 109, 109);">{{ct_detail.u.username}}</strong></h5>
+          </div>
+          <div class="provider1_copy">
+            <h5 style=" color:rgb(66, 65, 65);">發布日期：<strong
+                style="color:rgb(110, 109, 109);">{{ct_detail.create_date|date:"Y年m月d日"}}</strong></h5>
+          </div>
+        </div>
+
+        <div class="detail_travel_name__headerGrid icon_add">
+          {% if ct_detail.is_favorite == "1" %}
+          <div class="travel_icon_name" id="submitfavorite{{ct_detail.id}}"
+            onclick="addFavorite_travel(this,{{ct_detail.id}})">
+            <i class="fas fa-regular fa-heart" title="已收藏" style="color: rgb(202, 13, 13);"></i>
+          </div>
+          {% else %}
+          <div class="travel_icon_name" id="submitfavorite{{ct_detail.id}}"
+            onclick="addFavorite_travel(this,{{ct_detail.id}})">
+            <i class="fas fa-regular fa-heart" title="收藏" style="color: rgb(111, 110, 110);"></i>
+          </div>
+          {% endif %}
+
+          <div class="provider1">
+            <h5 style=" color:rgb(66, 65, 65);">發布日期：<strong
+                style="color:rgb(110, 109, 109);">{{ct_detail.create_date|date:"Y年m月d日"}}</strong></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="travel_detail_img" style="margin-top: 20px;">
+      <div class="travel_detail_img__header">
+        <div class="travel_detail_img__headerGrid">
+          <img src="../static/images/attractions/{{ct_detail.get_attractions_picture.0.a__place_id}}_0.jpg"
+            style="margin-top: 1px; width:100%;max-width:100%;" alt="">
+        </div>
+        <div class="detail_img__headerGrid">
+          <div class="row">
+            <img
+              src="/static/images/attractions/{% if picture_list.1 %}{{picture_list.1}}{% else %}{{picture_list.0}}{% endif %}"
+              style=" width:100%;" alt="">
+            <div class="image-container">
+              <img
+                src="../static/images/attractions/{% if ct_detail.get_attractions_picture.1.a__place_id %}{{ ct_detail.get_attractions_picture.1.a__place_id }}_0.jpg {% else %}{{ ct_detail.get_attractions_picture.0.a__place_id }}_1.jpg{% endif %}"
+                style="width: 100%;" alt="">
+              <img
+                src="../static/images/attractions/{% if ct_detail.get_attractions_picture.2.a__place_id %}{{ ct_detail.get_attractions_picture.2.a__place_id }}_0.jpg {% else %}{{ ct_detail.get_attractions_picture.0.a__place_id }}_2.jpg{% endif %}"
+                style="width: 100%;margin-top: 2px;" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h5 style="font-size: 24px;"> <i class="fa-solid fa-flag" style="margin-right:5px;color:#4a7ba7;;"></i></i>行程簡介
+      </h5>
+      <h6 style="margin:15px 0px 30px 35px;"><span style="color:blue;">{% if ct_detail.detail == "" %}目前還沒有內容{% else
+          %}{{ct_detail.detail}}{% endif %}</span></h6>
+    </div>
+
+    <div>
+      <h5 style="margin:0px 0px 20px 0px;font-size: 24px;"> <i class="fa-solid fa-calendar-check"
+          style="margin-right:5px;color: rgb(221, 180, 85);"></i>行程規劃</h5>
+      <div class="dayDoneSection">
+        <div class="dayDone">
+          <div class="dayDoneBtn">
+            {% for day in ct_detail.get_choice_day %}
+            <div class="dayDiv" id="dayDiv{{forloop.counter}}" data-day="{{forloop.counter}}"
+              style="float: left; {% if forloop.counter == 1 %}color:orange;{% endif %}"
+              onclick="clickDay({{forloop.counter}})">
+              <i class="fa-regular fa-calendar"></i> DAY {{forloop.counter}}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% for data in all_data %}
+        <div class="classDayContent" id="content{{forloop.counter}}" style={% if forloop.counter==1 %}"display:
+          block;"{% else %}"display: none;"{% endif %}>
+          <div class="dayContent">
+            <div
+              style="height: 250px;min-width:80px;display: flex;justify-content: center;align-items: center;align-content: center;">
+              起始<br>位置
+            </div>
+            {% for a_data in data.ct_attraction %}
+            {{a_data.a_id.start_location_y}}
+            {% if forloop.counter == 1 %}
+            <div class="car_time">
+              <a href="https://www.google.com/maps/dir/{{a_data.choice_ct.start_location_x}},{{a_data.choice_ct.start_location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/"
+                target="_blank" style="text-decoration: none;color: black;">
+
+                <img src="/static/images/New Project.jpg" alt="" class="car_icon">
+                <p>約<br> {{ a_data.distance_time }}<br>分鐘</p>
+              </a>
+            </div>
+
+            {% else %}
+            <div class="car_time">
+              <a href="https://www.google.com/maps/dir/{{a_data.get_previous.a.location_x}},{{a_data.get_previous.a.location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/"
+                target="_blank" style="text-decoration: none;color: black;">
+
+                <img src="/static/images/New Project.jpg" alt="" class="car_icon">
+                <p>約<br> {{ a_data.distance_time }}<br>分鐘</p>
+              </a>
+            </div>
+            {% endif %}
+            <div class="dayContentIntro" style="text-align: center;">
+              <p style="font-size: 20px;"><b>{{a_data.a.a_name}}</b></p>
+              <p>營業時間<br>{% for open in a_data.opening.opening %} {% if forloop.counter != 1 %} <br> {% endif
+                %}{{open}}
+                {% endfor %}</p>
+              <p>停留時間：{{a_data.stay_time}}分鐘</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div>
+
+
+      </div>
+    </div>
+    <div class="col-1"></div>
+  </div> {% endcomment %}
+  <script>
+    {% comment %} 評論公開顯示tips {% endcomment %}
+    function toggleTravelInfo() {
+      var infoDiv = document.getElementById('show_travel_info');
+      infoDiv.style.display = (infoDiv.style.display === 'none' || infoDiv.style.display === '') ? 'block' : 'none';
+    }
+
+    {% comment %} 按讚功能(還沒串後端) {% endcomment %}
+    function toggleLike() {
+      var likeIcon = document.getElementById('likeIcon');
+      var likeCount = document.getElementById('likeCount');
+      var currentCount = parseInt(likeCount.innerText);
+
+      if (likeIcon.classList.contains('fa-thumbs-up') && likeIcon.classList.contains('fa-solid')) {
+        likeIcon.classList.remove('fa-thumbs-up', 'fa-solid');
+        likeIcon.classList.add('fa-regular', 'fa-thumbs-up');
+        likeCount.innerText = currentCount - 1;
+      } else {
+        likeIcon.classList.remove('fa-regular', 'fa-thumbs-up');
+        likeIcon.classList.add('fa-thumbs-up', 'fa-solid');
+        likeCount.innerText = currentCount + 1;
       }
-      {% comment %} 刪除小點點 {% endcomment %}
-      function toggleDeleteBox(iconElement) {
-        var deleteBox = iconElement.nextElementSibling;
-        if (deleteBox.style.display === "none" || deleteBox.style.display === "") {
-          deleteBox.style.display = "block";
-        } else {
-          deleteBox.style.display = "none";
+    }
+    {% comment %} 刪除小點點 {% endcomment %}
+    function toggleDeleteBox(iconElement) {
+      var deleteBox = iconElement.nextElementSibling;
+      if (deleteBox.style.display === "none" || deleteBox.style.display === "") {
+        deleteBox.style.display = "block";
+      } else {
+        deleteBox.style.display = "none";
+      }
+      document.addEventListener('click', function (event) {
+        if (!deleteBox.contains(event.target) && event.target !== iconElement) {
+          deleteBox.style.display = 'none';
         }
-        document.addEventListener('click', function (event) {
-          if (!deleteBox.contains(event.target) && event.target !== iconElement) {
-            deleteBox.style.display = 'none';
+      });
+    }
+
+    function deleteComment(commentId) {
+
+    }
+    // 獲取按鈕元素
+    /*var newestButton = document.querySelector('.btn-style-2:nth-child(2)');
+    var oldestButton = document.querySelector('.btn-style-2:nth-child(3)');
+  
+    // 添加點擊事件監聽器
+    newestButton.addEventListener('click', function() {
+      // 添加藍色樣式
+      newestButton.style.backgroundColor = '#0066DB';
+      // 移除其他按鈕的藍色樣式
+      oldestButton.style.backgroundColor = '';
+    });
+  
+    oldestButton.addEventListener('click', function() {
+      // 添加藍色樣式
+      oldestButton.style.backgroundColor = '#0066DB';
+      // 移除其他按鈕的藍色樣式
+      newestButton.style.backgroundColor = '';
+    });*/
+    function like() {
+      alert('已按讚');
+    }
+    const contentMap = {
+      1: document.getElementById('content1'),
+      2: document.getElementById('content2')
+    };
+    {% comment %} function clickDay(dayNumber) {
+      const dayDiv1 = document.getElementById('dayDiv' + dayNumber);
+      dayDiv1.style.backgroundColor = 'red';
+      openContent(dayNumber);
+    } {% endcomment %}
+    let lastClicked = false;
+
+    function clickDay(dayNumber) {
+      let content = document.querySelectorAll('.classDayContent');
+      let clickContent = document.getElementById('content' + dayNumber);
+      const dayDiv = document.querySelectorAll('.dayDiv');
+      const dayDiv1 = document.getElementById('dayDiv' + dayNumber);
+      if (clickContent.style.display == 'block') {
+        // 如果連續點擊同一天，則關閉對應內容
+        //clickContent.style.display = 'none';
+        //dayDiv1.style.color="";
+      } else {
+        for (let i = 0; i < content.length; i++) {
+          content[i].style.display = 'none';
+          dayDiv[i].style.color = "";
+        }
+        clickContent.style.display = 'block';
+        dayDiv1.style.color = 'orange';
+      }
+    }
+
+    {% comment %}
+    // 事件代理，監聽所有.dayDiv的點擊事件
+    document.addEventListener('click', function (event) {
+      if (event.target.classList.contains('dayDiv')) {
+        const dayNumber = parseInt(event.target.getAttribute('data-day'));
+        openContent(dayNumber);
+      }
+    }); {% endcomment %}
+    function sendComment(cid) {
+      var isPostConfirmed = confirm("確定要張貼評論嗎？");
+
+      if (isPostConfirmed) {
+        // 在這裡執行張貼的相關操作
+        $.ajax({
+          url: '/travel_comment/',
+          type: 'POST',
+          data: {
+            'csrfmiddlewaretoken': '{{ csrf_token }}',
+            'comment': $('#user_share_comment').val(),
+            'cid': cid,
+          },
+          success: function (data) {
+            location.reload()
           }
         });
+        alert("張貼成功");
+      } else {
+        alert("已取消張貼");
       }
+    }
 
-      function deleteComment(commentId) {
-
-      }
-      // 獲取按鈕元素
-      /*var newestButton = document.querySelector('.btn-style-2:nth-child(2)');
-      var oldestButton = document.querySelector('.btn-style-2:nth-child(3)');
-    
-      // 添加點擊事件監聽器
-      newestButton.addEventListener('click', function() {
-        // 添加藍色樣式
-        newestButton.style.backgroundColor = '#0066DB';
-        // 移除其他按鈕的藍色樣式
-        oldestButton.style.backgroundColor = '';
-      });
-    
-      oldestButton.addEventListener('click', function() {
-        // 添加藍色樣式
-        oldestButton.style.backgroundColor = '#0066DB';
-        // 移除其他按鈕的藍色樣式
-        newestButton.style.backgroundColor = '';
-      });*/
-      function like() {
-        alert('已按讚');
-      }
-      const contentMap = {
-        1: document.getElementById('content1'),
-        2: document.getElementById('content2')
-      };
-      {% comment %} function clickDay(dayNumber) {
-        const dayDiv1 = document.getElementById('dayDiv' + dayNumber);
-        dayDiv1.style.backgroundColor = 'red';
-        openContent(dayNumber);
-      } {% endcomment %}
-      let lastClicked = false;
-
-      function clickDay(dayNumber) {
-        let content = document.querySelectorAll('.classDayContent');
-        let clickContent = document.getElementById('content' + dayNumber);
-        const dayDiv = document.querySelectorAll('.dayDiv');
-        const dayDiv1 = document.getElementById('dayDiv' + dayNumber);
-        if (clickContent.style.display == 'block') {
-          // 如果連續點擊同一天，則關閉對應內容
-          //clickContent.style.display = 'none';
-          //dayDiv1.style.color="";
+    /*document.getElementById('share_comment_btn_cancel').addEventListener('click', function () {
+        var isCancelConfirmed = confirm("確定要取消嗎？");
+  
+        if (isCancelConfirmed) {
+            // 在這裡執行取消的相關操作
+            alert("取消成功");
         } else {
-          for (let i = 0; i < content.length; i++) {
-            content[i].style.display = 'none';
-            dayDiv[i].style.color = "";
-          }
-          clickContent.style.display = 'block';
-          dayDiv1.style.color = 'orange';
+            alert("已取消取消");
         }
-      }
-
-      {% comment %}
-      // 事件代理，監聽所有.dayDiv的點擊事件
-      document.addEventListener('click', function (event) {
-        if (event.target.classList.contains('dayDiv')) {
-          const dayNumber = parseInt(event.target.getAttribute('data-day'));
-          openContent(dayNumber);
-        }
-      }); {% endcomment %}
-      function sendComment(cid) {
-        var isPostConfirmed = confirm("確定要張貼評論嗎？");
-
-        if (isPostConfirmed) {
-          // 在這裡執行張貼的相關操作
-          $.ajax({
-            url: '/travel_comment/',
-            type: 'POST',
-            data: {
-              'csrfmiddlewaretoken': '{{ csrf_token }}',
-              'comment': $('#user_share_comment').val(),
-              'cid': cid,
-            },
-            success: function (data) {
-              location.reload()
-            }
-          });
-          alert("張貼成功");
-        } else {
-          alert("已取消張貼");
-        }
-      }
-
-      /*document.getElementById('share_comment_btn_cancel').addEventListener('click', function () {
-          var isCancelConfirmed = confirm("確定要取消嗎？");
-    
-          if (isCancelConfirmed) {
-              // 在這裡執行取消的相關操作
-              alert("取消成功");
-          } else {
-              alert("已取消取消");
-          }
-      });*/
-    </script>
-    <script src="/static/js/travel_detail.js"></script>
-    <script src="/static/js/addFavorite.js"></script>
-    {% comment %} {{u_id}}
-    <p>{{ ct_id }}</p>
-    <p>{{ ct_detail }}</p>
-    <p>{{ ct_choiceday }}</p>
-    <p>{{ ct_attraction }}</p> {% endcomment %}
-    {% endblock body %}
+    });*/
+  </script>
+  <script src="/static/js/travel_detail.js"></script>
+  <script src="/static/js/addFavorite.js"></script>
+  {% comment %} {{u_id}}
+  <p>{{ ct_id }}</p>
+  <p>{{ ct_detail }}</p>
+  <p>{{ ct_choiceday }}</p>
+  <p>{{ ct_attraction }}</p> {% endcomment %}
+  {% endblock body %}
