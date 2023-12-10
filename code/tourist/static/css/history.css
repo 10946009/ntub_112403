@@ -1,9 +1,10 @@
+html {
+    overflow-y: auto;
+}
+
 body {
-    /* background: url(../images/trip_bg_att.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed; */
     background-color: rgba(247, 255, 221, 0.1);
+    overflow-x: hidden;
 }
 
 /* .noScroll{
@@ -14,6 +15,7 @@ body {
     margin: 70px auto;
     margin-bottom: 0;
     padding: 20px;
+    z-index: 2;
 }
 
 .shareFilter_div {
@@ -257,33 +259,32 @@ body {
 
 .detailRight {
     width: 50%;
-    height: 120vh;
-    position: absolute;
+    height: 80%;
+    position: fixed;
     right: 0;
-    top: 10%;
+    top: 20%;
 }
 
 .openDetailDiv {
-    /* position: absolute;
-    top: 0;
-    left: 0; */
     background-color: #f9f9f9;
     height: 80%;
-    width: 0;
+    width: 80%;
     transition: width 0.5s ease-in-out;
     border: 1px solid black;
     border-radius: 20px;
-    /* margin-top: 50px; */
+    margin-top: 50px;
     overflow-y: auto;
 }
-
-.openDetailDiv.show {
-    width: 50%;
-}
-
 .openDetailDiv::-webkit-scrollbar {
     display: none;
 }
+
+/* .openDetailDivOverlayBg{
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    z-index: 5;
+} */
 
 .dayDoneSection {
     height: auto;
@@ -710,6 +711,7 @@ input[type='time'] {
 }
 
 @media (max-width: 768px) {
+
     .mytravel_img {
         border-top-right-radius: 20px;
         border-bottom-left-radius: 0;
