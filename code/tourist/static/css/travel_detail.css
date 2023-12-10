@@ -473,6 +473,13 @@ img {
     display: block;
 }
 
+.day_num {
+    font-size: 16px;
+    font-weight: 500;
+    color: gray;
+    border-right: gray solid;
+}
+
 @media screen and (max-width:768px) {
     .provider1 {
         display: none;
