@@ -62,32 +62,70 @@ from django.contrib.auth.decorators import login_required
 def foodtest(request):
     unit = 5 #每單位為5分鐘
     unit_dish = 5 #每5分鐘能處理的單位
-    
+    all_dish = food.objects.all().order_by('id')
+
+    allwait = 0  # 等待單位
+    for d in all_dish:
+        allwait +=  d.unit * d.order_num
+
+    allwait = allwait / unit_dish # 為input
+
+    print('allwait',allwait)
+
+    for d in all_dish:
+        d.wait = round(((d.unit + allwait) * unit))
+
+    if allwait > 1:
+        recommend = all_dish.filter(unit__lte=1)  # 推薦<= 1 的部分
+        for d in recommend:
+            d.wait = round(((d.unit + allwait) * unit))
+    else:
+        recommend = all_dish.filter(unit__gt=1).order_by('unit')  # 推薦<= 1 的部分
+        for d in recommend:
+            d.wait = round(((d.unit + allwait) * unit))
 
     if request.method == "POST":
-        all_dish = food.objects.all().order_by('id')
-        now_dish = request.POST.getlist('dish')#目前在等待處理的菜
-
-        allwait = 0  # 等待單位
+        now_dish = request.POST.getlist('dish') #目前點的菜
+        table_num = request.POST['table_num'] #桌號
 
         for i in range(0,len(now_dish)):
-            allwait +=  all_dish[i].unit * int(now_dish[i])
+            if int(now_dish[i]) != 0:
 
-        allwait = allwait / unit_dish # 為input
-
-        print('allwait',allwait)
-
-        for d in all_dish:
-            d.wait = round(((d.unit + allwait) * 5))
-
-        if allwait > 1:
-            recommend = all_dish.filter(unit__lte=1)  # 推薦<= 1 的部分
-            print(recommend)
-        else:
-            recommend = all_dish.filter(unit__gt=1).order_by('unit')  # 推薦<= 1 的部分
-    # print(wait)
-
-    
-    # print(sorted_dict)
+                # 將所點的菜加入資料表
+                unit = managefood.objects.create(table_num=table_num, num=now_dish[i], dish_id=all_dish[i].id)
+                unit.save()
+                
+                # 將目前等待中的數量加上去
+                all_dish[i].order_num += int(now_dish[i])
+                all_dish[i].save()
+        return redirect("/food")
 
     return render(request, "food.html", locals())
+
+
+
+def manageFood(request,orferfilter=None):
+    msg = 'All'
+    if orferfilter == 1:
+        all_order = managefood.objects.filter(status=True).order_by('id')
+        msg = '已完成'
+    elif orferfilter == 0:
+        all_order = managefood.objects.filter(status=False).order_by('id')
+        msg = '準備中'
+    else:
+        all_order = managefood.objects.all().order_by('id')
+    return render(request, "manage_food.html", locals())
+
+
+def finishManageFood(request,orderid):
+    # 將訂單狀態改為完成
+    order = managefood.objects.get(id=orderid)
+    order.status = True
+    order.save()
+
+    # 將數量從food資料表中扣除
+    dish = food.objects.get(id=order.dish_id)
+    dish.order_num -= order.num
+    dish.save()
+
+    return redirect("/managefood")

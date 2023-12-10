@@ -107,6 +107,9 @@ urlpatterns = [
     path('question_answer/<int:aqid>/', question.save_question_answer,name="attraction_answer"),
 
 
-    path('foodtest', foodtest.foodtest,name="foodtest"),
+    path('food/', foodtest.foodtest,name="food"),
+    path('managefood/', foodtest.manageFood,name="managefood"),
+    path('managefood/<int:orferfilter>', foodtest.manageFood,name="managefood"),
+    path('managefood_finish/<int:orderid>', foodtest.finishManageFood,name="finishManageFood"),
     # path('bar',bar.delete_none_crowd) #酒吧測試用資料
 ]
