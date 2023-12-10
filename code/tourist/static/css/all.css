@@ -34,6 +34,7 @@ body {
 body.dark-mode {
 	background-color: #464141;
 	color: #fff;
+	background-image:none;
 }
 
 /* 詳細景點資訊 彈跳框 */
