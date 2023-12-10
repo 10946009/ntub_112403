@@ -7,17 +7,21 @@
 
 {% block body %}
 {% comment %} 內容在這~~~ {% endcomment %}
+<!-- 景點圖片那塊 -->
 <div class="row">
   <div class="col-1"></div>
+  <!-- 背景大圖（放行程的只要一張代表） -->
   <div class="col-10">
     <div class="trip_bg_img">
       <img class="trip_img" src="../static/images/bg2.jpg" alt="">
+      <!-- 行程天數跟行程標題 -->
       <div class="trip_text">
         <span>
           <h4><strong>2天</strong></h4>
         </span>
         <p>台北｜年前輕旅。復古踩點</p>
       </div>
+      <!-- 行程收藏 -->
       <div class="icon_add">
         {% if ct_detail.is_favorite == "1" %}
         <div class="travel_icon_name" id="submitfavorite{{ct_detail.id}}"
@@ -32,25 +36,29 @@
         {% endif %}
       </div>
     </div>
-    <div class="review-content" style="margin-top:20px;">
-      <div style="display: flex; align-items: center;">
-        <img class="trip_user-img" src="../static/images/an.jpeg" alt="">
-        <div>
-          <h6 class="username" style="font-size: 18px;">
-            {{ct_detail.u.username}}
-          </h6>
-          <h6><strong style="color:rgb(110, 109, 109);">{{ct_detail.create_date|date:"Y年m月d日"}}</strong></h6>
+    <div class="col-1"></div>
+  </div>
+  <!-- 景點詳細那塊 -->
+  <div class="row">
+    <div class="col-1"></div>
+    <!-- 使用者、景點相關 -->
+    <div class="col-7">
+      <!-- 使用者名稱、頭貼 -->
+      <div class="review-content" style="margin-top:20px;">
+        <div style="display: flex; align-items: center;">
+          <img class="trip_user-img" src="../static/images/an.jpeg" alt="">
+          <div>
+            <h6 class="username" style="font-size: 18px;">
+              {{ct_detail.u.username}}
+            </h6>
+            <h6><strong style="color:rgb(110, 109, 109);">{{ct_detail.create_date|date:"Y年m月d日"}}</strong></h6>
+          </div>
         </div>
       </div>
     </div>
-
+    <!-- 各個天數內的詳細景點呈現 -->
+    <div class="col-3"></div>
     <div class="col-1"></div>
-  </div>
-  <div class="row">
-    <div class="col-1"></div>
-    <div class="col-8">
-
-    </div>
   </div>
   {% comment %} <div class="row">
     <div class="col-1"></div>
