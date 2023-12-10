@@ -1,28 +1,56 @@
 {% extends 'base.html' %}
 
-{% block title %}食物推薦{% endblock %}
+{% block title %}點餐系統{% endblock %}
 
 {% block content %}
 <style>
   .main_content{
-    margin: 100px 150px;
+    margin: 100px 150px 20px 150px;
     text-align: center;
   }
 
   .txtdiv{
-    margin: 10px;
-  }
-
-  .m3enu{
-    text-align: center;
+    margin: 20px 0px;
+    font-size: 22px;
   }
 
   .dishdiv{
+    text-align: center;
+    width: 350px;
     border: 1px solid #000;
-    margin: 10px 400px;
-    padding: 5px;
     border-radius: 20px;
+    margin: 10px 5px;
+    padding: 10px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+  
+  .recommend{
+    border-left: 2px solid #e1dddd;
+  }
+
+  input[type="number"] {
+    width: 60px; /* 調整寬度，根據實際需求 */
+    margin-bottom: 10px; /* 添加一些樣式，方便演示 */
+    padding-left: 5px;
+  }
+
+  h2{
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  h3{
+    padding-top: 10px;
+  }
+
+  .table{
+    margin: 10px;
+    font-size: 18px;
+  }
+
 </style>
 {% endblock %}
 
@@ -30,50 +58,81 @@
 
 {% block body %}
 <div class="main_content">
-  <form action="" method="POST" class="foodForm">
-    <h3>目前準備中</h3>
-    {% csrf_token %}
-    <div id="tabDL" class="txtdiv"><span class="txt">A</span>
-      <input type="number" id="disha" name="dish" min="0" value="0" required>
-    </div>
-
-    <div id="tabDL" class="txtdiv"><span class="txt">B</span>
-      <input type="number" id="dishb" name="dish" min="0" value="0" required>
-    </div>
-
-    <div id="tabDL" class="txtdiv"><span class="txt">C</span>
-      <input type="number" id="dishc" name="dish" min="0" value="0" required>
-    </div>
-    <p></p>
-    <button class="btn btn-outline-success enterbtn" type="submit">送出</button>
-     
-  </form>
-
-  <hr>
-
-  <h3>菜單</h3>
-  <div class="menu">
+  <h2><b>點餐系統</b></h2>
+  <div class="row ready">
+    <h3 class="col-12">目前準備中</h3>
     {% for item in all_dish %}
-      <div id="{{item.id}}" class="dishdiv">
-        <h4>{{ item.name }}</h4>
-        <p>價格：{{ item.price }}</p>
-        <p>平均等待時間：{{ item.wait }}</p>
+      <div class="col-4 txtdiv" style="margin: 3px 0;">
+        {{item.name}}：{{ item.order_num }}
       </div>
     {% endfor %}
   </div>
+     
+  <hr style="margin-bottom: 0;">
+  
+  
 
-  <hr>
+  <div class="row">
+    <div class="col-8">
 
-  <h3>推薦!</h3>
-  <div class="menu">
-    {% for item in recommend %}
-      <div id="{{item.id}}" class="dishdiv">
-        <h4>{{ item.name }}</h4>
-        <p>價格：{{ item.price }}</p>
-        <p>平均等待時間：{{ item.wait }}</p>
+      <div class="row meun">
+        <h3 class="col-12">菜單</h3>
+        <form action="" method="POST" class="foodForm">
+          {% csrf_token %}
+            <div class="row">
+              <div class="col-12 table">
+                <label for="numberSelect">桌號</label>
+                <select id="numberSelect" name="table_num">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+              </div>
+              {% for item in all_dish %}
+                  <div id="{{item.id}}" class="col-6 dishdiv">
+                    <div>
+                      <h4>{{ item.name }}</h4>
+                      <p>價格：{{ item.price }}</p>
+                      <p>平均等待時間：{{ item.wait }}分鐘</p>
+                      <input type="number" id="dish{{item.id}}" name="dish" min="0" value="0" required>
+                    </div>
+                  </div>      
+              {% endfor %}
+            </div>
+          <button class="btn btn-outline-success enterbtn" type="submit">送出</button>
+
+        </form>
       </div>
-    {% endfor %}
+
+    </div>
+    
+
+    <div class="col-4 recommend">
+
+      <div class="row" style=" ">
+        <h3 class="col-12">推薦!</h3>
+        <div class="col-12" style="height: 49px;"></div>
+        {% for item in recommend %}
+          <div id="{{item.id}}" class="col-12 dishdiv" style="height: 175.8px;margin: 10px auto;">
+            <div>
+              <h4>{{ item.name }}</h4>
+              <p>價格：{{ item.price }}</p>
+              <p>平均等待時間：{{ item.wait }}分鐘</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
   </div>
+
 
 </div>
 

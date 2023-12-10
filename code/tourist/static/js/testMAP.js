@@ -1,64 +1,62 @@
+var locations = [
+  { lat: 25.0749424, lng: 121.6206319 },
+  { lat: 25.0962609, lng: 121.5164742 },
+  { lat: 25.0507753, lng: 121.5597548 },
+  // 添加更多经纬度...
+];
+
+var map;
+
 function initMap() {
-    const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
-      center: { lat: -24.345, lng: 134.46 }, // Australia.
-    });
-    const directionsService = new google.maps.DirectionsService();
-    const directionsRenderer = new google.maps.DirectionsRenderer({
-      draggable: true,
-      map,
-      panel: document.getElementById("panel"),
-    });
-  
-    directionsRenderer.addListener("directions_changed", () => {
-      const directions = directionsRenderer.getDirections();
-  
-      if (directions) {
-        computeTotalDistance(directions);
-      }
-    });
-    displayRoute(
-      "Perth, WA",
-      "Sydney, NSW",
-      directionsService,
-      directionsRenderer,
-    );
-  }
-  
-  function displayRoute(origin, destination, service, display) {
-    service
-      .route({
-        origin: origin,
-        destination: destination,
-        waypoints: [
-          { location: "Adelaide, SA" },
-          { location: "Broken Hill, NSW" },
-        ],
-        travelMode: google.maps.TravelMode.DRIVING,
-        avoidTolls: true,
-      })
-      .then((result) => {
-        display.setDirections(result);
-      })
-      .catch((e) => {
-        alert("Could not display directions due to: " + e);
-      });
-  }
-  
-  function computeTotalDistance(result) {
-    let total = 0;
-    const myroute = result.routes[0];
-  
-    if (!myroute) {
-      return;
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 13,
+    center: locations[0]
+  });
+
+  // 初始路线
+  updateMap();
+}
+
+function updateMap() {
+  var startLat = parseFloat(document.getElementById('startLat').value) || locations[0].lat;
+  var startLng = parseFloat(document.getElementById('startLng').value) || locations[0].lng;
+  var endLat = parseFloat(document.getElementById('endLat').value) || locations[locations.length - 1].lat;
+  var endLng = parseFloat(document.getElementById('endLng').value) || locations[locations.length - 1].lng;
+
+  var directionsService = new google.maps.DirectionsService();
+  var directionsRenderer = new google.maps.DirectionsRenderer();
+  directionsRenderer.setMap(map);
+
+  var waypoints = locations.slice(1, -1).map(function(location) {
+    return { location: new google.maps.LatLng(location.lat, location.lng) };
+  });
+
+  var request = {
+    origin: new google.maps.LatLng(startLat, startLng),
+    destination: new google.maps.LatLng(endLat, endLng),
+    waypoints: waypoints,
+    travelMode: 'DRIVING'
+  };
+
+  directionsService.route(request, function(result, status) {
+    if (status == 'OK') {
+      directionsRenderer.setDirections(result);
+      addMarkers(map, result.routes[0].legs);
+    } else {
+      window.alert('Directions request failed due to ' + status);
     }
-  
-    for (let i = 0; i < myroute.legs.length; i++) {
-      total += myroute.legs[i].distance.value;
-    }
-  
-    total = total / 1000;
-    document.getElementById("total").innerHTML = total + " km";
+  });
+}
+
+function addMarkers(map, legs) {
+  for (var i = 0; i < legs.length; i++) {
+    var marker = new google.maps.Marker({
+      position: legs[i].start_location,
+      map: map,
+    });
+    marker = new google.maps.Marker({
+      position: legs[i].end_location,
+      map: map,
+    });
   }
-  
-  window.initMap = initMap;
+}

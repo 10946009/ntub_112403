@@ -165,12 +165,12 @@ body {
 @media (max-width: 768px) {
     .block {
         width: 80%;
-        height: 70%;
+        height: 80%;
     }
 }
 @media (max-width: 650px) {
     .block {
-        height: 60%;
+        /* height: 60%; */
     }
     .choiceClassDiv{
         padding: 5px;

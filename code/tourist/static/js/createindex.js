@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Step1 單選
   const choiceClassLeft = document.getElementById('choiceClassLeft');
   const choiceClassRight = document.getElementById('choiceClassRight');
-  
+  const nowcreateType = document.getElementById('nowcreateType');
   let isPickClass = false;
   
   function pickClass(element){
@@ -40,10 +40,12 @@ document.addEventListener("DOMContentLoaded", function () {
     isPickClass = true;
   }
   choiceClassLeft.addEventListener('click', function(){
+    nowcreateType.innerHTML  = '<img src="../static/images/travel_img1.png" class="img-responsive" width="100%" alt="">';
     createType.value = '0';
     pickClass(choiceClassLeft);
   })
   choiceClassRight.addEventListener('click', function(){
+    nowcreateType.innerHTML  = '<img src="../static/images/pet.png" class="img-responsive" width="100%" alt="">';
     createType.value = '1';
     pickClass(choiceClassRight);
   })

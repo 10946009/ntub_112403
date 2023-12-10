@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" {% if request.user.page_light %}class="dark-mode-bg"{% endif %}>
 
 <head>
   <meta charset="UTF-8">
@@ -12,16 +12,16 @@
   <link rel="stylesheet" href="../static/css/all.css">
   <link rel="stylesheet" href="/static/css/attractions_info.css">
   <link rel="icon" type="image/x-icon" href="../static/images/logo1.png">
-  {% block content %}{% endblock %}
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-  <style>
-  </style>
+  {% block content %}{% endblock %}
+
 </head>
 
-<body>
+<body id="rainyMain" style="position: relative;" class="{% if request.user.page_light %}dark-mode{% endif %}">
   {% block toolbar %}
   <div class="banner" id="randomBanner">
     <nav class="navbar navbar-expand-lg toolbar" style="z-index: 1000;">
@@ -63,16 +63,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">首頁</a>
+              <a class="nav-link {% if request.path == "/" %}active{% endif %}" aria-current="page" href="/">首頁</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/createindex">建立行程</a>
+              <a class="nav-link {% if request.path == "/createindex/" %}active{% endif %}" href="/createindex">建立行程</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/attraction_details">景點資訊</a>
+              <a class="nav-link {% if request.path == "/attraction_details/" %}active{% endif %}" href="/attraction_details">景點資訊</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/share">分享空間</a>
+              <a class="nav-link {% if request.path == "/share/" %}active{% endif %}" href="/share">分享空間</a>
             </li>
             {% if request.user.is_authenticated %}
             <li class="nav-item dropdown">
@@ -89,7 +89,12 @@
                   <a class="dropdown-item" href="/useredit">我的設定</a>
                 </li>
                 <li>
-                  <div class="dropdown-item dark_light" onclick="changeColor()">暗色模式</div>
+                  {% if request.user.page_light %}
+                    <div class="dropdown-item dark_light " onclick="changeColor()">亮色模式</div>
+                  {% else %}
+                    <div class="dropdown-item dark_light" onclick="changeColor()">暗色模式</div>
+                  {% endif %}
+                  
                 </li>
                 <li>
                   <a class="dropdown-item" href="/logout">登出</a>
@@ -119,7 +124,7 @@
     </a>
   </div>
   {% endblock %}
-  <main id="rainyMain" style="position: relative;">
+  <main>
   {% block body %}
   {% endblock body %}
     <!-- <div class="rellax rellax1" data-rellax-speed="5" style="left: -15px;bottom: 8%;">
@@ -159,6 +164,7 @@
 <script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
 {% block content_script %}{% endblock %}
 <script>
+  
   //不在index.html的時候隱藏systemname
   window.onload = function () {
     var isIndexPage = window.location.pathname === "/"; 
@@ -172,6 +178,7 @@
         downicon.style.display = "none";
       }
     }
+   
   };
   
   var rellax = new Rellax('.rellax', {
@@ -184,15 +191,37 @@
   });
   // 暗色模式
   function changeColor() {
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     const dark_light = document.querySelector('.dark_light');
     const main = document.getElementById('rainyMain');
     const rellaxStar = document.querySelectorAll('.rellaxStar');
+    let light;
     main.classList.toggle("dark-mode");
     document.documentElement.classList.toggle("dark-mode-bg");
-    dark_light.textContent = '亮色模式';
+    if (dark_light.textContent == '亮色模式'){
+      dark_light.textContent = '暗色模式';
+      light = "0";
+    }else{
+      dark_light.textContent = '亮色模式';
+      light = "1";
+    }
+    
     rellaxStar.forEach((star) => {
         star.style.display = "block";
     });
+     
+    $.ajax({
+      headers: { 'X-CSRFToken': csrftoken },
+      url: '/useredit/change_light/',
+      type: 'POST',
+      data: {
+          'light': light
+      },
+      success: function (response) {
+          console.log(response);
+      }
+   });
+
   }
 
 
@@ -219,7 +248,7 @@
   // }
 
   // 解決繼承toolbar重整不會顯示對應的active
-  document.addEventListener("DOMContentLoaded", function() {
+  {% comment %} document.addEventListener("DOMContentLoaded", function() {
     const navLinks = navbarSupportedContent.querySelectorAll('.nav-link');
 
     navLinks.forEach((link, index) => {
@@ -244,7 +273,7 @@
 
       navLinks[activeIndex].classList.add('active');
     }
-  });
+  }); {% endcomment %}
 
 
   // popup info
