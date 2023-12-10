@@ -40,12 +40,12 @@ document.addEventListener("DOMContentLoaded", function () {
     isPickClass = true;
   }
   choiceClassLeft.addEventListener('click', function(){
-    nowcreateType.innerText  = "旅遊行程";
+    nowcreateType.innerHTML  = '<img src="../static/images/travel_img1.png" class="img-responsive" width="100%" alt="">';
     createType.value = '0';
     pickClass(choiceClassLeft);
   })
   choiceClassRight.addEventListener('click', function(){
-    nowcreateType.innerText  = "寵物行程";
+    nowcreateType.innerHTML  = '<img src="../static/images/pet.png" class="img-responsive" width="100%" alt="">';
     createType.value = '1';
     pickClass(choiceClassRight);
   })
