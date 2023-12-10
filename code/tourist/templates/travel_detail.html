@@ -38,10 +38,10 @@
     </div>
     <div class="col-1"></div>
   </div>
-  <!-- 景點詳細那塊 -->
+  <!-- 行程詳細那塊 -->
   <div class="row">
     <div class="col-1"></div>
-    <!-- 使用者、景點相關 -->
+    <!-- 使用者、行程相關 -->
     <div class="col-7">
       <!-- 使用者名稱、頭貼 -->
       <div class="review-content" style="margin-top:20px;">
@@ -55,6 +55,22 @@
           </div>
         </div>
       </div>
+      <!-- 行程簡介（使用者自己打） -->
+      <div>
+        <h6 style="margin:20px 0px 10px 5px;"><span style="color:blue;">{% if ct_detail.detail == "" %}目前還沒有內容
+            {% else %}{{ct_detail.detail}}{% endif %}</span></h6>
+      </div>
+      <!-- 幾個人收藏 -->
+      <div>
+        <span style="border: black solid;padding: 0 5px 0 5px; background-color: white;font-size: 18px;"> <i
+            class="fas fa-regular fa-heart" style="color: rgb(202, 13, 13);margin-right: 5px;"></i>xx</span>
+      </div>
+      <hr style="margin-bottom:20px;">
+      <div class="day_detail">
+        <span class="day_name">第1天
+        </span>
+      </div>
+
     </div>
     <!-- 各個天數內的詳細景點呈現 -->
     <div class="col-3"></div>
