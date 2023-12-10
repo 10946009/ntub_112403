@@ -335,3 +335,12 @@ class food(models.Model):
     name = models.TextField(max_length=255, null=False, blank=False)
     price = models.IntegerField(null=False, blank=False)
     unit = models.IntegerField(null=False, blank=False)
+    order_num = models.IntegerField(null=False, blank=False, default=0)
+
+class managefood(models.Model):
+    dish = models.ForeignKey(
+        to=food, on_delete=models.CASCADE, default=-1
+    )  # 菜沒了會一起被刪掉
+    table_num = models.IntegerField(null=False, blank=False)
+    num = models.IntegerField(null=False, blank=False)
+    status = models.BooleanField(null=False, blank=False, default=0)
