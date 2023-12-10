@@ -1,15 +1,9 @@
-html {
-    overflow-y: auto;
-}
 
 body {
     background-color: rgba(247, 255, 221, 0.1);
     overflow-x: hidden;
 }
 
-/* .noScroll{
-    overflow: hidden !important;
-} */
 .container {
     width: 95%;
     margin: 70px auto;
@@ -279,12 +273,6 @@ body {
     display: none;
 }
 
-/* .openDetailDivOverlayBg{
-    height: 100%;
-    width: 100%;
-    background-color: #000;
-    z-index: 5;
-} */
 
 .dayDoneSection {
     height: auto;
