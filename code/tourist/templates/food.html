@@ -5,7 +5,7 @@
 {% block content %}
 <style>
   .main_content{
-    margin: 100px 150px;
+    margin: 100px 150px 0px 150px;
     text-align: center;
   }
 
@@ -19,12 +19,12 @@
     width: 350px;
     border: 1px solid #000;
     border-radius: 20px;
-    margin: 10px auto;
+    margin: 10px 5px;
     padding: 10px;
     
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
   }
   
   .recommend{
@@ -62,7 +62,7 @@
   <div class="row ready">
     <h3 class="col-12">目前準備中</h3>
     {% for item in all_dish %}
-      <div class="col-4 txtdiv">
+      <div class="col-3 txtdiv">
         {{item.name}}：{{ item.order_num }}
       </div>
     {% endfor %}
@@ -100,7 +100,7 @@
                     <div>
                       <h4>{{ item.name }}</h4>
                       <p>價格：{{ item.price }}</p>
-                      <p>平均等待時間：{{ item.wait }}</p>
+                      <p>平均等待時間：{{ item.wait }}分鐘</p>
                       <input type="number" id="dish{{item.id}}" name="dish" min="0" value="0" required>
                     </div>
                   </div>      
@@ -120,11 +120,11 @@
         <h3 class="col-12">推薦!</h3>
         <div class="col-12" style="height: 49px;"></div>
         {% for item in recommend %}
-          <div id="{{item.id}}" class="col-12 dishdiv" style="height: 175.8px;">
+          <div id="{{item.id}}" class="col-12 dishdiv" style="height: 175.8px;margin: 10px auto;">
             <div>
               <h4>{{ item.name }}</h4>
               <p>價格：{{ item.price }}</p>
-              <p>平均等待時間：{{ item.wait }}</p>
+              <p>平均等待時間：{{ item.wait }}分鐘</p>
             </div>
           </div>
         {% endfor %}
