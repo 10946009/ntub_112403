@@ -1,18 +1,23 @@
 {% extends 'base.html' %}
 {% block title %}gps{% endblock %}
-{% block content %}<link rel="stylesheet" href="../static/css/testMAP.css">{% endblock %}
+{% block content %}<link rel="stylesheet" href="../static/css/testMAP.css">
+<script src="https://maps.googleapis.com/maps/api/js?key={{key}}&libraries=places&callback=initMap" async defer></script>{% endblock %}
 {% block body %}
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   <br>
   <br>
   <br>
-  <div id="container">
-    <div id="map"></div>
-    <div id="sidebar">
-      <p>Total Distance: <span id="total"></span></p>
-      <div id="panel"></div>
-    </div>
-  </div>
+  <label for="startLat">起点纬度：</label>
+  <input type="text" id="startLat" placeholder="起点纬度">
+  <label for="startLng">起点经度：</label>
+  <input type="text" id="startLng" placeholder="起点经度">
+  <br>
+  <label for="endLat">终点纬度：</label>
+  <input type="text" id="endLat" placeholder="终点纬度">
+  <label for="endLng">终点经度：</label>
+  <input type="text" id="endLng" placeholder="终点经度">
+  <br>
+  <button onclick="updateMap()">更新地图</button>
+  <div id="map"></div>
   <script src="../static/js/testMAP.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key={{key}}&libraries=places&callback=initMap" async defer></script>
 {% endblock body %}
