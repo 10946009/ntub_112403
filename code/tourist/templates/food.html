@@ -5,7 +5,7 @@
 {% block content %}
 <style>
   .main_content{
-    margin: 100px 150px 0px 150px;
+    margin: 100px 150px 20px 150px;
     text-align: center;
   }
 
@@ -24,7 +24,7 @@
     
     display: flex;
     justify-content: center;
-    align-items: stretch;
+    align-items: center;
   }
   
   .recommend{
@@ -62,7 +62,7 @@
   <div class="row ready">
     <h3 class="col-12">目前準備中</h3>
     {% for item in all_dish %}
-      <div class="col-3 txtdiv">
+      <div class="col-4 txtdiv" style="margin: 3px 0;">
         {{item.name}}：{{ item.order_num }}
       </div>
     {% endfor %}
