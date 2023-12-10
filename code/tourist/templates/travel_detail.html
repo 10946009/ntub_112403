@@ -173,6 +173,111 @@
         </div>
       </div>
       <hr>
+      <!-- 留言 -->
+      <div style="margin-bottom:20px;">
+        <h5 style="font-weight: 600;">留言（0）</h5>
+      </div>
+      <section class="comment_travel_detail">
+        <section>
+          {% for comment in ct_detail.get_comment %}
+          <div class="review-content">
+            <img class="user-img" src="{{comment.u.get_photo}}" alt="">
+            <div class="comment-content">
+              <div style="display: flex; justify-content: space-between; position: relative;">
+                <h6 class="username" style="font-size: 16px;">
+                  {{comment.u.username}}<br>
+                  <span style="color: gray; font-size: 12px; font-style: italic;">{{comment.comment_date}}&ensp;</span>
+                </h6>
+                <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer;" onclick="toggleDeleteBox(this)"></i>
+                <div class="travel_delete-box" style="display: none;" onclick="deleteComment({{comment.id}})">刪除</div>
+              </div>
+            </div>
+            {% comment %} <div>
+              <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
+            </div> {% endcomment %}
+          </div>
+          <div class="comment_text">
+            {{comment.content}}
+            <p></p>
+            <span style="margin-right: 20px; cursor: pointer;" id="likeButton" onclick="toggleLike()">
+              {% if request.user.id in comment.get_user_favorite %}
+              <i class="fa-thumbs-up fa-solid" style="color: rgb(0, 102, 255);" id="likeIcon"></i>
+              {% else %}
+              <i class="fa-regular fa-thumbs-up" style="color: rgb(0, 102, 255);" id="likeIcon"></i>
+              {% endif %}
+              <span id="likeCount">0</span>
+            </span>
+          </div>
+          {% endfor %}
+        </section>
+        {% if request.user.is_authenticated %}
+        <form class="ask-content" id="ask-content" action="/comment/{{detail.id}}/" method="POST"
+          style="margin-top:20px;">
+          <form class="share_comment-content" id="share_comment-content" action="">
+            <div class="comment_container" id="comment_container">
+              <h5 style="font-size: 24px;">
+                {{ detail.a_name }}
+              </h5>
+            </div>
+            <div class="share_comment_con">
+              {% comment %} <div class="review-content">
+                <div class="comment">
+                  <div class="avatar">
+                    <img src="{{request.user.get_photo}}" alt="User Avatar">
+                  </div>
+                  <div class="comment-content">
+                    <div style="display: flex; justify-content: space-between; position: relative;">
+                      <h6 class="username">
+                        {{request.user.username}}<br>
+                        <span style="color: gray; font-size: 14px; font-style: italic;">公開發佈&ensp;</span>
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+              </div> {% endcomment %}
+              <div class="review-content">
+                <img class="user-img" src="{{request.user.get_photo}}" alt="">
+                <div class="comment-content">
+                  <div style="display: flex; justify-content: space-between; position: relative;">
+                    <h6 class="username" style="font-size: 16px;">
+                      {{request.user.username}}<br>
+                      <span style="color: gray; font-size: 12px; font-style: italic;">公開發佈&ensp;</span>
+                      <span class="show_tra_info" onclick="toggleTravelInfo()"><i
+                          class="travel_info fa-solid fa-circle-info" id="travel_info"></i></span>
+                      <div class="show_travel_info" id="show_travel_info">
+                        您的貼文會與個人資料名稱及相片一併公開顯示。您的貼文必須遵循政策的規定。</div>
+                    </h6>
+                  </div>
+                </div>
+                {% comment %} <div>
+                  <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
+                </div> {% endcomment %}
+              </div>
+              <div style="margin-left:85px;">
+                <textarea name="user_share_comment" id="user_share_comment" cols="100%" rows="3"
+                  style="resize:none; border-radius: 10px;width: 100%;max-width: 100%;padding: 10px;"
+                  placeholder="留言..."></textarea>
+              </div>
+              <div class="image-container_ph">
+                <div id="imagePreview"></div>
+              </div>
+              <div class="post_share_comment">
+                <span class="share_comment_btn_ok" id="share_comment_btn_ok"
+                  onclick="sendComment({{ct_detail.id}})">張貼</span>
+              </div>
+            </div>
+          </form>
+        </form>
+        {% else %}
+        <div style="width:100%;text-align:center;">
+          <a href="\login">
+            <h5 style="font-size: 24px;">
+              登入後即可發表評論
+            </h5>
+          </a>
+          <div>
+            {% endif %}
+      </section>
     </div>
     <!-- 各個天數內的詳細景點呈現 -->
     <div class="col-3"></div>
@@ -314,15 +419,6 @@
       </div>
       <div class="col-1"></div>
     </div> {% endcomment %}
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10">
-        <div class="trip_bg_img">
-          <img scr="../static/image">
-        </div>
-      </div>
-      <div class="col-1"></div>
-    </div>
     <script>
       {% comment %} 評論公開顯示tips {% endcomment %}
       function toggleTravelInfo() {
