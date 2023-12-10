@@ -34,6 +34,7 @@ from myapp.views import (
     question,
     get_attractions,
     foodtest,
+    test
 )
 
 
@@ -82,7 +83,7 @@ urlpatterns = [
         name="serach_results_att_type",
     ),
     # path("base/", attraction_details.attraction_details_search,name="search_results_base"),
-    # path('test/',views.test_input),
+    path('test/',test.test),
     path("useredit/", user_edit.user_edit),
     path("useredit/post/", user_edit.user_edit_form,name="user_post"),
     # path("useredit/pwd/", user_edit.user_edit_pwd,name="user_pwd"),
