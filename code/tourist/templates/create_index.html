@@ -6,71 +6,64 @@
 <script>
   // 检查用户是否已登录
   if (!{{ user.is_authenticated }}) {
-      alert("请先登录");
-      window.location.href = "/login"; // 或者任何你的登录页面的 URL
+    alert("请先登录");
+    window.location.href = "/login"; // 或者任何你的登录页面的 URL
   }
 </script>
 {% block body %}
-<div class="bgimg" id="bgimg">
-  <div id="step1" class="block">
-    <div id="tabDL" class="txtdiv">
-      <span class="txt">行程類型</span>
-      <div class="choiceClass inputspace" name="createType" id="createType" required>
-        <div id="choiceClassLeft" class="choiceClassDiv choiceClassLeft" value="0">
-          <img src="../static/images/travel_img.png" class="img-responsive" width="100%" alt="">
-          <div class="choiceClassDiv_txt">
-            旅遊行程建立
-          </div>
-        </div>
-        <div id="choiceClassRight" class="choiceClassDiv choiceClassRight" value="1">
-          <img src="../static/images/pet.png" class="img-responsive" width="100%" alt="">
-          <div class="choiceClassDiv_txt">
-            寵物行程建立
-          </div>
-        </div>
-      </div>
-      <div id="notion" class="notion">請先選擇行程類型</div>
-      <div class="nextStep" onclick="nextStep()">下一步</div>
-      <!-- <select name="createType" id="createType" required class="inputspace">
-        <option value="0">一般行程</option>
-        <option value="1">寵物友善行程</option>
-      </select> -->
-      <!-- <button class="btn btn-outline-success enterbtn" type="next">下一步</button> -->
-    </div>
-  </div>
-  <div id="step2" class="block" style="display: none;">
-    <form action="" method="post" class="formcss">
-      {% csrf_token %}
-      <div id="tabDL" class="txtdiv" style="clear: both;"><span class="txt">行程名稱</span><br>
-        <input type="text" name="createName" id="createName" value="" required class="inputspace">
-      </div>
-      
-      <div id="tabDL" class="txtdiv"><span class="txt">開始日期</span><br>
-        <input type="date" id="createDate" name="createDate" required class="inputspace">
-      </div>
-      
-      <div id="tabDL" class="txtdiv"><span class="txt">行程天數</span><br>
-        <input type="number" id="createDay" name="createDay" min="1" value="1" required class="inputspace">
-      </div>
-
+<form action="" method="post" class="formcss">
+  {% csrf_token %}
+  <div class="bgimg" id="bgimg">
+    <div id="step1" class="block">
       <div id="tabDL" class="txtdiv">
-        <span class="txt">行程類型</span><br>
-        <select name="createType" id="createType" required class="inputspace">
+        <span class="txt">行程類型</span>
+        <div class="choiceClass inputspace" name="createType" id="createType" required>
+          <div id="choiceClassLeft" class="choiceClassDiv choiceClassLeft" value="0">
+            <img src="../static/images/travel_img.png" class="img-responsive" width="100%" alt="">
+            <div class="choiceClassDiv_txt">
+              旅遊行程建立
+            </div>
+          </div>
+          <div id="choiceClassRight" class="choiceClassDiv choiceClassRight" value="1">
+            <img src="../static/images/pet.png" class="img-responsive" width="100%" alt="">
+            <div class="choiceClassDiv_txt">
+              寵物行程建立
+            </div>
+          </div>
+        </div>
+        <div id="notion" class="notion">請先選擇行程類型</div>
+        <div class="nextStep" onclick="nextStep()">下一步</div>
+        <select name="createType" id="createType" required class="inputspace" style="display:none;">
           <option value="0">一般行程</option>
-          <option value="1" {% if ispet == 1 %}selected{% endif %}>寵物友善行程</option>
+          <option value="1">寵物友善行程</option>
         </select>
       </div>
-
-      <button class="btn btn-outline-success enterbtn" type="submit">送出</button>
-      <div class="backStep" onclick="backStep()">上一步</div>
-    </form>
+    </div>
+    <div id="step2" class="block" style="display: none;">
+      <div>
+        <div id="tabDL" class="txtdiv" style="clear: both;"><span class="txt">行程名稱</span><br>
+          <input type="text" name="createName" id="createName" value="" required class="inputspace">
+        </div>
+  
+        <div id="tabDL" class="txtdiv"><span class="txt">開始日期</span><br>
+          <input type="date" id="createDate" name="createDate" required class="inputspace">
+        </div>
+  
+        <div id="tabDL" class="txtdiv"><span class="txt">行程天數</span><br>
+          <input type="number" id="createDay" name="createDay" min="1" value="1" required class="inputspace">
+        </div>
+  
+        <button class="btn btn-outline-success enterbtn" type="submit">送出</button>
+        <div class="backStep" onclick="backStep()">上一步</div>
+      </div>
+    </div>
   </div>
-</div>
+</form>
 {% endblock body %}
 {% block content_script %}
-  <script src="../static/js/create.js"></script>
-  <script>
-    // 获取当前日期
+<script src="../static/js/createindex.js"></script>
+<script>
+  // 获取当前日期
   var today = new Date();
 
   // 计算明天的日期
@@ -83,6 +76,7 @@
   // 设置输入框的值为明天的日期
   document.getElementById('createDate').value = formattedTomorrow;
 
-  </script>
+</script>
 {% endblock %}
+
 </html>

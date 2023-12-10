@@ -120,7 +120,7 @@
           <i class="fa-solid fa-route done_icon"></i>
           <span class="done_txt">景點排序</span>
         </div>
-
+<!-- 這一頁的ID都要改成Pet嗎 -->
         <div class="list" id="orderAttractions-{{ day }}" style="cursor: pointer;overflow-y: auto;">
           {% include 'create_order_attractions.html' %}
         </div>
@@ -187,7 +187,7 @@
           <div id="checkbox-{{ day }}" class="checkboxDiv">
             <div class="openRec" style="padding: 10px 5px" id="AttractionsContainer-{{ day }}">
               <h4>請先選擇使用者位置和時間</h4>
-              {% include 'create_recommend.html' %}
+              {% include 'create_recommend_pet.html' %}
             </div>
           </div>
         </div>
