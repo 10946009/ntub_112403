@@ -27,6 +27,7 @@ class User(AbstractUser):
     user_photo = models.TextField(max_length=10, blank=True, default="../static/images/user1.png")
     user_favorite_tag = ArrayField(models.IntegerField(), null=True)
     edit_tag_status =  models.BooleanField(null=False, blank=False, default=0)
+    page_light = models.BooleanField(null=False, blank=False, default=0) #預設白色  True為黑色
     verification_token = models.TextField(max_length=32, default="")
     USERNAME_FIELD = "email"  # 使用信箱當登入帳號
     REQUIRED_FIELDS = ["username"]  # username 是預設的必填欄位
