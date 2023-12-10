@@ -7,7 +7,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .viewsConst import ATT_TYPE_CHINESE
-from .recommend import recommend,recommend_maybe,recommend_user_favorite
+from .recommend import recommend,recommend_maybe,recommend_user_favorite,recommend_pet
 from .recommend_near import recommend_near
 from .final_order import final_order
 import requests
@@ -158,9 +158,14 @@ def create(request, ct_id):
             # print("user目前位置",get_user_address)
             # print("user目前位置",type(get_user_address))
             # print(new_nowtime)
-            m = recommend(
-                user_favorite_type, new_nowtime, get_user_address, start_day, stay_time,ispet
-            )
+            if ispet:
+                m = recommend_pet(
+                    user_favorite_type, new_nowtime, get_user_address, start_day, stay_time,ispet
+                )
+            else:
+                m = recommend(
+                    user_favorite_type, new_nowtime, get_user_address, start_day, stay_time,ispet
+                )
             m_list = (Attractions.objects.filter(place_id__in=m) | recommend_maybe(uid,ispet)|recommend_user_favorite(uid,ispet)).distinct()
             crow_opening_list = []
             for i in m_list:
