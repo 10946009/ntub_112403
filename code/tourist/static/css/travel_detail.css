@@ -453,7 +453,7 @@ body {
     max-width: 100%;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     flex-wrap: wrap;
 }
 
@@ -463,6 +463,7 @@ body {
     overflow: hidden;
     background-color: #ddd;
     margin-bottom: 10px;
+    margin-right: 5px;
     border-radius: 4px;
 }
 
@@ -475,17 +476,50 @@ img {
 
 .day_num {
     font-size: 16px;
-    font-weight: 500;
-    color: gray;
-    border-right: gray solid;
+    font-weight: 400;
+    color: rgb(160, 159, 159);
+    /* border-right: gray solid; */
 }
 
-@media screen and (max-width:768px) {
-    .provider1 {
+.travel_att_name_one {
+    margin-top: 5px;
+    border-left: gray solid;
+    padding-left: 10px;
+    color: rgb(120, 118, 118);
+    font-size: 16px;
+}
+
+.travel_att_name {
+    margin-top: 10px;
+    padding-left: 15px;
+    color: rgb(120, 118, 118);
+    font-size: 16px;
+}
+
+@media screen and (max-width:980px) {
+    /* .provider1 {
         display: none;
     }
 
     .provider1_copy {
         display: block;
+    } */
+
+    .day_att {
+        display: none;
+    }
+
+    .trip_detail_att {
+        width: 100%;
+    }
+
+    .trip_im {
+        width: 100%;
+        padding-right: 0px;
+    }
+
+    .trip_bg_img {
+        position: relative;
+        margin: 70px auto 0 auto;
     }
 }
