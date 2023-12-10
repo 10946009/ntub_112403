@@ -26,12 +26,12 @@
 	}
 }
 
-main {
+body {
 	background-color: rgba(247, 255, 221,0.1);
 	transition: background-color 0.3s ease, color 0.3s ease;
 }
 /* 暗色模式 */
-main.dark-mode {
+body.dark-mode {
 	background-color: #464141;
 	color: #fff;
 }

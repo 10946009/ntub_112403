@@ -99,3 +99,15 @@ def user_edit_pwd(request):
             message = "舊密碼輸入錯誤"
             return render(request, "edit.html",locals())
             return JsonResponse({'status': 'old_pwd_error'})
+
+
+def change_light(request):
+    light = request.POST['light']
+    user = User.objects.get(id=request.user.id)
+    print(light)
+    if light == "1":
+        user.page_light = True
+    else:
+        user.page_light = False
+    user.save()
+    return JsonResponse({'status': 'ok'})
