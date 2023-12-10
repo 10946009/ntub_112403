@@ -441,6 +441,14 @@ body {
     margin-right: 1rem;
 }
 
+.day_name {
+    font-weight: 600;
+    color: white;
+    border-radius: 20px;
+    background-color: rgb(255, 58, 160);
+    padding: 4px 8px 4px 8px;
+}
+
 @media screen and (max-width:768px) {
     .provider1 {
         display: none;
