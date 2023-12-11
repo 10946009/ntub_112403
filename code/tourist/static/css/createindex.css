@@ -47,6 +47,9 @@ body {
     margin-bottom: 20px;
     position: relative;
 }
+.txtdiv input{
+    width: 100%;
+}
 
 .txt {
     font-weight: bold;
@@ -62,12 +65,13 @@ body {
 
 .enterbtn {
     display: block;
-    margin: 10px auto;
+    margin: 20px auto;
     font-weight: bolder;
     color: #000;
     font-size: 20px;
     padding: 10px 15px;
     width: 100px;
+    height: 50px;
     box-shadow: 3px 2px 4px #333;
     background-color: rgb(255, 255, 135);
     border-radius: 10px;

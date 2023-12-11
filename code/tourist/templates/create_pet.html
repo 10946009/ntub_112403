@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}建立行程{% endblock %}
 {% block content %}
-<link rel="stylesheet" href="/static/css/create.css">
+<link rel="stylesheet" href="/static/css/create_pet.css">
 <link rel="stylesheet" href="/static/css/create_search.css">
 <link rel="stylesheet" href="/static/owl/owl.carousel.min.css">
 <script src="https://maps.googleapis.com/maps/api/js?key={{apikey}}&libraries=places"></script>
@@ -23,36 +23,10 @@
 </style>
 {% endblock %}
 {% block body %}
-<h1>hihi</h1>
+<!-- <h1>hihi</h1> -->
 <div id="tutorialoverlayBg" class="tutorialoverlayBg"></div>
 <div id="tutorialWindow" class="tutorialWindow">
-  <div style="position: relative;height: 100%;width: 100%;">
-    <div style="width: 98%;height: 98%;border: 1px solid;margin: 0 auto;"><div id="carouselExampleFade" class="carousel slide carousel-fade">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="..." class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    </div>
-    <div class="close_Tutorial">
-      <i class="fa-solid fa-xmark" onclick="closeTutorial()"></i>
-    </div>
-  </div>
+  {% include "tutorialWindow.html" %}
 </div>
 <container>  
   <div class="pageedit">
@@ -185,9 +159,16 @@
             </span>
           </div>
           <div id="checkbox-{{ day }}" class="checkboxDiv">
-            <div class="openRec" style="padding: 10px 5px" id="AttractionsContainer-{{ day }}">
-              <h4>請先選擇使用者位置和時間</h4>
-              {% include 'create_recommend_pet.html' %}
+            <div class="openRec">
+              <div class="filterdiv">
+                <button class="filterBtn filterBtnEat">友善餐廳</button>
+                <button class="filterBtn filterBtnSpot">寵物景點</button>
+                <button class="filterBtn filterBtnWash">寵物美容</button>
+              </div>
+              <div style="padding: 10px 5px" id="AttractionsContainer-{{ day }}">
+                <h4>請先選擇使用者位置和時間</h4>
+                {% include 'create_recommend_pet.html' %}
+              </div>
             </div>
           </div>
         </div>

@@ -37,9 +37,9 @@
     </div>
     <div id="step2" class="block" style="display: none;">
       <div>
-        
         <!--目前選擇的行程類型放在這，從js塞進來-->
-        <div id="tabDL" class="txtdiv" style="clear: both;"><span class="txt" id="nowcreateType"></span>
+        <div id="tabDL" class="txtdiv" style="clear: both;">
+          <span class="txt" id="nowcreateType">類型</span>
           <input type="hidden" name="createType" id="createType" class="inputspace" style="display:none;">
         </div>
 
@@ -55,8 +55,10 @@
           <input type="number" id="createDay" name="createDay" min="1" value="1" required class="inputspace">
         </div>
   
-        <button class="btn btn-outline-success enterbtn" type="submit">送出</button>
-        <div class="backStep" onclick="backStep()">上一步</div>
+        <div style="display: flex;">
+          <div class="backStep" onclick="backStep()">上一步</div>
+          <button class="btn btn-outline-success enterbtn" type="submit">送出</button>
+        </div>
       </div>
     </div>
   </div>
