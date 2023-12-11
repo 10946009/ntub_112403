@@ -173,15 +173,14 @@
                   <span class="fa-solid fa-unlock share_icon" title="公開" id="submitfavorite_share{{ item.my_history.id }}"
                     data-isfavorite="1" style="color: orange;" onclick="add_favorite_share({{ item.my_history.id }})"> <!--圖案改這裡的class-->
                     <br>
-                    <span class="icontxt" style="color: orange;" id="icontxt{{ item.my_history.id }}">公開</span> <!--文字放這-->
+                    <span class="icontxt" style="color: orange;" id="icontxt{{ item.my_history.id }}">公開</span> 
                   </span>
         
                   {% else %}
-                  <!-- <i class="fa-solid fa-lock"></i> -->
                   <span class="fa-solid fa-lock share_icon" title="公開" id="submitfavorite_share{{ item.my_history.id }}"
                     data-isfavorite="0" onclick="add_favorite_share({{ item.my_history.id }})"> <!--圖案改這裡的class-->
                     <br>
-                    <span class="icontxt" id="icontxt{{ item.my_history.id }}">私人</span> <!--文字放這-->
+                    <span class="icontxt" id="icontxt{{ item.my_history.id }}">私人</span> 
                   </span>
         
                   {% endif %}

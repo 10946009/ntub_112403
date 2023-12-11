@@ -92,8 +92,6 @@ let isEdit = false;
 const addCommentBtn = document.getElementById('addCommentBtn');
 const addCommentSpace = document.getElementById('addCommentSpace');
 function addComment() {
-  // const addCommentBtn = document.getElementById('addCommentBtn');
-  // const addCommentSpace = document.getElementById('addCommentSpace');
   console.log(addCommentSpace);
   const addCTXT = document.getElementById('addCTXT');
   console.log(1);
