@@ -513,6 +513,18 @@ body {
     top: 10px;
 }
 
+#user_share_comment {
+    resize: none;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+}
+
+.txt_tr_comment {
+    margin-left: 85px;
+}
+
 .distance_pre {
     font-size: 14px;
     color: gray;
@@ -529,6 +541,10 @@ body {
     .provider1_copy {
         display: block;
     } */
+
+    .txt_tr_comment {
+        margin-left: 0px;
+    }
 
     .day_att {
         display: none;
@@ -575,5 +591,18 @@ body {
         margin-left: 55px;
         margin-bottom: 10px;
         font-size: 15px;
+    }
+
+    .trip_text {
+        color: rgb(255, 255, 255);
+        font-weight: 700;
+        font-size: 34px;
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        /* transform: translate(-50%, 50%); */
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        width: 90%;
     }
 }
