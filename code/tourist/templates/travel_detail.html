@@ -80,7 +80,7 @@
           {% for attractions in day.get_attractions %}
             <div class="section" id="section{{day.day}}-{{forloop.counter}}">
               <div style="margin-bottom:20px;position:relative;">
-                <i class="fa-solid fa-location-dot" style="font-size: 24px;margin-right: 10px;"></i><span
+                <i class="fa-solid fa-location-dot" style="font-size: 24px;margin-right: 10px;color:rgb(212, 61, 61);"></i><span
                   style="font-size: 22px;font-weight: 600;">{{ attractions.a.a_name }}</span>
                 <a href="https://www.google.com/maps/dir/{{attractions.get_previous.a.location_x}},{{attractions.get_previous.a.location_y}}/{{attractions.a.location_x}},{{attractions.a.location_y}}/" target="_blank" style="text-decoration: none;">
                   <span class="loc"><i class="fa-solid fa-location-arrow"></i>導航</span>
