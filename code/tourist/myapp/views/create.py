@@ -159,12 +159,28 @@ def create(request, ct_id):
             # print("user目前位置",type(get_user_address))
             # print(new_nowtime)
             if ispet:
-                m = recommend_pet(
-                    user_favorite_type, new_nowtime, get_user_address, start_day, stay_time,ispet
-                )
+                try:
+                    pet_type = request.POST["pet_type"]
+                    if request.POST["pet_type"] == "1":
+                        m = recommend_pet(
+                            user_favorite_type, new_nowtime, get_user_address, start_day, stay_time,ispet,pet_type
+                        )
+                    elif request.POST["pet_type"] == "2":
+                        m = recommend_pet(
+                            user_favorite_type, new_nowtime, get_user_address, start_day, stay_time,ispet,pet_type
+                        )
+                    else:
+                        m = recommend_pet(
+                            user_favorite_type, new_nowtime, get_user_address, start_day, stay_time,ispet,pet_type
+                        )
+                except:
+                    m = recommend_pet(
+                        user_favorite_type, new_nowtime, get_user_address, start_day, stay_time,ispet,None
+                    )
+                    
             else:
                 m = recommend(
-                    user_favorite_type, new_nowtime, get_user_address, start_day, stay_time,ispet
+                    user_favorite_type, new_nowtime, get_user_address, start_day, stay_time
                 )
             m_list = (Attractions.objects.filter(place_id__in=m) | recommend_maybe(uid,ispet)|recommend_user_favorite(uid,ispet)).distinct()
             crow_opening_list = []

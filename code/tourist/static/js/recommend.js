@@ -1,6 +1,6 @@
 function startRecommend(user_location,day){
   console.log(user_location);
-  nowtime = document.getElementById('nowtime-' + globalDay);
+  const nowtime = document.getElementById('nowtime-' + globalDay);
   const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
   $.ajax({
       type: "POST",
@@ -10,6 +10,34 @@ function startRecommend(user_location,day){
           nowtime: nowtime.value,
           globalDay: globalDay,
           ct_status: 0,
+      },
+      success: function (response) {
+        console.log("成功推薦");
+        const attractions_detail_div = $('#AttractionsContainer-'+ globalDay );
+        attractions_detail_div.html(response['recommend_attractions_list']);
+        checkAndAddClass();
+      },
+
+      error: function () {
+          console.log('推薦回傳有錯誤!!!');
+      },
+    });
+}
+
+function sortRecommend(type){
+  const user_location = document.getElementById("userLocation-" + globalDay).value;
+  console.log(user_location);
+  const nowtime = document.getElementById('nowtime-' + globalDay);
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  $.ajax({
+      type: "POST",
+      headers: { 'X-CSRFToken': csrftoken },
+      data: {
+          user_location: user_location,
+          nowtime: nowtime.value,
+          globalDay: globalDay,
+          ct_status: 0,
+          pet_type: type,
       },
       success: function (response) {
         console.log("成功推薦");
@@ -95,3 +123,4 @@ function submitRecommend(){
     });
 
 }
+

@@ -12,7 +12,7 @@ from .check_distance import check_distance_placeid
 from django.db.models import F,Q,Count
 
 # ------------------------------------第1步驟(推薦周遭景點)
-def recommend(user_favorite, now_time, get_user_address, day, stay_time,ispet):
+def recommend(user_favorite, now_time, get_user_address, day, stay_time):
     try:
         client = googlemaps.Client(key=GOOGLE_PLACES_API_KEY)
     except:
@@ -25,7 +25,7 @@ def recommend(user_favorite, now_time, get_user_address, day, stay_time,ispet):
     # o_crowd_opening = o_db.crowd_opening_set.filter(week=week).values()
 
     get_all_attractions = check_distance_placeid(
-        get_user_address, check_opening(now_time, week, stay_time),ispet
+        get_user_address, check_opening(now_time, week, stay_time),False
     )
     # print("get_all_attractions",len(get_all_attractions))
     m_attractions_list = []
@@ -111,7 +111,17 @@ def recommend(user_favorite, now_time, get_user_address, day, stay_time,ispet):
 
     return m_attractions_list[:10]
 
-def recommend_pet(user_favorite, now_time, get_user_address, day, stay_time,ispet):
+def recommend_pet(user_favorite, now_time, get_user_address, day, stay_time,ispet,pet_type = None):
+    if pet_type == "1":
+        type_sort = 0
+        type_sort2 = 10
+    elif pet_type == "2":
+        type_sort = 10
+        type_sort2 = 0
+    else:
+        type_sort = 5
+        type_sort2 = 5
+
     try:
         client = googlemaps.Client(key=GOOGLE_PLACES_API_KEY)
     except:
@@ -186,13 +196,13 @@ def recommend_pet(user_favorite, now_time, get_user_address, day, stay_time,ispe
     print("f_final_m_list", f_final_m_list)
     f_final_m_list_place_id = [
         Attractions.objects.get(id=x[0]).place_id
-        for x in f_final_m_list if Attractions.objects.get(id=x[0]).detail =="寵物友善公園"  # 可能會換place_id
+        for x in f_final_m_list if Attractions.objects.get(id=x[0]).detail =="寵物友善公園"
     ]
     f_final_m_list_place_id_2 = [
         Attractions.objects.get(id=x[0]).place_id
-        for x in f_final_m_list if Attractions.objects.get(id=x[0]).detail =="寵物友善餐廳"  # 可能會換place_id
+        for x in f_final_m_list if Attractions.objects.get(id=x[0]).detail =="寵物友善餐廳" 
     ]
-    m_attractions_list = f_final_m_list_place_id[:5] + f_final_m_list_place_id_2[:5]
+    m_attractions_list = f_final_m_list_place_id[:type_sort] + f_final_m_list_place_id_2[:type_sort2]
     print("推薦的景點為", m_attractions_list)
 
     return m_attractions_list
