@@ -161,9 +161,9 @@
           <div id="checkbox-{{ day }}" class="checkboxDiv">
             <div class="openRec">
               <div class="filterdiv">
-                <button class="filterBtn filterBtnEat" onclick="sortRecommend(0)">全部</button>
-                <button class="filterBtn filterBtnEat" onclick="sortRecommend(1)">友善餐廳</button>
-                <button class="filterBtn filterBtnSpot" onclick="sortRecommend(2)">寵物公園</button>
+                <button class="filterBtn filterBtnAll" id="filterBtnAll" onclick="sortRecommend(0)">全部</button>
+                <button class="filterBtn filterBtnEat" id="filterBtnEat" onclick="sortRecommend(1)">友善餐廳</button>
+                <button class="filterBtn filterBtnSpot" id="filterBtnSpot" onclick="sortRecommend(2)">寵物公園</button>
               </div>
               <div style="padding: 10px 5px" id="AttractionsContainer-{{ day }}">
                 <h4>請先選擇使用者位置和時間</h4>
@@ -261,6 +261,7 @@
 
 <script src="../static/js/createSearchTool.js"></script>
 <script src="/static/js/create.js"></script>
+<script src="/static/js/create_pet.js"></script>
 <script src="/static/js/recommend.js"></script>
 <script src="/static/js/createSave.js"></script>
 <script src="../static/js/owl.carousel.min.js"></script>
