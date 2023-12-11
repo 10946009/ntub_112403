@@ -83,10 +83,10 @@
                 <i class="fa-solid fa-location-dot" style="font-size: 24px;margin-right: 10px;"></i><span
                   style="font-size: 22px;font-weight: 600;">{{ attractions.a.a_name }}</span>
                 <a href="https://www.google.com/maps/dir/{{attractions.get_previous.a.location_x}},{{attractions.get_previous.a.location_y}}/{{attractions.a.location_x}},{{attractions.a.location_y}}/" target="_blank" style="text-decoration: none;">
-                  <span style="font-size:20px; position: absolute;right:20px;top:10px"><i class="fa-solid fa-location-arrow"></i>導航</span>
+                  <span class="loc"><i class="fa-solid fa-location-arrow"></i>導航</span>
                 </a>
                 {% if forloop.counter != 1 %}
-                <span style="font-size:14px;color:gray;position: absolute;right:20px;top:40px">距離上個點約{{attractions.distance_time}}分</span>
+                <span class="distance_pre">距離上個點約{{attractions.distance_time}}分</span>
                 {% endif %}
                   <br>
                 <h6 style="margin:10px 0 0 30px;color: rgb(95, 95, 95);font-weight: 600;">停留{{ attractions.a.stay_time }}分</h6>

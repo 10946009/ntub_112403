@@ -506,6 +506,21 @@ img {
     text-decoration: none;
 }
 
+.loc {
+    font-size: 20px;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+.distance_pre {
+    font-size: 14px;
+    color: gray;
+    position: absolute;
+    right: 20px;
+    top: 40px;
+}
+
 @media screen and (max-width:980px) {
     /* .provider1 {
         display: none;
@@ -531,5 +546,20 @@ img {
     .trip_bg_img {
         position: relative;
         margin: 70px auto 0 auto;
+    }
+
+    .loc {
+        font-size: 20px;
+        position: absolute;
+        right: 5px;
+        top: 30px;
+    }
+
+    .distance_pre {
+        font-size: 14px;
+        color: gray;
+        position: absolute;
+        right: 5px;
+        top: 60px;
     }
 }
