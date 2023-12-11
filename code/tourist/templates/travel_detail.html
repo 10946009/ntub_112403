@@ -60,15 +60,15 @@
           </div>
         </div>
         <!-- 行程簡介（使用者自己打） -->
-        <div>
+        <div style="margin-bottom:20px;">
           <h6 style="margin:20px 0px 10px 5px;"><span style="color:gray;">{% if ct_detail.detail == "" %}目前還沒有內容
               {% else %}{{ct_detail.detail}}{% endif %}</span></h6>
         </div>
         <!-- 幾個人收藏 -->
-        <div>
+        {% comment %} <div>
           <span style="border: black solid;padding: 0 5px 0 5px; background-color: white;font-size: 18px;"> <i
               class="fas fa-regular fa-heart" style="color: rgb(202, 13, 13);margin-right: 5px;"></i>xx</span>
-        </div>
+        </div> {% endcomment %}
         <hr style="margin-bottom:20px;">
         {% for day in ct_detail.get_choice_day %}
         <div class="day_detail" id="sec1">
