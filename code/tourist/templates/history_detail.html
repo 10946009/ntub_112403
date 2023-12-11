@@ -60,19 +60,21 @@
     {% for data in all_data %}
       <div class = "classDayContent" id="content{{forloop.counter}}" style={% if forloop.counter == 1 %}"display: block;"{% else %}"display: none;"{% endif %}>
         <div class="dayContent">
-          <div class="time_position">
+          {% comment %} <div class="time_position">
             <div class="startTime">
               <form action="">
                 <input type="time">
               </form>
             </div>
-            <div class="startPosition">
-              <span style="width: 90%;text-align: center;">起始位置</span>
-            </div>
-          </div>
+          </div> {% endcomment %}
           {% for a_data in data.ct_attraction %}
             {{a_data.a_id.start_location_y}}
             {% if forloop.counter == 1 %}
+              <div class="time_position">
+                <div class="startPosition">
+                  <span style="width: 90%;text-align: center;">起始位置：<br>{{ a_data.choice_ct.location_name }}</span>
+                </div>
+              </div>
               <div class="car_time">
                 <a href="https://www.google.com/maps/dir/{{a_data.choice_ct.start_location_x}},{{a_data.choice_ct.start_location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;color: black;">
                   <img src="/static/images/New Project.jpg" alt="" class="car_icon">
@@ -91,7 +93,7 @@
             <div class="time_ContentIntro">
               <div class="startTime">
                 <form action="">
-                  <input type="time">
+                  <input type="time" value="{{a_data.get_time}}">
                 </form>
               </div>
               <div class="dayContentIntroDiv">
