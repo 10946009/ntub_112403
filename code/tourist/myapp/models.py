@@ -145,6 +145,13 @@ class Attractions_Ct(models.Model):
     order = models.IntegerField(null=False, blank=False)
     def get_previous(self):
         return Attractions_Ct.objects.filter(choice_ct=self.choice_ct,order=self.order-1).first()
+    
+    def get_time(self):
+         # 使用 divmod 函數將分鐘轉換為小時和分鐘
+        hours, mins = divmod(self.a_start_time, 60)
+        # 使用 str.format 將數字格式化為兩位數
+        time_str = '{:02d}:{:02d}'.format(hours, mins)
+        return time_str
 
 
 # class History(models.Model):
