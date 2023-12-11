@@ -17,9 +17,9 @@
       <!-- 行程天數跟行程標題 -->
       <div class="trip_text">
         <span>
-          <h4><strong>2天</strong></h4>
+          <h4><strong>{{ct_detail.travel_day}}天</strong></h4>
         </span>
-        <p>台北｜年前輕旅。復古踩點</p>
+        <p>{{ct_detail.ct_name}}</p>
       </div>
       <!-- 行程收藏 -->
       <div class="icon_add">
@@ -70,74 +70,49 @@
               class="fas fa-regular fa-heart" style="color: rgb(202, 13, 13);margin-right: 5px;"></i>xx</span>
         </div>
         <hr style="margin-bottom:20px;">
+        {% for day in ct_detail.get_choice_day %}
         <div class="day_detail" id="sec1">
           <!-- 天數 -->
           <div style="margin-bottom:20px;">
-            <span class="day_name">第1天</span>
+            <span class="day_name">第{{ day.day }}天</span>
           </div>
           <!-- 景點名稱 -->
-          <div id="section1">
-            <div style="margin-bottom:20px;position:relative;">
-              <i class="fa-solid fa-location-dot" style="font-size: 24px;margin-right: 10px;"></i><span
-                style="font-size: 22px;font-weight: 600;">101大樓</span>
-              <a href="https://www.google.com/maps/dir/{{a_data.choice_ct.start_location_x}},{{a_data.choice_ct.start_location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;">
-                <span style="font-size:20px; position: absolute;right:20px;top:10px"><i class="fa-solid fa-location-arrow"></i>導航</span>
-              </a>
-              <span style="font-size:14px;color:gray;position: absolute;right:20px;top:40px">距離上個點約xx分</span>
-                <br>
-              <h6 style="margin:10px 0 0 30px;color: rgb(95, 95, 95);font-weight: 600;">停留xx分</h6>
-            </div>
-            <!-- 景點圖片 -->
-            <div class="gallery">
-              <div class="image">
-                <img src="../static/images/bg1.jpg" alt="Image 1">
-              </div>
-              <div class="image">
-                <img src="../static/images/bg2.jpg" alt="Image 2">
-              </div>
-              <div class="image">
-                <img src="../static/images/bg6.jpeg" alt="Image 3">
-              </div>
-            </div>
-            <!-- 景點說明 -->
-            <div>
-              <p>為了購買底片而發現的寶藏照相館-又又美。<br><br>
-                充滿底片和老物的復古相機館，除了有賣底片相機和相關配件外，還有提供輕食與飲品，只要低消100元，就能上樓參觀店內擺設，也能付費請店員拍攝拍立得！</p>
-            </div>
-          </div>
-          <!-- 景點名稱 -->
-          <div id="section2">
-            <div style="margin-bottom:20px;position:relative;">
-              <i class="fa-solid fa-location-dot" style="font-size: 24px;margin-right: 10px;"></i><span
-                style="font-size: 22px;font-weight: 600;">動物園</span>
-                <a href="https://www.google.com/maps/dir/{{a_data.choice_ct.start_location_x}},{{a_data.choice_ct.start_location_y}}/{{a_data.a.location_x}},{{a_data.a.location_y}}/" target="_blank" style="text-decoration: none;">
+          {% for attractions in day.get_attractions %}
+            <div class="section" id="section{{day.day}}-{{forloop.counter}}">
+              <div style="margin-bottom:20px;position:relative;">
+                <i class="fa-solid fa-location-dot" style="font-size: 24px;margin-right: 10px;"></i><span
+                  style="font-size: 22px;font-weight: 600;">{{ attractions.a.a_name }}</span>
+                <a href="https://www.google.com/maps/dir/{{attractions.get_previous.a.location_x}},{{attractions.get_previous.a.location_y}}/{{attractions.a.location_x}},{{attractions.a.location_y}}/" target="_blank" style="text-decoration: none;">
                   <span style="font-size:20px; position: absolute;right:20px;top:10px"><i class="fa-solid fa-location-arrow"></i>導航</span>
                 </a>
-                <span style="font-size:14px;color:gray;position: absolute;right:20px;top:40px">距離上個點約xx分</span>
-                <br>
-              <h6 style="margin:10px 0 0 30px;color: rgb(95, 95, 95);font-weight: 600;">停留xx分</h6>
-            </div>
-            <!-- 景點圖片 -->
-            <div class="gallery">
-              <div class="image">
-                <img src="../static/images/beitou.jpeg" alt="Image 1">
+                {% if forloop.counter != 1 %}
+                <span style="font-size:14px;color:gray;position: absolute;right:20px;top:40px">距離上個點約{{attractions.distance_time}}分</span>
+                {% endif %}
+                  <br>
+                <h6 style="margin:10px 0 0 30px;color: rgb(95, 95, 95);font-weight: 600;">停留{{ attractions.a.stay_time }}分</h6>
               </div>
-              <div class="image">
-                <img src="../static/images/chang.jpeg" alt="Image 2">
+              <!-- 景點圖片 -->
+              <div class="gallery">
+                <div class="image">
+                  <img src="../static/images/attractions/{{ attractions.a.place_id }}_0.jpg" alt="Image 1">
+                </div>
+                <div class="image">
+                  <img src="../static/images/attractions/{{ attractions.a.place_id }}_1.jpg" alt="Image 2">
+                </div>
+                <div class="image">
+                  <img src="../static/images/attractions/{{ attractions.a.place_id }}_2.jpg" alt="Image 3">
+                </div>
               </div>
-              <div class="image">
-                <img src="../static/images/Datong.jpeg" alt="Image 3">
+              <!-- 景點說明 -->
+              <div>
+                <p>{{attractions.a.detail}}</p>
               </div>
             </div>
-            <!-- 景點說明 -->
-            <div>
-              <p>設計系學生本人在做作業時，查資料發現的厲害親水空間-河樂廣場！<br><br>
-                蜿蜒的曲線打破台灣大多數的公園設定，配合水域再加入現代感，這樣創新的設計思維讓我佩服萬分！雖然剛好遇到閉館，但閉上眼睛想像景緻，也彷彿自己正融入其中。</p>
-            </div>
-          </div>
+          {% endfor %}
         </div>
         <hr>
-        <div class="day_detail" id="sec2">
+        {% endfor %}
+        {% comment %} <div class="day_detail" id="sec2">
           <!-- 天數 -->
           <div style="margin-bottom:20px;margin-top: 20px;">
             <span class="day_name">第2天</span>
@@ -203,11 +178,11 @@
                 吃飽飽，開心回家🌷</p>
             </div>
           </div>
-        </div>
+        </div> {% endcomment %}
         <hr>
         <!-- 留言 -->
         <div style="margin-bottom:20px;">
-          <h5 style="font-weight: 600;">留言（0）</h5>
+          <h5 style="font-weight: 600;">留言（{{ ct_detail.get_comment|length }}）</h5>
         </div>
         <section class="comment_travel_detail">
           <section>
@@ -315,40 +290,20 @@
       </div>
       <!-- 各個天數內的詳細景點呈現 -->
       <div class="col-3 day_att" id="myHeader" style="margin-top:20px;">
-        <div class="row">
-          <div class="col-4" style="margin-top:5px;">
-            <span class="day_num" id="big1">第1天</span>
+        {% for day in ct_detail.get_choice_day %}
+          <div class="row">
+            <div class="col-4" style="margin-top:5px;">
+              <span class="day_num" id="big1">第{{day.day}}天</span>
+            </div>
+            <div class="col-8">
+              {% for attractions in day.get_attractions %}
+              <a href="#section{{day.day}}-{{forloop.counter}}">
+                <h6 class="travel_att_name_one" id="{{day.day}}">{{attractions.a.a_name}}</h6>
+              </a>
+              {% endfor %}
+            </div>
           </div>
-          <div class="col-8">
-            <a href="#section1">
-              <h6 class="travel_att_name_one" id="title1">台北101大樓</h6>
-            </a>
-            <a href="#section2">
-              <h6 class="travel_att_name" id="title2">動物園</h6>
-            </a>
-            <!-- <h6 class="travel_att_name">大魚的祝福</h6>
-            <h6 class="travel_att_name">依蕾特布丁</h6>
-            <h6 class="travel_att_name">同記安平豆花</h6>
-            <h6 class="travel_att_name">夕遊出張所(歇業)</h6>
-            <h6 class="travel_att_name">醒覺旅人古調文旅</h6> -->
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-4" style="margin-top:5px;">
-            <span class="day_num" id="big2">第2天</span>
-          </div>
-          <div class="col-8">
-            <a href="#section3">
-              <h6 class="travel_att_name_one" id="title3">士林夜市</h6>
-            </a>
-            <a href="#section4">
-              <h6 class="travel_att_name" id="title4">無名米糕</h6>
-            </a>
-            <!-- <h6 class="travel_att_name">河樂廣場</h6>
-            <h6 class="travel_att_name">小南人烤肉廚房</h6>
-            <h6 class="travel_att_name">沼澤 Henri in the marsh</h6> -->
-          </div>
-        </div>
+          {% endfor %}
       </div>
     </div>
   </div>
@@ -511,8 +466,9 @@
       }
     }
     // 滑到該景點的時候亮顏色(pink)
-    const titles = [document.getElementById('title1'), document.getElementById('title2'), document.getElementById('title3'), document.getElementById('title4')];
-    const sections = [document.getElementById('section1'), document.getElementById('section2'), document.getElementById('section3'), document.getElementById('section4')];
+    const titles = document.querySelectorAll('.travel_att_name_one');
+    const sections = document.querySelectorAll('.section');
+    const bigs = document.querySelectorAll('.day_num');
     window.addEventListener('scroll', () => {
       let currentSection = 0;
       let minDistance = Infinity;
@@ -524,19 +480,24 @@
         }
       });
       titles.forEach(title => title.style.color = 'gray');
+      bigs.forEach(big => big.style.color = 'gray');
       titles.forEach((title, index) => {
-        title.style.color = index === currentSection ? 'rgb(255, 58, 160)' : '';
+        if(index === currentSection){
+          title.style.color ='rgb(255, 58, 160)';
+          bigs[parseInt(title.id)-1].style.color = 'blue';
+        };
       });
     });
 
     // 滑到該天數的時候亮顏色（blue)
-    const bigs = [document.getElementById('big1'), document.getElementById('big2')];
-    const secs = [document.getElementById('sec1'), document.getElementById('sec2')];
+    {% comment %} const bigs = document.querySelectorAll('.day_num');
+    const secs = document.querySelectorAll('.day_name');
     window.addEventListener('scroll', () => {
       let currentSec = 0;
       let minDis = Infinity;
       secs.forEach((sec, index) => {
         const dis = Math.abs(sec.getBoundingClientRect().top); // 使用 sec 而不是 section
+        console.log(dis);
         if (dis < minDis) {
           minDis = dis;
           currentSec = index;
@@ -546,7 +507,7 @@
       bigs.forEach((big, index) => {
         big.style.color = index === currentSec ? 'blue' : '';
       });
-    });
+    }); {% endcomment %}
 
     {% comment %} 評論公開顯示tips {% endcomment %}
     function toggleTravelInfo() {

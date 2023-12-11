@@ -155,6 +155,7 @@
                 {% endif %}
                 <h4 class="mytravel_txt_detail">天數：{{ item.my_history.travel_day }}</h4>
                 <h4 class="mytravel_txt_detail">起始日期：{{item.my_history.start_day}}</h4>
+                <h4 class="mytravel_txt_detail">類型：{% if item.my_history.ispet %}寵物行程{% else %}旅遊行程{% endif %}</h4>
               </div>
               <div class="basicButton">
                 <!--編輯按紐-->
