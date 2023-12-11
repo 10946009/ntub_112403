@@ -252,7 +252,7 @@ body {
     height: 80%;
     position: fixed;
     right: 0;
-    top: 20%;
+    top: 15%;
 }
 
 .openDetailDiv {
@@ -605,25 +605,22 @@ input[type='time'] {
     height: 250px;
     width: 100%;
 }
-
+/* 
 .startTime {
     float: left;
     width: 30%;
-}
+} */
 
 .dayContentIntroDiv {
-    float: right;
-    width: 70%;
-    display: flex;
-    align-items: center;
-    align-content: center;
+    margin: 0 auto;
+    width: 90%;
     border: 1px solid #ccc;
     border-radius: 30px;
     padding: 10px;
 }
 
 .dayContentIntro {
-    width: 70%;
+    width: 100%;
     min-width: 200px;
     height: 200px;
     padding: 10px 5px;
