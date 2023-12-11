@@ -179,7 +179,6 @@
             </div>
           </div>
         </div> {% endcomment %}
-        <hr>
         <!-- 留言 -->
         <div style="margin-bottom:20px;">
           <h5 style="font-weight: 600;">留言（{{ ct_detail.get_comment|length }}）</h5>
@@ -207,7 +206,7 @@
             </div>
             <div class="comment_text">
               {{comment.content}}
-              <p></p>
+              <br>
               <span style="margin-right: 20px; cursor: pointer;" id="likeButton" onclick="toggleLike()">
                 {% if request.user.id in comment.get_user_favorite %}
                 <i class="fa-thumbs-up fa-solid" style="color: rgb(0, 102, 255);" id="likeIcon"></i>
