@@ -35,7 +35,7 @@ def get_weather_data(address,year,mouth,day,nowtime):#地址、年、月、日�
         return print("暫無資料")
     for k,v in weather_data.items():
         if v == " ":
-            weather_data[k] = "暫無資料"
+            weather_data[k] = ""
     # print("------------------------------------------------------------------")
     # print(weather_data["天氣預報綜合描述"])
     rain = weather_data.get("12小時降雨機率", "")

@@ -25,7 +25,8 @@ function startRecommend(user_location,day){
 }
 
 function sortRecommend(type){
-  const filterBtn = document.querySelectorAll('.filterBtn');
+  const checkbox = document.getElementById('checkbox-' + globalDay);
+  const filterBtn = checkbox.querySelectorAll('.filterBtn');
 
   filterBtn.forEach(button => {
     button.classList.remove('filterBtn_active');

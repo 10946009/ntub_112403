@@ -225,6 +225,11 @@ class TravelComment(models.Model):
     ct = models.ForeignKey(to=Create_Travel, on_delete=models.CASCADE , default=-1)
     content = models.TextField(max_length=255,default="")
     comment_date = models.DateField(auto_now_add=True, null=False, blank=False)
+    def get_favorite_count(self):
+        return TravelCommentFavorite.objects.filter(tc_id=self.id).count()
+    def get_user_favorite(self):
+        user_ids = TravelCommentFavorite.objects.filter(tc_id=self.id).values_list('u_id', flat=True)
+        return list(user_ids)
 
 class TravelCommentFavorite(models.Model):
     tc = models.ForeignKey(
