@@ -71,13 +71,7 @@ body.dark-mode {
 	cursor: pointer;
 }
 
-/* 在需要隱藏滾動條的地方添加相應的 class */
-.body_noScroll {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	overflow-y: scroll;
-}
+
 
 @font-face {
 	font-family: 'HanyiSentyTea Regular';
