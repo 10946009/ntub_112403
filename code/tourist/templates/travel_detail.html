@@ -219,11 +219,11 @@
               <br>
               <span style="margin-right: 20px; cursor: pointer;" id="likeButton" onclick="toggleLike({{comment.id}})">
                 {% if request.user.id in comment.get_user_favorite %}
-                <i class="fa-thumbs-up fa-solid" style="color: rgb(0, 102, 255);" id="likeIcon"></i>
+                <i class="fa-thumbs-up fa-solid" style="color: rgb(0, 102, 255);" id="likeIcon{{comment.id}}"></i>
                 {% else %}
-                <i class="fa-regular fa-thumbs-up" style="color: rgb(0, 102, 255);" id="likeIcon"></i>
+                <i class="fa-regular fa-thumbs-up" style="color: rgb(0, 102, 255);" id="likeIcon{{comment.id}}"></i>
                 {% endif %}
-                <span id="likeCount">{{comment.get_favorite_count}}</span>
+                <span id="likeCount{{comment.id}}">{{comment.get_favorite_count}}</span>
               </span>
             </div>
           </div>
@@ -526,8 +526,8 @@
 
     {% comment %} 按讚功能(還沒串後端) {% endcomment %}
     function toggleLike(id) {
-      var likeIcon = document.getElementById('likeIcon');
-      var likeCount = document.getElementById('likeCount');
+      var likeIcon = document.getElementById('likeIcon'+id);
+      var likeCount = document.getElementById('likeCount'+id);
       var currentCount = parseInt(likeCount.innerText);
       const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
       $.ajax({
