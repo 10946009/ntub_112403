@@ -155,14 +155,14 @@
                 </div>
                 <div class="basicButton">
                   <!--編輯按紐-->
-                  <div class="edit">
-                    <a href="/create/{{ item.my_history.id }}" class="edita">
+                  <a class="edit"  href="/create/{{ item.my_history.id }}">
+                    <div class="edita">
                       <span class="fa-solid fa-pen-to-square edit_icon">
                         <br>
                         <span class="icontxt">編輯</span>
                       </span>
-                    </a>
-                  </div>
+                    </div>
+                  </a>
                   <!-- 公開按鈕 -->
                   <div class="share" id="ct_share">
                     {% if item.my_history.status == True %}

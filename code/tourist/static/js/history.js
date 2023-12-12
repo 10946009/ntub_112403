@@ -41,7 +41,7 @@ function clickShow(button, ctid) {
   // const targetDivId = button.getAttribute('data-target');
   // const targetDiv = document.getElementById(targetDivId);
   const changeHistory = document.getElementById('changeHistory');
-  // const detailRightOverlay = document.getElementById('detailRightOverlay');
+  const detailRightOverlay = document.getElementById('detailRightOverlay');
 
   allButtons.forEach(btn => {
     if (btn !== button) {
@@ -56,7 +56,7 @@ function clickShow(button, ctid) {
     });
     changeHistory.style.display = 'none';
     changeHistory.classList.remove('detailRightPopUp');
-    document.getElementById('detailRightOverlay').style.display = 'none';
+    detailRightOverlay.style.display = 'none';
     
     // detailRightOverlay.classList.remove('detailRightOverlay');
     document.documentElement.style.overflowY = 'auto';
@@ -66,7 +66,7 @@ function clickShow(button, ctid) {
     // 顯示目標詳細資訊 div
     changeHistory.style.display = 'block';
     changeHistory.classList.add('detailRightPopUp');
-    document.getElementById('detailRightOverlay').style.display = 'block';
+    detailRightOverlay.style.display = 'block';
     
     // detailRightOverlay.classList.add('detailRightOverlay');
     document.documentElement.style.overflowY = 'hidden';
