@@ -79,7 +79,14 @@
 
   // 设置输入框的值为明天的日期
   document.getElementById('createDate').value = formattedTomorrow;
-
+  var ispet = "{{ ispet }}";
+  if (ispet == "1") {
+    document.getElementById('choiceClassRight').click();
+    nextStep()
+  }else if(ispet == "0"){
+    document.getElementById('choiceClassLeft').click();
+    nextStep()
+  }
 </script>
 {% endblock %}
 
