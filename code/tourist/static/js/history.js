@@ -38,9 +38,10 @@ function clickShow(button, ctid) {
   // 更改其他按鈕的文字狀態
   const allButtons = document.querySelectorAll("[class^='more_btn']");
   console.log(ctid);
-  const targetDivId = button.getAttribute('data-target');
-  const targetDiv = document.getElementById(targetDivId);
+  // const targetDivId = button.getAttribute('data-target');
+  // const targetDiv = document.getElementById(targetDivId);
   const changeHistory = document.getElementById('changeHistory');
+  // const detailRightOverlay = document.getElementById('detailRightOverlay');
 
   allButtons.forEach(btn => {
     if (btn !== button) {
@@ -53,17 +54,24 @@ function clickShow(button, ctid) {
     document.querySelectorAll(".openDetailDiv").forEach(div => {
       div.style.display = 'none';
     });
-    targetDiv.style.display = 'none';
-    // targetDiv.classList.remove('detailRightPopUp');
+    changeHistory.style.display = 'none';
+    changeHistory.classList.remove('detailRightPopUp');
+    document.getElementById('detailRightOverlay').style.display = 'none';
+    
+    // detailRightOverlay.classList.remove('detailRightOverlay');
+    document.documentElement.style.overflowY = 'auto';
     button.textContent = '詳細行程';
     button.style.backgroundColor = "rgb(255, 240, 126)";
   } else {
     // 顯示目標詳細資訊 div
-    targetDiv.style.display = 'block';
-    // targetDiv.classList.add('detailRightPopUp');
+    changeHistory.style.display = 'block';
+    changeHistory.classList.add('detailRightPopUp');
+    document.getElementById('detailRightOverlay').style.display = 'block';
+    
+    // detailRightOverlay.classList.add('detailRightOverlay');
+    document.documentElement.style.overflowY = 'hidden';
     button.textContent = '關閉閱覽';
     button.style.backgroundColor = "#F55";
-    // document.documentElement.style.backgroundColor = 'black';
     $.ajax({
       type: "GET",
       url: "/history/info/",
