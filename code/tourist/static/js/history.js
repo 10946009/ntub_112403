@@ -54,11 +54,13 @@ function clickShow(button, ctid) {
       div.style.display = 'none';
     });
     targetDiv.style.display = 'none';
+    // targetDiv.classList.remove('detailRightPopUp');
     button.textContent = '詳細行程';
     button.style.backgroundColor = "rgb(255, 240, 126)";
   } else {
     // 顯示目標詳細資訊 div
     targetDiv.style.display = 'block';
+    // targetDiv.classList.add('detailRightPopUp');
     button.textContent = '關閉閱覽';
     button.style.backgroundColor = "#F55";
     // document.documentElement.style.backgroundColor = 'black';

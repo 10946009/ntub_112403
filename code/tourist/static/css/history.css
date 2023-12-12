@@ -245,15 +245,15 @@ body {
 .outerDiv {
     width: 100%;
     margin: 0 auto;
-    border: 1px solid;
     position: relative;
     z-index: 2;
 }
 
 .innerDiv {
     position: relative;
-    margin-bottom: 10px;
     padding: 0 10px;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
     height: 350px;
     overflow: hidden;
 }
@@ -262,6 +262,7 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
+    box-shadow: 2px 2px 3px #333;
 }
 
 .innerDivSub img {
@@ -285,13 +286,18 @@ body {
 }
 
 .detailRight {
+    display: none;
     width: 50%;
     height: 80%;
     /* position: fixed; */
     right: 0;
     top: 15%;
+    transform: scale(0);
+    transition: transform 0.3s ease;
 }
-
+.detailRightPopUp{
+    transform: scale(1);
+}
 .openDetailDiv {
     background-color: #f9f9f9;
     height: 80%;

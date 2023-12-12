@@ -200,6 +200,17 @@
             </div>
           </div>
         </div>
+        {% empty %}
+        {% if all_ct %}
+          <div style="text-align:left;margin-left:0px;">
+            <h4 class="mytravel_txt_title" >篩選到0筆資料！</h4>
+          </div>
+        {% else %}
+          <div style="text-align:left;margin-left:0px;">
+            <h4 class="mytravel_txt_title" >目前還沒有行程！</h4>
+          </div>
+          <a href="/createindex" class="createbtn">建立行程</a>
+        {% endif %}
       {% endfor %}
     </div>
 
@@ -364,6 +375,7 @@
           
         {% endfor %}
       </div>
+      <div class="detailRightOverlay" id="detailRightOverlay"></div>
       <div class="detailRight" id="changeHistory">
         {% comment %} 拆分到histry_detail了 {% endcomment %}
       </div>
