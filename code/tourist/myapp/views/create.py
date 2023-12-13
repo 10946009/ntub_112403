@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import googlemaps
 from myapp.models import *
@@ -305,6 +305,10 @@ def create(request, ct_id):
             # 將資料組在一起
             order_attractions_data= []
             remainder_attractions_data = []
+            final_now_date = datetime.strptime(start_day, "%Y-%m-%d")
+            final_now_date = final_now_date + timedelta(days=globalDay-1)
+            final_now_date = final_now_date.strftime("%Y-%m-%d").split("-")
+            print(final_now_date)
             for fr, fc, fnowtime in zip(final_result_list, final_crow_opening_list,final_now_time_list):
                 f_nt = (fnowtime//60)%24
                 f_nt_next = (f_nt +1) % 24 
@@ -314,7 +318,7 @@ def create(request, ct_id):
                     'final_crow_opening_list': fc,
                     'final_crowd_list' : f"{min(fc['crowd'][f_nt],fc['crowd'][f_nt_next])} ~ {max(fc['crowd'][f_nt],fc['crowd'][f_nt_next])}",
                     "final_crowd_avg": (fc['crowd'][f_nt]+fc['crowd'][f_nt_next])//2,  
-                    'weather': get_weather_data(fr['address'],start_day[0:4],start_day[5:7],int(start_day[8:])+index,fnowtime),
+                    'weather': get_weather_data(fr['address'],final_now_date[0],final_now_date[1],int(final_now_date[2]),fnowtime),
                 })
             for frr,frc in zip(final_remainder_result_list,final_remainder_crow_opening_list):
                 remainder_attractions_data.append({
