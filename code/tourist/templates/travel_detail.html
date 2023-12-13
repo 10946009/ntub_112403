@@ -50,7 +50,7 @@
         <!-- 使用者名稱、頭貼 -->
         <div class="review-content" style="margin-top:20px;">
           <div style="display: flex; align-items: center;">
-            <img class="trip_user-img" src="../static/images/an.jpeg" alt="">
+            <img class="trip_user-img" src="{{ct_detail.u.user_photo}}" alt="">
             <div>
               <h6 class="username" style="font-size: 18px;">
                 {{ct_detail.u.username}}
@@ -60,15 +60,15 @@
           </div>
         </div>
         <!-- 行程簡介（使用者自己打） -->
-        <div>
+        <div style="margin-bottom:20px;">
           <h6 style="margin:20px 0px 10px 5px;"><span style="color:gray;">{% if ct_detail.detail == "" %}目前還沒有內容
               {% else %}{{ct_detail.detail}}{% endif %}</span></h6>
         </div>
         <!-- 幾個人收藏 -->
-        <div>
+        {% comment %} <div>
           <span style="border: black solid;padding: 0 5px 0 5px; background-color: white;font-size: 18px;"> <i
               class="fas fa-regular fa-heart" style="color: rgb(202, 13, 13);margin-right: 5px;"></i>xx</span>
-        </div>
+        </div> {% endcomment %}
         <hr style="margin-bottom:20px;">
         {% for day in ct_detail.get_choice_day %}
         <div class="day_detail" id="sec1">
@@ -80,13 +80,20 @@
           {% for attractions in day.get_attractions %}
             <div class="section" id="section{{day.day}}-{{forloop.counter}}">
               <div style="margin-bottom:20px;position:relative;">
-                <i class="fa-solid fa-location-dot" style="font-size: 24px;margin-right: 10px;"></i><span
-                  style="font-size: 22px;font-weight: 600;">{{ attractions.a.a_name }}</span>
-                <a href="https://www.google.com/maps/dir/{{attractions.get_previous.a.location_x}},{{attractions.get_previous.a.location_y}}/{{attractions.a.location_x}},{{attractions.a.location_y}}/" target="_blank" style="text-decoration: none;">
-                  <span style="font-size:20px; position: absolute;right:20px;top:10px"><i class="fa-solid fa-location-arrow"></i>導航</span>
-                </a>
+                <i class="fa-solid fa-location-dot" style="font-size: 24px;margin-right: 10px;color:rgb(212, 61, 61);"></i>
+                <span style="font-size: 22px;font-weight: 600;">{{ attractions.a.a_name }}</span>
+                {% if forloop.counter == 1 %}
+                  <a href="https://www.google.com/maps/dir//{{attractions.a.location_x}},{{attractions.a.location_y}}/" target="_blank" style="text-decoration: none;">
+                    <span class="loc"><i class="fa-solid fa-location-arrow"></i>導航</span>
+                  </a>
+                {% else %}
+                  <a href="https://www.google.com/maps/dir/{{attractions.get_previous.a.location_x}},{{attractions.get_previous.a.location_y}}/{{attractions.a.location_x}},{{attractions.a.location_y}}/" target="_blank" style="text-decoration: none;">
+                    <span class="loc"><i class="fa-solid fa-location-arrow"></i>導航</span>
+                  </a>
+                {% endif %}
+                
                 {% if forloop.counter != 1 %}
-                <span style="font-size:14px;color:gray;position: absolute;right:20px;top:40px">距離上個點約{{attractions.distance_time}}分</span>
+                <span class="distance_pre">距離上個點約{{attractions.distance_time}}分</span>
                 {% endif %}
                   <br>
                 <h6 style="margin:10px 0 0 30px;color: rgb(95, 95, 95);font-weight: 600;">停留{{ attractions.a.stay_time }}分</h6>
@@ -94,23 +101,23 @@
               <!-- 景點圖片 -->
               <div class="gallery">
                 <div class="image">
-                  <img src="../static/images/attractions/{{ attractions.a.place_id }}_0.jpg" alt="Image 1">
+                  <img class="img_del_trip" src="../static/images/attractions/{{ attractions.a.place_id }}_0.jpg" alt="Image 1">
                 </div>
                 <div class="image">
-                  <img src="../static/images/attractions/{{ attractions.a.place_id }}_1.jpg" alt="Image 2">
+                  <img class="img_del_trip" src="../static/images/attractions/{{ attractions.a.place_id }}_1.jpg" alt="Image 2">
                 </div>
                 <div class="image">
-                  <img src="../static/images/attractions/{{ attractions.a.place_id }}_2.jpg" alt="Image 3">
+                  <img class="img_del_trip" src="../static/images/attractions/{{ attractions.a.place_id }}_2.jpg" alt="Image 3">
                 </div>
               </div>
               <!-- 景點說明 -->
-              <div>
-                <p>{{attractions.a.detail}}</p>
+              <div style="margin-top:10px;">
+                <p style="font-weight:500;font-size:18px;color: rgb(96, 72, 26);">{{attractions.a.detail}}</p>
               </div>
             </div>
           {% endfor %}
         </div>
-        <hr>
+        <hr style="margin:20px 0 30px 0;">
         {% endfor %}
         {% comment %} <div class="day_detail" id="sec2">
           <!-- 天數 -->
@@ -179,14 +186,14 @@
             </div>
           </div>
         </div> {% endcomment %}
-        <hr>
         <!-- 留言 -->
         <div style="margin-bottom:20px;">
-          <h5 style="font-weight: 600;">留言（{{ ct_detail.get_comment|length }}）</h5>
+          <h5 style="font-weight: 600;">留言（<span id="commentCount">{{ ct_detail.get_comment|length }}</span>）</h5>
         </div>
         <section class="comment_travel_detail">
           <section>
             {% for comment in ct_detail.get_comment %}
+            <div id="comment{{comment.id}}">
             <div class="review-content">
               <img class="user-img" src="{{comment.u.get_photo}}" alt="">
               <div class="comment-content">
@@ -196,9 +203,11 @@
                     <span
                       style="color: gray; font-size: 12px; font-style: italic;">{{comment.comment_date}}&ensp;</span>
                   </h6>
+                  {% if request.user.id == comment.u.id %}
                   <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer;" onclick="toggleDeleteBox(this)"></i>
                   <div class="travel_delete-box" style="display: none;" onclick="deleteComment({{comment.id}})">刪除
                   </div>
+                  {% endif %}
                 </div>
               </div>
               {% comment %} <div>
@@ -207,16 +216,17 @@
             </div>
             <div class="comment_text">
               {{comment.content}}
-              <p></p>
-              <span style="margin-right: 20px; cursor: pointer;" id="likeButton" onclick="toggleLike()">
+              <br>
+              <span style="margin-right: 20px; cursor: pointer;" id="likeButton" onclick="toggleLike({{comment.id}})">
                 {% if request.user.id in comment.get_user_favorite %}
-                <i class="fa-thumbs-up fa-solid" style="color: rgb(0, 102, 255);" id="likeIcon"></i>
+                <i class="fa-thumbs-up fa-solid" style="color: rgb(0, 102, 255);" id="likeIcon{{comment.id}}"></i>
                 {% else %}
-                <i class="fa-regular fa-thumbs-up" style="color: rgb(0, 102, 255);" id="likeIcon"></i>
+                <i class="fa-regular fa-thumbs-up" style="color: rgb(0, 102, 255);" id="likeIcon{{comment.id}}"></i>
                 {% endif %}
-                <span id="likeCount">0</span>
+                <span id="likeCount{{comment.id}}">{{comment.get_favorite_count}}</span>
               </span>
             </div>
+          </div>
             {% endfor %}
           </section>
           {% if request.user.is_authenticated %}
@@ -262,9 +272,8 @@
                     <i class="fa-regular fa-thumbs-up" onclick="like()"></i>
                   </div> {% endcomment %}
                 </div>
-                <div style="margin-left:85px;">
+                <div class="txt_tr_comment">
                   <textarea name="user_share_comment" id="user_share_comment" cols="100%" rows="3"
-                    style="resize:none; border-radius: 10px;width: 100%;max-width: 100%;padding: 10px;"
                     placeholder="留言..."></textarea>
                 </div>
                 <div class="image-container_ph">
@@ -516,20 +525,33 @@
     }
 
     {% comment %} 按讚功能(還沒串後端) {% endcomment %}
-    function toggleLike() {
-      var likeIcon = document.getElementById('likeIcon');
-      var likeCount = document.getElementById('likeCount');
+    function toggleLike(id) {
+      var likeIcon = document.getElementById('likeIcon'+id);
+      var likeCount = document.getElementById('likeCount'+id);
       var currentCount = parseInt(likeCount.innerText);
-
-      if (likeIcon.classList.contains('fa-thumbs-up') && likeIcon.classList.contains('fa-solid')) {
-        likeIcon.classList.remove('fa-thumbs-up', 'fa-solid');
-        likeIcon.classList.add('fa-regular', 'fa-thumbs-up');
-        likeCount.innerText = currentCount - 1;
-      } else {
-        likeIcon.classList.remove('fa-regular', 'fa-thumbs-up');
-        likeIcon.classList.add('fa-thumbs-up', 'fa-solid');
-        likeCount.innerText = currentCount + 1;
-      }
+      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+      $.ajax({
+        headers: { 'X-CSRFToken': csrftoken },
+        url: '/travel_comment/like/',
+        type: 'POST',
+        data: {
+            comment_id: id
+        },
+        success: function (response) {
+          if (likeIcon.classList.contains('fa-thumbs-up') && likeIcon.classList.contains('fa-solid')) {
+            likeIcon.classList.remove('fa-thumbs-up', 'fa-solid');
+            likeIcon.classList.add('fa-regular', 'fa-thumbs-up');
+            likeCount.innerText = currentCount - 1;
+          } else {
+            likeIcon.classList.remove('fa-regular', 'fa-thumbs-up');
+            likeIcon.classList.add('fa-thumbs-up', 'fa-solid');
+            likeCount.innerText = currentCount + 1;
+          }
+        },
+        error: function(xhr, status, error) {
+                console.error("Error:", error);
+        }
+        });
     }
     {% comment %} 刪除小點點 {% endcomment %}
     function toggleDeleteBox(iconElement) {
@@ -546,8 +568,25 @@
       });
     }
 
-    function deleteComment(commentId) {
-
+    function deleteComment(id) {
+      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+      if(confirm('確定要刪除留言嗎？')){
+          $.ajax({
+              headers: { "X-CSRFToken": csrftoken },
+              url: '/travel_comment/delete_comment/',
+              type: 'POST',
+              data: {
+                  'comment_id':id,
+              },
+              success: function (data) {
+                  alert("刪除"+data["response_data"])
+                  if(data["response_data"] == "成功"){
+                      document.getElementById("comment"+id).remove();
+                      document.getElementById("commentCount").innerText = parseInt(document.getElementById("commentCount").innerText) - 1;
+                  }
+              }
+          });
+      }
     }
     // 獲取按鈕元素
     /*var newestButton = document.querySelector('.btn-style-2:nth-child(2)');

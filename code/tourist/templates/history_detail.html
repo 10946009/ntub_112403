@@ -91,16 +91,17 @@
               </div>
             {% endif %}
             <div class="time_ContentIntro">
-              <div class="startTime">
+              <!-- <div class="startTime">
                 <form action="">
                   <input type="time" value="{{a_data.get_time}}">
                 </form>
-              </div>
+              </div> -->
               <div class="dayContentIntroDiv">
                 <div class="dayContentIntro">
-                    <span class="dayContentIntroName" style="font-size: 20px;text-align: left;"><b>{{a_data.a.a_name}}</b></span><br>
-                    <span class="dayContentIntrotxt dayContentIntrotime">營業時間：<br>{% for open in a_data.opening.opening %} {% if forloop.counter != 1  %} <br> {% endif %}{{open}} {% endfor %}</span><br>
-                    <span class="dayContentIntrotxt dayContentIntrostayTime">停留時間：{{a_data.stay_time}}分鐘</span>
+                  <span class="dayContentIntrotxt"><b>抵達時間：{{a_data.get_time}}</b></span><br>
+                  <span class="dayContentIntroName" style="font-size: 24px;text-align: left;"><b>{{a_data.a.a_name}}</b></span><br>
+                  <span class="dayContentIntrotxt dayContentIntrotime">營業時間：<br>{% for open in a_data.opening.opening %} {% if forloop.counter != 1  %} <br> {% endif %}{{open}} {% endfor %}</span><br>
+                  <span class="dayContentIntrotxt dayContentIntrostayTime">停留時間：{{a_data.stay_time}}分鐘</span>
                 </div>
               </div>
             </div>

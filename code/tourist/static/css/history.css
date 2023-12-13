@@ -104,7 +104,6 @@ body {
 
 .createbtn:hover {
     background-color: #ff473d;
-    /* color: black; */
     text-shadow: 2px 2px 2px rgba(86, 86, 86, 0.5);
 }
 
@@ -221,19 +220,16 @@ body {
     text-decoration: none;
     color: rgb(162, 162, 162);
     font-weight: bold;
-    /* text-shadow: 2px 2px 1px #333; */
     user-select: none;
 }
 
 .deleteicontxt {
     font-size: 13px;
-    /* text-shadow: 2px 2px 1px #333; */
     font-weight: bolder;
     user-select: none;
 }
 
 .delete:hover {
-    /* color: rgb(93, 93, 93); */
     text-shadow: 1px 1px 1px rgb(12, 12, 12);
 }
 
@@ -256,7 +252,7 @@ body {
     height: 80%;
     position: fixed;
     right: 0;
-    top: 20%;
+    top: 15%;
 }
 
 .openDetailDiv {
@@ -400,7 +396,6 @@ body {
     font-weight: bold;
     background-color: orange;
     color: #000;
-    /* text-shadow: 2px 2px 3px #ccc; */
 }
 
 .otherCommentAvatar {
@@ -440,7 +435,6 @@ body {
 
 /*展開詳細行程*/
 .hidden-details {
-    /* display: none; */
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
@@ -465,8 +459,6 @@ body {
 }
 
 .content_align {
-    /* width: 90%;
-    margin: 0 auto; */
     display: flex;
     align-items: center;
     align-content: center;
@@ -596,8 +588,6 @@ input[type='time'] {
     justify-content: center;
     align-items: center;
     align-content: center;
-    /* border: 1px solid #ccc;
-    border-radius: 30px; */
 }
 
 .time_position {
@@ -615,26 +605,22 @@ input[type='time'] {
     height: 250px;
     width: 100%;
 }
-
+/* 
 .startTime {
     float: left;
     width: 30%;
-}
+} */
 
 .dayContentIntroDiv {
-    float: right;
-    width: 70%;
-    display: flex;
-    /* justify-content: center; */
-    align-items: center;
-    align-content: center;
+    margin: 0 auto;
+    width: 90%;
     border: 1px solid #ccc;
     border-radius: 30px;
     padding: 10px;
 }
 
 .dayContentIntro {
-    width: 70%;
+    width: 100%;
     min-width: 200px;
     height: 200px;
     padding: 10px 5px;

@@ -796,8 +796,11 @@ main {
     border: 0;
     border-radius: 20px;
     padding: 10px 15px;
+    background-color: rgb(176, 176, 176);
 }
-/* 加入不同按鈕的顏色 */
+.filterBtn_active{
+    background-color: rgb(255, 119, 119);
+}
 
 #show_rec input[type="checkbox"] {
     display: none;

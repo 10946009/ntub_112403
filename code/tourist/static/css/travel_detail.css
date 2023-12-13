@@ -467,7 +467,7 @@ body {
     border-radius: 4px;
 }
 
-img {
+.img_del_trip {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -506,6 +506,33 @@ img {
     text-decoration: none;
 }
 
+.loc {
+    font-size: 20px;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+#user_share_comment {
+    resize: none;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+}
+
+.txt_tr_comment {
+    margin-left: 85px;
+}
+
+.distance_pre {
+    font-size: 14px;
+    color: gray;
+    position: absolute;
+    right: 20px;
+    top: 40px;
+}
+
 @media screen and (max-width:980px) {
     /* .provider1 {
         display: none;
@@ -514,6 +541,10 @@ img {
     .provider1_copy {
         display: block;
     } */
+
+    .txt_tr_comment {
+        margin-left: 0px;
+    }
 
     .day_att {
         display: none;
@@ -531,5 +562,47 @@ img {
     .trip_bg_img {
         position: relative;
         margin: 70px auto 0 auto;
+    }
+
+    .loc {
+        font-size: 20px;
+        position: absolute;
+        right: 5px;
+        top: 30px;
+    }
+
+    .distance_pre {
+        font-size: 14px;
+        color: gray;
+        position: absolute;
+        right: 5px;
+        top: 60px;
+    }
+
+    .comment_travel_detail .review-content {
+        padding-left: 0px;
+        margin: 10px 0 0 0;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .comment_text {
+        text-align: left;
+        margin-left: 55px;
+        margin-bottom: 10px;
+        font-size: 15px;
+    }
+
+    .trip_text {
+        color: rgb(255, 255, 255);
+        font-weight: 700;
+        font-size: 34px;
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        /* transform: translate(-50%, 50%); */
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        width: 90%;
     }
 }

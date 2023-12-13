@@ -25,6 +25,15 @@ function startRecommend(user_location,day){
 }
 
 function sortRecommend(type){
+  const checkbox = document.getElementById('checkbox-' + globalDay);
+  const filterBtn = checkbox.querySelectorAll('.filterBtn');
+
+  filterBtn.forEach(button => {
+    button.classList.remove('filterBtn_active');
+  })
+  // 给被点击的按钮添加活动状态类
+  filterBtn[type].classList.add('filterBtn_active');
+
   const user_location = document.getElementById("userLocation-" + globalDay).value;
   console.log(user_location);
   const nowtime = document.getElementById('nowtime-' + globalDay);

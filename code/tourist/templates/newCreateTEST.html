@@ -11,124 +11,87 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../static/owl/owl.carousel.min.css">
     <style>
-        .banner{
-            background-image: url(../static/images/bg2.jpg);
-            height: 100vh;
-            width: 100%;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            object-fit: cover;
-            opacity: 0.5;
-        }
-        .firstContainer{
-            display: flex;
-            width: 90%;
-            margin: 0 auto;
-            padding: 50px 0;
-        }
-        .firstLeft{
-            border: 1px solid;
-            width: 100%;
-            height: 300px;
-        }
-        .firstRight{
-            border: 1px solid;
-            width: 100%;
-            height: 300px;
-        }
-        .firstLeftBg,.secondRightBg{
-            background-color: rgb(233, 206, 210);
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-        .firstLeftContent{
+        .overlay {
             position: absolute;
-            left: 15%;
-            bottom: 10%;
-            background-color: beige;
+            top: 0;
+            left: 0;
+            background-color: rgba(106, 106, 106, 0.5);
+            width: 100%;
             height: 100%;
-            width: 100%;
-        }
-        .secondContainer{
-            width: 90%;
-            margin: 0 auto;
-        }
-        .secondLeft{
-            border: 1px solid;
-            width: 100%;
-            height: 300px;
-        }
-        .secondRight{
-            border: 1px solid;
-            width: 100%;
-            height: 300px;
-        }
-        .col-md-6{
-            padding: 0;
-        }
-        .secondRightContent{
-            position: absolute;
-            right: 15%;
-            bottom: 10%;
-            background-color: beige;
-            height: 100%;
-            width: 100%;
-        }
-        @media (max-width: 768px) {
-            .col-md-6_FR{
-                order: 1;
-            }
-            .col-md-6_FL{
-                order: 2;
-            }
-            .secondLeft,.firstRight{
-                height: 100px;
-            }
-            .secondRightContent,.firstLeftContent{
-                left: 0;
-                right: 0;
-                bottom: 0;
-            }
         }
     </style>
 </head>
 
 <body>
-    <div class="banner"></div>
-    <div></div>
-    <div class="row firstContainer">
-        <div class="col-md-6 col-md-6_FL">
-            <div class="firstLeft">
-                <div class="firstLeftBg">
-                    <div class="firstLeftContent">
-                        一般行程介紹
+    <div class="row" style="width: 80%;margin: 0 auto;border: 1px solid;">
+        <div class="col-lg-4 col-md-6" style="position: relative;margin-bottom: 10px;padding: 0 10px;">
+            <div style="position: relative;width: 100%;">
+                <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                <div class="overlay">
+                    <div style="width: 100%;position: relative;">
+                        <div style="width: 20%;border: 1px solid;position: absolute;left: 5px;top: 0;">刪除</div>
+                        <div style="width: 20%;border: 1px solid;position: absolute;right: 10px;top: 0;">編輯</div>
+                    </div>
+                    <div style="position: absolute;bottom: 0;color: white;width: 100%;">
+                        <span style="font-size: 24px;"><b>行程名稱</b></span>
+                        <hr style="width: 100%;border: 1px solid;margin: 8px auto;">
+                        <span style="font-size: 18px;">行程類型：</span><br>
+                        <div>
+                            <div style="font-size: 18px;float: left;">起始日期：</div>
+                            <div style="font-size: 18px;float: right;">天數：</div>
+                        </div>
+                        <div style="clear: both;">
+                            <div style="font-size: 18px;float: left;">喜愛程度：0</div>
+                            <div style="font-size: 18px;float: right;">詳細行程</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-md-6_FR">
-            <div class="firstRight">
-                456
-            </div>
-        </div>
-    </div>
-    <div class="row secondContainer">
-        <div class="col-md-6">
-            <div class="secondLeft">
-                <div class="secondLeftBg">
-                    <div class="secondLeftContent">
-                        123456
+        <div class="col-lg-4 col-md-6" style="position: relative;margin-bottom: 10px;padding: 0 10px;">
+            <div style="position: relative;width: 100%;">
+                <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                <div class="overlay">
+                    <div style="width: 100%;position: relative;">
+                        <div style="width: 20%;border: 1px solid;position: absolute;left: 5px;top: 0;">刪除</div>
+                        <div style="width: 20%;border: 1px solid;position: absolute;right: 10px;top: 0;">編輯</div>
+                    </div>
+                    <div style="position: absolute;bottom: 0;color: white;width: 100%;">
+                        <span style="font-size: 24px;"><b>行程名稱</b></span>
+                        <hr style="width: 100%;border: 1px solid;margin: 8px auto;">
+                        <span style="font-size: 18px;">行程類型：</span><br>
+                        <div>
+                            <div style="font-size: 18px;float: left;">起始日期：</div>
+                            <div style="font-size: 18px;float: right;">天數：</div>
+                        </div>
+                        <div style="clear: both;">
+                            <div style="font-size: 18px;float: left;">喜愛程度：0</div>
+                            <div style="font-size: 18px;float: right;">詳細行程</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="secondRight">
-                <div class="secondRightBg">
-                    <div class="secondRightContent">
-                        寵物友善
+        <div class="col-lg-4 col-md-6" style="position: relative;margin-bottom: 10px;padding: 0 10px;">
+            <div style="position: relative;width: 100%;">
+                <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+                <div class="overlay">
+                    <div style="width: 100%;position: relative;">
+                        <div style="width: 20%;border: 1px solid;position: absolute;left: 5px;top: 0;">刪除</div>
+                        <div style="width: 20%;border: 1px solid;position: absolute;right: 10px;top: 0;">編輯</div>
+                    </div>
+                    <div style="position: absolute;bottom: 0;color: white;width: 100%;">
+                        <span style="font-size: 24px;"><b>行程名稱</b></span>
+                        <hr style="width: 100%;border: 1px solid;margin: 8px auto;">
+                        <span style="font-size: 18px;">行程類型：</span><br>
+                        <div>
+                            <div style="font-size: 18px;float: left;">起始日期：</div>
+                            <div style="font-size: 18px;float: right;">天數：</div>
+                        </div>
+                        <div style="clear: both;">
+                            <div style="font-size: 18px;float: left;">喜愛程度：0</div>
+                            <div style="font-size: 18px;float: right;">詳細行程</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -137,7 +100,8 @@
 
 </body>
 
-    <script src="../static/js/bootstrap.min.js"></script>
-    <script src="../static/js/jquery-3.7.0.min.js"></script>
-    <script src="../static/js/owl.carousel.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/jquery-3.7.0.min.js"></script>
+<script src="../static/js/owl.carousel.min.js"></script>
+
 </html>
