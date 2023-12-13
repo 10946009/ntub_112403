@@ -121,7 +121,7 @@ body {
     width: auto;
     border: 1px none rgb(128, 128, 128);
     border-radius: 20px;
-    padding: 10px 20px;
+    padding: 8px 10px;
     background-color: rgb(255, 240, 126);
     box-shadow: 3px 2px 3px rgb(146, 146, 146);
     text-shadow: 3px 2px 3px rgb(146, 146, 146);
@@ -305,21 +305,18 @@ body {
     z-index: 4;
 }
 .detailRight {
-    display: none;
+    /* display: none; */
     width: 80%;
     height: 80%;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.3s ease;
+    transition: transform 1s ease-in-out;
     z-index: 5;
 }
 .detailRightPopUp {
     transform: translate(-50%, -50%) scale(1);
-}
-.showDetailRight {
-    display: block; /* 或者其他需要的显示方式 */
 }
 
 .openDetailDiv {
@@ -796,15 +793,6 @@ input[type='time'] {
     .basicTxt h4 {
         font-size: 18px;
     }
-
-    .icontxt {
-        display: none;
-    }
-
-    .share_icon {
-        margin-top: 5px;
-    }
-
 }
 
 @media (max-width: 480px) {

@@ -183,10 +183,12 @@
                   </div>
                 </div>
               </div>
-              <div style="position: absolute;bottom: 0;color: white;width: 100%;">
-                <span style="font-size: 24px;"><b>行程名稱：{{ item.my_history.ct_name }}</b></span>
+              <div style="position: absolute;bottom: 0;color: white;width: 100%;padding: 5px;">
+                <span style="font-size: 24px;"><b>{{ item.my_history.ct_name }}</b></span>
                 {% if item.my_history.status == True %}
-                <div style="font-size: 18px;float:right;"><i class="fa-solid fa-heart"></i> {{item.my_history.get_favorite_count}}</div>
+                <div style="font-size: 18px;float:right;color: red;text-shadow: 1px 1px 3px #ccc;">
+                  <i class="fa-solid fa-heart"></i> {{item.my_history.get_favorite_count}}
+                </div>
                 {% endif %}
                 <hr style="width: 100%;border: 1px solid;margin: 8px auto;">
                 <span style="font-size: 18px;">行程類型：{% if item.my_history.ispet %}寵物行程{% else %}旅遊行程{% endif %}</span><br>
