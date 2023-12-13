@@ -99,9 +99,9 @@
               {% endif %}
             </div>
             <div class="carousel_txt">
-              <h4 class="c_title">
+              <h3 class="c_title chineseFonst">
                 {{item.a_name}}
-              </h4>
+              </h3>
               <div class="rating" style="text-align: center;">
                 {% for i in "12345" %}
                   {% if i|add:0 <= item.rating %} 
@@ -111,7 +111,7 @@
                   {% endif %}
                 {% endfor %}
                 <br>
-                <span id="selectedRating">{{item.rating}} / 5 ({{ item.rating_total }}則) </span>
+                <h4 class="chineseFonst" id="selectedRating">{{item.rating}} / 5 ({{ item.rating_total }}則) </h4>
               </div>
             </div>
           </div>
@@ -146,22 +146,22 @@
                   data-id="{{ct.id}}" data-type="/add_travel_favorite/"></button>
               {% endif %}
             </div>
-            <div class="spot_txt">
+            <div class="spot_txt chineseFonst" >
               <!--我是行程的標籤-->
               {% for tag in ct.is_fit %}
                 <span class="badge rounded-pill bg-success">{{ tag }}</span>
               {% endfor %}
               
               <!--我是行程的名稱-->
-              <h4 class="c_title">
+              <h2 class="c_title chineseFonst">
                 {{ ct.ct_name }}
-              </h4>
+              </h2>
 
               <!--我是行程的作者-->
-              <h5 class="chineseFonst">
+              <h3 class="chineseFonst">
                 作者：{{ ct.u.username }}
-              </h5>
-              <p class="chineseFonst">收藏人數：{{ ct.like }}</p>
+              </h3>
+              <h3 class="chineseFonst">收藏人數：{{ ct.like }}</h3>
               <a href="/travel_detail/{{ ct.id }}" class="btn btn-warning spot_data_btn more_data" id="more_data">詳細資料</a>
             </div>
           </div>
@@ -183,7 +183,7 @@
     </div>
   </div>
   <!-- 彈跳視窗 -->
-  <div class="modal" id="myModal">
+  <div class="modal chineseFonst" id="myModal">
     <div class="modal-content_att_info">
       <div class="close_att_info"><span class="fa-solid fa-xmark " onclick="clickClose()"></span></div>
         <div id = "changeInfo">
