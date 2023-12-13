@@ -185,14 +185,14 @@
               </div>
               <div style="position: absolute;bottom: 0;color: white;width: 100%;">
                 <span style="font-size: 24px;"><b>行程名稱：{{ item.my_history.ct_name }}</b></span>
+                {% if item.my_history.status == True %}
+                <div style="font-size: 18px;float:right;"><i class="fa-solid fa-heart"></i> {{item.my_history.get_favorite_count}}</div>
+                {% endif %}
                 <hr style="width: 100%;border: 1px solid;margin: 8px auto;">
                 <span style="font-size: 18px;">行程類型：{% if item.my_history.ispet %}寵物行程{% else %}旅遊行程{% endif %}</span><br>
                 <div>
                   <div style="font-size: 18px;">起始日期：{{item.my_history.start_day}}</div>
                   <div style="font-size: 18px;">天數：{{ item.my_history.travel_day }}</div>
-                  {% if item.my_history.status == True %}
-                  <div style="font-size: 18px;">喜愛程度：0</div>
-                  {% endif %}
                   <button class="more_btn details{{ item.my_history.id }}btn" id="details{{ item.my_history.id }}btn"
                     data-target="details{{ item.my_history.id }}" onclick="clickShow(this,{{item.my_history.id}})">詳細行程</button>
                 </div>

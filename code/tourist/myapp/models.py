@@ -120,6 +120,9 @@ class Create_Travel(models.Model):
         return att
     def get_comment(self):
         return TravelComment.objects.filter(ct=self.id).order_by('comment_date')
+
+    def get_favorite_count(self):
+        return TravelFavorite.objects.filter(ct=self.id).count()
     
 class ChoiceDay_Ct(models.Model):
     ct = models.ForeignKey(to=Create_Travel, on_delete=models.CASCADE)  # 行程沒了歷史也會被刪除
