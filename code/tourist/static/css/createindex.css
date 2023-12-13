@@ -48,6 +48,7 @@ body {
     position: relative;
 }
 .txtdiv input{
+    font-family: 'Arial', sans-serif;
     width: 100%;
 }
 

@@ -124,7 +124,7 @@
 {% endblock %}
 
 {% block body %}
-  <div class="container">
+  <div class="container chineseFonst">
     <div class="row shareFilter_div">
       <a href="/history" class="shareFilter_btn all_travel">All</a>
       <a href="/history/1" class="shareFilter_btn already_share">已公開</a>
@@ -132,7 +132,7 @@
     </div>
     <!--資料庫有東西就會顯示-->
 
-    <div class="row outerDiv">
+    <div class="row outerDiv chineseFonst" style="font-weight: bold;text-shadow: 1px 1px 2px #333;">
       {% for item in all_data %}
         <div class="col-lg-4 col-md-6 innerDiv">
           <div class="innerDivSub">
