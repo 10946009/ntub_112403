@@ -90,7 +90,6 @@ body {
 .arrow {
 	position: absolute;
 	right: 30px;
-	/* margin-left: 12px; */
 }
 
 .arrowi {
@@ -120,9 +119,7 @@ body {
 	align-content: center;
 	margin: 0 auto;
 	margin-top: 50vh;
-	/* 使用视口高度的一半来垂直居中 */
 	transform: translateY(-50%);
-	/* 负边距来修正垂直居中 */
 }
 
 .sysnamediv {
@@ -145,7 +142,6 @@ body {
 }
 
 .createbtn {
-	font-family: Microsoft JhengHei;
 	font-size: 32px;
 	text-decoration-line: none;
 	color: white;
@@ -169,7 +165,6 @@ body {
 .scroll-down-button {
 	position: absolute;
 	bottom: 20px;
-	/* 调整按钮距离底部的距离 */
 	left: 50%;
 	transform: translateX(-50%);
 	background-color: rgba(0, 0, 0, 0.5);
@@ -185,7 +180,6 @@ body {
 }
 
 .downa {
-	/* width: 50%; */
 	position: absolute;
 	bottom: 0;
 	width: 100%;
@@ -194,7 +188,6 @@ body {
 	text-align: center;
 	display: block;
 	background: linear-gradient(to bottom, #ffffff00, #000000a4);
-	/* background-color: #ffffff00; */
 }
 
 .downa:hover {
@@ -231,29 +224,8 @@ body {
 	border-radius: 50%;
 	border: 3px solid #99f;
 	border-left-color: transparent;
-	/* 某一邊設為透明 */
 	transform: rotate(45deg);
 }
-
-/* .inset {
-  width: 10px;
-  height: 10px;
-  z-index: -100;
-  position: relative;
-}
-
-.inset::before {
-  content: "";
-  position: absolute;
-  top: 0px;
-  right: 20px;
-  bottom: 30px;
-  left: -20px;
-  width: 200px;
-  height: 180px;
-  background-color: #99f;
-  border-radius: 10px 10px 50% 10%;
-} */
 
 .hot_spotTxt {
 	text-align: right;
@@ -273,7 +245,6 @@ body {
 	width: 48px;
 }
 
-/*輪播區塊css*/
 /*輪播文字css*/
 .carousel_txt {
 	border: 1px solid #ccc;
@@ -379,10 +350,8 @@ body {
 }
 
 .active_heart {
-	/*收藏動畫*/
 	color: #E1251B;
 	animation: heart 0.5s linear;
-	/* transform: scale(1.1); */
 }
 
 /*+CSS*/
@@ -410,7 +379,6 @@ body {
 	position: absolute;
 	top: 90px;
 	right: 15px;
-	/* width: 150px; */
 	border-radius: 10%;
 	background-color: rgb(252, 252, 244);
 	text-align: left;
@@ -448,7 +416,6 @@ body {
 	align-content: center;
 	align-items: center;
 	position: relative;
-	/* overflow: hidden; */
 	opacity: 0;
 	transition: opacity 0.5s ease-in-out; 
 }
@@ -457,6 +424,7 @@ body {
 	font-size: 28px;
 	font-weight: bold;
 	text-shadow: 1px 1px 2px #333;
+    font-family: 'AaKLYLDYW (Non-Commercial Use)', sans-serif;
 }
 
 .provideItem {
@@ -475,7 +443,6 @@ body {
 	border: 2px dashed;
 	padding: 10px;
 	display: block;
-	/* cursor: pointer; */
 }
 
 .provideItemSubLeft {
@@ -581,14 +548,6 @@ body {
 	margin-bottom: 10px;
 }
 
-/* .spot_img{
-	padding: 0;
-	transition: transform 0.3s;
-} */
-.spot_img:hover {
-	/* transform: scale(1.1); */
-}
-
 .spot_txt {
 	border: 1px solid #ccc;
 	border-top: 0;
@@ -641,7 +600,6 @@ body {
 }
 
 .hot_spot_show_author {
-	/* text-align: right; */
 	float: right;
 	padding: 0 15px 0 0;
 	font-size: 18px;
@@ -828,7 +786,6 @@ body {
 	}
 
 	.active_heart {
-		/*收藏動畫*/
 		color: #E1251B;
 		animation: heart 0.5s linear;
 		transform: scale(1.1);
@@ -847,7 +804,6 @@ body {
 		position: absolute;
 		top: 85px;
 		right: 15px;
-		/* width: 150px; */
 		border-radius: 10%;
 	}
 
@@ -933,7 +889,6 @@ body {
 	}
 
 	.active_heart {
-		/*收藏動畫*/
 		color: #E1251B;
 		animation: heart 0.5s linear;
 		transform: scale(1.1);

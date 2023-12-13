@@ -29,7 +29,7 @@
   {% include "tutorialWindow.html" %}
 </div>
 <container>  
-  <div class="pageedit">
+  <div class="pageedit chineseFonst">
     <ul class="nav nav-tabs flex justify-content-start my-nav-tabs" id="myTab" role="tablist">
       {% for day,data in travel_datas.items %}
       
@@ -61,7 +61,7 @@
       <!-- <button class="changeToDone changeToDoneBtn" id="flippedBtnIcon-{{ day }}" onclick="flipped()"><i class="fa-solid fa-route"></i></button> -->
       <button class="changeToDone changeToInitialTxt" id="flippedRecBtn-{{ day }}"  onclick="flipped()"><i class="fa-solid fa-magnifying-glass-location"></i><!-- 查看推薦 --></button>
       <!-- 基本資訊 -->
-      <div>
+      <div class="chineseFonst">
         <div class="tabD">
           <span id="tabDT" class="tabDT">請輸入出發時間：</span>
           <input type="time" name="nowtime" id="nowtime-{{ day }}" {% if data.user_nowtime %}
@@ -92,13 +92,13 @@
       <div class="change changeDone hidden" id="done-{{ day }}">
         <div class="doneDiv">
           <i class="fa-solid fa-route done_icon"></i>
-          <span class="done_txt">景點排序</span>
+          <span class="done_txt chineseFonst">景點排序</span>
         </div>
 <!-- 這一頁的ID都要改成Pet嗎 -->
-        <div class="list" id="orderAttractions-{{ day }}" style="cursor: pointer;overflow-y: auto;">
+        <div class="list chineseFonst" id="orderAttractions-{{ day }}" style="cursor: pointer;overflow-y: auto;">
           {% include 'create_order_attractions.html' %}
         </div>
-        <div class="list" id="RemainderAttractions-{{ day }}">
+        <div class="list chineseFonst" id="RemainderAttractions-{{ day }}">
             <!-- 先放排序的資料進去 -->
             {% include 'create_remainder_attractions.html' %}
         </div>
@@ -110,7 +110,7 @@
         <div class="classifierDiv srearchDiv">
           <div class="searchBarDiv" onclick="openSearchDiv()">
             <i class="fa-solid fa-magnifying-glass-location find_icon"></i>
-            <span class="search_txt">搜尋景點</span>
+            <span class="search_txt chineseFonst">搜尋景點</span>
             <span class="tipsTxt">
               <i class="fa-solid fa-left-long"></i>  
                 點此收合搜尋區塊唷
@@ -118,7 +118,7 @@
           </div>
           <form autocomplete="off" class="d-flex" role="search">
             {% csrf_token %}
-            <div class="create_search">
+            <div class="create_search chineseFonst">
               <div class="create_searchInput">
                 <input class="form-control me-auto search"
                       id="create_myInput"
@@ -143,7 +143,7 @@
               </div>
             </div>
           </form>
-          <div id="replaceable-content-{{ day }}" class="searchResult">
+          <div id="replaceable-content-{{ day }}" class="searchResult chineseFonst">
               {% include "create_search.html" %}
           </div>
         </div>
@@ -152,7 +152,7 @@
         <div class="classifierDiv RecommendDiv" id="checkRec-{{ day }}">
           <div class="recDiv" onclick="openRecDiv()">
             <i class="fa-solid fa-thumbs-up rec_icon"></i>
-            <span class="rec_txt" >推薦景點</span>
+            <span class="rec_txt chineseFonst" >推薦景點</span>
             <span class="tipsTxt">
               <i class="fa-solid fa-left-long"></i>  
                 點此收合推薦區塊唷
@@ -160,12 +160,12 @@
           </div>
           <div id="checkbox-{{ day }}" class="checkboxDiv">
             <div class="openRec">
-              <div class="filterdiv">
+              <div class="filterdiv chineseFonst">
                 <button class="filterBtn filterBtnAll filterBtn_active" id="filterBtnAll" onclick="sortRecommend(0)">全部</button>
                 <button class="filterBtn filterBtnEat" id="filterBtnEat" onclick="sortRecommend(1)">友善餐廳</button>
                 <button class="filterBtn filterBtnSpot" id="filterBtnSpot" onclick="sortRecommend(2)">寵物公園</button>
               </div>
-              <div style="padding: 10px 5px" id="AttractionsContainer-{{ day }}">
+              <div class="chineseFonst" style="padding: 10px 5px" id="AttractionsContainer-{{ day }}">
                 <h4>請先選擇使用者位置和時間</h4>
                 {% include 'create_recommend_pet.html' %}
               </div>
@@ -177,7 +177,7 @@
         <div class="classifierDiv FavoriteDiv">
           <div class="favDiv" onclick="openFavDiv()">
             <i class="fa-solid fa-heart fav_icon"></i>
-            <span class="fav_txt" >我的收藏</span>
+            <span class="fav_txt chineseFonst" >我的收藏</span>
             <span class="tipsTxt">
               <i class="fa-solid fa-left-long"></i>  
                 點此收合收藏區塊唷
@@ -186,7 +186,7 @@
           <div class="openFav">
             <div class="owl-carousel owl-theme owl_adjust">
               {% for item in data.user_favorite_list %}
-                  <div class="item checkimg_div" onclick="pickspot(this,{{ item.a.id }})">
+                  <div class="item checkimg_div chineseFonst" onclick="pickspot(this,{{ item.a.id }})">
                     <span class="checkspot">
                       <img src="../static/images/attractions/{{ item.a.place_id }}_0.jpg" class="img-responsive" width="100%" alt="">
                       {% comment %} <a class="fa-solid fa-circle-info info_icon_left" id="info_icon" onclick="clickInfo({{ item.a.id }})"></a> {% endcomment %}
@@ -228,9 +228,9 @@
       <div>
         <div class="checkDiv">
           <i class="fa-solid fa-check checked_icon"></i>
-          <span class="checked_txt" >已選景點</span>
+          <span class="checked_txt chineseFonst" >已選景點</span>
         </div>
-        <div class="align" id="bottomAttraction">
+        <div class="align chineseFonst" id="bottomAttraction">
             <!-- be choosed -->
         </div>
         <hr class="rightHr">
@@ -240,9 +240,9 @@
           </div>
           <div class="s_recDiv">
             <span class="similar_icon">&asymp;</span>
-            <span class="s_rec_txt" >相似景點推薦</span>
+            <span class="s_rec_txt chineseFonst" >相似景點推薦</span>
           </div>
-          <div class="openSimilar" id="SimilarRecommend">
+          <div class="openSimilar chineseFonst" id="SimilarRecommend">
             {% include "create_similar_recommend.html" %}
           </div>
         </div>

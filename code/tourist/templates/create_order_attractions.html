@@ -5,8 +5,7 @@
     <div class="tempXdiv" onclick="order_delete({{ data.detail.id }})"><i class="fa-solid fa-xmark tempX_icon"></i></div>
     <div class="row doneSpotDiv">
       <div class="col-4 doneSpotImgDiv">
-        {% comment %} <a href="#" class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickeInfo(event,{{ data.detail.id }})"></a>  {% endcomment %}
-        <a class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickInfo({{data.detail.id}})"></a>
+        <a class="fa-solid fa-circle-info info_iconOrder" onclick="clickInfo({{data.detail.id}})"></a>
         <!-- 抓你們的照片 -->
         <img src="../static/images/attractions/{{data.detail.place_id}}_0.jpg" class="img-responsive doneSpotImg"  alt="">
       </div>
@@ -39,7 +38,7 @@
     <div class="tempXdiv" onclick="order_delete({{ o.final_result_list.id }})"><i class="fa-solid fa-xmark tempX_icon"></i></div>
     <div class="row doneSpotDiv">
       <div class="col-4 doneSpotImgDiv">
-        <a class="fa-solid fa-circle-info info_icon_left" id="info_icon_left" onclick="clickInfo({{o.final_result_list.id}})"></a>
+        <a class="fa-solid fa-circle-info info_iconOrder" onclick="clickInfo({{o.final_result_list.id}})"></a>
         <!-- 抓你們的照片 -->
         <img src="../static/images/attractions/{{o.final_result_list.place_id}}_0.jpg" class="img-responsive doneSpotImg" alt="">
       </div>

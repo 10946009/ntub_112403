@@ -37,6 +37,13 @@ body.dark-mode {
 	background-image:none;
 }
 
+.chineseFonst{
+	font-family: 'AaKLYLDYW (Non-Commercial Use)', 'HanyiSentyTea Regular';
+}
+.englishFonst{
+	font-family: 'HanyiSentyTea', 'HanyiSentyTea Regular';
+}
+
 /* 詳細景點資訊 彈跳框 */
 .modal-content_att_info {
 	background: rgb(221, 219, 219);
@@ -76,6 +83,14 @@ body.dark-mode {
 @font-face {
 	font-family: 'HanyiSentyTea Regular';
 	src: url('HanyiSentyTea Regular.ttf') format('truetype');
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	animation: fadeIn 0.3s forwards;
+	z-index: 100;
+}
+@font-face{
+	font-family: 'AaKLYLDYW (Non-Commercial Use)';
+	src: url('AaKLYLDYW (Non-Commercial Use).ttf') format('truetype');
 	height: 100%;
 	background: rgba(0, 0, 0, 0.7);
 	animation: fadeIn 0.3s forwards;

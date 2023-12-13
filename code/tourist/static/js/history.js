@@ -54,21 +54,19 @@ function clickShow(button, ctid) {
     document.querySelectorAll(".openDetailDiv").forEach(div => {
       div.style.display = 'none';
     });
-    changeHistory.style.display = 'none';
     changeHistory.classList.remove('detailRightPopUp');
+    // changeHistory.style.display = 'none';
     detailRightOverlay.style.display = 'none';
     
-    // detailRightOverlay.classList.remove('detailRightOverlay');
     document.documentElement.style.overflowY = 'auto';
     button.textContent = '詳細行程';
     button.style.backgroundColor = "rgb(255, 240, 126)";
   } else {
     // 顯示目標詳細資訊 div
-    changeHistory.style.display = 'block';
     changeHistory.classList.add('detailRightPopUp');
+    // changeHistory.style.display = 'block';
     detailRightOverlay.style.display = 'block';
     
-    // detailRightOverlay.classList.add('detailRightOverlay');
     document.documentElement.style.overflowY = 'hidden';
     button.textContent = '關閉閱覽';
     button.style.backgroundColor = "#F55";

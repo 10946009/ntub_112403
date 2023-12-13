@@ -478,6 +478,9 @@ main {
     height: 100%;
     overflow: hidden;
     position: relative;
+    z-index: 2;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px black;
 }
 
 .doneSpotImgDiv .doneSpotImg {
@@ -539,7 +542,7 @@ main {
     display: flex;
     position: relative;
     transition: all 0.3s ease;
-    /* 使用 CSS transition 實現動畫效果 */
+    background-color: #e7e7e5c8;
 }
 
 .spotOkName {
@@ -842,9 +845,10 @@ main {
 
 .spottxtdiv {
     margin: 0;
-    border: 1px solid #33333394;
+    border: 1px solid #87878794;
     border-top: 0;
     color: black;
+    background-color: #e7e7e5c8;
 }
 
 .owl-carousel .owl-nav button.owl-next,
@@ -894,10 +898,20 @@ main {
     text-decoration: none;
 }
 
-.info_icon_left:hover {
+.info_icon_left:hover,.info_iconOrder:hover {
     color: orange;
 }
-
+.info_iconOrder{
+    position: absolute;
+    left: 15px;
+    top: 5px;
+    border: 0;
+    font-size: 24px;
+    color: white;
+    text-shadow: 2px 2px 3px #333;
+    cursor: pointer;
+    text-decoration: none;
+}
 .info_active {
     color: orange;
 }

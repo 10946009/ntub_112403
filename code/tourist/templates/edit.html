@@ -367,7 +367,7 @@
                         document.querySelector(`.article-tag[data-set="${id}"]`).remove();
                     }
                     else {
-                        document.querySelector('.article-tag').insertAdjacentHTML('beforebegin', `<span class="article-tag" data-set="${id}">${button.textContent}</span>`);
+                        document.querySelector('.add_topic').insertAdjacentHTML('afterend', `<span class="article-tag" data-set="${id}">${button.textContent}</span>`);
                     }
                 }
             });

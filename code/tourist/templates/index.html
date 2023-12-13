@@ -23,9 +23,9 @@
   <div id="main">
     <div class="halfCircle">
       <div class="provideDiv">
-        <span class="provideTxt">服務項目</span>
+        <span class="provideTxt chineseFonst">服務項目</span>
       </div>
-      <div class="provideItem">
+      <div class="provideItem chineseFonst">
         <div style="margin: 0 auto;">
           <div class="provideItemSub provideItemSubLeft" onmouseover="showLeftIntro()" onmouseout="closeLeftIntro()">
             <div style="width: 100%;text-align: center;z-index: 2;">
@@ -59,23 +59,20 @@
   </div>
 
   <div class="row" style="width: 90%;margin: 20px auto;margin-top: 0;padding: 20px 0;padding-top: 50px;">
-    <!-- <div class="hideme" style="position: relative;">
-      <div class="incomplete-circle "></div>
-    </div> -->
     <div class="col-md-3 hidemehottoright">
-      <div>
-        <h1 class="hot_spot_title" style="font-family: HanyiSentyTea Regular;">HOT&ensp;&ensp;SPOT</h1>
-        <h3 class="hot_spot_title">熱&ensp;門&ensp;景&ensp;點</h3>
+      <div class="chineseFonst">
+        <h1 class="hot_spot_title englishFonst">HOT&ensp;&ensp;SPOT</h1>
+        <h3 class="hot_spot_title chineseFonst">熱&ensp;門&ensp;景&ensp;點</h3>
       </div>
-      <div class="hot_spot_content">
+      <div class="hot_spot_content chineseFonst">
         掌握台北最熱門的景點，讓你無須煩惱去哪裡～趣放假帶你趣遊(chill) !
       </div>
-      <a class="explore " href="/attraction_details">
+      <a class="explore" href="/attraction_details">
         <div class="explorea">VIEW ALL</div>
       </a>
     </div>
 
-    <div class="col-md-9 hidemehottoleft">
+    <div class="col-md-9 hidemehottoleft chineseFonst">
       <div class="owl-carousel owl-theme owl_adjust">
         {% for item in hot_result %}
           <div class="item">
@@ -99,9 +96,9 @@
               {% endif %}
             </div>
             <div class="carousel_txt">
-              <h4 class="c_title">
+              <h3 class="c_title chineseFonst">
                 {{item.a_name}}
-              </h4>
+              </h3>
               <div class="rating" style="text-align: center;">
                 {% for i in "12345" %}
                   {% if i|add:0 <= item.rating %} 
@@ -111,7 +108,7 @@
                   {% endif %}
                 {% endfor %}
                 <br>
-                <span id="selectedRating">{{item.rating}} / 5 ({{ item.rating_total }}則) </span>
+                <h4 class="chineseFonst" id="selectedRating">{{item.rating}} / 5 ({{ item.rating_total }}則) </h4>
               </div>
             </div>
           </div>
@@ -121,7 +118,7 @@
   </div>
 
   <div id="container" class="row" style="clear: both;width: 90%;margin: 0 auto;">
-    <div class="col-md-9 order-md-1 order-2 hidemehottoright">
+    <div class="col-md-9 order-md-1 order-2 hidemehottoright chineseFonst">
       <div class="owl-carousel owl-theme">
         {% for ct in top_hot_travel %}
           <div class="item hot_spot_block ">
@@ -146,23 +143,22 @@
                   data-id="{{ct.id}}" data-type="/add_travel_favorite/"></button>
               {% endif %}
             </div>
-            <div class="spot_txt">
+            <div class="spot_txt chineseFonst" >
               <!--我是行程的標籤-->
               {% for tag in ct.is_fit %}
                 <span class="badge rounded-pill bg-success">{{ tag }}</span>
               {% endfor %}
               
               <!--我是行程的名稱-->
-              <h4 class="c_title">
+              <h2 class="c_title chineseFonst">
                 {{ ct.ct_name }}
-              </h4>
+              </h2>
 
               <!--我是行程的作者-->
-              <h5>
+              <h3 class="chineseFonst">
                 作者：{{ ct.u.username }}
-              </h5>
-              <p>收藏人數：{{ ct.like }}</p>
-              {% comment %} <button class="btn btn-warning spot_data_btn more_data" id="more_data">詳細資料</button> {% endcomment %}
+              </h3>
+              <h3 class="chineseFonst">收藏人數：{{ ct.like }}</h3>
               <a href="/travel_detail/{{ ct.id }}" class="btn btn-warning spot_data_btn more_data" id="more_data">詳細資料</a>
             </div>
           </div>
@@ -171,11 +167,11 @@
     </div>
 
     <div class="col-md-3 order-md-2 order-1 hidemehottoleft">
-      <div class="hot_spotTxt">
+      <div class="hot_spotTxt chineseFonst">
         <h1 class="hot_spot_title" style="font-family: HanyiSentyTea Regular;">HOT&ensp;JOURNEY</h1>
         <h3 class="hot_spot_title">熱&ensp;門&ensp;行&ensp;程</h3>
       </div>
-      <div class="hot_spot_content">
+      <div class="hot_spot_content chineseFonst">
         每個行程都有獨特的玩法、新奇的體驗～趣放假，帶您展開不同的冒險！
       </div>
       <a class="more_span"  href="/share/">
@@ -184,7 +180,7 @@
     </div>
   </div>
   <!-- 彈跳視窗 -->
-  <div class="modal" id="myModal">
+  <div class="modal chineseFonst" id="myModal">
     <div class="modal-content_att_info">
       <div class="close_att_info"><span class="fa-solid fa-xmark " onclick="clickClose()"></span></div>
         <div id = "changeInfo">
