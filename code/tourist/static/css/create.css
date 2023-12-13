@@ -478,6 +478,9 @@ main {
     height: 100%;
     overflow: hidden;
     position: relative;
+    z-index: 2;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px black;
 }
 
 .doneSpotImgDiv .doneSpotImg {
@@ -539,7 +542,7 @@ main {
     display: flex;
     position: relative;
     transition: all 0.3s ease;
-    /* 使用 CSS transition 實現動畫效果 */
+    background-color: #e7e7e5c8;
 }
 
 .spotOkName {
@@ -845,6 +848,7 @@ main {
     border: 1px solid #33333394;
     border-top: 0;
     color: black;
+    background-color: #e7e7e5c8;
 }
 
 .owl-carousel .owl-nav button.owl-next,
