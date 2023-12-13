@@ -38,9 +38,10 @@ function clickShow(button, ctid) {
   // 更改其他按鈕的文字狀態
   const allButtons = document.querySelectorAll("[class^='more_btn']");
   console.log(ctid);
-  const targetDivId = button.getAttribute('data-target');
-  const targetDiv = document.getElementById(targetDivId);
+  // const targetDivId = button.getAttribute('data-target');
+  // const targetDiv = document.getElementById(targetDivId);
   const changeHistory = document.getElementById('changeHistory');
+  const detailRightOverlay = document.getElementById('detailRightOverlay');
 
   allButtons.forEach(btn => {
     if (btn !== button) {
@@ -53,15 +54,24 @@ function clickShow(button, ctid) {
     document.querySelectorAll(".openDetailDiv").forEach(div => {
       div.style.display = 'none';
     });
-    targetDiv.style.display = 'none';
+    changeHistory.style.display = 'none';
+    changeHistory.classList.remove('detailRightPopUp');
+    detailRightOverlay.style.display = 'none';
+    
+    // detailRightOverlay.classList.remove('detailRightOverlay');
+    document.documentElement.style.overflowY = 'auto';
     button.textContent = '詳細行程';
     button.style.backgroundColor = "rgb(255, 240, 126)";
   } else {
     // 顯示目標詳細資訊 div
-    targetDiv.style.display = 'block';
+    changeHistory.style.display = 'block';
+    changeHistory.classList.add('detailRightPopUp');
+    detailRightOverlay.style.display = 'block';
+    
+    // detailRightOverlay.classList.add('detailRightOverlay');
+    document.documentElement.style.overflowY = 'hidden';
     button.textContent = '關閉閱覽';
     button.style.backgroundColor = "#F55";
-    // document.documentElement.style.backgroundColor = 'black';
     $.ajax({
       type: "GET",
       url: "/history/info/",
@@ -89,9 +99,9 @@ function closeDetail(id) {
 let isaddCommentSpaceVisible = false;
 let isEdit = false;
 
-const addCommentBtn = document.getElementById('addCommentBtn');
-const addCommentSpace = document.getElementById('addCommentSpace');
 function addComment() {
+  const addCommentBtn = document.getElementById('addCommentBtn');
+  const addCommentSpace = document.getElementById('addCommentSpace');
   console.log(addCommentSpace);
   const addCTXT = document.getElementById('addCTXT');
   console.log(1);

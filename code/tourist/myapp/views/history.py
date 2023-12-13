@@ -13,18 +13,18 @@ def history(request,select=None):
     all_ct = Create_Travel.objects.filter(u_id=user_id).order_by('id')
     if select==0:
         # 抓出此user的未分享行程資料
-        my_history = Create_Travel.objects.filter(u_id=user_id,status=False).order_by('id').values()
+        my_history = Create_Travel.objects.filter(u_id=user_id,status=False).order_by('id')
     elif select==1:
         # 抓出此user的分享行程資料
-        my_history = Create_Travel.objects.filter(u_id=user_id,status=True).order_by('id').values()
+        my_history = Create_Travel.objects.filter(u_id=user_id,status=True).order_by('id')
     else:
         # 抓出此user的所有行程資料
-        my_history = Create_Travel.objects.filter(u_id=user_id).order_by('id').values()
+        my_history = Create_Travel.objects.filter(u_id=user_id).order_by('id')
     print('my_history',my_history)
     choiceday_ct = []
     # 抓出ct_id相同的資料(可能會有day1、day2之類的)
     for i in my_history:
-        choiceday_ct.append(ChoiceDay_Ct.objects.filter(ct_id=i['id']).values())
+        choiceday_ct.append(ChoiceDay_Ct.objects.filter(ct_id=i.id).values())
     print('choiceday_ct',choiceday_ct)
     # 抓出同一天中的所有景點
     allAttractions = []

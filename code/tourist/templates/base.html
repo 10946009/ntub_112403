@@ -281,9 +281,12 @@
     event.stopPropagation(); // 防止父元素執行
     var modal = document.getElementById('myModal');
     modal.classList.add('modal_active');
-    document.body.classList.add('body_noScroll');
+    document.documentElement.style.overflowY = 'hidden';
+    // document.body.classList.add('body_noScroll');
     console.log(1)
+    const attractions_detail_div = $('#changeInfo');
     if (aId) {
+      attractions_detail_div.html('');  // 清空景點資訊
       // 發起 AJAX 請求
       $.ajax({
           url: '/clickInfo/',  // 伺服器端的 URL
@@ -293,7 +296,7 @@
           },
           success: function (response) {
               // 當請求成功時執行的處理程式
-              const attractions_detail_div = $('#changeInfo');
+              
               attractions_detail_div.html(response['attractions_detail_html']);
               // 取得模態框元素
               // var showInfo = document.getElementById("id01");
@@ -311,7 +314,8 @@
   function clickClose() {
     var modal = document.getElementById('myModal');
     modal.classList.remove('modal_active');
-    document.body.classList.remove('body_noScroll');
+    document.documentElement.style.overflowY = 'auto';
+    // document.body.classList.remove('body_noScroll');
   }
   // random bgimg
   function changebgimg() {

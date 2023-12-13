@@ -19,14 +19,72 @@
             width: 100%;
             height: 100%;
         }
+
+        .container {
+            display: flex;
+        }
+
+        .left-side {
+            width: 50%;
+        }
+
+        .right-side {
+            width: 50%;
+        }
+
+        .item {
+            height: 150px;
+            margin-bottom: 10px;
+        }
+
+        .details {
+            display: none;
+        }
+
+        .details.active {
+            display: block;
+        }
+
+        /* 前面的樣式保持不變 */
+
+        .popup {
+            transform: scale(0);
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            z-index: 9999;
+            transition: transform 0.3s ease;
+        }
+
+        .popup.active {
+            transform: scale(1);
+        }
+
+
+        .popup-content {
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
     <div class="row" style="width: 80%;margin: 0 auto;border: 1px solid;">
-        <div class="col-lg-4 col-md-6" style="position: relative;margin-bottom: 10px;padding: 0 10px;">
-            <div style="position: relative;width: 100%;">
-                <img src="../static/images/cake01.jpg" class="img-responsive" width="100%" alt="">
+        <div class="col-lg-4 col-md-6"
+            style="position: relative;margin-bottom: 10px;padding: 0 10px;height: 350px;overflow: hidden;">
+            <div style="position: relative;width: 100%;height: 100%;">
+                <img src="../static/images/cake01.jpg" class="img-responsive"
+                    style="width: 100%;height: 100%;object-fit: cover;" alt="">
                 <div class="overlay">
                     <div style="width: 100%;position: relative;">
                         <div style="width: 20%;border: 1px solid;position: absolute;left: 5px;top: 0;">刪除</div>
@@ -97,11 +155,92 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="left-side">
+            <div class="item">
+                <button class="open-btn">打開</button>
+                <div class="details">
+                    <!-- 這裡是詳細資料 -->
+                    詳細資料 1
+                </div>
+            </div>
+            <div class="item">
+                <button class="open-btn">打開</button>
+                <div class="details">
+                    <!-- 這裡是詳細資料 -->
+                    詳細資料 2
+                </div>
+            </div>
+            <div class="item">
+                <button class="open-btn">打開</button>
+                <div class="details">
+                    <!-- 這裡是詳細資料 -->
+                    詳細資料 3
+                </div>
+            </div>
+            <div class="item">
+                <button class="open-btn">打開</button>
+                <div class="details">
+                    <!-- 這裡是詳細資料 -->
+                    詳細資料 4
+                </div>
+            </div>
+            <div class="item">
+                <button class="open-btn">打開</button>
+                <div class="details">
+                    <!-- 這裡是詳細資料 -->
+                    詳細資料 5
+                </div>
+            </div>
+        </div>
+        <div class="right-side">
+            <div class="popup">
+                <div class="popup-content">
+                    <span class="close-btn">&times;</span>
+                    <div class="popup-details">
+                        <!-- 右邊區塊內容會在這裡顯示 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
 <script src="../static/js/bootstrap.min.js"></script>
 <script src="../static/js/jquery-3.7.0.min.js"></script>
 <script src="../static/js/owl.carousel.min.js"></script>
+<script>
+    const openBtns = document.querySelectorAll('.open-btn');
+    const popup = document.querySelector('.popup');
+    const closeBtn = document.querySelector('.close-btn');
+    const popupDetails = document.querySelector('.popup-details');
+
+    openBtns.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            const details = document.querySelectorAll('.details');
+            details.forEach((detail, i) => {
+                if (index === i) {
+                    popupDetails.innerHTML = detail.innerHTML;
+                    popup.style.display = 'block';
+                    // 將 setTimeout 移動到此處，以便應用動畫效果
+                    setTimeout(() => {
+                        popup.classList.add('active');
+                    }, 50); // 增加一些微小的延遲
+                }
+            });
+        });
+    });
+
+    closeBtn.addEventListener('click', () => {
+        popup.classList.remove('active');
+        // 設定延遲關閉以便有足夠時間播放動畫
+        setTimeout(() => {
+            popup.style.display = 'none';
+        }, 300); // 這裡的 300ms 要跟 CSS 中的 transition 時間一致
+    });
+
+
+</script>
 
 </html>
