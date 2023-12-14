@@ -48,6 +48,7 @@
 }
 /* 點一下input裡面會改變樣式 */
 .create_searchContent {
+    color: black;
     text-align: left;
     padding-left: 12px;
     padding-right: 12px;
