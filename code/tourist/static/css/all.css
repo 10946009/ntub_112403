@@ -1,8 +1,9 @@
 /* rellax滑動球球 */
-.rellax{
+.rellax {
 	position: absolute;
 	z-index: 1;
 }
+
 /* 下雨效果 */
 .rain-drop {
 	position: absolute;
@@ -27,23 +28,27 @@
 }
 
 body {
-	background-color: rgba(247, 255, 221,0.1);
+	background-color: rgba(247, 255, 221, 0.1);
 	transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 /* 暗色模式 */
 body.dark-mode {
 	background-color: #464141;
 	color: #fff;
-	background-image:none;
+	background-image: none;
 }
-.darkModeTxt{
-    color: white;
-    text-shadow: 1px 1px 2px #333;
+
+.darkModeTxt {
+	color: white;
+	text-shadow: 1px 1px 2px #333;
 }
-.chineseFonst{
+
+.chineseFonst {
 	font-family: 'AaKLYLDYW (Non-Commercial Use)', 'HanyiSentyTea Regular';
 }
-.englishFonst{
+
+.englishFonst {
 	font-family: 'HanyiSentyTea', 'HanyiSentyTea Regular';
 }
 
@@ -92,7 +97,8 @@ body.dark-mode {
 	animation: fadeIn 0.3s forwards;
 	z-index: 100;
 }
-@font-face{
+
+@font-face {
 	font-family: 'AaKLYLDYW (Non-Commercial Use)';
 	src: url('AaKLYLDYW (Non-Commercial Use).ttf') format('truetype');
 	height: 100%;
