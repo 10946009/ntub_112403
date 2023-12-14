@@ -564,7 +564,9 @@
                 //e.preventDefault(); // 阻止 Enter本來換行行為
                 //document.getElementById('d-flex').submit(); // 提交
                 e.preventDefault();
-                handleSearch();
+                sessionStorage.setItem(this.value, 'keyword_search');
+                searchText(this.value, 'keyword_search');
+                closeAllLists();
             }
         });
 
