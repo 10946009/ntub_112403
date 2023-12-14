@@ -845,20 +845,20 @@ main {
     height: 150px;
 }
 
-.info_icon_left {
+
+.info_iconOrder:hover {
+    color: orange;
+}
+.info_iconOrder{
     position: absolute;
-    left: 10px;
-    top: 10px;
+    left: 15px;
+    top: 5px;
     border: 0;
     font-size: 24px;
     color: white;
     text-shadow: 2px 2px 3px #333;
     cursor: pointer;
     text-decoration: none;
-}
-
-.info_icon_left:hover {
-    color: orange;
 }
 
 .info_active {
