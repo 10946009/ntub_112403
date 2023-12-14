@@ -111,8 +111,8 @@
           <div class="searchBarDiv" onclick="openSearchDiv()">
             <i class="fa-solid fa-magnifying-glass-location find_icon"></i>
             <span class="search_txt chineseFonst">搜尋景點</span>
-            <span class="tipsTxt">
-              <i class="fa-solid fa-left-long"></i>  
+            <span class="tipsTxt chineseFonst">
+              <i class="fa-solid fa-left-long chineseFonst"></i>  
                 點此收合搜尋區塊唷
             </span>
           </div>
@@ -153,8 +153,8 @@
           <div class="recDiv" onclick="openRecDiv()">
             <i class="fa-solid fa-thumbs-up rec_icon"></i>
             <span class="rec_txt chineseFonst" >推薦景點</span>
-            <span class="tipsTxt">
-              <i class="fa-solid fa-left-long"></i>  
+            <span class="tipsTxt chineseFonst">
+              <i class="fa-solid fa-left-long chineseFonst"></i>  
                 點此收合推薦區塊唷
             </span>
           </div>
@@ -170,9 +170,9 @@
         <div class="classifierDiv FavoriteDiv">
           <div class="favDiv" onclick="openFavDiv()">
             <i class="fa-solid fa-heart fav_icon"></i>
-            <span class="fav_txt" >我的收藏</span>
-            <span class="tipsTxt">
-              <i class="fa-solid fa-left-long"></i>  
+            <span class="fav_txt chineseFonst" >我的收藏</span>
+            <span class="tipsTxt chineseFonst">
+              <i class="fa-solid fa-left-long "></i>  
                 點此收合收藏區塊唷
             </span>
           </div>
@@ -221,7 +221,7 @@
       <div>
         <div class="checkDiv">
           <i class="fa-solid fa-check checked_icon"></i>
-          <span class="checked_txt chineseFonst" >已選景點</span>
+          <span class="checked_txt chineseFonst" style="color: black;">已選景點</span>
         </div>
         <div class="align chineseFonst" id="bottomAttraction">
             <!-- be choosed -->
@@ -233,7 +233,7 @@
           </div>
           <div class="s_recDiv">
             <span class="similar_icon">&asymp;</span>
-            <span class="s_rec_txt chineseFonst" >相似景點推薦</span>
+            <span class="s_rec_txt chineseFonst"  style="color: black;">相似景點推薦</span>
           </div>
           <div class="openSimilar chineseFonst" id="SimilarRecommend">
             {% include "create_similar_recommend.html" %}

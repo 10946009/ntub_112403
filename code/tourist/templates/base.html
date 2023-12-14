@@ -90,7 +90,7 @@
                 </li>
                 <li>
                   {% if request.user.page_light %}
-                    <div class="dropdown-item dark_light " onclick="changeColor()">亮色模式</div>
+                    <div class="dropdown-item dark_light" onclick="changeColor()">亮色模式</div>
                   {% else %}
                     <div class="dropdown-item dark_light" onclick="changeColor()">暗色模式</div>
                   {% endif %}
@@ -196,9 +196,15 @@
     const dark_light = document.querySelector('.dark_light');
     const main = document.getElementById('rainyMain');
     const rellaxStar = document.querySelectorAll('.rellaxStar');
+    // const darkModeTxt = document.querySelectorAll('.darkModeTxt');
     let light;
     main.classList.toggle("dark-mode");
     document.documentElement.classList.toggle("dark-mode-bg");
+
+    // darkModeTxt.forEach(div => {
+    //   darkModeTxt.classList.add('darkModeTxt');
+    // })
+
     if (dark_light.textContent == '亮色模式'){
       dark_light.textContent = '暗色模式';
       light = "0";

@@ -243,7 +243,7 @@ main {
 }
 
 .tabc_txt {
-    color: #000;
+    /* color: #000; */
     font-size: 20px;
 }
 
@@ -255,6 +255,7 @@ main {
     text-shadow: 3px 2px 4px #333;
     padding: 10px;
     padding-bottom: 0;
+    color: rgb(255, 198, 91);
 }
 
 .create-nav-link:hover {
@@ -262,7 +263,7 @@ main {
 }
 
 .active {
-    color: #000;
+    /* color: #000; */
     animation: heart 0.5s linear;
     font-weight: bolder;
 }
@@ -478,6 +479,9 @@ main {
     height: 100%;
     overflow: hidden;
     position: relative;
+    z-index: 2;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px black;
 }
 
 .doneSpotImgDiv .doneSpotImg {
@@ -492,7 +496,7 @@ main {
 }
 
 .blockTxt {
-    /* width: 90%; */
+    color: black;
     position: relative;
 }
 
@@ -539,7 +543,7 @@ main {
     display: flex;
     position: relative;
     transition: all 0.3s ease;
-    /* 使用 CSS transition 實現動畫效果 */
+    background-color: #e7e7e5c8;
 }
 
 .spotOkName {
@@ -552,57 +556,6 @@ main {
     margin-bottom: 5px;
 }
 
-/* 我的範例 */
-/* 
-.list {
-    width: 100%;
-}
-
-.innerlist {
-    margin: 10px;
-    text-align: left;
-    padding: 10px;
-    width: 50%;
-    height: 250px;
-    background-color: rgb(247, 247, 203);
-    border-radius: 30px;
-    box-shadow: 3px 3px 4px #333;
-}
-
-.innerlist .moving {
-    background-color: transparent;
-    color: transparent;
-    border: 1px dashed #ccc;
-}
-
-.sortable {
-    margin: 0;
-    padding: 0;
-    width: 60%;
-}
-
-.innsersortable {
-    margin: 0 3px 3px 3px;
-    padding: 0.4em;
-    padding-left: 1.5em;
-    font-size: 1.4em;
-    height: 20px;
-} 
-
-.spot {
-    position: relative;
-}
-
-.spotOkName {
-    margin-top: 5px;
-    text-align: center;
-    font-size: 20px;
-}
-
-.spotOk {
-    margin-bottom: 5px;
-}
-*/
 /* 翻轉排序跟建立 */
 .change {
     transition: transform 0.5s ease, opacity 0.5s ease;
@@ -774,7 +727,7 @@ main {
 
 
 .tabD {
-    color: #000;
+    /* color: #000; */
     margin-top: 5px;
     padding: 5px;
 }
@@ -854,6 +807,7 @@ main {
     border: 1px solid #33333394;
     border-top: 0;
     color: black;
+    background-color: #e7e7e5c8;
 }
 
 .owl-carousel .owl-nav button.owl-next,
