@@ -70,12 +70,9 @@ body {
 /* 景點資訊 */
 .scroll-text h1 {
     color: rgb(255, 255, 255);
-    font-family: system-ui;
     font-size: 80px;
     font-weight: bold;
     text-shadow: 4px 4px 2px rgba(65, 65, 65, 0.5);
-    font-family: 'HanyiSentyTea', sans-serif;
-    /* font-family: "Noto Serif TC", serif; */
     font-weight: bold;
 }
 
@@ -83,9 +80,7 @@ body {
 .text_trip {
     font-size: 40px;
     color: rgb(255, 255, 255);
-    font-family: 'HanyiSentyTea', sans-serif;
     text-shadow: 4px 4px 2px rgba(65, 65, 65, 0.5);
-    /* font-family: "Noto Serif TC", serif; */
     font-weight: bold;
 }
 
@@ -346,7 +341,6 @@ body {
 .clear_btn {
     display: inline-block;
     padding: 4px 10px;
-    font-family: Arial;
     margin-top: 6px;
     font-size: 18px;
 }
@@ -1623,7 +1617,6 @@ img {
     display: inline-block;
     color: rgb(0, 0, 0);
     padding: 2px 20px 2px 20px;
-    font-family: Arial;
     border: #000 solid;
     background-color: #a5a6a7;
     font-size: 14px;
@@ -1635,7 +1628,6 @@ img {
     display: inline-block;
     color: rgb(0, 0, 0);
     padding: 2px 20px 2px 20px;
-    font-family: Arial;
     border: #000 solid;
     font-size: 14px;
     margin-right: 20px;
@@ -1715,7 +1707,6 @@ img {
     display: inline-block;
     color: rgb(0, 0, 0);
     padding: 2px 20px 2px 20px;
-    font-family: Arial;
     border: #000 solid;
     background-color: #a5a6a7;
     font-size: 14px;
@@ -2275,7 +2266,6 @@ img {
     display: inline-block;
     color: rgb(0, 0, 0);
     padding: 2px 20px 2px 20px;
-    font-family: Arial;
     border: #000 solid;
     background-color: #a5a6a7;
     font-size: 14px;
@@ -2287,7 +2277,6 @@ img {
     display: inline-block;
     color: rgb(0, 0, 0);
     padding: 2px 20px 2px 20px;
-    font-family: Arial;
     border: #000 solid;
     background-color: #d2892f;
     font-size: 14px;
@@ -2425,7 +2414,6 @@ img {
     display: inline-block;
     color: rgb(0, 0, 0);
     padding: 2px 20px 2px 20px;
-    font-family: Arial;
     border: #000 solid;
     background-color: #a5a6a7;
     font-size: 14px;
@@ -2437,7 +2425,6 @@ img {
     display: inline-block;
     color: rgb(0, 0, 0);
     padding: 2px 20px 2px 20px;
-    font-family: Arial;
     border: #000 solid;
     background-color: #d2892f;
     font-size: 14px;
@@ -2853,12 +2840,9 @@ img {
     /* 景點資訊 */
     .scroll-text h1 {
         color: rgb(255, 255, 255);
-        font-family: system-ui;
         font-size: 50px;
         font-weight: bold;
         text-shadow: 4px 4px 2px rgba(65, 65, 65, 0.5);
-        font-family: 'HanyiSentyTea', sans-serif;
-        /* font-family: "Noto Serif TC", serif; */
         font-weight: bold;
     }
 
@@ -2866,9 +2850,7 @@ img {
     .text_trip {
         font-size: 30px;
         color: rgb(255, 255, 255);
-        font-family: 'HanyiSentyTea', sans-serif;
         text-shadow: 4px 4px 2px rgba(65, 65, 65, 0.5);
-        /* font-family: "Noto Serif TC", serif; */
         font-weight: bold;
     }
 

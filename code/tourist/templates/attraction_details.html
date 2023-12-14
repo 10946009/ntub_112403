@@ -8,28 +8,26 @@
 
 {% block body %}
 <div class="topDiv" onclick="scrollTosearch_body('.search_body')">
-    <span>TOP</span>
+    <span class="chineseFonst">TOP</span>
 </div>
 <!-- 動態大標 景點資訊(沒事) -->
 <div class="row jumbotron">
     <div class="container_info">
         <div class="active_tit1">
             <div class="active_tit">
-                <div class="scroll-text">
-                    <h1>景&ensp;點&ensp;資&ensp;訊</h1>
+                <div class="scroll-text chineseFonst">
+                    <h1 class="chineseFonst">景&ensp;點&ensp;資&ensp;訊</h1>
                 </div>
-                <div class="scroll-text1">
-                    <!-- <hr class="tit_hr"> -->
-                    <h5 class="text_trip">Trip&ensp;Fun&ensp;Chill&ensp;趣放假</h5>
+                <div class="scroll-text1 chineseFonst">
+                    <h5 class="text_trip chineseFonst">Trip&ensp;Fun&ensp;Chill&ensp;趣放假</h5>
                 </div>
             </div>
         </div>
-        <div class="active_tit3">
-            <div class="scroll-text">
+        <div class="active_tit3 chineseFonst">
+            <div class="scroll-text chineseFonst">
                 <h1>景&ensp;點&ensp;資&ensp;訊</h1>
             </div>
-            <div class="scroll-text1">
-                <!-- <hr class="tit_hr"> -->
+            <div class="scroll-text1 chineseFonst">
                 <h5 class="text_trip">Trip&ensp;Fun&ensp;Chill&ensp;趣放假</h5>
             </div>
         </div>
@@ -44,10 +42,10 @@
                 <div class="container_search">
                     <div class="searchInput">
                         <button class="icon" type="submit" id="searchClick"><i class="fas fa-search"></i></button>
-                        <input type="search" ng-model="search_item" placeholder="想去哪玩.." id="myInput"
+                        <input class="chineseFonst" type="search" ng-model="search_item" placeholder="想去哪玩.." id="myInput"
                             name="searchQuery">
                         <!-- 歷史紀錄 -->
-                        <div id="searchBox">
+                        <div class="chineseFonst" id="searchBox">
                             <div class="enter"></div>
                             <!-- <div class="searchContent">
                                 history（目前放假資料）
@@ -68,7 +66,7 @@
 </div>
 
 <!-- 景點主題 -->
-<div id="show_filiter" style="display: none;">
+<div class="chineseFonst" id="show_filiter" style="display: none;">
     <div class="modal-content_filiter" method="post" style="border-radius: 10px;">
         {% csrf_token %}
         <div class="att_form">
@@ -93,7 +91,7 @@
     <div class="col-1"></div>
     <div class="col-8 clear_8">
         <div class="clear-all" id="clear-all1">
-            <h5 class="clear_1"><strong><i class="fa-solid fa-square-xmark"
+            <h5 class="clear_1 chineseFonst"><strong><i class="fa-solid fa-square-xmark"
                         style="color: rgb(179, 76, 76);margin-right: 5px;"></i>清除所有篩選</strong></h5>
         </div>
     </div>
@@ -102,11 +100,11 @@
         <div class="new_fifliter">
             <!-- style="position:absolute ;right: 50px;" -->
             <div class="in_filiter">
-                <h5 class="ask_qa" id="new_fifliter_topic"
+                <h5 class="ask_qa chineseFonst" id="new_fifliter_topic"
                     onclick="document.getElementById('show_filiter').style.display='block'">
                     <i class="fa-solid fa-list" style="margin-right: 6px;"></i>主題
                 </h5>
-                <h5 class="ask_qa" id="new_filiter_user">
+                <h5 class="ask_qa chineseFonst" id="new_filiter_user">
                     排序<i class="fa-solid fa-chevron-down" style="margin-left: 6px;"></i>
                 </h5>
                 <!-- <h5 class="ask_qa" id="new_filiter_user">
@@ -114,10 +112,10 @@
                 </h5> -->
                 </h5>
                 <div class="row RWD_clear" id="clear-all2">
-                    <h5><strong><i class="fa-solid fa-square-xmark"
+                    <h5><strong><i class="fa-solid fa-square-xmark chineseFonst"
                                 style="color: rgb(179, 76, 76);"></i>清除所有篩選</strong></h5>
                 </div>
-                <div class="dropdown_filiter" id="dropdown_filiter">
+                <div class="dropdown_filiter chineseFonst" id="dropdown_filiter">
                     <div class="dropdown-content">
                         <div class="dropdown-item focused first-defaultFocus" id="defaultFocus" 　data-set="">相關度最高</div>
                         <div class="dropdown-item " data-set="hit">瀏覽最多</div>
@@ -134,7 +132,7 @@
     <div class="col-1"></div>
     <div class="col-10">
         <!-- <hr class="tit_hr"> -->
-        <h4 class="all_att_tip" style="  font-weight: bold;"><i class="fa-solid fa-lightbulb"
+        <h4 class="all_att_tip chineseFonst" style="  font-weight: bold;"><i class="fa-solid fa-lightbulb"
                 style="color: rgb(203, 190, 6);"></i>共<span id="searchListCount">{{search_list_count}}</span>個景點，以<span
                 id="type_key_word"></span>為主題搜尋，並以<span id="searchListOrder">相關度最高</span>排序</h4>
         <!-- 清除所有篩選按鈕 -->
@@ -165,10 +163,10 @@
 </div>
 <!-- footer-->
 <footer class="jumbotron1">
-    <div class="container">
+    <div class="container chineseFonst">
         <form action="/createindex/" method="get">
             {% csrf_token %}
-            <h1>景點看得差不多了嗎？</h1>
+            <h1 class="chineseFonst">景點看得差不多了嗎？</h1>
             <button class="btn btn-default" style="margin-top:40px; font-size:20px" type="submit">立即建立行程</a></button>
         </form>
     </div>
@@ -511,7 +509,7 @@
             currentFocus = -1; // 輸入框值變動時重置焦點索引為-1
             a = document.createElement("DIV"); // 建立一個新的DIV元素來放置選項
             a.setAttribute("id", this.id + "autocomplete-list"); // 設定DIV元素的id屬性
-            a.setAttribute("class", "autocomplete-items"); // 設定DIV元素的class屬性
+            a.setAttribute("class", "autocomplete-items chineseFonst"); // 設定DIV元素的class屬性
             this.parentNode.appendChild(a); // 將DIV元素加入輸入框的父元素中
 
             // 字跟著打在下面框框的部分

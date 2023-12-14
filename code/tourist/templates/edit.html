@@ -13,47 +13,12 @@
 <script src="/static/js/bootstrap.js"></script> {% endcomment %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 {% endblock %}
-{% comment %}
-
-<body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary " style="height: 80px">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">趣放假</a>
-            <button class="navbar-toggler me-auto" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
-                    <li class="nav-item">
-                        <a class="nav-link active " aria-current="page" href="/">首頁</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/create">建立行程</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/history">我的行程</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/_get_all_taiwan">景點資訊</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/favorite">我的收藏</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">登入</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav> {% endcomment %}
     {% block body %}
     <div class="row info" style="padding-top: 140px;">
         <div class="col-1"></div>
         <div class="col-3 col-s-12 menu">
             <div class="topic">
-                <h2>帳號管理</h2>
+                <h2 class="chineseFonst">帳號管理</h2>
             </div>
             <div class="head_change">
                 <div style="display: flex;justify-content: center;">
@@ -63,10 +28,10 @@
                                     border-radius:50%">
                     </div>
                 </div>
-                <button onclick="openChange()" style="margin-top:20px;">更換頭像</button>
+                <button class="chineseFonst" onclick="openChange()" style="margin-top:20px;">更換頭像</button>
                 <div id="head_selected">
                     <div id="head_selected-content">
-                        <h2 style="margin-bottom:20px;">更換頭貼</h2>
+                        <h2 class="chineseFonst" style="margin-bottom:20px;">更換頭貼</h2>
                         <!-- 預設頭貼 -->
                         <img src="../static/images/user1.png" alt="Avatar 2" class="head_selected-avatar"
                             onclick="selectAvatarAndClosehead_selected('../static/images/user1.png')">
@@ -83,37 +48,23 @@
                         <img src="../static/images/user7.jpg" alt="Avatar 3" class="head_selected-avatar"
                             onclick="selectAvatarAndClosehead_selected('../static/images/user7.jpg')">
                         <div>
-                            <button onclick="closehead_selected()" style="margin-top:20px;">取消</button>
+                            <button class="chineseFonst" onclick="closehead_selected()" style="margin-top:20px;">取消</button>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="avatar">
-                    <img id="avatar-preview" src="/static/images/dog.jpg" alt="頭貼預覽">
-                </div>
-                <div class="head_file">
-                    <input type="file" id="avatar" name="avatar" accept="image/*" class="file-upload-input"
-                        onchange="previewAvatar(event)">
-                    <br>
-                    <label for="avatar" class="file-upload-label">選擇檔案</label>
-                </div>
-                <div class="form-group">
-                    <label for="bio">個人簡介:</label>
-                    <textarea id="bio" name="bio" placeholder="請輸入個人簡介"></textarea>
-                                </div> -->
             </div>
             <div class="usertopic">
-                <h6 style=" font-size: 18px;">
+                <h6 class="chineseFonst" style=" font-size: 18px;">
                     <i class="fa-solid fa-palette" style="margin-right:5px;
                               margin-bottom:20px"></i>喜愛主題
                 </h6>
                 <div style="margin-left:20px;">
-                    <button class="add_topic"
+                    <button class="add_topic chineseFonst"
                         onclick="document.getElementById('user_like_topic').style.display='block'">新增<span
                             style="margin-left:5px;"><i class="fa-solid fa-plus"></i></span></button>
                     {% for type in all_type_name %}
                     {% if type.id in detail.user_favorite_tag %}
-                    <span class="article-tag" data-set="{{type.id}}">{{type.name}}</span>
-                    {% comment %} <span class="_icon"><i class="fas fa-times"></i></span> {% endcomment %}
+                    <span class="article-tag chineseFonst" data-set="{{type.id}}">{{type.name}}</span>
                     {% endif %}
                     {% endfor %}
                 </div>
@@ -124,12 +75,7 @@
                     <div class="att_form">
                         <span onclick="document.getElementById('user_like_topic').style.display='none'"
                             class="close_user_like" title="Close Modal">&times;</span>
-                        <h3><strong>景點主題</strong></h3>
-                        {% comment %} {% if type.id in detail.user_favorite_tag %}
-                        <span class="more_btn " onclick="toggleSelection(this)">使用系統預設</span>
-                        {% else %}
-                        <span class="more_btn selected" onclick="toggleSelection(this)">使用系統預設</span>
-                        {% endif %} {% endcomment %}
+                        <h3><strong class="chineseFonst">景點主題</strong></h3>
                         <div class="filiter_search" id="user_like">
                             <table style="width:45%;margin-left: 10px;margin-bottom:5px ;">
                                 <div id="attractions_types">
@@ -144,34 +90,11 @@
                                     {% endfor %}
                                 </div>
                             </table>
-                            <!-- <div class="sure"><button class="sure_btn" id="sure_att_type" name="sure_att_type" value="0">篩選</button>
-                            </div> -->
                         </div>
                     </div>
                 </div>
 
             </div>
-            <!--<div>
-                <ul>
-                    <a href="#person_info">
-                        <span>
-                            <li>
-                                <i class="fa-solid fa-user"></i> 個人資訊
-                            </li>
-                        </span>
-                    </a>
-                    <a href="#user_pwd">
-                        <li>
-                            <i class="fa-solid fa-lock"></i> TripFunChill 帳號密碼
-                        </li>
-                    </a>
-                     <a href="#user_check">
-                        <li>
-                            <i class="fa-solid fa-shield-halved"></i> 雙重驗證
-                        </li>
-                    </a>
-                </ul>
-            </div> -->
         </div>
         <div class="col-7 col-s-12 content">
             <form id="editForm" name="editForm" method="POST" action="{% url "user_post" %}">
@@ -179,8 +102,8 @@
                 <div class="row">
                     <div class="col-5 col-s-5 aside1" id="person_info">
                         <div class="con">
-                            <h3>個人資訊</h3>
-                            <p>
+                            <h3 class="chineseFonst">個人資訊</h3>
+                            <p class="chineseFonst">
                                 此資料為保密資訊，其他用戶無法檢視。閱讀TripFunChill隱私權政策隨時都可以。
                                 <br>
                                 馬上更改個人資料～讓你的自介更加豐富！
@@ -191,24 +114,21 @@
                         <div class="inner">
                             <div class="input-with-icon">
                                 <i class="fas fa-user input-icon"></i>
-                                <input type="text" placeholder="使用者名稱" name="username" value="{{ detail.username }}"
+                                <input class="chineseFonst" type="text" placeholder="使用者名稱" name="username" value="{{ detail.username }}"
                                     required>
                             </div>
                             <div class="input-with-icon" style="font-size:17px;">
-                                {% comment %} <i class="fa-solid fa-envelope icon_email"></i> {% endcomment %}
-                                <strong style="margin-right:5px;">信箱：</strong><span
+                                <strong class="chineseFonst" style="margin-right:5px;">信箱：</strong><span class="chineseFonst"
                                     style=" color: rgb(81, 81, 81); font-size:18px;">{{ detail.email }}</span>
                                 <br>
-                                {% comment %} <input type="email" placeholder="e-mail" name="email" value="" required>
-                            </div> {% endcomment %}
                             <div style="margin-top: 20px;">
-                                <strong>性別：</strong>
-                                <select name="gender" style="padding: 6px;">
-                                    <option {% if detail.gender == "男" %}selected{% endif %} value="1" name="gender">男
+                                <strong class="chineseFonst">性別：</strong>
+                                <select class="chineseFonst" name="gender" style="padding: 6px;">
+                                    <option {% if detail.gender == "男" %}selected{% endif %} class="chineseFonst" value="1" name="gender">男
                                     </option>
-                                    <option {% if detail.gender == "女" %}selected{% endif %} value="2" name="gender">女
+                                    <option {% if detail.gender == "女" %}selected{% endif %} class="chineseFonst" value="2" name="gender">女
                                     </option>
-                                    <option {% if detail.gender == "不公開" %}selected{% endif %} value="0" name="gender">不公開
+                                    <option {% if detail.gender == "不公開" %}selected{% endif %} class="chineseFonst" value="0" name="gender">不公開
                                     </option>
                                 </select>
                             </div>
@@ -217,11 +137,11 @@
                             </span>
                             <p>
                             </p>
-                            <strong>生日：</strong>
-                            <input type="date" placeholder="生日(範例:2000/01/01)" name="birthday" required
+                            <strong class="chineseFonst">生日：</strong>
+                            <input class="chineseFonst" type="date" placeholder="生日(範例:2000/01/01)" name="birthday" required
                                 value="{{ detail.birthday }}" min="1911-01-01" max="{{ nowday }}" style="padding:4px">
                                 <div style="text-align: right;">
-                                    <button class="pwd_btn" style="margin-top:20px;" type="submit">
+                                    <button class="pwd_btn chineseFonst" style="margin-top:20px;" type="submit">
                                         儲存
                                     </button>
                                 </div>
@@ -231,28 +151,28 @@
             </form>
             <form id="passwordForm" name="editPwdForm" method="POST" action="">
                 {% csrf_token %}
-                <div class="info1">
+                <div class="info1" style="margin-bottom:20px;">
                     <div class="row">
                         <div class="col-5 col-s-5 aside1" id="user_pwd">
                             <div class="con">
-                                <h3>
-                                    TripFunChill 密碼
+                                <h3 class="chineseFonst">
+                                    Trip Fun Chill 密碼
                                 </h3>
-                                <p>
+                                <p class="chineseFonst">
                                     我們建議你定期更改密碼，以防有心人士駭入你的帳號。<br><br><br>
                                     ps.修改密碼後需重新登入!
                                 </p>
                             </div>
                         </div>
                         <div class="col-7 col-s-7 aside">
-                            <div class="inner">
+                            <div class="inner chineseFonst">
                                 <div class="password-container">
                                     <i class="fa-solid fa-key input-icon"></i>
                                     <input type="password" id="old_pwd" placeholder="目前密碼" name="old_pwd"
                                         onfocus="cleanmsg()" required>
                                     <i id="checkEye2" class="toggle-password fas fa-eye"></i>
                                 </div>
-                                <div class="password-container">
+                                <div class="password-container chineseFonst">
                                     <i class="fa-solid fa-key input-icon"></i>
                                     <input type="password" id="new_pwd" oninput="password_validation()"
                                          onfocus="showPasswordToggle()" onblur="hidePasswordToggle()" placeholder="新密碼"
@@ -293,60 +213,10 @@
                                         確定更改並驗證
                                     </button>
                                 </div>
-                                <!-- <div class="head_change">
-                                <div class="avatar">
-                                    <img id="avatar-preview" src="/static/images/dog.jpg" alt="頭貼預覽">
-                                </div>
-                                <div class="head_file">
-                                    <input type="file" id="avatar" name="avatar" accept="image/*" class="file-upload-input"
-                                        onchange="previewAvatar(event)"><br>
-                                    <label for="avatar" class="file-upload-label">選擇檔案</label>
-                                </div>
-                            </div> -->
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="info1">
-                    <div class="row">
-                        <div class="col-5 col-s-5 aside1" id="user_check">
-                            <div class="con">
-                                <h3>
-                                    雙重驗證
-                                </h3>
-                                <p>
-                                    登入時要求輸入安全碼可以保護你的帳號免受不明人士駭入。
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-7 col-s-7 aside">
-                            <div class="inner">
-                                <div class="row aside_in">
-                                    <div class="col-7">
-                                        <div class="a">
-                                            <i class="fa-sharp fa-solid fa-envelope mail"></i>
-                                            <div style="width: 300px; margin-left:50px;line-height:35px;">信箱驗證</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-5 ｂ">
-                                        <input type="submit" onclick="openPopup()" value="啟用" class="check_ch">
-                                    </div>
-
-                                </div>
-                                <div class="head_change">
-                                    <div class="avatar">
-                                        <img id="avatar-preview" src="/static/images/dog.jpg" alt="頭貼預覽">
-                                    </div>
-                                    <div class="head_file">
-                                        <input type="file" id="avatar" name="avatar" accept="image/*"
-                                            class="file-upload-input" onchange="previewAvatar(event)"><br>
-                                        <label for="avatar" class="file-upload-label">選擇檔案</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
             </form>
         </div>
     </div>

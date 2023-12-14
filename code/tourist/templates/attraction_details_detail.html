@@ -4,9 +4,9 @@
     <div class="col-10">
         <div class="return_pre" style="margin-top: -80px; margin-left: -40px;">
             <h3 onclick="showInfo()" title="上一頁">
-                <div class="return_1"><i class="fa-regular fa-circle-left"></i><strong>&thinsp;返回</strong>
+                <div class="return_1 chineseFonst"><i class="fa-regular fa-circle-left"></i><strong>&thinsp;返回</strong>
                 </div>
-                <div class="return_2"><strong>返回上一頁</strong></div>
+                <div class="return_2 chineseFonst"><strong>返回上一頁</strong></div>
             </h3>
         </div>
     </div>
@@ -14,18 +14,15 @@
 </div>
 <div class="row">
     <div class="col-1"></div>
-    <div class="col-10 total_att">
+    <div class="col-10 total_att chineseFonst">
         <!-- 景點名稱 -->
         <div class="detail_name">
             <div class="detail_name__header">
                 <div class="detail_name__headerGrid">
-                    <h2 style="color: rgb(172, 78, 1)" id="attractions-detail-name"><strong>{{ detail.a_name }}</strong>
+                    <h2 class="chineseFonst" style="color: rgb(172, 78, 1)" id="attractions-detail-name"><strong>{{ detail.a_name }}</strong>
                     </h2>
                 </div>
                 <div class="detail_name__headerGrid icon_add">
-                    {% comment %} <i class="fa-solid fa-arrow-up-from-bracket icon_name" id="share_icon"
-                        onclick=" showShareLoaderAndContent()" title="分享"
-                        style="border: black solid; border-radius: 60px;padding:8px 10px 8px 10px;"></i> {% endcomment %}
                     {% if is_favorite %}
                     <div class="icon_name" id="submitfavorite{{detail.id}}"
                         onclick="addFavorite_attractions(this,{{detail.id}})">
@@ -45,8 +42,6 @@
             {% for i in "12345" %}
             {% if i|add:0 <= detail.rating %} <i class="fa-solid fa-star" style="color:rgb(226, 185, 2);"></i>
                 {% else %}
-                <!-- <i class="fa-regular fa-star"></i> -->
-                <!-- <i class="fa-regular fa-star-half-stroke" style="color:rgb(226, 185, 2);"></i> -->
                 <i class="fa-solid fa-star" style="color:rgb(185, 184, 184);"></i>
                 {% endif %}
                 {% endfor %}
@@ -67,7 +62,7 @@
                             <img src="/static/images/attractions/{% if picture_list.1 %}{{picture_list.2}}{% else %}{{picture_list.0}}{% endif %}"
                                 class="show_detail_img" style="width: 100%;margin-top: 2px;" alt=""
                                 onclick="showPhotoDetail()">
-                            <a id="see_all_btn" class="see_all_btn" onclick="showPhotoDetail()">查看所有照片</a>
+                            <a id="see_all_btn" class="see_all_btn chineseFonst" onclick="showPhotoDetail()">查看所有照片</a>
                         </div>
                     </div>
                 </div>
@@ -93,27 +88,27 @@
                     <div class="detail_detail__header">
                         <div class="detail_detail__headerGrid">
                             <!-- 景點介紹 -->
-                            <h6 style="font-size: 20px;">
+                            <h6 class="chineseFonst" style="font-size: 20px;">
                                 <i class="fa-solid fa-book-open"></i>
                                 關於
                             </h6>
-                            <h6 style="margin-left: 30px; margin-top: 10px; margin-right: 30px; color: rgb(3, 54, 87);">
+                            <h6  class="chineseFonst"style="margin-left: 30px; margin-top: 10px; margin-right: 30px; color: rgb(3, 54, 87);">
                                 {{ detail.detail }}
                             </h6>
                             <hr style=" border:1px solid #777777; max-width: 95%;">
                             <!-- 地址(點擊連動到google導航) -->
-                            <h6 style="margin-top: 20px; font-size: 20px;" id="attractions-detail-address">
+                            <h6 class="chineseFonst" style="margin-top: 20px; font-size: 20px;" id="attractions-detail-address">
                                 <i class="fa-solid fa-location-dot" style="color: rgb(201, 1, 1);"></i>
                                 地址：<a href="#" style="color: blue;">{{detail.address}}</a>
                             </h6>
                             <!-- 電話 -->
-                            {% if detail.phone != "" %}<h6 id="attractions-detail-phone"
+                            {% if detail.phone != "" %}<h6 class="chineseFonst" id="attractions-detail-phone"
                                 style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-phone" style="color: rgb(9, 145, 2);"></i>
                                 電話：<a href="#" style="color: blue;">{{detail.phone }}</a>
                             </h6>{% endif %}
                             <!-- 營業時間 -->
-                            <h6 style="margin-top: 20px;font-size: 20px;">
+                            <h6 class="chineseFonst" style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-clock" style="color: rgb(2, 79, 161);"></i>
                                 營業時間：<br>
                                 <div style="margin-left: 25px; margin-top: 10px;">
@@ -122,25 +117,23 @@
                                     禮拜{{opentime.week}}：{% for open in opentime.opening %}{{open}}{% endfor %}<br>
                                     {% endfor %}
                                 </div>
-                                <!-- <span style="color: red;">已打烊</span> <span style="color: rgb(21, 81, 140);">*開始營業時間：9:00</span> -->
                             </h6>
                             <!-- 建議停留時間 -->
-                            <h6 style="margin-top: 20px;font-size: 20px;">
+                            <h6 class="chineseFonst" style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-person-walking-luggage" style="color: rgb(174, 65, 150);"></i>
                                 建議停留時間：{{ detail.stay_time }} 分鐘
                             </h6>
                             <!-- 旺季月份 -->
-                            <h6 style="margin-top: 20px;font-size: 20px;">
+                            <h6 class="chineseFonst" style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-calendar-days" style="color: rgb(168, 126, 0);"></i>
                                 旺季月份：{%if detail.hot_month|length == 12%} 全年 {% else %} {{ detail.hot_month }} {% endif %}
                             </h6>
-                            <!-- <hr style="border:2px solid #b3b2b2"> -->
                             <!-- 人潮資訊 -->
-                            <h6 style="margin-top: 20px;font-size: 20px;">
+                            <h6 class="chineseFonst" style="margin-top: 20px;font-size: 20px;">
                                 <i class="fa-solid fa-person-circle-exclamation" style="color: rgb(67, 1, 159);"></i>
                                 人潮資訊：
                                 <!-- 星期 -->
-                                <div class="week_number">
+                                <div class="week_number chineseFonst">
                                     <span class="tag-week" data-set="0">星期一</span>
                                     <span class="tag-week" data-set="1">星期二</span>
                                     <span class="tag-week" data-set="2">星期三</span>
@@ -149,21 +142,8 @@
                                     <span class="tag-week" data-set="5">星期六</span>
                                     <span class="tag-week" data-set="6">星期日</span>
                                 </div>
-                                {% comment %} 新的星期按鈕 {% endcomment %}
-                                {% comment %} <div class="new_week_tag">
-                                    <select style="width:95%;padding:5px;">
-                                        <option data-set="0">星期一</option>
-                                        <option data-set="1">星期二</option>
-                                        <option data-set="2">星期三</option>
-                                        <option data-set="3">星期四</option>
-                                        <option data-set="4">星期五</option>
-                                        <option data-set="5">星期六</option>
-                                        <option data-set="6">星期日</option>
-                                    </select>
-                                </div> {% endcomment %}
                                 <!-- 圖表 -->
                                 <div>
-                                    <!-- <canvas id="chart" width="300" height="150"></canvas> -->
                                     <canvas id="people_if_Chart"  height="200%;"></canvas>
                                 </div>
                             </h6>
@@ -175,7 +155,7 @@
                     <div class="detail_detail__headerGrid">
                         <div class="question">
                             <div class="qa-section">
-                                <h5 style="font-size: 24px;">
+                                <h5 class="chineseFonst" style="font-size: 24px;">
                                     <i class="fa-solid fa-circle-question" style="color: gray;"></i>
                                     問題與解答
                                 </h5>
@@ -187,10 +167,10 @@
                                                 <img src="{{question.u.get_photo}}" alt="User Avatar">
                                             </div>
                                             <div class="comment-content">
-                                                <h5 class="username">
+                                                <h5 class="username chineseFonst">
                                                     {{question.u.username}}
                                                 </h5>
-                                                <p class="comment-text">
+                                                <p class="comment-text chineseFonst">
                                                     {{question.content}}
                                                     <br>
                                                     <span
@@ -204,11 +184,11 @@
                                     {% endif %}
 
                                     {%empty%}
-                                    <div id="emptyQuestion">尚未有人發問</div>
+                                    <div class="chineseFonst" id="emptyQuestion">尚未有人發問</div>
                                     {% endfor %}
                                     {% if question_list|length %}
                                     <div>
-                                        <h6 class="see_more" id="see_more" onclick="showAllLoaderAndContent()">
+                                        <h6 class="see_more chineseFonst" id="see_more" onclick="showAllLoaderAndContent()">
                                             查看所有問題（{{question_list | length }}）
                                         </h6>
                                     </div>
@@ -219,14 +199,14 @@
                         <!-- 提問按鈕 -->
                         {% if request.user.is_authenticated %}
                         <div style="text-align: center;">
-                            <h6 class="ask_qa" id="ask_qa" onclick="showLoaderAndContent()">
+                            <h6 class="ask_qa chineseFonst" id="ask_qa" onclick="showLoaderAndContent()">
                                 提出問題
                             </h6>
                         </div>
                         {% else %}
                         <a href="/login">
                             <div style="text-align: center;">
-                                <h6 class="ask_qa" id="ask_qa">
+                                <h6 class="ask_qa chineseFonst" id="ask_qa">
                                     登入後即可提問
                                 </h6>
                             </div>
@@ -236,7 +216,7 @@
                 </div>
                 <!-- 鄰近景點 -->
                 <div class="row" style="margin-left: 10px;">
-                    <h5 style="font-size: 24px; margin-top: 20px; margin-bottom: 20px;">
+                    <h5 class="chineseFonst" style="font-size: 24px; margin-top: 20px; margin-bottom: 20px;">
                         <i class="fa-solid fa-map"></i>
                         鄰近景點
                     </h5>
@@ -248,12 +228,12 @@
                                     style="margin-top: 1px; width:100%;max-width: 100%; border: black solid;" alt="">
                             </div>
                             <div class="detail_near__headerGrid">
-                                <h4 class="near_name" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                <h4 class="near_name chineseFonst" data-bottom-top="transform: translateY(-20px);opacity: 0"
                                     data-center="transform: translateY(0px);opacity: 1" data-a-Id="{{ near.id }}">
                                     {{near.a_name }}
                                 </h4>
                                 <!-- 星星數 -->
-                                <div class="rating1" data-bottom-top="transform: translateY(-20px);opacity: 0"
+                                <div class="rating1 chineseFonst" data-bottom-top="transform: translateY(-20px);opacity: 0"
                                     data-center="transform: translateY(0px);opacity: 1;">
                                     {% for i in "12345" %}
                                     {% if i|add:0 <= near.rating %} <span class="rating-star"
@@ -265,14 +245,14 @@
                                         {% endfor %}
                                 </div>
                                 <!-- 評分 -->
-                                <h6 class="score_RWD" style="margin-top:5px;"
+                                <h6 class="score_RWD chineseFonst" style="margin-top:5px;"
                                     data-bottom-top="transform: translateY(-20px);opacity: 0"
                                     data-center="transform: translateY(0px);opacity: 1">
                                     <span id="list-selectedRating">{{ near.rating }}</span> / 5
                                     ({{near.rating_total}}則評分)
                                 </h6>
                                 <!-- 總瀏覽人數 -->
-                                <h6 class="look_people" style="color:#8b8a8a;"
+                                <h6 class="look_people chineseFonst" style="color:#8b8a8a;"
                                     data-bottom-top="transform: translateY(-20px);opacity: 0"
                                     data-center="transform: translateY(0px);opacity: 1">
                                     <i class="fa-regular fa-eye"></i>&thinsp;<span>{{near.hit}}</span>
@@ -281,42 +261,6 @@
                         </div>
                         <hr class="near_hr">
                         {% endfor %}
-                        {% comment %} <div class="detail_near__header">
-                            <div class="detail_near__headerGrid">
-                                <img src="/static/images/attractions/{{detail.place_id}}_0.jpg" class="show_detail_img"
-                                    style="margin-top: 1px; width:100%;max-width: 100%;" alt="">
-                            </div>
-                            <div class="detail_near__headerGrid">
-                                <h4 data-bottom-top="transform: translateY(-20px);opacity: 0"
-                                    data-center="transform: translateY(0px);opacity: 1" data-a-Id="{{ detail.id }}"
-                                    onclick="showInfo({{ detail.id }})">
-                                    {{item.a_name }}</h3>
-                                    <!-- 星星數 -->
-                                    <div class="rating" data-bottom-top="transform: translateY(-20px);opacity: 0"
-                                        data-center="transform: translateY(0px);opacity: 1;">
-                                        {% for i in "12345" %}
-                                        {% if i|add:0 <= item.rating %} <span class="rating-star"
-                                            style="color: rgb(241, 226, 62);">
-                                            &#9733;</span>
-                                            {% else %}
-                                            <span class="rating-star">&#9733;</span>
-                                            {% endif %}
-                                            {% endfor %}
-                                    </div>
-                                    <!-- 評分 -->
-                                    <h6 style="margin-top:5px;"
-                                        data-bottom-top="transform: translateY(-20px);opacity: 0"
-                                        data-center="transform: translateY(0px);opacity: 1">
-                                        綜合評分： <span id="list-selectedRating">{{ item.rating }}</span> / 5
-                                        ({{item.rating_total}}則評分)
-                                    </h6>
-                                    <!-- 總瀏覽人數 -->
-                                    <h6 style="color:#8b8a8a;" data-bottom-top="transform: translateY(-20px);opacity: 0"
-                                        data-center="transform: translateY(0px);opacity: 1">
-                                        <i class="fa-regular fa-eye"></i>&thinsp;瀏覽人數：<span>{{item.hit}}</span>人
-                                    </h6>
-                            </div>
-                        </div> {% endcomment %}
                     </div>
                 </div>
             </div>
@@ -333,7 +277,7 @@
         <div id="ask_qa_container" class="ask_qa_container">
             <form class="ask-content" id="ask-content" action="/comment/{{detail.id}}/" method="POST">
                 <div class="ask_container" id="ask_container">
-                    <h5 style="font-size: 24px;">
+                    <h5 class="chineseFonst" style="font-size: 24px;">
                         提出問題
                     </h5>
                     <span style="font-size: 18px; font-style: italic;color: rgb(172, 78, 1)">
@@ -348,20 +292,20 @@
                         <div class="comment-content">
                             <h6 class="username">
                                 {{request.user.username}}<br>
-                                <span style="color: gray; font-size: 12px; font-style: italic;">公開發佈 &ensp;</span>
+                                <span class="chineseFonst" style="color: gray; font-size: 12px; font-style: italic;">公開發佈 &ensp;</span>
                                 <i class="icon fa-solid fa-circle-exclamation" id="myIcon"></i>
-                                <div class="tooltip1" id="myTooltip1">
+                                <div class="tooltip1 chineseFonst" id="myTooltip1">
                                     您的貼文會與個人資料名稱及相片一併公開顯示，出現在網站上的各個地方。貼文必須遵循TripFunChill政策的規定。</div>
                             </h6>
                         </div>
                     </div>
                     <div>
-                        <textarea name="user_ask" id="user_ask" cols="100%" rows="7"
+                        <textarea class="chineseFonst" name="user_ask" id="user_ask" cols="100%" rows="7"
                             style="resize:none; border-radius: 10px;max-width: 100%; "
                             placeholder="向使用者社群提出詢或尋求建議。"></textarea>
                     </div>
                 </div>
-                <div class="post_ask">
+                <div class="post_ask chineseFonst">
                     <span class="ask_btn_cancel" id="ask_btn_cancel">取消</span>
                     <span class="ask_btn_ok" id="ask_btn_ok" onclick="sendAsk({{detail.id}})">張貼<span>
                 </div>
@@ -375,14 +319,14 @@
         </div>
     </div>
     <!-- 查看所有問題(ok) -->
-    <div class="all_ask_qa" id="all_ask_qa">
+    <div class="all_ask_qa chineseFonst" id="all_ask_qa">
         <div id="all_ask_qa_container" class="all_ask_qa_container">
             <form class="all_ask-content" id="all_ask-content" action="">
                 <div class="all_ask_container" id="all_ask_container">
-                    <h3 style="color: rgb(172, 78, 1)">
+                    <h3 class="chineseFonst" style="color: rgb(172, 78, 1)">
                         <strong>{{ detail.a_name }}</strong>
                     </h3>
-                    <span style="color:rgb(67, 65, 65);font-size: 14px; font-style: italic;">
+                    <span class="chineseFonst" style="color:rgb(67, 65, 65);font-size: 14px; font-style: italic;">
                         {{detail.address}}</span>
                     <span class="all_close" id="all_close" title="關閉">&times;</span>
                 </div>
@@ -391,12 +335,12 @@
                 <div class="all_ask_qa_con">
                     <div class="all_ask_qa_comment">
                         <div class="all_ask_qa_list">
-                            <h5>{{question.content}}</h5>
+                            <h5 class="chineseFonst">{{question.content}}</h5>
                             <div style="position: relative;">
                                 <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer; font-size: 16px;"
                                     id="myIcon1"></i>
                                 <!-- 檢舉按鈕 -->
-                                <div class="tooltip2" id="myTooltip2" onclick="showReportLoaderAndContent()">
+                                <div class="tooltip2 chineseFonst" id="myTooltip2" onclick="showReportLoaderAndContent()">
                                     檢舉
                                 </div>
                             </div>
@@ -413,26 +357,19 @@
                     <div class="comment_new" id="comment_new">
                         {% for answer in question.get_answer %}
                         <div class="comment">
-                            <div class="avatar">
+                            <div class="avatar chineseFonst">
                                 <img src="{{answer.u.get_photo}}" alt="User Avatar">
                             </div>
                             <div class="comment-content">
-                                <h6 class="username">
+                                <h6 class="username chineseFonst">
                                     {{answer.u.username}}<br>
-                                    <span
+                                    <span class="chineseFonst"
                                         style="color: gray; font-size: 12px; font-style: italic;">{{answer.answer_date}}
                                         &ensp;</span>
                                 </h6>
-                                <h6 style="margin-bottom: 20px;">{{answer.content}}</h6>
-                                {% comment %} <span style="margin-right: 20px;cursor: pointer;font-size: 18px;"><i
-                                        class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i>
-                                    2</span> {% endcomment %}
+                                <h6 class="chineseFonst" style="margin-bottom: 20px;">{{answer.content}}</h6>
                             </div>
                         </div>
-                        {% comment %} （點開還有1個答案功能） {% endcomment %}
-                        {% comment %} <h6 class="qa_text" id="qa_text">還有{{question.get_answer | length |add:"-1"}}個答案
-                        </h6> {% endcomment %}
-
                         {% endfor %}
                     </div>
 
@@ -440,26 +377,23 @@
                     <div id="comment_qa" style="display: none;">
                     </div>
                     {% if request.user.is_authenticated %}
-                    <div class="comment">
+                    <div class="comment chineseFonst">
                         <div class="avatar">
                             <img src="{{request.user.get_photo}}" alt="User Avatar">
                         </div>
-                        <div class="comment-content">
-                            <h6 class="username">
+                        <div class="comment-content chineseFonst">
+                            <h6 class="username chineseFonst">
                                 {{request.user.username}}<br>
-                                {% comment %} <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;">
-                                    <i class="fa-solid fa-crown"></i>在地嚮導&ensp;
-                                </span> {% endcomment %}
                             </h6>
                         </div>
                     </div>
                     <div>
                         <div>
-                            <textarea name="answer_qa{{question.id}}" id="answer_qa" cols="100%" rows="5"
+                            <textarea class="chineseFonst" name="answer_qa{{question.id}}" id="answer_qa" cols="100%" rows="5"
                                 style="resize: none; border-radius: 10px; max-width: 90%; margin-left: 40px; padding: 10px;"
                                 placeholder="回答問題"></textarea>
                         </div>
-                        <div class="post_ask">
+                        <div class="post_ask chineseFonst">
                             <span class="all_ask_btn_ok" id="all_ask_btn_ok"
                                 onclick="sendAnswer({{question.id}})">張貼</span>
                         </div>
@@ -467,81 +401,19 @@
                     {% else %}
                     <a href="/login">
                         <div style="text-align: center;">
-                            <h6 class="ask_qa" id="ask_qa">
+                            <h6 class="ask_qa chineseFonst" id="ask_qa">
                                 登入後即可提問
                             </h6>
                         </div>
                     </a>
                     {% endif %}
-
                 </div>
                 <hr style=" border:1px solid #777777; max-width: 100%;">
                 {% empty %}
-                <div id="emptyQuestion">
+                <div class="chineseFonst" id="emptyQuestion">
                     <h4>尚未有人發問</h4>
                 </div>
                 {% endfor %}
-
-                {% comment %} <div class="all_ask_qa_con">
-                    <div class="all_ask_qa_comment">
-                        <div class="all_ask_qa_list">
-                            <h5>有餐廳嗎？</h5>
-                            <div style="position: relative;">
-                                <!-- id要不同才能點開icon顯示檢舉 -->
-                                <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer; font-size: 16px;"
-                                    id="myIcon1"></i>
-                                <div class="tooltip2" id="myTooltip2">
-                                    檢舉
-                                </div>
-                            </div>
-                        </div>
-                        <div style="font-size: 18px; margin-bottom: 20px;">
-                            <span style="margin-right: 20px;cursor: pointer;"><i class="fa-regular fa-thumbs-up"
-                                    style=" color: rgb(0, 102, 255);"></i> 12</span>
-                            <span style="cursor: pointer;"><i class="fa-regular fa-comment"
-                                    style=" color: rgb(89, 198, 53);"></i> 4</span>
-                        </div>
-                    </div>
-                    <div class="comment">
-                        <div class="avatar">
-                            <img src="../static/images/dog.jpg" alt="User Avatar">
-                        </div>
-                        <div class="comment-content">
-                            <h6 class="username">
-                                彭德<br>
-                                <span style="color: gray; font-size: 12px; font-style: italic;">3天前
-                                    &ensp;</span>
-                            </h6>
-                            <h6 style="margin-bottom: 20px;">有 美食廣場 又便宜又好美。</h6>
-                            <!-- <span style="margin-right: 20px;cursor: pointer;font-size: 18px;"><i
-                                        class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i>
-                                    5</span> -->
-                            <h6 class="qa_text">還有3個答案</h6>
-                        </div>
-                    </div>
-                    <div class="comment">
-                        <div class="avatar">
-                            <img src="../static/images/an.jpeg" alt="User Avatar">
-                        </div>
-                        <div class="comment-content">
-                            <h6 class="username">
-                                安妮雅<br>
-                                <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
-                                        class="fa-solid fa-crown"></i>在地嚮導
-                                    &ensp;</span>
-                            </h6>
-                        </div>
-                    </div>
-                    <div>
-                        <textarea name="" id="" cols="100%" rows="5"
-                            style="resize:none; border-radius: 10px;max-width: 90%;margin-left: 40px; padding: 10px;"
-                            placeholder="回答問題"></textarea>
-                        <!-- 之後會補上判斷textarea是否是空值以觸發ask_btn_ok按鈕（空直不能點張貼） -->
-                        <div class="post_ask">
-                            <span class="all_ask_btn_ok" id="all_ask_btn_ok">張貼</span>
-                        </div>
-                    </div>
-                </div> {% endcomment %}
             </form>
         </div>
     </div>
@@ -550,7 +422,7 @@
         <div id="share_an_att_container" class="share_an_att_container">
             <form class="share_an_att-content" id="share_an_att-content" action="">
                 <div class="share_att_container" id="share_att_container">
-                    <h5 style="font-size: 22px;">分享到...</h5>
+                    <h5 class="chineseFonst" style="font-size: 22px;">分享到...</h5>
                     <i class="fa-solid fa-xmark" id="closeShare"></i>
                 </div>
                 <div class="share_att_con">
@@ -559,7 +431,7 @@
                             <i class="fa-brands fa-facebook"></i>
                         </div>
                         <div class="comment-content">
-                            <h6 class="username" style="padding: 10px;">
+                            <h6 class="username chineseFonst" style="padding: 10px;">
                                 分享到Facebook
                             </h6>
                         </div>
@@ -569,7 +441,7 @@
                             <i class="fa-brands fa-facebook-messenger"></i>
                         </div>
                         <div class="comment-content">
-                            <h6 class="username" style="padding: 10px;">
+                            <h6 class="username chineseFonst" style="padding: 10px;">
                                 分享到Messenger
                             </h6>
                         </div>
@@ -579,7 +451,7 @@
                             <i class="fa-brands fa-instagram" style="margin: 0 2px 0 3px;"></i>
                         </div>
                         <div class="comment-content">
-                            <h6 class="username" style="padding: 10px;">
+                            <h6 class="username chineseFonst" style="padding: 10px;">
                                 分享到Instagram
                             </h6>
                         </div>
@@ -589,7 +461,7 @@
                             <i class="fa-solid fa-envelope" style="margin:0 2px 0 1px;"></i>
                         </div>
                         <div class="comment-content">
-                            <h6 class="username" style="padding: 10px;">
+                            <h6 class="username chineseFonst" style="padding: 10px;">
                                 透過電子郵件分享
                             </h6>
                         </div>
@@ -599,7 +471,7 @@
                             <i class="fa-solid fa-qrcode" style="margin: 0 3px 0 3px;"></i>
                         </div>
                         <div class="comment-content">
-                            <h6 class="username" style="padding: 10px;">
+                            <h6 class="username chineseFonst" style="padding: 10px;">
                                 QR 碼
                             </h6>
                         </div>
@@ -610,17 +482,13 @@
                             <i class="fa-solid fa-link"></i>
                         </div>
                         <div class="comment-content">
-                            <h6 class="username" style="padding: 10px;">
+                            <h6 class="username chineseFonst" style="padding: 10px;">
                                 複製連結
                             </h6>
                         </div>
                     </div>
-                    <div id="share_tips">已將連結複製到剪貼簿。</div>
+                    <div class="chineseFonst" id="share_tips">已將連結複製到剪貼簿。</div>
                 </div>
-                <!-- <div class="post_ask">
-                        <span class="ask_btn_cancel" id="ask_btn_cancel">取消</span>
-                        <span class="ask_btn_ok" id="ask_btn_ok">張貼</span>
-                    </div> -->
             </form>
         </div>
     </div>
@@ -628,31 +496,24 @@
     <div class="photo_att" id="photo_att">
         <div id="photo_big_att_container" class="photo_big_att_container">
             <form class="photo_att-content" id="photo_att-content" action="">
-                <div class="photo_att_container" id="photo_att_container">
-                    <h5 style="font-size: 24px;">關於<span style="color: rgb(172, 78, 1)">
+                <div class="photo_att_container chineseFonst" id="photo_att_container">
+                    <h5 class="chineseFonst" style="font-size: 24px;">關於<span style="color: rgb(172, 78, 1)">
                             {{detail.a_name}}</span>的所有照片&emsp;</h5>
                     <i class="fa-solid fa-xmark" id="closePhoto"></i>
                 </div>
                 <div class="row">
-                    <div class="col-4 photo_book">
-                        <h6>相簿</h6>
+                    <div class="col-4 photo_book chineseFonst">
+                        <h6 class="chineseFonst">相簿</h6>
                         <div class="detail_photo" style="margin-top: 10px;">
                             <div class="detail_photo__header">
                                 <div class="detail_photo__headerGrid" id="detail_photo__headerGrid_all">
                                     <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
                                         class="show_detail_img" style="margin-top: 1px; width:100%; max-width: 100%;"
                                         alt="">
-                                    <div class="photo-text">
+                                    <div class="photo-text chineseFonst">
                                         所有照片（{{picture_list|length}}）
                                     </div>
                                 </div>
-                                {% comment %} <div class="detail_photo__headerGrid" id="detail_photo__headerGrid_user">
-                                    <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                        class="show_detail_img" style="width: 100%;" alt="">
-                                    <div class="photo-text">
-                                        旅客（7）
-                                    </div>
-                                </div> {% endcomment %}
                             </div>
                         </div>
                     </div>
@@ -671,55 +532,21 @@
                                 </div>
                                 {% endfor %}
                             </div>
-                            <!--  -->
-
-                            {% comment %} <div class="choice_slide">
-                                <div class="show_detail_photo__header">
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img"
-                                            style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
-                                    </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
-                                    </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
-                                    </div>
-                                </div>
-                                <div class="show_detail_photo__header">
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img"
-                                            style="margin-top: 1px; width:100%; max-width: 100%;" alt="">
-                                    </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
-                                    </div>
-                                    <div class="show_detail_photo__headerGrid">
-                                        <img src="/static/images/attractions/{{detail.place_id}}_0.jpg"
-                                            class="show_detail_img" style="width: 100%;" alt="">
-                                    </div>
-                                </div>
-                            </div>{% endcomment %}
                         </div>
                         <!-- 所有照片（幻燈片） -->
                         <div class="slide_this_photo" id="slide_this_photo" style="display: none; width: 100%;">
                             <div class="w3-content" style="max-width:800px;position:relative">
-                                <div class="change_sigle_photo" id="change_sigle_photo">
+                                <div class="change_sigle_photo chineseFonst" id="change_sigle_photo">
                                     <i class="fa-regular fa-clone" style="margin-right:10px;"></i>照片集
                                 </div>
-                                <div class="illustrate_photo">
-                                    <h6><strong>管理階層</strong></h6>
+                                <div class="illustrate_photo chineseFonst">
+                                    <h6><strong class="chineseFonst">管理階層</strong></h6>
                                     <div style="position: absolute;bottom: 0;">
                                         <p>{{ detail.a_name }}</p>
                                     </div>
                                 </div>
                                 {% for picture in picture_list %}
-                                <div class="mySlides">
+                                <div class="mySlides chineseFonst">
                                     <div class="phototext">第{{forloop.counter}}頁&emsp;(共{{picture_list | length}}頁)
                                     </div>
                                     <img class="mySlide" src="/static/images/attractions/{{picture}}"
@@ -745,7 +572,7 @@
         <div id="report_an_att_container" class="report_an_att_container">
             <form class="report_an_att-content" id="report_an_att-content" action="">
                 <div class="report_att_container" id="report_att_container">
-                    <h5 style="font-size: 22px;">你要檢舉何種濫用行為？</h5>
+                    <h5 class="chineseFonst" style="font-size: 22px;">你要檢舉何種濫用行為？</h5>
                     <i class="fa-solid fa-xmark" id="closereport"></i>
                 </div>
                 <div class="report_att_con">
@@ -755,7 +582,7 @@
                             <i class="fa-regular fa-circle-xmark" style="color: rgb(37, 152, 1);"></i>
                         </div>
                         <div class="comment-content">
-                            <h6 class="username" style="padding: 10px;">
+                            <h6 class="username chineseFonst" style="padding: 10px;">
                                 離題
                             </h6>
                         </div>
@@ -766,7 +593,7 @@
                             <i class="fa-solid fa-ban" style="color: rgb(199, 3, 3);"></i>
                         </div>
                         <div class="comment-content">
-                            <h6 class="username" style="padding: 10px;">
+                            <h6 class="username chineseFonst" style="padding: 10px;">
                                 此內容不適用
                             </h6>
                         </div>
@@ -777,7 +604,7 @@
                             <i class="fa-brands fa-adversal" style="color: rgb(3, 94, 199);"></i>
                         </div>
                         <div class="comment-content">
-                            <h6 class="username" style="padding: 10px;">
+                            <h6 class="username chineseFonst" style="padding: 10px;">
                                 廣告或垃圾內容
                             </h6>
                         </div>
@@ -788,7 +615,7 @@
                             <i class="fa-regular fa-face-angry" style="color: rgb(199, 127, 3);"></i>
                         </div>
                         <div class="comment-content">
-                            <h6 class="username" style="padding: 10px;">
+                            <h6 class="username chineseFonst" style="padding: 10px;">
                                 仇恨、暴力或不當內容
                             </h6>
                         </div>
@@ -799,7 +626,7 @@
                             <i class="fa-solid fa-circle-info" style="color: rgb(3, 72, 199);"></i>
                         </div>
                         <div class="comment-content">
-                            <h6 class="username" style="padding: 10px;">
+                            <h6 class="username chineseFonst" style="padding: 10px;">
                                 資訊不正確
                             </h6>
                         </div>
@@ -810,12 +637,12 @@
                             <i class="fa-solid fa-hand" style="color: rgb(134, 3, 199);"></i>
                         </div>
                         <div class="comment-content">
-                            <h6 class="username" style="padding: 10px;">
+                            <h6 class="username chineseFonst" style="padding: 10px;">
                                 其他
                             </h6>
                         </div>
                     </div>
-                    <div id="report_tips">感謝您的舉報，我們將做進一步的審核！</div>
+                    <div class="chineseFonst" id="report_tips">感謝您的舉報，我們將做進一步的審核！</div>
                 </div>
             </form>
         </div>
@@ -825,7 +652,7 @@
     <div class="row">
         <div class="col-12 others1">
             <!-- 使用者總評論 -->
-            <h5 style="font-size: 24px;">
+            <h5 class="chineseFonst" style="font-size: 24px;">
                 <i class="fa-solid fa-file" style="color: rgb(214, 149, 28);"></i>
                 其他資訊
             </h5>
@@ -833,29 +660,9 @@
             <div style="padding:0 100px 0 100px;">
             <div class="User_more_add_fav">
                 <div class="User__header">
-                    <!-- <div class="User__headerGrid" style="border-right: black dashed;">
-                        <div class=" row" style="text-align:center;">
-                            <div class="total_score_star">
-                                <h2>
-                                    <strong>按讚人數</strong>
-                                </h2>
-                            </div>
-                            <div class="total_score_star">
-                                <p style="font-size:60px;">
-                                    <strong><i class="fa-solid fa-thumbs-up"
-                                            style="color: rgb(42, 106, 189);"></i></strong>
-                                </p>
-                            </div>
-                            <div class="total_score_star">
-                                <h2>
-                                    <strong>{{ detail.rating_total|add:"123" }}</strong>
-                                </h2>
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="User__headerGrid" style="border-right: black dashed;">
                         <div class=" row" style="text-align:center;">
-                            <div class="total_score_star">
+                            <div class="total_score_star chineseFonst">
                                 <h2>
                                     <strong><i class="fa-solid fa-crown"
                                             style="color: rgb(214, 166, 54);"></i>總評分</strong>
@@ -874,16 +681,16 @@
                                     {% endif %}
                                     {% endfor %}
                             </div>
-                            <p>
+                            <p class="chineseFonst">
                                 {{detail.rating_total}}則評分
                             </p>
                         </div>
                     </div>
                     <div class="User__headerGrid" style="border-right: black dashed;">
                         <div class=" row" style="text-align:center;">
-                            <div class="total_score_star">
+                            <div class="total_score_star chineseFonst">
                                 <h2>
-                                    <strong>收藏人數</strong>
+                                    <strong class="chineseFonst">收藏人數</strong>
                                 </h2>
                             </div>
                             <div class="total_score_star">
@@ -893,36 +700,16 @@
                             </div>
                             <div class="total_score_star">
                                 <h2>
-                                    <strong>{{detail.get_favorite_count}}</strong>
+                                    <strong class="chineseFonst">{{detail.get_favorite_count}}</strong>
                                 </h2>
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="User__headerGrid" style="border-right: black dashed;">
-                        <div class=" row" style="text-align:center;">
-                            <div class="total_score_star">
-                                <h2>
-                                    <strong>分享人數</strong>
-                                </h2>
-                            </div>
-                            <div class="total_score_star">
-                                <p style="font-size:60px;">
-                                    <strong><i class="fa-solid fa-share-from-square"
-                                            style="color: rgb(29, 101, 11);"></i></strong>
-                                </p>
-                            </div>
-                            <div class="total_score_star">
-                                <h2>
-                                    <strong>0</strong>
-                                </h2>
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="User__headerGrid">
                         <div class=" row" style="text-align:center;">
-                            <div class="total_score_star">
+                            <div class="total_score_star chineseFonst">
                                 <h2>
-                                    <strong>觀看人數</strong>
+                                    <strong class="chineseFonst">觀看人數</strong>
                                 </h2>
                             </div>
                             <div class="total_score_star">
@@ -930,9 +717,9 @@
                                     <strong><i class="fa-solid fa-eye" style="color: gray;"></i></strong>
                                 </p>
                             </div>
-                            <div class="total_score_star">
+                            <div class="total_score_star chineseFonst">
                                 <h2>
-                                    <strong>{{detail.hit}}</strong>
+                                    <strong class="chineseFonst">{{detail.hit}}</strong>
                                 </h2>
                             </div>
                         </div>
@@ -944,7 +731,7 @@
         <!-- RWD(768px)會用到的大小 -->
         <div class="col-12 others2">
             <!-- 使用者總評論 -->
-            <h5 style="font-size: 24px;">
+            <h5 class="chineseFonst" style="font-size: 24px;">
                 <i class="fa-solid fa-file" style="color: rgb(214, 149, 28);"></i>
                 其他資訊
             </h5>
@@ -952,7 +739,7 @@
                 <div class="col-3">
                     <div class="User__headerGrid">
                         <div class=" row" style="text-align:center;">
-                            <div class="total_score_star">
+                            <div class="total_score_star chineseFonst">
                                 <h2>
                                     <strong><i class="fa-solid fa-crown"
                                             style="color: rgb(214, 166, 54);"></i>總評分</strong>
@@ -971,39 +758,23 @@
                                     {% endif %}
                                     {% endfor %}
                             </div>
-                            <p>
+                            <p class="chineseFonst">
                                 {{detail.rating_total}}則評論
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-9" style="text-align: center;">
-                    {% comment %} <div style="background-color: rgb(228, 202, 171);">
-                        <h2>
-                            <strong><i class="fa-solid fa-thumbs-up"
-                                    style="color: rgb(42, 106, 189);margin-right: 10px;"></i></strong>
-                            <span style="margin-right: 20px;">按讚人數</span>
-                            <span>20</span>
-                        </h2>
-                    </div> {% endcomment %}
                     <div style="background-color: rgb(228, 202, 171);">
-                        <h2>
+                        <h2 class="chineseFonst">
                             <strong><i class="fa-solid fa-heart"
                                     style="color:rgb(186, 51, 51); margin-right: 10px;"></i></strong>
                             <span style="margin-right: 20px;">收藏人數</span>
                             <span>{{detail.get_favorite_count}}</span>
                         </h2>
                     </div>
-                    {% comment %} <div style="background-color: rgb(228, 202, 171);">
-                        <h2>
-                            <strong><i class="fa-solid fa-share-from-square"
-                                    style="color: rgb(29, 101, 11); margin-right: 10px;"></i></strong>
-                            <span style="margin-right: 20px;">分享人數</span>
-                            <span>20</span>
-                        </h2>
-                    </div> {% endcomment %}
                     <div style="background-color: rgb(228, 202, 171);">
-                        <h2>
+                        <h2 class="chineseFonst">
                             <strong><i class="fa-solid fa-eye" style="color: gray; margin-right: 10px;"></i></strong>
                             <span style="margin-right: 20px;">觀看人數</span>
                             <span>{{detail.hit}}</span>
@@ -1015,8 +786,8 @@
     </div>
     <hr style="border:2px solid #777777">
     <!-- 評論 -->
-    <div class="row">
-        <h5 style="font-size: 24px;">
+    <div class="row chineseFonst">
+        <h5 class="chineseFonst" style="font-size: 24px;">
             <i class="fa-solid fa-pen" style="color: gray;"></i>
             評論
         </h5>
@@ -1024,22 +795,16 @@
             <div>
                 <div>
                     {% if request.user.is_authenticated %}
-                    <h5 class="comment_topic" id="write_comment" onclick="showCommentLoaderAndContent()">
+                    <h5 class="comment_topic chineseFonst" id="write_comment" onclick="showCommentLoaderAndContent()">
                         <strong>發表評論</strong>
                     </h5>
                     {% else %}
                     <a href="/login" style="text-decoration:none;">
-                        <h5 class="comment_topic" id="write_comment">
+                        <h5 class="comment_topic chineseFonst" id="write_comment">
                             <strong>登入後發表評論</strong>
                     </a>
                     {% endif %}
                 </div>
-                <!-- 先註解 -->
-                <!-- <div>
-                    <h5 class="comment_topic" id="update_att_photo" onclick="showupdateLoaderAndContent()">
-                        <strong>上傳景點照片</strong>
-                    </h5>
-                </div> -->
             </div>
         </div>
         <div class="col-9" style="margin-bottom:30px;">
@@ -1050,11 +815,8 @@
                 </div>
                 <div class="comment-content userComment">
                     <div style="display: flex; justify-content: space-between; position: relative;">
-                        <h6 class="username">
+                        <h6 class="username chineseFonst">
                             {{comment.u.username}}<br>
-                            {% comment %} <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;">
-                                <i class="fa-solid fa-crown"></i>在地嚮導
-                            </span> {% endcomment %}
                             <span style="color:gray;font-size: 12px; font-style: italic;">{{comment.comment_date}}</span>
                         </h6>
                         {% if comment.u.id == request.user.id %}
@@ -1062,16 +824,14 @@
                         <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer;"
                             onclick="Del_comment(this)"></i>
                         <!-- 評論刪除顯示框框 -->
-                        <div class="comment_delete-box" onclick="deleteComment({{comment.id}})">
+                        <div class="comment_delete-box chineseFonst" onclick="deleteComment({{comment.id}})">
                             刪除
                         </div>
                         {% endif %}
                     </div>
-                    <p class="comment-text">
+                    <p class="comment-text chineseFonst">
                         {{comment.content}}
                         <br>
-                        <!-- <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
-                                2033</span> -->
                     </p>
                     <!-- 只有他有點讚功能 -->
                     <span style="margin-right: 20px;cursor: pointer;" id="likeButton">
@@ -1081,105 +841,16 @@
                         <i class="fa-regular fa-thumbs-up" style=" color: rgb(0, 102, 255);"></i>
                         {% endif %}
                         <span id="likeCount">{{comment.get_favorite_count}}</span></span>
-                    {% comment %} <div class="comment_user_ph" style="max-width: 100%;">
-                        <img src="../static/images/att_picture.png" alt=""
-                            style="width: 150px; cursor: pointer; border: black aolid;" onclick="showPhotoDetail()">
-                        <img src="../static/images/att_picture.png" alt=""
-                            style="width: 150px; cursor: pointer; border: black aolid;" onclick="showPhotoDetail()">
-                        <img src="../static/images/att_picture.png" alt=""
-                            style="width: 150px; cursor: pointer; border: black aolid;" onclick="showPhotoDetail()">
-                        <img src="../static/images/att_picture.png" alt=""
-                            style="width: 150px; cursor: pointer; border: black aolid;" onclick="showPhotoDetail()">
-                    </div> {% endcomment %}
                 </div>
             </div>
             {% empty %}
-            <div style="display: flex; justify-content: center; margin-bottom: 20px; margin-bottom: 60px;">
-                <h5>目前尚無留言！</h5>
+            <div class="chineseFonst" style="display: flex; justify-content: center; margin-bottom: 20px; margin-bottom: 60px;">
+                <h5 class="chineseFonst">目前尚無留言！</h5>
             </div>
             {% endfor %}
-            {% comment %} <div class="comment">
-                <div class="avatar">
-                    <img src="../static/images/dog.jpg" alt="User Avatar">
-                </div>
-                <div class="comment-content">
-                    <h6 class="username">
-                        彭德<br>
-                        <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
-                                class="fa-solid fa-crown"></i>在地嚮導</span>
-                        <span style="color:gray;font-size: 12px; font-style: italic;">·7則評論
-                            ·1張照片</span><br>
-                        <span style="color:gray;font-size: 12px; font-style: italic;">3個月前</span>
-                    </h6>
-                    <!-- <div class="star_count">
-                            <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
-                            <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
-                            <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
-                            <span><i class="fa-solid fa-star"></i></span>
-                            <span><i class="fa-solid fa-star"></i></span>
-
-                        </div> -->
-                    <p class="comment-text">
-                        我實在越來越覺得動物園越來越差，維修的東西擴建的項目越來越多，但都沒有東西完成！太誇張了!!!
-                        <br>
-                        <!-- <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
-                                2023</span> -->
-                    </p>
-                    <div class="comment_user_ph" style="max-width: 100%;">
-                        <img src="../static/images/att_picture.png" alt=""
-                            style="width: 150px; cursor: pointer; border: black aolid;" onclick="showPhotoDetail()">
-                        <img src="../static/images/att_picture.png" alt=""
-                            style="width: 150px; cursor: pointer; border: black aolid;" onclick="showPhotoDetail()">
-                    </div>
-                </div>
-            </div>
-            <div class="comment">
-                <div class="avatar">
-                    <img src="../static/images/peka.webp" alt="User Avatar">
-                </div>
-                <div class="comment-content">
-                    <h6 class="username">
-                        皮卡丘<br>
-                        <!-- <span style="color: rgb(213, 160, 37); font-size: 12px; font-style: italic;"><i
-                                    class="fa-solid fa-crown"></i>在地嚮導
-                                &ensp;</span> -->
-                        <span style="color:gray;font-size: 12px; font-style: italic;">·5則評論</span><br>
-                        <span style="color:gray;font-size: 12px; font-style: italic;">5天前</span>
-                    </h6>
-                    <!-- <div class="star_count">
-                            <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
-                            <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
-                            <span style=" color: rgb(226, 185, 2);"><i class="fa-solid fa-star"></i></span>
-                            <span><i class="fa-solid fa-star"></i></span>
-                            <span><i class="fa-solid fa-star"></i></span>
-                        </div> -->
-                    <p class="comment-text">
-                        帶小孩來看動物很棒！可以玩一整天！廁所很多很方便,用餐座位如果能再多一些就好了!麥當勞大排長龍實在太誇張！希望能增設其他餐廳或便利商店~
-                        <br>
-                        <!-- <span style="color:gray;font-size: 12px; font-style: italic;">Posted on May 28,
-                                2023</span> -->
-                    </p>
-                </div>
-            </div> {% endcomment %}
             <!-- 分頁  -->
             <div class="page-container" style="display: flex ; justify-content: center;">
-                <nav aria-label="Page navigation">
-                    {% comment %} <ul class="pagination" id="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#" data-page="1">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#" data-page="2">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#" data-page="3">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul> {% endcomment %}
-                </nav>
+                <nav aria-label="Page navigation"></nav>
             </div>
         </div>
     </div>
@@ -1192,7 +863,6 @@
                         <h5 style="font-size: 24px;">
                             {{ detail.a_name }}
                         </h5>
-                        <!-- <span class="close" id="close" title="關閉">&times;</span> -->
                     </div>
                     <div class="share_comment_con" style="padding: 20px;">
                         <div class="comment">
@@ -1206,20 +876,13 @@
                                         &ensp;</span>
                                     <span class="show_com_info"><i class="comment_info fa-solid fa-circle-info"
                                             id="comment_info"></i></span>
-                                    <div class="show_comment_info" id="show_comment_info">
+                                    <div class="show_comment_info chineseFonst" id="show_comment_info">
                                         您的貼文會與個人資料名稱及相片一併公開顯示。您的貼文必須遵循政策的規定。</div>
                                 </h6>
                             </div>
                         </div>
-                        <!-- <div class="comment_rating" id="rating">
-                                <div class="comment_star" data-value="1"><i class="fas fa-star"></i></div>
-                                <div class="comment_star" data-value="2"><i class="fas fa-star"></i></div>
-                                <div class="comment_star" data-value="3"><i class="fas fa-star"></i></div>
-                                <div class="comment_star" data-value="4"><i class="fas fa-star"></i></div>
-                                <div class="comment_star" data-value="5"><i class="fas fa-star"></i></div>
-                            </div> -->
                         <div>
-                            <textarea name="user_share_comment" id="user_share_comment" cols="100%" rows="5"
+                            <textarea class="chineseFonst"  name="user_share_comment" id="user_share_comment" cols="100%" rows="5"
                                 style="resize:none; border-radius: 10px;max-width: 100%;padding: 10px; "
                                 placeholder="詳細說明你在這個地點的親身體驗。"></textarea>
                         </div>
@@ -1227,19 +890,8 @@
                             <!-- 預覽圖片 -->
                             <div id="imagePreview"></div>
                         </div>
-                        <!-- 上傳評論圖片 -->
-                        {% comment %} <form action="" method="post" enctype="multipart/form-data">
-                            <div class="add_comment_photo">
-                                <label for="photoInput" class="add_ph">
-                                    <i class="fa-solid fa-camera-retro"
-                                        style="margin-right: 5px; margin-top: 5px;"></i><span>新增相片</span>
-                                </label>
-                                <input type="file" id="photoInput" accept="image/*" style="display: none;" multiple
-                                    onchange="previewphoto(event)">
-                            </div>
-                        </form> {% endcomment %}
                     </div>
-                    <div class="post_share_comment">
+                    <div class="post_share_comment chineseFonst">
                         <span class="share_comment_btn_cancel" id="share_comment_btn_cancel">取消</span>
                         <span class="share_comment_btn_ok" id="share_comment_btn_ok"
                             onclick="sendComment({{detail.id}})">張貼</span>
@@ -1248,16 +900,14 @@
             </div>
         </div>
     </form>
-    <!-- <hr style="border:2px solid #777777"> -->
     <!-- 上傳景點圖片彈跳框框(ok) -->
     <div class="out_update_att_ph" id="out_update_att_ph">
         <div id="update_att_ph_container" class="update_att_ph_container">
             <form class="update_att_ph-content" id="update_att_ph-content" action="">
                 <div class="update_ph_container" id="update_ph_container">
-                    <h5 style="font-size: 24px;">
+                    <h5 class="class="chineseFonst"" style="font-size: 24px;">
                         {{ detail.a_name }}
                     </h5>
-                    <!-- <span class="close" id="close" title="關閉">&times;</span> -->
                 </div>
                 <div class="update_att_ph_con" style="padding: 20px;">
                     <div class="comment">
@@ -1265,12 +915,12 @@
                             <img src="{{user.get_photo}}" alt="User Avatar">
                         </div>
                         <div class="update_att_ph-content">
-                            <h6 class="username">
+                            <h6 class="username class="chineseFonst"">
                                 {{user.username}}<br>
-                                <span style="color: gray; font-size: 14px; font-style: italic;">公開發佈 &ensp;</span>
+                                <span class="class="chineseFonst"" style="color: gray; font-size: 14px; font-style: italic;">公開發佈 &ensp;</span>
                                 <span class="show_update_info"><i class="comment_info fa-solid fa-circle-info"
                                         id="update_info"></i></span>
-                                <div class="show_up_info" id="show_up_info">
+                                <div class="show_up_info class="chineseFonst"" id="show_up_info">
                                     您上傳的景點照片會經過管理員審核後一併公開顯示。您必須遵循政策的規定。</div>
                             </h6>
                         </div>
@@ -1279,7 +929,7 @@
                     <div style="padding: 100px; border: black dashed; background-color: #f9edd2;">
                         <form action="" method="post" enctype="multipart/form-data">
                             <div class="up_date_photo">
-                                <label for="updateInput" class="update_ph">
+                                <label for="updateInput" class="update_ph class="chineseFonst"">
                                     <i class="fa-solid fa-camera-retro"
                                         style="margin-right: 5px; margin-top: 5px;"></i><span>新增相片</span>
                                 </label>
@@ -1293,7 +943,7 @@
                         <div id="updatePreview"></div>
                     </div>
                 </div>
-                <div class="post_update_att_ph">
+                <div class="post_update_att_ph class="chineseFonst"">
                     <span class="update_att_ph_btn_cancel" id="update_att_ph_btn_cancel">取消</span>
                     <span class="update_att_ph_btn_ok" id="update_att_ph_btn_ok">張貼</span>
                 </div>
@@ -1501,48 +1151,6 @@
             }
         }
     }
-
-    // 星星數：
-    // var rating = document.getElementById("rating");
-    // var stars = rating.querySelectorAll(".comment_star");
-    // var selectedRating = document.getElementById("selectedRating");
-    // var currentRating = 0;
-
-    // stars.forEach(function (star) {
-    //     star.addEventListener("click", function () {
-    //         var value = star.getAttribute("data-value");
-    //         currentRating = value;
-    //         updateRatingDisplay();
-    //         updateStarColors(value);
-    //     });
-
-    //     star.addEventListener("click", function () {
-    //         updateStarColors(currentRating);
-    //     });
-
-    //     star.addEventListener("click", function () {
-    //         var value = star.getAttribute("data-value");
-    //         currentRating = value;
-    //         updateRatingDisplay();
-    //     });
-    // });
-
-    // function updateStarColors(value) {
-    //     stars.forEach(function (star) {
-    //         var starValue = star.getAttribute("data-value");
-    //         var starIcon = star.querySelector("i");
-
-    //         if (starValue <= value) {
-    //             starIcon.style.color = "rgb(226, 185, 2)"; // 亮起的星星颜色
-    //         } else {
-    //             starIcon.style.color = "gray"; // 未亮起的星星颜色
-    //         }
-    //     });
-    // }
-
-
-
-
 
     // 幻燈片(切換過來的)
     var slideIndex = 1;
