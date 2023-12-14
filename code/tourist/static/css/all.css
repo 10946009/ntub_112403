@@ -36,7 +36,10 @@ body.dark-mode {
 	color: #fff;
 	background-image:none;
 }
-
+.darkModeTxt{
+    color: white;
+    text-shadow: 1px 1px 2px #333;
+}
 .chineseFonst{
 	font-family: 'AaKLYLDYW (Non-Commercial Use)', 'HanyiSentyTea Regular';
 }
