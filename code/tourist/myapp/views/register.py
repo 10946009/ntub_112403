@@ -39,7 +39,7 @@ def register(request):
                     unit.is_active = False
                     unit.save()
                     email_title = f"註冊信箱驗證："
-                    email_body = f"<p>您的TripFunChill註冊驗證連結如下，請點選連結並完成註冊，謝謝!</p><h2><b>http://140.131.114.160:8000/register_verification/{verification_token}</b></h2>TripFunChill團隊敬上</p>"
+                    email_body = f"<p>您的TripFunChill註冊驗證連結如下，請點選連結並完成註冊，謝謝!</p><h2><b>http://140.131.114.160/register_verification/{verification_token}</b></h2>TripFunChill團隊敬上</p>"
                     threading.Thread(target=send_mail_function, args=(email_title, email, email_body)).start()
 
                     return redirect("/login")
