@@ -174,15 +174,22 @@ def create(request, ct_id):
                             user_favorite_type, new_nowtime, get_user_address, start_day, stay_time,ispet,pet_type
                         )
                 except:
+                    pet_type = None
                     m = recommend_pet(
                         user_favorite_type, new_nowtime, get_user_address, start_day, stay_time,ispet,None
                     )
                     
             else:
+                pet_type = None
                 m = recommend(
                     user_favorite_type, new_nowtime, get_user_address, start_day, stay_time
                 )
-            m_list = (Attractions.objects.filter(place_id__in=m) | recommend_maybe(uid,ispet)|recommend_user_favorite(uid,ispet)).distinct()
+
+            if pet_type:
+                m_list = Attractions.objects.filter(place_id__in=m)
+            else:
+                m_list = (Attractions.objects.filter(place_id__in=m) | recommend_maybe(uid,ispet)|recommend_user_favorite(uid,ispet)).distinct()
+            
             crow_opening_list = []
             for i in m_list:
                 m_db = (
@@ -320,6 +327,7 @@ def create(request, ct_id):
                     "final_crowd_avg": (fc['crowd'][f_nt]+fc['crowd'][f_nt_next])//2,  
                     'weather': get_weather_data(fr['address'],final_now_date[0],final_now_date[1],int(final_now_date[2]),fnowtime),
                 })
+
             for frr,frc in zip(final_remainder_result_list,final_remainder_crow_opening_list):
                 remainder_attractions_data.append({
                 'final_result_list':frr,
