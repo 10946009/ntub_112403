@@ -41,8 +41,8 @@ def register(request):
                     email_title = f"註冊信箱驗證："
                     email_body = f"<p>您的TripFunChill註冊驗證連結如下，請點選連結並完成註冊，謝謝!</p><h2><b>http://140.131.114.160/register_verification/{verification_token}</b></h2>TripFunChill團隊敬上</p>"
                     threading.Thread(target=send_mail_function, args=(email_title, email, email_body)).start()
-
-                    return redirect("/login")
+                    message = "註冊成功，請至信箱收取驗證信"
+                    return JsonResponse({"message": message})
                 else:
                     message = "密碼輸入不一致"
                     return JsonResponse({"message": message})

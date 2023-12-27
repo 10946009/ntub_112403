@@ -215,19 +215,19 @@
         function checkemail(){
             event.preventDefault();
             let valid = document.getElementsByClassName("valid");
-            if(valid.length != 5){
+            let email = document.getElementById("email").value;
+            let username = document.getElementById("username").value;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById("message").innerHTML = "Email格式錯誤";
+                return false; // 阻止表單的提交
+            }else if(username===""){
+                document.getElementById("message").innerHTML = "使用者名稱不可為空";
+                return false; // 阻止表單的提交
+            }
+            else if(valid.length != 5){
                 document.getElementById("message").innerHTML = "密碼格式錯誤!";
             }else{
-                let email = document.getElementById("email").value;
-                let username = document.getElementById("username").value;
-                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                
-                if (!emailRegex.test(email)) {
-                    return false; // 阻止表單的提交
-                }
-                if (username==="") {
-                    return false; // 阻止表單的提交
-                }
                 if(passwordField1.value === passwordField.value){
                     // 獲取表單數據
                     var formData = new FormData(document.forms["registerForm"]);
@@ -239,7 +239,10 @@
                         processData: false,
                         contentType: false,
                         success: function (data) {
-                            document.getElementById("message").innerHTML = data.message;
+                            alert(data["message"]);
+                            if(data["message"]==="註冊成功，請至信箱收取驗證信"){
+                                window.location.href = "/login";
+                            }
                         },
                         error: function (data) {
                             alert("註冊失敗!");
@@ -251,7 +254,6 @@
                 }
                 }
             }
-
 
     </script>
 {% endblock body %}
